@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 114936360078197654}
   - component: {fileID: 54344118679507228}
   - component: {fileID: 114711722454453078}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crate
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tooltip: 
   item: {fileID: 11400000, guid: bd186ec3995b87644bcddc79672adbdf, type: 2}
   saveID: 20
   dontSave: 0

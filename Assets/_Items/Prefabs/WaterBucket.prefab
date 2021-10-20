@@ -799,6 +799,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tooltip: 
   item: {fileID: 11400000, guid: e1b3cb9db7e814741a512d371fb66ed3, type: 2}
   saveID: 39
   dontSave: 0

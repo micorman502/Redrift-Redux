@@ -601,8 +601,8 @@ public class PlayerController : MonoBehaviour {
     {
 		if (!hit.transform)
 			return;
-		if (hit.transform.gameObject == lastTooltipGameObject)
-			return;
+		/*if (hit.transform.gameObject == lastTooltipGameObject)
+			return;*/
 		lastTooltipGameObject = hit.transform.gameObject;
 
 		ITooltip tooltip = hit.transform.gameObject.GetComponent<ITooltip>();

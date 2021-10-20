@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tooltip: 
   item: {fileID: 11400000, guid: 7594da2b096925a46a5c6e4fa578ae85, type: 2}
   saveID: 29
   dontSave: 0

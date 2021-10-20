@@ -268,6 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tooltip: 
   item: {fileID: 11400000, guid: d9a81fc8673f8c04fa7ec107eb5ca8d4, type: 2}
   saveID: 32
   dontSave: 0

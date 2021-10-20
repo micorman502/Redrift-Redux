@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tooltip: Hold [E] to pickup
+  tooltip: Wood
   item: {fileID: 11400000, guid: e605b7711cb22d140805767d6575e6ca, type: 2}
   saveID: 40
   dontSave: 0

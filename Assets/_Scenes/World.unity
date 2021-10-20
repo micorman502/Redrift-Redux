@@ -1678,6 +1678,46 @@ PrefabInstance:
       propertyPath: purgatoryRespawnTimeText
       value: 
       objectReference: {fileID: 341193354}
+    - target: {fileID: 114794400459759650, guid: 58c3dc293c422254b967cc574d836720,
+        type: 3}
+      propertyPath: darkRealmtooltipTextColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114794400459759650, guid: 58c3dc293c422254b967cc574d836720,
+        type: 3}
+      propertyPath: darkRealmtooltipTextColor.b
+      value: 0.7537259
+      objectReference: {fileID: 0}
+    - target: {fileID: 114794400459759650, guid: 58c3dc293c422254b967cc574d836720,
+        type: 3}
+      propertyPath: darkRealmtooltipTextColor.g
+      value: 0.4707191
+      objectReference: {fileID: 0}
+    - target: {fileID: 114794400459759650, guid: 58c3dc293c422254b967cc574d836720,
+        type: 3}
+      propertyPath: darkRealmtooltipTextColor.r
+      value: 0.7735849
+      objectReference: {fileID: 0}
+    - target: {fileID: 114794400459759650, guid: 58c3dc293c422254b967cc574d836720,
+        type: 3}
+      propertyPath: lightRealmtooltipTextColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114794400459759650, guid: 58c3dc293c422254b967cc574d836720,
+        type: 3}
+      propertyPath: lightRealmtooltipTextColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114794400459759650, guid: 58c3dc293c422254b967cc574d836720,
+        type: 3}
+      propertyPath: lightRealmtooltipTextColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114794400459759650, guid: 58c3dc293c422254b967cc574d836720,
+        type: 3}
+      propertyPath: lightRealmtooltipTextColor.r
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58c3dc293c422254b967cc574d836720, type: 3}
 --- !u!1 &255159897
@@ -2591,7 +2631,7 @@ GameObject:
   - component: {fileID: 428214753}
   - component: {fileID: 428214755}
   m_Layer: 5
-  m_Name: NoticeText
+  m_Name: Notice Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemHandler : MonoBehaviour, IItemSaveable, ITooltip {
 
-	[SerializeField] string tooltip = "Hold [E] to pickup";
+	[SerializeField] string tooltip;
 	public Item item;
 
 	[SerializeField] int saveID;
@@ -22,7 +22,13 @@ public class ItemHandler : MonoBehaviour, IItemSaveable, ITooltip {
 
 	public string GetTooltip ()
     {
-		return tooltip;
+		if (tooltip != "")
+		{
+			return tooltip;
+		} else
+        {
+			return item.itemName;
+        }
     }
 
 	public void SetTooltip (string _tooltip)
