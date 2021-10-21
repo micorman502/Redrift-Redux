@@ -13,8 +13,6 @@ public class PlayerController : MonoBehaviour {
 
 	public GameObject playerCameraHolder;
 	public GameObject playerCamera;
-	public GameObject handContainer;
-	public Animator handAnimator;
 	public Animation damagePanelAnim;
 	public GameObject infoText;
 
@@ -135,9 +133,6 @@ public class PlayerController : MonoBehaviour {
 	float flyDoubleTapCooldown;
 	bool flying;
 
-	WeaponHandler currentWeaponHandler;
-	Animator currentWeaponAnimator;
-
 	ResourceHandler currentResource;
 
 	float originalDrag;
@@ -186,77 +181,6 @@ public class PlayerController : MonoBehaviour {
 		if(!dead && !persistentData.loadSave) {
 			currentWorld = WorldManager.WorldType.Light;
 			EnterLightWorld();
-		}
-	}
-
-	public void InventoryUpdate() {
-		if(inventory.currentSelectedItem) {
-			if(currentHandObj) {
-				Destroy(currentHandObj);
-			}
-			GameObject obj = Instantiate(inventory.currentSelectedItem.prefab, handContainer.transform) as GameObject;
-			obj.transform.Rotate(inventory.currentSelectedItem.handRotation);
-			obj.transform.localScale = inventory.currentSelectedItem.handScale;
-			ItemHandler handler = obj.GetComponent<ItemHandler>();
-			if (handler)
-            {
-				handler.SetSaveID(-1);
-            }
-			
-			Rigidbody objRB = obj.GetComponent<Rigidbody>();
-			if(objRB) {
-				objRB.isKinematic = true;
-			}
-			Collider[] cols = obj.GetComponentsInChildren<Collider>();
-			if(cols.Length > 0) {
-				foreach(Collider col in cols) {
-					col.enabled = false;
-				}
-			}
-			AudioSource[] audioSources = obj.GetComponentsInChildren<AudioSource>();
-			if(audioSources.Length > 0) {
-				foreach(AudioSource audio in audioSources) {
-					audio.enabled = false;
-				}
-			}
-			if(inventory.currentSelectedItem.id == 23) { // AutoMiner
-				obj.GetComponent<AutoMiner>().enabled = false;
-				obj.GetComponent<NavMeshAgent>().enabled = false;
-			} else if(inventory.currentSelectedItem.id == 32 || inventory.currentSelectedItem.id == 33) { // Bucket or WaterBucket
-				Bucket bucket = obj.GetComponent<Bucket>();
-				if(bucket) {
-					bucket.enabled = false;
-				}
-			} else if(inventory.currentSelectedItem.id == 20) { // Lightning Stone
-				LightningStone ls = obj.GetComponent<LightningStone>();
-				if(ls) {
-					ls.enabled = false;
-				}
-			} else if(inventory.currentSelectedItem.id == 35) {
-				LightItem li = obj.GetComponent<LightItem>();
-				if(li) {
-					li.enabled = false;
-				}
-			}
-			obj.tag = "Untagged";
-			foreach(Transform trans in obj.transform) {
-				trans.tag = "Untagged";
-			}
-
-			currentHandObj = obj;
-
-			if(inventory.currentSelectedItem.type == Item.ItemType.Weapon) {
-				currentWeaponHandler = currentHandObj.GetComponent<WeaponHandler>();
-				currentWeaponAnimator = currentHandObj.GetComponent<Animator>();
-			} else {
-				currentWeaponHandler = null;
-				currentWeaponAnimator = null;
-			}
-
-		} else if(currentHandObj) {
-			Destroy(currentHandObj);
-			currentHandObj = null;
-			currentWeaponHandler = null;
 		}
 	}
 
@@ -345,21 +269,6 @@ public class PlayerController : MonoBehaviour {
 		string tooltipText = string.Empty;
 
 		if(!inMenu) {
-			if(currentWeaponHandler && currentWeaponHandler.weapon.type == Weapon.WeaponType.Bow) {
-				if(!firing) {
-					firing = true;
-					currentWeaponAnimator.SetBool("PullingBack", true);
-				}
-				if(Input.GetMouseButton(2) || Input.GetAxisRaw("ControllerTriggers") >= 0.1f) {
-					if(drawTime < currentWeaponHandler.weapon.chargeTime) {
-						drawTime++;
-					}
-				}
-			} else if(firing) {
-				firing = false;
-				currentWeaponAnimator.SetTrigger("Fire");
-				currentWeaponAnimator.SetBool("PullingBack", false);
-			}
 
 			if(hit.collider) {
 				target = hit.collider.gameObject;
@@ -568,8 +477,6 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 
-		handAnimator.SetBool("Gathering", gathering);
-
 		if(hideTooltipText) {
 			if(!inventory.placingStructure) {
 				HideTooltipText();
@@ -663,8 +570,6 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Attack() {
-		if(handAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.name != "PlayerAttack") { // IF PLAYERATTACK IS RENAMED, THIS WILL NOT WORK
-			handAnimator.SetTrigger("Attack");
 			if(target) {
 				Health targetHealth = target.GetComponent<Health>();
 				if(targetHealth) {
@@ -678,7 +583,6 @@ public class PlayerController : MonoBehaviour {
 					}
 				}
 			}
-		}
 	}
 
 	void OnCollisionEnter(Collision col) {

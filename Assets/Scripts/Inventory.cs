@@ -213,7 +213,6 @@ public class Inventory : MonoBehaviour {
 		InventoryEvents.SetHotbarIndex(selectedHotbarSlot);
 		currentSelectedItem = items[selectedHotbarSlot].item;
 		EquipHeldItem(currentSelectedItem);
-		player.InventoryUpdate();
 		if (placingStructure)
 		{
 			StopBuilding();
@@ -594,7 +593,6 @@ public class Inventory : MonoBehaviour {
 
 	public void InventoryUpdate() {
 		currentSelectedItem = items[selectedHotbarSlot].item;
-		player.InventoryUpdate();
 		foreach(Transform craftingRecipeObj in craftingRecipeContainer) {
 			craftingRecipeObj.GetComponent<RecipeListItem>().InventoryUpdate();
 		}
