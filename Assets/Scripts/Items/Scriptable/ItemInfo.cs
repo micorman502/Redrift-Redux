@@ -9,7 +9,7 @@ public class ItemInfo : ScriptableObject
 	public string itemDescription;
 	public int stackSize;
 	public int id;
+	public int achievementId;
 	public Sprite icon;
 	public GameObject droppedPrefab;
-	public float timeToGather = 0.25f;
 }
