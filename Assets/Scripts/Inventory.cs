@@ -38,7 +38,7 @@ public class Inventory : MonoBehaviour {
 	float gridY = 0.25f;
 	float gridZ = 1f;
 
-	int heldItemIndex;
+	[SerializeField] int heldItemIndex = -1;
 	int previousHeldItemIndex = -1;
 
 	void Awake() {
@@ -86,10 +86,10 @@ public class Inventory : MonoBehaviour {
 
 	void Update() {
 
-		for(int i = 1; i < hotbarSize + 1; i++) {
-			if(Input.GetKeyDown("" + i)) {
-				if(selectedHotbarSlot != i - 1) {
-					SetHotbarSlot(i - 1);
+		for(int i = 0; i < hotbarSize; i++) {
+			if(Input.GetKeyDown((i + 1).ToString())) {
+				if(selectedHotbarSlot != i) {
+					SetHotbarSlot(i);
 				}
 			}
 		}
@@ -102,9 +102,8 @@ public class Inventory : MonoBehaviour {
 			}
 
 			HotbarUpdate();
-
 		}
-
+		CheckItemFunctions();
 		if(!player.dead) {
 			if(placingStructure && !player.InMenu()) {
 				player.ShowTooltipText("[LMB] to place, [RMB] to cancel, [R] to rotate");
@@ -185,6 +184,28 @@ public class Inventory : MonoBehaviour {
 		}
 	}
 
+	void CheckItemFunctions ()
+    {
+		if (heldItemIndex == -1 || heldItemIndex >= heldItems.Length)
+			return;
+		if (Input.GetMouseButtonDown(0))
+        {
+			heldItems[heldItemIndex].Use();
+        }
+		if (Input.GetMouseButton(0))
+		{
+			heldItems[heldItemIndex].UseRepeating();
+		}
+		if (Input.GetMouseButtonDown(1))
+        {
+			heldItems[heldItemIndex].AltUse();
+        }
+		if (Input.GetMouseButton(1))
+		{
+			heldItems[heldItemIndex].AltUseRepeating();
+		}
+	}
+
 	void ScrollHotbar (int scrollAmt)
     {
 		if (scrollAmt != 0)
@@ -234,13 +255,13 @@ public class Inventory : MonoBehaviour {
 
 	void EquipHeldItem (int _index)
     {
-		if (_index == previousHeldItemIndex)
+		if (_index == heldItemIndex)
 			return;
 		if (heldItems.Length == 0)
 			return;
 		heldItemIndex = _index;
 
-		if (previousHeldItemIndex != -1) //this order is important. It allows you to go from a building tool to a placeable item with issue
+		if (previousHeldItemIndex != -1)
 		{
 			heldItems[previousHeldItemIndex].SetChildState(false);
 		}
@@ -351,6 +372,7 @@ public class Inventory : MonoBehaviour {
 		}
 
 		InventoryUpdate();
+		HotbarUpdate();
 	}
 
 	public int RemoveItem(int index, int amount)
@@ -359,7 +381,7 @@ public class Inventory : MonoBehaviour {
 		return RemoveItem(item, amount);
 	}
 
-	public int RemoveItem(Item item, int amount)
+	public int RemoveItem(Item item, int amount) //return value of 0 means all items were taken
 	{
 		if (mode == 1)
 			return 0;
@@ -400,6 +422,7 @@ public class Inventory : MonoBehaviour {
 		}
 
 		InventoryUpdate();
+		HotbarUpdate();
 
 		return amountLeft;
 	}

@@ -654,7 +654,7 @@ public class PlayerController : MonoBehaviour {
 		ignoreFallDamage = false;
 	}
 
-	void GainCalories(float amount) {
+	public void GainCalories(float amount) {
 		hunger += amount;
 		if(hunger > maxHunger) {
 			hunger = maxHunger;

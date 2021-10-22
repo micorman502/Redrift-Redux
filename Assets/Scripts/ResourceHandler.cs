@@ -5,12 +5,16 @@ using UnityEngine;
 public class ResourceHandler : MonoBehaviour, IItemSaveable {
 	[SerializeField] bool dontSave;
 	[SerializeField] int saveID;
+	[SerializeField] bool dontRegisterToHivemind;
 	public Resource resource;
 
 	public int health;
 
 	void Awake() {
-		HiveMind.Instance.AddResource(this);
+		if (!dontRegisterToHivemind)
+		{
+			HiveMind.Instance.AddResource(this);
+		}
 	}
 
 	void Start ()
@@ -21,11 +25,17 @@ public class ResourceHandler : MonoBehaviour, IItemSaveable {
 		}
 	}
 
-	public void Gather(int amount) {
+	public void Gather(int amount)
+	{
 		health -= amount;
-		if(health <= 0 && !resource.infiniteGathers) {
-			HiveMind.Instance.RemoveResource(this);
-			if(resource.id == 5) { // This resource is a tree
+		if (health <= 0 && !resource.infiniteGathers)
+		{
+			if (!dontRegisterToHivemind)
+			{
+				HiveMind.Instance.RemoveResource(this);
+			}
+			if (resource.id == 5)
+			{ // This resource is a tree
 				GetComponent<TreeResource>().DropFruits();
 			}
 			Destroy(gameObject);

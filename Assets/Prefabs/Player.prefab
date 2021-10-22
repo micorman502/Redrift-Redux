@@ -19882,8 +19882,6 @@ MonoBehaviour:
   currentWorld: 0
   playerCameraHolder: {fileID: 1729225956712484}
   playerCamera: {fileID: 1170796481563098}
-  handContainer: {fileID: 1083688365399578}
-  handAnimator: {fileID: 95332227828042624}
   damagePanelAnim: {fileID: 0}
   infoText: {fileID: 0}
   rb: {fileID: 0}
@@ -19957,8 +19955,8 @@ MonoBehaviour:
   craftingContainer: {fileID: 0}
   heldItems:
   - {fileID: 1770438119220332967}
-  - {fileID: 1822949697704523036}
-  - {fileID: 6912135656583247118}
+  - {fileID: 1593230484361314615}
+  - {fileID: 7494540455678972043}
   - {fileID: 908335506184108523}
   - {fileID: 1747725681634154272}
   - {fileID: 7926298393481028478}
@@ -20065,6 +20063,7 @@ MonoBehaviour:
   placingStructure: 0
   selectedHotbarSlot: 0
   currentSelectedItem: {fileID: 0}
+  heldItemIndex: -1
 --- !u!114 &114004087794179738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25484,7 +25483,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7254705758339188549}
-  - component: {fileID: 1822949697704523036}
+  - component: {fileID: 1593230484361314615}
   m_Layer: 2
   m_Name: Apple Held Item
   m_TagString: Untagged
@@ -25507,7 +25506,7 @@ Transform:
   m_Father: {fileID: 4198538540125010}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1822949697704523036
+--- !u!114 &1593230484361314615
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -25516,12 +25515,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1370840480122104328}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc83e8d64003ee04eb828bf634e1d548, type: 3}
+  m_Script: {fileID: 11500000, guid: f8679950b38869b479775ee9b4170064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tempItem: {fileID: 11400000, guid: d26b5cace6986ec49876269562501d8e, type: 2}
-  item: {fileID: 11400000, guid: 60defaddcf0f8ff46adb2b4cb7af81a3, type: 2}
+  item: {fileID: 11400000, guid: b0c49f54531af804cb45871618249a8b, type: 2}
   itemGameObject: {fileID: 1370840480122104328}
+  inventory: {fileID: 114380057707737522}
+  controller: {fileID: 114794400459759650}
 --- !u!1 &1413578756942890548
 GameObject:
   m_ObjectHideFlags: 0
@@ -26779,7 +26780,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4943484700287408931}
-  - component: {fileID: 6912135656583247118}
+  - component: {fileID: 7494540455678972043}
   m_Layer: 2
   m_Name: Auto Miner Held Item
   m_TagString: Untagged
@@ -26802,7 +26803,7 @@ Transform:
   m_Father: {fileID: 4198538540125010}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6912135656583247118
+--- !u!114 &7494540455678972043
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -26811,12 +26812,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5032331898522021500}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc83e8d64003ee04eb828bf634e1d548, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b2e9fa75bbba804da0462fd7c10f7b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tempItem: {fileID: 11400000, guid: eff02d0cd5997b04ca5de49d716f3d82, type: 2}
-  item: {fileID: 11400000, guid: 60defaddcf0f8ff46adb2b4cb7af81a3, type: 2}
+  item: {fileID: 11400000, guid: 5883cf46a796a7e40969f614714cf207, type: 2}
   itemGameObject: {fileID: 5032331898522021500}
+  inventory: {fileID: 114380057707737522}
 --- !u!1 &5238003540094773954
 GameObject:
   m_ObjectHideFlags: 0
