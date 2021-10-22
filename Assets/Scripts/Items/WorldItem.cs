@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public struct WorldItem
 {
-    public Item item;
+    public ItemInfo item;
     public int amount;
 
     public void Clear ()
@@ -16,7 +16,7 @@ public struct WorldItem
 
     public bool AtMaxStack ()
     {
-        if (amount >= item.maxStackCount)
+        if (amount >= item.stackSize)
         {
             return true;
         } else
@@ -25,7 +25,7 @@ public struct WorldItem
         }
     }
 
-    public WorldItem(Item _item, int _amount)
+    public WorldItem(ItemInfo _item, int _amount)
     {
         this.item = _item;
         this.amount = _amount;

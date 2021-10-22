@@ -114,7 +114,7 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
-    public void SetHoveredItem(Item item, InventorySlot slot = null)
+    public void SetHoveredItem(ItemInfo item, InventorySlot slot = null)
     {
         //audioManager.Play("UIClick");
         if (item)
@@ -126,7 +126,7 @@ public class InventoryUI : MonoBehaviour
             tooltipTitle.text = item.itemName;
             if (string.IsNullOrEmpty(item.itemDescription))
             {
-                if (item.type == Item.ItemType.Tool)
+                /*if (item.type == Item.ItemType.Tool)
                 {
                     tooltipDesc.text = "Speed: " + (item.speed).ToString();
                 }
@@ -140,8 +140,8 @@ public class InventoryUI : MonoBehaviour
                 }
                 else
                 {
-                    tooltipDesc.text = item.type.ToString();
-                }
+                    tooltipDesc.text = item.type.ToString(); //COME BACK
+                }*/
             }
             else
             {

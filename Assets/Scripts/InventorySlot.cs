@@ -22,7 +22,7 @@ public class InventorySlot : MonoBehaviour {
 	int mode;
 
 	[SerializeField] int slotID;
-	[HideInInspector] public Item currentItem;
+	[HideInInspector] public ItemInfo currentItem;
 	[HideInInspector] public int stackCount;
 
 	bool wasActiveInHierarchy;

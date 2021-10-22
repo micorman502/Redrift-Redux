@@ -22,11 +22,11 @@ public class Inventory : MonoBehaviour {
 
 	[HideInInspector] public bool placingStructure;
 	GameObject currentPreviewObj;
-	Item currentPlacingItem;
+	ItemInfo currentPlacingItem;
 	int currentPlacingRot;
 
 	public int selectedHotbarSlot = 0;
-	public Item currentSelectedItem;
+	public ItemInfo currentSelectedItem;
 
 	InventorySlot firstDragSlot;
 
@@ -111,40 +111,60 @@ public class Inventory : MonoBehaviour {
 					currentPreviewObj.SetActive(true);
 				}
 
-				if(!player.target || player.targetHit.distance > player.interactRange) {
-					if(currentPlacingItem.alignToNormal) {
-						currentPreviewObj.transform.position = player.playerCamera.transform.position + player.playerCamera.transform.forward * player.interactRange;
-					} else {
-						Vector3 targetPos = player.playerCamera.transform.position + player.playerCamera.transform.forward * player.interactRange;
-						currentPreviewObj.transform.position = new Vector3(Mathf.Round(targetPos.x / gridX) * gridX,
-						Mathf.Round(targetPos.y / gridY) * gridY,
-						Mathf.Round(targetPos.z / gridZ) * gridZ);
+				if (currentSelectedItem is BuildingInfo)
+				{
+					BuildingInfo building = currentSelectedItem as BuildingInfo;
+					if (!player.target || player.targetHit.distance > player.interactRange)
+					{
+						if (building.alignToNormal)
+						{
+							currentPreviewObj.transform.position = player.playerCamera.transform.position + player.playerCamera.transform.forward * player.interactRange;
+						}
+						else
+						{
+							Vector3 targetPos = player.playerCamera.transform.position + player.playerCamera.transform.forward * player.interactRange;
+							currentPreviewObj.transform.position = new Vector3(Mathf.Round(targetPos.x / gridX) * gridX,
+							Mathf.Round(targetPos.y / gridY) * gridY,
+							Mathf.Round(targetPos.z / gridZ) * gridZ);
+						}
 					}
-				} else {
-					if(currentPlacingItem.alignToNormal) {
-						currentPreviewObj.transform.position = player.targetHit.point;
-					} else {
-						currentPreviewObj.transform.position = new Vector3(Mathf.Round((player.targetHit.point.x / gridX) + player.targetHit.normal.normalized.x * 0.05f) * gridX,
-						Mathf.Round((player.targetHit.point.y + player.targetHit.normal.normalized.y * 0.05f) / gridY) * gridY,
-						Mathf.Round((player.targetHit.point.z / gridZ) + player.targetHit.normal.normalized.z * 0.05f) * gridZ);
+					else
+					{
+						if (building.alignToNormal)
+						{
+							currentPreviewObj.transform.position = player.targetHit.point;
+						}
+						else
+						{
+							currentPreviewObj.transform.position = new Vector3(Mathf.Round((player.targetHit.point.x / gridX) + player.targetHit.normal.normalized.x * 0.05f) * gridX,
+							Mathf.Round((player.targetHit.point.y + player.targetHit.normal.normalized.y * 0.05f) / gridY) * gridY,
+							Mathf.Round((player.targetHit.point.z / gridZ) + player.targetHit.normal.normalized.z * 0.05f) * gridZ);
+						}
 					}
-				}
 
-				if(Input.GetKeyDown(KeyCode.R)) { //TODO: Make "Rotate" Button, not key
-					currentPlacingRot++;
-					if(currentPlacingRot >= currentPlacingItem.rots.Length) {
-						currentPlacingRot = 0;
+					if (Input.GetKeyDown(KeyCode.R))
+					{ //TODO: Make "Rotate" Button, not key
+						currentPlacingRot++;
+						if (currentPlacingRot >= building.possibleRotations.Length)
+						{
+							currentPlacingRot = 0;
+						}
+						if (!building.alignToNormal)
+						{
+							currentPreviewObj.transform.rotation = Quaternion.Euler(building.possibleRotations[currentPlacingRot]);
+						}
 					}
-					if(!currentPlacingItem.alignToNormal) {
-						currentPreviewObj.transform.rotation = Quaternion.Euler(currentPlacingItem.rots[currentPlacingRot]);
-					}
-				}
 
-				if(currentPlacingItem.alignToNormal) {
-					if(player.target && player.distanceToTarget <= player.interactRange) { // TODO: WORKING ON CURRENTLY |||___|||---|||___|||===================
-						currentPreviewObj.transform.rotation = Quaternion.FromToRotation(Vector3.up, player.targetHit.normal) * Quaternion.Euler(currentPlacingItem.rots[currentPlacingRot]);
-					} else {
-						currentPreviewObj.transform.rotation = Quaternion.Euler(currentPlacingItem.rots[currentPlacingRot]);
+					if (building.alignToNormal)
+					{
+						if (player.target && player.distanceToTarget <= player.interactRange)
+						{ // TODO: WORKING ON CURRENTLY |||___|||---|||___|||===================
+							currentPreviewObj.transform.rotation = Quaternion.FromToRotation(Vector3.up, player.targetHit.normal) * Quaternion.Euler(currentPlacingItem.rots[currentPlacingRot]);
+						}
+						else
+						{
+							currentPreviewObj.transform.rotation = Quaternion.Euler(building.possibleRotations[currentPlacingRot]);
+						}
 					}
 				}
 
@@ -159,7 +179,7 @@ public class Inventory : MonoBehaviour {
 					if(currentSelectedItem.type == Item.ItemType.Structure && !placingStructure) {
 						StartBuilding(currentSelectedItem);
 					} else if(currentSelectedItem.type == Item.ItemType.Food) {
-						Item selected = currentSelectedItem;
+						ItemInfo selected = currentSelectedItem;
 						if (RemoveItem(currentSelectedItem))
 						{
 							player.Consume(selected);
@@ -240,7 +260,7 @@ public class Inventory : MonoBehaviour {
 		}
 	}
 
-	void EquipHeldItem (Item _item)
+	void EquipHeldItem (ItemInfo _item)
     {
 		for (int i = 0; i < heldItems.Length; i++)
         {
@@ -330,7 +350,7 @@ public class Inventory : MonoBehaviour {
 		AddItem(item.item, item.amount);
     }
 
-	public void AddItem(Item item, int amount) {
+	public void AddItem(ItemInfo item, int amount) {
 		if (!item || amount == 0)
 			return;
 		int amountLeft = amount;
@@ -339,7 +359,7 @@ public class Inventory : MonoBehaviour {
 			if (items[i].item == item || items[i].item == null)
 			{
 				items[i].item = item;
-				if (items[i].amount + amountLeft <= items[i].item.maxStackCount)
+				if (items[i].amount + amountLeft <= items[i].item.stackSize)
 				{
 					items[i].amount += amountLeft;
 					amountLeft = 0;
@@ -347,9 +367,9 @@ public class Inventory : MonoBehaviour {
 					break;
 				} else
                 {
-					int removed = items[i].item.maxStackCount - items[i].amount;
+					int removed = items[i].item.stackSize - items[i].amount;
 					amountLeft -= removed; 
-					items[i].amount = items[i].item.maxStackCount;
+					items[i].amount = items[i].item.stackSize;
 					InventoryEvents.UpdateInventorySlot(items[i], i);
 					if (amountLeft == 0)
                     {
@@ -368,7 +388,7 @@ public class Inventory : MonoBehaviour {
 		}
 
 		if(amountLeft != amount) { //if items were actually taken
-			AchievementManager.Instance.GetAchievement(item.achievementNumber);
+			AchievementManager.Instance.GetAchievement(item.achievementId);
 		}
 
 		InventoryUpdate();
@@ -377,11 +397,11 @@ public class Inventory : MonoBehaviour {
 
 	public int RemoveItem(int index, int amount)
 	{
-		Item item = items[index].item;
+		ItemInfo item = items[index].item;
 		return RemoveItem(item, amount);
 	}
 
-	public int RemoveItem(Item item, int amount) //return value of 0 means all items were taken
+	public int RemoveItem(ItemInfo item, int amount) //return value of 0 means all items were taken
 	{
 		if (mode == 1)
 			return 0;
@@ -427,7 +447,7 @@ public class Inventory : MonoBehaviour {
 		return amountLeft;
 	}
 
-	public bool RemoveItem(Item item)
+	public bool RemoveItem(ItemInfo item)
 	{
 		if (RemoveItem(item, 1) == 1)
         {
@@ -447,14 +467,14 @@ public class Inventory : MonoBehaviour {
 		}
 	}
 
-	public void SetItem(Item item, int amount, int index) {
+	public void SetItem(ItemInfo item, int amount, int index) {
 		SetItem(new WorldItem(item, amount), index);
 	}
 
 
-	public void SimpleDropItem(Item item, int amount) { //drop item without removing anything
+	public void SimpleDropItem(ItemInfo item, int amount) { //drop item without removing anything
 		for(int i = 0; i < amount; i++) {
-			GameObject itemObj = Instantiate(item.prefab, player.playerCamera.transform.position + player.playerCamera.transform.forward * 1.25f + Vector3.up * i * (item.prefab.GetComponentInChildren<Renderer>().bounds.size.y + 0.1f), player.playerCamera.transform.rotation);
+			GameObject itemObj = Instantiate(item.droppedPrefab, player.playerCamera.transform.position + player.playerCamera.transform.forward * 1.25f + Vector3.up * i * (item.droppedPrefab.GetComponentInChildren<Renderer>().bounds.size.y + 0.1f), player.playerCamera.transform.rotation);
 			Rigidbody itemRB = itemObj.GetComponent<Rigidbody>();
 			if(itemRB) {
 				itemRB.velocity = player.rb.velocity;
@@ -462,12 +482,12 @@ public class Inventory : MonoBehaviour {
 		}
 	}
 
-	public void DropItem(Item item, int amount)
+	public void DropItem(ItemInfo item, int amount)
 	{
 		amount -= RemoveItem(item, amount);
 		for (int i = 0; i < amount; i++)
 		{
-			GameObject itemObj = Instantiate(item.prefab, player.playerCamera.transform.position + player.playerCamera.transform.forward * 1.25f + Vector3.up * i * (item.prefab.GetComponentInChildren<Renderer>().bounds.size.y + 0.1f), player.playerCamera.transform.rotation);
+			GameObject itemObj = Instantiate(item.droppedPrefab, player.playerCamera.transform.position + player.playerCamera.transform.forward * 1.25f + Vector3.up * i * (item.droppedPrefab.GetComponentInChildren<Renderer>().bounds.size.y + 0.1f), player.playerCamera.transform.rotation);
 			Rigidbody itemRB = itemObj.GetComponent<Rigidbody>();
 			if (itemRB)
 			{
@@ -487,7 +507,8 @@ public class Inventory : MonoBehaviour {
 	void PlaceBuilding ()
     {
 		RemoveItem(currentPlacingItem);
-		GameObject go = Instantiate(currentPlacingItem.prefab, currentPreviewObj.transform.position, currentPreviewObj.transform.rotation);
+		BuildingInfo building = currentPlacingItem as building;
+		GameObject go = Instantiate(currentPlacingItem., currentPreviewObj.transform.position, currentPreviewObj.transform.rotation);
 		GameObject psgo = Instantiate(placementParticleSystem, go.transform);
 		MeshRenderer mr = go.GetComponent<MeshRenderer>();
 		if (!mr)
@@ -516,11 +537,14 @@ public class Inventory : MonoBehaviour {
 		player.HideTooltipText();
 	}
 
-	public void StartBuilding(Item item) {
+	public void StartBuilding(ItemInfo item) {
 		if(placingStructure) {
 			StopBuilding();
 			player.HideTooltipText();
 		}
+		if (!item is BuildingInfo)
+			return;
+		BuildingInfo building = item as BuildingInfo;
 
 		GameObject previewObj = Instantiate(item.previewPrefab, Vector3.up * -10000f, item.previewPrefab.transform.rotation);
 		gridX = item.gridSize.x;
@@ -532,7 +556,7 @@ public class Inventory : MonoBehaviour {
 	}
 
 	void AddAllItems() {
-		foreach(Item item in saveManager.allItems) {
+		foreach(ItemInfo item in saveManager.allItems) {
 			AddItem(item, 1);
 		}
 	}

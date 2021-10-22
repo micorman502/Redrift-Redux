@@ -5,7 +5,7 @@ using UnityEngine;
 public class ItemHandler : MonoBehaviour, IItemSaveable, ITooltip {
 
 	[SerializeField] string tooltip;
-	public Item item;
+	public ItemInfo item;
 
 	[SerializeField] int saveID;
 	[SerializeField] bool dontSave;
