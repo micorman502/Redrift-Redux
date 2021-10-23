@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Pickaxe_Iron
   m_EditorClassIdentifier: 
   inputs:
-  - item: {fileID: 11400000, guid: e605b7711cb22d140805767d6575e6ca, type: 2}
+  - item: {fileID: 11400000, guid: 60defaddcf0f8ff46adb2b4cb7af81a3, type: 2}
     amount: 2
-  - item: {fileID: 11400000, guid: 221124a2341142445ac06a74d0443d60, type: 2}
+  - item: {fileID: 11400000, guid: ea1231b87469d66478589fbd2574706c, type: 2}
     amount: 2
   replacedItems: []
   output:
-    item: {fileID: 11400000, guid: d9a81fc8673f8c04fa7ec107eb5ca8d4, type: 2}
+    item: {fileID: 11400000, guid: 1298723ecdadd9441be0c619bf981016, type: 2}
     amount: 1
   categories: 03000000

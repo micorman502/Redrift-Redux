@@ -15,7 +15,7 @@ MonoBehaviour:
   prefab: {fileID: 0}
   id: 3
   resourceItems:
-  - {fileID: 11400000, guid: cb2b8f9de15633642b25d8a3e5609e34, type: 2}
+  - {fileID: 11400000, guid: 1e10d0584bbe2ee47ba56f3c6f0b6737, type: 2}
   chances:
   - 1
   maxGathers: 0

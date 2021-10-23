@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Ladder
   m_EditorClassIdentifier: 
   inputs:
-  - item: {fileID: 11400000, guid: e605b7711cb22d140805767d6575e6ca, type: 2}
+  - item: {fileID: 11400000, guid: 60defaddcf0f8ff46adb2b4cb7af81a3, type: 2}
     amount: 2
   replacedItems: []
   output:
-    item: {fileID: 11400000, guid: 6eec3ba762172474583442910730a27b, type: 2}
+    item: {fileID: 11400000, guid: 04424a78eb00de8419d4ba5e07c6e1f7, type: 2}
     amount: 1
   categories: 01000000

@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Wall
   m_EditorClassIdentifier: 
   inputs:
-  - item: {fileID: 11400000, guid: e605b7711cb22d140805767d6575e6ca, type: 2}
+  - item: {fileID: 11400000, guid: 60defaddcf0f8ff46adb2b4cb7af81a3, type: 2}
     amount: 4
   replacedItems: []
   output:
-    item: {fileID: 11400000, guid: d42efd3b4b64ef14881bd2b67d9654dd, type: 2}
+    item: {fileID: 11400000, guid: 05be672c5638b59429c3e9636d47fa09, type: 2}
     amount: 1
   categories: 01000000

@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Incinerator
   m_EditorClassIdentifier: 
   inputs:
-  - item: {fileID: 11400000, guid: e605b7711cb22d140805767d6575e6ca, type: 2}
+  - item: {fileID: 11400000, guid: 1e10d0584bbe2ee47ba56f3c6f0b6737, type: 2}
     amount: 6
-  - item: {fileID: 11400000, guid: 221124a2341142445ac06a74d0443d60, type: 2}
+  - item: {fileID: 11400000, guid: ea1231b87469d66478589fbd2574706c, type: 2}
     amount: 10
   replacedItems: []
   output:
-    item: {fileID: 11400000, guid: b2fb129f7e7ac00498130d25f27feaa9, type: 2}
-    amount: 0
+    item: {fileID: 11400000, guid: 65c8437dd1294f74a9b51040628230ff, type: 2}
+    amount: 1
   categories: 01000000

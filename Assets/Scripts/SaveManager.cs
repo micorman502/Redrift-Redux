@@ -81,11 +81,11 @@ public class SaveManager : MonoBehaviour {
 	}
 
 	public ItemInfo FindItem(int id) {
-		foreach(ItemInfo item in allItems.items) {
-			if(item.id == id) {
-				return item;
-			}
-		}
+		if (id < 0)
+			return null;
+
+		return allItems.items[id]; //this is possible due to Item Order
+
 		Debug.LogError("Item with id " + id + " not found.");
 		return null;
 	}
@@ -143,11 +143,8 @@ public class SaveManager : MonoBehaviour {
             }
 
 			for (int i = 0; i < save.inventoryItems.Count; i++) {
-				foreach(ItemInfo item in allItems.items) {
-					if(item.id == save.inventoryItems[i].id) {
-						inventory.SetItem(item, save.inventoryItems[i].amount, i);
-					}
-				}
+				ItemInfo item = allItems.items[save.inventoryItems[i].id];
+				inventory.SetItem(item, save.inventoryItems[i].amount, i);
 			}
 
 

@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Light
   m_EditorClassIdentifier: 
   inputs:
-  - item: {fileID: 11400000, guid: 00dd8405c3cf190449d564d4e511a9f3, type: 2}
+  - item: {fileID: 11400000, guid: ada74405c0b91a641bed3460f1a00d5e, type: 2}
     amount: 1
-  - item: {fileID: 11400000, guid: cb2b8f9de15633642b25d8a3e5609e34, type: 2}
+  - item: {fileID: 11400000, guid: 1e10d0584bbe2ee47ba56f3c6f0b6737, type: 2}
     amount: 2
   replacedItems: []
   output:
-    item: {fileID: 11400000, guid: 78a8b8f75c613d24cbd64b5a1014f774, type: 2}
+    item: {fileID: 11400000, guid: 54aff0ee6bd8fa54ea6150a7e090eccd, type: 2}
     amount: 1
   categories: 05000000

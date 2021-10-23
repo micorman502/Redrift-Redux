@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Pickaxe_Wood
   m_EditorClassIdentifier: 
   inputs:
-  - item: {fileID: 11400000, guid: e605b7711cb22d140805767d6575e6ca, type: 2}
+  - item: {fileID: 11400000, guid: 60defaddcf0f8ff46adb2b4cb7af81a3, type: 2}
     amount: 4
   replacedItems: []
   output:
-    item: {fileID: 11400000, guid: 554c63e2a39d70d47aad35bf7a63d7dc, type: 2}
+    item: {fileID: 11400000, guid: a82041a624ea06740b506ed16cbc66f3, type: 2}
     amount: 1
   categories: 03000000

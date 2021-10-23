@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Floor
   m_EditorClassIdentifier: 
   inputs:
-  - item: {fileID: 11400000, guid: e605b7711cb22d140805767d6575e6ca, type: 2}
+  - item: {fileID: 11400000, guid: 60defaddcf0f8ff46adb2b4cb7af81a3, type: 2}
     amount: 4
   replacedItems: []
   output:
-    item: {fileID: 11400000, guid: 4f254871519a1fb43afb2ff65f708ca3, type: 2}
+    item: {fileID: 11400000, guid: 59b97cefec97c5a4c83eefffc9ca45b0, type: 2}
     amount: 1
   categories: 01000000

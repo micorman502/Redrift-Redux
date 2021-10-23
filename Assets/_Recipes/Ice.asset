@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Ice
   m_EditorClassIdentifier: 
   inputs:
-  - item: {fileID: 11400000, guid: e1b3cb9db7e814741a512d371fb66ed3, type: 2}
+  - item: {fileID: 11400000, guid: f3d9331c6ded1e4488f7bac7e0a8f8c4, type: 2}
     amount: 2
   replacedItems:
-  - item: {fileID: 11400000, guid: f02312205082cc746bf5976adce58d91, type: 2}
+  - item: {fileID: 11400000, guid: 296e1243692f86144accc4a222765046, type: 2}
     amount: 2
   output:
-    item: {fileID: 11400000, guid: db4a0a69dd49e7a48bf365378819184b, type: 2}
+    item: {fileID: 11400000, guid: ae8fcd34f9c789148acaf4358b6c5f2b, type: 2}
     amount: 1
   categories: 01000000

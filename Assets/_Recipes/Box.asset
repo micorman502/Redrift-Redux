@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Box
   m_EditorClassIdentifier: 
   inputs:
-  - item: {fileID: 11400000, guid: e605b7711cb22d140805767d6575e6ca, type: 2}
+  - item: {fileID: 11400000, guid: 60defaddcf0f8ff46adb2b4cb7af81a3, type: 2}
     amount: 2
   replacedItems: []
   output:
-    item: {fileID: 11400000, guid: 03520992c844d134f8fba88e91a26308, type: 2}
+    item: {fileID: 11400000, guid: 8e2b06360f2cb914093f2e0c86d5ee65, type: 2}
     amount: 1
   categories: 01000000

@@ -964,7 +964,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltip: Water Bucket
-  item: {fileID: 11400000, guid: e1b3cb9db7e814741a512d371fb66ed3, type: 2}
+  item: {fileID: 11400000, guid: f3d9331c6ded1e4488f7bac7e0a8f8c4, type: 2}
   saveID: 39
   dontSave: 0
 --- !u!95 &9030454993172029589
@@ -1015,8 +1015,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waterBucket: 1
-  bucketItem: {fileID: 11400000, guid: f02312205082cc746bf5976adce58d91, type: 2}
-  waterBucketItem: {fileID: 11400000, guid: e1b3cb9db7e814741a512d371fb66ed3, type: 2}
+  bucketItem: {fileID: 0}
+  waterBucketItem: {fileID: 0}
   waterLevel: {fileID: 8941432644954269469}
 --- !u!65 &8998705705594962921
 BoxCollider:

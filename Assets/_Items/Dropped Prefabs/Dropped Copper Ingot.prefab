@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltip: Copper Ingot
-  item: {fileID: 11400000, guid: c8dbf5dd1f4b19444a9bf9438009cb5b, type: 2}
+  item: {fileID: 11400000, guid: a7599c2897a389b4fa0a907ae43f3f7d, type: 2}
   saveID: 17
   dontSave: 0
 --- !u!33 &1100504473223223256

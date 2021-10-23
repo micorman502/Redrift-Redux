@@ -221,7 +221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltip: Lightning Stone
-  item: {fileID: 11400000, guid: 00dd8405c3cf190449d564d4e511a9f3, type: 2}
+  item: {fileID: 11400000, guid: ada74405c0b91a641bed3460f1a00d5e, type: 2}
   saveID: 31
   dontSave: 0
 --- !u!114 &6529162089987004720

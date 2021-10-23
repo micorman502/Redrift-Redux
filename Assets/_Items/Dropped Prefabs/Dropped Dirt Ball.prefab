@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltip: Dirt Ball
-  item: {fileID: 11400000, guid: de8ae7d39448b624eb7111ec5c2219a0, type: 2}
+  item: {fileID: 11400000, guid: 4c86a247f11b50449a1ffe306894dd30, type: 2}
   saveID: 21
   dontSave: 0
 --- !u!33 &3443707293404819257

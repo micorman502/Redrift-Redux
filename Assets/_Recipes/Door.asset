@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Door
   m_EditorClassIdentifier: 
   inputs:
-  - item: {fileID: 11400000, guid: e605b7711cb22d140805767d6575e6ca, type: 2}
+  - item: {fileID: 11400000, guid: 60defaddcf0f8ff46adb2b4cb7af81a3, type: 2}
     amount: 2
   replacedItems: []
   output:
-    item: {fileID: 11400000, guid: 6e7f0d2c10923f649a52cd9ee8256f87, type: 2}
+    item: {fileID: 11400000, guid: ea3dec4fdcf484b46a6d28d36fa965fb, type: 2}
     amount: 1
   categories: 01000000
