@@ -9,27 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91adea7c2cf48c44bab70182c5512d9d, type: 3}
+  m_Script: {fileID: 11500000, guid: dfd659c09d6007a4d92c91f3e04b9b81, type: 3}
   m_Name: ComputerChip
   m_EditorClassIdentifier: 
   itemName: Computer Chip
   itemDescription: 
-  type: 0
-  id: 22
+  stackSize: 100
+  id: 0
+  achievementId: -1
   icon: {fileID: 21300000, guid: d8d7f6d06a9caf848b29a56fd98bde1c, type: 3}
-  prefab: {fileID: 1159808408428618, guid: 350e330eeb8ce67449771dca3ef6f752, type: 3}
-  timeToGather: 0.1
-  handRotation: {x: 0, y: 0, z: 0}
-  handScale: {x: 1, y: 1, z: 1}
-  maxStackCount: 100
-  previewPrefab: {fileID: 0}
-  speed: 0
-  gatherAmount: 0
-  power: 0
-  fuel: 0
-  smeltItem: {fileID: 0}
-  alignToNormal: 0
-  gridSize: {x: 0, y: 0, z: 0}
-  rots: []
-  achievementNumber: -1
-  calories: 0
+  droppedPrefab: {fileID: 2045766276814976003, guid: 61f16828af9bda440b8f7ae4808d9d69,
+    type: 3}

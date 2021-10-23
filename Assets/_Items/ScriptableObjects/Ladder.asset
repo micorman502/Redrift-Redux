@@ -9,32 +9,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91adea7c2cf48c44bab70182c5512d9d, type: 3}
+  m_Script: {fileID: 11500000, guid: 9054553737ebdbf499c59d51c1852601, type: 3}
   m_Name: Ladder
   m_EditorClassIdentifier: 
   itemName: Ladder
   itemDescription: 
-  type: 2
-  id: 36
+  stackSize: 20
+  id: 0
+  achievementId: -1
   icon: {fileID: 21300000, guid: b4cf22449a489954aa27dffdd5c32279, type: 3}
-  prefab: {fileID: 1502854491235290, guid: 4c504b8ad4d26504592de272d4145ba4, type: 3}
-  timeToGather: 0.5
-  handRotation: {x: 0, y: 0, z: 25}
-  handScale: {x: 0.5, y: 0.5, z: 0.5}
-  maxStackCount: 20
-  previewPrefab: {fileID: 1879709689529972, guid: a2f72c7428421f5438d1ab67227f5eb7,
+  droppedPrefab: {fileID: 7401747798346034985, guid: d79d31373f381ae458736a8e62465325,
     type: 3}
-  speed: 0
-  gatherAmount: 0
-  power: 0
-  fuel: 0
-  smeltItem: {fileID: 0}
-  alignToNormal: 0
-  gridSize: {x: 0.5, y: 0.5, z: 0.5}
-  rots:
+  gridSize: 0.5
+  possibleRotations:
   - {x: -90, y: 0, z: 0}
   - {x: -90, y: 90, z: 0}
   - {x: -90, y: 180, z: 0}
   - {x: -90, y: 270, z: 0}
-  achievementNumber: -1
-  calories: 0
+  alignToNormal: 0
+  previewPrefab: {fileID: 1879709689529972, guid: a2f72c7428421f5438d1ab67227f5eb7,
+    type: 3}
+  placedObject: {fileID: 1502854491235290, guid: 4c504b8ad4d26504592de272d4145ba4,
+    type: 3}

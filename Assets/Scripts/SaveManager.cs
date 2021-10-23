@@ -15,7 +15,7 @@ public class SaveManager : MonoBehaviour {
 	[SerializeField] Animator canvasAnim;
 
 	public Text saveText;
-	public ItemInfo[] allItems;
+	public ItemOrder allItems;
 	public Resource[] allResources;
 	[SerializeField] GameObject smallIslandPrefab;
 
@@ -81,7 +81,7 @@ public class SaveManager : MonoBehaviour {
 	}
 
 	public ItemInfo FindItem(int id) {
-		foreach(ItemInfo item in allItems) {
+		foreach(ItemInfo item in allItems.items) {
 			if(item.id == id) {
 				return item;
 			}
@@ -143,7 +143,7 @@ public class SaveManager : MonoBehaviour {
             }
 
 			for (int i = 0; i < save.inventoryItems.Count; i++) {
-				foreach(ItemInfo item in allItems) {
+				foreach(ItemInfo item in allItems.items) {
 					if(item.id == save.inventoryItems[i].id) {
 						inventory.SetItem(item, save.inventoryItems[i].amount, i);
 					}

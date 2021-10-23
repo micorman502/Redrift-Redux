@@ -9,27 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91adea7c2cf48c44bab70182c5512d9d, type: 3}
+  m_Script: {fileID: 11500000, guid: dfd659c09d6007a4d92c91f3e04b9b81, type: 3}
   m_Name: IronIngot
   m_EditorClassIdentifier: 
-  itemName: Iron Ingot
+  itemName: IronIngot
   itemDescription: 
-  type: 0
-  id: 8
+  stackSize: 100
+  id: 0
+  achievementId: -1
   icon: {fileID: 21300000, guid: a88f72e5db9bf6949a2c0b8684a4bf61, type: 3}
-  prefab: {fileID: 1395792360724338, guid: 76fc2cd3340056444aaddc57f1271f39, type: 3}
-  timeToGather: 0.1
-  handRotation: {x: 0, y: 0, z: 0}
-  handScale: {x: 1, y: 1, z: 1}
-  maxStackCount: 100
-  previewPrefab: {fileID: 0}
-  speed: 0
-  gatherAmount: 0
-  power: 0
-  fuel: 0
-  smeltItem: {fileID: 0}
-  alignToNormal: 0
-  gridSize: {x: 0, y: 0, z: 0}
-  rots: []
-  achievementNumber: -1
-  calories: 0
+  droppedPrefab: {fileID: 8675360987448103933, guid: 2506aab0ae85be6429a6f86d58a5c8c3,
+    type: 3}

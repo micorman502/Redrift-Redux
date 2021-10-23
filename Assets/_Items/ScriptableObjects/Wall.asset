@@ -9,32 +9,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91adea7c2cf48c44bab70182c5512d9d, type: 3}
+  m_Script: {fileID: 11500000, guid: 9054553737ebdbf499c59d51c1852601, type: 3}
   m_Name: Wall
   m_EditorClassIdentifier: 
   itemName: Wall
   itemDescription: 
-  type: 2
-  id: 9
+  stackSize: 20
+  id: 2
+  achievementId: -1
   icon: {fileID: 21300000, guid: c5276d44d2cdcaf4191e7ffc440da729, type: 3}
-  prefab: {fileID: 1125907287773136, guid: c6c900a9fa2571246bb6d324283202a8, type: 3}
-  timeToGather: 1
-  handRotation: {x: -4.474, y: -93.971, z: 10.876}
-  handScale: {x: 0.25, y: 0.25, z: 0.25}
-  maxStackCount: 20
-  previewPrefab: {fileID: 1606033685812578, guid: 034e8e6e58578194198db2d55534ad5a,
+  droppedPrefab: {fileID: 4473414144963499954, guid: 8266271133cf12e4ba6a155357dc8829,
     type: 3}
-  speed: 0
-  gatherAmount: 0
-  power: 0
-  fuel: 0
-  smeltItem: {fileID: 0}
-  alignToNormal: 0
-  gridSize: {x: 0.5, y: 0.5, z: 0.5}
-  rots:
+  gridSize: 0.5
+  possibleRotations:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 90, z: 0}
   - {x: 0, y: 180, z: 0}
   - {x: 0, y: 270, z: 0}
-  achievementNumber: 2
-  calories: 0
+  alignToNormal: 0
+  previewPrefab: {fileID: 1606033685812578, guid: 034e8e6e58578194198db2d55534ad5a,
+    type: 3}
+  placedObject: {fileID: 1125907287773136, guid: c6c900a9fa2571246bb6d324283202a8,
+    type: 3}

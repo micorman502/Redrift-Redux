@@ -9,32 +9,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91adea7c2cf48c44bab70182c5512d9d, type: 3}
+  m_Script: {fileID: 11500000, guid: 9054553737ebdbf499c59d51c1852601, type: 3}
   m_Name: Light
   m_EditorClassIdentifier: 
   itemName: Light
   itemDescription: 
-  type: 2
-  id: 35
+  stackSize: 20
+  id: 0
+  achievementId: -1
   icon: {fileID: 21300000, guid: 63d71f013bb2b1942a7a9d721d76b14c, type: 3}
-  prefab: {fileID: 1312209496639844, guid: a12cde8070de32242a6669e70f5b97fd, type: 3}
-  timeToGather: 0.25
-  handRotation: {x: 0, y: 0, z: 180}
-  handScale: {x: 0.75, y: 0.75, z: 0.75}
-  maxStackCount: 20
-  previewPrefab: {fileID: 1081290273228212, guid: 41b96f519747acb4f93537db8a31fdf9,
+  droppedPrefab: {fileID: 2555960940202762555, guid: e482b8a1d9e67c94bb259ce4410908b5,
     type: 3}
-  speed: 0
-  gatherAmount: 0
-  power: 0
-  fuel: 0
-  smeltItem: {fileID: 0}
-  alignToNormal: 0
-  gridSize: {x: 0.25, y: 0.25, z: 0.25}
-  rots:
+  gridSize: 0.25
+  possibleRotations:
   - {x: -90, y: 0, z: 0}
   - {x: -90, y: 90, z: 0}
   - {x: -90, y: 180, z: 0}
   - {x: -90, y: 270, z: 0}
-  achievementNumber: -1
-  calories: 0
+  alignToNormal: 0
+  previewPrefab: {fileID: 1081290273228212, guid: 41b96f519747acb4f93537db8a31fdf9,
+    type: 3}
+  placedObject: {fileID: 1312209496639844, guid: a12cde8070de32242a6669e70f5b97fd,
+    type: 3}

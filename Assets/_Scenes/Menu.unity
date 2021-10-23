@@ -48526,11 +48526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc976262d706a9d42a7ddef1f31d2c3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  items:
-  - {fileID: 11400000, guid: 60defaddcf0f8ff46adb2b4cb7af81a3, type: 2}
-  - {fileID: 11400000, guid: 1e10d0584bbe2ee47ba56f3c6f0b6737, type: 2}
-  - {fileID: 11400000, guid: b0c49f54531af804cb45871618249a8b, type: 2}
-  - {fileID: 11400000, guid: 5883cf46a796a7e40969f614714cf207, type: 2}
+  order: {fileID: 11400000, guid: ae6ed6d5d204483479b34c888b1ae99c, type: 2}
 --- !u!1 &2022239815
 GameObject:
   m_ObjectHideFlags: 0

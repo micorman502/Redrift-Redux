@@ -9,28 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91adea7c2cf48c44bab70182c5512d9d, type: 3}
+  m_Script: {fileID: 11500000, guid: df5f003594efc494da48210ea6bae6eb, type: 3}
   m_Name: Crate
   m_EditorClassIdentifier: 
   itemName: Crate
-  itemDescription: Open to get random loot.
-  type: 0
-  id: 12
+  itemDescription: 
+  stackSize: 10
+  id: 0
+  achievementId: -1
   icon: {fileID: 21300000, guid: d0e956ce47e9f76448d1c0e53de649a3, type: 3}
-  prefab: {fileID: 1365681976019388, guid: cf1f381ba78194c41af8d56c4e4fbbcf, type: 3}
-  timeToGather: 0.25
-  handRotation: {x: 0, y: 0, z: 0}
-  handScale: {x: 0.25, y: 0.25, z: 0.25}
-  maxStackCount: 1
-  previewPrefab: {fileID: 1803993696199110, guid: 61ba93cda145aa749ad4b76758c829d5,
+  droppedPrefab: {fileID: 8443702777011918912, guid: 199cc73120d1ab14081da833179a4b43,
     type: 3}
-  speed: 0
-  gatherAmount: 0
-  power: 0
-  fuel: 0
-  smeltItem: {fileID: 0}
-  alignToNormal: 0
-  gridSize: {x: 0, y: 0, z: 0}
-  rots: []
-  achievementNumber: -1
-  calories: 0
+  deployedObject: {fileID: 1365681976019388, guid: cf1f381ba78194c41af8d56c4e4fbbcf,
+    type: 3}
+  deployPlacementOffset: {x: 0, y: 0, z: 0}

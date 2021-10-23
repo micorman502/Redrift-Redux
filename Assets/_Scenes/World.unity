@@ -37899,7 +37899,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lightingParticles: {fileID: 1864550601}
-  lightningStoneItem: {fileID: 11400000, guid: 00dd8405c3cf190449d564d4e511a9f3, type: 2}
+  lightningStoneItem: {fileID: 0}
   island: {fileID: 1643817344}
 --- !u!1 &1882972531
 GameObject:
@@ -39104,43 +39104,7 @@ MonoBehaviour:
   - {fileID: 1135837570133238, guid: 391691f07a50e6149bea917475ddc464, type: 3}
   canvasAnim: {fileID: 1444759423}
   saveText: {fileID: 1957486600}
-  allItems:
-  - {fileID: 11400000, guid: d26b5cace6986ec49876269562501d8e, type: 2}
-  - {fileID: 11400000, guid: eff02d0cd5997b04ca5de49d716f3d82, type: 2}
-  - {fileID: 11400000, guid: d69245c7c4f4c414aa6ceba1829b57ce, type: 2}
-  - {fileID: 11400000, guid: 03520992c844d134f8fba88e91a26308, type: 2}
-  - {fileID: 11400000, guid: 50ee8909b487ecc40b59d452afd96f4d, type: 2}
-  - {fileID: 11400000, guid: 048288baa01cb144ba009e21c4220e17, type: 2}
-  - {fileID: 11400000, guid: 38edbc86290680b43b4fb593b501534f, type: 2}
-  - {fileID: 11400000, guid: 1d49604a78bffeb4e9335d45c35a993f, type: 2}
-  - {fileID: 11400000, guid: c8dbf5dd1f4b19444a9bf9438009cb5b, type: 2}
-  - {fileID: 11400000, guid: d332c4c202197f849af660fcbc44dc16, type: 2}
-  - {fileID: 11400000, guid: 765505fe2e725634cbf27b08c111fb89, type: 2}
-  - {fileID: 11400000, guid: bd186ec3995b87644bcddc79672adbdf, type: 2}
-  - {fileID: 11400000, guid: de8ae7d39448b624eb7111ec5c2219a0, type: 2}
-  - {fileID: 11400000, guid: 6e7f0d2c10923f649a52cd9ee8256f87, type: 2}
-  - {fileID: 11400000, guid: 4f254871519a1fb43afb2ff65f708ca3, type: 2}
-  - {fileID: 11400000, guid: 227d16e862069b547a5cec8be9f69c77, type: 2}
-  - {fileID: 11400000, guid: 8111d0057dffefe458876c2f905889f9, type: 2}
-  - {fileID: 11400000, guid: 367e3c03b47da0748a0678970db73929, type: 2}
-  - {fileID: 11400000, guid: 221124a2341142445ac06a74d0443d60, type: 2}
-  - {fileID: 11400000, guid: 7594da2b096925a46a5c6e4fa578ae85, type: 2}
-  - {fileID: 11400000, guid: 00dd8405c3cf190449d564d4e511a9f3, type: 2}
-  - {fileID: 11400000, guid: d9a81fc8673f8c04fa7ec107eb5ca8d4, type: 2}
-  - {fileID: 11400000, guid: 314a85ebbf517fa4ea0de6c787451e19, type: 2}
-  - {fileID: 11400000, guid: 3c29dfed7a7c42d4ca5332dc2fd39c83, type: 2}
-  - {fileID: 11400000, guid: 554c63e2a39d70d47aad35bf7a63d7dc, type: 2}
-  - {fileID: 11400000, guid: 6df297420a220e848b67020d3f2ebfcf, type: 2}
-  - {fileID: 11400000, guid: f2812bf6142a15244bbc5eb86d78d4a2, type: 2}
-  - {fileID: 11400000, guid: cb2b8f9de15633642b25d8a3e5609e34, type: 2}
-  - {fileID: 11400000, guid: d42efd3b4b64ef14881bd2b67d9654dd, type: 2}
-  - {fileID: 11400000, guid: e605b7711cb22d140805767d6575e6ca, type: 2}
-  - {fileID: 11400000, guid: b2fb129f7e7ac00498130d25f27feaa9, type: 2}
-  - {fileID: 11400000, guid: f02312205082cc746bf5976adce58d91, type: 2}
-  - {fileID: 11400000, guid: e1b3cb9db7e814741a512d371fb66ed3, type: 2}
-  - {fileID: 11400000, guid: db4a0a69dd49e7a48bf365378819184b, type: 2}
-  - {fileID: 11400000, guid: 78a8b8f75c613d24cbd64b5a1014f774, type: 2}
-  - {fileID: 11400000, guid: 6eec3ba762172474583442910730a27b, type: 2}
+  allItems: {fileID: 11400000, guid: ae6ed6d5d204483479b34c888b1ae99c, type: 2}
   allResources:
   - {fileID: 11400000, guid: d4aa8df93459e6241ab266f993a8177f, type: 2}
   - {fileID: 11400000, guid: 85888302b409fcd4699b0f611b370231, type: 2}

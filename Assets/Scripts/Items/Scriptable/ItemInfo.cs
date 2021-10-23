@@ -7,9 +7,9 @@ public class ItemInfo : ScriptableObject
 {
 	public string itemName;
 	public string itemDescription;
-	public int stackSize;
+	public int stackSize = 100;
 	public int id;
-	public int achievementId;
+	public int achievementId = -1;
 	public Sprite icon;
 	public GameObject droppedPrefab;
 }

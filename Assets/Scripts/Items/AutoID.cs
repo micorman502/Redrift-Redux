@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class AutoID : MonoBehaviour
 {
-    [SerializeField] ItemInfo[] items;
+    [SerializeField] ItemOrder order;
 
     void Awake ()
     {
-        for (int i = 0; i < items.Length; i++)
+        for (int i = 0; i < order.items.Length; i++)
         {
-            items[i].id = i;
+            order.items[i].id = i;
         }
     }
 }

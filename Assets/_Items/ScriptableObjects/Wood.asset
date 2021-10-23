@@ -9,27 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91adea7c2cf48c44bab70182c5512d9d, type: 3}
+  m_Script: {fileID: 11500000, guid: 04187500fd56686478a1ce68cfcd80c8, type: 3}
   m_Name: Wood
   m_EditorClassIdentifier: 
   itemName: Wood
   itemDescription: 
-  type: 0
-  id: 1
+  stackSize: 100
+  id: 0
+  achievementId: -1
   icon: {fileID: 21300000, guid: 2c2fc3b7874e2b14e91722bf5f89b7c8, type: 3}
-  prefab: {fileID: 1789209328548948, guid: 0cecbe8430dfe294bae0a5126c85cb06, type: 3}
-  timeToGather: 0.1
-  handRotation: {x: 0, y: 0, z: 0}
-  handScale: {x: 1, y: 1, z: 1}
-  maxStackCount: 100
-  previewPrefab: {fileID: 0}
-  speed: 0
-  gatherAmount: 0
-  power: 0
-  fuel: 1
-  smeltItem: {fileID: 0}
-  alignToNormal: 0
-  gridSize: {x: 0, y: 0, z: 0}
-  rots: []
-  achievementNumber: -1
-  calories: 0
+  droppedPrefab: {fileID: 5817689752444402217, guid: 1cbd0d4690b2f674fb1f9e88c66c25c6,
+    type: 3}
+  fuelValue: 1

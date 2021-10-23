@@ -9,27 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91adea7c2cf48c44bab70182c5512d9d, type: 3}
+  m_Script: {fileID: 11500000, guid: dfd659c09d6007a4d92c91f3e04b9b81, type: 3}
   m_Name: CopperWire
   m_EditorClassIdentifier: 
   itemName: Copper Wire
   itemDescription: 
-  type: 0
-  id: 17
+  stackSize: 100
+  id: 0
+  achievementId: -1
   icon: {fileID: 21300000, guid: 5a8ff8c573ad19a48bd8113aec24a465, type: 3}
-  prefab: {fileID: 1457916337116984, guid: 6c559c0d2446c684289d91b14d5fe9c8, type: 3}
-  timeToGather: 0.1
-  handRotation: {x: 0, y: -90, z: 90}
-  handScale: {x: 1, y: 1, z: 1}
-  maxStackCount: 100
-  previewPrefab: {fileID: 0}
-  speed: 0
-  gatherAmount: 0
-  power: 0
-  fuel: 0
-  smeltItem: {fileID: 0}
-  alignToNormal: 0
-  gridSize: {x: 0, y: 0, z: 0}
-  rots: []
-  achievementNumber: -1
-  calories: 0
+  droppedPrefab: {fileID: 1515707734082384361, guid: 1aa222949d849d94bb86b410e2e322be,
+    type: 3}

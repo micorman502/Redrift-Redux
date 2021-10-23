@@ -9,32 +9,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91adea7c2cf48c44bab70182c5512d9d, type: 3}
+  m_Script: {fileID: 11500000, guid: 9054553737ebdbf499c59d51c1852601, type: 3}
   m_Name: Grass
   m_EditorClassIdentifier: 
   itemName: Grass
   itemDescription: 
-  type: 2
-  id: 29
+  stackSize: 100
+  id: 0
+  achievementId: -1
   icon: {fileID: 21300000, guid: eccb55523118f4c489b6f55711b664dc, type: 3}
-  prefab: {fileID: 1912206762362666, guid: e4d578e8f1ae25d45b6ab5f2118a96b0, type: 3}
-  timeToGather: 0.1
-  handRotation: {x: 0, y: 0, z: 0}
-  handScale: {x: 0.5, y: 0.5, z: 0.5}
-  maxStackCount: 100
-  previewPrefab: {fileID: 1952845738392202, guid: 84a77c0f30b7f4441be07f1f93941bde,
+  droppedPrefab: {fileID: 3722668761442544903, guid: f4f923255a284e048b2df638fdc17666,
     type: 3}
-  speed: 0
-  gatherAmount: 0
-  power: 0
-  fuel: 0
-  smeltItem: {fileID: 0}
-  alignToNormal: 1
-  gridSize: {x: 0, y: 0, z: 0}
-  rots:
+  gridSize: 0
+  possibleRotations:
   - {x: -90, y: 0, z: 0}
   - {x: -90, y: 90, z: 0}
   - {x: -90, y: 180, z: 0}
   - {x: -90, y: 270, z: 0}
-  achievementNumber: -1
-  calories: 0
+  alignToNormal: 1
+  previewPrefab: {fileID: 1952845738392202, guid: 84a77c0f30b7f4441be07f1f93941bde,
+    type: 3}
+  placedObject: {fileID: 1912206762362666, guid: e4d578e8f1ae25d45b6ab5f2118a96b0,
+    type: 3}

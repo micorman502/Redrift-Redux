@@ -9,27 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91adea7c2cf48c44bab70182c5512d9d, type: 3}
+  m_Script: {fileID: 11500000, guid: dfd659c09d6007a4d92c91f3e04b9b81, type: 3}
   m_Name: Silicon
   m_EditorClassIdentifier: 
   itemName: Silicon
   itemDescription: 
-  type: 0
-  id: 18
+  stackSize: 100
+  id: 0
+  achievementId: -1
   icon: {fileID: 21300000, guid: 21d731ec7acb1934693a794355da727a, type: 3}
-  prefab: {fileID: 1472234370411092, guid: 54ceae41019883c4a81b0faa23c60eb4, type: 3}
-  timeToGather: 0.1
-  handRotation: {x: 0, y: 0, z: 0}
-  handScale: {x: 1, y: 1, z: 1}
-  maxStackCount: 100
-  previewPrefab: {fileID: 0}
-  speed: 0
-  gatherAmount: 0
-  power: 0
-  fuel: 0
-  smeltItem: {fileID: 0}
-  alignToNormal: 0
-  gridSize: {x: 0, y: 0, z: 0}
-  rots: []
-  achievementNumber: -1
-  calories: 0
+  droppedPrefab: {fileID: 1472234370411092, guid: 54ceae41019883c4a81b0faa23c60eb4,
+    type: 3}

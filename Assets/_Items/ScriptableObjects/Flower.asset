@@ -9,32 +9,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91adea7c2cf48c44bab70182c5512d9d, type: 3}
+  m_Script: {fileID: 11500000, guid: 9054553737ebdbf499c59d51c1852601, type: 3}
   m_Name: Flower
   m_EditorClassIdentifier: 
   itemName: Flower
-  itemDescription: Don't cry because it's over. Smile because it happened.
-  type: 2
-  id: 19
+  itemDescription: 
+  stackSize: 100
+  id: 0
+  achievementId: 5
   icon: {fileID: 21300000, guid: 3664104bbeca8a042887af7bac768fb3, type: 3}
-  prefab: {fileID: 1916474053067786, guid: 90c32dea8bf9f7642af314af0cfe6c63, type: 3}
-  timeToGather: 0.1
-  handRotation: {x: 0, y: 0, z: 0}
-  handScale: {x: 0.5, y: 0.5, z: 0.5}
-  maxStackCount: 100
+  droppedPrefab: {fileID: 7660720418245111992, guid: 179fd29995af1fd428df3942b77aada5,
+    type: 3}
+  gridSize: 0
+  possibleRotations:
+  - {x: -90, y: 0, z: 0}
+  - {x: -90, y: 0, z: 90}
+  - {x: -90, y: 0, z: 180}
+  - {x: -90, y: 0, z: 270}
+  alignToNormal: 1
   previewPrefab: {fileID: 1916474053067786, guid: bd7e1d817caa0a240bd1c171665b790d,
     type: 3}
-  speed: 0
-  gatherAmount: 0
-  power: 0
-  fuel: 0
-  smeltItem: {fileID: 0}
-  alignToNormal: 1
-  gridSize: {x: 0, y: 0, z: 0}
-  rots:
-  - {x: -90, y: 0, z: 0}
-  - {x: -90, y: 90, z: 0}
-  - {x: -90, y: 180, z: 0}
-  - {x: -90, y: 270, z: 0}
-  achievementNumber: 5
-  calories: 0
+  placedObject: {fileID: 1916474053067786, guid: 90c32dea8bf9f7642af314af0cfe6c63,
+    type: 3}

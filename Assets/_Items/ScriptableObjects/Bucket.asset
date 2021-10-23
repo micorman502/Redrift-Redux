@@ -9,27 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91adea7c2cf48c44bab70182c5512d9d, type: 3}
+  m_Script: {fileID: 11500000, guid: df5f003594efc494da48210ea6bae6eb, type: 3}
   m_Name: Bucket
   m_EditorClassIdentifier: 
   itemName: Bucket
-  itemDescription: Fill it with water or use it as decoration!
-  type: 0
-  id: 32
+  itemDescription: 
+  stackSize: 20
+  id: 0
+  achievementId: -1
   icon: {fileID: 21300000, guid: 0b463bb90b5fb424abcbd70d84e0a237, type: 3}
-  prefab: {fileID: 1866602517762588, guid: 8ab3016be8d000144b2d098465c24525, type: 3}
-  timeToGather: 0.25
-  handRotation: {x: -13.997, y: 0, z: 0}
-  handScale: {x: 0.75, y: 0.75, z: 0.75}
-  maxStackCount: 20
-  previewPrefab: {fileID: 0}
-  speed: 0
-  gatherAmount: 0
-  power: 0
-  fuel: 0
-  smeltItem: {fileID: 0}
-  alignToNormal: 0
-  gridSize: {x: 0, y: 0, z: 0}
-  rots: []
-  achievementNumber: -1
-  calories: 0
+  droppedPrefab: {fileID: 5076475376411239330, guid: e756702831adc3e4190a05512852d196,
+    type: 3}
+  deployedObject: {fileID: 1866602517762588, guid: 8ab3016be8d000144b2d098465c24525,
+    type: 3}
+  deployPlacementOffset: {x: 0, y: 0, z: 0}

@@ -64,7 +64,7 @@ public class Inventory : MonoBehaviour {
 		mode = 1;
 
 
-		items = new WorldItem[saveManager.allItems.Length + 1];
+		items = new WorldItem[saveManager.allItems.items.Length + 1];
 
 		InventoryEvents.InitialiseInventoryUI(hotbarSize, items.Length);
 		AddAllItems();
@@ -550,7 +550,7 @@ public class Inventory : MonoBehaviour {
 	}
 
 	void AddAllItems() {
-		foreach(ItemInfo item in saveManager.allItems) {
+		foreach(ItemInfo item in saveManager.allItems.items) {
 			AddItem(item, 1);
 		}
 	}
