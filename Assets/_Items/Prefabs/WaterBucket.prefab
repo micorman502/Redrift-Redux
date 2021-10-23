@@ -851,8 +851,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waterBucket: 1
-  bucketItem: {fileID: 0}
-  waterBucketItem: {fileID: 0}
+  bucketItem: {fileID: 11400000, guid: 296e1243692f86144accc4a222765046, type: 2}
+  waterBucketItem: {fileID: 11400000, guid: f3d9331c6ded1e4488f7bac7e0a8f8c4, type: 2}
   waterLevel: {fileID: 4505936889250204}
 --- !u!65 &65170891985282408
 BoxCollider:

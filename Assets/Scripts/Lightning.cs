@@ -5,7 +5,7 @@ using UnityEngine;
 public class Lightning : MonoBehaviour {
 
 	public ParticleSystem lightingParticles;
-	public Item lightningStoneItem;
+	public ItemInfo lightningStoneItem;
 	public GameObject island;
 
 	List<ParticleCollisionEvent> collisionEvents;
@@ -24,7 +24,7 @@ public class Lightning : MonoBehaviour {
 
 			for(int i = 0; i < collisionEvents.Count; i++) {
 				if(collisionEvents[i].colliderComponent.gameObject == island) {
-					GameObject stoneObj = Instantiate(lightningStoneItem.prefab, collisionEvents[i].intersection + Vector3.up * 0.3f, lightningStoneItem.prefab.transform.rotation) as GameObject;
+					GameObject stoneObj = Instantiate(lightningStoneItem.droppedPrefab, collisionEvents[i].intersection + Vector3.up * 0.3f, lightningStoneItem.droppedPrefab.transform.rotation) as GameObject;
 
 					Rigidbody objRB = stoneObj.GetComponent<Rigidbody>();
 					if(objRB) {

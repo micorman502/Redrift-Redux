@@ -31370,7 +31370,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -37899,7 +37898,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lightingParticles: {fileID: 1864550601}
-  lightningStoneItem: {fileID: 0}
+  lightningStoneItem: {fileID: 11400000, guid: ada74405c0b91a641bed3460f1a00d5e, type: 2}
   island: {fileID: 1643817344}
 --- !u!1 &1882972531
 GameObject:

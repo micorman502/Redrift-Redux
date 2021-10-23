@@ -133,7 +133,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: bd186ec3995b87644bcddc79672adbdf, type: 2}
+  tooltip: 
+  item: {fileID: 0}
   saveID: 41
   dontSave: 0
 --- !u!114 &114599935949176892
@@ -149,22 +150,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loot:
-  - item: {fileID: 11400000, guid: e605b7711cb22d140805767d6575e6ca, type: 2}
-    minAmount: 0
-    maxAmount: 4
+  - item: {fileID: 11400000, guid: 60defaddcf0f8ff46adb2b4cb7af81a3, type: 2}
+    minAmount: 2
+    maxAmount: 5
     chance: 0.75
-  - item: {fileID: 11400000, guid: cb2b8f9de15633642b25d8a3e5609e34, type: 2}
-    minAmount: 0
-    maxAmount: 4
-    chance: 0.75
-  - item: {fileID: 11400000, guid: 50ee8909b487ecc40b59d452afd96f4d, type: 2}
+  - item: {fileID: 11400000, guid: 7126648dde3fce64fb14c7cadd9038fe, type: 2}
+    minAmount: 1
+    maxAmount: 3
+    chance: 0.5
+  - item: {fileID: 11400000, guid: cc1dea67642fcc94793fc67b8b1116d7, type: 2}
     minAmount: 0
     maxAmount: 1
     chance: 0.5
-  - item: {fileID: 11400000, guid: de8ae7d39448b624eb7111ec5c2219a0, type: 2}
-    minAmount: 0
-    maxAmount: 1
+  - item: {fileID: 11400000, guid: 1e10d0584bbe2ee47ba56f3c6f0b6737, type: 2}
+    minAmount: 2
+    maxAmount: 4
     chance: 0.5
+  - item: {fileID: 11400000, guid: b0c49f54531af804cb45871618249a8b, type: 2}
+    minAmount: 0
+    maxAmount: 3
+    chance: 0.8
   lootParticles: {fileID: 1340000199260684, guid: 7cc0a795e6a2565419ddc9161bce54ae,
     type: 3}
 --- !u!54 &54180353655365946

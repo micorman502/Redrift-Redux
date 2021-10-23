@@ -20,7 +20,6 @@ public class Item : ScriptableObject {
 	public int gatherAmount;
 	public float power;
 	public float fuel;
-	public Item smeltItem;
 	public bool alignToNormal;
 	public Vector3 gridSize;
 	public Vector3[] rots;

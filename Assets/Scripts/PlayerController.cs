@@ -549,12 +549,6 @@ public class PlayerController : MonoBehaviour {
 		healthAmountImage.gameObject.SetActive(false);
 	}
 
-	public void Consume(Item item) {
-		//handAnimator.SetTrigger("Consume");
-		useParticles.Play();
-		GainCalories(item.calories);
-	}
-
 	void SetInMenuState (bool _inMenu)
     {
 		inMenu = _inMenu;

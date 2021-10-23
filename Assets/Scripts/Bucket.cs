@@ -6,8 +6,8 @@ public class Bucket : MonoBehaviour {
 
 	[SerializeField] bool waterBucket;
 
-	[SerializeField] Item bucketItem;
-	[SerializeField] Item waterBucketItem;
+	[SerializeField] ItemInfo bucketItem;
+	[SerializeField] ItemInfo waterBucketItem;
 
 	[SerializeField] Transform waterLevel;
 
@@ -103,12 +103,12 @@ public class Bucket : MonoBehaviour {
 	}
 
 	void EmptyWater() {
-		Instantiate(bucketItem.prefab, transform.position, transform.rotation);
+		Instantiate(bucketItem.droppedPrefab, transform.position, transform.rotation);
 		Destroy(gameObject);
 	}
 
 	void FillWithWater() {
-		Instantiate(waterBucketItem.prefab, transform.position, transform.rotation);
+		Instantiate(waterBucketItem.droppedPrefab, transform.position, transform.rotation);
 		Destroy(gameObject);
 	}
 }
