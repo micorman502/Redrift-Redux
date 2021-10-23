@@ -22,12 +22,11 @@ public class AutoMiner : MonoBehaviour, IItemSaveable {
 	bool moving = false;
 	bool gathering = false;
 
-	public List<Item> items = new List<Item>();
-	public List<int> itemAmounts = new List<int>();
+	public List<WorldItem> items = new List<WorldItem>();
 
 	float gatherTime = 0f;
 
-	public Item currentToolItem = null;
+	public ToolInfo currentToolItem = null;
 	GameObject currentToolObj = null;
 
 	PlayerController player;
@@ -57,16 +56,16 @@ public class AutoMiner : MonoBehaviour, IItemSaveable {
 							moving = false;
 							animator.SetBool("Moving", moving);
 						}
-						gatherTime += Time.deltaTime * currentToolItem.speed;
+						gatherTime += Time.deltaTime * currentToolItem.gatherSpeedMult;
 						if(gatherTime >= target.resource.gatherTime) {
 							int i = 0;
-							foreach(Item item in target.resource.resourceItems) {
+							foreach(ItemInfo item in target.resource.resourceItems) {
 								if(Random.Range(0f, 1f) <= target.resource.chances[i]) {
-									AddItem(item, currentToolItem.gatherAmount);
+									AddItem(item, currentToolItem.gatherAmountMult);
 								}
 								i++;
 							}
-							target.Gather(currentToolItem.gatherAmount);
+							target.Gather(currentToolItem.gatherAmountMult);
 							gatherTime = 0f;
 						}
 					}
@@ -113,7 +112,7 @@ public class AutoMiner : MonoBehaviour, IItemSaveable {
 		}
 	}
 
-	public void SetTool(Item item) {
+	public void SetTool(ItemInfo item) {
 
 		if(currentToolObj) {
 			Destroy(currentToolObj);
@@ -123,8 +122,8 @@ public class AutoMiner : MonoBehaviour, IItemSaveable {
 			player.inventory.AddItem(currentToolItem, 1);
 		}
 
-		currentToolItem = item;
-		GameObject obj = Instantiate(item.prefab, toolHolder.transform) as GameObject;
+		currentToolItem = item as ToolInfo;
+		GameObject obj = Instantiate(item.droppedPrefab, toolHolder.transform);
 
 		Rigidbody objRB = obj.GetComponent<Rigidbody>();
 		if(objRB) {
@@ -138,36 +137,32 @@ public class AutoMiner : MonoBehaviour, IItemSaveable {
 		currentToolObj = obj;
 	}
 
-	public Item GatherTool() {
-		Item returnItem = currentToolItem;
+	public ItemInfo GatherTool() {
+		ItemInfo returnItem = currentToolItem;
 		currentToolItem = null;
 		Destroy(currentToolObj);
 		return returnItem;
 	}
 
 	public void ClearItems() {
-
 		items.Clear();
-		itemAmounts.Clear();
-
 	}
 
-	void AddItem(Item item, int amount) {
+	void AddItem(ItemInfo _item, int amount) {
 
 		bool hasItem = false;
 
-		int i = 0;
-		foreach(Item _item in items) {
-			if(_item.id == item.id) {
+		for (int i = 0; i < items.Count; i++)
+        {
+			if (items[i].item.id == _item.id)
+            {
 				hasItem = true;
-				itemAmounts[i] += amount;
-			}
-			i++;
-		}
+                items[i].amount += amount;
+            }
+        }
 
 		if(!hasItem) {
-			items.Add(item);
-			itemAmounts.Add(amount);
+			items.Add(new WorldItem(_item, amount));
 		}
 	}
 
@@ -176,8 +171,14 @@ public class AutoMiner : MonoBehaviour, IItemSaveable {
 		ItemSaveData newData = new ItemSaveData();
 		ObjectSaveData newObjData = new ObjectSaveData(transform.position, transform.rotation, saveID);
 
-		newData.itemIDs =SaveManager.Instance.ItemsToIDs(items);
-		newData.itemAmounts = itemAmounts;
+		newData.itemIDs = SaveManager.Instance.ItemsToIDs(items);
+		List<int> newAmts = new List<int>();
+		for (int i = 0; i < items.Count; i++)
+        {
+			newAmts.Add(items[i].amount);
+        }
+		newData.itemAmounts = newAmts;
+
 		if (currentToolItem)
 		{
 			newData.itemID = currentToolItem.id;
@@ -197,9 +198,12 @@ public class AutoMiner : MonoBehaviour, IItemSaveable {
 		transform.position = objData.position;
 		transform.rotation = objData.rotation;
 
-
-		items = SaveManager.Instance.IDsToItems(data.itemIDs);
-		itemAmounts = data.itemAmounts;
+		List<ItemInfo> newItems = SaveManager.Instance.IDsToItems(data.itemIDs);
+		for (int i = 0; i < newItems.Count; i++)
+        {
+			items[i].item = newItems[i];
+			items[i].amount = data.itemAmounts[i];
+        }
 		if (data.itemID != -1)
 		{
 			SetTool(SaveManager.Instance.FindItem(data.itemID));

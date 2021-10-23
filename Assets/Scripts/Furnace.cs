@@ -11,7 +11,7 @@ public class Furnace : MonoBehaviour, IItemSaveable, IGetTriggerInfo {
 	public ParticleSystem fire;
 
 	[HideInInspector] public float fuel = 0;
-	[HideInInspector] public Item currentSmeltingItem;
+	[HideInInspector] public OreInfo currentSmeltingItem;
 
 	public float smeltTime = 10f;
 
@@ -22,14 +22,14 @@ public class Furnace : MonoBehaviour, IItemSaveable, IGetTriggerInfo {
 			ItemHandler itemHandler = col.GetComponent<ItemHandler>();
 			if (!itemHandler)
 				return;
-			if (itemHandler.item.type == Item.ItemType.Resource && itemHandler.item.fuel > 0)
+			if (itemHandler.item is FuelInfo)
 			{
 				Destroy(itemHandler.gameObject);
-				fuel += itemHandler.item.fuel;
+				fuel += (itemHandler.item as FuelInfo).fuelValue;
 			}
-			else if (itemHandler.item.type == Item.ItemType.Resource && itemHandler.item.smeltItem && !currentSmeltingItem && fuel > 0)
+			else if (itemHandler.item is OreInfo && !currentSmeltingItem && fuel > 0)
 			{
-				currentSmeltingItem = itemHandler.item;
+				currentSmeltingItem = itemHandler.item as OreInfo;
 				Destroy(itemHandler.gameObject);
 				Check();
 			}
@@ -49,9 +49,9 @@ public class Furnace : MonoBehaviour, IItemSaveable, IGetTriggerInfo {
         }
     }
 
-	void StartSmelting(Item item) {
+	void StartSmelting(ItemInfo item) {
 		//finishTime = Time.time + smeltTime;
-		currentSmeltingItem = item;
+		currentSmeltingItem = item as OreInfo;
 		smoke.Play();
 		fire.Play();
 		fireLight.SetActive(true);
@@ -60,7 +60,7 @@ public class Furnace : MonoBehaviour, IItemSaveable, IGetTriggerInfo {
 
 	void FinishSmelting ()
     {
-		DropItem(currentSmeltingItem.smeltItem);
+		DropItem(currentSmeltingItem.smeltResult);
 		fuel--;
 		StopSmelting();
 	}
@@ -72,8 +72,8 @@ public class Furnace : MonoBehaviour, IItemSaveable, IGetTriggerInfo {
 		fireLight.SetActive(false);
 	}
 
-	void DropItem(Item item) {
-		GameObject smeltedItemObj = Instantiate(item.prefab, transform.position + transform.forward * 0.25f - transform.up * 0.75f, item.prefab.transform.rotation) as GameObject;
+	void DropItem(ItemInfo item) {
+		GameObject smeltedItemObj = Instantiate(item.droppedPrefab, transform.position + transform.forward * 0.25f - transform.up * 0.75f, item.droppedPrefab.transform.rotation) as GameObject;
 		Rigidbody objRB = smeltedItemObj.GetComponent<Rigidbody>();
 		if(objRB) {
 			objRB.velocity = transform.forward;
@@ -107,7 +107,7 @@ public class Furnace : MonoBehaviour, IItemSaveable, IGetTriggerInfo {
 		fuel = data.floatVal;
 		if (data.itemID != -1)
 		{
-			currentSmeltingItem = SaveManager.Instance.FindItem(data.itemID);
+			currentSmeltingItem = SaveManager.Instance.FindItem(data.itemID) as OreInfo;
 		}
 		Check();
 	}

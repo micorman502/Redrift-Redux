@@ -6,13 +6,19 @@ public class HeldFoodItem : HeldItem
 {
     [SerializeField] Inventory inventory;
     [SerializeField] PlayerController controller;
+    FoodInfo food;
+
+    private void Awake()
+    {
+        food = item as FoodInfo;
+    }
     public override void Use()
     {
         Debug.Log("use init");
-        if (inventory.RemoveItem(tempItem, 1) == 0)
+        if (inventory.RemoveItem(item, 1) == 0)
         {
             Debug.Log("eating");
-            controller.GainCalories(tempItem.calories);
+            controller.GainCalories(food.calories);
         }
     }
 }

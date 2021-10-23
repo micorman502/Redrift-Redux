@@ -22,7 +22,7 @@ public class Inventory : MonoBehaviour {
 
 	[HideInInspector] public bool placingStructure;
 	GameObject currentPreviewObj;
-	ItemInfo currentPlacingItem;
+	BuildingInfo currentPlacingItem;
 	int currentPlacingRot;
 
 	public int selectedHotbarSlot = 0;
@@ -159,7 +159,7 @@ public class Inventory : MonoBehaviour {
 					{
 						if (player.target && player.distanceToTarget <= player.interactRange)
 						{ // TODO: WORKING ON CURRENTLY |||___|||---|||___|||===================
-							currentPreviewObj.transform.rotation = Quaternion.FromToRotation(Vector3.up, player.targetHit.normal) * Quaternion.Euler(currentPlacingItem.rots[currentPlacingRot]);
+							currentPreviewObj.transform.rotation = Quaternion.FromToRotation(Vector3.up, player.targetHit.normal) * Quaternion.Euler(currentPlacingItem.possibleRotations[currentPlacingRot]);
 						}
 						else
 						{
@@ -176,18 +176,12 @@ public class Inventory : MonoBehaviour {
 			}
 			if(currentSelectedItem && !player.InMenu()) {
 				if(Input.GetMouseButtonDown(0) || Input.GetAxisRaw("ControllerTriggers") <= -0.1f) {
-					if(currentSelectedItem.type == Item.ItemType.Structure && !placingStructure) {
+					if(currentSelectedItem is BuildingInfo && !placingStructure) {
 						StartBuilding(currentSelectedItem);
-					} else if(currentSelectedItem.type == Item.ItemType.Food) {
-						ItemInfo selected = currentSelectedItem;
-						if (RemoveItem(currentSelectedItem))
-						{
-							player.Consume(selected);
-						}
 					}
 
 					InventoryUpdate();
-				} else if(Input.GetButtonDown("Drop") && currentSelectedItem.type != Item.ItemType.Structure) {
+				} else if(Input.GetButtonDown("Drop") && !(currentSelectedItem is BuildingInfo)) {
 					if(Input.GetButton("Supersize")) {
 						if(mode != 1) {
 							DropItem(currentSelectedItem, Ping(5, items[selectedHotbarSlot].amount));
@@ -507,8 +501,8 @@ public class Inventory : MonoBehaviour {
 	void PlaceBuilding ()
     {
 		RemoveItem(currentPlacingItem);
-		BuildingInfo building = currentPlacingItem as building;
-		GameObject go = Instantiate(currentPlacingItem., currentPreviewObj.transform.position, currentPreviewObj.transform.rotation);
+		BuildingInfo building = currentPlacingItem as BuildingInfo;
+		GameObject go = Instantiate(building.placedObject, currentPreviewObj.transform.position, currentPreviewObj.transform.rotation);
 		GameObject psgo = Instantiate(placementParticleSystem, go.transform);
 		MeshRenderer mr = go.GetComponent<MeshRenderer>();
 		if (!mr)
@@ -542,16 +536,16 @@ public class Inventory : MonoBehaviour {
 			StopBuilding();
 			player.HideTooltipText();
 		}
-		if (!item is BuildingInfo)
+		if (!(item is BuildingInfo))
 			return;
 		BuildingInfo building = item as BuildingInfo;
 
-		GameObject previewObj = Instantiate(item.previewPrefab, Vector3.up * -10000f, item.previewPrefab.transform.rotation);
-		gridX = item.gridSize.x;
-		gridY = item.gridSize.y;
-		gridZ = item.gridSize.z;
+		GameObject previewObj = Instantiate(building.previewPrefab, Vector3.up * -10000f, building.previewPrefab.transform.rotation);
+		gridX = building.gridSize;
+		gridY = building.gridSize;
+		gridZ = building.gridSize;
 		currentPreviewObj = previewObj;
-		currentPlacingItem = item;
+		currentPlacingItem = item as BuildingInfo;
 		placingStructure = true;
 	}
 

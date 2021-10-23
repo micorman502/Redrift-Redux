@@ -20,7 +20,7 @@ public class DevControls : MonoBehaviour {
 	}
 
 	void AddAllItems() {
-		foreach(Item item in saveManager.allItems) {
+		foreach(ItemInfo item in saveManager.allItems) {
 			inventory.AddItem(item, 1);
 		}
 	}

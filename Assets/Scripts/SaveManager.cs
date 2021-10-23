@@ -15,7 +15,7 @@ public class SaveManager : MonoBehaviour {
 	[SerializeField] Animator canvasAnim;
 
 	public Text saveText;
-	public Item[] allItems;
+	public ItemInfo[] allItems;
 	public Resource[] allResources;
 	[SerializeField] GameObject smallIslandPrefab;
 
@@ -80,8 +80,8 @@ public class SaveManager : MonoBehaviour {
 		}
 	}
 
-	public Item FindItem(int id) {
-		foreach(Item item in allItems) {
+	public ItemInfo FindItem(int id) {
+		foreach(ItemInfo item in allItems) {
 			if(item.id == id) {
 				return item;
 			}
@@ -90,18 +90,28 @@ public class SaveManager : MonoBehaviour {
 		return null;
 	}
 
-	public List<Item> IDsToItems(List<int> IDs) {
-		List<Item> items = new List<Item>();
+	public List<ItemInfo> IDsToItems(List<int> IDs) {
+		List<ItemInfo> items = new List<ItemInfo>();
 		foreach(int itemID in IDs) {
 			items.Add(FindItem(itemID));
 		}
 		return items;
 	}
 
-	public List<int> ItemsToIDs(List<Item> items) {
+	public List<int> ItemsToIDs(List<ItemInfo> items) {
 		List<int> IDs = new List<int>();
-		foreach(Item item in items) {
+		foreach(ItemInfo item in items) {
 			IDs.Add(item.id);
+		}
+		return IDs;
+	}
+
+	public List<int> ItemsToIDs(List<WorldItem> items)
+	{
+		List<int> IDs = new List<int>();
+		foreach (WorldItem item in items)
+		{
+			IDs.Add(item.item.id);
 		}
 		return IDs;
 	}
@@ -133,7 +143,7 @@ public class SaveManager : MonoBehaviour {
             }
 
 			for (int i = 0; i < save.inventoryItems.Count; i++) {
-				foreach(Item item in allItems) {
+				foreach(ItemInfo item in allItems) {
 					if(item.id == save.inventoryItems[i].id) {
 						inventory.SetItem(item, save.inventoryItems[i].amount, i);
 					}

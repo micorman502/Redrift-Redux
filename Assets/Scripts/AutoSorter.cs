@@ -9,7 +9,9 @@ public class AutoSorter : MonoBehaviour, IItemSaveable, IGetTriggerInfo {
 
 	public Transform exit;
 
-	public Item sortingItem;
+	public ItemInfo sortingItem;
+
+	public bool blackListMode;
 
 	public Renderer iconRenderer;
 
@@ -17,19 +19,7 @@ public class AutoSorter : MonoBehaviour, IItemSaveable, IGetTriggerInfo {
     {
 		if (col.CompareTag("Item"))
 		{
-			ItemHandler itemHandler = col.GetComponentInParent<ItemHandler>();
-			if (itemHandler)
-			{
-				if (itemHandler.item == sortingItem)
-				{
-					itemHandler.gameObject.transform.position = exit.position;
-					Rigidbody objRB = itemHandler.GetComponent<Rigidbody>();
-					if (objRB)
-					{
-						objRB.velocity = transform.forward * 2f;
-					}
-				}
-			}
+			TrySortItem(col.GetComponentInParent<ItemHandler>());
 		}
 	}
 
@@ -37,23 +27,27 @@ public class AutoSorter : MonoBehaviour, IItemSaveable, IGetTriggerInfo {
     {
 		if (col.CompareTag("Item"))
 		{
-			ItemHandler itemHandler = col.GetComponentInParent<ItemHandler>();
-			if (itemHandler)
+			TrySortItem(col.GetComponentInParent<ItemHandler>());
+		}
+	}
+
+	void TrySortItem (ItemHandler handler)
+    {
+		if (handler)
+		{
+			if (handler.item == sortingItem && !blackListMode || handler.item != sortingItem && blackListMode)
 			{
-				if (itemHandler.item == sortingItem)
+				handler.gameObject.transform.position = exit.position;
+				Rigidbody objRB = handler.GetComponent<Rigidbody>();
+				if (objRB)
 				{
-					itemHandler.gameObject.transform.position = exit.position;
-					Rigidbody objRB = itemHandler.GetComponent<Rigidbody>();
-					if (objRB)
-					{
-						objRB.velocity = transform.forward * 2f;
-					}
+					objRB.velocity = transform.forward * 2f;
 				}
 			}
 		}
 	}
 
-	public void SetItem(Item item) {
+	public void SetItem(ItemInfo item) {
 		sortingItem = item;
 		iconRenderer.gameObject.SetActive(true);
 		iconRenderer.material.mainTexture = item.icon.texture;

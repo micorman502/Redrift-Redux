@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour {
 	public float smoothTime;
 	public LayerMask groundedMask;
 	public float interactRange = 2f;
-	public Item fuelItem;
+	public ItemInfo fuelItem;
 
 	public GameObject progressContainer;
 	public Image progressImage;
@@ -142,6 +142,8 @@ public class PlayerController : MonoBehaviour {
 
 	GameObject lastTooltipGameObject;
 	GameObject lastInteractionGameObject;
+
+	const float pickupTime = 0.15f;
 
 	void Awake() {
 		GameObject scriptHolder = GameObject.FindGameObjectWithTag("ScriptHolder");
@@ -297,7 +299,7 @@ public class PlayerController : MonoBehaviour {
 
 						autoMiner = itemHandler.GetComponent<AutoMiner>();
 
-						if(inventory.currentSelectedItem && inventory.currentSelectedItem.type == Item.ItemType.Tool) {
+						if(inventory.currentSelectedItem && inventory.currentSelectedItem is ToolInfo) {
 							tooltipText = "Hold [E] to pick up, [F] to replace tool";
 
 							if(Input.GetButton("Interact")) {
@@ -310,10 +312,8 @@ public class PlayerController : MonoBehaviour {
 						} else {
 							tooltipText = "Hold [E] to pick up, [F] to gather items";
 							if(Input.GetButton("Interact")) {
-								int i = 0;
-								foreach(Item item in autoMiner.items) {
-									inventory.AddItem(item, autoMiner.itemAmounts[i]);
-									i++;
+								foreach(WorldItem item in autoMiner.items) {
+									inventory.AddItem(item);
 								}
 
 								audioManager.Play("Grab");
@@ -381,18 +381,17 @@ public class PlayerController : MonoBehaviour {
 							pickingUp = true;
 						} else {
 							pickingUpTime += Time.deltaTime;
-							progressImage.fillAmount = pickingUpTime / itemHandler.item.timeToGather;
-							progressText.text = (itemHandler.item.timeToGather - pickingUpTime).ToString("0.0");
+							progressImage.fillAmount = pickingUpTime / pickupTime;
+							progressText.text = (pickupTime - pickingUpTime).ToString("0.0");
 
-							if(pickingUpTime >= itemHandler.item.timeToGather) {
+							if(pickingUpTime >= pickupTime) {
 								if(autoMiner) {
 									if(autoMiner.currentToolItem) {
 										inventory.AddItem(autoMiner.GatherTool(), 1);
 									}
-									int q = 0;
-									foreach(Item item in autoMiner.items) {
-										inventory.AddItem(item, autoMiner.itemAmounts[q]);
-										q++;
+
+									foreach(WorldItem item in autoMiner.items) {
+										inventory.AddItem(item);
 									}
 								}
 								if(itemHandler.item.id == 6) { // Is it a furnace?
@@ -427,8 +426,8 @@ public class PlayerController : MonoBehaviour {
 						} else {
 							float multiplier = 1f;
 							bool hasTool = false;
-							if(inventory.currentSelectedItem && inventory.currentSelectedItem.type == Item.ItemType.Tool) {
-								multiplier = inventory.currentSelectedItem.speed;
+							if(inventory.currentSelectedItem && inventory.currentSelectedItem is ToolInfo) {
+								multiplier = (inventory.currentSelectedItem as ToolInfo).gatherSpeedMult;
 								hasTool = true;
 							}
 							gatheringTime += Time.deltaTime;
@@ -439,15 +438,15 @@ public class PlayerController : MonoBehaviour {
 							progressText.text = (currentResource.resource.gatherTime / multiplier - gatheringTime).ToString("0.0");
 							if(gatheringTime >= currentResource.resource.gatherTime / multiplier) {
 								int i = 0;
-								foreach(Item item in currentResource.resource.resourceItems) {
+								foreach(ItemInfo item in currentResource.resource.resourceItems) {
 									if(Random.Range(0f, 1f) <= currentResource.resource.chances[i]) {
-										inventory.AddItem(item, hasTool ? inventory.currentSelectedItem.gatherAmount : 1);
+										inventory.AddItem(item, hasTool ? (inventory.currentSelectedItem as ToolInfo).gatherAmountMult : 1);
 									}
 									i++;
 								}
 								gatheringTime = 0f;
 								progressImage.fillAmount = 0f;
-								currentResource.Gather(hasTool ? inventory.currentSelectedItem.gatherAmount : 1); // CURRENTLY GATHERS GATHER AMOUNT EVEN IF RESOURCE HAS LESS THAN THAT AMOUNT LEFT
+								currentResource.Gather(hasTool ? (inventory.currentSelectedItem as ToolInfo).gatherAmountMult : 1); // CURRENTLY GATHERS GATHER AMOUNT EVEN IF RESOURCE HAS LESS THAN THAT AMOUNT LEFT
 								CameraShaker.Instance.ShakeOnce(2f, 3f, 0.1f, 0.3f);
 							}
 						}
@@ -569,12 +568,12 @@ public class PlayerController : MonoBehaviour {
 		return pauseManager.paused;
 	}
 
-	void Attack() {
+	void Attack() { //COME BACK
 			if(target) {
 				Health targetHealth = target.GetComponent<Health>();
 				if(targetHealth) {
 					if(inventory.currentSelectedItem) {
-						WeaponHandler handler = inventory.currentSelectedItem.prefab.GetComponent<WeaponHandler>();
+						WeaponHandler handler = inventory.currentSelectedItem.droppedPrefab.GetComponent<WeaponHandler>();
 						if(handler && handler.weapon.type == Weapon.WeaponType.Melee) {
 							targetHealth.TakeDamage(handler.weapon.damage);
 						}

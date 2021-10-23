@@ -6,7 +6,7 @@ using UnityEngine;
 public class Resource : ScriptableObject {
 	public GameObject prefab;
 	public int id;
-	public Item[] resourceItems;
+	public ItemInfo[] resourceItems;
 	public float[] chances;
 	public int maxGathers;
 	public float gatherTime;
