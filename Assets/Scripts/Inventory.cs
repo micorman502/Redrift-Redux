@@ -550,8 +550,10 @@ public class Inventory : MonoBehaviour {
 	}
 
 	void AddAllItems() {
+		int i = 0;
 		foreach(ItemInfo item in saveManager.allItems.items) {
-			AddItem(item, 1);
+			SetItem(new WorldItem(item, 1), i);
+			i++;
 		}
 	}
 
