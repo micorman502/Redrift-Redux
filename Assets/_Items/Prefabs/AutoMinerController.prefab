@@ -144,7 +144,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: eff02d0cd5997b04ca5de49d716f3d82, type: 2}
+  tooltip: 
+  item: {fileID: 11400000, guid: 5883cf46a796a7e40969f614714cf207, type: 2}
   saveID: 0
   dontSave: 1
 --- !u!114 &114136973711759022
@@ -163,7 +164,6 @@ MonoBehaviour:
   toolHolder: {fileID: 1606872332838476}
   target: {fileID: 0}
   items: []
-  itemAmounts: 
   currentToolItem: {fileID: 0}
 --- !u!95 &95938548706090266
 Animator:

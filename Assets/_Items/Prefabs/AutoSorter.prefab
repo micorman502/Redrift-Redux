@@ -326,7 +326,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: d69245c7c4f4c414aa6ceba1829b57ce, type: 2}
+  tooltip: 
+  item: {fileID: 11400000, guid: f6fd9ef27de49334d841104c120fcfed, type: 2}
   saveID: 0
   dontSave: 1
 --- !u!114 &114790568613181596
@@ -345,6 +346,7 @@ MonoBehaviour:
   tellParent: {fileID: 114820459306625786}
   exit: {fileID: 4450110036669020}
   sortingItem: {fileID: 0}
+  blackListMode: 0
   iconRenderer: {fileID: 23197317055640976}
 --- !u!95 &95131486234149456
 Animator:

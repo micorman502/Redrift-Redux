@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class HeldItem : MonoBehaviour
 {
-    public Item tempItem;
     public ItemInfo item;
     public GameObject itemGameObject;
 

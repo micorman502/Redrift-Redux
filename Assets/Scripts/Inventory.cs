@@ -258,7 +258,7 @@ public class Inventory : MonoBehaviour {
     {
 		for (int i = 0; i < heldItems.Length; i++)
         {
-			if (heldItems[i].tempItem == _item) //COME BACK
+			if (heldItems[i].item == _item)
             {
 				EquipHeldItem(i);
 				return;
