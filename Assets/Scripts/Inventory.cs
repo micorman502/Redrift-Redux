@@ -47,17 +47,26 @@ public class Inventory : MonoBehaviour {
 
 		player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 
+		for (int i = 0; i < items.Length; i++)
+		{
+			items[i] = new WorldItem(null, 0);
+		}
+
 		InventoryEvents.InitialiseInventoryUI(hotbarSize, items.Length);
-		InventoryEvents.StartDrag += (InventorySlot _slot) => { BeginDrag(_slot); };
-		InventoryEvents.EndDrag += (InventorySlot _slot) => { EndDrag(_slot); };
-		InventoryEvents.RequestInventorySlot += (int _index) => { RetrieveInventorySlotToEvent(_index); };
 	}
 
-    private void OnDestroy()
+    private void OnEnable()
     {
-		InventoryEvents.StartDrag = (InventorySlot _slot) => { };
-		InventoryEvents.EndDrag = (InventorySlot _slot) => { };
-		InventoryEvents.RequestInventorySlot = (int _index) => { };
+		InventoryEvents.StartDrag += BeginDrag;
+		InventoryEvents.EndDrag += EndDrag;
+		InventoryEvents.RequestInventorySlot += RetrieveInventorySlotToEvent;
+	}
+
+    private void OnDisable()
+    {
+		InventoryEvents.StartDrag -= BeginDrag;
+		InventoryEvents.EndDrag -= EndDrag;
+		InventoryEvents.RequestInventorySlot -= RetrieveInventorySlotToEvent;
 	}
 
     public void LoadCreativeMode() {
@@ -65,6 +74,11 @@ public class Inventory : MonoBehaviour {
 
 
 		items = new WorldItem[saveManager.allItems.items.Length + 1];
+
+		for (int i = 0; i < items.Length; i++)
+        {
+			items[i] = new WorldItem(null, 0);
+        }
 
 		InventoryEvents.InitialiseInventoryUI(hotbarSize, items.Length);
 		AddAllItems();
@@ -200,24 +214,28 @@ public class Inventory : MonoBehaviour {
 
 	void CheckItemFunctions ()
     {
-		if (heldItemIndex == -1 || heldItemIndex >= heldItems.Length)
+		if (heldItemIndex >= heldItems.Length)
 			return;
 		if (Input.GetMouseButtonDown(0))
         {
-			heldItems[heldItemIndex].Use();
+			if (heldItemIndex != -1)
+				heldItems[heldItemIndex].Use();
         }
 		if (Input.GetMouseButton(0))
 		{
-			heldItems[heldItemIndex].UseRepeating();
+			if (heldItemIndex != -1)
+				heldItems[heldItemIndex].UseRepeating();
 		}
 		if (Input.GetMouseButtonDown(1))
         {
-			heldItems[heldItemIndex].AltUse();
+			if (heldItemIndex != -1)
+				heldItems[heldItemIndex].AltUse();
         }
 		if (Input.GetMouseButton(1))
 		{
-			heldItems[heldItemIndex].AltUseRepeating();
-		}
+			if (heldItemIndex != -1)
+				heldItems[heldItemIndex].AltUseRepeating();
+		} //the heldItemIndex check is done 4 times in case the heldItemIndex changes in the process of doing, say, the Use() functions.
 	}
 
 	void ScrollHotbar (int scrollAmt)

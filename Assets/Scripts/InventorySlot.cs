@@ -53,6 +53,10 @@ public class InventorySlot : MonoBehaviour {
     }
 
     public void SetItem(WorldItem item) {
+		if (item == null)
+        {
+			Debug.Log(gameObject.name + " " + slotID);
+        }
 		if(!item.item) {
 			ClearSlot();
 			return;
