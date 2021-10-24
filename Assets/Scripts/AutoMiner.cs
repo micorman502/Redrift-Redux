@@ -39,7 +39,7 @@ public class AutoMiner : MonoBehaviour, IItemSaveable {
 		GetComponent<AudioSource>().outputAudioMixerGroup = FindObjectOfType<SettingsManager>().audioMixer.FindMatchingGroups("Master")[0];
 	}
 	
-	void Update() {
+	void FixedUpdate() {
 		if(agent.isOnNavMesh) {
 			if(currentToolItem) {
 				if(target) {
@@ -58,14 +58,11 @@ public class AutoMiner : MonoBehaviour, IItemSaveable {
 						}
 						gatherTime += Time.deltaTime * currentToolItem.gatherSpeedMult;
 						if(gatherTime >= target.resource.gatherTime) {
-							int i = 0;
-							foreach(ItemInfo item in target.resource.resourceItems) {
-								if(Random.Range(0f, 1f) <= target.resource.chances[i]) {
-									AddItem(item, currentToolItem.gatherAmountMult);
-								}
-								i++;
+							WorldItem[] gatheredItems = target.ToolGather(currentToolItem);
+							foreach (WorldItem gathered in gatheredItems)
+							{
+								AddItem(gathered.item, gathered.amount);
 							}
-							target.Gather(currentToolItem.gatherAmountMult);
 							gatherTime = 0f;
 						}
 					}

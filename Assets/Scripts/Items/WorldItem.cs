@@ -27,7 +27,13 @@ public class WorldItem
 
     public WorldItem(ItemInfo _item, int _amount)
     {
-        this.item = _item;
-        this.amount = _amount;
+        item = _item;
+        amount = _amount;
+    }
+
+    public WorldItem()
+    {
+        item = null;
+        amount = 0;
     }
 }

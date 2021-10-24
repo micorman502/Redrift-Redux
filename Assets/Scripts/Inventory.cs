@@ -49,7 +49,7 @@ public class Inventory : MonoBehaviour {
 
 		for (int i = 0; i < items.Length; i++)
 		{
-			items[i] = new WorldItem(null, 0);
+			items[i] = new WorldItem();
 		}
 
 		InventoryEvents.InitialiseInventoryUI(hotbarSize, items.Length);
@@ -77,7 +77,7 @@ public class Inventory : MonoBehaviour {
 
 		for (int i = 0; i < items.Length; i++)
         {
-			items[i] = new WorldItem(null, 0);
+			items[i] = new WorldItem();
         }
 
 		InventoryEvents.InitialiseInventoryUI(hotbarSize, items.Length);
@@ -519,7 +519,7 @@ public class Inventory : MonoBehaviour {
 	void PlaceBuilding ()
     {
 		RemoveItem(currentPlacingItem);
-		BuildingInfo building = currentPlacingItem as BuildingInfo;
+		BuildingInfo building = currentPlacingItem;
 		GameObject go = Instantiate(building.placedObject, currentPreviewObj.transform.position, currentPreviewObj.transform.rotation);
 		GameObject psgo = Instantiate(placementParticleSystem, go.transform);
 		MeshRenderer mr = go.GetComponent<MeshRenderer>();

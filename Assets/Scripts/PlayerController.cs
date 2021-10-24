@@ -416,7 +416,7 @@ public class PlayerController : MonoBehaviour {
 						progressContainer.SetActive(false);
 						pickingUp = false;
 					}
-				} else if(target.CompareTag("Resource") && distanceToTarget <= interactRange && !inventory.placingStructure) { // Gather resources
+				} else if(target.CompareTag("Resource") && distanceToTarget <= interactRange && !inventory.placingStructure && inventory.currentSelectedItem == null) { // Gather resources
 					tooltipText = "Hold [LMB] to gather";
 					if(Input.GetMouseButton(0) || Input.GetAxisRaw("ControllerTriggers") <= -0.1f) {
 						hideTooltipText = true;
@@ -424,29 +424,21 @@ public class PlayerController : MonoBehaviour {
 							gathering = true;
 							progressContainer.SetActive(true);
 						} else {
-							float multiplier = 1f;
-							bool hasTool = false;
-							if(inventory.currentSelectedItem && inventory.currentSelectedItem is ToolInfo) {
-								multiplier = (inventory.currentSelectedItem as ToolInfo).gatherSpeedMult;
-								hasTool = true;
-							}
+
 							gatheringTime += Time.deltaTime;
 							if(currentResource == null || currentResource.gameObject != target) {
 								currentResource = target.GetComponent<ResourceHandler>();
 							}
-							progressImage.fillAmount = gatheringTime / (currentResource.resource.gatherTime / multiplier);
-							progressText.text = (currentResource.resource.gatherTime / multiplier - gatheringTime).ToString("0.0");
-							if(gatheringTime >= currentResource.resource.gatherTime / multiplier) {
-								int i = 0;
-								foreach(ItemInfo item in currentResource.resource.resourceItems) {
-									if(Random.Range(0f, 1f) <= currentResource.resource.chances[i]) {
-										inventory.AddItem(item, hasTool ? (inventory.currentSelectedItem as ToolInfo).gatherAmountMult : 1);
-									}
-									i++;
+							progressImage.fillAmount = gatheringTime / (currentResource.resource.gatherTime);
+							progressText.text = (currentResource.resource.gatherTime - gatheringTime).ToString("0.0");
+
+							if(gatheringTime >= currentResource.resource.gatherTime) {
+								WorldItem[] gatheredItems = currentResource.HandGather();
+								foreach(WorldItem item in gatheredItems) {
+									inventory.AddItem(item);
 								}
 								gatheringTime = 0f;
 								progressImage.fillAmount = 0f;
-								currentResource.Gather(hasTool ? (inventory.currentSelectedItem as ToolInfo).gatherAmountMult : 1); // CURRENTLY GATHERS GATHER AMOUNT EVEN IF RESOURCE HAS LESS THAN THAT AMOUNT LEFT
 								CameraShaker.Instance.ShakeOnce(2f, 3f, 0.1f, 0.3f);
 							}
 						}

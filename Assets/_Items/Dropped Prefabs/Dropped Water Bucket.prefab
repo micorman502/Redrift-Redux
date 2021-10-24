@@ -914,7 +914,6 @@ GameObject:
   - component: {fileID: 9048275425163759925}
   - component: {fileID: 9030454993172029589}
   - component: {fileID: 8990584460081299035}
-  - component: {fileID: 9051901044770660941}
   - component: {fileID: 8998705705594962921}
   m_Layer: 6
   m_Name: Dropped Water Bucket
@@ -1002,22 +1001,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &9051901044770660941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8936224179510503587}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a6cd79169b881245950b9a5b4b327f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waterBucket: 1
-  bucketItem: {fileID: 0}
-  waterBucketItem: {fileID: 0}
-  waterLevel: {fileID: 8941432644954269469}
 --- !u!65 &8998705705594962921
 BoxCollider:
   m_ObjectHideFlags: 0

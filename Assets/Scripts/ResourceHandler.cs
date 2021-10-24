@@ -25,9 +25,20 @@ public class ResourceHandler : MonoBehaviour, IItemSaveable {
 		}
 	}
 
-	public void Gather(int amount)
+	public WorldItem[] HandGather()
 	{
-		health -= amount;
+		List<WorldItem> returnedItems = new List<WorldItem>();
+		int i = 0;
+		foreach (ItemInfo item in resource.resourceItems)
+		{
+			if (Random.Range(0f, 1f) <= resource.chances[i])
+			{
+				returnedItems.Add(new WorldItem(item, 1));
+			}
+			i++;
+		}
+
+		health -= 1;
 		if (health <= 0 && !resource.infiniteGathers)
 		{
 			if (!dontRegisterToHivemind)
@@ -40,6 +51,38 @@ public class ResourceHandler : MonoBehaviour, IItemSaveable {
 			}
 			Destroy(gameObject);
 		}
+
+		return returnedItems.ToArray();
+	}
+
+	public WorldItem[] ToolGather(ToolInfo tool)
+	{
+		List<WorldItem> returnedItems = new List<WorldItem>();
+		int i = 0;
+		foreach (ItemInfo item in resource.resourceItems)
+		{
+			if (Random.Range(0f, 1f) <= resource.chances[i])
+			{
+				returnedItems.Add(new WorldItem(item, tool.gatherAmountMult));
+			}
+			i++;
+		}
+
+		health -= 1;
+		if (health <= 0 && !resource.infiniteGathers)
+		{
+			if (!dontRegisterToHivemind)
+			{
+				HiveMind.Instance.RemoveResource(this);
+			}
+			if (resource.id == 5)
+			{ // This resource is a tree
+				GetComponent<TreeResource>().DropFruits();
+			}
+			Destroy(gameObject);
+		}
+
+		return returnedItems.ToArray();
 	}
 
 	public void GetData(out ItemSaveData data, out ObjectSaveData objData, out bool _dontSave)
