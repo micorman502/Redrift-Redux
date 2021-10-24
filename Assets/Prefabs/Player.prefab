@@ -19982,9 +19982,9 @@ MonoBehaviour:
   - {fileID: 6995431770849849498}
   - {fileID: 5403842636791634833}
   - {fileID: 2624727648230470305}
-  - {fileID: 2523984463119888293}
-  - {fileID: 2581482333177040435}
-  - {fileID: 6300145006477347225}
+  - {fileID: 35764930184252317}
+  - {fileID: 3923692016743523758}
+  - {fileID: 4183644925881777755}
   - {fileID: 3382974028081617832}
   - {fileID: 8725088901550020378}
   - {fileID: 6811348368307931342}
@@ -25303,7 +25303,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2704608069683001895}
-  - component: {fileID: 6300145006477347225}
+  - component: {fileID: 4183644925881777755}
   m_Layer: 2
   m_Name: Pickaxe Lightning Held Item
   m_TagString: Untagged
@@ -25326,7 +25326,7 @@ Transform:
   m_Father: {fileID: 4198538540125010}
   m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6300145006477347225
+--- !u!114 &4183644925881777755
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -25335,11 +25335,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 643380620251649586}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc83e8d64003ee04eb828bf634e1d548, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a0c4ab7ca1b97b49886066c2d65dd91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 60defaddcf0f8ff46adb2b4cb7af81a3, type: 2}
+  item: {fileID: 11400000, guid: a061a2a5da6ab444481d85357644cace, type: 2}
   itemGameObject: {fileID: 643380620251649586}
+  controller: {fileID: 114794400459759650}
+  inventory: {fileID: 114380057707737522}
+  anim: {fileID: 0}
 --- !u!1 &1155982983341936336
 GameObject:
   m_ObjectHideFlags: 0
@@ -26719,7 +26722,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2160695957619228744}
-  - component: {fileID: 2581482333177040435}
+  - component: {fileID: 3923692016743523758}
   m_Layer: 2
   m_Name: Pickaxe Iron Held Item
   m_TagString: Untagged
@@ -26742,7 +26745,7 @@ Transform:
   m_Father: {fileID: 4198538540125010}
   m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2581482333177040435
+--- !u!114 &3923692016743523758
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -26751,11 +26754,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 4962197771395468918}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc83e8d64003ee04eb828bf634e1d548, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a0c4ab7ca1b97b49886066c2d65dd91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 60defaddcf0f8ff46adb2b4cb7af81a3, type: 2}
+  item: {fileID: 11400000, guid: 1298723ecdadd9441be0c619bf981016, type: 2}
   itemGameObject: {fileID: 4962197771395468918}
+  controller: {fileID: 114794400459759650}
+  inventory: {fileID: 114380057707737522}
+  anim: {fileID: 0}
 --- !u!1 &5032331898522021500
 GameObject:
   m_ObjectHideFlags: 0
@@ -27738,7 +27744,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7804092113825989284}
-  - component: {fileID: 2523984463119888293}
+  - component: {fileID: 35764930184252317}
   m_Layer: 2
   m_Name: Pickaxe Stone Held Item
   m_TagString: Untagged
@@ -27761,7 +27767,7 @@ Transform:
   m_Father: {fileID: 4198538540125010}
   m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2523984463119888293
+--- !u!114 &35764930184252317
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -27770,11 +27776,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 8981337660706188185}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc83e8d64003ee04eb828bf634e1d548, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a0c4ab7ca1b97b49886066c2d65dd91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 60defaddcf0f8ff46adb2b4cb7af81a3, type: 2}
+  item: {fileID: 11400000, guid: b52f0e8a326894a439d7d3acd6bcc7f0, type: 2}
   itemGameObject: {fileID: 8981337660706188185}
+  controller: {fileID: 114794400459759650}
+  inventory: {fileID: 114380057707737522}
+  anim: {fileID: 0}
 --- !u!1 &9063780085626773278
 GameObject:
   m_ObjectHideFlags: 0
