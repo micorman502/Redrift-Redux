@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class HeldBuildingItem : HeldItem
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] Inventory inventory;
+    BuildingInfo building;
+
+    void Awake()
     {
-        
+        building = item as BuildingInfo;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
