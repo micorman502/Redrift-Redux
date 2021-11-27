@@ -210,6 +210,9 @@ public class Inventory : MonoBehaviour {
 				}
 			}
 		}
+
+		if (heldItemIndex != -1)
+			heldItems[heldItemIndex].ItemUpdate();
 	}
 
 	void CheckItemFunctions ()
@@ -238,7 +241,13 @@ public class Inventory : MonoBehaviour {
 		} //the heldItemIndex check is done 4 times in case the heldItemIndex changes in the process of doing, say, the Use() functions.
 	}
 
-	void ScrollHotbar (int scrollAmt)
+    void FixedUpdate()
+    {
+		if (heldItemIndex != -1)
+			heldItems[heldItemIndex].ItemFixedUpdate();
+	}
+
+    void ScrollHotbar (int scrollAmt)
     {
 		if (scrollAmt != 0)
         {

@@ -18,7 +18,7 @@ public class HeldToolItem : HeldItem
         tool = item as ToolInfo;
     }
 
-    void Update()
+    public override void ItemUpdate()
     {
         if (usedThisFrame && currentResource)
         {
