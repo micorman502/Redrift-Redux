@@ -195,7 +195,7 @@ public class Inventory : MonoBehaviour {
 					}
 
 					InventoryUpdate();
-				} else if(Input.GetButtonDown("Drop") && !(currentSelectedItem is BuildingInfo)) {
+				} else if(Input.GetButtonDown("Drop")) {
 					if(Input.GetButton("Supersize")) {
 						if(mode != 1) {
 							DropItem(currentSelectedItem, Ping(5, items[selectedHotbarSlot].amount));
