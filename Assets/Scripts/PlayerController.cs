@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour {
 	public float runSpeed;
 	public float jumpForce;
 	public float smoothTime;
+	[SerializeField] float maxTooltipDistance;
 	public LayerMask groundedMask;
 	public float interactRange = 2f;
 	public ItemInfo fuelItem;
@@ -263,7 +264,7 @@ public class PlayerController : MonoBehaviour {
 		RaycastHit hit;
 		Ray ray = playerCamera.GetComponent<Camera>().ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
 
-		Physics.Raycast(ray, out hit);
+		Physics.Raycast(ray, out hit, maxTooltipDistance, -1, QueryTriggerInteraction.Collide);
 
 		distanceToTarget = hit.distance;
 

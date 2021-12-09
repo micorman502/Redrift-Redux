@@ -12,4 +12,8 @@ public class HeldBuildingItem : HeldItem
         building = item as BuildingInfo;
     }
 
+    public override void Use()
+    {
+        
+    }
 }

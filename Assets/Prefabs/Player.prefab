@@ -19891,6 +19891,7 @@ MonoBehaviour:
   runSpeed: 9
   jumpForce: 30000
   smoothTime: 0.05
+  maxTooltipDistance: 5
   groundedMask:
     serializedVersion: 2
     m_Bits: 4294967295

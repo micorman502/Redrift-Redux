@@ -15,7 +15,7 @@ public class HeldFoodItem : HeldItem
     public override void Use()
     {
         Debug.Log("use init");
-        if (inventory.RemoveItem(item, 1) == 0)
+        if (inventory.RemoveItem(item, 1) == 1)
         {
             Debug.Log("eating");
             controller.GainCalories(food.calories);

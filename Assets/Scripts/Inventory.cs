@@ -416,19 +416,19 @@ public class Inventory : MonoBehaviour {
 		HotbarUpdate();
 	}
 
-	public int RemoveItem(int index, int amount)
-	{
-		ItemInfo item = items[index].item;
-		return RemoveItem(item, amount);
-	}
-
-	public int RemoveItem(ItemInfo item, int amount) //return value of 0 means all items were taken
+	/// <summary>
+	/// Returns how many items have been taken. Return value of 0 means no items were taken.
+	/// </summary>
+	/// <param name="item"></param>
+	/// <param name="amount"></param>
+	/// <returns></returns>
+	public int RemoveItem(ItemInfo item, int amount)
 	{
 		if (mode == 1)
-			return 0;
-		if (!item || amount == 0)
 			return amount;
-		int amountLeft = amount;
+		if (!item || amount == 0)
+			return 0;
+		int amountLeft = 0;
 		for (int i = 0; i < items.Length; i++)
 		{
 			if (items[i].item == item)
@@ -436,7 +436,7 @@ public class Inventory : MonoBehaviour {
 				if (items[i].amount - amountLeft >= 0)
 				{
 					items[i].amount -= amountLeft;
-					amountLeft = 0;
+					amountLeft = amount;
 					if (items[i].amount == 0)
                     {
 						items[i].Clear();
@@ -447,7 +447,7 @@ public class Inventory : MonoBehaviour {
 				else
 				{
 					int removed = Mathf.Abs(items[i].amount - amountLeft);
-					amountLeft -= removed;
+					amountLeft += removed;
 					items[i].Clear();
 					InventoryEvents.UpdateInventorySlot(items[i], i);
 					if (amountLeft <= 0)
@@ -468,9 +468,15 @@ public class Inventory : MonoBehaviour {
 		return amountLeft;
 	}
 
+	public int RemoveItem(int index, int amount)
+	{
+		ItemInfo item = items[index].item;
+		return RemoveItem(item, amount);
+	}
+
 	public bool RemoveItem(ItemInfo item)
 	{
-		if (RemoveItem(item, 1) == 1)
+		if (RemoveItem(item, 1) == 0)
         {
 			return false; //did not get removed
         } else
