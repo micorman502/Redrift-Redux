@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour {
 	private Vector3 moveAmount;
 	private Vector3 smoothMoveVelocity;
 
-	[HideInInspector] public Inventory inventory;
+	[HideInInspector] public PlayerInventory inventory;
 	AudioManager audioManager;
 	PauseManager pauseManager;
 	SettingsManager settingsManager;
@@ -154,7 +154,7 @@ public class PlayerController : MonoBehaviour {
 		canvasAnim = canvas.GetComponent<Animator>();
 
 		rb = GetComponent<Rigidbody>();
-		inventory = GetComponent<Inventory>();
+		inventory = GetComponent<PlayerInventory>();
 		originalDrag = rb.drag;
 		playerCameraPostProcessingBehaviour = playerCamera.GetComponent<PostProcessingBehaviour>();
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Inventory : MonoBehaviour {
+public class PlayerInventory : MonoBehaviour {
 
 	[SerializeField] int hotbarSize;
 	[SerializeField] GameObject placementParticleSystem;

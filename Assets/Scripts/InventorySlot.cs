@@ -16,7 +16,7 @@ public class InventorySlot : MonoBehaviour {
 
 	public Animation anim;
 
-	Inventory inventory;
+	PlayerInventory inventory;
 	PlayerController player;
 
 	int mode;

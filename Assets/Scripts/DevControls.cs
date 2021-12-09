@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class DevControls : MonoBehaviour {
 
-	Inventory inventory;
+	PlayerInventory inventory;
 
 	SaveManager saveManager;
 
 	void Awake() {
-		inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+		inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>();
 		saveManager = GameObject.FindGameObjectWithTag("ScriptHolder").GetComponent<SaveManager>();
 	}
 

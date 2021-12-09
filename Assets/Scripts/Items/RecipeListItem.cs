@@ -12,10 +12,10 @@ public class RecipeListItem : MonoBehaviour
     [SerializeField] Text outputAmount;
     [SerializeField] Color craftableTint;
     [SerializeField] Color uncraftableTint;
-    Inventory targetInventory;
+    PlayerInventory targetInventory;
     Recipe recipe;
     
-    public void Setup (Recipe _recipe, Inventory _inventory)
+    public void Setup (Recipe _recipe, PlayerInventory _inventory)
     {
         targetInventory = _inventory;
         recipe = _recipe;

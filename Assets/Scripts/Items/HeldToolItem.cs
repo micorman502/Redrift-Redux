@@ -5,7 +5,7 @@ using UnityEngine;
 public class HeldToolItem : HeldItem
 {
     [SerializeField] PlayerController controller;
-    [SerializeField] Inventory inventory;
+    [SerializeField] PlayerInventory inventory;
     [SerializeField] Animation anim;
     ToolInfo tool;
     bool usedThisFrame;

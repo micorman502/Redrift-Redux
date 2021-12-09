@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HeldFoodItem : HeldItem
 {
-    [SerializeField] Inventory inventory;
+    [SerializeField] PlayerInventory inventory;
     [SerializeField] PlayerController controller;
     FoodInfo food;
 

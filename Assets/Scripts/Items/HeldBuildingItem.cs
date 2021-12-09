@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HeldBuildingItem : HeldItem
 {
-    [SerializeField] Inventory inventory;
+    [SerializeField] PlayerInventory inventory;
     BuildingInfo building;
 
     void Awake()

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HeldDeployableItem : HeldItem
 {
-    [SerializeField] Inventory inventory;
+    [SerializeField] PlayerInventory inventory;
     public override void AltUse()
     {
         Debug.Log("alt use init");

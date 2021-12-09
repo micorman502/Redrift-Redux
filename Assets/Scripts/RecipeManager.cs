@@ -32,7 +32,7 @@ public class RecipeManager : MonoBehaviour {
 	public void InitializeRecipes(Categories c) {
 		ClearRecipes();
 		int i = 0;
-		Inventory tempInv = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+		PlayerInventory tempInv = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>();
 		foreach (Recipe recipe in recipes) {
 			if(recipe.categories.Contains(c) || c == 0) {
 				GameObject recipeObj = Instantiate(craftingRecipePrefab, craftingRecipeContainer);

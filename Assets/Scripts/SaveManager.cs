@@ -19,7 +19,7 @@ public class SaveManager : MonoBehaviour {
 	public Resource[] allResources;
 	[SerializeField] GameObject smallIslandPrefab;
 
-	Inventory inventory;
+	PlayerInventory inventory;
 	PlayerController player;
 
 	WorldManager worldManager;
@@ -43,7 +43,7 @@ public class SaveManager : MonoBehaviour {
 		GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
 		worldManager = FindObjectOfType<WorldManager>();
 
-		inventory = playerObj.GetComponent<Inventory>();
+		inventory = playerObj.GetComponent<PlayerInventory>();
 		player = playerObj.GetComponent<PlayerController>();
 		persistentData = FindObjectOfType<PersistentData>();
 	}
