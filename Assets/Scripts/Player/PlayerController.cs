@@ -305,7 +305,7 @@ public class PlayerController : MonoBehaviour {
 
 							if(Input.GetButton("Interact")) {
 								autoMiner.SetTool(inventory.currentSelectedItem);
-								inventory.RemoveItem(inventory.selectedHotbarSlot, 1); //COME BACK
+								inventory.inventory.RemoveItem(new WorldItem(inventory.inventory.Slots[inventory.selectedHotbarSlot].Item, 1)); //COME BACK
 								//inventory.hotbar.GetChild(inventory.selectedHotbarSlot).GetComponent<InventorySlot>().DecreaseItem(1);
 								//inventory.InventoryUpdate();
 							}
@@ -314,7 +314,7 @@ public class PlayerController : MonoBehaviour {
 							tooltipText = "Hold [E] to pick up, [F] to gather items";
 							if(Input.GetButton("Interact")) {
 								foreach(WorldItem item in autoMiner.items) {
-									inventory.AddItem(item);
+									inventory.inventory.AddItem(item);
 								}
 
 								audioManager.Play("Grab");
@@ -388,19 +388,19 @@ public class PlayerController : MonoBehaviour {
 							if(pickingUpTime >= pickupTime) {
 								if(autoMiner) {
 									if(autoMiner.currentToolItem) {
-										inventory.AddItem(autoMiner.GatherTool(), 1);
+										inventory.inventory.AddItem(new WorldItem(autoMiner.GatherTool(), 1));
 									}
 
 									foreach(WorldItem item in autoMiner.items) {
-										inventory.AddItem(item);
+										inventory.inventory.AddItem(item);
 									}
 								}
 								if(itemHandler.item.id == 6) { // Is it a furnace?
 									Furnace furnace = itemHandler.GetComponent<Furnace>();
 									if(furnace) {
-										inventory.AddItem(fuelItem, (int)Mathf.Floor(furnace.fuel)); // ONLY WORKS IF WOOD IS ONLY FUEL SOURCE
+										inventory.inventory.AddItem(new WorldItem(fuelItem, (int)Mathf.Floor(furnace.fuel))); // ONLY WORKS IF WOOD IS ONLY FUEL SOURCE
 										if(furnace.currentSmeltingItem) {
-											inventory.AddItem(furnace.currentSmeltingItem, 1);
+											inventory.inventory.AddItem(new WorldItem(furnace.currentSmeltingItem, 1));
 										}
 									}
 								}
@@ -436,7 +436,7 @@ public class PlayerController : MonoBehaviour {
 							if(gatheringTime >= currentResource.resource.gatherTime) {
 								WorldItem[] gatheredItems = currentResource.HandGather();
 								foreach(WorldItem item in gatheredItems) {
-									inventory.AddItem(item);
+									inventory.inventory.AddItem(item);
 								}
 								gatheringTime = 0f;
 								progressImage.fillAmount = 0f;

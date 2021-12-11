@@ -1,184 +1,133 @@
-using System.Collections;
-using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+/// <summary>
+/// A solution for managing many inventory slots with group behaviour (Credit to Rugbug Redfern for providing me this script for use in Redrift:Redux)
+/// </summary>
+public class Inventory
 {
-	[SerializeField] WorldItem[] items;
+	public InventorySlot[] Slots { get; private set; }
 
-	public void SwapItems(InventorySlot slotA, InventorySlot slotB)
+	public Inventory(int size)
 	{
-		Debug.Log("swapping");
-		int first = slotA.GetSlotID();
-		int second = slotB.GetSlotID();
-		WorldItem itemA = new WorldItem(items[first].item, items[first].amount);
-		WorldItem itemB = new WorldItem(items[second].item, items[second].amount);
+		Slots = new InventorySlot[size];
 
-		items[first] = itemB;
-		items[second] = itemA;
-		InventoryEvents.UpdateInventorySlot(items[first], first);
-		InventoryEvents.UpdateInventorySlot(items[second], second);
-	}
-
-	public void SetSlot(WorldItem item, int index)
-	{
-		items[index] = item;
-		InventoryEvents.UpdateInventorySlot(item, index);
-	}
-
-	public void AddItem(WorldItem item)
-	{
-		AddItem(item.item, item.amount);
-	}
-
-	public void AddItem(ItemInfo item, int amount)
-	{
-		if (!item || amount == 0)
-			return;
-		int amountLeft = amount;
-		for (int i = 0; i < items.Length; i++)
+		for(int i = 0; i < Slots.Length; i++)
 		{
-			if (items[i].item == item || items[i].item == null)
-			{
-				items[i].item = item;
-				if (items[i].amount + amountLeft <= items[i].item.stackSize)
-				{
-					items[i].amount += amountLeft;
-					amountLeft = 0;
-					InventoryEvents.UpdateInventorySlot(items[i], i);
-					break;
-				}
-				else
-				{
-					int removed = items[i].item.stackSize - items[i].amount;
-					amountLeft -= removed;
-					items[i].amount = items[i].item.stackSize;
-					InventoryEvents.UpdateInventorySlot(items[i], i);
-					if (amountLeft == 0)
-					{
-						break;
-					}
-				}
-			}
-			else
-			{// if the item is not the thing we are trying to add here
-				continue;
-			}
-		}
-
-		if (amountLeft > 0)
-		{
-			Debug.Log("amount left is too much"); //COME BACK
-		}
-
-		if (amountLeft != amount)
-		{ //if items were actually taken
-			AchievementManager.Instance.GetAchievement(item.achievementId);
+			Slots[i] = new InventorySlot();
 		}
 	}
 
 	/// <summary>
-	/// Returns how many items have been taken. Return value of 0 means no items were taken.
+	/// Add an amount of an item to the inventory
 	/// </summary>
-	/// <param name="item"></param>
-	/// <param name="amount"></param>
-	/// <returns></returns>
-	public int RemoveItem(ItemInfo item, int amount)
+	/// <returns>The amount that was successfully added</returns>
+	public int AddItem(WorldItem item)
 	{
-		if (!item || amount == 0)
-			return 0;
-		int amountLeft = 0;
-		for (int i = 0; i < items.Length; i++)
+		int reserve = item.amount;
+
+		foreach (var slot in Slots)
 		{
-			if (items[i].item == item)
+			if(slot.Item == item.item)
 			{
-				if (items[i].amount - amountLeft >= 0)
+				reserve -= slot.Add(reserve);
+
+				if(reserve == 0)
 				{
-					items[i].amount -= amountLeft;
-					amountLeft = amount;
-					if (items[i].amount == 0)
-					{
-						items[i].Clear();
-					}
-					InventoryEvents.UpdateInventorySlot(items[i], i);
-					break;
-				}
-				else
-				{
-					int removed = Mathf.Abs(items[i].amount - amountLeft);
-					amountLeft += removed;
-					items[i].Clear();
-					InventoryEvents.UpdateInventorySlot(items[i], i);
-					if (amountLeft <= 0)
-					{
-						break;
-					}
+					return item.amount;
 				}
 			}
-			else
-			{// if the item is not the thing we are trying to remove here
-				continue;
+		}
+
+		foreach (var slot in Slots)
+		{
+			if(slot.Item == null)
+			{
+				slot.Initialize(item.item, 0);
+				reserve -= slot.Add(reserve);
+
+				if(reserve == 0)
+				{
+					return item.amount;
+				}
 			}
 		}
 
-		return amountLeft;
+		return item.amount - reserve;
 	}
 
-	public int RemoveItem(int index, int amount)
+	/// <summary>
+	/// Get the total number of an item in the inventory
+	/// </summary>
+	/// <returns>The total number of the specified item in the inventory</returns>
+	public int GetItemTotal(ItemInfo item)
 	{
-		ItemInfo item = items[index].item;
-		return RemoveItem(item, amount);
-	}
+		int total = 0;
 
-	public bool RemoveItem(ItemInfo item)
-	{
-		if (RemoveItem(item, 1) == 0)
+		foreach (var slot in Slots)
 		{
-			return false; //did not get removed
-		}
-		else
-		{
-			return true; //did get removed
-		}
-	}
-
-	public void SetItem(WorldItem item, int index)
-	{
-		if (index > -1 && index < items.Length)
-		{
-			items[index] = item;
-			InventoryEvents.UpdateInventorySlot(item, index);
-		}
-	}
-
-	public void SetItem(ItemInfo item, int amount, int index)
-	{
-		SetItem(new WorldItem(item, amount), index);
-	}
-
-	int Ping(int num, int max)
-	{
-		if (num > max)
-		{
-			return max;
-		}
-		else
-		{
-			return num;
-		}
-	}
-
-	public WorldItem[] GetInventory()
-	{
-		return items;
-	}
-
-	public void ClearInventory()
-	{
-		for (int i = 0; i < items.Length; i++)
-		{
-			items[i].Clear();
+			if(slot.Item == item)
+			{
+				total += slot.Count;
+			}
 		}
 
+		return total;
 	}
+
+	/// <summary>
+	/// Remove an amount of an item from the inventory. If there are left overs, they are ignored, so an amount you know is present via GetItemTotal.
+	/// </summary>
+	public void RemoveItem(WorldItem item)
+	{
+		foreach (var slot in Slots)
+		{
+			if(slot.Item == item.item)
+			{
+				item.amount -= slot.Remove(item.amount);
+
+				if(item.amount == 0)
+				{
+					return;
+				}
+			}
+		}
+
+		Debug.LogError($"Left over items in RemoveItem(item, amount)! {item.amount}");
+	}
+
+	/// <summary>
+	/// Remove an amount of an item from the inventory. amountTaken returns the initial item count - amount left
+	/// </summary>
+	public void RemoveItem(WorldItem item, out int amountTaken)
+	{
+		int initAmount = GetItemTotal(item.item);
+		foreach (var slot in Slots)
+		{
+			if (slot.Item == item.item)
+			{
+				item.amount -= slot.Remove(item.amount);
+
+				if (item.amount == 0)
+				{
+					amountTaken = initAmount;
+					return;
+				}
+			}
+		}
+		amountTaken = initAmount = GetItemTotal(item.item);
+	}
+
+	/// <summary>
+	/// Directly set a slot to an item. Returns an error if the value is out of bounds
+	/// </summary>
+	public void SetSlot (WorldItem item, int slotIndex)
+    {
+		if (slotIndex >= Slots.Length)
+        {
+			Debug.LogError($"SetSlot's slotIndex was outside the allowed bounds! {slotIndex}");
+			return;
+        }
+		Slots[slotIndex].Initialize(item.item, item.amount);
+    }
 }

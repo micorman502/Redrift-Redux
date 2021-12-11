@@ -8,7 +8,8 @@ public class HeldDeployableItem : HeldItem
     public override void AltUse()
     {
         Debug.Log("alt use init");
-        if (inventory.RemoveItem(item, 1) == 1)
+        inventory.inventory.RemoveItem(new WorldItem(item, 1), out int amtTaken);
+        if (amtTaken >= 1)
         {
             Debug.Log("remove item alt");
             DeployableInfo deployable = (DeployableInfo)item;

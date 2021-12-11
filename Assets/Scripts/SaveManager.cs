@@ -144,7 +144,7 @@ public class SaveManager : MonoBehaviour {
 
 			for (int i = 0; i < save.inventoryItems.Count; i++) {
 				ItemInfo item = allItems.items[save.inventoryItems[i].id];
-				inventory.SetItem(item, save.inventoryItems[i].amount, i);
+				inventory.inventory.SetSlot(new WorldItem(item, save.inventoryItems[i].amount), i);
 			}
 
 
@@ -207,9 +207,9 @@ public class SaveManager : MonoBehaviour {
 			save.worldType = 1;
 		}
 
-		foreach(WorldItem item in inventory.GetInventory()) {
-			if(item.item) {
-				save.inventoryItems.Add(item);
+		foreach(InventorySlot item in inventory.inventory.Slots) {
+			if(item.Item) {
+				save.inventoryItems.Add(new WorldItem(item.Item, item.Count));
 			} else {
 				save.inventoryItems.Add(new SerializedWorldItem(-1, -1));
 			}

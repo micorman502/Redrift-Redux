@@ -31,7 +31,7 @@ public class HeldToolItem : HeldItem
                 WorldItem[] gatheredItems = currentResource.ToolGather(tool);
                 foreach (WorldItem gathered in gatheredItems)
                 {
-                    inventory.AddItem(gathered);
+                    inventory.inventory.AddItem(gathered);
                 }
             }
         } else

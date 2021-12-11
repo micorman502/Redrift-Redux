@@ -14,7 +14,9 @@ public class PlayerInventory : MonoBehaviour {
 
 	[SerializeField] HeldItem[] heldItems;
 
-	[SerializeField] WorldItem[] items;
+	[SerializeField] int inventorySize;
+	public Inventory inventory;
+	//[SerializeField] WorldItem[] items;
 
 	PlayerController player;
 
@@ -42,20 +44,16 @@ public class PlayerInventory : MonoBehaviour {
 	int previousHeldItemIndex = -1;
 
 	void Awake() {
+		inventory = new Inventory(inventorySize);
 		audioManager = FindObjectOfType<AudioManager>();
 		saveManager = FindObjectOfType<SaveManager>();
 
 		player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 
-		for (int i = 0; i < items.Length; i++)
-		{
-			items[i] = new WorldItem();
-		}
-
-		InventoryEvents.InitialiseInventoryUI(hotbarSize, items.Length);
+		//InventoryEvents.InitialiseInventoryUI(hotbarSize, items.Length);
 	}
 
-    private void OnEnable()
+    /*private void OnEnable()
     {
 		InventoryEvents.StartDrag += BeginDrag;
 		InventoryEvents.EndDrag += EndDrag;
@@ -67,20 +65,12 @@ public class PlayerInventory : MonoBehaviour {
 		InventoryEvents.StartDrag -= BeginDrag;
 		InventoryEvents.EndDrag -= EndDrag;
 		InventoryEvents.RequestInventorySlot -= RetrieveInventorySlotToEvent;
-	}
+	}*/
 
     public void LoadCreativeMode() {
 		mode = 1;
 
-
-		items = new WorldItem[saveManager.allItems.items.Length + 1];
-
-		for (int i = 0; i < items.Length; i++)
-        {
-			items[i] = new WorldItem();
-        }
-
-		InventoryEvents.InitialiseInventoryUI(hotbarSize, items.Length);
+		//InventoryEvents.InitialiseInventoryUI(hotbarSize, items.Length);
 		AddAllItems();
 
 		craftingContainer.SetActive(false);
@@ -88,14 +78,14 @@ public class PlayerInventory : MonoBehaviour {
 
 	public void Pickup(ItemHandler itemHandler) {
 		if(mode != 1) {
-			AddItem(itemHandler.item, 1); //TODO: Check if inventory is full first!
+			inventory.AddItem(new WorldItem(itemHandler.item, 1)); //TODO: Check if inventory is full first!
 		}
 		Destroy(itemHandler.gameObject);
 	}
 
 	public void RetrieveInventorySlotToEvent (int index)
     {
-		InventoryEvents.UpdateInventorySlot(items[index], index);
+		//InventoryEvents.UpdateInventorySlot(items[index], index);
     }
 
 	void Update() {
@@ -198,7 +188,7 @@ public class PlayerInventory : MonoBehaviour {
 				} else if(Input.GetButtonDown("Drop")) {
 					if(Input.GetButton("Supersize")) {
 						if(mode != 1) {
-							DropItem(currentSelectedItem, Ping(5, items[selectedHotbarSlot].amount));
+							DropItem(currentSelectedItem, Ping(5, inventory.GetItemTotal(currentSelectedItem)));
 						} else {
 							DropItem(currentSelectedItem, 5);
 						}
@@ -273,7 +263,7 @@ public class PlayerInventory : MonoBehaviour {
 
 	void HotbarUpdate() {
 		InventoryEvents.SetHotbarIndex(selectedHotbarSlot);
-		currentSelectedItem = items[selectedHotbarSlot].item;
+		currentSelectedItem = inventory.Slots[selectedHotbarSlot].Item;
 		EquipHeldItem(currentSelectedItem);
 		if (placingStructure)
 		{
@@ -336,7 +326,9 @@ public class PlayerInventory : MonoBehaviour {
 		firstDragSlot = slot;
 	}
 
-	public void EndDrag(InventorySlot slot) {
+	// COME BACK (maybe)
+
+	/*public void EndDrag(InventorySlot slot) {
 		if (firstDragSlot)
 		{
 			SwapItems(firstDragSlot, slot);
@@ -358,9 +350,9 @@ public class PlayerInventory : MonoBehaviour {
 		InventoryEvents.UpdateInventorySlot(items[second], second);
 		InventoryUpdate();
 		HotbarUpdate();
-	}
+	} */
 
-	public void SetSlot (WorldItem item, int index)
+	/*public void SetSlot (WorldItem item, int index)
     {
 		items[index] = item;
 		InventoryEvents.UpdateInventorySlot(item, index);
@@ -496,7 +488,7 @@ public class PlayerInventory : MonoBehaviour {
 
 	public void SetItem(ItemInfo item, int amount, int index) {
 		SetItem(new WorldItem(item, amount), index);
-	}
+	}*/
 
 
 	public void SimpleDropItem(ItemInfo item, int amount) { //drop item without removing anything
@@ -511,7 +503,8 @@ public class PlayerInventory : MonoBehaviour {
 
 	public void DropItem(ItemInfo item, int amount)
 	{
-		amount -= RemoveItem(item, amount);
+		inventory.RemoveItem(new WorldItem(currentPlacingItem, 1), out int amtLeft);
+		amount -= amtLeft;
 		for (int i = 0; i < amount; i++)
 		{
 			GameObject itemObj = Instantiate(item.droppedPrefab, player.playerCamera.transform.position + player.playerCamera.transform.forward * 1.25f + Vector3.up * i * (item.droppedPrefab.GetComponentInChildren<Renderer>().bounds.size.y + 0.1f), player.playerCamera.transform.rotation);
@@ -533,7 +526,7 @@ public class PlayerInventory : MonoBehaviour {
 
 	void PlaceBuilding ()
     {
-		RemoveItem(currentPlacingItem);
+		inventory.RemoveItem(new WorldItem(currentPlacingItem, 1));
 		BuildingInfo building = currentPlacingItem;
 		GameObject go = Instantiate(building.placedObject, currentPreviewObj.transform.position, currentPreviewObj.transform.rotation);
 		GameObject psgo = Instantiate(placementParticleSystem, go.transform);
@@ -585,15 +578,10 @@ public class PlayerInventory : MonoBehaviour {
 	void AddAllItems() {
 		int i = 0;
 		foreach(ItemInfo item in saveManager.allItems.items) {
-			SetItem(new WorldItem(item, 1), i);
+			inventory.SetSlot(new WorldItem(item, 1), i);
 			i++;
 		}
 	}
-
-	public WorldItem[] GetInventory ()
-    {
-		return items;
-    }
 
 	public bool CheckRecipe(Recipe recipe) {
 		if(player.ActiveSystemMenu()) {
@@ -601,12 +589,12 @@ public class PlayerInventory : MonoBehaviour {
 		}
 		int[] inputAmounts = new int[recipe.inputs.Length];
 
-		foreach(WorldItem invItem in items) {
-			if(invItem.item) {
+		foreach(InventorySlot invItem in inventory.Slots) {
+			if(invItem.Item) {
 				int i = 0;
 				foreach(WorldItem item in recipe.inputs) {
-					if(invItem.item == item.item) {
-						inputAmounts[i] += invItem.amount;
+					if(invItem.Item == item.item) {
+						inputAmounts[i] += invItem.Count;
 						break;
 					}
 					i++;
@@ -626,12 +614,12 @@ public class PlayerInventory : MonoBehaviour {
 
 	public WorldItem GetHeldItem ()
     {
-		return items[selectedHotbarSlot];
+		return new WorldItem(inventory.Slots[selectedHotbarSlot].Item, inventory.Slots[selectedHotbarSlot].Count);
     }
 
 	public void ClearInventory() {
-		for(int i = 0; i < items.Length; i++) {
-			items[i].Clear();
+		for(int i = 0; i < inventory.Slots.Length; i++) {
+			inventory.Slots[i].Clear();
 		}
 
 		InventoryUpdate();
@@ -642,14 +630,14 @@ public class PlayerInventory : MonoBehaviour {
 		int[] inputAmounts = new int[recipe.inputs.Length];
 
 		int o = 0; //COME BACK
-		foreach(WorldItem invItem in items) {
-			if(invItem.item) { // If the inventory slot has an item in it
+		foreach(InventorySlot invItem in inventory.Slots) {
+			if(invItem.Item) { // If the inventory slot has an item in it
 				int i = 0;
 				foreach(WorldItem item in recipe.inputs) { // Loop through all the ingredients in the recipe to see if the slot's item is the same as one of them
-					if(invItem.item == item.item) { // Is the item the same?
+					if(invItem.Item == item.item) { // Is the item the same?
 						int amountToDecrease = Mathf.Max(0, item.amount - inputAmounts[i]);
-						inputAmounts[i] += invItem.amount; // Add the amount of that item to the inputAmounts
-						RemoveItem(o, amountToDecrease);
+						inputAmounts[i] += invItem.Count; // Add the amount of that item to the inputAmounts
+						inventory.RemoveItem(new WorldItem(item.item, amountToDecrease));
 						break;
 					}
 					i++;
@@ -658,17 +646,17 @@ public class PlayerInventory : MonoBehaviour {
 			o++;
 		}
 
-		AddItem(recipe.output);
+		inventory.AddItem(recipe.output);
 
 		int r = 0;
 		foreach(WorldItem replacementItem in recipe.replacedItems) {
-			AddItem(replacementItem);
+			inventory.AddItem(replacementItem);
 			r++;
 		}
 	}
 
 	public void InventoryUpdate() {
-		currentSelectedItem = items[selectedHotbarSlot].item;
+		currentSelectedItem = inventory.Slots[selectedHotbarSlot].Item;
 		foreach(Transform craftingRecipeObj in craftingRecipeContainer) {
 			craftingRecipeObj.GetComponent<RecipeListItem>().InventoryUpdate();
 		}

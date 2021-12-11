@@ -116,7 +116,7 @@ public class AutoMiner : MonoBehaviour, IItemSaveable {
 		}
 
 		if(currentToolItem) {
-			player.inventory.AddItem(currentToolItem, 1);
+			player.inventory.inventory.AddItem(new WorldItem(currentToolItem, 1));
 		}
 
 		currentToolItem = item as ToolInfo;

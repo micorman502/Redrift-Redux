@@ -21,7 +21,7 @@ public class DevControls : MonoBehaviour {
 
 	void AddAllItems() {
 		foreach(ItemInfo item in saveManager.allItems.items) {
-			inventory.AddItem(item, 1);
+			inventory.inventory.AddItem(new WorldItem(item, 1));
 		}
 	}
 }
