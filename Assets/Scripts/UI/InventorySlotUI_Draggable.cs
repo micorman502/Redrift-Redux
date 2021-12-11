@@ -12,7 +12,7 @@ using UnityEngine.UI;
 /// </summary>
 public class InventorySlotUI_Draggable : InventorySlotUI, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler
 {
-	[SerializeField] private GameObject previewPrefab;
+	[SerializeField] GameObject previewPrefab;
 	GameObject previewPrefabInstance;
 	
 	static InventorySlotUI_Draggable hover;
@@ -20,6 +20,8 @@ public class InventorySlotUI_Draggable : InventorySlotUI, IPointerDownHandler, I
 
 	void IPointerDownHandler.OnPointerDown(PointerEventData eventData)
 	{
+		if (eventData.button != PointerEventData.InputButton.Left)
+			return;
 		dragging = true;
 		previewPrefabInstance = Instantiate(previewPrefab, transform);
 		previewPrefabInstance.GetComponent<InventorySlotUI>().Initialize(slot);
@@ -27,6 +29,9 @@ public class InventorySlotUI_Draggable : InventorySlotUI, IPointerDownHandler, I
 
 	void IPointerUpHandler.OnPointerUp(PointerEventData eventData)
 	{
+		if (eventData.button != PointerEventData.InputButton.Left)
+			return;
+		Debug.Log("pointer up");
 		dragging = false;
 		Destroy(previewPrefabInstance);
 		

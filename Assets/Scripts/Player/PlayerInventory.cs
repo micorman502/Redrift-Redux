@@ -53,6 +53,12 @@ public class PlayerInventory : MonoBehaviour {
 		//InventoryEvents.InitialiseInventoryUI(hotbarSize, items.Length);
 	}
 
+    private void Start()
+    {
+		Debug.Log("starting");
+		InventoryUIManager.Instance.GetInventoryUI(InventoryUIManager.InventoryType.Primary).Assign(inventory);
+    }
+
     /*private void OnEnable()
     {
 		InventoryEvents.StartDrag += BeginDrag;
@@ -576,6 +582,8 @@ public class PlayerInventory : MonoBehaviour {
 	}
 
 	void AddAllItems() {
+		inventory = new Inventory(saveManager.allItems.items.Length);
+		InventoryUIManager.Instance.GetInventoryUI(InventoryUIManager.InventoryType.Primary).Assign(inventory);
 		int i = 0;
 		foreach(ItemInfo item in saveManager.allItems.items) {
 			inventory.SetSlot(new WorldItem(item, 1), i);

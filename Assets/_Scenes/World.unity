@@ -3289,7 +3289,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0.000061035156}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: -491.5499}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &462875536
 MonoBehaviour:
@@ -3385,7 +3385,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &498361259
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3910,7 +3910,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -26150,7 +26150,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1294712837
 RectTransform:
   m_ObjectHideFlags: 0
@@ -31804,6 +31804,7 @@ GameObject:
   - component: {fileID: 1444759419}
   - component: {fileID: 1444759423}
   - component: {fileID: 1444759424}
+  - component: {fileID: 1444759425}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -31936,18 +31937,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 1444759418}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7268d1249ca177b43bbc6ff1d3da2bec, type: 3}
+  m_Script: {fileID: 11500000, guid: 8edd062f3b0193942820df588be58012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hotbarSlot: {fileID: 1333196073835750, guid: e0d89a071cbf4054a9b36c1631b6fb2d, type: 3}
-  inventorySlot: {fileID: 1580106656157342, guid: 27d0572ee343eab419c8431cfbce44fe,
-    type: 3}
-  hotbarSlotHolder: {fileID: 972327863}
-  inventorySlotHolder: {fileID: 1294712837}
-  craftingUIHolder: {fileID: 597459072}
-  tooltip: {fileID: 1323751527}
-  tooltipTitle: {fileID: 1225559945}
-  tooltipDesc: {fileID: 271322977}
+  container: {fileID: 1294712837}
+  slotPrefab: {fileID: 1580106656157342, guid: 27d0572ee343eab419c8431cfbce44fe, type: 3}
+  hotbarSlots: 6
+  hotbarContainer: {fileID: 972327863}
+--- !u!114 &1444759425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1444759418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61cce447667941e4f9349f02765cc5fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 498361258}
+  toggleKey: 9
+  lockLook: 1
 --- !u!1 &1497348563
 GameObject:
   m_ObjectHideFlags: 0
@@ -39206,6 +39217,7 @@ GameObject:
   - component: {fileID: 2019392286}
   - component: {fileID: 2019392288}
   - component: {fileID: 2019392287}
+  - component: {fileID: 2019392289}
   m_Layer: 0
   m_Name: _ScriptHolder_
   m_TagString: ScriptHolder
@@ -39482,6 +39494,21 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 997f3a93b1bc10c4a87e8bf4dc55c954, type: 2}
   craftingRecipePrefab: {fileID: 1378080776484410, guid: 654479b425e9b444ab11d658c0aba6e5,
     type: 3}
+--- !u!114 &2019392289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019392279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03362613fbb781343ac5ba04ecd3e29c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  types: 00000000
+  inventoryUis:
+  - {fileID: 1444759424}
 --- !u!1 &2055588974
 GameObject:
   m_ObjectHideFlags: 0

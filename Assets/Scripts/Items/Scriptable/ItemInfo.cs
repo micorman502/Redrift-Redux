@@ -8,6 +8,7 @@ public class ItemInfo : ScriptableObject
 	public string itemName;
 	public string itemDescription;
 	public int stackSize = 100;
+	public string stackPrefix = "x";
 	public int id;
 	public int achievementId = -1;
 	public Sprite icon;

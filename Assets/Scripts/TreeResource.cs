@@ -16,7 +16,6 @@ public class TreeResource : MonoBehaviour, IItemSaveable {
 	[HideInInspector] public bool spawnApples = true;
 
 	void Start() {
-		Debug.Log("start");
 		if(spawnApples) {
 			foreach(Transform spawn in appleSpawnLocations) {
 				if(Random.Range(0f, 1f) < appleSpawnChance) {

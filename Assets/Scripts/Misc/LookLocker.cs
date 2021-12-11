@@ -17,8 +17,14 @@ public class LookLocker : MonoBehaviour
         Instance = this;
     }
 
+    private void OnEnable()
+    {
+        PlayerEvents.OnLockStateSet += SetLockedState;
+    }
+
     void OnDisable()
     {
+        PlayerEvents.OnLockStateSet -= SetLockedState;
         SetLockedState(false);
     }
 
@@ -33,7 +39,6 @@ public class LookLocker : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
-        PlayerEvents.OnLockStateSet(locked);
     }
 
     public bool GetState ()
