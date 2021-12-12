@@ -31,7 +31,6 @@ public class InventorySlotUI_Draggable : InventorySlotUI, IPointerDownHandler, I
 	{
 		if (eventData.button != PointerEventData.InputButton.Left)
 			return;
-		Debug.Log("pointer up");
 		dragging = false;
 		Destroy(previewPrefabInstance);
 		

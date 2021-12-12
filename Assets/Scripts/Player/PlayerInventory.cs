@@ -16,6 +16,7 @@ public class PlayerInventory : MonoBehaviour {
 
 	[SerializeField] int inventorySize;
 	public Inventory inventory;
+	InventorySlot heldItemSlot;
 	//[SerializeField] WorldItem[] items;
 
 	PlayerController player;
@@ -29,8 +30,6 @@ public class PlayerInventory : MonoBehaviour {
 
 	public int selectedHotbarSlot = 0;
 	public ItemInfo currentSelectedItem;
-
-	InventorySlot firstDragSlot;
 
 	SaveManager saveManager;
 
@@ -269,13 +268,24 @@ public class PlayerInventory : MonoBehaviour {
 
 	void HotbarUpdate() {
 		InventoryEvents.SetHotbarIndex(selectedHotbarSlot);
-		currentSelectedItem = inventory.Slots[selectedHotbarSlot].Item;
-		EquipHeldItem(currentSelectedItem);
+		EquipItem(selectedHotbarSlot);
 		if (placingStructure)
 		{
 			StopBuilding();
 		}
 	}
+
+	void EquipItem (int slotIndex)
+    {
+		EquipItem(inventory.Slots[slotIndex]);
+    }
+
+	void EquipItem (InventorySlot slot)
+    {
+		heldItemSlot = slot;
+		currentSelectedItem = heldItemSlot.Item;
+		EquipHeldItem(heldItemSlot.Item);
+    }
 
 	void EquipHeldItem (ItemInfo _item)
     {
@@ -296,6 +306,7 @@ public class PlayerInventory : MonoBehaviour {
 			return;
 		if (heldItems.Length == 0)
 			return;
+		heldItemSlot = inventory.Slots[selectedHotbarSlot];
 		heldItemIndex = _index;
 
 		if (previousHeldItemIndex != -1)
@@ -323,14 +334,6 @@ public class PlayerInventory : MonoBehaviour {
 
 		previousHeldItemIndex = heldItemIndex;*/
     }
-
-	public void LeaveHoveredItem() {
-		InventoryEvents.LeaveHoveredItem();
-	}
-
-	public void BeginDrag(InventorySlot slot) {
-		firstDragSlot = slot;
-	}
 
 	// COME BACK (maybe)
 

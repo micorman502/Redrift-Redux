@@ -77,7 +77,7 @@ public class InventorySlot
 	/// </summary>
 	public void Dump(InventorySlot victim)
 	{
-		if(Item == victim.Item)
+		if(Item == victim.Item && victim.Item) 
 		{
 			Count -= victim.Add(Count);
 			if(Count == 0)
