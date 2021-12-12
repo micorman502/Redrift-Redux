@@ -143,7 +143,12 @@ public class SaveManager : MonoBehaviour {
             }
 
 			for (int i = 0; i < save.inventoryItems.Count; i++) {
-				ItemInfo item = allItems.items[save.inventoryItems[i].id];
+				int id = save.inventoryItems[i].id;
+				ItemInfo item = null;
+				if (id >= 0)
+				{
+					item = allItems.items[save.inventoryItems[i].id];
+				}
 				inventory.inventory.SetSlot(new WorldItem(item, save.inventoryItems[i].amount), i);
 			}
 

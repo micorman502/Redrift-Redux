@@ -19902,7 +19902,6 @@ MonoBehaviour:
   progressText: {fileID: 0}
   tooltipText: {fileID: 0}
   purgatorySpawn: {fileID: 0}
-  purgatoryRespawnTimeText: {fileID: 0}
   lightDeactivateObjects: {fileID: 0}
   darkDeactivateObjects: {fileID: 0}
   playerCameraPostProcessingBehaviour: {fileID: 0}
@@ -19933,7 +19932,7 @@ MonoBehaviour:
   fullLevel: 90
   fullHealthRegainAmount: 1
   impactVelocityToDamage: 9.5
-  impactDamage: 0.15
+  impactDamage: 2
   handDamage: 15
   rain: {fileID: 1199021711668516}
 --- !u!114 &114380057707737522

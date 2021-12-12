@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LightItem : MonoBehaviour, IItemSaveable {
+public class LightItem : MonoBehaviour, IItemSaveable, IInteractable {
 
+	[SerializeField] ItemHandler handler;
 	[SerializeField] int saveID;
 	public float[] intensities = { 0f, 0.25f, 0.5f, 1f };
 	public int intensityNum = 0;
@@ -21,8 +22,18 @@ public class LightItem : MonoBehaviour, IItemSaveable {
 		UpdateIntensity();
 	}
 
+	public void Interact ()
+    {
+		IncreaseIntensity();
+    }
+
 	public void SetIntensity(int newIntensityNum) {
 		intensityNum = newIntensityNum;
+		if (intensityNum >= intensities.Length)
+        {
+			intensityNum = 0;
+        }
+
 		if(intensities[intensityNum] == 0) {
 			active = false;
 			UpdateActive();
@@ -34,26 +45,29 @@ public class LightItem : MonoBehaviour, IItemSaveable {
 	}
 
 	public void IncreaseIntensity() {
-		intensityNum++;
-		if(intensityNum >= intensities.Length) {
-			intensityNum = 0;
-		}
-		if(intensities[intensityNum] == 0) {
-			active = false;
-			UpdateActive();
-		} else if(!active) {
-			active = true;
-			UpdateActive();
-		}
-		UpdateIntensity();
+		SetIntensity(intensityNum + 1);
 	}
 
 	void UpdateActive() {
 		light.enabled = active;
+		UpdateTooltip();
 	}
 
 	void UpdateIntensity() {
 		light.intensity = intensities[intensityNum];
+		UpdateTooltip();
+	}
+
+	void UpdateTooltip ()
+    {
+		if (active)
+		{
+			handler.SetTooltip("Hold [E] to pick up, [F] to adjust brightness");
+		}
+		else
+		{
+			handler.SetTooltip("Hold [E] to pick up, [F] to turn on");
+		}
 	}
 
 	public void GetData(out ItemSaveData data, out ObjectSaveData objData, out bool dontSave)

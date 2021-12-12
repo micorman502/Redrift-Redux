@@ -282,8 +282,13 @@ public class PlayerInventory : MonoBehaviour {
 
 	void EquipItem (InventorySlot slot)
     {
+		if (heldItemSlot != null)
+        {
+			heldItemSlot.ItemChanged -= EquipHeldItem;
+		}
 		heldItemSlot = slot;
 		currentSelectedItem = heldItemSlot.Item;
+		heldItemSlot.ItemChanged += EquipHeldItem;
 		EquipHeldItem(heldItemSlot.Item);
     }
 

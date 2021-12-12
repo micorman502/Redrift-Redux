@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LootContainer : MonoBehaviour {
+public class LootContainer : MonoBehaviour, IInteractable {
 
 	public LootItem[] loot;
 
 	public GameObject lootParticles;
 	
+	public void Interact ()
+    {
+		Open();
+    }
+
 	public void Open() {
 		int i = 0;
 		foreach(LootItem lootItem in loot) {

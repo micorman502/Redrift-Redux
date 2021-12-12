@@ -11,6 +11,7 @@ using UnityEngine.UI;
 /// </summary>
 public class InventorySlotUI : MonoBehaviour
 {
+	[SerializeField] Image iconBackground;
 	[SerializeField] Image iconImage;
 	[SerializeField] TMP_Text countText;
 
@@ -37,11 +38,13 @@ public class InventorySlotUI : MonoBehaviour
 	{
 		if(item == null)
 		{
+			iconBackground.enabled = false;
 			iconImage.sprite = null;
 			iconImage.color = Color.clear;
 		}
 		else
 		{
+			iconBackground.enabled = true;
 			iconImage.sprite = item.icon;
 			iconImage.color = Color.white;
 		}

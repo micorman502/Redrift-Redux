@@ -36,7 +36,6 @@ public class PlayerController : MonoBehaviour {
 	public Text tooltipText;
 
 	public Transform purgatorySpawn;
-	public TextMesh purgatoryRespawnTimeText;
 
 	public GameObject lightDeactivateObjects;
 	public GameObject darkDeactivateObjects;
@@ -64,7 +63,6 @@ public class PlayerController : MonoBehaviour {
 	[HideInInspector] public PlayerInventory inventory;
 	AudioManager audioManager;
 	PauseManager pauseManager;
-	SettingsManager settingsManager;
 
 	public GameObject canvas;
 	Animator canvasAnim;
@@ -90,20 +88,12 @@ public class PlayerController : MonoBehaviour {
 	bool pickingUp = false;
 	float pickingUpTime;
 
-	float consumeTime;
-
-	bool firing = false;
-	float drawTime;
-
 	int difficulty;
 	int mode;
 
 	Color defaultFogColor;
 	float defaultFogDensity;
 	Color defaultPlayerCameraColor;
-
-	float nextTimeToRespawn;
-	float respawnTime = 15f;
 
 	[HideInInspector] public bool dead = false;
 
@@ -142,6 +132,7 @@ public class PlayerController : MonoBehaviour {
 	PersistentData persistentData;
 
 	GameObject lastTooltipGameObject;
+	ITooltip lastTooltip;
 	GameObject lastInteractionGameObject;
 
 	const float pickupTime = 0.15f;
@@ -150,7 +141,6 @@ public class PlayerController : MonoBehaviour {
 		GameObject scriptHolder = GameObject.FindGameObjectWithTag("ScriptHolder");
 		audioManager = scriptHolder.GetComponent<AudioManager>();
 		pauseManager = scriptHolder.GetComponent<PauseManager>();
-		settingsManager = scriptHolder.GetComponent<SettingsManager>();
 		canvasAnim = canvas.GetComponent<Animator>();
 
 		rb = GetComponent<Rigidbody>();
@@ -161,13 +151,18 @@ public class PlayerController : MonoBehaviour {
 		defaultFogColor = RenderSettings.fogColor;
 		defaultFogDensity = RenderSettings.fogDensity;
 		defaultPlayerCameraColor = playerCamera.GetComponent<Camera>().backgroundColor;
+	}
 
+    void OnEnable()
+    {
+		PlayerEvents.RespawnPlayer += Respawn;
 		PlayerEvents.OnLockStateSet += (bool _locked) => { LockLook(_locked); SetInMenuState(!_locked); };
 	}
 
     void OnDisable()
     {
-		PlayerEvents.OnLockStateSet = (bool _locked) => { };
+		PlayerEvents.RespawnPlayer -= Respawn;
+		PlayerEvents.OnLockStateSet -= (bool _locked) => { LockLook(_locked); SetInMenuState(!_locked); };
 	}
 
     void Start() {
@@ -290,13 +285,7 @@ public class PlayerController : MonoBehaviour {
 				if(target.CompareTag("Item") && distanceToTarget <= interactRange && !inventory.placingStructure) {
 					AutoMiner autoMiner = null;
 					ItemHandler itemHandler = target.GetComponentInParent<ItemHandler>();
-					if(itemHandler.item.id == 12) { // Is it a crate?
-						tooltipText = "Hold [E] to pick up, [F] to open";
-						if(Input.GetButton("Interact")) {
-							itemHandler.GetComponent<LootContainer>().Open();
-							AchievementManager.Instance.GetAchievement(7); // Looter Achievement
-						}
-					} else if(itemHandler.item.id == 23) { // Auto Miner
+					if(itemHandler.item.id == 23) { // Auto Miner
 
 						autoMiner = itemHandler.GetComponent<AutoMiner>();
 
@@ -322,22 +311,6 @@ public class PlayerController : MonoBehaviour {
 								autoMiner.ClearItems();
 							}
 						}
-					} else if(itemHandler.item.id == 24) { // Door
-						Door door = itemHandler.GetComponent<Door>();
-						if(door.open) {
-							tooltipText = "Hold [E] to pick up, [F] to close door";
-						} else {
-							tooltipText = "Hold [E] to pick up, [F] to open door";
-						}
-						if(Input.GetButtonDown("Interact")) {
-							door.ToggleOpen();
-						}
-					} else if(itemHandler.item.id == 25) { // Conveyor belt
-						ConveyorBelt conveyor = itemHandler.GetComponent<ConveyorBelt>();
-						tooltipText = "Hold [E] to pick up, [F] to change speed. Current speed is " + conveyor.speeds[conveyor.speedNum];
-						if(Input.GetButtonDown("Interact")) {
-							conveyor.IncreaseSpeed();
-						}
 					} else if(itemHandler.item.id == 27) { // Auto Sorter
 						AutoSorter sorter = itemHandler.GetComponent<AutoSorter>();
 						if(inventory.currentSelectedItem) {
@@ -362,17 +335,7 @@ public class PlayerController : MonoBehaviour {
 							AchievementManager.Instance.GetAchievement(11); // Groovy achievement
 						}
 					} else if(itemHandler.item.id == 35) { // Light
-						LightItem li = itemHandler.GetComponent<LightItem>();
-						if(li.intensities[li.intensityNum] == 0) {
-							tooltipText = "Hold [E] to pick up, [F] to turn on";
-						} else if(li.intensityNum == li.intensities.Length - 1) {
-							tooltipText = "Hold [E] to pick up, [F] to turn off. Current brightness is " + li.intensities[li.intensityNum];
-						} else {
-							tooltipText = "Hold [E] to pick up, [F] to change brightness. Current brightness is " + li.intensities[li.intensityNum];
-						}
-						if(Input.GetButtonDown("Interact")) {
-							li.IncreaseIntensity();
-						}
+						//COME BACK
 					} else {
 						tooltipText = "Hold [E] to pick up";
 					}
@@ -486,12 +449,6 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 
-		if(dead) {
-			purgatoryRespawnTimeText.text = (-(Time.time - nextTimeToRespawn)).ToString("0");
-			if(Time.time >= nextTimeToRespawn) {
-				Respawn();
-			}
-		}
 		CheckTooltips(hit);
 		CheckInteractions(hit);
 	}
@@ -502,9 +459,18 @@ public class PlayerController : MonoBehaviour {
 			return;
 		/*if (hit.transform.gameObject == lastTooltipGameObject)
 			return;*/
-		lastTooltipGameObject = hit.transform.gameObject;
+		ITooltip tooltip = lastTooltip;
+		if (lastInteractionGameObject != hit.transform.gameObject)
+		{
+			lastTooltipGameObject = hit.transform.gameObject;
+			tooltip = hit.transform.gameObject.GetComponentInParent<ITooltip>();
+			if (tooltip == null)
+			{
+				tooltip = hit.transform.gameObject.GetComponent<ITooltip>();
+			}
+			lastTooltip = tooltip;
+		}
 
-		ITooltip tooltip = hit.transform.gameObject.GetComponent<ITooltip>();
 		if (tooltip != null)
         {
 			ShowTooltipText(tooltip.GetTooltip());
@@ -513,16 +479,18 @@ public class PlayerController : MonoBehaviour {
 
 	void CheckInteractions (RaycastHit hit)
     {
-		if (Input.GetKeyDown(KeyCode.E))
+		if (Input.GetButtonDown("Interact"))
 		{
 			if (!hit.transform)
 				return;
-			if (hit.transform.gameObject == lastInteractionGameObject)
-				return;
 			lastInteractionGameObject = hit.transform.gameObject;
 
-			ITooltip tooltip = hit.transform.gameObject.GetComponent<ITooltip>();
 			IInteractable interactable = hit.transform.gameObject.GetComponent<IInteractable>();
+			if (interactable == null)
+            {
+				interactable = hit.transform.gameObject.GetComponentInParent<IInteractable>();
+			}
+
 			if (interactable != null)
 			{
 				interactable.Interact();
@@ -777,12 +745,12 @@ public class PlayerController : MonoBehaviour {
 		if(inventory.placingStructure) {
 			inventory.StopBuilding();
 		}
+		PlayerEvents.OnPlayerDeath();
 		playerCameraPostProcessingBehaviour.profile = darkPostProcessingProfile;
 		transform.position = purgatorySpawn.position;
 		RenderSettings.fogColor = Color.black;
 		RenderSettings.fogDensity = 0.1f;
 		playerCamera.GetComponent<Camera>().backgroundColor = Color.black;
-		nextTimeToRespawn = respawnTime + Time.time;
 		dead = true;
 	}
 

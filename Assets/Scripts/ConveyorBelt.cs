@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ConveyorBelt : MonoBehaviour, IItemSaveable, IGetTriggerInfo {
+public class ConveyorBelt : MonoBehaviour, IItemSaveable, IGetTriggerInfo, IInteractable {
 
+	[SerializeField] ItemHandler handler;
 	[SerializeField] int saveID;
 	public float[] speeds = { 0f, 1f, 2f, 8f };
 	public int speedNum = 0;
@@ -46,6 +47,11 @@ public class ConveyorBelt : MonoBehaviour, IItemSaveable, IGetTriggerInfo {
 		//dummy
     }
 
+	public void Interact ()
+    {
+		IncreaseSpeed();
+    }
+
 	public void SetSpeed(int speed) {
 		speedNum = speed;
 		if(speedNum >= speeds.Length) {
@@ -62,18 +68,7 @@ public class ConveyorBelt : MonoBehaviour, IItemSaveable, IGetTriggerInfo {
 	}
 
 	public void IncreaseSpeed() {
-		speedNum++;
-		if(speedNum >= speeds.Length) {
-			speedNum = 0;
-		}
-		if(speeds[speedNum] == 0) {
-			active = false;
-			UpdateActive();
-		} else if(!active) {
-			active = true;
-			UpdateActive();
-		}
-		UpdateSpeed();
+		SetSpeed(speedNum + 1);
 	}
 
 	public void ToggleActive() {
@@ -89,6 +84,7 @@ public class ConveyorBelt : MonoBehaviour, IItemSaveable, IGetTriggerInfo {
 	void UpdateSpeed() {
 		anim.SetFloat("Speed", speeds[speedNum]);
 		audio.pitch = 0.5f + speeds[speedNum] / 8f;
+		handler.SetTooltip("Hold [E] to pick up, [F] to change speed [" + speeds[speedNum] + "]" );
 	}
 
 	public void GetData(out ItemSaveData data, out ObjectSaveData objData, out bool dontSave)
