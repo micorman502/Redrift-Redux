@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Radio : MonoBehaviour, IItemSaveable {
+public class Radio : MonoBehaviour, IItemSaveable, IInteractable {
+
+	[SerializeField] ItemHandler handler;
 	[SerializeField] int saveID;
 	[SerializeField] GameObject slider;
 	[SerializeField] Vector2 sliderMinMax;
@@ -27,36 +29,29 @@ public class Radio : MonoBehaviour, IItemSaveable {
 			s.source.minDistance = 0f;
 			s.source.outputAudioMixerGroup = settingsManager.audioMixer.FindMatchingGroups("Master")[0];
 		}
-		UpdateGraphics();
+		SetSong(-1);
+	}
+
+	public void Interact ()
+    {
+		ChangeSong();
+		AchievementManager.Instance.GetAchievement(11);
 	}
 	
 	public void ChangeSong() {
-		songNum++;
-		if(songNum >= songs.Length) {
-			songNum = -1;
-			StopSongs();
-			UpdateGraphics();
-			return;
-		}
-
-		for(int i = 0; i < songs.Length; i++) {
-			if(i == songNum) {
-				songs[i].source.Play();
-			} else {
-				if(songs[i].source.isPlaying) {
-					songs[i].source.Stop();
-				}
-			}
-		}
-		UpdateGraphics();
+		SetSong(songNum + 1);
 	}
 
 	public void SetSong(int song) {
 		songNum = song;
 
-		if(songNum == -1) {
+		if (songNum >= songs.Length)
+		{
+			songNum = -1;
+		}
+
+		if (songNum == -1) {
 			UpdateGraphics();
-			return;
 		}
 
 		for(int i = 0; i < songs.Length; i++) {
@@ -69,8 +64,20 @@ public class Radio : MonoBehaviour, IItemSaveable {
 			}
 		}
 
+		UpdateTooltip();
 		UpdateGraphics();
 	}
+
+	void UpdateTooltip ()
+    {
+		if (songNum == -1)
+        {
+			handler.SetTooltip("Hold [E] to pick up, [F] to turn on");
+        } else
+        {
+			handler.SetTooltip("Hold [E] to pick up, [F] to turn off [" + songs[songNum].name + "]");
+        }
+    }
 
 	void UpdateGraphics() {
 		Vector3 newPos = slider.transform.localPosition;

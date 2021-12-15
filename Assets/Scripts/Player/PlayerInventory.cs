@@ -16,7 +16,7 @@ public class PlayerInventory : MonoBehaviour {
 
 	[SerializeField] int inventorySize;
 	public Inventory inventory;
-	InventorySlot heldItemSlot;
+	[SerializeField] InventorySlot heldItemSlot;
 	//[SerializeField] WorldItem[] items;
 
 	PlayerController player;
@@ -29,7 +29,7 @@ public class PlayerInventory : MonoBehaviour {
 	int currentPlacingRot;
 
 	public int selectedHotbarSlot = 0;
-	public ItemInfo currentSelectedItem;
+	public WorldItem currentSelectedItem;
 
 	SaveManager saveManager;
 
@@ -41,6 +41,7 @@ public class PlayerInventory : MonoBehaviour {
 
 	[SerializeField] int heldItemIndex = -1;
 	int previousHeldItemIndex = -1;
+
 
 	void Awake() {
 		inventory = new Inventory(inventorySize);
@@ -54,7 +55,6 @@ public class PlayerInventory : MonoBehaviour {
 
     private void Start()
     {
-		Debug.Log("starting");
 		InventoryUIManager.Instance.GetInventoryUI(InventoryUIManager.InventoryType.Primary).Assign(inventory);
     }
 
@@ -96,10 +96,9 @@ public class PlayerInventory : MonoBehaviour {
 	void Update() {
 
 		for(int i = 0; i < hotbarSize; i++) {
-			if(Input.GetKeyDown((i + 1).ToString())) {
-				if(selectedHotbarSlot != i) {
-					SetHotbarSlot(i);
-				}
+			if (Input.GetKeyDown((i + 1).ToString()))
+			{
+				SetHotbarSlot(i);
 			}
 		}
 
@@ -113,6 +112,8 @@ public class PlayerInventory : MonoBehaviour {
 			HotbarUpdate();
 		}
 		CheckItemFunctions();
+
+
 		if(!player.dead) {
 			if(placingStructure && !player.InMenu()) {
 				player.ShowTooltipText("[LMB] to place, [RMB] to cancel, [R] to rotate");
@@ -120,9 +121,9 @@ public class PlayerInventory : MonoBehaviour {
 					currentPreviewObj.SetActive(true);
 				}
 
-				if (currentSelectedItem is BuildingInfo)
+				if (currentSelectedItem.item is BuildingInfo)
 				{
-					BuildingInfo building = currentSelectedItem as BuildingInfo;
+					BuildingInfo building = currentSelectedItem.item as BuildingInfo;
 					if (!player.target || player.targetHit.distance > player.interactRange)
 					{
 						if (building.alignToNormal)
@@ -183,22 +184,22 @@ public class PlayerInventory : MonoBehaviour {
 					StopBuilding();
 				}
 			}
-			if(currentSelectedItem && !player.InMenu()) {
+			if(currentSelectedItem.item && !player.InMenu()) {
 				if(Input.GetMouseButtonDown(0) || Input.GetAxisRaw("ControllerTriggers") <= -0.1f) {
-					if(currentSelectedItem is BuildingInfo && !placingStructure) {
-						StartBuilding(currentSelectedItem);
+					if(currentSelectedItem.item is BuildingInfo && !placingStructure) {
+						StartBuilding(currentSelectedItem.item);
 					}
 
 					InventoryUpdate();
 				} else if(Input.GetButtonDown("Drop")) {
 					if(Input.GetButton("Supersize")) {
 						if(mode != 1) {
-							DropItem(currentSelectedItem, Ping(5, inventory.GetItemTotal(currentSelectedItem)));
+							DropItem(currentSelectedItem.item, Ping(5, inventory.GetItemTotal(currentSelectedItem.item)));
 						} else {
-							DropItem(currentSelectedItem, 5);
+							DropItem(currentSelectedItem.item, 5);
 						}
 					} else {
-						DropItem(currentSelectedItem, 1);
+						DropItem(currentSelectedItem.item, 1);
 					}
 
 					InventoryUpdate();
@@ -252,10 +253,8 @@ public class PlayerInventory : MonoBehaviour {
 
 	void SetHotbarSlot (int slot)
     {
-		if (selectedHotbarSlot == slot)
-			return;
 		selectedHotbarSlot = slot;
-		if (selectedHotbarSlot < 0)
+		if (selectedHotbarSlot < -1)
 		{
 			selectedHotbarSlot = hotbarSize - 1;
 		}
@@ -267,8 +266,13 @@ public class PlayerInventory : MonoBehaviour {
 	}
 
 	void HotbarUpdate() {
-		InventoryEvents.SetHotbarIndex(selectedHotbarSlot);
-		EquipItem(selectedHotbarSlot);
+		if (selectedHotbarSlot != -1)
+		{
+			EquipItem(selectedHotbarSlot);
+		} else
+        {
+			EquipItem(null);
+        }
 		if (placingStructure)
 		{
 			StopBuilding();
@@ -282,15 +286,32 @@ public class PlayerInventory : MonoBehaviour {
 
 	void EquipItem (InventorySlot slot)
     {
+		if (heldItemSlot == slot && slot != null)
+        {
+			slot = null;
+			selectedHotbarSlot = -1;
+        }
+
 		if (heldItemSlot != null)
         {
 			heldItemSlot.ItemChanged -= EquipHeldItem;
 		}
-		heldItemSlot = slot;
-		currentSelectedItem = heldItemSlot.Item;
-		heldItemSlot.ItemChanged += EquipHeldItem;
-		EquipHeldItem(heldItemSlot.Item);
-    }
+
+		if (slot != null)
+		{
+			heldItemSlot = slot;
+			currentSelectedItem = new WorldItem(heldItemSlot.Item, heldItemSlot.Count);
+			heldItemSlot.ItemChanged += EquipHeldItem;
+			InventoryEvents.UpdateSelectedSlot(slot);
+			EquipHeldItem(heldItemSlot.Item);
+		} else
+        {
+			heldItemSlot = null;
+			currentSelectedItem = new WorldItem();
+			InventoryEvents.UpdateSelectedSlot(slot);
+			EquipHeldItem(null);
+		}
+	}
 
 	void EquipHeldItem (ItemInfo _item)
     {
@@ -311,7 +332,15 @@ public class PlayerInventory : MonoBehaviour {
 			return;
 		if (heldItems.Length == 0)
 			return;
-		heldItemSlot = inventory.Slots[selectedHotbarSlot];
+
+		if (selectedHotbarSlot != -1)
+		{
+			heldItemSlot = inventory.Slots[selectedHotbarSlot];
+		} else
+        {
+			heldItemSlot = null;
+        }
+
 		heldItemIndex = _index;
 
 		if (previousHeldItemIndex != -1)
@@ -594,7 +623,7 @@ public class PlayerInventory : MonoBehaviour {
 		InventoryUIManager.Instance.GetInventoryUI(InventoryUIManager.InventoryType.Primary).Assign(inventory);
 		int i = 0;
 		foreach(ItemInfo item in saveManager.allItems.items) {
-			inventory.SetSlot(new WorldItem(item, 1), i);
+			inventory.SetSlot(new WorldItem(item, 10000), i);
 			i++;
 		}
 	}
@@ -630,7 +659,7 @@ public class PlayerInventory : MonoBehaviour {
 
 	public WorldItem GetHeldItem ()
     {
-		return new WorldItem(inventory.Slots[selectedHotbarSlot].Item, inventory.Slots[selectedHotbarSlot].Count);
+		return currentSelectedItem;
     }
 
 	public void ClearInventory() {
@@ -672,7 +701,7 @@ public class PlayerInventory : MonoBehaviour {
 	}
 
 	public void InventoryUpdate() {
-		currentSelectedItem = inventory.Slots[selectedHotbarSlot].Item;
+		currentSelectedItem = new WorldItem(inventory.Slots[selectedHotbarSlot].Item, inventory.Slots[selectedHotbarSlot].Count);
 		foreach(Transform craftingRecipeObj in craftingRecipeContainer) {
 			craftingRecipeObj.GetComponent<RecipeListItem>().InventoryUpdate();
 		}

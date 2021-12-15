@@ -93,13 +93,9 @@ MonoBehaviour:
   saveID: 3
   speeds:
   - 0
-  - 0.1
-  - 0.25
   - 0.5
   - 1
   - 2
-  - 4
-  - 8
   speedNum: 0
   tellParent: {fileID: 114545526320037542}
 --- !u!82 &82349076515235410

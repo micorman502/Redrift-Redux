@@ -12,7 +12,7 @@ public class HeldFoodItem : HeldItem
     {
         food = item as FoodInfo;
     }
-    public override void Use()
+    public override void AltUse()
     {
         Debug.Log("use init");
         inventory.inventory.RemoveItem(new WorldItem(item, 1), out int amtTaken);

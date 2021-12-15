@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53d39e7a4c9ac5a40b92a8a9a7ba92eb, type: 3}
   m_Name: Ground
   m_EditorClassIdentifier: 
+  resourceName: Ground
   prefab: {fileID: 0}
   id: 1
   resourceItems:

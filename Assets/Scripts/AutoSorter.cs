@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AutoSorter : MonoBehaviour, IItemSaveable, IGetTriggerInfo {
+public class AutoSorter : MonoBehaviour, IItemSaveable, IGetTriggerInfo, IItemInteractable {
 
+	[SerializeField] ItemHandler handler;
 	[SerializeField] int saveID;
 	public TellParent tellParent;
 
@@ -14,6 +15,11 @@ public class AutoSorter : MonoBehaviour, IItemSaveable, IGetTriggerInfo {
 	public bool blackListMode;
 
 	public Renderer iconRenderer;
+
+	public void Interact (WorldItem item)
+    {
+		SetItem(item.item);
+    }
 
 	public void GetTriggerInfo (Collider col)
     {
@@ -48,6 +54,16 @@ public class AutoSorter : MonoBehaviour, IItemSaveable, IGetTriggerInfo {
 	}
 
 	public void SetItem(ItemInfo item) {
+		if (sortingItem == item)
+        {
+			SetBlacklistMode(!blackListMode);
+			return;
+        }
+		if (!item)
+		{
+			RemoveItem();
+			return;
+		}
 		sortingItem = item;
 		iconRenderer.gameObject.SetActive(true);
 		iconRenderer.material.mainTexture = item.icon.texture;
@@ -59,10 +75,29 @@ public class AutoSorter : MonoBehaviour, IItemSaveable, IGetTriggerInfo {
 		iconRenderer.gameObject.SetActive(false);
 	}
 
+	void SetBlacklistMode (bool mode)
+    {
+		blackListMode = mode;
+		SetTooltip();
+    }
+
+	void SetTooltip()
+	{
+		if (!blackListMode)
+		{
+			handler.SetTooltip("Hold [E] to pick up, [F] set sorting item [Whitelist/Inclusion Mode]");
+		} else
+        {
+			handler.SetTooltip("Hold [E] to pick up, [F] set sorting item [Blacklist/Exclusion Mode]");
+		}
+	}
+
 	public void GetData(out ItemSaveData data, out ObjectSaveData objData, out bool dontSave)
 	{
 		ItemSaveData newData = new ItemSaveData();
 		ObjectSaveData newObjData = new ObjectSaveData(transform.position, transform.rotation, saveID);
+
+		newData.boolVal = blackListMode;
 
 		if (sortingItem)
 		{
@@ -87,5 +122,6 @@ public class AutoSorter : MonoBehaviour, IItemSaveable, IGetTriggerInfo {
 		{
 			SetItem(SaveManager.Instance.FindItem(data.itemID));
 		}
+		SetBlacklistMode(data.boolVal);
 	}
 }

@@ -29,7 +29,7 @@ public class LootContainer : MonoBehaviour, IInteractable {
 			i++;
 		}
 		GameObject obj = Instantiate(lootParticles, transform.position, Quaternion.identity) as GameObject;
-		Destroy(obj, 1f);
+		Destroy(obj, 10f);
 		Destroy(gameObject);
 	}
 }

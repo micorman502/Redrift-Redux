@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResourceHandler : MonoBehaviour, IItemSaveable {
+public class ResourceHandler : MonoBehaviour, IItemSaveable, ITooltip {
 	[SerializeField] bool dontSave;
 	[SerializeField] int saveID;
 	[SerializeField] bool dontRegisterToHivemind;
@@ -24,6 +24,16 @@ public class ResourceHandler : MonoBehaviour, IItemSaveable {
 			health = resource.maxGathers;
 		}
 	}
+
+	public string GetTooltip ()
+    {
+		return "Hold [LMB] to gather [" + resource.resourceName + "]";
+    }
+
+	public void SetTooltip (string dummy)
+    {
+
+    }
 
 	public WorldItem[] HandGather()
 	{

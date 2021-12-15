@@ -73,8 +73,6 @@ public class PlayerController : MonoBehaviour {
 	[HideInInspector] public GameObject target;
 	[HideInInspector] public RaycastHit targetHit;
 
-	GameObject currentHandObj;
-
 	private Vector3 spawnpoint;
 
 	private Quaternion startRot;
@@ -263,9 +261,6 @@ public class PlayerController : MonoBehaviour {
 
 		distanceToTarget = hit.distance;
 
-		bool hideTooltipText = false;
-		string tooltipText = string.Empty;
-
 		if(!inMenu) {
 
 			if(hit.collider) {
@@ -289,18 +284,18 @@ public class PlayerController : MonoBehaviour {
 
 						autoMiner = itemHandler.GetComponent<AutoMiner>();
 
-						if(inventory.currentSelectedItem && inventory.currentSelectedItem is ToolInfo) {
-							tooltipText = "Hold [E] to pick up, [F] to replace tool";
+						if(inventory.currentSelectedItem.item && inventory.currentSelectedItem.item is ToolInfo) {
+							//tooltipText = "Hold [E] to pick up, [F] to replace tool";
 
 							if(Input.GetButton("Interact")) {
-								autoMiner.SetTool(inventory.currentSelectedItem);
+								autoMiner.SetTool(inventory.currentSelectedItem.item);
 								inventory.inventory.RemoveItem(new WorldItem(inventory.inventory.Slots[inventory.selectedHotbarSlot].Item, 1)); //COME BACK
 								//inventory.hotbar.GetChild(inventory.selectedHotbarSlot).GetComponent<InventorySlot>().DecreaseItem(1);
 								//inventory.InventoryUpdate();
 							}
 
 						} else {
-							tooltipText = "Hold [E] to pick up, [F] to gather items";
+							//tooltipText = "Hold [E] to pick up, [F] to gather items";
 							if(Input.GetButton("Interact")) {
 								foreach(WorldItem item in autoMiner.items) {
 									inventory.inventory.AddItem(item);
@@ -311,33 +306,6 @@ public class PlayerController : MonoBehaviour {
 								autoMiner.ClearItems();
 							}
 						}
-					} else if(itemHandler.item.id == 27) { // Auto Sorter
-						AutoSorter sorter = itemHandler.GetComponent<AutoSorter>();
-						if(inventory.currentSelectedItem) {
-							tooltipText = "Hold [E] to pick up, [F] set sorting item";
-							if(Input.GetButtonDown("Interact")) {
-								sorter.SetItem(inventory.currentSelectedItem);
-							}
-						} else {
-							tooltipText = "Hold [E] to pick up";
-						}
-					} else if(itemHandler.item.id == 30) { // Radio
-						Radio radio = itemHandler.GetComponent<Radio>();
-						if(radio.songNum == -1) {
-							tooltipText = "Hold [E] to pick up, [F] to turn on";
-						} else if(radio.songNum == radio.songs.Length - 1) {
-							tooltipText = "Hold [E] to pick up, [F] to turn off. Currently playing " + radio.songs[radio.songNum].name;
-						} else {
-							tooltipText = "Hold [E] to pick up, [F] to change song. Currently playing " + radio.songs[radio.songNum].name;
-						}
-						if(Input.GetButtonDown("Interact")) {
-							radio.ChangeSong();
-							AchievementManager.Instance.GetAchievement(11); // Groovy achievement
-						}
-					} else if(itemHandler.item.id == 35) { // Light
-						//COME BACK
-					} else {
-						tooltipText = "Hold [E] to pick up";
 					}
 					if(Input.GetButton("PickUp")) {
 						if(!pickingUp || (pickingUp && !progressContainer.activeSelf)) {
@@ -374,16 +342,13 @@ public class PlayerController : MonoBehaviour {
 							}
 						}
 					} else if(pickingUp) {
-						hideTooltipText = true;
 						pickingUpTime = 0f;
 						progressImage.fillAmount = 0f;
 						progressContainer.SetActive(false);
 						pickingUp = false;
 					}
-				} else if(target.CompareTag("Resource") && distanceToTarget <= interactRange && !inventory.placingStructure && inventory.currentSelectedItem == null) { // Gather resources
-					tooltipText = "Hold [LMB] to gather";
+				} else if(target.CompareTag("Resource") && distanceToTarget <= interactRange && !inventory.placingStructure) { // Gather resources
 					if(Input.GetMouseButton(0) || Input.GetAxisRaw("ControllerTriggers") <= -0.1f) {
-						hideTooltipText = true;
 						if(!gathering || (gathering && !progressContainer.activeSelf)) {
 							gathering = true;
 							progressContainer.SetActive(true);
@@ -408,37 +373,23 @@ public class PlayerController : MonoBehaviour {
 						}
 					} else if(gathering || pickingUp) {
 						CancelGatherAndPickup();
-						hideTooltipText = true;
 					}
 				} else if(gathering || pickingUp) {
 					CancelGatherAndPickup();
-					hideTooltipText = true;
-				} else {
-					hideTooltipText = true;
 				}
 			} else {
 				if(gathering || pickingUp) {
 					CancelGatherAndPickup();
-					hideTooltipText = true;
 				}
 				if(Input.GetMouseButtonDown(0) || Input.GetAxisRaw("ControllerTriggers") <= -0.1f) {
 					Attack();
 				}
 				target = null;
-				hideTooltipText = true;
 				if(progressContainer.activeSelf) {
 					progressContainer.SetActive(false);
 				}
 			}
 		}
-
-		if(hideTooltipText) {
-			if(!inventory.placingStructure) {
-				HideTooltipText();
-			}
-		} else {
-			ShowTooltipText(tooltipText);
-		} 
 
 		if(transform.position.y < -100f) {
 			if(currentWorld == WorldManager.WorldType.Light) {
@@ -456,24 +407,36 @@ public class PlayerController : MonoBehaviour {
 	void CheckTooltips (RaycastHit hit)
     {
 		if (!hit.transform)
+		{
+			HideTooltipText();
 			return;
+		}
 		/*if (hit.transform.gameObject == lastTooltipGameObject)
 			return;*/
-		ITooltip tooltip = lastTooltip;
-		if (lastInteractionGameObject != hit.transform.gameObject)
+		ITooltip tooltip = null;
+		if (lastTooltipGameObject == hit.transform.gameObject)
 		{
-			lastTooltipGameObject = hit.transform.gameObject;
+			tooltip = lastTooltip;
+		} else 
+		{
 			tooltip = hit.transform.gameObject.GetComponentInParent<ITooltip>();
 			if (tooltip == null)
 			{
 				tooltip = hit.transform.gameObject.GetComponent<ITooltip>();
 			}
-			lastTooltip = tooltip;
+			if (tooltip != null)
+			{
+				lastTooltip = tooltip;
+				lastTooltipGameObject = hit.transform.gameObject;
+			}
 		}
 
 		if (tooltip != null)
         {
 			ShowTooltipText(tooltip.GetTooltip());
+        } else
+        {
+			HideTooltipText();
         }
 	}
 
@@ -490,12 +453,16 @@ public class PlayerController : MonoBehaviour {
             {
 				interactable = hit.transform.gameObject.GetComponentInParent<IInteractable>();
 			}
-
 			if (interactable != null)
 			{
 				interactable.Interact();
 			}
+
 			IItemInteractable itemInteractable = hit.transform.gameObject.GetComponent<IItemInteractable>();
+			if (itemInteractable == null)
+			{
+				itemInteractable = hit.transform.gameObject.GetComponentInParent<IItemInteractable>();
+			}
 			if (itemInteractable != null)
 			{
 				itemInteractable.Interact(inventory.GetHeldItem());
@@ -527,8 +494,8 @@ public class PlayerController : MonoBehaviour {
 			if(target) {
 				Health targetHealth = target.GetComponent<Health>();
 				if(targetHealth) {
-					if(inventory.currentSelectedItem) {
-						WeaponHandler handler = inventory.currentSelectedItem.droppedPrefab.GetComponent<WeaponHandler>();
+					if(inventory.currentSelectedItem.item) {
+						WeaponHandler handler = inventory.currentSelectedItem.item.droppedPrefab.GetComponent<WeaponHandler>();
 						if(handler && handler.weapon.type == Weapon.WeaponType.Melee) {
 							targetHealth.TakeDamage(handler.weapon.damage);
 						}

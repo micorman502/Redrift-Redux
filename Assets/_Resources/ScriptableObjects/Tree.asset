@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53d39e7a4c9ac5a40b92a8a9a7ba92eb, type: 3}
   m_Name: Tree
   m_EditorClassIdentifier: 
+  resourceName: Tree
   prefab: {fileID: 1523322516565944, guid: c5b0387d80fa75244b875949079823ed, type: 3}
   id: 5
   resourceItems:

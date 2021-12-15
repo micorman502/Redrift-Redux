@@ -24,6 +24,7 @@ public class InventorySlotUI : MonoBehaviour
 		slot.CountChanged += OnCountChanged;
 		slot.ItemChanged += OnItemChanged;
 
+
 		OnItemChanged(slot.Item);
 		OnCountChanged(slot.Count);
 	}
@@ -61,4 +62,9 @@ public class InventorySlotUI : MonoBehaviour
 			countText.text = count.ToString();
 		}
 	}
+
+	public InventorySlot GetSlot ()
+    {
+		return slot;
+    }
 }

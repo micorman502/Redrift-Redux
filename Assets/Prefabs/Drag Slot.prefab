@@ -364,6 +364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7e756a7a134c6c4bb71e426e67ea74a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selector: {fileID: 6054903922078248917}
   iconBackground: {fileID: 2728296403100109095}
   iconImage: {fileID: 8892858671817464150}
   countText: {fileID: 3274108091762063750}

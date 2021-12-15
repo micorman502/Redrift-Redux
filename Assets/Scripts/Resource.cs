@@ -4,6 +4,7 @@ using UnityEngine;
 
 [CreateAssetMenu]
 public class Resource : ScriptableObject {
+	public string resourceName;
 	public GameObject prefab;
 	public int id;
 	public ItemInfo[] resourceItems;
