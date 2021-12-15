@@ -662,7 +662,7 @@ public class PlayerController : MonoBehaviour {
 		ignoreFallDamage = true;
 		realmtooltipText.color = lightRealmtooltipTextColor;
 		realmtooltipText.text = "ENTERING LIGHT REALM";
-		canvasAnim.SetTrigger("RealmtooltipTextEnter");
+		//canvasAnim.SetTrigger("RealmtooltipTextEnter");
 		Invoke("HideRealmtooltipText", 3);
 	}
 
@@ -675,7 +675,7 @@ public class PlayerController : MonoBehaviour {
 		ignoreFallDamage = true;
 		realmtooltipText.color = darkRealmtooltipTextColor;
 		realmtooltipText.text = "ENTERING DARK REALM";
-		canvasAnim.SetTrigger("RealmtooltipTextEnter");
+		//canvasAnim.SetTrigger("RealmtooltipTextEnter");
 		Invoke("HideRealmtooltipText", 3);
 	}
 

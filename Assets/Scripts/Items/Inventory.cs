@@ -75,6 +75,34 @@ public class Inventory
 		return total;
 	}
 
+	public int SpaceLeftForItem (WorldItem item)
+    {
+		int spaceLeft = 0;
+		foreach (var slot in Slots)
+		{
+			if (slot.Item == null)
+			{
+				spaceLeft += item.item.stackSize;
+			} else if (slot.Item == item.item)
+            {
+				spaceLeft += item.item.stackSize - slot.Count;
+            }
+		}
+		return spaceLeft;
+	}
+
+	public bool HasEmptySlots ()
+    {
+		foreach (var slot in Slots)
+		{
+			if (slot.Item == null)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
 	/// <summary>
 	/// Remove an amount of an item from the inventory. If there are left overs, they are ignored, so an amount you know is present via GetItemTotal.
 	/// </summary>

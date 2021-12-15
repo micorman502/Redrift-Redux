@@ -68,10 +68,11 @@ public class PlayerInventory : MonoBehaviour {
 	}
 
 	public void Pickup(ItemHandler itemHandler) {
-		if(mode != 1) {
-			inventory.AddItem(new WorldItem(itemHandler.item, 1)); //TODO: Check if inventory is full first!
+		if (inventory.SpaceLeftForItem(new WorldItem(itemHandler.item, 1)) > 0)
+		{
+			inventory.AddItem(new WorldItem(itemHandler.item, 1));
+			Destroy(itemHandler.gameObject);
 		}
-		Destroy(itemHandler.gameObject);
 	}
 
 	void Update() {
@@ -89,8 +90,6 @@ public class PlayerInventory : MonoBehaviour {
 			} else {
 				ScrollHotbar(1);
 			}
-
-			HotbarUpdate();
 		}
 		CheckItemFunctions();
 
@@ -267,11 +266,11 @@ public class PlayerInventory : MonoBehaviour {
 
 	void EquipItem (InventorySlot slot)
     {
-		if (heldItemSlot == slot && slot != null)
+		if (heldItemSlot == slot)
         {
 			slot = null;
 			selectedHotbarSlot = -1;
-        }
+		}
 
 		if (heldItemSlot != null)
         {
@@ -428,7 +427,7 @@ public class PlayerInventory : MonoBehaviour {
 		InventoryUIManager.Instance.GetInventoryUI(InventoryUIManager.InventoryType.Primary).Assign(inventory);
 		int i = 0;
 		foreach(ItemInfo item in saveManager.allItems.items) {
-			inventory.SetSlot(new WorldItem(item, 10000), i);
+			inventory.SetSlot(new WorldItem(item, item.stackSize), i);
 			i++;
 		}
 	}
