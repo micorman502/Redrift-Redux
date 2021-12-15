@@ -101,7 +101,7 @@ public class Inventory
 	/// </summary>
 	public void RemoveItem(WorldItem item, out int amountTaken)
 	{
-		int initAmount = GetItemTotal(item.item);
+		int initAmount = item.amount;
 		foreach (var slot in Slots)
 		{
 			if (slot.Item == item.item)
@@ -115,7 +115,7 @@ public class Inventory
 				}
 			}
 		}
-		amountTaken = initAmount = GetItemTotal(item.item);
+		amountTaken = initAmount - item.amount;
 	}
 
 	/// <summary>
