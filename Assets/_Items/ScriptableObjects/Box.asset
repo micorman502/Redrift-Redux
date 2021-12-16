@@ -23,10 +23,10 @@ MonoBehaviour:
     type: 3}
   gridSize: 0.5
   possibleRotations:
-  - {x: -90, y: 0, z: 0}
-  - {x: -90, y: 0, z: 90}
-  - {x: -90, y: 0, z: 180}
-  - {x: -90, y: 0, z: 270}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 90, z: 0}
+  - {x: 0, y: 180, z: 0}
+  - {x: 0, y: 270, z: 0}
   alignToNormal: 0
   previewPrefab: {fileID: 1976127000173042, guid: c2156b5abd22f9a4cbf67f23265e29ab,
     type: 3}

@@ -130,7 +130,7 @@ public class PlayerController : MonoBehaviour {
 	PersistentData persistentData;
 
 	GameObject lastTooltipGameObject;
-	ITooltip lastTooltip;
+	INoticeText lastTooltip;
 	GameObject lastInteractionGameObject;
 
 	const float pickupTime = 0.15f;
@@ -413,16 +413,16 @@ public class PlayerController : MonoBehaviour {
 		}
 		/*if (hit.transform.gameObject == lastTooltipGameObject)
 			return;*/
-		ITooltip tooltip = null;
+		INoticeText tooltip = null;
 		if (lastTooltipGameObject == hit.transform.gameObject)
 		{
 			tooltip = lastTooltip;
 		} else 
 		{
-			tooltip = hit.transform.gameObject.GetComponentInParent<ITooltip>();
+			tooltip = hit.transform.gameObject.GetComponentInParent<INoticeText>();
 			if (tooltip == null)
 			{
-				tooltip = hit.transform.gameObject.GetComponent<ITooltip>();
+				tooltip = hit.transform.gameObject.GetComponent<INoticeText>();
 			}
 			if (tooltip != null)
 			{
@@ -433,7 +433,7 @@ public class PlayerController : MonoBehaviour {
 
 		if (tooltip != null)
         {
-			ShowTooltipText(tooltip.GetTooltip());
+			ShowTooltipText(tooltip.GetNoticeText());
         } else
         {
 			HideTooltipText();
@@ -708,9 +708,6 @@ public class PlayerController : MonoBehaviour {
 	public void Die() {
 		if(difficulty > 1) {
 			inventory.ClearInventory();
-		}
-		if(inventory.placingStructure) {
-			inventory.StopBuilding();
 		}
 		PlayerEvents.OnPlayerDeath();
 		playerCameraPostProcessingBehaviour.profile = darkPostProcessingProfile;

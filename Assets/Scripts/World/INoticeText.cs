@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface ITooltip
+public interface INoticeText
 {
-    string GetTooltip();
-    void SetTooltip(string tooltip);
+    string GetNoticeText();
+    void SetNoticeText(string noticeText);
 
     /*
     [SerializeField] string tooltip;

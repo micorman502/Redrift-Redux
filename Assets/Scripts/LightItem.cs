@@ -62,11 +62,11 @@ public class LightItem : MonoBehaviour, IItemSaveable, IInteractable {
     {
 		if (active)
 		{
-			handler.SetTooltip("Hold [E] to pick up, [F] to adjust brightness");
+			handler.SetNoticeText("Hold [E] to pick up, [F] to adjust brightness");
 		}
 		else
 		{
-			handler.SetTooltip("Hold [E] to pick up, [F] to turn on");
+			handler.SetNoticeText("Hold [E] to pick up, [F] to turn on");
 		}
 	}
 

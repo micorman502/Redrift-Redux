@@ -80,7 +80,7 @@ public class PlayerInventory : MonoBehaviour {
 		for(int i = 0; i < hotbarSize; i++) {
 			if (Input.GetKeyDown((i + 1).ToString()))
 			{
-				SetHotbarSlot(i);
+				SetHotbarSlot(i, false);
 			}
 		}
 
@@ -157,21 +157,9 @@ public class PlayerInventory : MonoBehaviour {
 						}
 					}
 				}
-
-				if(Input.GetMouseButtonDown(0) || Input.GetAxisRaw("ControllerTriggers") <= -0.1f) {
-					PlaceBuilding();
-				} else if(Input.GetMouseButtonDown(1) || Input.GetAxisRaw("ControllerTriggers") >= 0.1f) {
-					StopBuilding();
-				}
 			}
 			if(currentSelectedItem.item && !player.InMenu()) {
-				if(Input.GetMouseButtonDown(0) || Input.GetAxisRaw("ControllerTriggers") <= -0.1f) {
-					if(currentSelectedItem.item is BuildingInfo && !placingStructure) {
-						StartBuilding(currentSelectedItem.item);
-					}
-
-					InventoryUpdate();
-				} else if(Input.GetButtonDown("Drop")) {
+				if(Input.GetButtonDown("Drop")) {
 					if(Input.GetButton("Supersize")) {
 						if(mode != 1) {
 							DropItem(currentSelectedItem.item, Ping(5, inventory.GetItemTotal(currentSelectedItem.item)));
@@ -214,7 +202,13 @@ public class PlayerInventory : MonoBehaviour {
 		{
 			if (heldItemIndex != -1)
 				heldItems[heldItemIndex].AltUseRepeating();
-		} //the heldItemIndex check is done 4 times in case the heldItemIndex changes in the process of doing, say, the Use() functions.
+		} 
+		if (Input.GetKeyDown(KeyCode.R))
+        {
+			if (heldItemIndex != -1)
+				heldItems[heldItemIndex].SpecialUse();
+		}
+		//the heldItemIndex check is done 4 times in case the heldItemIndex changes in the process of doing, say, the Use() functions.
 	}
 
     void FixedUpdate()
@@ -227,14 +221,14 @@ public class PlayerInventory : MonoBehaviour {
     {
 		if (scrollAmt != 0)
         {
-			SetHotbarSlot(selectedHotbarSlot + scrollAmt);
+			SetHotbarSlot(selectedHotbarSlot + scrollAmt, false);
         }
 	}
 
-	void SetHotbarSlot (int slot)
+	void SetHotbarSlot (int slot, bool allowNegativeOne) //allowNegativeOne maybe isn't the best name. setting it to true will allow selectedHotbarSlot to be -1.
     {
 		selectedHotbarSlot = slot;
-		if (selectedHotbarSlot < -1)
+		if (selectedHotbarSlot < -1 && allowNegativeOne || selectedHotbarSlot < 0 && !allowNegativeOne)
 		{
 			selectedHotbarSlot = hotbarSize - 1;
 		}
@@ -253,10 +247,6 @@ public class PlayerInventory : MonoBehaviour {
         {
 			EquipItem(null);
         }
-		if (placingStructure)
-		{
-			StopBuilding();
-		}
 	}
 
 	void EquipItem (int slotIndex)
@@ -335,9 +325,6 @@ public class PlayerInventory : MonoBehaviour {
 		}
     }
 
-	
-
-
 	public void SimpleDropItem(ItemInfo item, int amount) { //drop item without removing anything
 		for(int i = 0; i < amount; i++) {
 			GameObject itemObj = Instantiate(item.droppedPrefab, player.playerCamera.transform.position + player.playerCamera.transform.forward * 1.25f + Vector3.up * i * (item.droppedPrefab.GetComponentInChildren<Renderer>().bounds.size.y + 0.1f), player.playerCamera.transform.rotation);
@@ -369,57 +356,6 @@ public class PlayerInventory : MonoBehaviour {
 		} else {
 			return num;
 		}
-	}
-
-	void PlaceBuilding ()
-    {
-		inventory.RemoveItem(new WorldItem(currentPlacingItem, 1));
-		BuildingInfo building = currentPlacingItem;
-		GameObject go = Instantiate(building.placedObject, currentPreviewObj.transform.position, currentPreviewObj.transform.rotation);
-		GameObject psgo = Instantiate(placementParticleSystem, go.transform);
-		MeshRenderer mr = go.GetComponent<MeshRenderer>();
-		if (!mr)
-		{
-			mr = go.GetComponentInChildren<MeshRenderer>();
-		}
-		if (mr)
-		{
-			ParticleSystem ps = psgo.GetComponent<ParticleSystem>();
-			ParticleSystem.ShapeModule shape = ps.shape;
-			shape.meshRenderer = mr;
-			ps.Play();
-		}
-		audioManager.Play("Build");
-		StopBuilding();
-		InventoryUpdate();
-	}
-
-	public void StopBuilding()
-	{
-		Destroy(currentPreviewObj);
-		currentPlacingRot = 0;
-		placingStructure = false;
-		currentPlacingItem = null;
-		currentPreviewObj = null;
-		player.HideTooltipText();
-	}
-
-	public void StartBuilding(ItemInfo item) {
-		if(placingStructure) {
-			StopBuilding();
-			player.HideTooltipText();
-		}
-		if (!(item is BuildingInfo))
-			return;
-		BuildingInfo building = item as BuildingInfo;
-
-		GameObject previewObj = Instantiate(building.previewPrefab, Vector3.up * -10000f, building.previewPrefab.transform.rotation);
-		gridX = building.gridSize;
-		gridY = building.gridSize;
-		gridZ = building.gridSize;
-		currentPreviewObj = previewObj;
-		currentPlacingItem = item as BuildingInfo;
-		placingStructure = true;
 	}
 
 	void AddAllItems() {

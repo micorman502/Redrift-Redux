@@ -34,11 +34,11 @@ public class Door : MonoBehaviour, IInteractable {
 		anim.SetBool("Open", open);
 		if (open)
 		{
-			handler.SetTooltip("Hold [E] to pick up, [F] to close");
+			handler.SetNoticeText("Hold [E] to pick up, [F] to close");
 		}
 		else
 		{
-			handler.SetTooltip("Hold [E] to pick up, [F] to open");
+			handler.SetNoticeText("Hold [E] to pick up, [F] to open");
 		}
 	}
 }

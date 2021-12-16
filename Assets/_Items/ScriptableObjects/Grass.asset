@@ -15,12 +15,13 @@ MonoBehaviour:
   itemName: Grass
   itemDescription: 
   stackSize: 100
-  id: 0
+  stackPrefix: x
+  id: 18
   achievementId: -1
   icon: {fileID: 21300000, guid: eccb55523118f4c489b6f55711b664dc, type: 3}
   droppedPrefab: {fileID: 3722668761442544903, guid: f4f923255a284e048b2df638fdc17666,
     type: 3}
-  gridSize: 0
+  gridSize: 50
   possibleRotations:
   - {x: -90, y: 0, z: 0}
   - {x: -90, y: 90, z: 0}

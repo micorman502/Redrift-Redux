@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemHandler : MonoBehaviour, IItemSaveable, ITooltip {
+public class ItemHandler : MonoBehaviour, IItemSaveable, INoticeText {
 
 	[SerializeField] string tooltip;
 	public ItemInfo item;
@@ -20,7 +20,7 @@ public class ItemHandler : MonoBehaviour, IItemSaveable, ITooltip {
 		_dontSave = dontSave;
 	}
 
-	public string GetTooltip ()
+	public string GetNoticeText ()
     {
 		if (tooltip != "")
 		{
@@ -31,7 +31,7 @@ public class ItemHandler : MonoBehaviour, IItemSaveable, ITooltip {
         }
     }
 
-	public void SetTooltip (string _tooltip)
+	public void SetNoticeText (string _tooltip)
     {
 		tooltip = _tooltip;
     }

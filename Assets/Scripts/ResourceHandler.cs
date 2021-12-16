@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResourceHandler : MonoBehaviour, IItemSaveable, ITooltip {
+public class ResourceHandler : MonoBehaviour, IItemSaveable, INoticeText {
 	[SerializeField] bool dontSave;
 	[SerializeField] int saveID;
 	[SerializeField] bool dontRegisterToHivemind;
@@ -25,12 +25,12 @@ public class ResourceHandler : MonoBehaviour, IItemSaveable, ITooltip {
 		}
 	}
 
-	public string GetTooltip ()
+	public string GetNoticeText ()
     {
 		return "Hold [LMB] to gather [" + resource.resourceName + "]";
     }
 
-	public void SetTooltip (string dummy)
+	public void SetNoticeText (string dummy)
     {
 
     }

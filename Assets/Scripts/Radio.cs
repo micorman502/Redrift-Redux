@@ -72,10 +72,10 @@ public class Radio : MonoBehaviour, IItemSaveable, IInteractable {
     {
 		if (songNum == -1)
         {
-			handler.SetTooltip("Hold [E] to pick up, [F] to turn on");
+			handler.SetNoticeText("Hold [E] to pick up, [F] to turn on");
         } else
         {
-			handler.SetTooltip("Hold [E] to pick up, [F] to turn off [" + songs[songNum].name + "]");
+			handler.SetNoticeText("Hold [E] to pick up, [F] to turn off [" + songs[songNum].name + "]");
         }
     }
 
