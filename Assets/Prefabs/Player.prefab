@@ -9867,7 +9867,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.1
-  far clip plane: 250
+  far clip plane: 325
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -26127,7 +26127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 65c8437dd1294f74a9b51040628230ff, type: 2}
   itemGameObject: {fileID: 2758774867362103170}
-  playerBuilding: {fileID: 0}
+  playerBuilding: {fileID: 7594325746222325049}
 --- !u!1 &3245376276990354250
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,11 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4705937099493122}
-  - component: {fileID: 114763802932719114}
-  - component: {fileID: 33502525830602910}
-  - component: {fileID: 23444660872215314}
-  - component: {fileID: 95804317250347832}
-  - component: {fileID: 65634443343967684}
   m_Layer: 0
   m_Name: Grass
   m_TagString: Item
@@ -28,20 +23,56 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1912206762362666}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 7200320393562754368}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114763802932719114
+--- !u!1 &4479718460396046989
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7200320393562754368}
+  - component: {fileID: 6359918393036767090}
+  - component: {fileID: 1147905763550431109}
+  - component: {fileID: 522924162691446068}
+  - component: {fileID: 2256339360977272049}
+  - component: {fileID: 4532531134111044464}
+  m_Layer: 0
+  m_Name: Grass
+  m_TagString: Item
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7200320393562754368
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4479718460396046989}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4705937099493122}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &6359918393036767090
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1912206762362666}
+  m_GameObject: {fileID: 4479718460396046989}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
@@ -51,21 +82,21 @@ MonoBehaviour:
   item: {fileID: 11400000, guid: e16dd43f8e3437e4090deb09fc04a355, type: 2}
   saveID: 25
   dontSave: 0
---- !u!33 &33502525830602910
+--- !u!33 &1147905763550431109
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1912206762362666}
+  m_GameObject: {fileID: 4479718460396046989}
   m_Mesh: {fileID: 4300000, guid: b810b97d2b121c84f853276cd761e209, type: 3}
---- !u!23 &23444660872215314
+--- !u!23 &522924162691446068
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1912206762362666}
+  m_GameObject: {fileID: 4479718460396046989}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -101,14 +132,14 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!95 &95804317250347832
+--- !u!95 &2256339360977272049
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1912206762362666}
+  m_GameObject: {fileID: 4479718460396046989}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: b810b97d2b121c84f853276cd761e209, type: 3}
   m_Controller: {fileID: 0}
@@ -120,13 +151,13 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!65 &65634443343967684
+--- !u!65 &4532531134111044464
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1912206762362666}
+  m_GameObject: {fileID: 4479718460396046989}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1

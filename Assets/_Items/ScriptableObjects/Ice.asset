@@ -15,21 +15,22 @@ MonoBehaviour:
   itemName: Ice
   itemDescription: Extremely slippery
   stackSize: 20
+  stackPrefix: x
   id: 0
   achievementId: -1
   icon: {fileID: 21300000, guid: f0e7bb3dc8059e24a819a113fab7c969, type: 3}
   droppedPrefab: {fileID: 918782272692802242, guid: 6251f00713884b64ab18faaeab5d938d,
     type: 3}
-  gridSize: 0.25
+  gridSize: 0.5
   possibleRotations:
-  - {x: -90, y: 0, z: 0}
-  - {x: -90, y: 90, z: 0}
-  - {x: -90, y: 180, z: 0}
-  - {x: -90, y: 270, z: 0}
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 90, z: 0}
   - {x: 0, y: 180, z: 0}
   - {x: 0, y: 270, z: 0}
+  - {x: -90, y: 0, z: 0}
+  - {x: -90, y: 90, z: 0}
+  - {x: -90, y: 180, z: 0}
+  - {x: -90, y: 270, z: 0}
   alignToNormal: 0
   previewPrefab: {fileID: 1241800428823136, guid: 95e14dc454024bb4798623b800a7b97e,
     type: 3}

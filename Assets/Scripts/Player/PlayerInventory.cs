@@ -35,10 +35,6 @@ public class PlayerInventory : MonoBehaviour {
 
 	int mode;
 
-	float gridX = 1f;
-	float gridY = 0.25f;
-	float gridZ = 1f;
-
 	[SerializeField] int heldItemIndex = -1;
 	int previousHeldItemIndex = -1;
 
@@ -95,69 +91,6 @@ public class PlayerInventory : MonoBehaviour {
 
 
 		if(!player.dead) {
-			if(placingStructure && !player.InMenu()) {
-				player.ShowTooltipText("[LMB] to place, [RMB] to cancel, [R] to rotate");
-				if(!currentPreviewObj.activeSelf) {
-					currentPreviewObj.SetActive(true);
-				}
-
-				if (currentSelectedItem.item is BuildingInfo)
-				{
-					BuildingInfo building = currentSelectedItem.item as BuildingInfo;
-					if (!player.target || player.targetHit.distance > player.interactRange)
-					{
-						if (building.alignToNormal)
-						{
-							currentPreviewObj.transform.position = player.playerCamera.transform.position + player.playerCamera.transform.forward * player.interactRange;
-						}
-						else
-						{
-							Vector3 targetPos = player.playerCamera.transform.position + player.playerCamera.transform.forward * player.interactRange;
-							currentPreviewObj.transform.position = new Vector3(Mathf.Round(targetPos.x / gridX) * gridX,
-							Mathf.Round(targetPos.y / gridY) * gridY,
-							Mathf.Round(targetPos.z / gridZ) * gridZ);
-						}
-					}
-					else
-					{
-						if (building.alignToNormal)
-						{
-							currentPreviewObj.transform.position = player.targetHit.point;
-						}
-						else
-						{
-							currentPreviewObj.transform.position = new Vector3(Mathf.Round((player.targetHit.point.x / gridX) + player.targetHit.normal.normalized.x * 0.05f) * gridX,
-							Mathf.Round((player.targetHit.point.y + player.targetHit.normal.normalized.y * 0.05f) / gridY) * gridY,
-							Mathf.Round((player.targetHit.point.z / gridZ) + player.targetHit.normal.normalized.z * 0.05f) * gridZ);
-						}
-					}
-
-					if (Input.GetKeyDown(KeyCode.R))
-					{ //TODO: Make "Rotate" Button, not key
-						currentPlacingRot++;
-						if (currentPlacingRot >= building.possibleRotations.Length)
-						{
-							currentPlacingRot = 0;
-						}
-						if (!building.alignToNormal)
-						{
-							currentPreviewObj.transform.rotation = Quaternion.Euler(building.possibleRotations[currentPlacingRot]);
-						}
-					}
-
-					if (building.alignToNormal)
-					{
-						if (player.target && player.distanceToTarget <= player.interactRange)
-						{ // TODO: WORKING ON CURRENTLY |||___|||---|||___|||===================
-							currentPreviewObj.transform.rotation = Quaternion.FromToRotation(Vector3.up, player.targetHit.normal) * Quaternion.Euler(currentPlacingItem.possibleRotations[currentPlacingRot]);
-						}
-						else
-						{
-							currentPreviewObj.transform.rotation = Quaternion.Euler(building.possibleRotations[currentPlacingRot]);
-						}
-					}
-				}
-			}
 			if(currentSelectedItem.item && !player.InMenu()) {
 				if(Input.GetButtonDown("Drop")) {
 					if(Input.GetButton("Supersize")) {
@@ -271,11 +204,15 @@ public class PlayerInventory : MonoBehaviour {
 		{
 			heldItemSlot = slot;
 			currentSelectedItem = new WorldItem(heldItemSlot.Item, heldItemSlot.Count);
-			heldItemSlot.ItemChanged += EquipHeldItem;
+			heldItemSlot.ItemChanged += UpdateSelectedItem;
+			heldItemSlot.CountChanged += UpdateSelectedItem;
+
 			InventoryEvents.UpdateSelectedSlot(slot);
 			EquipHeldItem(heldItemSlot.Item);
 		} else
         {
+			heldItemSlot.ItemChanged -= UpdateSelectedItem;
+			heldItemSlot.CountChanged -= UpdateSelectedItem;
 			heldItemSlot = null;
 			currentSelectedItem = new WorldItem();
 			InventoryEvents.UpdateSelectedSlot(slot);
@@ -323,6 +260,17 @@ public class PlayerInventory : MonoBehaviour {
 		{
 			heldItems[_index].SetChildState(true);
 		}
+    }
+
+	void UpdateSelectedItem (ItemInfo item)
+    {
+		currentSelectedItem.item = item;
+		EquipHeldItem(item);
+    }
+
+	void UpdateSelectedItem (int amount)
+    {
+		currentSelectedItem.amount = amount;
     }
 
 	public void SimpleDropItem(ItemInfo item, int amount) { //drop item without removing anything

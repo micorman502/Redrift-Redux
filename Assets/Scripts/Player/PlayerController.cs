@@ -33,8 +33,6 @@ public class PlayerController : MonoBehaviour {
 	public Image progressImage;
 	public Text progressText;
 
-	public Text tooltipText;
-
 	public Transform purgatorySpawn;
 
 	public GameObject lightDeactivateObjects;
@@ -47,10 +45,6 @@ public class PlayerController : MonoBehaviour {
 
 	public Transform lightWorldEnterPoint;
 	public Transform darkWorldEnterPoint;
-
-	public Text realmtooltipText;
-	public Color lightRealmtooltipTextColor;
-	public Color darkRealmtooltipTextColor;
 
 	public ParticleSystem useParticles;
 
@@ -408,7 +402,6 @@ public class PlayerController : MonoBehaviour {
     {
 		if (!hit.transform)
 		{
-			HideTooltipText();
 			return;
 		}
 		/*if (hit.transform.gameObject == lastTooltipGameObject)
@@ -433,11 +426,8 @@ public class PlayerController : MonoBehaviour {
 
 		if (tooltip != null)
         {
-			ShowTooltipText(tooltip.GetNoticeText());
-        } else
-        {
-			HideTooltipText();
-        }
+			NoticeTextManager.Instance.AddNoticeText(tooltip.GetNoticeText(), 1);
+		}
 	}
 
 	void CheckInteractions (RaycastHit hit)
@@ -660,8 +650,7 @@ public class PlayerController : MonoBehaviour {
 		transform.position = lightWorldEnterPoint.position;
 
 		ignoreFallDamage = true;
-		realmtooltipText.color = lightRealmtooltipTextColor;
-		realmtooltipText.text = "ENTERING LIGHT REALM";
+		NoticeTextManager.Instance.AddNoticeText("ENTERING LIGHT REALM", 3, 2);
 		//canvasAnim.SetTrigger("RealmtooltipTextEnter");
 		Invoke("HideRealmtooltipText", 3);
 	}
@@ -673,8 +662,7 @@ public class PlayerController : MonoBehaviour {
 		transform.position = darkWorldEnterPoint.position;
 
 		ignoreFallDamage = true;
-		realmtooltipText.color = darkRealmtooltipTextColor;
-		realmtooltipText.text = "ENTERING DARK REALM";
+		NoticeTextManager.Instance.AddNoticeText("ENTERING DARK REALM", 3, 2);
 		//canvasAnim.SetTrigger("RealmtooltipTextEnter");
 		Invoke("HideRealmtooltipText", 3);
 	}
@@ -726,20 +714,6 @@ public class PlayerController : MonoBehaviour {
 			EnterLightWorld();
 		} else {
 			EnterDarkWorld();
-		}
-	}
-
-	public void ShowTooltipText(string text) {
-		if(!tooltipText.gameObject.activeSelf) {
-			tooltipText.gameObject.SetActive(true);
-		}
-		tooltipText.text = text;
-	}
-
-	public void HideTooltipText() {
-		if(tooltipText.gameObject.activeSelf) {
-			tooltipText.text = "";
-			tooltipText.gameObject.SetActive(false);
 		}
 	}
 

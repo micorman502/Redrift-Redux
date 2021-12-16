@@ -77,6 +77,7 @@ public class WorldManager : MonoBehaviour {
 						ResourceHandler handler = obj.GetComponent<ResourceHandler>();
 						if(handler) {
 							HiveMind.Instance.AddResource(handler);
+							
 						}
 						obj.transform.Rotate(Vector3.forward * Random.Range(0f, 360f));
 					} else {

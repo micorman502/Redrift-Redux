@@ -15,6 +15,7 @@ MonoBehaviour:
   itemName: Furnace
   itemDescription: 
   stackSize: 5
+  stackPrefix: x
   id: 0
   achievementId: 6
   icon: {fileID: 21300000, guid: 49c74c6ec6f6aa947b7592bcfc673add, type: 3}
@@ -22,10 +23,10 @@ MonoBehaviour:
     type: 3}
   gridSize: 0.5
   possibleRotations:
-  - {x: -90, y: 0, z: 0}
-  - {x: -90, y: 0, z: 90}
-  - {x: -90, y: 0, z: 180}
-  - {x: -90, y: 0, z: 270}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 90, z: 0}
+  - {x: 0, y: 180, z: 0}
+  - {x: 0, y: 270, z: 0}
   alignToNormal: 0
   previewPrefab: {fileID: 1279076705729118, guid: 19e194416f636d84fbdfbf4a4bd6a778,
     type: 3}

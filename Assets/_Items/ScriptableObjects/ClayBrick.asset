@@ -15,16 +15,17 @@ MonoBehaviour:
   itemName: Clay Brick
   itemDescription: 
   stackSize: 100
+  stackPrefix: x
   id: 0
   achievementId: 1
   icon: {fileID: 21300000, guid: 60ddc866e9d0be64f82e6bdb974176a8, type: 3}
   droppedPrefab: {fileID: 5804278749126926177, guid: b8ce3c6976a88ee438e387a525b487b2,
     type: 3}
-  gridSize: 0.25
+  gridSize: 1
   possibleRotations:
-  - {x: -90, y: 0, z: 0}
-  - {x: -90, y: 0, z: 90}
   - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 90, z: 0}
+  - {x: -90, y: 0, z: 0}
   alignToNormal: 0
   previewPrefab: {fileID: 1639326711492052, guid: 2e05c67b308da234fb190a69ec5f348b,
     type: 3}

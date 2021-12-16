@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class TooltipManager : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class TooltipManager : MonoBehaviour
 
     public void SetTooltip (InventorySlot slot)
     {
-        if (slot == null)
+        if (slot == null || slot.Item == null)
         {
             HideTooltip();
             return;

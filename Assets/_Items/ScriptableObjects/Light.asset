@@ -15,17 +15,18 @@ MonoBehaviour:
   itemName: Light
   itemDescription: 
   stackSize: 20
+  stackPrefix: x
   id: 0
   achievementId: -1
   icon: {fileID: 21300000, guid: 63d71f013bb2b1942a7a9d721d76b14c, type: 3}
   droppedPrefab: {fileID: 2555960940202762555, guid: e482b8a1d9e67c94bb259ce4410908b5,
     type: 3}
-  gridSize: 0.25
+  gridSize: 0.5
   possibleRotations:
-  - {x: -90, y: 0, z: 0}
-  - {x: -90, y: 90, z: 0}
-  - {x: -90, y: 180, z: 0}
-  - {x: -90, y: 270, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 90, z: 0}
+  - {x: 0, y: 180, z: 0}
+  - {x: 0, y: 270, z: 0}
   alignToNormal: 0
   previewPrefab: {fileID: 1081290273228212, guid: 41b96f519747acb4f93537db8a31fdf9,
     type: 3}

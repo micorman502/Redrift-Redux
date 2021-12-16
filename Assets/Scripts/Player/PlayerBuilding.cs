@@ -32,6 +32,7 @@ public class PlayerBuilding : MonoBehaviour
         if (IsBuilding())
         {
             AlignBuilding();
+            NoticeTextManager.Instance.AddNoticeText("[LMB] to place, [R] to rotate", 2);
         }
     }
 
