@@ -20,23 +20,36 @@ public class RecipeManager : MonoBehaviour {
 
 	public GameObject craftingRecipePrefab;
 
+	Inventory inventory;
+
 	void Awake() {
 		craftingScrollRect = craftingScrollRectTransform.GetComponent<ScrollRect>();
 	}
 
 	void Start() {
+		inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>().inventory;
 		InitializeCategories();
 		InitializeRecipes(Categories.All);
 	}
 
-	public void InitializeRecipes(Categories c) {
+    void OnEnable()
+    {
+		InventoryEvents.ConstructItem += ConstructRecipe;
+    }
+
+    void OnDisable()
+    {
+		InventoryEvents.ConstructItem -= ConstructRecipe;
+	}
+
+    public void InitializeRecipes(Categories c) {
 		ClearRecipes();
 		int i = 0;
-		PlayerInventory tempInv = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>();
+
 		foreach (Recipe recipe in recipes) {
 			if(recipe.categories.Contains(c) || c == 0) {
 				GameObject recipeObj = Instantiate(craftingRecipePrefab, craftingRecipeContainer);
-				recipeObj.GetComponent<RecipeListItem>().Setup(recipe, tempInv);
+				recipeObj.GetComponent<RecipeListItem>().Setup(recipe, inventory);
 
 				RectTransform rectTransform = recipeObj.GetComponent<RectTransform>();
 				Vector3 tempSize = rectTransform.sizeDelta;
@@ -45,6 +58,47 @@ public class RecipeManager : MonoBehaviour {
 				craftingScrollRect.verticalScrollbar.value = 1f;
 			}
 			i++;
+		}
+	}
+
+	public void ConstructRecipe(Recipe recipe)
+	{
+
+		int[] inputAmounts = new int[recipe.inputs.Length];
+
+		if (!recipe.IsCraftable(inventory) || inventory.SpaceLeftForItem(recipe.output) < recipe.output.amount)
+		{
+			return;
+		}
+
+		int o = 0; //COME BACK
+		foreach (InventorySlot invItem in inventory.Slots)
+		{
+			if (invItem.Item)
+			{ // If the inventory slot has an item in it
+				int i = 0;
+				foreach (WorldItem item in recipe.inputs)
+				{ // Loop through all the ingredients in the recipe to see if the slot's item is the same as one of them
+					if (invItem.Item == item.item)
+					{ // Is the item the same?
+						int amountToDecrease = Mathf.Max(0, item.amount - inputAmounts[i]);
+						inputAmounts[i] += invItem.Count; // Add the amount of that item to the inputAmounts
+						inventory.RemoveItem(new WorldItem(item.item, amountToDecrease));
+						break;
+					}
+					i++;
+				}
+			}
+			o++;
+		}
+
+		inventory.AddItem(recipe.output);
+
+		int r = 0;
+		foreach (WorldItem replacementItem in recipe.replacedItems)
+		{
+			inventory.AddItem(replacementItem);
+			r++;
 		}
 	}
 

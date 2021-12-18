@@ -33,4 +33,37 @@ public class Recipe : ScriptableObject {
 
 		return newOutputs.ToArray();
     }
+
+    public bool IsCraftable(Inventory inventory)
+    {
+        int[] inputAmounts = new int[inputs.Length];
+
+        foreach (InventorySlot invItem in inventory.Slots)
+        {
+            if (invItem.Item)
+            {
+                int i = 0;
+                foreach (WorldItem item in inputs)
+                {
+                    if (invItem.Item == item.item)
+                    {
+                        inputAmounts[i] += invItem.Count;
+                        break;
+                    }
+                    i++;
+                }
+            }
+        }
+
+        bool canCraft = true;
+        for (int i = 0; i < inputAmounts.Length; i++)
+        {
+            if (!(inputAmounts[i] >= inputs[i].amount))
+            {
+                canCraft = false;
+            }
+        }
+
+        return canCraft;
+    }
 }

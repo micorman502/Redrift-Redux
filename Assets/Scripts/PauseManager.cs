@@ -7,8 +7,6 @@ public class PauseManager : MonoBehaviour {
 
 	PlayerController player;
 
-	public GameObject pauseMenu;
-
 	float originalTimeScale;
 
 	[HideInInspector] public bool paused = false;
@@ -19,24 +17,22 @@ public class PauseManager : MonoBehaviour {
 		originalTimeScale = Time.timeScale;
 		player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 	}
-	
-	void Update() {
-		if(Input.GetKeyDown(KeyCode.Escape)) {
-			if(paused) {
-				Resume();
-			} else {
-				Pause();
-			}
-		}
-	}
 
-	void Pause() {
+	public void SetPauseState (bool isPaused)
+    {
+		if (isPaused)
+        {
+			Pause();
+        } else
+        {
+			Resume();
+        }
+    }
+
+	public void Pause() {
 		canvasAnim.SetTrigger("PauseMenuEnter");
 		Time.timeScale = 0f;
 		paused = true;
-		player.LockLook(true);
-		Cursor.lockState = CursorLockMode.None;
-		Cursor.visible = true;
 	}
 
 	public void Resume() {
@@ -54,9 +50,6 @@ public class PauseManager : MonoBehaviour {
 		}
 		Time.timeScale = originalTimeScale;
 		paused = false;
-		player.LockLook(false);
-		Cursor.lockState = CursorLockMode.Locked; // NEEDS TO CHECK IF INVENTORY IS OPEN
-		Cursor.visible = false;
 	}
 
 	public void Menu() {

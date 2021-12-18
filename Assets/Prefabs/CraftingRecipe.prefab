@@ -245,8 +245,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
+      - m_Target: {fileID: 7481501143844338250}
+        m_TargetAssemblyTypeName: RecipeListItem, Assembly-CSharp
         m_MethodName: OnRecipeClick
         m_Mode: 1
         m_Arguments:
@@ -420,9 +420,9 @@ RectTransform:
   m_Father: {fileID: 224702545798812186}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 50.070007, y: 0}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -49.200012, y: 0}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &222691474153506030
@@ -509,10 +509,10 @@ RectTransform:
   m_Father: {fileID: 224702545798812186}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 130.05862, y: 0}
-  m_SizeDelta: {x: 159.9644, y: 60}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -114.84491, y: 0}
+  m_SizeDelta: {x: 93.7441, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &222189379539596440
 CanvasRenderer:
@@ -590,7 +590,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 80.732666, y: 0}
+  m_AnchoredPosition: {x: -81.4, y: 0}
   m_SizeDelta: {x: -181.4653, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &222618416264247618

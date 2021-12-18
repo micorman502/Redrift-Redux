@@ -1,4 +1,5 @@
 using System.Text;
+using System;
 using UnityEngine;
 
 /// <summary>
@@ -6,6 +7,8 @@ using UnityEngine;
 /// </summary>
 public class Inventory
 {
+	public Action InventoryChanged; // Only triggers when the inventory is changed via any of the functions it provides.
+	public Action<WorldItem> ItemOverflow; 
 	public InventorySlot[] Slots { get; private set; }
 
 	public Inventory(int size)
@@ -34,6 +37,7 @@ public class Inventory
 
 				if(reserve == 0)
 				{
+					InventoryChanged?.Invoke();
 					return item.amount;
 				}
 			}
@@ -48,12 +52,18 @@ public class Inventory
 
 				if(reserve == 0)
 				{
+					InventoryChanged?.Invoke();
 					return item.amount;
 				}
 			}
 		}
 
-		return item.amount - reserve;
+		InventoryChanged?.Invoke();
+		if (reserve > 0)
+        {
+			ItemOverflow?.Invoke(new WorldItem(item.item,  reserve));
+        }
+		return item.amount;
 	}
 
 	/// <summary>
@@ -116,6 +126,7 @@ public class Inventory
 
 				if(item.amount == 0)
 				{
+					InventoryChanged?.Invoke();
 					return;
 				}
 			}
@@ -139,10 +150,12 @@ public class Inventory
 				if (item.amount == 0)
 				{
 					amountTaken = initAmount;
+					InventoryChanged?.Invoke();
 					return;
 				}
 			}
 		}
+		InventoryChanged?.Invoke();
 		amountTaken = initAmount - item.amount;
 	}
 
@@ -157,5 +170,6 @@ public class Inventory
 			return;
         }
 		Slots[slotIndex].Initialize(item.item, item.amount);
-    }
+		InventoryChanged?.Invoke();
+	}
 }

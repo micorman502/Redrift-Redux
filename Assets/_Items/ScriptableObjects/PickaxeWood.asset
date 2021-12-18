@@ -15,6 +15,7 @@ MonoBehaviour:
   itemName: Wood Pickaxe
   itemDescription: 
   stackSize: 1
+  stackPrefix: x
   id: 0
   achievementId: 4
   icon: {fileID: 21300000, guid: e5a464936b3965c4e8e53e29b4626b1f, type: 3}

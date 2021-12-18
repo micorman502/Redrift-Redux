@@ -565,6 +565,7 @@ MonoBehaviour:
   iconBackground: {fileID: 1306163732334951915}
   iconImage: {fileID: 114876956867526970}
   countText: {fileID: 6313536322987139562}
+  hoverAnim: {fileID: 111562763241186360}
   previewPrefab: {fileID: 8859782484677334770, guid: 4faacf11230f5d44195f92d71585bca8,
     type: 3}
 --- !u!114 &3246472331621970887

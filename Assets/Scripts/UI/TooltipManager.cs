@@ -7,6 +7,7 @@ using DG.Tweening;
 public class TooltipManager : MonoBehaviour
 {
     [SerializeField] GameObject tooltipObject;
+    [SerializeField] Animation tooltipShowAnim;
     [SerializeField] Text tooltipName;
     [SerializeField] Text tooltipDesc;
     public static TooltipManager Instance;
@@ -34,6 +35,7 @@ public class TooltipManager : MonoBehaviour
             HideTooltip();
             return;
         }
+        tooltipShowAnim.Play();
         tooltipObject.SetActive(true);
         tooltipName.text = slot.Item.itemName;
         tooltipDesc.text = slot.Item.itemDescription;

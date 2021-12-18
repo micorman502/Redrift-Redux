@@ -12,6 +12,7 @@ using UnityEngine.UI;
 /// </summary>
 public class InventorySlotUI_Draggable : InventorySlotUI, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler
 {
+	[SerializeField] Animation hoverAnim;
 	[SerializeField] GameObject previewPrefab;
 	GameObject previewPrefabInstance;
 	
@@ -50,6 +51,10 @@ public class InventorySlotUI_Draggable : InventorySlotUI, IPointerDownHandler, I
 	void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
 	{
 		hover = this;
+		if (hoverAnim)
+        {
+			hoverAnim.Play();
+        }
 	}
 
 	void IPointerExitHandler.OnPointerExit(PointerEventData eventData)

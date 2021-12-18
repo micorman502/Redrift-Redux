@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class UIKeyToggler : MonoBehaviour
 {
     [SerializeField] GameObject target;
     [SerializeField] KeyCode toggleKey;
     [SerializeField] bool lockLook;
+    public UnityEvent<bool> calledFunctions;
     bool state;
     // Start is called before the first frame update
     void Start()
@@ -19,12 +21,18 @@ public class UIKeyToggler : MonoBehaviour
     {
         if (Input.GetKeyDown(toggleKey))
         {
-            state = !state;
-            target.SetActive(state);
-            if (lockLook)
-            {
-                PlayerEvents.OnLockStateSet(!state);
-            }
+            SetState(!state);
         }
+    }
+
+    public void SetState (bool activeState)
+    {
+        state = activeState;
+        target.SetActive(state);
+        if (lockLook)
+        {
+            PlayerEvents.OnLockStateSet(!state);
+        }
+        calledFunctions.Invoke(state);
     }
 }

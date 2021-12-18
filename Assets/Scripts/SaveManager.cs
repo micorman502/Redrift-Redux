@@ -46,27 +46,33 @@ public class SaveManager : MonoBehaviour {
 		inventory = playerObj.GetComponent<PlayerInventory>();
 		player = playerObj.GetComponent<PlayerController>();
 		persistentData = FindObjectOfType<PersistentData>();
-	}
 
-	void Start() {
 		CheckSaveDirectory();
 		DirectoryInfo dir = new DirectoryInfo(Application.persistentDataPath + "/saves");
 		info = dir.GetFiles("*.*");
-		if(persistentData) {
-			if(persistentData.loadSave) {
+
+		if (autoSave)
+		{
+			autoSaveTimer = autoSaveInterval;
+		}
+
+		if (persistentData)
+		{
+			if (persistentData.loadSave)
+			{
 				LoadGame(persistentData.saveToLoad);
-			} else {
+			}
+			else
+			{
 				difficulty = persistentData.difficulty;
 				mode = persistentData.mode;
 				SaveGame();
 			}
-			if(mode == 1) { // Creative mode
+			if (mode == 1)
+			{ // Creative mode
 				inventory.LoadCreativeMode();
 				player.LoadCreativeMode();
 			}
-		}
-		if(autoSave) {
-			autoSaveTimer = autoSaveInterval;
 		}
 	}
 

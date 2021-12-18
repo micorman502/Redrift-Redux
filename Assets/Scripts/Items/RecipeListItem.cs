@@ -12,10 +12,10 @@ public class RecipeListItem : MonoBehaviour
     [SerializeField] Text outputAmount;
     [SerializeField] Color craftableTint;
     [SerializeField] Color uncraftableTint;
-    PlayerInventory targetInventory;
+    Inventory targetInventory;
     Recipe recipe;
     
-    public void Setup (Recipe _recipe, PlayerInventory _inventory)
+    public void Setup (Recipe _recipe, Inventory _inventory)
     {
         targetInventory = _inventory;
         recipe = _recipe;
@@ -38,13 +38,21 @@ public class RecipeListItem : MonoBehaviour
         }
 
         outputSlot.Setup(recipe.output);
+
+        targetInventory.InventoryChanged += UpdateVisuals;
+        UpdateVisuals();
     }
 
-    public void InventoryUpdate()
+    private void OnDestroy()
+    {
+        targetInventory.InventoryChanged -= UpdateVisuals;
+    }
+
+    public void UpdateVisuals()
     {
         if (!recipe)
             return;
-        if (targetInventory.CheckRecipe(recipe)) //idk how else to check
+        if (recipe.IsCraftable(targetInventory))
         {
             baseImage.color = craftableTint;
         }

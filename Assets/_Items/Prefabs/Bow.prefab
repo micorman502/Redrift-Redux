@@ -228,9 +228,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 1
-  m_CookingOptions: 15
+  m_CookingOptions: 31
   m_Mesh: {fileID: 4300000, guid: 8e0053e4b933781469e5dc74ef7a1601, type: 3}
 --- !u!1 &1370906013994018
 GameObject:
@@ -335,9 +335,12 @@ SkinnedMeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 3
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -452,7 +455,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4951065550893452
 Transform:
   m_ObjectHideFlags: 0
@@ -517,7 +520,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 8a39369bd50bf034fb69d6b0dcadba68, type: 2}
+  tooltip: 
+  item: {fileID: 0}
+  saveID: 0
+  dontSave: 0
 --- !u!114 &114776511142958148
 MonoBehaviour:
   m_ObjectHideFlags: 0

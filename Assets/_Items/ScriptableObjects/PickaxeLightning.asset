@@ -15,6 +15,7 @@ MonoBehaviour:
   itemName: Lightning Pickaxe
   itemDescription: 
   stackSize: 1
+  stackPrefix: x
   id: 0
   achievementId: 8
   icon: {fileID: 21300000, guid: 65c36766c94776d4bb5269114c47b3ca, type: 3}

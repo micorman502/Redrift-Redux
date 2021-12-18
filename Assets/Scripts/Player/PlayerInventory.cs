@@ -9,8 +9,7 @@ public class PlayerInventory : MonoBehaviour {
 	[SerializeField] GameObject placementParticleSystem;
 
 	public GameObject inventoryContainer;
-	public Transform craftingRecipeContainer;
-	[SerializeField] GameObject craftingContainer;
+
 
 	[SerializeField] HeldItem[] heldItems;
 
@@ -24,9 +23,6 @@ public class PlayerInventory : MonoBehaviour {
 	AudioManager audioManager;
 
 	[HideInInspector] public bool placingStructure;
-	GameObject currentPreviewObj;
-	BuildingInfo currentPlacingItem;
-	int currentPlacingRot;
 
 	public int selectedHotbarSlot = 0;
 	public WorldItem currentSelectedItem;
@@ -40,7 +36,8 @@ public class PlayerInventory : MonoBehaviour {
 
 
 	void Awake() {
-		inventory = new Inventory(inventorySize);
+		SetupNewInventory(inventorySize);
+
 		audioManager = FindObjectOfType<AudioManager>();
 		saveManager = FindObjectOfType<SaveManager>();
 
@@ -52,15 +49,25 @@ public class PlayerInventory : MonoBehaviour {
     private void Start()
     {
 		InventoryUIManager.Instance.GetInventoryUI(InventoryUIManager.InventoryType.Primary).Assign(inventory);
-    }
+		InventoryUpdate();
+	}
+
+	void SetupNewInventory (int inventorySize)
+    {
+		if (inventory != null)
+        {
+			inventory.ItemOverflow -= SimpleDropItem;
+        }
+
+		inventory = new Inventory(inventorySize);
+		inventory.ItemOverflow += SimpleDropItem;
+	}
 
     public void LoadCreativeMode() {
 		mode = 1;
 
 		//InventoryEvents.InitialiseInventoryUI(hotbarSize, items.Length);
 		AddAllItems();
-
-		craftingContainer.SetActive(false);
 	}
 
 	public void Pickup(ItemHandler itemHandler) {
@@ -266,11 +273,18 @@ public class PlayerInventory : MonoBehaviour {
     {
 		currentSelectedItem.item = item;
 		EquipHeldItem(item);
+		InventoryUpdate();
     }
 
 	void UpdateSelectedItem (int amount)
     {
 		currentSelectedItem.amount = amount;
+		InventoryUpdate();
+	}
+
+	public void SimpleDropItem (WorldItem item)
+    {
+		SimpleDropItem(item.item, item.amount);
     }
 
 	public void SimpleDropItem(ItemInfo item, int amount) { //drop item without removing anything
@@ -282,6 +296,11 @@ public class PlayerInventory : MonoBehaviour {
 			}
 		}
 	}
+
+	public void DropItem (WorldItem item)
+    {
+		DropItem(item.item, item.amount);
+    }
 
 	public void DropItem(ItemInfo item, int amount)
 	{
@@ -307,7 +326,9 @@ public class PlayerInventory : MonoBehaviour {
 	}
 
 	void AddAllItems() {
-		inventory = new Inventory(saveManager.allItems.items.Length);
+		//inventory.InventoryChanged -= InventoryUpdate;
+		SetupNewInventory(saveManager.allItems.items.Length);
+		//inventory.InventoryChanged += InventoryUpdate;
 		InventoryUIManager.Instance.GetInventoryUI(InventoryUIManager.InventoryType.Primary).Assign(inventory);
 		int i = 0;
 		foreach(ItemInfo item in saveManager.allItems.items) {
@@ -358,41 +379,8 @@ public class PlayerInventory : MonoBehaviour {
 		InventoryUpdate();
 	}
 
-	public void ConstructRecipe(Recipe recipe) {
-		
-		int[] inputAmounts = new int[recipe.inputs.Length];
-
-		int o = 0; //COME BACK
-		foreach(InventorySlot invItem in inventory.Slots) {
-			if(invItem.Item) { // If the inventory slot has an item in it
-				int i = 0;
-				foreach(WorldItem item in recipe.inputs) { // Loop through all the ingredients in the recipe to see if the slot's item is the same as one of them
-					if(invItem.Item == item.item) { // Is the item the same?
-						int amountToDecrease = Mathf.Max(0, item.amount - inputAmounts[i]);
-						inputAmounts[i] += invItem.Count; // Add the amount of that item to the inputAmounts
-						inventory.RemoveItem(new WorldItem(item.item, amountToDecrease));
-						break;
-					}
-					i++;
-				}
-			}
-			o++;
-		}
-
-		inventory.AddItem(recipe.output);
-
-		int r = 0;
-		foreach(WorldItem replacementItem in recipe.replacedItems) {
-			inventory.AddItem(replacementItem);
-			r++;
-		}
-	}
-
 	public void InventoryUpdate() {
 		currentSelectedItem = new WorldItem(inventory.Slots[selectedHotbarSlot].Item, inventory.Slots[selectedHotbarSlot].Count);
-		foreach(Transform craftingRecipeObj in craftingRecipeContainer) {
-			craftingRecipeObj.GetComponent<RecipeListItem>().InventoryUpdate();
-		}
 	}
 
 }
