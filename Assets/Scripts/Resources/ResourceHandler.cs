@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResourceHandler : MonoBehaviour, IItemSaveable, INoticeText {
+public class ResourceHandler : MonoBehaviour, IItemSaveable, INoticeText, IResource {
 	[SerializeField] bool dontSave;
 	[SerializeField] int saveID;
 	[SerializeField] bool dontRegisterToHivemind;
@@ -33,6 +33,11 @@ public class ResourceHandler : MonoBehaviour, IItemSaveable, INoticeText {
 	public void SetNoticeText (string dummy)
     {
 
+    }
+
+	public Resource GetResource ()
+    {
+		return resource;
     }
 
 	public WorldItem[] HandGather()

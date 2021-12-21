@@ -19129,8 +19129,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 225.81, y: 33}
-  m_SizeDelta: {x: 390.62, y: 64}
+  m_AnchoredPosition: {x: 223.60876, y: 33}
+  m_SizeDelta: {x: 395.0225, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &688323502
 MonoBehaviour:
@@ -19167,7 +19167,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Adrift by Rugbug Redfern
 
-    Mod by microman502'
+    Mod by microman502 / Rolling Tundra Games'
 --- !u!222 &688323503
 CanvasRenderer:
   m_ObjectHideFlags: 0

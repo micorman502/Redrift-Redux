@@ -9,15 +9,13 @@ using Newtonsoft.Json;
 
 public class SaveManager : MonoBehaviour {
 	public static SaveManager Instance;
-	public GameObject[] loadedObjects;
+	public SaveObjectList loadableObjectList;
 	PersistentData persistentData;
 
 	[SerializeField] Animator canvasAnim;
 
 	public Text saveText;
 	public ItemOrder allItems;
-	public Resource[] allResources;
-	[SerializeField] GameObject smallIslandPrefab;
 
 	PlayerInventory inventory;
 	PlayerController player;
@@ -90,10 +88,7 @@ public class SaveManager : MonoBehaviour {
 		if (id < 0)
 			return null;
 
-		return allItems.items[id]; //this is possible due to Item Order
-
-		Debug.LogError("Item with id " + id + " not found.");
-		return null;
+		return allItems.items[id]; //this is possible due to Item Order (later comment: what?)
 	}
 
 	public List<ItemInfo> IDsToItems(List<int> IDs) {
@@ -140,7 +135,7 @@ public class SaveManager : MonoBehaviour {
             {
 				ObjectSaveData newObjData = save.savedObjects[i];
 				ItemSaveData newData = save.savedObjectsInfo[i];
-				GameObject newObj = Instantiate(loadedObjects[newObjData.objectID], newObjData.position, newObjData.rotation);
+				GameObject newObj = Instantiate(loadableObjectList.prefabs[newObjData.objectID], newObjData.position, newObjData.rotation);
 				IItemSaveable[] saveables = newObj.GetComponents<IItemSaveable>();
 				for (int s = 0; s < saveables.Length; s++)
 				{

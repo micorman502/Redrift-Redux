@@ -32,7 +32,7 @@ public class LookLocker : MonoBehaviour
     {
         locked = _state;
         if (locked) {
-            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
         else {

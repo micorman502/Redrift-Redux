@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltip: 
   item: {fileID: 0}
-  saveID: -1
+  saveID: 66
   dontSave: 0
 --- !u!33 &1652595617823421505
 MeshFilter:

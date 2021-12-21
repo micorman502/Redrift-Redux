@@ -52,7 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltip: Copper Wire
   item: {fileID: 11400000, guid: 13919cb26fba1284689672e0315679e4, type: 2}
-  saveID: 19
+  saveID: 54
   dontSave: 0
 --- !u!33 &1547944832343512729
 MeshFilter:

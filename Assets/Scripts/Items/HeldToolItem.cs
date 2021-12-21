@@ -10,7 +10,7 @@ public class HeldToolItem : HeldItem
     ToolInfo tool;
     bool usedThisFrame;
     float gatherLength;
-    ResourceHandler currentResource;
+    IResource currentResource;
     GameObject currentResourceObject;
 
     void Awake()
@@ -20,13 +20,11 @@ public class HeldToolItem : HeldItem
 
     public override void ItemUpdate()
     {
-        if (usedThisFrame && currentResource)
+        if (usedThisFrame && currentResource != null)
         {
-            Debug.Log("valid");
             gatherLength += Time.deltaTime;
-            if (gatherLength >= currentResource.resource.gatherTime / tool.gatherSpeedMult)
+            if (gatherLength >= currentResource.GetResource().gatherTime / tool.gatherSpeedMult)
             {
-                Debug.Log("is above");
                 gatherLength = 0;
                 WorldItem[] gatheredItems = currentResource.ToolGather(tool);
                 foreach (WorldItem gathered in gatheredItems)
@@ -34,9 +32,9 @@ public class HeldToolItem : HeldItem
                     inventory.inventory.AddItem(gathered);
                 }
             }
+            UIEvents.UpdateProgressBar(gatherLength);
         } else
         {
-            Debug.Log("invalid");
             gatherLength = 0;
         }
 
@@ -55,13 +53,14 @@ public class HeldToolItem : HeldItem
             currentResource = null;
             currentResourceObject = null;
         }
-        if (!currentResource)
+        if (currentResource == null)
         {
             currentResource = controller.target.GetComponent<ResourceHandler>();
         }
-        if (currentResource)
+        if (currentResource != null)
         {
             usedThisFrame = true;
+            UIEvents.InitialiseProgressBar(currentResource.GetResource().gatherTime / tool.gatherSpeedMult);
         }
     }
 }

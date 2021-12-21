@@ -51,7 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltip: Copper Ore
   item: {fileID: 11400000, guid: cc1dea67642fcc94793fc67b8b1116d7, type: 2}
-  saveID: 18
+  saveID: 53
   dontSave: 0
 --- !u!33 &9172362810829683192
 MeshFilter:

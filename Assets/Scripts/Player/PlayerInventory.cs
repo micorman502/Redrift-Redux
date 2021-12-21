@@ -201,10 +201,10 @@ public class PlayerInventory : MonoBehaviour {
 			slot = null;
 			selectedHotbarSlot = -1;
 		}
-
 		if (heldItemSlot != null)
         {
-			heldItemSlot.ItemChanged -= EquipHeldItem;
+			heldItemSlot.ItemChanged -= UpdateSelectedItem;
+			heldItemSlot.CountChanged -= UpdateSelectedItem;
 		}
 
 		if (slot != null)

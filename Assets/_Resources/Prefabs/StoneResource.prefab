@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 23306382896694268}
   - component: {fileID: 95150292210513718}
   - component: {fileID: 114654163435729274}
-  - component: {fileID: 64312446789838696}
   - component: {fileID: 208840414529024888}
   m_Layer: 0
   m_Name: StoneResource
@@ -32,7 +31,8 @@ Transform:
   m_LocalRotation: {x: -0.37045673, y: 0.60229725, z: 0.60229707, w: 0.37045673}
   m_LocalPosition: {x: 17.6, y: 0.508, z: -0.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4686870712802593929}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 116.811005}
@@ -119,22 +119,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontSave: 0
   saveID: 8
+  dontRegisterToHivemind: 0
   resource: {fileID: 11400000, guid: 331b12aed5cf22d4bae3b266c9ec9dbd, type: 2}
   health: 0
---- !u!64 &64312446789838696
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1813677803362390}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: ea0d2e747a28a204a9fc9e3a73099d0c, type: 3}
 --- !u!208 &208840414529024888
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -151,3 +138,62 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0.062000003, y: 0.054, z: 0.21000001}
   m_TimeToStationary: 0.5
+--- !u!1 &7596547856284631401
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4686870712802593929}
+  - component: {fileID: 4881961349849130595}
+  - component: {fileID: 7017000205002454779}
+  m_Layer: 0
+  m_Name: Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4686870712802593929
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7596547856284631401}
+  m_LocalRotation: {x: -0, y: 0.0000000745058, z: 0.5681235, w: 0.8229433}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4761859788343898}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &4881961349849130595
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7596547856284631401}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.0286885
+  m_Height: 2.360257
+  m_Direction: 1
+  m_Center: {x: 0.036088943, y: -0.03296684, z: 0.17842817}
+--- !u!114 &7017000205002454779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7596547856284631401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 544a09ce405cea849aa56a5c23363eb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handler: {fileID: 114654163435729274}

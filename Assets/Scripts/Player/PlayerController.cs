@@ -29,10 +29,6 @@ public class PlayerController : MonoBehaviour {
 	public float interactRange = 2f;
 	public ItemInfo fuelItem;
 
-	public GameObject progressContainer;
-	public Image progressImage;
-	public Text progressText;
-
 	public Transform purgatorySpawn;
 
 	public GameObject lightDeactivateObjects;
@@ -116,7 +112,8 @@ public class PlayerController : MonoBehaviour {
 	float flyDoubleTapCooldown;
 	bool flying;
 
-	ResourceHandler currentResource;
+	IResource currentResource;
+	GameObject currentResourceObject;
 
 	float originalDrag;
 	float flyingDrag = 10f;
@@ -302,13 +299,12 @@ public class PlayerController : MonoBehaviour {
 						}
 					}
 					if(Input.GetButton("PickUp")) {
-						if(!pickingUp || (pickingUp && !progressContainer.activeSelf)) {
-							progressContainer.SetActive(true);
+						if(!pickingUp) {
 							pickingUp = true;
 						} else {
 							pickingUpTime += Time.deltaTime;
-							progressImage.fillAmount = pickingUpTime / pickupTime;
-							progressText.text = (pickupTime - pickingUpTime).ToString("0.0");
+							UIEvents.UpdateProgressBar(pickingUpTime);
+							UIEvents.InitialiseProgressBar(pickupTime);
 
 							if(pickingUpTime >= pickupTime) {
 								if(autoMiner) {
@@ -330,38 +326,44 @@ public class PlayerController : MonoBehaviour {
 									}
 								}
 								pickingUpTime = 0f;
-								progressImage.fillAmount = 0f;
+								UIEvents.UpdateProgressBar(pickingUpTime);
+								UIEvents.InitialiseProgressBar(pickupTime);
 								inventory.Pickup(itemHandler);
 								audioManager.Play("Grab");
 							}
 						}
 					} else if(pickingUp) {
 						pickingUpTime = 0f;
-						progressImage.fillAmount = 0f;
-						progressContainer.SetActive(false);
 						pickingUp = false;
 					}
-				} else if(target.CompareTag("Resource") && distanceToTarget <= interactRange && !inventory.placingStructure) { // Gather resources
+				} else if(target.CompareTag("Resource") && distanceToTarget <= interactRange && !(inventory.currentSelectedItem.item is ToolInfo)) { // Gather resources
 					if(Input.GetMouseButton(0) || Input.GetAxisRaw("ControllerTriggers") <= -0.1f) {
-						if(!gathering || (gathering && !progressContainer.activeSelf)) {
+						if(!gathering) {
 							gathering = true;
-							progressContainer.SetActive(true);
+							if (currentResource != null)
+							{
+								UIEvents.UpdateProgressBar(gatheringTime);
+								UIEvents.InitialiseProgressBar(currentResource.GetResource().gatherTime);
+							}
 						} else {
 
 							gatheringTime += Time.deltaTime;
-							if(currentResource == null || currentResource.gameObject != target) {
-								currentResource = target.GetComponent<ResourceHandler>();
+							if(currentResource == null || currentResourceObject != target) {
+								currentResource = target.GetComponent<IResource>();
+								if (currentResource != null)
+                                {
+									currentResourceObject = target;
+                                }
 							}
-							progressImage.fillAmount = gatheringTime / (currentResource.resource.gatherTime);
-							progressText.text = (currentResource.resource.gatherTime - gatheringTime).ToString("0.0");
+							UIEvents.UpdateProgressBar(gatheringTime);
+							UIEvents.InitialiseProgressBar(currentResource.GetResource().gatherTime);
 
-							if(gatheringTime >= currentResource.resource.gatherTime) {
+							if (gatheringTime >= currentResource.GetResource().gatherTime) {
 								WorldItem[] gatheredItems = currentResource.HandGather();
 								foreach(WorldItem item in gatheredItems) {
 									inventory.inventory.AddItem(item);
 								}
 								gatheringTime = 0f;
-								progressImage.fillAmount = 0f;
 								CameraShaker.Instance.ShakeOnce(2f, 3f, 0.1f, 0.3f);
 							}
 						}
@@ -379,9 +381,6 @@ public class PlayerController : MonoBehaviour {
 					Attack();
 				}
 				target = null;
-				if(progressContainer.activeSelf) {
-					progressContainer.SetActive(false);
-				}
 			}
 		}
 
@@ -637,8 +636,6 @@ public class PlayerController : MonoBehaviour {
 	void CancelGatherAndPickup() {
 		gatheringTime = 0f;
 		pickingUpTime = 0f;
-		progressImage.fillAmount = 0f;
-		progressContainer.SetActive(false);
 		gathering = false;
 		pickingUp = false;
 	}
@@ -701,7 +698,7 @@ public class PlayerController : MonoBehaviour {
 		playerCameraPostProcessingBehaviour.profile = darkPostProcessingProfile;
 		transform.position = purgatorySpawn.position;
 		RenderSettings.fogColor = Color.black;
-		RenderSettings.fogDensity = 0.1f;
+		RenderSettings.fogDensity = 0.07f;
 		playerCamera.GetComponent<Camera>().backgroundColor = Color.black;
 		dead = true;
 	}
