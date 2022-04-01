@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class AutoMiner : MonoBehaviour, IItemSaveable {
+public class AutoMiner : MonoBehaviour, IItemSaveable, IItemInteractable {
 
 	[SerializeField] int saveID;
 
@@ -109,14 +109,27 @@ public class AutoMiner : MonoBehaviour, IItemSaveable {
 		}
 	}
 
-	public void SetTool(ItemInfo item) {
+	public void Interact (WorldItem item)
+    {
+		SetTool(item.item);
+    }
 
-		if(currentToolObj) {
-			Destroy(currentToolObj);
+	public void SetTool(ItemInfo item) {
+		PlayerInventory inventory = PlayerController.currentPlayer.gameObject.GetComponent<PlayerInventory>();
+
+		if (!item)
+			return;
+		if (!(item is ToolInfo))
+			return;
+		inventory.inventory.RemoveItem(new WorldItem(item, 1));
+
+		if (currentToolItem)
+		{
+			inventory.inventory.AddItem(new WorldItem(currentToolItem, 1));
 		}
 
-		if(currentToolItem) {
-			player.inventory.inventory.AddItem(new WorldItem(currentToolItem, 1));
+		if (currentToolObj) {
+			Destroy(currentToolObj);
 		}
 
 		currentToolItem = item as ToolInfo;

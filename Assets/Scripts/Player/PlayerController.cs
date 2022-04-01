@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour {
 
 	public WorldManager.WorldType currentWorld;
 
+	public static PlayerController currentPlayer;
+
 	public GameObject playerCameraHolder;
 	public GameObject playerCamera;
 	public Animation damagePanelAnim;
@@ -122,6 +124,7 @@ public class PlayerController : MonoBehaviour {
 
 	GameObject lastTooltipGameObject;
 	INoticeText lastTooltip;
+	GameObject currentHotTextObject;
 	GameObject lastInteractionGameObject;
 
 	const float pickupTime = 0.15f;
@@ -140,6 +143,8 @@ public class PlayerController : MonoBehaviour {
 		defaultFogColor = RenderSettings.fogColor;
 		defaultFogDensity = RenderSettings.fogDensity;
 		defaultPlayerCameraColor = playerCamera.GetComponent<Camera>().backgroundColor;
+
+		currentPlayer = this;
 	}
 
     void OnEnable()
@@ -172,6 +177,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Update() {
+		CheckHotTextObjects();
 		if(!dead && mode != 1) {
 			LoseCalories(Time.deltaTime * hungerLoss);
 			if(hunger <= 10f) {
@@ -396,6 +402,56 @@ public class PlayerController : MonoBehaviour {
 		CheckTooltips(hit);
 		CheckInteractions(hit);
 	}
+
+	void CheckHotTextObjects ()
+    {
+		RaycastHit hit;
+		Ray ray = playerCamera.GetComponent<Camera>().ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
+
+		Physics.Raycast(ray, out hit, maxTooltipDistance, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore);
+
+		if (hit.transform)
+        {
+			GameObject hitObject = hit.transform.gameObject;
+
+			IHotText hotText = GetHotText(hitObject);
+
+			if (hotText != null)
+            {
+				if (currentHotTextObject)
+                {
+					if (currentHotTextObject != hitObject)
+                    {
+						GetHotText(currentHotTextObject).HideHotText();
+
+						currentHotTextObject = hitObject;
+						hotText.ShowHotText();
+                    }
+                } else
+                {
+					hotText.ShowHotText();
+					currentHotTextObject = hitObject;
+                }
+            }
+        } else
+        {
+			if (currentHotTextObject)
+            {
+				GetHotText(currentHotTextObject).HideHotText();
+				currentHotTextObject = null;
+            }
+        }
+	}
+
+	IHotText GetHotText (GameObject target)
+    {
+		IHotText hotText = target.GetComponent<IHotText>();
+		if (hotText == null)
+        {
+			hotText = target.GetComponentInParent<IHotText>();
+        }
+		return hotText;
+    }
 
 	void CheckTooltips (RaycastHit hit)
     {
