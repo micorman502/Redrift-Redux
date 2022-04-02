@@ -5,7 +5,7 @@ using UnityEngine;
 public class LightItem : MonoBehaviour, IItemSaveable, IInteractable {
 
 	[SerializeField] ItemHandler handler;
-	[SerializeField] int saveID;
+	[SerializeField] string saveID;
 	public float[] intensities = { 0f, 0.25f, 0.5f, 1f };
 	public int intensityNum = 0;
 
@@ -59,7 +59,7 @@ public class LightItem : MonoBehaviour, IItemSaveable, IInteractable {
 	public void GetData(out ItemSaveData data, out ObjectSaveData objData, out bool dontSave)
 	{
 		ItemSaveData newData = new ItemSaveData();
-		ObjectSaveData newObjData = new ObjectSaveData(transform.position, transform.rotation, saveID);
+		ObjectSaveData newObjData = new ObjectSaveData(transform.position, transform.rotation, ObjectDatabase.Instance.GetIntID(saveID));
 
 		newData.num = intensityNum;
 

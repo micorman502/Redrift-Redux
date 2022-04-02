@@ -5,7 +5,7 @@ using UnityEngine;
 public class Radio : MonoBehaviour, IItemSaveable, IInteractable {
 
 	[SerializeField] ItemHandler handler;
-	[SerializeField] int saveID;
+	[SerializeField] string saveID;
 	[SerializeField] GameObject slider;
 	[SerializeField] Vector2 sliderMinMax;
 	Animator anim;
@@ -86,7 +86,7 @@ public class Radio : MonoBehaviour, IItemSaveable, IInteractable {
 	public void GetData(out ItemSaveData data, out ObjectSaveData objData, out bool dontSave)
 	{
 		ItemSaveData newData = new ItemSaveData();
-		ObjectSaveData newObjData = new ObjectSaveData(transform.position, transform.rotation, saveID);
+		ObjectSaveData newObjData = new ObjectSaveData(transform.position, transform.rotation, ObjectDatabase.Instance.GetIntID(saveID));
 
 		newData.num = songNum;
 

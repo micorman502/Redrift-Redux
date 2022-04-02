@@ -118,10 +118,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handler: {fileID: -1660632433419594470}
-  tooltip: 
   item: {fileID: 11400000, guid: ea3dec4fdcf484b46a6d28d36fa965fb, type: 2}
   saveID: worldItemDoor
-  dontSave: 0
+  dontSave: 1
 --- !u!114 &114515313346133542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,7 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handler: {fileID: 114761821124185438}
-  open: 0
+  saveID: worldItemDoor
 --- !u!95 &95170584492243480
 Animator:
   serializedVersion: 3

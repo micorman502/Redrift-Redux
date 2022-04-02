@@ -354,6 +354,10 @@ public class PlayerController : MonoBehaviour {
 							gatheringTime += Time.deltaTime;
 							if(currentResource == null || currentResourceObject != target) {
 								currentResource = target.GetComponent<IResource>();
+								if (currentResource == null)
+                                {
+									currentResource = target.GetComponentInParent<IResource>();
+                                }
 								if (currentResource != null)
                                 {
 									currentResourceObject = target;

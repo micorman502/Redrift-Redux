@@ -16,20 +16,4 @@ public class HeldDeployableItem : HeldItem
             Instantiate(deployable.deployedObject, transform.position, Quaternion.identity);
         }
     }
-
-    public override void SetHotText (bool state)
-    {
-        if (state)
-        {
-            HotTextManager.Instance.ReplaceHotText(new HotTextInfo("<" + item.itemName + ">", 0, "heldItem"));
-            HotTextManager.Instance.ReplaceHotText(new HotTextInfo("to drop item", KeyCode.Q, 1, "heldItemDrop"));
-            HotTextManager.Instance.ReplaceHotText(new HotTextInfo("to deploy item", KeyCode.Mouse1, 2, "heldItemDeploy"));
-        }
-        else
-        {
-            HotTextManager.Instance.RemoveHotText("heldItem");
-            HotTextManager.Instance.RemoveHotText("heldItemDrop");
-            HotTextManager.Instance.RemoveHotText("heldItemDeploy");
-        }
-    }
 }

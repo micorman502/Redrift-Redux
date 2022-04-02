@@ -236,3 +236,11 @@ MonoBehaviour:
       type: 3}
     nameIdentifier: worldItemGrassSpawnable
     id: 63
+  - prefab: {fileID: 1603179511727255228, guid: 2b41c08db7ab2f441a6b73b41b5fcee5,
+      type: 3}
+    nameIdentifier: droppedItemQuartz
+    id: 64
+  - prefab: {fileID: 5970644240723651174, guid: 3db2ce2a098d78246b10dd12a461d382,
+      type: 3}
+    nameIdentifier: resourceQuartz
+    id: 64

@@ -3259,7 +3259,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &546438323
 GameObject:
@@ -8652,7 +8652,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13948,7 +13947,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -23736,11 +23734,6 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 114659604977457492, guid: 976407ce05dc3cd4c86fe65b37f260a5,
-        type: 3}
-      propertyPath: dontSave
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 976407ce05dc3cd4c86fe65b37f260a5, type: 3}
 --- !u!1 &828969701 stripped
@@ -23801,7 +23794,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &862462251
 GameObject:
@@ -24221,7 +24214,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &972327862
 GameObject:
@@ -24499,117 +24492,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1012812693}
   m_CullTransparentMesh: 0
---- !u!1 &1024197057
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1024197062}
-  - component: {fileID: 1024197061}
-  - component: {fileID: 1024197060}
-  - component: {fileID: 1024197059}
-  - component: {fileID: 1024197058}
-  m_Layer: 0
-  m_Name: TestDamageCube
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &1024197058
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1024197057}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ac8e20f4665f7e4088be07829a951ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  health: 0
---- !u!23 &1024197059
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1024197057}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 4294967295
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1024197060
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1024197057}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!33 &1024197061
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1024197057}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1024197062
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1024197057}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5459137, y: 1.5, z: -0.3692658}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1040278677
 GameObject:
   m_ObjectHideFlags: 0
@@ -25110,7 +24992,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
   m_SortingOrder: -1
   m_TargetDisplay: 0
@@ -26163,7 +26045,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1342240419}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: afc722504f312de48adce929779266a8, type: 3}
   m_Name: 
@@ -26173,11 +26055,10 @@ MonoBehaviour:
   smallIslandPrefab: {fileID: 1189018540791600, guid: 985621f1eafaddf43a446b8a3c0b6845,
     type: 3}
   world: {fileID: 1643817344}
-  starterCratePrefab: {fileID: 1135837570133238, guid: 391691f07a50e6149bea917475ddc464,
-    type: 3}
+  starterCratePrefab: {fileID: 0}
   cratePrefab: {fileID: 1365681976019388, guid: cf1f381ba78194c41af8d56c4e4fbbcf,
     type: 3}
-  bounds: 0
+  bounds: 22.5
   smallIslandSpawnLocations:
   - {x: 20, y: -2, z: -150}
   - {x: -20, y: -2, z: -150}
@@ -26185,10 +26066,12 @@ MonoBehaviour:
   - {x: 20, y: -15, z: -150}
   - {x: -30, y: -2, z: -150}
   - {x: 30, y: -2, z: -150}
-  spawns: []
-  amountsMin: 
-  amountsMax: 
-  spawnTimes: []
+  resourceSpawns:
+  - spawnPrefab: {fileID: 5970644240723651174, guid: 3db2ce2a098d78246b10dd12a461d382,
+      type: 3}
+    initialSpawnAmountMin: 1
+    initialSpawnAmountMax: 3
+    spawnFrequency: 50
   smallIslandSpawnTime: 30
 --- !u!1 &1371173133
 GameObject:
@@ -26446,20 +26329,32 @@ MonoBehaviour:
   - {x: 20, y: -15, z: -150}
   - {x: -30, y: -2, z: -150}
   - {x: 30, y: -2, z: -150}
-  spawns:
-  - {fileID: 1523322516565944, guid: c5b0387d80fa75244b875949079823ed, type: 3}
-  - {fileID: 1813677803362390, guid: 2dba0152a55eceb4fab9f576fbbf9bd1, type: 3}
-  - {fileID: 1078551866452224, guid: ffaf4c1f892bb4a49b183f3d4721e106, type: 3}
-  - {fileID: 1947450143509860, guid: 78341bb0c31c4f54493eba09b10f7179, type: 3}
-  - {fileID: 8254937849148306895, guid: 9cc5aaadbf51e934ebd0d27eb4e9d64a, type: 3}
-  amountsMin: 1e00000006000000020000000100000096000000
-  amountsMax: 2d000000090000000300000001000000c8000000
-  spawnTimes:
-  - 45
-  - 120
-  - 180
-  - 360
-  - 30
+  resourceSpawns:
+  - spawnPrefab: {fileID: 1523322516565944, guid: c5b0387d80fa75244b875949079823ed,
+      type: 3}
+    initialSpawnAmountMin: 30
+    initialSpawnAmountMax: 45
+    spawnFrequency: 35
+  - spawnPrefab: {fileID: 1813677803362390, guid: 2dba0152a55eceb4fab9f576fbbf9bd1,
+      type: 3}
+    initialSpawnAmountMin: 6
+    initialSpawnAmountMax: 9
+    spawnFrequency: 120
+  - spawnPrefab: {fileID: 1078551866452224, guid: ffaf4c1f892bb4a49b183f3d4721e106,
+      type: 3}
+    initialSpawnAmountMin: 2
+    initialSpawnAmountMax: 3
+    spawnFrequency: 180
+  - spawnPrefab: {fileID: 1947450143509860, guid: 78341bb0c31c4f54493eba09b10f7179,
+      type: 3}
+    initialSpawnAmountMin: 1
+    initialSpawnAmountMax: 2
+    spawnFrequency: 360
+  - spawnPrefab: {fileID: 8254937849148306895, guid: 9cc5aaadbf51e934ebd0d27eb4e9d64a,
+      type: 3}
+    initialSpawnAmountMin: 125
+    initialSpawnAmountMax: 175
+    spawnFrequency: 300
   smallIslandSpawnTime: 50
 --- !u!1 &1422590304
 GameObject:
@@ -38924,7 +38819,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b972387ddc13c640bf736496851794d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadableObjectList: {fileID: 11400000, guid: cf64c9f6bfd9a1340aa3891d722d3fd1, type: 2}
   canvasAnim: {fileID: 1444759423}
   saveText: {fileID: 1957486600}
   difficulty: 0

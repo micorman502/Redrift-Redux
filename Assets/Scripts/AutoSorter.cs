@@ -5,7 +5,7 @@ using UnityEngine;
 public class AutoSorter : MonoBehaviour, IItemSaveable, IGetTriggerInfo, IItemInteractable {
 
 	[SerializeField] ItemHandler handler;
-	[SerializeField] int saveID;
+	[SerializeField] string saveID;
 	public TellParent tellParent;
 
 	public Transform exit;
@@ -83,7 +83,7 @@ public class AutoSorter : MonoBehaviour, IItemSaveable, IGetTriggerInfo, IItemIn
 	public void GetData(out ItemSaveData data, out ObjectSaveData objData, out bool dontSave)
 	{
 		ItemSaveData newData = new ItemSaveData();
-		ObjectSaveData newObjData = new ObjectSaveData(transform.position, transform.rotation, saveID);
+		ObjectSaveData newObjData = new ObjectSaveData(transform.position, transform.rotation, ObjectDatabase.Instance.GetIntID(saveID));
 
 		newData.boolVal = blackListMode;
 

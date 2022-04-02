@@ -5,7 +5,7 @@ using UnityEngine;
 public class ConveyorBelt : MonoBehaviour, IItemSaveable, IGetTriggerInfo, IInteractable {
 
 	[SerializeField] ItemHandler handler;
-	[SerializeField] int saveID;
+	[SerializeField] string saveID;
 	public float[] speeds = { 0f, 1f, 2f, 8f };
 	public int speedNum = 0;
 
@@ -89,7 +89,7 @@ public class ConveyorBelt : MonoBehaviour, IItemSaveable, IGetTriggerInfo, IInte
 	public void GetData(out ItemSaveData data, out ObjectSaveData objData, out bool dontSave)
 	{
 		ItemSaveData newData = new ItemSaveData();
-		ObjectSaveData newObjData = new ObjectSaveData(transform.position, transform.rotation, saveID);
+		ObjectSaveData newObjData = new ObjectSaveData(transform.position, transform.rotation, ObjectDatabase.Instance.GetIntID(saveID));
 
 		newData.num = speedNum;
 

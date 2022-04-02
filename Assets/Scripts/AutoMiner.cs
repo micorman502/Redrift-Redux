@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class AutoMiner : MonoBehaviour, IItemSaveable, IItemInteractable {
 
-	[SerializeField] int saveID;
+	[SerializeField] string saveID;
 
 	NavMeshAgent agent;
 
@@ -179,7 +179,7 @@ public class AutoMiner : MonoBehaviour, IItemSaveable, IItemInteractable {
 	public void GetData(out ItemSaveData data, out ObjectSaveData objData, out bool dontSave)
 	{
 		ItemSaveData newData = new ItemSaveData();
-		ObjectSaveData newObjData = new ObjectSaveData(transform.position, transform.rotation, saveID);
+		ObjectSaveData newObjData = new ObjectSaveData(transform.position, transform.rotation, ObjectDatabase.Instance.GetIntID(saveID));
 
 		newData.itemIDs = SaveManager.Instance.ItemsToIDs(items);
 		List<int> newAmts = new List<int>();

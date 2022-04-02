@@ -148,7 +148,7 @@ MonoBehaviour:
   handler: {fileID: -9083797582651163666}
   item: {fileID: 11400000, guid: 5883cf46a796a7e40969f614714cf207, type: 2}
   saveID: worldItemAutoMiner
-  dontSave: 0
+  dontSave: 1
 --- !u!114 &114136973711759022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3b0e2f04bcf2bd4f89a54f24cdc151c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveID: 1
+  saveID: worldItemAutoMiner
   toolHolder: {fileID: 1606872332838476}
   target: {fileID: 0}
   items: []

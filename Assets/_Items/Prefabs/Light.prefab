@@ -51,7 +51,7 @@ MonoBehaviour:
   handler: {fileID: -7867130091431583635}
   item: {fileID: 11400000, guid: 54aff0ee6bd8fa54ea6150a7e090eccd, type: 2}
   saveID: worldItemLight
-  dontSave: 0
+  dontSave: 1
 --- !u!114 &3374882387231061474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handler: {fileID: 1794554666995405539}
-  saveID: 5
+  saveID: worldItemLight
   intensities:
   - 0
   - 0.25

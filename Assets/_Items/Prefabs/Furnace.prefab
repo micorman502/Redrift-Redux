@@ -51,7 +51,7 @@ MonoBehaviour:
   handler: {fileID: -3343362371649114281}
   item: {fileID: 11400000, guid: 4d66aab45fd39aa46bd3f9e06c5e33f7, type: 2}
   saveID: worldItemFurnace
-  dontSave: 0
+  dontSave: 1
 --- !u!65 &5678705944520386636
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 018a1fac2bcf1a6489b39e2ad3f7e043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveID: 0
+  saveID: worldItemFurnace
   fireLight: {fileID: 1283816334304629871}
   smoke: {fileID: 6350280906050997781}
   fire: {fileID: 4891352954977313854}

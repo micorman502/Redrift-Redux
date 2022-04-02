@@ -301,10 +301,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handler: {fileID: -6849379725450154469}
-  tooltip: 
   item: {fileID: 11400000, guid: 7e893ac772f0390488171e9fe11f1a08, type: 2}
   saveID: worldItemRadio
-  dontSave: 0
+  dontSave: 1
 --- !u!114 &114290695175995826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -318,7 +317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handler: {fileID: 114881856655948616}
-  saveID: 4
+  saveID: worldItemRadio
   slider: {fileID: 1826583625752124}
   sliderMinMax: {x: -0.26, y: 0.08}
   songs:

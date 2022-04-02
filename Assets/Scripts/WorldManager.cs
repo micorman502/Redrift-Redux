@@ -19,10 +19,7 @@ public class WorldManager : MonoBehaviour {
 
 	public Vector3[] smallIslandSpawnLocations;
 	//public GameObject copperOreResourcePrefab;
-	public GameObject[] spawns;
-	public int[] amountsMin;
-	public int[] amountsMax;
-	public float[] spawnTimes;
+	[SerializeField] Spawn[] resourceSpawns;
 
 	float[] nextSpawnTime;
 
@@ -49,13 +46,12 @@ public class WorldManager : MonoBehaviour {
 	}
 
 	void SetUpWorld() {
-		nextSpawnTime = new float[spawnTimes.Length];
+		nextSpawnTime = new float[resourceSpawns.Length];
 
-		int c = 0;
-		foreach(float spawnTime in spawnTimes) {
-			nextSpawnTime[c] = Time.time + spawnTimes[c];
-			c++;
-		}
+		for (int i = 0; i < resourceSpawns.Length; i++)
+        {
+			nextSpawnTime[i] = Time.time + resourceSpawns[i].spawnFrequency;
+        }
 
 		if(spawnSmallIslands) {
 			nextSmallIslandSpawnTime = Time.time + smallIslandSpawnTime;
@@ -64,38 +60,34 @@ public class WorldManager : MonoBehaviour {
 	}
 
 	void GenerateWorld() {
-		int i = 0;
-		int b = 0;
-		foreach(GameObject spawn in spawns) {
-			int amount = Random.Range(amountsMin[i], amountsMax[i] + 1);
-			for(int a = 0; a < amount + 1; a++) {
+
+		for (int i = 0; i < resourceSpawns.Length; i++)
+        {
+			int initialAmount = Random.Range(resourceSpawns[i].initialSpawnAmountMin, resourceSpawns[i].initialSpawnAmountMax + 1);
+
+			for (int r = 0; r < initialAmount; r++)
+            {
 				Vector3 pos = transform.TransformPoint(new Vector3(Random.insideUnitCircle.x * bounds, 300f, Random.insideUnitCircle.y * bounds));
 				RaycastHit hit;
-				if(Physics.Raycast(pos, Vector3.down, out hit, Mathf.Infinity, -1)) {
-					if(hit.collider.gameObject == world) {
-						GameObject obj = Instantiate(spawns[i], hit.point, Quaternion.LookRotation(hit.normal)) as GameObject;
+				if (Physics.Raycast(pos, Vector3.down, out hit, Mathf.Infinity, -1))
+				{
+					if (hit.collider.gameObject == world)
+					{
+						GameObject obj = Instantiate(resourceSpawns[i].spawnPrefab, hit.point, Quaternion.LookRotation(hit.normal));
 						ResourceHandler handler = obj.GetComponent<ResourceHandler>();
-						if(handler) {
+						if (handler)
+						{
 							HiveMind.Instance.AddResource(handler);
-							
+
 						}
 						obj.transform.Rotate(Vector3.forward * Random.Range(0f, 360f));
-					} else {
-						a--;
 					}
-				} else {
-					a--;
-				}
-				b++;
-				if(b > 100) {
-					b = 0;
-					break;
 				}
 			}
-
-			i++;
 		}
 
+		if (!starterCratePrefab)
+			return;
 		if(difficulty == 0 && worldType == WorldType.Light) {
 			for(int d = 0; d < 2; d++) {
 				Instantiate(starterCratePrefab, Vector3.up * 4f + Vector3.up * d, starterCratePrefab.transform.rotation);
@@ -104,24 +96,29 @@ public class WorldManager : MonoBehaviour {
 	}
 
 	void Update() {
-		int i = 0;
-		foreach(float spawnTime in nextSpawnTime) {
-			if(Time.time >= spawnTime) {
+
+		for (int i = 0; i < nextSpawnTime.Length; i++)
+        {
+			if (Time.time >= nextSpawnTime[i])
+			{
 				Vector3 pos = transform.TransformPoint(new Vector3(Random.insideUnitCircle.x * bounds, 300f, Random.insideUnitCircle.y * bounds));
 				RaycastHit hit;
-				if(Physics.Raycast(pos, Vector3.down, out hit, Mathf.Infinity, -1)) {
-					if(hit.collider.gameObject == world) {
-						GameObject obj = Instantiate(spawns[i], hit.point, Quaternion.LookRotation(hit.normal)) as GameObject;
+				if (Physics.Raycast(pos, Vector3.down, out hit, Mathf.Infinity, -1))
+				{
+					if (hit.collider.gameObject == world)
+					{
+						GameObject obj = Instantiate(resourceSpawns[i].spawnPrefab, hit.point, Quaternion.LookRotation(hit.normal)) as GameObject;
 						HiveMind.Instance.AddResource(obj.GetComponent<ResourceHandler>());
 						obj.transform.Rotate(Vector3.forward * Random.Range(0f, 360f));
-					} else {
+					}
+					else
+					{
 						continue;
 					}
 				}
 
-				nextSpawnTime[i] = Time.time + spawnTimes[i];
+				nextSpawnTime[i] = Time.time + resourceSpawns[i].spawnFrequency;
 			}
-			i++;
 		}
 
 		if(spawnSmallIslands) {
@@ -149,4 +146,13 @@ public class WorldManager : MonoBehaviour {
 			
 		//}
 	}
+}
+
+[System.Serializable]
+public struct Spawn
+{
+	public GameObject spawnPrefab;
+	public int initialSpawnAmountMin;
+	public int initialSpawnAmountMax;
+	public int spawnFrequency;
 }

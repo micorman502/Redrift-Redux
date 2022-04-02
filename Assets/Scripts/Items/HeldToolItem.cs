@@ -55,7 +55,7 @@ public class HeldToolItem : HeldItem
         }
         if (currentResource == null)
         {
-            currentResource = controller.target.GetComponent<ResourceHandler>();
+            currentResource = controller.target.GetComponent<IResource>();
         }
         if (currentResource != null)
         {
