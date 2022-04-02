@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 114599935949176892}
   - component: {fileID: 54180353655365946}
   - component: {fileID: 114924594081906710}
+  - component: {fileID: 4664713848167918180}
   m_Layer: 0
   m_Name: StarterCrate
   m_TagString: Item
@@ -133,6 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handler: {fileID: 4664713848167918180}
   tooltip: 
   item: {fileID: 11400000, guid: 02a4627bd0006d54bace935afcf26aa5, type: 2}
   saveID: 41
@@ -201,3 +203,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   root: {fileID: 0}
+--- !u!114 &4664713848167918180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1135837570133238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4a01748dd43fc45a34ec9689c324a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

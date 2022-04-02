@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 283043435777694500}
   - component: {fileID: 196572837530522260}
   - component: {fileID: 202151917725138356}
+  - component: {fileID: 9009127742148549169}
   m_Layer: 6
   m_Name: Dropped Silicon
   m_TagString: Item
@@ -49,6 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handler: {fileID: 9009127742148549169}
   tooltip: Silicon
   item: {fileID: 11400000, guid: 543cff03c890414498c3dbf496ca8913, type: 2}
   saveID: 71
@@ -164,3 +166,15 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.223606
   m_Center: {x: 0, y: -0.012339006, z: 0.045462508}
+--- !u!114 &9009127742148549169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227868291145765972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4a01748dd43fc45a34ec9689c324a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

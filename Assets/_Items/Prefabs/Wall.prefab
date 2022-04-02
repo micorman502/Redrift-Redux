@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 95189788718929192}
   - component: {fileID: 65382712180995948}
   - component: {fileID: 208962106574978626}
+  - component: {fileID: 7734755633455195364}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Item
@@ -50,6 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handler: {fileID: 7734755633455195364}
   tooltip: 
   item: {fileID: 11400000, guid: 05be672c5638b59429c3e9636d47fa09, type: 2}
   saveID: 38
@@ -132,9 +134,9 @@ BoxCollider:
   m_GameObject: {fileID: 1125907287773136}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 2, z: 0.151132}
+  m_Size: {x: 2, y: 2, z: 0.15}
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!208 &208962106574978626
 NavMeshObstacle:
@@ -152,6 +154,18 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 1, z: 0}
   m_TimeToStationary: 0.1
+--- !u!114 &7734755633455195364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125907287773136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4a01748dd43fc45a34ec9689c324a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1301675485494598
 GameObject:
   m_ObjectHideFlags: 0

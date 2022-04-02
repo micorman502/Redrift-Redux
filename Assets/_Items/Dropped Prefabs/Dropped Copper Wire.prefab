@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 1484086478944601299}
   - component: {fileID: 1577789972993583317}
   - component: {fileID: 5478823445225027804}
+  - component: {fileID: 1199718363004935040}
   m_Layer: 6
   m_Name: Dropped Copper Wire
   m_TagString: Item
@@ -50,6 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handler: {fileID: 1199718363004935040}
   tooltip: Copper Wire
   item: {fileID: 11400000, guid: 13919cb26fba1284689672e0315679e4, type: 2}
   saveID: 54
@@ -185,3 +187,15 @@ LODGroup:
     renderers:
     - renderer: {fileID: 1538340999092768815}
   m_Enabled: 1
+--- !u!114 &1199718363004935040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515707734082384361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4a01748dd43fc45a34ec9689c324a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

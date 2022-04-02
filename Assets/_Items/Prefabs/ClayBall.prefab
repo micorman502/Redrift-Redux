@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 114331523561661644}
   - component: {fileID: 33126080490366568}
   - component: {fileID: 23696082656058890}
-  - component: {fileID: 95233569326052534}
   - component: {fileID: 54614429218916038}
   - component: {fileID: 114806010098456694}
   - component: {fileID: 135969721433929348}
+  - component: {fileID: -6128178889658618601}
   m_Layer: 6
   m_Name: ClayBall
   m_TagString: Item
@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handler: {fileID: -6128178889658618601}
   tooltip: 
   item: {fileID: 11400000, guid: b10baaad17f1c344194cb78d2e0d1f97, type: 2}
   saveID: 14
@@ -103,25 +104,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!95 &95233569326052534
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1644675856667022}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 47c7f169bddbe2c4eb78555b94a8f694, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!54 &54614429218916038
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -164,3 +146,15 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.26400107
   m_Center: {x: -0.005532488, y: 0.008692997, z: -0.0047870064}
+--- !u!114 &-6128178889658618601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644675856667022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4a01748dd43fc45a34ec9689c324a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 114621931902218922}
   - component: {fileID: 33569974534133372}
   - component: {fileID: 23166109731028076}
-  - component: {fileID: 95367450425170230}
   - component: {fileID: 54526823796286318}
   - component: {fileID: 114398635643062270}
   - component: {fileID: 135569928711908586}
+  - component: {fileID: -2793813091824742723}
   m_Layer: 6
   m_Name: IronOre
   m_TagString: Item
@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handler: {fileID: -2793813091824742723}
   tooltip: 
   item: {fileID: 11400000, guid: 7126648dde3fce64fb14c7cadd9038fe, type: 2}
   saveID: 29
@@ -104,25 +105,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!95 &95367450425170230
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1240165972576048}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: a678793c88b67404ebb1c0e716c49972, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!54 &54526823796286318
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -163,5 +145,17 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.25792256
-  m_Center: {x: -0.005007997, y: -0.008145506, z: 0.0054735034}
+  m_Radius: 0.25
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-2793813091824742723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1240165972576048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4a01748dd43fc45a34ec9689c324a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

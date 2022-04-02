@@ -46,10 +46,10 @@ public class HeldBuildingItem : HeldItem
     {
         if (state)
         {
-            HotTextManager.Instance.ReplaceHotText(new HotTextInfo("<" + item.itemName + ">", 0), "heldItem");
-            HotTextManager.Instance.ReplaceHotText(new HotTextInfo("to drop item", KeyCode.Q, 1), "heldItemDrop");
-            HotTextManager.Instance.ReplaceHotText(new HotTextInfo("to place item", KeyCode.Mouse0, 2), "heldItemPlace");
-            HotTextManager.Instance.ReplaceHotText(new HotTextInfo("to rotate item", KeyCode.R, 3), "heldItemRotate");
+            HotTextManager.Instance.ReplaceHotText(new HotTextInfo("<" + item.itemName + ">", 0, "heldItem"));
+            HotTextManager.Instance.ReplaceHotText(new HotTextInfo("to drop item", KeyCode.Q, 1, "heldItemDrop"));
+            HotTextManager.Instance.ReplaceHotText(new HotTextInfo("to place item", KeyCode.Mouse0, 2, "heldItemPlace"));
+            HotTextManager.Instance.ReplaceHotText(new HotTextInfo("to rotate item", KeyCode.R, 3, "heldItemRotate"));
 
         }
         else

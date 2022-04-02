@@ -9,13 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1253417036347391909}
-  - component: {fileID: 3083660684052549015}
   - component: {fileID: 9036344203296879968}
   - component: {fileID: 8487149880791697361}
-  - component: {fileID: 7915504782560693780}
-  - component: {fileID: 5507739709963624853}
   m_Layer: 0
-  m_Name: Grass
+  m_Name: Visual
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35,22 +32,6 @@ Transform:
   m_Father: {fileID: 8257663409475108327}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3083660684052549015
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5522131315040532584}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tooltip: 
-  item: {fileID: 11400000, guid: e16dd43f8e3437e4090deb09fc04a355, type: 2}
-  saveID: 42
-  dontSave: 0
 --- !u!33 &9036344203296879968
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -101,38 +82,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!95 &7915504782560693780
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5522131315040532584}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: b810b97d2b121c84f853276cd761e209, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!65 &5507739709963624853
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5522131315040532584}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.32012, y: 0.3967341, z: 0.95542127}
-  m_Center: {x: -0.023681998, y: 0.008404003, z: 0.42257458}
 --- !u!1 &8254937849148306895
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,6 +91,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8257663409475108327}
+  - component: {fileID: 8886314263551672760}
+  - component: {fileID: 9002759307941369832}
+  - component: {fileID: -5121057953439724462}
   m_Layer: 0
   m_Name: Grass Spawnable
   m_TagString: Item
@@ -164,3 +116,45 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &8886314263551672760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8254937849148306895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handler: {fileID: -5121057953439724462}
+  tooltip: 
+  item: {fileID: 11400000, guid: e16dd43f8e3437e4090deb09fc04a355, type: 2}
+  saveID: 42
+  dontSave: 0
+--- !u!65 &9002759307941369832
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8254937849148306895}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3, y: 0.3, z: 0.8}
+  m_Center: {x: 0, y: 0, z: 0.4}
+--- !u!114 &-5121057953439724462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8254937849148306895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4a01748dd43fc45a34ec9689c324a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -20,16 +20,21 @@ public class HotTextManager : MonoBehaviour
         Instance = this;
     }
 
-    public void AddHotText (HotTextInfo info, string id)
+    public void AddHotText (HotTextInfo info)
     {
-        if (!hotText.ContainsKey(id))
+        if (!hotText.ContainsKey(info.id))
         {
-            hotText.Add(id, info);
+            hotText.Add(info.id, info);
             ReloadUI();
         } else
         {
-            Debug.LogWarning("Cannot AddHotText, as there is already a Hot Text with ID: " + id + ". Should ReplaceHotText be used instead?");
+            Debug.LogWarning("Cannot AddHotText, as there is already a Hot Text with ID: " + info.id + ". Should ReplaceHotText be used instead?");
         }
+    }
+
+    public void RemoveHotText (HotTextInfo info)
+    {
+        RemoveHotText(info.id);
     }
 
     public void RemoveHotText (string id)
@@ -38,19 +43,20 @@ public class HotTextManager : MonoBehaviour
         {
             hotText.Remove(id);
             ReloadUI();
-        } else
+        }
+        else
         {
             Debug.LogWarning("Cannot RemoveHotText, as there is no Hot Text with ID: " + id);
         }
     }
 
-    public void ReplaceHotText (HotTextInfo info, string id)
+    public void ReplaceHotText (HotTextInfo info)
     {
-        if (hotText.ContainsKey(id))
+        if (hotText.ContainsKey(info.id))
         {
-            hotText.Remove(id);
+            hotText.Remove(info.id);
         }
-        hotText.Add(id, info);
+        hotText.Add(info.id, info);
         ReloadUI();
     }
 
@@ -98,21 +104,25 @@ public class HotTextManager : MonoBehaviour
     }
 }
 
+[System.Serializable]
 public class HotTextInfo
 {
     public string text;
     public KeyCode key = KeyCode.None;
     public int priority;
+    public string id;
 
-    public HotTextInfo (string text, KeyCode key, int priority)
+    public HotTextInfo (string text, KeyCode key, int priority, string id)
     {
         this.text = text;
         this.key = key;
         this.priority = priority;
+        this.id = id;
     }
-    public HotTextInfo (string text, int priority)
+    public HotTextInfo (string text, int priority, string id)
     {
         this.text = text;
         this.priority = priority;
+        this.id = id;
     }
 }

@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 114488518309744100}
   - component: {fileID: 33401305403011144}
   - component: {fileID: 23790322914965246}
-  - component: {fileID: 95733206651199906}
   - component: {fileID: 54052297217757744}
   - component: {fileID: 114073347454411266}
   - component: {fileID: 65480651534274052}
   - component: {fileID: 6414670915133513229}
+  - component: {fileID: -618114374842895918}
   m_Layer: 6
   m_Name: CopperWire
   m_TagString: Item
@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handler: {fileID: -618114374842895918}
   tooltip: 
   item: {fileID: 11400000, guid: 13919cb26fba1284689672e0315679e4, type: 2}
   saveID: 19
@@ -82,8 +83,8 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bb40f62380c1bfd4e9bd09ac18ee5bfe, type: 2}
   - {fileID: 2100000, guid: ba1a15898287b924b8ee6b8a3c17bacb, type: 2}
+  - {fileID: 2100000, guid: bb40f62380c1bfd4e9bd09ac18ee5bfe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -105,25 +106,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!95 &95733206651199906
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1457916337116984}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 6a19082fccfcb6d4eb6f00bdc4c2d202, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!54 &54052297217757744
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -185,3 +167,15 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23790322914965246}
   m_Enabled: 1
+--- !u!114 &-618114374842895918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457916337116984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4a01748dd43fc45a34ec9689c324a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

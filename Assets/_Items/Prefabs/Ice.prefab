@@ -9,6 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4402439798475222}
+  - component: {fileID: 2476948317586482070}
+  - component: {fileID: 5460261268641515345}
+  - component: {fileID: -4384965305606957996}
   m_Layer: 0
   m_Name: Ice
   m_TagString: Item
@@ -31,6 +34,48 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2476948317586482070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1427960747825986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handler: {fileID: -4384965305606957996}
+  tooltip: 
+  item: {fileID: 11400000, guid: ae8fcd34f9c789148acaf4358b6c5f2b, type: 2}
+  saveID: 26
+  dontSave: 0
+--- !u!65 &5460261268641515345
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1427960747825986}
+  m_Material: {fileID: 13400000, guid: 7970eab375030b64988e0eb5d2d950c4, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.25, z: 1}
+  m_Center: {x: 0, y: -0.125, z: 0}
+--- !u!114 &-4384965305606957996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1427960747825986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4a01748dd43fc45a34ec9689c324a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3529226270679105645
 GameObject:
   m_ObjectHideFlags: 0
@@ -40,13 +85,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8731063678374411422}
-  - component: {fileID: 7381036987565739968}
   - component: {fileID: 803128287483454362}
   - component: {fileID: 1137661331905857730}
-  - component: {fileID: 806433885776952727}
-  - component: {fileID: 8204798869294395320}
   m_Layer: 0
-  m_Name: Ice
+  m_Name: Visual
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66,22 +108,6 @@ Transform:
   m_Father: {fileID: 4402439798475222}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!114 &7381036987565739968
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3529226270679105645}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tooltip: 
-  item: {fileID: 11400000, guid: ae8fcd34f9c789148acaf4358b6c5f2b, type: 2}
-  saveID: 26
-  dontSave: 0
 --- !u!33 &803128287483454362
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -132,35 +158,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!95 &806433885776952727
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3529226270679105645}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 8288a4a255d58384c87d963668a12d2a, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!65 &8204798869294395320
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3529226270679105645}
-  m_Material: {fileID: 13400000, guid: 7970eab375030b64988e0eb5d2d950c4, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1.0000002, z: 0.25000006}
-  m_Center: {x: 0, y: 0, z: -0.124795035}

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4782744900821408}
   - component: {fileID: 33914296390827290}
   - component: {fileID: 23414320812111444}
-  - component: {fileID: 64174026177235690}
   m_Layer: 0
   m_Name: IncineratorCap
   m_TagString: Item
@@ -83,20 +82,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &64174026177235690
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1094469620633618}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300002, guid: 1f51899c40bed5a498d478b56cba884e, type: 3}
 --- !u!1 &1359166243090440
 GameObject:
   m_ObjectHideFlags: 0
@@ -9805,7 +9790,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9862,7 +9846,6 @@ GameObject:
   - component: {fileID: 4881463323550614}
   - component: {fileID: 33170080663814668}
   - component: {fileID: 23139157843174130}
-  - component: {fileID: 64071069030288616}
   m_Layer: 0
   m_Name: IncineratorBody
   m_TagString: Item
@@ -9934,20 +9917,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &64071069030288616
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1470976222429368}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300006, guid: 1f51899c40bed5a498d478b56cba884e, type: 3}
 --- !u!1 &1482758497832466
 GameObject:
   m_ObjectHideFlags: 0
@@ -10020,6 +9989,9 @@ GameObject:
   - component: {fileID: 114367163112493028}
   - component: {fileID: 95522913344220394}
   - component: {fileID: 114442246878580386}
+  - component: {fileID: 7019148194566594797}
+  - component: {fileID: 8183266222260845120}
+  - component: {fileID: -4724502506944287200}
   m_Layer: 0
   m_Name: Incinerator
   m_TagString: Item
@@ -10059,6 +10031,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handler: {fileID: -4724502506944287200}
   tooltip: 
   item: {fileID: 11400000, guid: 65c8437dd1294f74a9b51040628230ff, type: 2}
   saveID: 27
@@ -10097,6 +10070,44 @@ MonoBehaviour:
   tellParent: {fileID: 114984768749217530}
   smokeParticles: {fileID: 198916363195093056}
   fireParticles: {fileID: 198382665720565510}
+--- !u!65 &7019148194566594797
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552388535253870}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.5, z: 1}
+  m_Center: {x: 0, y: 0.75, z: 0}
+--- !u!65 &8183266222260845120
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552388535253870}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.4, y: 1.3, z: 0.4}
+  m_Center: {x: 0, y: 2.15, z: 0}
+--- !u!114 &-4724502506944287200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552388535253870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4a01748dd43fc45a34ec9689c324a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1966244458468142
 GameObject:
   m_ObjectHideFlags: 0
@@ -10140,7 +10151,6 @@ GameObject:
   - component: {fileID: 4878097201325384}
   - component: {fileID: 33092360047531628}
   - component: {fileID: 23402472713358188}
-  - component: {fileID: 65063445942606604}
   m_Layer: 0
   m_Name: IncineratorExhaust
   m_TagString: Item
@@ -10212,19 +10222,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &65063445942606604
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1966759743632690}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.4000001, z: 1.2000002}
-  m_Center: {x: 0, y: 0, z: 1.5750004}
 --- !u!1 &1985876069820664
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4757383050535812335}
   - component: {fileID: 4870476053254235869}
   - component: {fileID: 4807354207944289235}
+  - component: {fileID: 4371091653297050167}
   m_Layer: 6
   m_Name: Dropped Apple
   m_TagString: Item
@@ -48,6 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handler: {fileID: 4371091653297050167}
   tooltip: 
   item: {fileID: 11400000, guid: b0c49f54531af804cb45871618249a8b, type: 2}
   saveID: 43
@@ -152,3 +154,15 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.25
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4371091653297050167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4851200420900205713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4a01748dd43fc45a34ec9689c324a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

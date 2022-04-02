@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 114634701974394002}
   - component: {fileID: 33006599495611640}
   - component: {fileID: 23587440888540022}
-  - component: {fileID: 95079194054218420}
   - component: {fileID: 54525230971673482}
   - component: {fileID: 114395266446841952}
   - component: {fileID: 65671192625838148}
+  - component: {fileID: -3630835460722029063}
   m_Layer: 6
   m_Name: CopperIngot
   m_TagString: Item
@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handler: {fileID: -3630835460722029063}
   tooltip: 
   item: {fileID: 11400000, guid: a7599c2897a389b4fa0a907ae43f3f7d, type: 2}
   saveID: 17
@@ -103,25 +104,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!95 &95079194054218420
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1901361617958678}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 4860ab1312f094c429cf8df1249b3feb, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!54 &54525230971673482
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -164,3 +146,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.175, y: 0.55000013, z: 0.12500003}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-3630835460722029063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901361617958678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4a01748dd43fc45a34ec9689c324a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

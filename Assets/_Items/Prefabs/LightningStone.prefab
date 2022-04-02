@@ -91,16 +91,17 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4261800703143422}
+  - component: {fileID: 114193314663951964}
   - component: {fileID: 33110920535818336}
   - component: {fileID: 23262190758617182}
   - component: {fileID: 95262134227607466}
   - component: {fileID: 54535332031061446}
-  - component: {fileID: 114193314663951964}
   - component: {fileID: 114835531081347736}
   - component: {fileID: 198069566294517540}
   - component: {fileID: 199304744154420042}
   - component: {fileID: 114625498910188238}
   - component: {fileID: 65883066286816232}
+  - component: {fileID: 4958574233696291937}
   m_Layer: 6
   m_Name: LightningStone
   m_TagString: Item
@@ -123,6 +124,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114193314663951964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925844564809708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handler: {fileID: 4958574233696291937}
+  tooltip: 
+  item: {fileID: 11400000, guid: ada74405c0b91a641bed3460f1a00d5e, type: 2}
+  saveID: 31
+  dontSave: 0
 --- !u!33 &33110920535818336
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -208,22 +226,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &114193314663951964
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1925844564809708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tooltip: 
-  item: {fileID: 11400000, guid: ada74405c0b91a641bed3460f1a00d5e, type: 2}
-  saveID: 31
-  dontSave: 0
 --- !u!114 &114835531081347736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5049,3 +5051,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.713292, y: 0.67838115, z: 0.5370291}
   m_Center: {x: 0, y: 0.03580951, z: -0.11557653}
+--- !u!114 &4958574233696291937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925844564809708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4a01748dd43fc45a34ec9689c324a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

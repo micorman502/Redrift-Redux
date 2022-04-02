@@ -9,6 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4049994254861238}
+  - component: {fileID: 5736565220965290055}
+  - component: {fileID: 5678705944520386636}
+  - component: {fileID: 4212224508243222574}
+  - component: {fileID: 2579657117796310885}
+  - component: {fileID: -3343362371649114281}
   m_Layer: 0
   m_Name: Furnace
   m_TagString: Item
@@ -31,6 +36,83 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5736565220965290055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039647288645722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handler: {fileID: -3343362371649114281}
+  tooltip: 
+  item: {fileID: 11400000, guid: 4d66aab45fd39aa46bd3f9e06c5e33f7, type: 2}
+  saveID: 0
+  dontSave: 1
+--- !u!65 &5678705944520386636
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039647288645722}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.5, z: 1}
+  m_Center: {x: 0, y: 0.75, z: 0}
+--- !u!208 &4212224508243222574
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039647288645722}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.75, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.75, z: 0}
+  m_TimeToStationary: 0.1
+--- !u!114 &2579657117796310885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039647288645722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 018a1fac2bcf1a6489b39e2ad3f7e043, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveID: 0
+  fireLight: {fileID: 1283816334304629871}
+  smoke: {fileID: 6350280906050997781}
+  fire: {fileID: 4891352954977313854}
+  fuel: 0
+  currentSmeltingItem: {fileID: 0}
+  smeltTime: 10
+--- !u!114 &-3343362371649114281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039647288645722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4a01748dd43fc45a34ec9689c324a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &37467056235956021
 GameObject:
   m_ObjectHideFlags: 0
@@ -4955,10 +5037,6 @@ GameObject:
   - component: {fileID: 3319029102340457730}
   - component: {fileID: 6031534105416911071}
   - component: {fileID: 3360174202659040161}
-  - component: {fileID: 1525446331947850385}
-  - component: {fileID: 8127722900942595121}
-  - component: {fileID: 4130621250976192397}
-  - component: {fileID: 2682635251305203254}
   m_Layer: 0
   m_Name: Furnace
   m_TagString: Item
@@ -5052,70 +5130,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1525446331947850385
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1583535093686781252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tooltip: 
-  item: {fileID: 11400000, guid: 4d66aab45fd39aa46bd3f9e06c5e33f7, type: 2}
-  saveID: 0
-  dontSave: 1
---- !u!114 &8127722900942595121
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1583535093686781252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 018a1fac2bcf1a6489b39e2ad3f7e043, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  saveID: 0
-  fireLight: {fileID: 1283816334304629871}
-  smoke: {fileID: 6350280906050997781}
-  fire: {fileID: 4891352954977313854}
-  fuel: 0
-  currentSmeltingItem: {fileID: 0}
-  smeltTime: 10
---- !u!208 &4130621250976192397
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1583535093686781252}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.523, y: 0.523, z: 0.73800004}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0.74200004}
-  m_TimeToStationary: 0.1
---- !u!65 &2682635251305203254
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1583535093686781252}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.045014, y: 1.0450143, z: 1.4756113}
-  m_Center: {x: 0, y: 0, z: 0.7421437}
 --- !u!1 &3785108395042924320
 GameObject:
   m_ObjectHideFlags: 0

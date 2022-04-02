@@ -256,10 +256,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4483983165676532}
-  - component: {fileID: 95205784687257682}
   - component: {fileID: 114881856655948616}
-  - component: {fileID: 54436689047897740}
   - component: {fileID: 114290695175995826}
+  - component: {fileID: 95205784687257682}
+  - component: {fileID: 54436689047897740}
+  - component: {fileID: 6711818946270489791}
+  - component: {fileID: -6849379725450154469}
   m_Layer: 0
   m_Name: Radio
   m_TagString: Item
@@ -286,25 +288,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &95205784687257682
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1846644513687052}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 98c7dcd50f51f4649b1a21d3d91d93a4, type: 3}
-  m_Controller: {fileID: 9100000, guid: 65440f8c99687d045b6ddf997e3b24c8, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114881856655948616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,26 +300,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handler: {fileID: -6849379725450154469}
   tooltip: 
   item: {fileID: 11400000, guid: 7e893ac772f0390488171e9fe11f1a08, type: 2}
   saveID: 0
   dontSave: 0
---- !u!54 &54436689047897740
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1846644513687052}
-  serializedVersion: 2
-  m_Mass: 3
-  m_Drag: 0.5
-  m_AngularDrag: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 1
 --- !u!114 &114290695175995826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -385,6 +353,66 @@ MonoBehaviour:
     maxPitch: 0
     source: {fileID: 0}
   songNum: -1
+--- !u!95 &95205784687257682
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1846644513687052}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 98c7dcd50f51f4649b1a21d3d91d93a4, type: 3}
+  m_Controller: {fileID: 9100000, guid: 65440f8c99687d045b6ddf997e3b24c8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!54 &54436689047897740
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1846644513687052}
+  serializedVersion: 2
+  m_Mass: 3
+  m_Drag: 0.5
+  m_AngularDrag: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
+--- !u!65 &6711818946270489791
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1846644513687052}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.8, z: 0.25}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-6849379725450154469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1846644513687052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4a01748dd43fc45a34ec9689c324a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1915982097339198
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,7 +424,6 @@ GameObject:
   - component: {fileID: 4265176712839484}
   - component: {fileID: 33526727851359294}
   - component: {fileID: 23151355004847012}
-  - component: {fileID: 65357810947515898}
   m_Layer: 0
   m_Name: RadioHandle
   m_TagString: Item
@@ -468,19 +495,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &65357810947515898
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1915982097339198}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.10000007, y: 0.9, z: 0.3}
-  m_Center: {x: -0.000000059604602, y: -0.000000014901271, z: 0.5}
 --- !u!1 &1999088526231286
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,7 +506,6 @@ GameObject:
   - component: {fileID: 4637688564528706}
   - component: {fileID: 33062959246800182}
   - component: {fileID: 23329626910033248}
-  - component: {fileID: 65757133181662226}
   m_Layer: 0
   m_Name: RadioBody
   m_TagString: Item
@@ -508,7 +521,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1999088526231286}
   m_LocalRotation: {x: -0.4999998, y: -0.5000003, z: -0.5000002, w: 0.49999976}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4483983165676532}
@@ -565,16 +578,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &65757133181662226
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1999088526231286}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.28021413, y: 1, z: 0.8000001}
-  m_Center: {x: -0.006774001, y: 2.0188096e-10, z: 8.0752327e-10}

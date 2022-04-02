@@ -327,11 +327,11 @@ public class PlayerInventory : MonoBehaviour {
 
 	void AddAllItems() {
 		//inventory.InventoryChanged -= InventoryUpdate;
-		SetupNewInventory(saveManager.allItems.items.Length);
+		SetupNewInventory(ItemDatabase.Instance.GetAllItems().Length);
 		//inventory.InventoryChanged += InventoryUpdate;
 		InventoryUIManager.Instance.GetInventoryUI(InventoryUIManager.InventoryType.Primary).Assign(inventory);
 		int i = 0;
-		foreach(ItemInfo item in saveManager.allItems.items) {
+		foreach(ItemInfo item in ItemDatabase.Instance.GetAllItems()) {
 			inventory.SetSlot(new WorldItem(item, item.stackSize), i);
 			i++;
 		}

@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 4302383443307440}
   - component: {fileID: 114048514631678348}
+  - component: {fileID: 65668528246175604}
   - component: {fileID: 33845534855306926}
   - component: {fileID: 23761296482508050}
-  - component: {fileID: 95589952300291414}
   - component: {fileID: 54499307328498664}
   - component: {fileID: 114939722427803448}
-  - component: {fileID: 65668528246175604}
+  - component: {fileID: -6684755751169851930}
   m_Layer: 6
   m_Name: Wood
   m_TagString: Item
@@ -49,10 +49,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handler: {fileID: -6684755751169851930}
   tooltip: 
   item: {fileID: 11400000, guid: 60defaddcf0f8ff46adb2b4cb7af81a3, type: 2}
   saveID: 40
   dontSave: 0
+--- !u!65 &65668528246175604
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1789209328548948}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3, y: 0.75, z: 0.3}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &33845534855306926
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -105,25 +119,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!95 &95589952300291414
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1789209328548948}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: c772a5e545380b749947f8a8946794d4, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!54 &54499307328498664
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -153,16 +148,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   root: {fileID: 0}
---- !u!65 &65668528246175604
-BoxCollider:
+--- !u!114 &-6684755751169851930
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1789209328548948}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.365598, y: 0.7500002, z: 0.3564321}
-  m_Center: {x: 0, y: 0, z: 0.009283999}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4a01748dd43fc45a34ec9689c324a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

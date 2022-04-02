@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7294930483177175399}
   - component: {fileID: 7254799926307382101}
   - component: {fileID: 5824757114314133239}
+  - component: {fileID: 7142277241384957661}
   m_Layer: 6
   m_Name: Dropped Furnace
   m_TagString: Item
@@ -48,6 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handler: {fileID: 7142277241384957661}
   tooltip: 
   item: {fileID: 11400000, guid: 4d66aab45fd39aa46bd3f9e06c5e33f7, type: 2}
   saveID: 60
@@ -151,3 +153,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.0000002, z: 1.0000002}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7142277241384957661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7236087398120845593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4a01748dd43fc45a34ec9689c324a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

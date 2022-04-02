@@ -27,9 +27,9 @@ public class HeldFoodItem : HeldItem
     {
         if (state)
         {
-            HotTextManager.Instance.ReplaceHotText(new HotTextInfo("<" + item.itemName + ">", 0), "heldItem");
-            HotTextManager.Instance.ReplaceHotText(new HotTextInfo("to drop item", KeyCode.Q, 1), "heldItemDrop");
-            HotTextManager.Instance.ReplaceHotText(new HotTextInfo("to eat item", KeyCode.Mouse1, 1), "heldItemEat");
+            HotTextManager.Instance.ReplaceHotText(new HotTextInfo("<" + item.itemName + ">", 0, "heldItem"));
+            HotTextManager.Instance.ReplaceHotText(new HotTextInfo("to drop item", KeyCode.Q, 1, "heldItemDrop"));
+            HotTextManager.Instance.ReplaceHotText(new HotTextInfo("to eat item", KeyCode.Mouse1, 1, "heldItemEat"));
         }
         else
         {

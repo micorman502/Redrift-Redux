@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7053234706520353791}
   - component: {fileID: 6949310545149260237}
   - component: {fileID: 6056042680519236719}
+  - component: {fileID: 4201660895959897318}
   m_Layer: 6
   m_Name: Dropped Incinerator
   m_TagString: Item
@@ -48,6 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handler: {fileID: 4201660895959897318}
   tooltip: 
   item: {fileID: 11400000, guid: 65c8437dd1294f74a9b51040628230ff, type: 2}
   saveID: 63
@@ -151,3 +153,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.0000002, z: 1.0000002}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4201660895959897318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6968594888250614657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4a01748dd43fc45a34ec9689c324a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

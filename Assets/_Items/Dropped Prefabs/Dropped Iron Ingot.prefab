@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8692318787689964645}
   - component: {fileID: 8787803949378484645}
   - component: {fileID: 8685610366839206973}
+  - component: {fileID: 6893281561678402279}
   m_Layer: 6
   m_Name: Dropped Iron Ingot
   m_TagString: Item
@@ -49,6 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handler: {fileID: 6893281561678402279}
   tooltip: Iron Ingot
   item: {fileID: 11400000, guid: ea1231b87469d66478589fbd2574706c, type: 2}
   saveID: 64
@@ -164,3 +166,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.175, y: 0.55000013, z: 0.12500003}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6893281561678402279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8675360987448103933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4a01748dd43fc45a34ec9689c324a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

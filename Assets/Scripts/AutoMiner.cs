@@ -216,7 +216,7 @@ public class AutoMiner : MonoBehaviour, IItemSaveable, IItemInteractable {
         }
 		if (data.itemID != -1)
 		{
-			SetTool(SaveManager.Instance.FindItem(data.itemID));
+			SetTool(ItemDatabase.Instance.GetItem(data.itemID));
 		}
 	}
 }

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2203602320184997326}
   - component: {fileID: 2288278683519650372}
   - component: {fileID: 2284986896249017396}
+  - component: {fileID: 7518948747166319538}
   m_Layer: 6
   m_Name: Dropped Stone
   m_TagString: Item
@@ -49,6 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handler: {fileID: 7518948747166319538}
   tooltip: Stone
   item: {fileID: 11400000, guid: 1e10d0584bbe2ee47ba56f3c6f0b6737, type: 2}
   saveID: 72
@@ -164,3 +166,15 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.25474456
   m_Center: {x: 0.0034280047, y: 0.0030215092, z: 0.0052805035}
+--- !u!114 &7518948747166319538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2184662666090656704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4a01748dd43fc45a34ec9689c324a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -59,10 +59,10 @@ public class HeldItem : MonoBehaviour
     }
 
     public virtual void SetHotText (bool state)
-    {        if (state)
+    {   if (state)
         {
-            HotTextManager.Instance.ReplaceHotText(new HotTextInfo("<" + item.itemName + ">", 0), "heldItem");
-            HotTextManager.Instance.ReplaceHotText(new HotTextInfo("to drop item", KeyCode.Q, 1), "heldItemDrop");
+            HotTextManager.Instance.ReplaceHotText(new HotTextInfo("<" + item.itemName + ">", 0, "heldItem"));
+            HotTextManager.Instance.ReplaceHotText(new HotTextInfo("to drop item", KeyCode.Q, 1, "heldItemDrop"));
         } else
         {
             HotTextManager.Instance.RemoveHotText("heldItem");

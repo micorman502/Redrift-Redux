@@ -122,8 +122,6 @@ public class PlayerController : MonoBehaviour {
 
 	PersistentData persistentData;
 
-	GameObject lastTooltipGameObject;
-	INoticeText lastTooltip;
 	GameObject currentHotTextObject;
 	GameObject lastInteractionGameObject;
 
@@ -177,7 +175,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Update() {
-		CheckHotTextObjects();
+
 		if(!dead && mode != 1) {
 			LoseCalories(Time.deltaTime * hungerLoss);
 			if(hunger <= 10f) {
@@ -399,7 +397,7 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 
-		CheckTooltips(hit);
+		CheckHotTextObjects();
 		CheckInteractions(hit);
 	}
 
@@ -452,38 +450,6 @@ public class PlayerController : MonoBehaviour {
         }
 		return hotText;
     }
-
-	void CheckTooltips (RaycastHit hit)
-    {
-		if (!hit.transform)
-		{
-			return;
-		}
-		/*if (hit.transform.gameObject == lastTooltipGameObject)
-			return;*/
-		INoticeText tooltip = null;
-		if (lastTooltipGameObject == hit.transform.gameObject)
-		{
-			tooltip = lastTooltip;
-		} else 
-		{
-			tooltip = hit.transform.gameObject.GetComponentInParent<INoticeText>();
-			if (tooltip == null)
-			{
-				tooltip = hit.transform.gameObject.GetComponent<INoticeText>();
-			}
-			if (tooltip != null)
-			{
-				lastTooltip = tooltip;
-				lastTooltipGameObject = hit.transform.gameObject;
-			}
-		}
-
-		if (tooltip != null)
-        {
-			NoticeTextManager.Instance.AddNoticeText(tooltip.GetNoticeText(), 1);
-		}
-	}
 
 	void CheckInteractions (RaycastHit hit)
     {

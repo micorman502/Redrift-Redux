@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 114530441274081918}
   - component: {fileID: 33369324897908252}
   - component: {fileID: 23629522335972144}
-  - component: {fileID: 95866236653784320}
   - component: {fileID: 54644517253179606}
   - component: {fileID: 114187417967835164}
   - component: {fileID: 135902063140231510}
+  - component: {fileID: 1289107270467844211}
   m_Layer: 6
   m_Name: CopperOre
   m_TagString: Item
@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handler: {fileID: 1289107270467844211}
   tooltip: 
   item: {fileID: 11400000, guid: cc1dea67642fcc94793fc67b8b1116d7, type: 2}
   saveID: 18
@@ -104,25 +105,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!95 &95866236653784320
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1224342024291050}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: f962853bd3cf8e64488b2e190731030c, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!54 &54644517253179606
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -163,5 +145,17 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.27684402
-  m_Center: {x: 0.0075870007, y: 0.002816499, z: 0.022306008}
+  m_Radius: 0.25
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1289107270467844211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1224342024291050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4a01748dd43fc45a34ec9689c324a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

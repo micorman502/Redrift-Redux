@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 95938548706090266}
   - component: {fileID: 195272206018392896}
   - component: {fileID: 82957674081088482}
+  - component: {fileID: -9083797582651163666}
   m_Layer: 0
   m_Name: AutoMinerController
   m_TagString: Item
@@ -144,9 +145,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handler: {fileID: -9083797582651163666}
   tooltip: 
   item: {fileID: 11400000, guid: 5883cf46a796a7e40969f614714cf207, type: 2}
-  saveID: 0
+  saveID: 1
   dontSave: 1
 --- !u!114 &114136973711759022
 MonoBehaviour:
@@ -302,6 +304,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &-9083797582651163666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213660547245230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4a01748dd43fc45a34ec9689c324a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1217029392981852
 GameObject:
   m_ObjectHideFlags: 0

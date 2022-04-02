@@ -107,7 +107,7 @@ public class Furnace : MonoBehaviour, IItemSaveable, IGetTriggerInfo {
 		fuel = data.floatVal;
 		if (data.itemID != -1)
 		{
-			currentSmeltingItem = SaveManager.Instance.FindItem(data.itemID) as OreInfo;
+			currentSmeltingItem = ItemDatabase.Instance.GetItem(data.itemID) as OreInfo;
 		}
 		Check();
 	}

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3422575374878172347}
   - component: {fileID: 3325951330996187881}
   - component: {fileID: 3341024184921236419}
+  - component: {fileID: 9114115236907665693}
   m_Layer: 6
   m_Name: Dropped Dirt Ball
   m_TagString: Item
@@ -49,6 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handler: {fileID: 9114115236907665693}
   tooltip: Dirt Ball
   item: {fileID: 11400000, guid: 4c86a247f11b50449a1ffe306894dd30, type: 2}
   saveID: 56
@@ -165,3 +167,15 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.253273
   m_Center: {x: -0.003279999, y: 0.012388009, z: -0.007351497}
+--- !u!114 &9114115236907665693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3439078838080999179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4a01748dd43fc45a34ec9689c324a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 270376223103428366}
   - component: {fileID: 186135513881737662}
   - component: {fileID: 207615882174256972}
+  - component: {fileID: -6311589601145083200}
   m_Layer: 6
   m_Name: Dropped Clay Ball
   m_TagString: Item
@@ -49,6 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handler: {fileID: -6311589601145083200}
   tooltip: 
   item: {fileID: 11400000, guid: b10baaad17f1c344194cb78d2e0d1f97, type: 2}
   saveID: 48
@@ -164,3 +166,15 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.26400107
   m_Center: {x: -0.005532488, y: 0.008692997, z: -0.0047870064}
+--- !u!114 &-6311589601145083200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218215555680432198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4a01748dd43fc45a34ec9689c324a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu()]
-public class ItemOrder : ScriptableObject
+public class ItemRegister : ScriptableObject
 {
     public ItemInfo[] items;
 }

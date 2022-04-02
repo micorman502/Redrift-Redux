@@ -38789,6 +38789,7 @@ GameObject:
   - component: {fileID: 2019392291}
   - component: {fileID: 2019392292}
   - component: {fileID: 2019392293}
+  - component: {fileID: 2019392294}
   m_Layer: 0
   m_Name: _ScriptHolder_
   m_TagString: ScriptHolder
@@ -39086,6 +39087,19 @@ MonoBehaviour:
   progressContainer: {fileID: 1638150493}
   progressImage: {fileID: 2084576999}
   progressText: {fileID: 1303594395}
+--- !u!114 &2019392294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019392279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc976262d706a9d42a7ddef1f31d2c3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  order: {fileID: 11400000, guid: ae6ed6d5d204483479b34c888b1ae99c, type: 2}
 --- !u!850595691 &2059371449
 LightingSettings:
   m_ObjectHideFlags: 0

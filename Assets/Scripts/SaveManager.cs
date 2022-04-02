@@ -15,7 +15,6 @@ public class SaveManager : MonoBehaviour {
 	[SerializeField] Animator canvasAnim;
 
 	public Text saveText;
-	public ItemOrder allItems;
 
 	PlayerInventory inventory;
 	PlayerController player;
@@ -84,17 +83,10 @@ public class SaveManager : MonoBehaviour {
 		}
 	}
 
-	public ItemInfo FindItem(int id) {
-		if (id < 0)
-			return null;
-
-		return allItems.items[id]; //this is possible due to Item Order (later comment: what?)
-	}
-
 	public List<ItemInfo> IDsToItems(List<int> IDs) {
 		List<ItemInfo> items = new List<ItemInfo>();
 		foreach(int itemID in IDs) {
-			items.Add(FindItem(itemID));
+			items.Add(ItemDatabase.Instance.GetItem(itemID));
 		}
 		return items;
 	}
@@ -148,7 +140,7 @@ public class SaveManager : MonoBehaviour {
 				ItemInfo item = null;
 				if (id >= 0)
 				{
-					item = allItems.items[save.inventoryItems[i].id];
+					item = ItemDatabase.Instance.GetItem(id);
 				}
 				inventory.inventory.SetSlot(new WorldItem(item, save.inventoryItems[i].amount), i);
 			}

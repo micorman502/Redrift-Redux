@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 114725706965067774}
   - component: {fileID: 33172173620245700}
   - component: {fileID: 23813194830046544}
-  - component: {fileID: 95994607226636492}
   - component: {fileID: 65231275904056346}
   - component: {fileID: 114936360078197654}
   - component: {fileID: 54344118679507228}
   - component: {fileID: 114711722454453078}
+  - component: {fileID: -696279161130812319}
   m_Layer: 6
   m_Name: Crate
   m_TagString: Item
@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handler: {fileID: -696279161130812319}
   tooltip: Hold [E] to pick up, [F] to open
   item: {fileID: 11400000, guid: 02a4627bd0006d54bace935afcf26aa5, type: 2}
   saveID: 20
@@ -105,25 +106,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!95 &95994607226636492
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1365681976019388}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 36ddda48c03cea445bebbb392bcd94dc, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!65 &65231275904056346
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -205,3 +187,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   root: {fileID: 0}
+--- !u!114 &-696279161130812319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1365681976019388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4a01748dd43fc45a34ec9689c324a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

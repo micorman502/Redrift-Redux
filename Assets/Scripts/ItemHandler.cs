@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemHandler : MonoBehaviour, IItemSaveable, INoticeText {
+public class ItemHandler : MonoBehaviour, IItemSaveable {
 
+	[SerializeField] HotTextHandler handler;
 	[SerializeField] string tooltip;
 	public ItemInfo item;
 
@@ -19,6 +20,11 @@ public class ItemHandler : MonoBehaviour, IItemSaveable, INoticeText {
 		objData = newObjData;
 		_dontSave = dontSave;
 	}
+
+	void Start ()
+    {
+		handler.AddHotText(new HotTextInfo("to pickup <" + item.itemName + ">", KeyCode.E, 7, "itemHandlerPickup"));
+    }
 
 	public string GetNoticeText ()
     {

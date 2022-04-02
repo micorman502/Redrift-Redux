@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2063074971847530959}
   - component: {fileID: 2055617842622238543}
   - component: {fileID: 2159361567886763501}
+  - component: {fileID: 4925275039683308878}
   m_Layer: 6
   m_Name: Dropped Computer Chip
   m_TagString: Item
@@ -49,6 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handler: {fileID: 4925275039683308878}
   tooltip: 
   item: {fileID: 11400000, guid: 71c476103a3447b43a7661653c637266, type: 2}
   saveID: 50
@@ -165,3 +167,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   root: {fileID: 0}
+--- !u!114 &4925275039683308878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2045766276814976003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4a01748dd43fc45a34ec9689c324a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

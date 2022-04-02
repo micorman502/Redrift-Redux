@@ -125,7 +125,7 @@ public class AutoSorter : MonoBehaviour, IItemSaveable, IGetTriggerInfo, IItemIn
 
 		if (data.itemID != -1)
 		{
-			SetItem(SaveManager.Instance.FindItem(data.itemID));
+			SetItem(ItemDatabase.Instance.GetItem(data.itemID));
 		}
 		SetBlacklistMode(data.boolVal);
 	}

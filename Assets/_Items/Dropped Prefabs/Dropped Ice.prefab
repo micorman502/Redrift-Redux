@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 979348348431112892}
   - component: {fileID: 866290531083174030}
   - component: {fileID: 4070731801846623532}
+  - component: {fileID: -1785323781613177103}
   m_Layer: 6
   m_Name: Dropped Ice
   m_TagString: Item
@@ -48,6 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handler: {fileID: -1785323781613177103}
   tooltip: 
   item: {fileID: 11400000, guid: ae8fcd34f9c789148acaf4358b6c5f2b, type: 2}
   saveID: 62
@@ -151,3 +153,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.0000002, z: 1.0000002}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-1785323781613177103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 918782272692802242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4a01748dd43fc45a34ec9689c324a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

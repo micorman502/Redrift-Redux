@@ -32,7 +32,7 @@ public class ResourceHandler : MonoBehaviour, IItemSaveable, IHotText, IResource
 
 	public void ShowHotText ()
     {
-		HotTextManager.Instance.ReplaceHotText(new HotTextInfo(" to gather <" + resource.resourceName + ">", KeyCode.Mouse0, 6), "resource");
+		HotTextManager.Instance.ReplaceHotText(new HotTextInfo(" to gather <" + resource.resourceName + ">", KeyCode.Mouse0, 6, "resource"));
     }
 
 	public Resource GetResource ()
