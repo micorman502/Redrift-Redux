@@ -216,7 +216,7 @@ MonoBehaviour:
   handler: {fileID: -6501305821256090312}
   tooltip: Water Bucket
   item: {fileID: 11400000, guid: f3d9331c6ded1e4488f7bac7e0a8f8c4, type: 2}
-  saveID: 74
+  saveID: droppedItemWaterBucket
   dontSave: 0
 --- !u!95 &9030454993172029589
 Animator:

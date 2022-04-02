@@ -53,7 +53,7 @@ MonoBehaviour:
   handler: {fileID: 6893281561678402279}
   tooltip: Iron Ingot
   item: {fileID: 11400000, guid: ea1231b87469d66478589fbd2574706c, type: 2}
-  saveID: 64
+  saveID: droppedItemIronIngot
   dontSave: 0
 --- !u!33 &8653493875773234237
 MeshFilter:

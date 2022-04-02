@@ -84,7 +84,6 @@ public class ConveyorBelt : MonoBehaviour, IItemSaveable, IGetTriggerInfo, IInte
 	void UpdateSpeed() {
 		anim.SetFloat("Speed", speeds[speedNum]);
 		audio.pitch = 0.5f + speeds[speedNum] / 8f;
-		handler.SetNoticeText("Hold [E] to pick up, [F] to change speed [" + speeds[speedNum] + "]" );
 	}
 
 	public void GetData(out ItemSaveData data, out ObjectSaveData objData, out bool dontSave)

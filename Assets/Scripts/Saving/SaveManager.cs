@@ -9,7 +9,6 @@ using Newtonsoft.Json;
 
 public class SaveManager : MonoBehaviour {
 	public static SaveManager Instance;
-	public SaveObjectList loadableObjectList;
 	PersistentData persistentData;
 
 	[SerializeField] Animator canvasAnim;
@@ -127,7 +126,7 @@ public class SaveManager : MonoBehaviour {
             {
 				ObjectSaveData newObjData = save.savedObjects[i];
 				ItemSaveData newData = save.savedObjectsInfo[i];
-				GameObject newObj = Instantiate(loadableObjectList.prefabs[newObjData.objectID], newObjData.position, newObjData.rotation);
+				GameObject newObj = Instantiate(ObjectDatabase.Instance.GetObject(newObjData.objectID), newObjData.position, newObjData.rotation);
 				IItemSaveable[] saveables = newObj.GetComponents<IItemSaveable>();
 				for (int s = 0; s < saveables.Length; s++)
 				{

@@ -5,15 +5,14 @@ using UnityEngine;
 public class ItemHandler : MonoBehaviour, IItemSaveable {
 
 	[SerializeField] HotTextHandler handler;
-	[SerializeField] string tooltip;
 	public ItemInfo item;
 
-	[SerializeField] int saveID;
+	[SerializeField] string saveID;
 	[SerializeField] bool dontSave;
 	public void GetData(out ItemSaveData data, out ObjectSaveData objData, out bool _dontSave)
 	{
 		ItemSaveData newData = new ItemSaveData();
-		ObjectSaveData newObjData = new ObjectSaveData(transform.position, transform.rotation, saveID);
+		ObjectSaveData newObjData = new ObjectSaveData(transform.position, transform.rotation, ObjectDatabase.Instance.GetIntID(saveID));
 
 
 		data = newData;
@@ -26,30 +25,9 @@ public class ItemHandler : MonoBehaviour, IItemSaveable {
 		handler.AddHotText(new HotTextInfo("to pickup <" + item.itemName + ">", KeyCode.E, 7, "itemHandlerPickup"));
     }
 
-	public string GetNoticeText ()
-    {
-		if (tooltip != "")
-		{
-			return tooltip;
-		} else
-        {
-			return item.itemName;
-        }
-    }
-
-	public void SetNoticeText (string _tooltip)
-    {
-		tooltip = _tooltip;
-    }
-
 	public void SetData(ItemSaveData data, ObjectSaveData objData)
 	{
 		transform.position = objData.position;
 		transform.rotation = objData.rotation;
 	}
-
-	public void SetSaveID (int newID)
-    {
-		saveID = newID;
-    }
 }

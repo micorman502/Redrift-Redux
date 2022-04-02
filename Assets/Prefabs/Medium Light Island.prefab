@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7887714766079645311}
+  - component: {fileID: 7849819954667010961}
   - component: {fileID: 7863277689792879903}
   - component: {fileID: 7868455815034166527}
   - component: {fileID: 7796432929268700905}
   - component: {fileID: 7891233393484335797}
-  - component: {fileID: 7849819954667010961}
   m_Layer: 0
   m_Name: Medium Light Island
   m_TagString: Resource
@@ -35,6 +35,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7849819954667010961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7881864713992885309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f79061d20a842d469809a664dac9635, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dontSave: 1
+  saveID: 0
+  dontRegisterToHivemind: 0
+  resource: {fileID: 11400000, guid: 85888302b409fcd4699b0f611b370231, type: 2}
+  health: 0
 --- !u!33 &7863277689792879903
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -119,19 +136,3 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300004, guid: 98d959ab6a8da274fbbaaeb4a6569411, type: 3}
---- !u!114 &7849819954667010961
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7881864713992885309}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f79061d20a842d469809a664dac9635, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dontSave: 1
-  saveID: 0
-  resource: {fileID: 11400000, guid: 85888302b409fcd4699b0f611b370231, type: 2}
-  health: 0

@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4988676684674234}
+  - component: {fileID: 114659604977457492}
   - component: {fileID: 33929281749680090}
   - component: {fileID: 23975103465291322}
   - component: {fileID: 95997896839640108}
   - component: {fileID: 64239048560093296}
-  - component: {fileID: 114659604977457492}
   m_Layer: 0
   m_Name: LightIsland
   m_TagString: Resource
@@ -35,6 +35,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114659604977457492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1532546090071800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f79061d20a842d469809a664dac9635, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dontSave: 1
+  saveID: 0
+  dontRegisterToHivemind: 1
+  resource: {fileID: 11400000, guid: 85888302b409fcd4699b0f611b370231, type: 2}
+  health: 0
 --- !u!33 &33929281749680090
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -119,20 +136,3 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300004, guid: 5e2a843cfa12bb4489d2201b6928f32d, type: 3}
---- !u!114 &114659604977457492
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1532546090071800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f79061d20a842d469809a664dac9635, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dontSave: 1
-  saveID: 0
-  dontRegisterToHivemind: 1
-  resource: {fileID: 11400000, guid: 85888302b409fcd4699b0f611b370231, type: 2}
-  health: 0

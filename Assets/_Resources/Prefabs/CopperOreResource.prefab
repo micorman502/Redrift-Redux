@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4052099140959204}
+  - component: {fileID: 114857794658627394}
   - component: {fileID: 33772031992495664}
   - component: {fileID: 23558745093094016}
   - component: {fileID: 95627421998644428}
-  - component: {fileID: 114857794658627394}
   - component: {fileID: 208636228461228852}
   m_Layer: 0
   m_Name: CopperOreResource
@@ -36,6 +36,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114857794658627394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1947450143509860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f79061d20a842d469809a664dac9635, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dontSave: 0
+  saveID: resourceCopperOre
+  dontRegisterToHivemind: 0
+  resource: {fileID: 11400000, guid: d4aa8df93459e6241ab266f993a8177f, type: 2}
+  health: 0
 --- !u!33 &33772031992495664
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -106,23 +123,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114857794658627394
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1947450143509860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f79061d20a842d469809a664dac9635, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dontSave: 0
-  saveID: 6
-  dontRegisterToHivemind: 0
-  resource: {fileID: 11400000, guid: d4aa8df93459e6241ab266f993a8177f, type: 2}
-  health: 0
 --- !u!208 &208636228461228852
 NavMeshObstacle:
   m_ObjectHideFlags: 0

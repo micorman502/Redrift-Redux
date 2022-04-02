@@ -135,7 +135,7 @@ MonoBehaviour:
   handler: {fileID: -7719077824395577307}
   tooltip: 
   item: {fileID: 11400000, guid: 296e1243692f86144accc4a222765046, type: 2}
-  saveID: 0
+  saveID: worldItemBucket
   dontSave: 0
 --- !u!95 &95099520851084338
 Animator:

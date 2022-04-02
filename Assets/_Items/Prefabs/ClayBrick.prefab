@@ -50,7 +50,7 @@ MonoBehaviour:
   handler: {fileID: 1757977293167120600}
   tooltip: 
   item: {fileID: 11400000, guid: 322c123cfd818fd47950d704e81dd2f1, type: 2}
-  saveID: 15
+  saveID: worldItemClayBrick
   dontSave: 0
 --- !u!65 &3838256629957342063
 BoxCollider:

@@ -47,9 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handler: {fileID: -6831565339925378035}
-  tooltip: 
   item: {fileID: 11400000, guid: e16dd43f8e3437e4090deb09fc04a355, type: 2}
-  saveID: 25
+  saveID: worldItemGrass
   dontSave: 0
 --- !u!65 &7805867577357197577
 BoxCollider:

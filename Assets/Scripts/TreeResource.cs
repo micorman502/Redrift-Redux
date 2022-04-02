@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TreeResource : MonoBehaviour, IItemSaveable {
-	[SerializeField] int saveID;
+	[SerializeField] string saveID;
 	public GameObject applePrefab;
 	public Transform[] appleSpawnLocations;
 
@@ -42,7 +42,7 @@ public class TreeResource : MonoBehaviour, IItemSaveable {
 	public void GetData(out ItemSaveData data, out ObjectSaveData objData, out bool dontSave)
 	{
 		ItemSaveData newData = new ItemSaveData();
-		ObjectSaveData newObjData = new ObjectSaveData(transform.position, transform.rotation, saveID);
+		ObjectSaveData newObjData = new ObjectSaveData(transform.position, transform.rotation, ObjectDatabase.Instance.GetIntID(saveID));
 
 		newData.num = handler.health;
 		newData.boolVal = false;

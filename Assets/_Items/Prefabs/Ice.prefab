@@ -49,7 +49,7 @@ MonoBehaviour:
   handler: {fileID: -4384965305606957996}
   tooltip: 
   item: {fileID: 11400000, guid: ae8fcd34f9c789148acaf4358b6c5f2b, type: 2}
-  saveID: 26
+  saveID: worldItemIce
   dontSave: 0
 --- !u!65 &5460261268641515345
 BoxCollider:

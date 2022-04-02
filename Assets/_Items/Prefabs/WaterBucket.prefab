@@ -134,7 +134,7 @@ MonoBehaviour:
   handler: {fileID: 2778642958076634160}
   tooltip: 
   item: {fileID: 11400000, guid: f3d9331c6ded1e4488f7bac7e0a8f8c4, type: 2}
-  saveID: 39
+  saveID: worldItemWaterBucket
   dontSave: 0
 --- !u!65 &65170891985282408
 BoxCollider:

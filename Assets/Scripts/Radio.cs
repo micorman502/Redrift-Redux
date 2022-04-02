@@ -64,20 +64,8 @@ public class Radio : MonoBehaviour, IItemSaveable, IInteractable {
 			}
 		}
 
-		UpdateTooltip();
 		UpdateGraphics();
 	}
-
-	void UpdateTooltip ()
-    {
-		if (songNum == -1)
-        {
-			handler.SetNoticeText("Hold [E] to pick up, [F] to turn on");
-        } else
-        {
-			handler.SetNoticeText("Hold [E] to pick up, [F] to turn off [" + songs[songNum].name + "]");
-        }
-    }
 
 	void UpdateGraphics() {
 		Vector3 newPos = slider.transform.localPosition;

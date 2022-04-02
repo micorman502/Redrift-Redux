@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4353159293195674}
+  - component: {fileID: 114732824772002802}
   - component: {fileID: 33933383084812034}
   - component: {fileID: 23403227592925518}
   - component: {fileID: 95297910792818310}
   - component: {fileID: 65629340424973256}
-  - component: {fileID: 114732824772002802}
   - component: {fileID: 114599935949176892}
   - component: {fileID: 54180353655365946}
   - component: {fileID: 114924594081906710}
@@ -39,6 +39,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114732824772002802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1135837570133238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handler: {fileID: 4664713848167918180}
+  item: {fileID: 11400000, guid: 02a4627bd0006d54bace935afcf26aa5, type: 2}
+  saveID: worldItemStarterCrate
+  dontSave: 0
 --- !u!33 &33933383084812034
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -122,23 +138,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.0000002, z: 1.0000002}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114732824772002802
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1135837570133238}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  handler: {fileID: 4664713848167918180}
-  tooltip: 
-  item: {fileID: 11400000, guid: 02a4627bd0006d54bace935afcf26aa5, type: 2}
-  saveID: 41
-  dontSave: 0
 --- !u!114 &114599935949176892
 MonoBehaviour:
   m_ObjectHideFlags: 0

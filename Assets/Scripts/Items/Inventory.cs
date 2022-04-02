@@ -166,7 +166,7 @@ public class Inventory
     {
 		if (slotIndex >= Slots.Length)
         {
-			Debug.LogError($"SetSlot's slotIndex was outside the allowed bounds! {slotIndex}");
+			Debug.LogError($"SetSlot's slotIndex was outside the allowed bounds at slotIndex: {slotIndex}");
 			return;
         }
 		Slots[slotIndex].Initialize(item.item, item.amount);

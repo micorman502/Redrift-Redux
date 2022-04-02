@@ -15,8 +15,9 @@ MonoBehaviour:
   itemName: Silicon
   itemDescription: 
   stackSize: 100
-  id: 0
+  stackPrefix: x
+  id: 31
   achievementId: -1
   icon: {fileID: 21300000, guid: 21d731ec7acb1934693a794355da727a, type: 3}
-  droppedPrefab: {fileID: 1472234370411092, guid: 54ceae41019883c4a81b0faa23c60eb4,
+  droppedPrefab: {fileID: 227868291145765972, guid: 3410e4e7c0c8a28418c016ed1e63990c,
     type: 3}

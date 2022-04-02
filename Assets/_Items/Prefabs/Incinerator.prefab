@@ -10034,7 +10034,7 @@ MonoBehaviour:
   handler: {fileID: -4724502506944287200}
   tooltip: 
   item: {fileID: 11400000, guid: 65c8437dd1294f74a9b51040628230ff, type: 2}
-  saveID: 27
+  saveID: worldItemIncinerator
   dontSave: 0
 --- !u!95 &95522913344220394
 Animator:

@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4884356975078090}
+  - component: {fileID: 114166672158962306}
   - component: {fileID: 33607604976938854}
   - component: {fileID: 23037055991192690}
   - component: {fileID: 95435628683722432}
-  - component: {fileID: 114166672158962306}
   - component: {fileID: 208973992265646454}
   m_Layer: 0
   m_Name: IronOreResource
@@ -36,6 +36,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 186.04999}
+--- !u!114 &114166672158962306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078551866452224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f79061d20a842d469809a664dac9635, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dontSave: 0
+  saveID: resourceIronOre
+  dontRegisterToHivemind: 0
+  resource: {fileID: 11400000, guid: 398b2d55c5b81ea40b6f5c8a7879a039, type: 2}
+  health: 0
 --- !u!33 &33607604976938854
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -106,23 +123,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114166672158962306
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1078551866452224}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f79061d20a842d469809a664dac9635, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dontSave: 0
-  saveID: 7
-  dontRegisterToHivemind: 0
-  resource: {fileID: 11400000, guid: 398b2d55c5b81ea40b6f5c8a7879a039, type: 2}
-  health: 0
 --- !u!208 &208973992265646454
 NavMeshObstacle:
   m_ObjectHideFlags: 0

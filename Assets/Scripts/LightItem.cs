@@ -50,24 +50,10 @@ public class LightItem : MonoBehaviour, IItemSaveable, IInteractable {
 
 	void UpdateActive() {
 		light.enabled = active;
-		UpdateTooltip();
 	}
 
 	void UpdateIntensity() {
 		light.intensity = intensities[intensityNum];
-		UpdateTooltip();
-	}
-
-	void UpdateTooltip ()
-    {
-		if (active)
-		{
-			handler.SetNoticeText("Hold [E] to pick up, [F] to adjust brightness");
-		}
-		else
-		{
-			handler.SetNoticeText("Hold [E] to pick up, [F] to turn on");
-		}
 	}
 
 	public void GetData(out ItemSaveData data, out ObjectSaveData objData, out bool dontSave)

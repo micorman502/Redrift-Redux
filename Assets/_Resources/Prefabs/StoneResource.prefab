@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4761859788343898}
+  - component: {fileID: 114654163435729274}
   - component: {fileID: 33343045383664116}
   - component: {fileID: 23306382896694268}
   - component: {fileID: 95150292210513718}
-  - component: {fileID: 114654163435729274}
   - component: {fileID: 208840414529024888}
   m_Layer: 0
   m_Name: StoneResource
@@ -36,6 +36,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 116.811005}
+--- !u!114 &114654163435729274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813677803362390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f79061d20a842d469809a664dac9635, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dontSave: 0
+  saveID: resourceStone
+  dontRegisterToHivemind: 0
+  resource: {fileID: 11400000, guid: 331b12aed5cf22d4bae3b266c9ec9dbd, type: 2}
+  health: 0
 --- !u!33 &33343045383664116
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -105,23 +122,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114654163435729274
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1813677803362390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f79061d20a842d469809a664dac9635, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dontSave: 0
-  saveID: 8
-  dontRegisterToHivemind: 0
-  resource: {fileID: 11400000, guid: 331b12aed5cf22d4bae3b266c9ec9dbd, type: 2}
-  health: 0
 --- !u!208 &208840414529024888
 NavMeshObstacle:
   m_ObjectHideFlags: 0

@@ -48316,7 +48316,6 @@ GameObject:
   - component: {fileID: 2019392281}
   - component: {fileID: 2019392283}
   - component: {fileID: 2019392284}
-  - component: {fileID: 2019392286}
   m_Layer: 0
   m_Name: _ScriptHolder_
   m_TagString: ScriptHolder
@@ -48514,19 +48513,6 @@ MonoBehaviour:
   version: 0.2.9
   versionText: {fileID: 743036079}
   newVersionText: {fileID: 1069404920}
---- !u!114 &2019392286
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2019392279}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc976262d706a9d42a7ddef1f31d2c3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  order: {fileID: 11400000, guid: ae6ed6d5d204483479b34c888b1ae99c, type: 2}
 --- !u!1 &2022239815
 GameObject:
   m_ObjectHideFlags: 0

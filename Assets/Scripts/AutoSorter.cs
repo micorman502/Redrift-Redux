@@ -16,11 +16,6 @@ public class AutoSorter : MonoBehaviour, IItemSaveable, IGetTriggerInfo, IItemIn
 
 	public Renderer iconRenderer;
 
-	void Awake ()
-    {
-		SetTooltip();
-    }
-
 	public void Interact (WorldItem item)
     {
 		SetItem(item.item);
@@ -83,19 +78,7 @@ public class AutoSorter : MonoBehaviour, IItemSaveable, IGetTriggerInfo, IItemIn
 	void SetBlacklistMode (bool mode)
     {
 		blackListMode = mode;
-		SetTooltip();
     }
-
-	void SetTooltip()
-	{
-		if (!blackListMode)
-		{
-			handler.SetNoticeText("Hold [E] to pick up, [F] set sorting item [Whitelist/Inclusion Mode]");
-		} else
-        {
-			handler.SetNoticeText("Hold [E] to pick up, [F] set sorting item [Blacklist/Exclusion Mode]");
-		}
-	}
 
 	public void GetData(out ItemSaveData data, out ObjectSaveData objData, out bool dontSave)
 	{

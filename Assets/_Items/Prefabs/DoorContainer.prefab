@@ -120,7 +120,7 @@ MonoBehaviour:
   handler: {fileID: -1660632433419594470}
   tooltip: 
   item: {fileID: 11400000, guid: ea3dec4fdcf484b46a6d28d36fa965fb, type: 2}
-  saveID: 22
+  saveID: worldItemDoor
   dontSave: 0
 --- !u!114 &114515313346133542
 MonoBehaviour:

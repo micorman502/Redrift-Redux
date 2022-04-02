@@ -1,0 +1,238 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b760ebfd60375e747bd7c368520c8d75, type: 3}
+  m_Name: ObjectRegister
+  m_EditorClassIdentifier: 
+  objects:
+  - prefab: {fileID: 1629223841368952097, guid: cc45e8d4773e93f449934991850f2fba,
+      type: 3}
+    nameIdentifier: droppedItemDefault
+    id: 0
+  - prefab: {fileID: 1039647288645722, guid: 09ffc11aa8e95f14189efd5d1b7ac51f, type: 3}
+    nameIdentifier: worldItemFurnace
+    id: 1
+  - prefab: {fileID: 7236087398120845593, guid: fe92e72464b38e941a9a612a4030d841,
+      type: 3}
+    nameIdentifier: droppedItemFurnace
+    id: 2
+  - prefab: {fileID: 1213660547245230, guid: 58fdb143a57a7cd4d870067f71fcfe3e, type: 3}
+    nameIdentifier: worldItemAutoMiner
+    id: 3
+  - prefab: {fileID: 1967260869468111075, guid: 9828ed406ee6562428207a0644875417,
+      type: 3}
+    nameIdentifier: droppedItemAutoMiner
+    id: 4
+  - prefab: {fileID: 1199995106471088, guid: d3442cc9c36521145bdecf08deb166b0, type: 3}
+    nameIdentifier: worldItemAutoSorter
+    id: 5
+  - prefab: {fileID: 9202971784911267102, guid: 3eb363f9f2281014bba3a049569a9cbd,
+      type: 3}
+    nameIdentifier: droppedItemAutoSorter
+    id: 6
+  - prefab: {fileID: 1070651816951194, guid: 2adc991730722e34184fbd8d6aa78f40, type: 3}
+    nameIdentifier: worldItemConveyorBelt
+    id: 7
+  - prefab: {fileID: 6269948709102445229, guid: 802c74e54e67a8d4cb28c0eea706efc6,
+      type: 3}
+    nameIdentifier: droppedItemConveyorBelt
+    id: 8
+  - prefab: {fileID: 1846644513687052, guid: 3d2d859efe0f4284f963594e749efdd2, type: 3}
+    nameIdentifier: worldItemRadio
+    id: 9
+  - prefab: {fileID: 1811452115459055501, guid: df6ee83ce5b15264193f0a975dd6e0f2,
+      type: 3}
+    nameIdentifier: droppedItemRadio
+    id: 10
+  - prefab: {fileID: 1312209496639844, guid: a12cde8070de32242a6669e70f5b97fd, type: 3}
+    nameIdentifier: worldItemLight
+    id: 11
+  - prefab: {fileID: 2555960940202762555, guid: e482b8a1d9e67c94bb259ce4410908b5,
+      type: 3}
+    nameIdentifier: droppedItemLight
+    id: 12
+  - prefab: {fileID: 4851200420900205713, guid: f15ef36d3c808be4a97ff5b26bad727a,
+      type: 3}
+    nameIdentifier: droppedItemApple
+    id: 13
+  - prefab: {fileID: 1815630875089658, guid: e633e6caf448c4d4284f0c1fc395e14d, type: 3}
+    nameIdentifier: worldItemBox
+    id: 14
+  - prefab: {fileID: 4128050104928393490, guid: 6bcb96da1db1b244281f4f3a3881a97d,
+      type: 3}
+    nameIdentifier: droppedItemBox
+    id: 15
+  - prefab: {fileID: 218215555680432198, guid: b4af432aee11ed942b1811a69b0274f4, type: 3}
+    nameIdentifier: droppedItemClayBall
+    id: 16
+  - prefab: {fileID: 1735550779947510, guid: 830e6eb92cf54da43836607d076f4f1d, type: 3}
+    nameIdentifier: worldItemClayBrick
+    id: 17
+  - prefab: {fileID: 5804278749126926177, guid: b8ce3c6976a88ee438e387a525b487b2,
+      type: 3}
+    nameIdentifier: droppedItemClayBrick
+    id: 18
+  - prefab: {fileID: 2045766276814976003, guid: 61f16828af9bda440b8f7ae4808d9d69,
+      type: 3}
+    nameIdentifier: droppedItemComputerChip
+    id: 19
+  - prefab: {fileID: 1096139323235685430, guid: ce21b6b7078a5ab47a9cdb3d4e176e25,
+      type: 3}
+    nameIdentifier: droppedItemCopperIngot
+    id: 20
+  - prefab: {fileID: 9167098826142485774, guid: bba3d28ffe81021429116fca25cb7b3d,
+      type: 3}
+    nameIdentifier: droppedItemCopperOre
+    id: 21
+  - prefab: {fileID: 1515707734082384361, guid: 1aa222949d849d94bb86b410e2e322be,
+      type: 3}
+    nameIdentifier: droppedItemCopperWire
+    id: 22
+  - prefab: {fileID: 1365681976019388, guid: cf1f381ba78194c41af8d56c4e4fbbcf, type: 3}
+    nameIdentifier: worldItemCrate
+    id: 23
+  - prefab: {fileID: 8443702777011918912, guid: 199cc73120d1ab14081da833179a4b43,
+      type: 3}
+    nameIdentifier: droppedItemCrate
+    id: 24
+  - prefab: {fileID: 3439078838080999179, guid: 387ed14e16136854c96ae2d98b4cf5f1,
+      type: 3}
+    nameIdentifier: droppedItemDirtBall
+    id: 25
+  - prefab: {fileID: 1685766804058822, guid: bee2ed6aeed54e04ab10eabdd49360d5, type: 3}
+    nameIdentifier: worldItemDoor
+    id: 26
+  - prefab: {fileID: 3455090053731787029, guid: 6b43b653462f46e4787a46b4597957a6,
+      type: 3}
+    nameIdentifier: droppedItemDoor
+    id: 27
+  - prefab: {fileID: 1596449997860456, guid: 26080453e208b9c4a913841df5fafbe6, type: 3}
+    nameIdentifier: worldItemFloor
+    id: 28
+  - prefab: {fileID: 4888179155233729200, guid: df04021c2e5bb2044a282d8e36fbbae3,
+      type: 3}
+    nameIdentifier: droppedItemFloor
+    id: 29
+  - prefab: {fileID: 1916474053067786, guid: 90c32dea8bf9f7642af314af0cfe6c63, type: 3}
+    nameIdentifier: worldItemFlower
+    id: 30
+  - prefab: {fileID: 7660720418245111992, guid: 179fd29995af1fd428df3942b77aada5,
+      type: 3}
+    nameIdentifier: droppedItemFlower
+    id: 31
+  - prefab: {fileID: 1912206762362666, guid: e4d578e8f1ae25d45b6ab5f2118a96b0, type: 3}
+    nameIdentifier: worldItemGrass
+    id: 32
+  - prefab: {fileID: 3722668761442544903, guid: f4f923255a284e048b2df638fdc17666,
+      type: 3}
+    nameIdentifier: droppedItemGrass
+    id: 33
+  - prefab: {fileID: 1427960747825986, guid: 7893d8c70bb7a8a44ba1ea216c1e9b2d, type: 3}
+    nameIdentifier: worldItemIce
+    id: 34
+  - prefab: {fileID: 918782272692802242, guid: 6251f00713884b64ab18faaeab5d938d, type: 3}
+    nameIdentifier: droppedItemIce
+    id: 35
+  - prefab: {fileID: 1552388535253870, guid: 29e13cd9919fc8a4c9a68e931d746ebe, type: 3}
+    nameIdentifier: worldItemIncinerator
+    id: 36
+  - prefab: {fileID: 6968594888250614657, guid: 6187396cbadb2fc46bd0e0100ccae503,
+      type: 3}
+    nameIdentifier: droppedItemIncinerator
+    id: 37
+  - prefab: {fileID: 8675360987448103933, guid: 2506aab0ae85be6429a6f86d58a5c8c3,
+      type: 3}
+    nameIdentifier: droppedItemIronIngot
+    id: 38
+  - prefab: {fileID: 7490155146058890206, guid: 09dfa93fb7b785448a2ca7db7f778cde,
+      type: 3}
+    nameIdentifier: droppedItemIronOre
+    id: 39
+  - prefab: {fileID: 1502854491235290, guid: 4c504b8ad4d26504592de272d4145ba4, type: 3}
+    nameIdentifier: worldItemLadder
+    id: 40
+  - prefab: {fileID: 7401747798346034985, guid: d79d31373f381ae458736a8e62465325,
+      type: 3}
+    nameIdentifier: droppedItemLadder
+    id: 41
+  - prefab: {fileID: 6560921770637966404, guid: 59ffc3187db456d49bc84bbfa10b1fbb,
+      type: 3}
+    nameIdentifier: droppedItemLightningStone
+    id: 42
+  - prefab: {fileID: 1549088602080200, guid: 361c2729381be42498ca0e3e3ffa5a3a, type: 3}
+    nameIdentifier: worldItemPickaxeIron
+    id: 43
+  - prefab: {fileID: 1676383414774214, guid: 1d59e4b88b0c7a242970325ab33e104f, type: 3}
+    nameIdentifier: worldItemPickaxeLightning
+    id: 44
+  - prefab: {fileID: 1786563341914446, guid: 5f34a8483f909ca45b40146cb394fb68, type: 3}
+    nameIdentifier: worldItemPickaxeStone
+    id: 45
+  - prefab: {fileID: 1894212421264514, guid: bad2dcd76f004ad4391e3bbe7833c713, type: 3}
+    nameIdentifier: worldItemPickaxeWood
+    id: 46
+  - prefab: {fileID: 1125907287773136, guid: c6c900a9fa2571246bb6d324283202a8, type: 3}
+    nameIdentifier: worldItemWall
+    id: 47
+  - prefab: {fileID: 4473414144963499954, guid: 8266271133cf12e4ba6a155357dc8829,
+      type: 3}
+    nameIdentifier: droppedItemWall
+    id: 48
+  - prefab: {fileID: 1551644089404962, guid: c28ffaf35df5d264cb4c4b8ccb508e2e, type: 3}
+    nameIdentifier: worldItemWaterBucket
+    id: 49
+  - prefab: {fileID: 8936224179510503587, guid: c21bb7216d8c5fe4e99e9a745f61e7ed,
+      type: 3}
+    nameIdentifier: droppedItemWaterBucket
+    id: 50
+  - prefab: {fileID: 1866602517762588, guid: 8ab3016be8d000144b2d098465c24525, type: 3}
+    nameIdentifier: worldItemBucket
+    id: 51
+  - prefab: {fileID: 5076475376411239330, guid: e756702831adc3e4190a05512852d196,
+      type: 3}
+    nameIdentifier: droppedItemBucket
+    id: 52
+  - prefab: {fileID: 227868291145765972, guid: 3410e4e7c0c8a28418c016ed1e63990c, type: 3}
+    nameIdentifier: droppedItemSilicon
+    id: 53
+  - prefab: {fileID: 2184662666090656704, guid: b0755ce6a5d338d449f897948a33528f,
+      type: 3}
+    nameIdentifier: droppedItemStone
+    id: 54
+  - prefab: {fileID: 5817689752444402217, guid: 1cbd0d4690b2f674fb1f9e88c66c25c6,
+      type: 3}
+    nameIdentifier: droppedItemWood
+    id: 55
+  - prefab: {fileID: 1135837570133238, guid: 391691f07a50e6149bea917475ddc464, type: 3}
+    nameIdentifier: worldItemStarterCrate
+    id: 56
+  - prefab: {fileID: 1947450143509860, guid: 78341bb0c31c4f54493eba09b10f7179, type: 3}
+    nameIdentifier: resourceCopperOre
+    id: 57
+  - prefab: {fileID: 1078551866452224, guid: ffaf4c1f892bb4a49b183f3d4721e106, type: 3}
+    nameIdentifier: resourceIronOre
+    id: 58
+  - prefab: {fileID: 1813677803362390, guid: 2dba0152a55eceb4fab9f576fbbf9bd1, type: 3}
+    nameIdentifier: resourceStone
+    id: 59
+  - prefab: {fileID: 1523322516565944, guid: c5b0387d80fa75244b875949079823ed, type: 3}
+    nameIdentifier: resourceTree
+    id: 60
+  - prefab: {fileID: 1436171760241614, guid: dd28f4871800b9d42b5853af09d36453, type: 3}
+    nameIdentifier: smallIsland
+    id: 61
+  - prefab: {fileID: 1189018540791600, guid: 985621f1eafaddf43a446b8a3c0b6845, type: 3}
+    nameIdentifier: darkSmallIsland
+    id: 62
+  - prefab: {fileID: 8254937849148306895, guid: 9cc5aaadbf51e934ebd0d27eb4e9d64a,
+      type: 3}
+    nameIdentifier: worldItemGrassSpawnable
+    id: 63

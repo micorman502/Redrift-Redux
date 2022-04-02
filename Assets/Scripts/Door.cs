@@ -10,7 +10,6 @@ public class Door : MonoBehaviour, IInteractable {
 
 	void Start() {
 		anim = GetComponent<Animator>();
-		SetVisuals();
 	}
 
 	public void Interact ()
@@ -26,19 +25,5 @@ public class Door : MonoBehaviour, IInteractable {
     {
 		Debug.Log("set state");
 		open = state;
-		SetVisuals();
-	}
-
-	void SetVisuals ()
-    {
-		anim.SetBool("Open", open);
-		if (open)
-		{
-			handler.SetNoticeText("Hold [E] to pick up, [F] to close");
-		}
-		else
-		{
-			handler.SetNoticeText("Hold [E] to pick up, [F] to open");
-		}
 	}
 }

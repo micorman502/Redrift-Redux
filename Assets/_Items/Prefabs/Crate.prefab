@@ -53,7 +53,7 @@ MonoBehaviour:
   handler: {fileID: -696279161130812319}
   tooltip: Hold [E] to pick up, [F] to open
   item: {fileID: 11400000, guid: 02a4627bd0006d54bace935afcf26aa5, type: 2}
-  saveID: 20
+  saveID: worldItemCrate
   dontSave: 0
 --- !u!33 &33172173620245700
 MeshFilter:

@@ -218,7 +218,7 @@ MonoBehaviour:
   handler: {fileID: -9097778554327612735}
   tooltip: 
   item: {fileID: 11400000, guid: a82041a624ea06740b506ed16cbc66f3, type: 2}
-  saveID: 35
+  saveID: worldItemPickaxeWood
   dontSave: 0
 --- !u!54 &54217485626628048
 Rigidbody:

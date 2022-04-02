@@ -49,9 +49,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handler: {fileID: -7867130091431583635}
-  tooltip: 
   item: {fileID: 11400000, guid: 54aff0ee6bd8fa54ea6150a7e090eccd, type: 2}
-  saveID: 0
+  saveID: worldItemLight
   dontSave: 0
 --- !u!114 &3374882387231061474
 MonoBehaviour:
@@ -65,7 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7934659838e2d29459ba7ba7820bbfac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handler: {fileID: 0}
+  handler: {fileID: 1794554666995405539}
   saveID: 5
   intensities:
   - 0

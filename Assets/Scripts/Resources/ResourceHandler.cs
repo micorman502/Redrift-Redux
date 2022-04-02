@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ResourceHandler : MonoBehaviour, IItemSaveable, IHotText, IResource {
 	[SerializeField] bool dontSave;
-	[SerializeField] int saveID;
+	[SerializeField] string saveID;
 	[SerializeField] bool dontRegisterToHivemind;
 	public Resource resource;
 
@@ -103,7 +103,7 @@ public class ResourceHandler : MonoBehaviour, IItemSaveable, IHotText, IResource
 	public void GetData(out ItemSaveData data, out ObjectSaveData objData, out bool _dontSave)
 	{
 		ItemSaveData newData = new ItemSaveData();
-		ObjectSaveData newObjData = new ObjectSaveData(transform.position, transform.rotation, saveID);
+		ObjectSaveData newObjData = new ObjectSaveData(transform.position, transform.rotation, dontSave ? -1 : ObjectDatabase.Instance.GetIntID(saveID));
 
 		newData.num = health;
 

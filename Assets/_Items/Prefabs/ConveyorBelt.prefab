@@ -56,10 +56,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handler: {fileID: -4630490304524261038}
-  tooltip: 
   item: {fileID: 11400000, guid: eda8cd479833b8649945ad344a643265, type: 2}
-  saveID: 0
-  dontSave: 1
+  saveID: worldItemConveyorBelt
+  dontSave: 0
 --- !u!95 &95874512166827808
 Animator:
   serializedVersion: 3

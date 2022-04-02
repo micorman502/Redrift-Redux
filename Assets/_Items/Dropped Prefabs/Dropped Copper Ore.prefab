@@ -53,7 +53,7 @@ MonoBehaviour:
   handler: {fileID: -7946141031610932905}
   tooltip: Copper Ore
   item: {fileID: 11400000, guid: cc1dea67642fcc94793fc67b8b1116d7, type: 2}
-  saveID: 53
+  saveID: droppedItemCopperOre
   dontSave: 0
 --- !u!33 &9172362810829683192
 MeshFilter:

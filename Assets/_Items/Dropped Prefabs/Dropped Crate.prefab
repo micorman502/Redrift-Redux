@@ -52,7 +52,7 @@ MonoBehaviour:
   handler: {fileID: -6127756497482579755}
   tooltip: 
   item: {fileID: 11400000, guid: 02a4627bd0006d54bace935afcf26aa5, type: 2}
-  saveID: 55
+  saveID: droppedItemCrate
   dontSave: 0
 --- !u!33 &8456940374103548192
 MeshFilter:

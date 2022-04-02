@@ -49,10 +49,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handler: {fileID: -3343362371649114281}
-  tooltip: 
   item: {fileID: 11400000, guid: 4d66aab45fd39aa46bd3f9e06c5e33f7, type: 2}
-  saveID: 0
-  dontSave: 1
+  saveID: worldItemFurnace
+  dontSave: 0
 --- !u!65 &5678705944520386636
 BoxCollider:
   m_ObjectHideFlags: 0

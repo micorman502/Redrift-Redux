@@ -38789,6 +38789,7 @@ GameObject:
   - component: {fileID: 2019392291}
   - component: {fileID: 2019392292}
   - component: {fileID: 2019392293}
+  - component: {fileID: 2019392295}
   - component: {fileID: 2019392294}
   m_Layer: 0
   m_Name: _ScriptHolder_
@@ -38926,7 +38927,6 @@ MonoBehaviour:
   loadableObjectList: {fileID: 11400000, guid: cf64c9f6bfd9a1340aa3891d722d3fd1, type: 2}
   canvasAnim: {fileID: 1444759423}
   saveText: {fileID: 1957486600}
-  allItems: {fileID: 11400000, guid: ae6ed6d5d204483479b34c888b1ae99c, type: 2}
   difficulty: 0
   mode: 0
 --- !u!114 &2019392286
@@ -39096,10 +39096,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 2019392279}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc976262d706a9d42a7ddef1f31d2c3d, type: 3}
+  m_Script: {fileID: 11500000, guid: c9959addb4227f340a1225378f43bd1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  order: {fileID: 11400000, guid: ae6ed6d5d204483479b34c888b1ae99c, type: 2}
+  register: {fileID: 11400000, guid: 5bb39fda662be7147b8d1c9679f6caca, type: 2}
+--- !u!114 &2019392295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019392279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9f956874c4b4db4ab8a9d479bcbb461, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  register: {fileID: 11400000, guid: 8025f3b0cc15ffc46a7680d10af7ded1, type: 2}
 --- !u!850595691 &2059371449
 LightingSettings:
   m_ObjectHideFlags: 0

@@ -133,7 +133,7 @@ MonoBehaviour:
   handler: {fileID: 2720747783648675994}
   tooltip: Bucket
   item: {fileID: 11400000, guid: 296e1243692f86144accc4a222765046, type: 2}
-  saveID: 47
+  saveID: droppedItemBucket
   dontSave: 0
 --- !u!95 &5126290847165576588
 Animator:
