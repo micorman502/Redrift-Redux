@@ -6,13 +6,14 @@ public class AutoSorter : MonoBehaviour, IItemSaveable, IGetTriggerInfo, IItemIn
 
 	[SerializeField] ItemHandler handler;
 	[SerializeField] string saveID;
+	[SerializeField] IndicatorLight indicator;
 	public TellParent tellParent;
 
 	public Transform exit;
 
 	public ItemInfo sortingItem;
 
-	public bool blackListMode;
+	public bool blackListEnabled;
 
 	public Renderer iconRenderer;
 
@@ -41,7 +42,7 @@ public class AutoSorter : MonoBehaviour, IItemSaveable, IGetTriggerInfo, IItemIn
     {
 		if (handler)
 		{
-			if (handler.item == sortingItem && !blackListMode || handler.item != sortingItem && blackListMode)
+			if (handler.item == sortingItem && !blackListEnabled || handler.item != sortingItem && blackListEnabled)
 			{
 				handler.gameObject.transform.position = exit.position;
 				Rigidbody objRB = handler.GetComponent<Rigidbody>();
@@ -56,7 +57,7 @@ public class AutoSorter : MonoBehaviour, IItemSaveable, IGetTriggerInfo, IItemIn
 	public void SetItem(ItemInfo item) {
 		if (sortingItem == item)
         {
-			SetBlacklistMode(!blackListMode);
+			SetBlacklistMode(!blackListEnabled);
 			return;
         }
 		if (!item)
@@ -77,7 +78,9 @@ public class AutoSorter : MonoBehaviour, IItemSaveable, IGetTriggerInfo, IItemIn
 
 	void SetBlacklistMode (bool mode)
     {
-		blackListMode = mode;
+		blackListEnabled = mode;
+
+		indicator.SetState(!blackListEnabled);
     }
 
 	public void GetData(out ItemSaveData data, out ObjectSaveData objData, out bool dontSave)
@@ -85,7 +88,7 @@ public class AutoSorter : MonoBehaviour, IItemSaveable, IGetTriggerInfo, IItemIn
 		ItemSaveData newData = new ItemSaveData();
 		ObjectSaveData newObjData = new ObjectSaveData(transform.position, transform.rotation, ObjectDatabase.Instance.GetIntID(saveID));
 
-		newData.boolVal = blackListMode;
+		newData.boolVal = blackListEnabled;
 
 		if (sortingItem)
 		{

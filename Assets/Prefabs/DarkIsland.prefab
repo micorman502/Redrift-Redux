@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontSave: 1
   saveID: 0
-  dontRegisterToHivemind: 0
+  dontRegisterToHivemind: 1
   resource: {fileID: 11400000, guid: 85888302b409fcd4699b0f611b370231, type: 2}
   health: 0
 --- !u!33 &33765890939712516

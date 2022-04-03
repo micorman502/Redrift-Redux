@@ -108,7 +108,6 @@ GameObject:
   - component: {fileID: 114374733535039346}
   - component: {fileID: 114546380140407730}
   - component: {fileID: 225594745083308806}
-  - component: {fileID: 95567447518054972}
   m_Layer: 5
   m_Name: Achievement
   m_TagString: Untagged
@@ -205,25 +204,6 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
---- !u!95 &95567447518054972
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1728297454268036}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 385a307ec436b3d45af3708b42a21802, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1872606212019720
 GameObject:
   m_ObjectHideFlags: 0

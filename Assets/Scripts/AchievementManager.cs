@@ -29,7 +29,7 @@ public class AchievementManager : MonoBehaviour {
 		achievementHandlers = new AchievementHandler[achievements.Length];
 
 		for(int i = 0; i < achievements.Length; i++) {
-			GameObject achievementObj = Instantiate(achievementPrefab, acievementList) as GameObject;
+			GameObject achievementObj = Instantiate(achievementPrefab, acievementList);
 			AchievementHandler handler = achievementObj.GetComponent<AchievementHandler>();
 			handler.achievementNameText.text = achievements[i].achievementName;
 			handler.achievementDescText.text = achievements[i].achievementDesc;
@@ -40,7 +40,7 @@ public class AchievementManager : MonoBehaviour {
 	}
 
 	public void ShowAchievement(int achievementID) {
-		GameObject achievementObj = Instantiate(achievementPrefab, achievementContainer) as GameObject;
+		GameObject achievementObj = Instantiate(achievementPrefab, achievementContainer);
 		AchievementHandler handler = achievementObj.GetComponent<AchievementHandler>();
 		int i = 0;
 		foreach(Achievement achievement in achievements) {
@@ -52,6 +52,8 @@ public class AchievementManager : MonoBehaviour {
 			}
 			i++;
 		}
+
+		Destroy(achievementObj, 7f);
 	}
 
 	public void SetAchievements(List<int> achievementIDs) {
