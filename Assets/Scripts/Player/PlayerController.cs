@@ -168,9 +168,9 @@ public class PlayerController : MonoBehaviour {
 		difficulty = FindObjectOfType<SaveManager>().difficulty;
 
 		persistentData = FindObjectOfType<PersistentData>();
-		if(!dead && !persistentData.loadSave) {
+		if(!dead && !persistentData.loadingFromSave) {
 			currentWorld = WorldManager.WorldType.Light;
-			EnterLightWorld();
+			//EnterLightWorld();
 		}
 	}
 
@@ -392,14 +392,14 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 
-		if(transform.position.y < -100f) {
+		/*if(transform.position.y < -100f) {
 			if(currentWorld == WorldManager.WorldType.Light) {
 				EnterDarkWorld();
 				AchievementManager.Instance.GetAchievement(10); // Achievement: Explorer
 			} else {
 				EnterLightWorld();
 			}
-		}
+		}*/
 
 		CheckHotTextObjects();
 		CheckInteractions(hit);
@@ -666,52 +666,6 @@ public class PlayerController : MonoBehaviour {
 		pickingUp = false;
 	}
 
-	void EnterLightWorld() {
-
-		LoadLightWorld();
-
-		transform.position = lightWorldEnterPoint.position;
-
-		ignoreFallDamage = true;
-		NoticeTextManager.Instance.AddNoticeText("ENTERING LIGHT REALM", 3, 2);
-		//canvasAnim.SetTrigger("RealmtooltipTextEnter");
-		Invoke("HideRealmtooltipText", 3);
-	}
-
-	void EnterDarkWorld() {
-
-		LoadDarkWorld();
-
-		transform.position = darkWorldEnterPoint.position;
-
-		ignoreFallDamage = true;
-		NoticeTextManager.Instance.AddNoticeText("ENTERING DARK REALM", 3, 2);
-		//canvasAnim.SetTrigger("RealmtooltipTextEnter");
-		Invoke("HideRealmtooltipText", 3);
-	}
-
-	public void LoadLightWorld() {
-		currentWorld = WorldManager.WorldType.Light;
-		RenderSettings.fogColor = defaultFogColor;
-		RenderSettings.fogDensity = defaultFogDensity;
-		playerCamera.GetComponent<Camera>().backgroundColor = defaultPlayerCameraColor;
-		lightDeactivateObjects.SetActive(true);
-		darkDeactivateObjects.SetActive(false);
-		playerCamera.GetComponent<PostProcessingBehaviour>().profile = lightPostProcessingProfile;
-		rain.SetActive(false);
-	}
-
-	public void LoadDarkWorld() {
-		currentWorld = WorldManager.WorldType.Dark;
-		RenderSettings.fogColor = Color.black;
-		RenderSettings.fogDensity = 0.04f;
-		playerCamera.GetComponent<Camera>().backgroundColor = Color.black;
-		darkDeactivateObjects.SetActive(true);
-		lightDeactivateObjects.SetActive(false);
-		playerCamera.GetComponent<PostProcessingBehaviour>().profile = darkPostProcessingProfile;
-		rain.SetActive(true);
-	}
-
 	void HideRealmtooltipText() {
 		//canvasAnim.SetTrigger("RealmtooltipTextExit");
 	}
@@ -721,11 +675,9 @@ public class PlayerController : MonoBehaviour {
 			inventory.ClearInventory();
 		}
 		PlayerEvents.OnPlayerDeath();
-		playerCameraPostProcessingBehaviour.profile = darkPostProcessingProfile;
-		transform.position = purgatorySpawn.position;
-		RenderSettings.fogColor = Color.black;
-		RenderSettings.fogDensity = 0.07f;
-		playerCamera.GetComponent<Camera>().backgroundColor = Color.black;
+
+		RealmTeleportManager.Instance.TeleportToRealm("Purgatory");
+
 		dead = true;
 	}
 
@@ -733,11 +685,8 @@ public class PlayerController : MonoBehaviour {
 		health = maxHealth;
 		hunger = maxHunger;
 		dead = false;
-		if(currentWorld == WorldManager.WorldType.Light) {
-			EnterLightWorld();
-		} else {
-			EnterDarkWorld();
-		}
+
+		RealmTeleportManager.Instance.TeleportToPreviousRealm();
 	}
 
 	public void LockLook(bool _lockLook) {

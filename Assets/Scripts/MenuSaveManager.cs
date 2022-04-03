@@ -79,7 +79,7 @@ public class MenuSaveManager : MonoBehaviour {
 	}
 
 	public void LoadSave(int saveNum) {
-		persistentData.loadSave = true;
+		persistentData.loadingFromSave = true;
 		persistentData.saveToLoad = saveNum;
 		Debug.Log("Loading save " + saveNum);
 		menuManager.LoadScene("World");
@@ -134,7 +134,7 @@ public class MenuSaveManager : MonoBehaviour {
 		persistentData.newSaveName = saveNameInputField.text;
 		persistentData.difficulty = saveDifficultyDropdown.value;
 		persistentData.mode = saveModeDropdown.value;
-		persistentData.loadSave = false;
+		persistentData.loadingFromSave = false;
 		persistentData.saveToLoad = info.Length;
 		menuManager.LoadScene("World");
 	}

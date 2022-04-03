@@ -54,7 +54,7 @@ public class SaveManager : MonoBehaviour {
 
 		if (persistentData)
 		{
-			if (persistentData.loadSave)
+			if (persistentData.loadingFromSave)
 			{
 				LoadGame(persistentData.saveToLoad);
 			}
@@ -152,11 +152,8 @@ public class SaveManager : MonoBehaviour {
 			if (save.playerDead) {
 				player.Die();
 			} else {
-				if(save.worldType == 0) {
-					player.LoadLightWorld();
-				} else {
-					player.LoadDarkWorld();
-				}
+				Debug.Log("loading realm index: " + save.realmIndex);
+				RealmTeleportManager.Instance.LoadFromSave(save.realmIndex);
 			}
 
 			player.rb.velocity = save.playerVelocity;
@@ -180,7 +177,7 @@ public class SaveManager : MonoBehaviour {
 		Save save = CreateSave();
 
 		string path;
-		if(persistentData.loadSave) {
+		if(persistentData.loadingFromSave) {
 			path = Application.persistentDataPath + "/saves/" + info[persistentData.saveToLoad].Name;
 		} else {
 			path = Application.persistentDataPath + "/saves/" + persistentData.newSaveName + ".save";
@@ -198,11 +195,8 @@ public class SaveManager : MonoBehaviour {
 		save.playerHunger = player.hunger;
 		save.saveTime = DateTime.Now;
 
-		if(player.currentWorld == WorldManager.WorldType.Light) {
-			save.worldType = 0;
-		} else {
-			save.worldType = 1;
-		}
+		save.realmIndex = RealmTeleportManager.Instance.GetCurrentRealmIndex();
+		Debug.Log("save realm index is: " + save.realmIndex);
 
 		foreach(InventorySlot item in inventory.inventory.Slots) {
 			if(item.Item) {

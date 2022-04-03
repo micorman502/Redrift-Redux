@@ -18,7 +18,7 @@ public class Save {
 
 	public DateTime saveTime;
 
-	public int worldType;
+	public int realmIndex;
 
 	public int difficulty;
 

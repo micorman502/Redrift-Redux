@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PersistentData : MonoBehaviour {
 
-	public bool loadSave;
+	public bool loadingFromSave;
 	public int saveToLoad;
 	public int difficulty;
 	public int mode;

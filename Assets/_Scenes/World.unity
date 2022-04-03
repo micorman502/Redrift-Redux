@@ -894,6 +894,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 136053647}
   m_CullTransparentMesh: 0
+--- !u!1 &156722491 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1199021711668516, guid: 58c3dc293c422254b967cc574d836720,
+    type: 3}
+  m_PrefabInstance: {fileID: 250817377}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &168070002
 GameObject:
   m_ObjectHideFlags: 0
@@ -23889,7 +23895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef5361447da919448c664d3b57f6e83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadSave: 0
+  loadingFromSave: 0
   saveToLoad: 0
   difficulty: 0
   mode: 1
@@ -38833,6 +38839,7 @@ GameObject:
   - component: {fileID: 2019392293}
   - component: {fileID: 2019392295}
   - component: {fileID: 2019392294}
+  - component: {fileID: 2019392296}
   m_Layer: 0
   m_Name: _ScriptHolder_
   m_TagString: ScriptHolder
@@ -39154,6 +39161,52 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   register: {fileID: 11400000, guid: 8025f3b0cc15ffc46a7680d10af7ded1, type: 2}
+--- !u!114 &2019392296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019392279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9765af46422b2504e976ad75198a6022, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  realms:
+  - realmName: Light
+    hidden: 0
+    realmTeleportPosition: {fileID: 546438324}
+    realmEnterParticles: {fileID: 0}
+    realmObjects: []
+    realmPostProcessing: {fileID: 11400000, guid: 9c60b9ce4eed2944d808fc3bb00598a0,
+      type: 2}
+    cameraBGColour: {r: 0.5137255, g: 0.8980392, b: 1, a: 1}
+    fogColour: {r: 0.5137255, g: 0.8980392, b: 1, a: 1}
+    fogDensity: 0.0065
+  - realmName: Dark
+    hidden: 0
+    realmTeleportPosition: {fileID: 257595947}
+    realmEnterParticles: {fileID: 0}
+    realmObjects:
+    - {fileID: 156722491}
+    realmPostProcessing: {fileID: 11400000, guid: 8aba0b272bd05064ca7206fdc87a2483,
+      type: 2}
+    cameraBGColour: {r: 0, g: 0, b: 0, a: 1}
+    fogColour: {r: 0, g: 0, b: 0, a: 1}
+    fogDensity: 0.04
+  - realmName: Purgatory
+    hidden: 1
+    realmTeleportPosition: {fileID: 662518168}
+    realmEnterParticles: {fileID: 0}
+    realmObjects:
+    - {fileID: 156722491}
+    realmPostProcessing: {fileID: 11400000, guid: 8aba0b272bd05064ca7206fdc87a2483,
+      type: 2}
+    cameraBGColour: {r: 0, g: 0, b: 0, a: 1}
+    fogColour: {r: 0, g: 0, b: 0, a: 1}
+    fogDensity: 0.08
+  teleportYPosition: -100
 --- !u!850595691 &2059371449
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -39358,7 +39411,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -413.35, y: -10.4745}
+  m_AnchoredPosition: {x: -425.27054, y: -10.4745}
   m_SizeDelta: {x: 0, y: 402.106}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &2119893831

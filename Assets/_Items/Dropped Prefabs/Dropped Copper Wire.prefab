@@ -52,7 +52,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handler: {fileID: 1199718363004935040}
-  tooltip: Copper Wire
   item: {fileID: 11400000, guid: 13919cb26fba1284689672e0315679e4, type: 2}
   saveID: droppedItemCopperWire
   dontSave: 0
@@ -84,8 +83,8 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bb40f62380c1bfd4e9bd09ac18ee5bfe, type: 2}
   - {fileID: 2100000, guid: ba1a15898287b924b8ee6b8a3c17bacb, type: 2}
+  - {fileID: 2100000, guid: bb40f62380c1bfd4e9bd09ac18ee5bfe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

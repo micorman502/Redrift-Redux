@@ -92,7 +92,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5072524021758853496}
   - component: {fileID: 5180210736128045380}
-  - component: {fileID: 5126290847165576588}
   - component: {fileID: 5095625914904940610}
   - component: {fileID: 5085340221578709626}
   - component: {fileID: 2720747783648675994}
@@ -131,29 +130,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handler: {fileID: 2720747783648675994}
-  tooltip: Bucket
   item: {fileID: 11400000, guid: 296e1243692f86144accc4a222765046, type: 2}
   saveID: droppedItemBucket
   dontSave: 0
---- !u!95 &5126290847165576588
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5076475376411239330}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 42a8920ba84cfbb4ba61ca7da8b4ebc6, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!54 &5095625914904940610
 Rigidbody:
   m_ObjectHideFlags: 0

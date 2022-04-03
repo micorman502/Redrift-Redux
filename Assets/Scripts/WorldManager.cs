@@ -36,7 +36,7 @@ public class WorldManager : MonoBehaviour {
 		persistentData = FindObjectOfType<PersistentData>();
 		if(persistentData) {
 			difficulty = persistentData.difficulty;
-			if(!persistentData.loadSave) {
+			if(!persistentData.loadingFromSave) {
 				GenerateWorld();
 			}
 		} else {
