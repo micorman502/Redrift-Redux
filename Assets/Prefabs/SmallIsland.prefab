@@ -49,9 +49,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f79061d20a842d469809a664dac9635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dontSave: 0
+  dontSave: 1
   saveID: smallIsland
-  dontRegisterToHivemind: 0
+  dontRegisterToHivemind: 1
   resource: {fileID: 11400000, guid: 85888302b409fcd4699b0f611b370231, type: 2}
   health: 0
 --- !u!33 &33946769942624712
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5360b57439f563345af97bc249d9d1ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveID: 10
+  saveID: smallIsland
   moveAmount: {x: 0, y: 0, z: 1}
   minSpeed: 0.45
   maxSpeed: 1.25

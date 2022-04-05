@@ -39,11 +39,11 @@ MonoBehaviour:
     nameIdentifier: droppedItemAutoSorter
     id: 6
   - prefab: {fileID: 1070651816951194, guid: 2adc991730722e34184fbd8d6aa78f40, type: 3}
-    nameIdentifier: worldItemConveyorBelt
+    nameIdentifier: worldItemConveyorBeltT1
     id: 7
   - prefab: {fileID: 6269948709102445229, guid: 802c74e54e67a8d4cb28c0eea706efc6,
       type: 3}
-    nameIdentifier: droppedItemConveyorBelt
+    nameIdentifier: droppedItemConveyorBeltT1
     id: 8
   - prefab: {fileID: 1846644513687052, guid: 3d2d859efe0f4284f963594e749efdd2, type: 3}
     nameIdentifier: worldItemRadio
@@ -243,4 +243,15 @@ MonoBehaviour:
   - prefab: {fileID: 5970644240723651174, guid: 3db2ce2a098d78246b10dd12a461d382,
       type: 3}
     nameIdentifier: resourceQuartz
-    id: 64
+    id: 65
+  - prefab: {fileID: 845732076161651605, guid: cf29323a0d415f54290c8a6e6bb39f12, type: 3}
+    nameIdentifier: worldItemConveyorBeltT2
+    id: 66
+  - prefab: {fileID: 2852399656458027624, guid: 695170a8a6e1b0b4291016be1952530a,
+      type: 3}
+    nameIdentifier: droppedItemConveyorBeltT2
+    id: 67
+  - prefab: {fileID: 2852399656458027624, guid: 695170a8a6e1b0b4291016be1952530a,
+      type: 3}
+    nameIdentifier: droppedItemGlass
+    id: 68

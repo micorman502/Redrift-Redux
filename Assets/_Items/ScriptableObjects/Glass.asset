@@ -9,16 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cf3bcb859002cb438e67447d08656b8, type: 3}
-  m_Name: Quartz
+  m_Script: {fileID: 11500000, guid: dfd659c09d6007a4d92c91f3e04b9b81, type: 3}
+  m_Name: Glass
   m_EditorClassIdentifier: 
-  itemName: Quartz
+  itemName: Glass
   itemDescription: 
   stackSize: 100
   stackPrefix: x
-  id: 36
+  id: 38
   achievementId: -1
-  icon: {fileID: 21300000, guid: 7c5219889685a3f48950005003d9ce96, type: 3}
-  droppedPrefab: {fileID: 1603179511727255228, guid: 2b41c08db7ab2f441a6b73b41b5fcee5,
+  icon: {fileID: 21300000, guid: ed096614aaf674a4587057454853681e, type: 3}
+  droppedPrefab: {fileID: 388971325679711312, guid: c642be9507ede9d4086708a30dc863a1,
     type: 3}
-  smeltResult: {fileID: 0}

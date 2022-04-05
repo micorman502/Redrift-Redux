@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 208470062905171278}
   - component: {fileID: -4630490304524261038}
   m_Layer: 0
-  m_Name: ConveyorBelt
+  m_Name: ConveyorBeltT1
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,7 +57,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   handler: {fileID: -4630490304524261038}
   item: {fileID: 11400000, guid: eda8cd479833b8649945ad344a643265, type: 2}
-  saveID: worldItemConveyorBelt
+  saveID: Down There VVV
   dontSave: 1
 --- !u!95 &95874512166827808
 Animator:
@@ -91,12 +91,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handler: {fileID: 114396557718733982}
-  saveID: worldItemConveyorBelt
+  saveID: worldItemConveyorBeltT1
   speeds:
   - 0
   - 0.5
-  - 1
-  - 2
   speedNum: 0
   tellParent: {fileID: 114545526320037542}
 --- !u!82 &82349076515235410

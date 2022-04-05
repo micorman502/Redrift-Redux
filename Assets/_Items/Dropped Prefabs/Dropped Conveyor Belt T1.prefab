@@ -12,12 +12,11 @@ GameObject:
   - component: {fileID: 6237860699457655197}
   - component: {fileID: 6300621259892317133}
   - component: {fileID: 6292796544525482111}
-  - component: {fileID: 6220639420180441811}
   - component: {fileID: 6324971560419520737}
   - component: {fileID: 7187001442841632067}
   - component: {fileID: 8533316428223635071}
   m_Layer: 6
-  m_Name: Dropped Conveyor Belt
+  m_Name: Dropped Conveyor Belt T1
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,9 +49,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handler: {fileID: 8533316428223635071}
-  tooltip: 
   item: {fileID: 11400000, guid: eda8cd479833b8649945ad344a643265, type: 2}
-  saveID: droppedItemConveyorBelt
+  saveID: droppedItemConveyorBeltT1
   dontSave: 0
 --- !u!33 &6300621259892317133
 MeshFilter:
@@ -105,25 +103,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!95 &6220639420180441811
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6269948709102445229}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: f445ff25429d8114e991ed87d305abb9, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!54 &6324971560419520737
 Rigidbody:
   m_ObjectHideFlags: 0

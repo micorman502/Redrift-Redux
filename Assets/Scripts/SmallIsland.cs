@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SmallIsland : MonoBehaviour, IItemSaveable {
 
-	public int saveID;
+	public string saveID;
 
 	public Vector3 moveAmount;
 
@@ -48,7 +48,7 @@ public class SmallIsland : MonoBehaviour, IItemSaveable {
 	public void GetData(out ItemSaveData data, out ObjectSaveData objData, out bool dontSave)
 	{
 		ItemSaveData newData = new ItemSaveData();
-		ObjectSaveData newObjData = new ObjectSaveData(transform.position, transform.rotation, saveID);
+		ObjectSaveData newObjData = new ObjectSaveData(transform.position, transform.rotation, ObjectDatabase.Instance.GetIntID(saveID));
 
 		newData.floatVal = speed;
 

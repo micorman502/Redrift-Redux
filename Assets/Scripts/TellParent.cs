@@ -15,11 +15,15 @@ public class TellParent : MonoBehaviour {
     }
     void OnTriggerEnter(Collider col) {
 		if (sendInitialMessage)
+		{
 			realTarget.GetTriggerInfo(col);
+		}
 	}
 
 	void OnTriggerStay(Collider col) {
 		if (sendRepeatingMessage)
+		{
 			realTarget.GetTriggerInfoRepeating(col);
+		}
 	}
 }

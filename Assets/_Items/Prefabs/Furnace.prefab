@@ -32,6 +32,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 2566665213697075916}
   - {fileID: 7872670002508943080}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -5035,9 +5036,8 @@ GameObject:
   - component: {fileID: 7872670002508943080}
   - component: {fileID: 3319029102340457730}
   - component: {fileID: 6031534105416911071}
-  - component: {fileID: 3360174202659040161}
   m_Layer: 0
-  m_Name: Furnace
+  m_Name: Visual
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5056,9 +5056,8 @@ Transform:
   m_Children:
   - {fileID: 237765282886061418}
   - {fileID: 1197655069603671079}
-  - {fileID: 2566665213697075916}
   m_Father: {fileID: 4049994254861238}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &3319029102340457730
 MeshFilter:
@@ -5110,25 +5109,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!95 &3360174202659040161
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1583535093686781252}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: de332d06a6a4e764e83f8cc32bb05fb6, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3785108395042924320
 GameObject:
   m_ObjectHideFlags: 0
@@ -10005,12 +9985,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5093720116376682633}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 7872670002508943080}
-  m_RootOrder: 2
+  m_Father: {fileID: 4049994254861238}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &9047055924484832990
 BoxCollider:
@@ -10039,4 +10019,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sendInitialMessage: 1
   sendRepeatingMessage: 1
-  target: {fileID: 1583535093686781252}
+  target: {fileID: 1039647288645722}

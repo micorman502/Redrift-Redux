@@ -9,8 +9,6 @@ using EZCameraShake;
 
 public class PlayerController : MonoBehaviour {
 
-	public WorldManager.WorldType currentWorld;
-
 	public static PlayerController currentPlayer;
 
 	public GameObject playerCameraHolder;
@@ -31,18 +29,7 @@ public class PlayerController : MonoBehaviour {
 	public float interactRange = 2f;
 	public ItemInfo fuelItem;
 
-	public Transform purgatorySpawn;
-
-	public GameObject lightDeactivateObjects;
-	public GameObject darkDeactivateObjects;
-
 	[HideInInspector] public PostProcessingBehaviour playerCameraPostProcessingBehaviour;
-
-	public PostProcessingProfile lightPostProcessingProfile;
-	public PostProcessingProfile darkPostProcessingProfile;
-
-	public Transform lightWorldEnterPoint;
-	public Transform darkWorldEnterPoint;
 
 	public ParticleSystem useParticles;
 
@@ -169,7 +156,7 @@ public class PlayerController : MonoBehaviour {
 
 		persistentData = FindObjectOfType<PersistentData>();
 		if(!dead && !persistentData.loadingFromSave) {
-			currentWorld = WorldManager.WorldType.Light;
+			RealmTeleportManager.Instance.TeleportToRealm("Light");
 			//EnterLightWorld();
 		}
 	}
@@ -664,10 +651,6 @@ public class PlayerController : MonoBehaviour {
 		pickingUpTime = 0f;
 		gathering = false;
 		pickingUp = false;
-	}
-
-	void HideRealmtooltipText() {
-		//canvasAnim.SetTrigger("RealmtooltipTextExit");
 	}
 
 	public void Die() {
