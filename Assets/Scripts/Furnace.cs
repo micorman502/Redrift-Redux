@@ -12,6 +12,7 @@ public class Furnace : MonoBehaviour, IItemSaveable, IGetTriggerInfo {
 
 	[HideInInspector] public float fuel = 0;
 	[HideInInspector] public OreInfo currentSmeltingItem;
+	[SerializeField] Transform dropPos;
 
 	public float smeltTime = 10f;
 
@@ -73,7 +74,7 @@ public class Furnace : MonoBehaviour, IItemSaveable, IGetTriggerInfo {
 	}
 
 	void DropItem(ItemInfo item) {
-		GameObject smeltedItemObj = Instantiate(item.droppedPrefab, transform.position + transform.forward * 0.25f - transform.up * 0.75f, item.droppedPrefab.transform.rotation) as GameObject;
+		GameObject smeltedItemObj = Instantiate(item.droppedPrefab, dropPos ? dropPos.position : transform.position + transform.forward * 0.25f - transform.up * 0.75f, item.droppedPrefab.transform.rotation) as GameObject;
 		Rigidbody objRB = smeltedItemObj.GetComponent<Rigidbody>();
 		if(objRB) {
 			objRB.velocity = transform.forward;

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfd659c09d6007a4d92c91f3e04b9b81, type: 3}
+  m_Name: OpticalSensor
+  m_EditorClassIdentifier: 
+  itemName: Optical Sensor
+  itemDescription: 
+  stackSize: 100
+  stackPrefix: x
+  id: 39
+  achievementId: -1
+  icon: {fileID: -2771551045468622776, guid: 62a49a15db965bf498182dc76899c242, type: 3}
+  droppedPrefab: {fileID: 3421132837957578778, guid: 769edd029c27e17469e947b43e553558,
+    type: 3}

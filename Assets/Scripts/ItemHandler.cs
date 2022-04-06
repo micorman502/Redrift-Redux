@@ -11,6 +11,14 @@ public class ItemHandler : MonoBehaviour, IItemSaveable {
 	[SerializeField] bool dontSave;
 	public void GetData(out ItemSaveData data, out ObjectSaveData objData, out bool _dontSave)
 	{
+		if (dontSave)
+        {
+			data = new ItemSaveData();
+			objData = new ObjectSaveData();
+			_dontSave = dontSave;
+			return;
+		}
+
 		ItemSaveData newData = new ItemSaveData();
 		ObjectSaveData newObjData = new ObjectSaveData(transform.position, transform.rotation, ObjectDatabase.Instance.GetIntID(saveID));
 

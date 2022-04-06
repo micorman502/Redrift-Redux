@@ -18,6 +18,6 @@ MonoBehaviour:
   stackPrefix: x
   id: 38
   achievementId: -1
-  icon: {fileID: 21300000, guid: ed096614aaf674a4587057454853681e, type: 3}
+  icon: {fileID: 8884383223624550148, guid: 62a49a15db965bf498182dc76899c242, type: 3}
   droppedPrefab: {fileID: 388971325679711312, guid: c642be9507ede9d4086708a30dc863a1,
     type: 3}

@@ -189,6 +189,11 @@ public class RealmTeleportManager : MonoBehaviour
     {
         return currentRealmIndex;
     }
+
+    public string GetCurrentRealmName ()
+    {
+        return realms[currentRealmIndex].realmName;
+    }
 }
 
 [System.Serializable]

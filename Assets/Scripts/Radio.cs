@@ -8,27 +8,17 @@ public class Radio : MonoBehaviour, IItemSaveable, IInteractable {
 	[SerializeField] string saveID;
 	[SerializeField] GameObject slider;
 	[SerializeField] Vector2 sliderMinMax;
+	[SerializeField] AudioSource audioSource;
+	[SerializeField] Song[] availiableSongs;
 	Animator anim;
-	public Sound[] songs;
-	[HideInInspector] public int songNum = -1;
+	int currentSong = -1;
 
 	SettingsManager settingsManager;
 
 	void Awake() { // The radio ignores pitch
 		settingsManager = FindObjectOfType<SettingsManager>();
 		anim = GetComponent<Animator>();
-		foreach(Sound s in songs) {
-			s.source = gameObject.AddComponent<AudioSource>();
-			s.source.clip = s.clip;
-			s.source.loop = true;
-			s.source.dopplerLevel = 0;
-			s.source.spatialBlend = 1;
-			s.source.volume = s.volume;
-			s.source.rolloffMode = AudioRolloffMode.Linear;
-			s.source.maxDistance = 50f;
-			s.source.minDistance = 0f;
-			s.source.outputAudioMixerGroup = settingsManager.audioMixer.FindMatchingGroups("Master")[0];
-		}
+
 		SetSong(-1);
 	}
 
@@ -39,56 +29,52 @@ public class Radio : MonoBehaviour, IItemSaveable, IInteractable {
 	}
 	
 	public void ChangeSong() {
-		SetSong(songNum + 1);
+		SetSong(currentSong + 1);
 	}
 
 	public void SetSong(int song) {
-		songNum = song;
+		currentSong = song;
 
-		if (songNum >= songs.Length)
+		if (currentSong >= availiableSongs.Length)
 		{
-			songNum = -1;
+			currentSong = -1;
 		}
 
-		if (songNum == -1) {
+		if (currentSong == -1) {
 			UpdateGraphics();
 		}
 
-		for(int i = 0; i < songs.Length; i++) {
-			if(i == songNum) {
-				songs[i].source.Play();
-			} else {
-				if(songs[i].source.isPlaying) {
-					songs[i].source.Stop();
-				}
-			}
-		}
+		if (currentSong >= 0)
+		{
+			audioSource.clip = availiableSongs[song].clip;
+			audioSource.Play();
+		} else
+        {
+			audioSource.Stop();
+        }
 
 		UpdateGraphics();
 	}
 
 	void UpdateGraphics() {
 		Vector3 newPos = slider.transform.localPosition;
-		newPos.y = Mathf.Lerp(sliderMinMax.x, sliderMinMax.y, (float)(songNum + 1) / (float)songs.Length);
+		newPos.y = Mathf.Lerp(sliderMinMax.x, sliderMinMax.y, (float)(currentSong + 1) / (float)availiableSongs.Length);
 		slider.transform.localPosition = newPos;
-		if(songNum == -1) {
+		if(currentSong == -1) {
 			anim.SetBool("playing", false);
 		} else {
 			anim.SetBool("playing", true);
+			anim.playbackTime = 0;
+			anim.SetFloat("bpm", availiableSongs[currentSong].bpm);
 		}
 	}
 
-	void StopSongs() {
-		foreach(Sound s in songs) {
-			s.source.Stop();
-		}
-	}
 	public void GetData(out ItemSaveData data, out ObjectSaveData objData, out bool dontSave)
 	{
 		ItemSaveData newData = new ItemSaveData();
 		ObjectSaveData newObjData = new ObjectSaveData(transform.position, transform.rotation, ObjectDatabase.Instance.GetIntID(saveID));
 
-		newData.num = songNum;
+		newData.num = currentSong;
 
 		data = newData;
 		objData = newObjData;
@@ -102,4 +88,12 @@ public class Radio : MonoBehaviour, IItemSaveable, IInteractable {
 
 		SetSong(data.num);
 	}
+}
+
+[System.Serializable]
+public class Song
+{
+	public string name;
+	public AudioClip clip;
+	public float bpm;
 }

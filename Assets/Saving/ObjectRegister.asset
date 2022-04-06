@@ -251,7 +251,18 @@ MonoBehaviour:
       type: 3}
     nameIdentifier: droppedItemConveyorBeltT2
     id: 67
-  - prefab: {fileID: 2852399656458027624, guid: 695170a8a6e1b0b4291016be1952530a,
-      type: 3}
+  - prefab: {fileID: 388971325679711312, guid: c642be9507ede9d4086708a30dc863a1, type: 3}
     nameIdentifier: droppedItemGlass
     id: 68
+  - prefab: {fileID: 3421132837957578778, guid: 769edd029c27e17469e947b43e553558,
+      type: 3}
+    nameIdentifier: droppedItemOpticalSensor
+    id: 69
+  - prefab: {fileID: 2629181168142668107, guid: 7b05c8a711020f44086966a92b2f623c,
+      type: 3}
+    nameIdentifier: droppedItemGoldOre
+    id: 69
+  - prefab: {fileID: 1297390542791272418, guid: 02ee4b43a976334488646e1414364955,
+      type: 3}
+    nameIdentifier: droppedItemGoldIngot
+    id: 69
