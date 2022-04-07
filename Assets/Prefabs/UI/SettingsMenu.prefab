@@ -730,7 +730,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Fastest
+  m_Text: Minimum
 --- !u!1 &1072624511642490
 GameObject:
   m_ObjectHideFlags: 0
@@ -3098,21 +3098,15 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: Fastest
+    - m_Text: Minimum
       m_Image: {fileID: 0}
-    - m_Text: Fast
+    - m_Text: Minor
       m_Image: {fileID: 0}
-    - m_Text: Quick
+    - m_Text: Moderate
       m_Image: {fileID: 0}
-    - m_Text: Simple
+    - m_Text: Major
       m_Image: {fileID: 0}
-    - m_Text: Good
-      m_Image: {fileID: 0}
-    - m_Text: Beautiful
-      m_Image: {fileID: 0}
-    - m_Text: Fantastic
-      m_Image: {fileID: 0}
-    - m_Text: Ultra
+    - m_Text: Maximum
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5153,7 +5147,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535

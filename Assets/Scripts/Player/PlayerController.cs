@@ -685,7 +685,7 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		if(grounded) {
-			Collider[] cols = Physics.OverlapBox(transform.position - Vector3.up * 0.5f, 0.5f * Vector3.one);
+			Collider[] cols = Physics.OverlapBox(transform.position - Vector3.up * 0.5f, 0.5f * Vector3.one, Quaternion.identity, ~LayerMask.GetMask("Ignore Raycast"), QueryTriggerInteraction.Ignore);
 			if(cols.Length - 2 < 1) { // Doesn't seem to be ground near (Prevents flying). We do the -2 because the player and groundCheck collide with it.
 				grounded = false;
 			}

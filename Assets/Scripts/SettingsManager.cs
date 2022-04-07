@@ -44,7 +44,33 @@ public class SettingsManager : MonoBehaviour {
 		}
 		resolutions = Screen.resolutions;
 		System.Array.Reverse(resolutions);
+
+		ClearDuplicateResolutions();
 	}
+
+	void ClearDuplicateResolutions ()
+    {
+		List<Resolution> newRes = new List<Resolution>();
+
+		for (int i = 0; i < resolutions.Length; i++)
+        {
+			bool addRes = true;
+			for (int o = 0; o < newRes.Count; o++)
+            {
+				if (resolutions[i].height == newRes[o].height && resolutions[i].width == newRes[o].width)
+                {
+					addRes = false;
+					break;
+                }
+            }
+			if (addRes)
+            {
+				newRes.Add(resolutions[i]);
+            }
+        }
+
+		resolutions = newRes.ToArray();
+    }
 
 	void DisplayResolutionOptions() {
 		resolutionDropdown.ClearOptions();
@@ -85,7 +111,7 @@ public class SettingsManager : MonoBehaviour {
 			PlayerPrefs.SetInt("Settings.Fullscreen", 0); // Set to fullscreen by default
 		}
 		if(!PlayerPrefs.HasKey("Settings.Resolution")) {
-			PlayerPrefs.SetInt("Settings.Resolution", resolutions.Length - 1);
+			PlayerPrefs.SetInt("Settings.Resolution", 0);
 		}
 		if(!PlayerPrefs.HasKey("Settings.MouseSensitivity")) {
 			PlayerPrefs.SetFloat("Settings.MouseSensitivity", 3.5f);
@@ -142,7 +168,7 @@ public class SettingsManager : MonoBehaviour {
 	}
 
 	public void SetResolution(int n) {
-		Screen.SetResolution(resolutions[n].width, resolutions[n].height, Screen.fullScreen);
+		Screen.SetResolution(resolutions[n].width, resolutions[n].height, Screen.fullScreenMode);
 		PlayerPrefs.SetInt("Settings.Resolution", n);
 	}
 
@@ -152,11 +178,12 @@ public class SettingsManager : MonoBehaviour {
 	}
 
 	public void SetFullscreen(int n) {
-		Screen.fullScreenMode = (FullScreenMode)n;
+		FullScreenMode mode = (FullScreenMode)n;
+		Screen.fullScreenMode = mode;
 		PlayerPrefs.SetInt("Settings.Fullscreen", n);
 	}
 
-	public void SetMouseSensitivity(float n) {
+    public void SetMouseSensitivity(float n) {
 		if(!mainMenu) {
 			player.mouseSensitivityX = n;
 			player.mouseSensitivityY = n;
