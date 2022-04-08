@@ -196,7 +196,6 @@ public class SaveManager : MonoBehaviour {
 		save.saveTime = DateTime.Now;
 
 		save.realmIndex = RealmTeleportManager.Instance.GetCurrentRealmIndex();
-		Debug.Log("save realm index is: " + save.realmIndex);
 
 		foreach(InventorySlot item in inventory.inventory.Slots) {
 			if(item.Item) {

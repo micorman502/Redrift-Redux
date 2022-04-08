@@ -266,3 +266,6 @@ MonoBehaviour:
       type: 3}
     nameIdentifier: droppedItemGoldIngot
     id: 69
+  - prefab: {fileID: 711756610538385050, guid: d48e9ad18dbec034494ae6067c7f0eb2, type: 3}
+    nameIdentifier: droppedItemDEVITEM
+    id: 69

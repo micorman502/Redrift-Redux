@@ -1,0 +1,20 @@
+HOW TO ADD AN ITEM
+Step 1. Go To Assets/_Items/ScriptableObjects, and choose an item to add. In this example, it will be "Items/Base"
+Step 2. Setup the item with the appropriate values.
+Step 3. Add the item to the ItemRegister
+Step 4. Go to "Dropped Prefabs", and drag any one of them into the scene. Unpack it, then change the GameObject name to "Dropped [ITEMNAME]". On the ItemHandler,
+set the Item to "[ITEMNAME]". Set the Save ID to "droppedItem[ITEMNAME]". Drag this object back into Assets/_Items/Dropped Prefabs.
+Step 5. Go back to the Item's scriptable object, and set the "Dropped Prefab" to the "Dropped [ITEMNAME]".
+Step 6. Go to Assets/Saving, and add a new element to the Objects array in the ObjectRegister. Set the Name Identifier to "droppedItem[ITEMNAME]", 
+and the Prefab as "Dropped [ITEMNAME]". Don't worry about the ID, this will be set automatically.
+
+You are now done with creating a basic item, however, there are a few more steps to make the player able to see it in their hand:
+
+[OPTIONAL] Step 7. Go to "Prefabs/Player"
+[OPTIONAL] Step 8. Expand the Player, CameraHolder, and then the Item Holder.
+[OPTIONAL] Step 9. Select an object - for example, the "Silicon Held Item", and press Ctrl+C, then Ctrl+V
+[OPTIONAL] Step 10. Change the name to "[ITEMNAME] Held Item". Also swap out the child object for the appropriate model.
+[OPTIONAL] Step 11. Set the Held Item's Item to "[ITEMNAME]".
+[OPTIONAL] Step 12. Go to the PlayerInventory script on the Player, and drag the new Held Item into the "Held Items" array.
+
+The item should now be visible in the hand when held!
