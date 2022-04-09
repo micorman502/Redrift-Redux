@@ -23819,6 +23819,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1378863997}
     m_Modifications:
     - target: {fileID: 1532546090071800, guid: 976407ce05dc3cd4c86fe65b37f260a5, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1532546090071800, guid: 976407ce05dc3cd4c86fe65b37f260a5, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967294
       objectReference: {fileID: 0}
@@ -31329,6 +31333,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1378863997}
   - component: {fileID: 1378863998}
+  - component: {fileID: 1378863999}
   m_Layer: 0
   m_Name: LightEnvironment
   m_TagString: Untagged
@@ -31366,7 +31371,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1378863996}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: afc722504f312de48adce929779266a8, type: 3}
   m_Name: 
@@ -31413,6 +31418,40 @@ MonoBehaviour:
     initialSpawnAmountMax: 175
     spawnFrequency: 300
   smallIslandSpawnTime: 50
+--- !u!114 &1378863999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1378863996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 503f1a759e968444b8de08a2a07d8b00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkRate: 1
+  spawnTarget: {fileID: 828969706}
+  bounds: {x: 20, y: 20, z: 20}
+  spawns:
+  - spawnPrefab: {fileID: 1813677803362390, guid: 2dba0152a55eceb4fab9f576fbbf9bd1,
+      type: 3}
+    raycastOffset: {x: 0, y: 200, z: 0}
+    raycastDirection: {x: 0, y: -1, z: 0}
+    boundsMultiplier: {x: 1, y: 1, z: 1}
+    initialSpawnAmountMin: 6
+    initialSpawnAmountMax: 12
+    spawnFrequency: 50
+    nextSpawnTime: 0
+  - spawnPrefab: {fileID: 1523322516565944, guid: c5b0387d80fa75244b875949079823ed,
+      type: 3}
+    raycastOffset: {x: 0, y: 200, z: 0}
+    raycastDirection: {x: 0, y: -1, z: 0}
+    boundsMultiplier: {x: 1, y: 1, z: 1}
+    initialSpawnAmountMin: 6
+    initialSpawnAmountMax: 12
+    spawnFrequency: 50
+    nextSpawnTime: 0
 --- !u!1 &1422590304
 GameObject:
   m_ObjectHideFlags: 0
@@ -37230,6 +37269,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1378863997}
     m_Modifications:
+    - target: {fileID: 1080536333061988, guid: 6b148acb52b6df547a13c5632a14e47b, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1362253887463666, guid: 6b148acb52b6df547a13c5632a14e47b, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1367341864001008, guid: 6b148acb52b6df547a13c5632a14e47b, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4995519350023358, guid: 6b148acb52b6df547a13c5632a14e47b, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -37347,6 +37398,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1342240420}
     m_Modifications:
+    - target: {fileID: 1974803944537682, guid: 9b7f45be2f15e164783780ba10c9c581, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1974803944537682, guid: 9b7f45be2f15e164783780ba10c9c581, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967294

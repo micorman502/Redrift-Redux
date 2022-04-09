@@ -261,11 +261,8 @@ MonoBehaviour:
   - prefab: {fileID: 2629181168142668107, guid: 7b05c8a711020f44086966a92b2f623c,
       type: 3}
     nameIdentifier: droppedItemGoldOre
-    id: 69
+    id: 70
   - prefab: {fileID: 1297390542791272418, guid: 02ee4b43a976334488646e1414364955,
       type: 3}
     nameIdentifier: droppedItemGoldIngot
-    id: 69
-  - prefab: {fileID: 711756610538385050, guid: d48e9ad18dbec034494ae6067c7f0eb2, type: 3}
-    nameIdentifier: droppedItemDEVITEM
-    id: 69
+    id: 71
