@@ -236,6 +236,7 @@ public class SaveManager : MonoBehaviour {
 				Destroy(resourceObj);
 			}
 		}
+		inventory.Setup();
 		inventory.ClearInventory();
 	}
 }

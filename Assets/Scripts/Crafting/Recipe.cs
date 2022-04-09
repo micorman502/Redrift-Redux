@@ -8,6 +8,7 @@ public class Recipe : ScriptableObject {
 	public WorldItem[] replacedItems;
 	public WorldItem output;
 	public RecipeManager.Categories[] categories;
+    public int id;
 
 	public bool UsesItem (WorldItem item)
     {

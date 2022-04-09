@@ -18,8 +18,9 @@ public class TreeResource : MonoBehaviour, IItemSaveable {
 	void Start() {
 		if(spawnApples) {
 			foreach(Transform spawn in appleSpawnLocations) {
-				if(Random.Range(0f, 1f) < appleSpawnChance) {
-					GameObject appleObj = Instantiate(applePrefab, spawn.position, spawn.rotation) as GameObject;
+				System.Random prng = new System.Random(Mathf.RoundToInt(gameObject.transform.position.sqrMagnitude * 2));
+				if(prng.Next(100) / 100f  < appleSpawnChance) {
+					GameObject appleObj = Instantiate(applePrefab, spawn.position, spawn.rotation);
 					Rigidbody appleRB = appleObj.GetComponent<Rigidbody>();
 					apples.Add(appleObj);
 					if(appleRB) {
@@ -45,7 +46,7 @@ public class TreeResource : MonoBehaviour, IItemSaveable {
 		ObjectSaveData newObjData = new ObjectSaveData(transform.position, transform.rotation, ObjectDatabase.Instance.GetIntID(saveID));
 
 		newData.num = handler.health;
-		newData.boolVal = false;
+		newData.boolVal = true;
 
 		data = newData;
 		objData = newObjData;

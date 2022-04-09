@@ -36,7 +36,8 @@ public class PlayerInventory : MonoBehaviour {
 
 
 	void Awake() {
-		SetupNewInventory(inventorySize);
+
+		Setup();
 
 		audioManager = FindObjectOfType<AudioManager>();
 		saveManager = FindObjectOfType<SaveManager>();
@@ -44,6 +45,11 @@ public class PlayerInventory : MonoBehaviour {
 		player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 
 		//InventoryEvents.InitialiseInventoryUI(hotbarSize, items.Length);
+	}
+
+	public void Setup ()
+    {
+		SetupNewInventory(inventorySize);
 	}
 
     private void Start()
@@ -54,6 +60,9 @@ public class PlayerInventory : MonoBehaviour {
 
 	void SetupNewInventory (int inventorySize)
     {
+		if (inventory != null)
+			return;
+
 		if (inventory != null)
         {
 			inventory.ItemOverflow -= SimpleDropItem;

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu()]
+[CreateAssetMenu(menuName = "Registers/Object Register")]
 public class ObjectRegister : ScriptableObject
 {
     public ObjectRegisterObject[] objects;
