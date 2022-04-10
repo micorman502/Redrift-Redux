@@ -86,11 +86,14 @@ public class ResourceSpawner : MonoBehaviour
 		{
 			Debug.DrawRay(checkPos, checkDir, Color.red, 50f);
 			RaycastHit hit;
-			if (Physics.Raycast(checkPos, checkDir, out hit, 500f, LayerMask.GetMask("World"), QueryTriggerInteraction.Ignore))
+			if (Physics.Raycast(checkPos, checkDir, out hit, 500f))
 			{
-				SpawnResource(spawn.spawnPrefab, hit.point, Quaternion.LookRotation(hit.normal));
+				if (hit.transform.gameObject.layer == LayerMask.NameToLayer("World"))
+				{
+					SpawnResource(spawn.spawnPrefab, hit.point, Quaternion.LookRotation(hit.normal));
 
-				return;
+					return;
+				}
 			}
 		}
 

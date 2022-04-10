@@ -51,7 +51,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handler: {fileID: -696279161130812319}
-  tooltip: Hold [E] to pick up, [F] to open
   item: {fileID: 11400000, guid: 02a4627bd0006d54bace935afcf26aa5, type: 2}
   saveID: worldItemCrate
   dontSave: 0
@@ -136,10 +135,6 @@ MonoBehaviour:
     minAmount: 1
     maxAmount: 4
     chance: 0.75
-  - item: {fileID: 11400000, guid: 543cff03c890414498c3dbf496ca8913, type: 2}
-    minAmount: 1
-    maxAmount: 1
-    chance: 0.75
   - item: {fileID: 11400000, guid: 7126648dde3fce64fb14c7cadd9038fe, type: 2}
     minAmount: 0
     maxAmount: 1
@@ -152,10 +147,10 @@ MonoBehaviour:
     minAmount: 0
     maxAmount: 3
     chance: 0.5
-  - item: {fileID: 11400000, guid: b0c49f54531af804cb45871618249a8b, type: 2}
+  - item: {fileID: 11400000, guid: 19959c1ad811c5946bf57467378b4830, type: 2}
     minAmount: 0
-    maxAmount: 3
-    chance: 0.8
+    maxAmount: 1
+    chance: 0.7
   lootParticles: {fileID: 1340000199260684, guid: 7cc0a795e6a2565419ddc9161bce54ae,
     type: 3}
 --- !u!54 &54344118679507228
@@ -186,7 +181,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2e72a90bed473448ac52159a6a83f59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  root: {fileID: 0}
 --- !u!114 &-696279161130812319
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -20,6 +20,7 @@ public class WorldManager : MonoBehaviour {
 	public Vector3[] smallIslandSpawnLocations;
 
 	public float smallIslandSpawnTime = 60f;
+	[SerializeField] float smallIslandSpawnVariationAmt;
 	float nextSmallIslandSpawnTime;
 
 	int difficulty;
@@ -71,7 +72,7 @@ public class WorldManager : MonoBehaviour {
 	}
 
 	void SpawnSmallIsland() {
-		GameObject islandObj = Instantiate(smallIslandPrefab, transform.TransformPoint(smallIslandSpawnLocations[Random.Range(0, smallIslandSpawnLocations.Length)]), smallIslandPrefab.transform.rotation);
+		GameObject islandObj = Instantiate(smallIslandPrefab, transform.TransformPoint(smallIslandSpawnLocations[Random.Range(0, smallIslandSpawnLocations.Length)]) + Random.insideUnitSphere * smallIslandSpawnVariationAmt, smallIslandPrefab.transform.rotation);
 		Vector3 pos = new Vector3(Random.Range(-1f, 1f), 300f, Random.Range(-1f, 1f)) + islandObj.transform.position;
 
 		RaycastHit hit;

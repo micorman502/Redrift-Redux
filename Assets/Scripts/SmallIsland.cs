@@ -55,7 +55,7 @@ public class SmallIsland : MonoBehaviour, IItemSaveable {
 
     void CheckOverlap ()
     {
-		Collider[] cols = Physics.OverlapBox(transform.position, bounds, Quaternion.identity, LayerMask.GetMask("Small Island"), QueryTriggerInteraction.Ignore);
+		Collider[] cols = Physics.OverlapBox(transform.position, bounds, Quaternion.identity, LayerMask.GetMask("Small Island", "World"), QueryTriggerInteraction.Ignore);
 		if (cols.Length > 1) //more colliders than just this one
 		{
 			Die();

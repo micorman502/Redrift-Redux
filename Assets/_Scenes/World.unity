@@ -23866,9 +23866,46 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 828969700}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &828969702 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1982650686893347319, guid: 976407ce05dc3cd4c86fe65b37f260a5,
+    type: 3}
+  m_PrefabInstance: {fileID: 828969700}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &828969703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828969702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 503f1a759e968444b8de08a2a07d8b00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkRate: 1
+  spawnTarget: {fileID: 828969708}
+  bounds: {x: 7, y: 0, z: 7}
+  spawns:
+  - spawnPrefab: {fileID: 1078551866452224, guid: ffaf4c1f892bb4a49b183f3d4721e106,
+      type: 3}
+    raycastOffset: {x: 0, y: 1, z: 0}
+    raycastDirection: {x: 0, y: -1, z: 0}
+    boundsMultiplier: {x: 1, y: 1, z: 1}
+    initialSpawnAmountMin: 1
+    initialSpawnAmountMax: 2
+    spawnFrequency: 180
+    nextSpawnTime: 0
 --- !u!4 &828969706 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4988676684674234, guid: 976407ce05dc3cd4c86fe65b37f260a5,
+    type: 3}
+  m_PrefabInstance: {fileID: 828969700}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &828969708 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4140932108086083715, guid: 976407ce05dc3cd4c86fe65b37f260a5,
     type: 3}
   m_PrefabInstance: {fileID: 828969700}
   m_PrefabAsset: {fileID: 0}
@@ -31126,13 +31163,8 @@ MonoBehaviour:
   - {x: 20, y: -15, z: -150}
   - {x: -30, y: -2, z: -150}
   - {x: 30, y: -2, z: -150}
-  resourceSpawns:
-  - spawnPrefab: {fileID: 5970644240723651174, guid: 3db2ce2a098d78246b10dd12a461d382,
-      type: 3}
-    initialSpawnAmountMin: 1
-    initialSpawnAmountMax: 3
-    spawnFrequency: 50
   smallIslandSpawnTime: 30
+  smallIslandSpawnVariationAmt: 0
 --- !u!1 &1371173133
 GameObject:
   m_ObjectHideFlags: 0
@@ -31371,7 +31403,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1378863996}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: afc722504f312de48adce929779266a8, type: 3}
   m_Name: 
@@ -31387,37 +31419,12 @@ MonoBehaviour:
     type: 3}
   bounds: 22.5
   smallIslandSpawnLocations:
-  - {x: -20, y: -15, z: -150}
-  - {x: 20, y: -15, z: -150}
-  - {x: -30, y: -2, z: -150}
-  - {x: 30, y: -2, z: -150}
-  resourceSpawns:
-  - spawnPrefab: {fileID: 1523322516565944, guid: c5b0387d80fa75244b875949079823ed,
-      type: 3}
-    initialSpawnAmountMin: 30
-    initialSpawnAmountMax: 45
-    spawnFrequency: 35
-  - spawnPrefab: {fileID: 1813677803362390, guid: 2dba0152a55eceb4fab9f576fbbf9bd1,
-      type: 3}
-    initialSpawnAmountMin: 6
-    initialSpawnAmountMax: 9
-    spawnFrequency: 120
-  - spawnPrefab: {fileID: 1078551866452224, guid: ffaf4c1f892bb4a49b183f3d4721e106,
-      type: 3}
-    initialSpawnAmountMin: 2
-    initialSpawnAmountMax: 3
-    spawnFrequency: 180
-  - spawnPrefab: {fileID: 1947450143509860, guid: 78341bb0c31c4f54493eba09b10f7179,
-      type: 3}
-    initialSpawnAmountMin: 1
-    initialSpawnAmountMax: 2
-    spawnFrequency: 360
-  - spawnPrefab: {fileID: 8254937849148306895, guid: 9cc5aaadbf51e934ebd0d27eb4e9d64a,
-      type: 3}
-    initialSpawnAmountMin: 125
-    initialSpawnAmountMax: 175
-    spawnFrequency: 300
-  smallIslandSpawnTime: 50
+  - {x: -40, y: -15, z: -150}
+  - {x: 42, y: -18, z: -150}
+  - {x: -35, y: 5, z: -150}
+  - {x: 35, y: 12, z: -150}
+  smallIslandSpawnTime: 2
+  smallIslandSpawnVariationAmt: 1
 --- !u!114 &1378863999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31432,25 +31439,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   checkRate: 1
   spawnTarget: {fileID: 828969706}
-  bounds: {x: 20, y: 20, z: 20}
+  bounds: {x: 22.5, y: 0, z: 22.5}
   spawns:
-  - spawnPrefab: {fileID: 1813677803362390, guid: 2dba0152a55eceb4fab9f576fbbf9bd1,
-      type: 3}
-    raycastOffset: {x: 0, y: 200, z: 0}
-    raycastDirection: {x: 0, y: -1, z: 0}
-    boundsMultiplier: {x: 1, y: 1, z: 1}
-    initialSpawnAmountMin: 6
-    initialSpawnAmountMax: 12
-    spawnFrequency: 50
-    nextSpawnTime: 0
   - spawnPrefab: {fileID: 1523322516565944, guid: c5b0387d80fa75244b875949079823ed,
       type: 3}
     raycastOffset: {x: 0, y: 200, z: 0}
     raycastDirection: {x: 0, y: -1, z: 0}
     boundsMultiplier: {x: 1, y: 1, z: 1}
-    initialSpawnAmountMin: 6
-    initialSpawnAmountMax: 12
+    initialSpawnAmountMin: 25
+    initialSpawnAmountMax: 30
     spawnFrequency: 50
+    nextSpawnTime: 0
+  - spawnPrefab: {fileID: 1813677803362390, guid: 2dba0152a55eceb4fab9f576fbbf9bd1,
+      type: 3}
+    raycastOffset: {x: 0, y: 200, z: 0}
+    raycastDirection: {x: 0, y: -1, z: 0}
+    boundsMultiplier: {x: 1, y: 1, z: 1}
+    initialSpawnAmountMin: 5
+    initialSpawnAmountMax: 8
+    spawnFrequency: 125
+    nextSpawnTime: 0
+  - spawnPrefab: {fileID: 1078551866452224, guid: ffaf4c1f892bb4a49b183f3d4721e106,
+      type: 3}
+    raycastOffset: {x: 0, y: 200, z: 0}
+    raycastDirection: {x: 0, y: -1, z: 0}
+    boundsMultiplier: {x: 1, y: 1, z: 1}
+    initialSpawnAmountMin: 0
+    initialSpawnAmountMax: 1
+    spawnFrequency: 240
+    nextSpawnTime: 0
+  - spawnPrefab: {fileID: 1947450143509860, guid: 78341bb0c31c4f54493eba09b10f7179,
+      type: 3}
+    raycastOffset: {x: 0, y: -200, z: 0}
+    raycastDirection: {x: 0, y: 1, z: 0}
+    boundsMultiplier: {x: 1, y: 1, z: 1}
+    initialSpawnAmountMin: 1
+    initialSpawnAmountMax: 2
+    spawnFrequency: 220
+    nextSpawnTime: 0
+  - spawnPrefab: {fileID: 8254937849148306895, guid: 9cc5aaadbf51e934ebd0d27eb4e9d64a,
+      type: 3}
+    raycastOffset: {x: 0, y: 200, z: 0}
+    raycastDirection: {x: 0, y: -1, z: 0}
+    boundsMultiplier: {x: 1, y: 1, z: 1}
+    initialSpawnAmountMin: 125
+    initialSpawnAmountMax: 175
+    spawnFrequency: 300
     nextSpawnTime: 0
 --- !u!1 &1422590304
 GameObject:
@@ -48905,30 +48939,7 @@ MonoBehaviour:
     type: 3}
   craftingRecipeContainer: {fileID: 462875535}
   craftingScrollRectTransform: {fileID: 97964277}
-  recipes:
-  - {fileID: 11400000, guid: 6f9bce18f3970c14f996351d983eb9dc, type: 2}
-  - {fileID: 11400000, guid: b0732dcae107e264ab45ca0bdd36495b, type: 2}
-  - {fileID: 11400000, guid: e33ec42f4e7f0364089934f93a644d85, type: 2}
-  - {fileID: 11400000, guid: 5779025a88b30d44f92e6ca23fbb0984, type: 2}
-  - {fileID: 11400000, guid: d3b799b45f81f1a4db78718a9a6f872e, type: 2}
-  - {fileID: 11400000, guid: 95b0fcf0562540c4088fe7b78de458eb, type: 2}
-  - {fileID: 11400000, guid: 3281d424e0cdfbc4890b6907cef85957, type: 2}
-  - {fileID: 11400000, guid: c25bd4d674c853842906c67cb79e69c5, type: 2}
-  - {fileID: 11400000, guid: e92cf4e36e40b2d42abaf64a1cea1f3d, type: 2}
-  - {fileID: 11400000, guid: 376cc36ab821d37449d829b3a6fabd84, type: 2}
-  - {fileID: 11400000, guid: be0c066bec2935744a565533ac480fbf, type: 2}
-  - {fileID: 11400000, guid: 802cf54b32a855b4fa733d0ba9994878, type: 2}
-  - {fileID: 11400000, guid: 6343cb86b0211814e87511c3ef4578a6, type: 2}
-  - {fileID: 11400000, guid: c322e1efb7bec9f48bcf9f586269ddbd, type: 2}
-  - {fileID: 11400000, guid: 2fb795efcd87dd24d9b9c3bbd6c7d30b, type: 2}
-  - {fileID: 11400000, guid: d6bfb9bbf022117479603e43746b0fd1, type: 2}
-  - {fileID: 11400000, guid: 44f086614438c9e478e09d2437265866, type: 2}
-  - {fileID: 11400000, guid: 4188a8c1f9c152342abdd246e2403cc0, type: 2}
-  - {fileID: 11400000, guid: 27e297d381c44354591ea30c8fd43172, type: 2}
-  - {fileID: 11400000, guid: f7faeeba4f954d34393b42db86580725, type: 2}
-  - {fileID: 11400000, guid: bb084dddc6f62b8448f8918d14960386, type: 2}
-  - {fileID: 11400000, guid: 997f3a93b1bc10c4a87e8bf4dc55c954, type: 2}
-  - {fileID: 11400000, guid: 8eacd87e6322dbe40ab0765feebcd97c, type: 2}
+  register: {fileID: 11400000, guid: d5e481815bf78db44be65c2e4acda3a4, type: 2}
   craftingRecipePrefab: {fileID: 1378080776484410, guid: 654479b425e9b444ab11d658c0aba6e5,
     type: 3}
 --- !u!114 &2019392289
