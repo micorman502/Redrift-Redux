@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class SmallIsland : MonoBehaviour, IItemSaveable {
 
+	Rigidbody rb;
+	[SerializeField] GameObject destructionParticles;
+	[SerializeField] Vector3 bounds;
+
 	public string saveID;
 
 	public Vector3 moveAmount;
@@ -11,9 +15,14 @@ public class SmallIsland : MonoBehaviour, IItemSaveable {
 	float speed = 0.5f;
 	[SerializeField] float minSpeed, maxSpeed;
 	bool loaded;
+	int curTick;
 
 	void Start ()
     {
+		rb = gameObject.GetComponent<Rigidbody>();
+
+		CheckOverlap();
+
 		if (!loaded)
         {
 			speed = Random.Range(minSpeed, maxSpeed);
@@ -26,26 +35,52 @@ public class SmallIsland : MonoBehaviour, IItemSaveable {
 
 	void FixedUpdate ()
     {
-		transform.position += moveAmount * Time.fixedDeltaTime * speed;
+		curTick++;
+
+		rb.MovePosition(transform.position + moveAmount * Time.fixedDeltaTime * speed);
+
 		if (transform.localPosition.z >= 200f)
 		{
-			if (transform.childCount > 0)
-			{
-				Transform[] children = transform.GetComponentsInChildren<Transform>();
+			Die();
+			return;
+		}
 
-				foreach (Transform child in children)
-				{
-					if (!child.CompareTag("Player"))
-					{
-						Destroy(child.gameObject);
-					}
-				}
-			}
-			Destroy(gameObject);
+		if (curTick < 25)
+			return;
+		else
+			curTick = 0;
+
+		CheckOverlap();
+ 	}
+
+    void CheckOverlap ()
+    {
+		Collider[] cols = Physics.OverlapBox(transform.position, bounds, Quaternion.identity, LayerMask.GetMask("Small Island"), QueryTriggerInteraction.Ignore);
+		if (cols.Length > 1) //more colliders than just this one
+		{
+			Die();
 		}
 	}
 
-	public void GetData(out ItemSaveData data, out ObjectSaveData objData, out bool dontSave)
+	void Die ()
+    {
+		if (transform.childCount > 0)
+		{
+			Transform[] children = transform.GetComponentsInChildren<Transform>();
+
+			foreach (Transform child in children)
+			{
+				if (!child.CompareTag("Player"))
+				{
+					Destroy(child.gameObject);
+				}
+			}
+		}
+		Destroy(Instantiate(destructionParticles, transform.position, Quaternion.identity), 6f);
+		Destroy(gameObject);
+	}
+
+    public void GetData(out ItemSaveData data, out ObjectSaveData objData, out bool dontSave)
 	{
 		ItemSaveData newData = new ItemSaveData();
 		ObjectSaveData newObjData = new ObjectSaveData(transform.position, transform.rotation, ObjectDatabase.Instance.GetIntID(saveID));

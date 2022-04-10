@@ -51,7 +51,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handler: {fileID: 4925275039683308878}
-  tooltip: 
   item: {fileID: 11400000, guid: 71c476103a3447b43a7661653c637266, type: 2}
   saveID: droppedItemComputerChip
   dontSave: 0
@@ -152,7 +151,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5000001, z: 0.11}
+  m_Size: {x: 0.5, y: 0.5, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0.012500004}
 --- !u!114 &2159361567886763501
 MonoBehaviour:

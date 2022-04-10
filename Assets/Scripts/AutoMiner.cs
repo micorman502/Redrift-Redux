@@ -143,7 +143,7 @@ public class AutoMiner : MonoBehaviour, IItemSaveable, IItemInteractable {
 		ArtificialInertia inertia = obj.GetComponent<ArtificialInertia>();
 		if (inertia)
         {
-			inertia.root = transform;
+			inertia.SetRoot(transform);
         }
 		obj.tag = "Untagged";
 		foreach(Transform trans in obj.transform) {

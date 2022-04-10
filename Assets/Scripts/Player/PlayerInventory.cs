@@ -61,9 +61,6 @@ public class PlayerInventory : MonoBehaviour {
 	void SetupNewInventory (int inventorySize)
     {
 		if (inventory != null)
-			return;
-
-		if (inventory != null)
         {
 			inventory.ItemOverflow -= SimpleDropItem;
         }
@@ -75,9 +72,15 @@ public class PlayerInventory : MonoBehaviour {
     public void LoadCreativeMode() {
 		mode = 1;
 
-		//InventoryEvents.InitialiseInventoryUI(hotbarSize, items.Length);
+		SetupNewInventory(ItemDatabase.Instance.GetAllItems().Length);
+
 		AddAllItems();
 	}
+
+	public void SetupCreativeModeInventorySize ()
+    {
+		SetupNewInventory(ItemDatabase.Instance.GetAllItems().Length);
+    }
 
 	public void Pickup(ItemHandler itemHandler) {
 		if (inventory.SpaceLeftForItem(new WorldItem(itemHandler.item, 1)) > 0)
@@ -335,9 +338,6 @@ public class PlayerInventory : MonoBehaviour {
 	}
 
 	void AddAllItems() {
-		//inventory.InventoryChanged -= InventoryUpdate;
-		SetupNewInventory(ItemDatabase.Instance.GetAllItems().Length);
-		//inventory.InventoryChanged += InventoryUpdate;
 		InventoryUIManager.Instance.GetInventoryUI(InventoryUIManager.InventoryType.Primary).Assign(inventory);
 		int i = 0;
 		foreach(ItemInfo item in ItemDatabase.Instance.GetAllItems()) {

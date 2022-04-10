@@ -54,8 +54,10 @@ public class SaveManager : MonoBehaviour {
 
 		if (persistentData)
 		{
+
 			if (persistentData.loadingFromSave)
 			{
+				Debug.Log("loading");
 				LoadGame(persistentData.saveToLoad);
 			}
 			else
@@ -64,10 +66,19 @@ public class SaveManager : MonoBehaviour {
 				mode = persistentData.mode;
 				SaveGame();
 			}
+
 			if (mode == 1)
 			{ // Creative mode
-				inventory.LoadCreativeMode();
-				player.LoadCreativeMode();
+				if (!persistentData.loadingFromSave)
+				{
+					inventory.LoadCreativeMode();
+					player.LoadCreativeMode();
+				}
+				else
+				{
+					inventory.SetupCreativeModeInventorySize();
+					player.LoadCreativeMode();
+				}
 			}
 		}
 	}

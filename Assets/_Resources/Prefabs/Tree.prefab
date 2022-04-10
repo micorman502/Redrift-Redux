@@ -205,6 +205,8 @@ MonoBehaviour:
   saveID: resourceTree
   applePrefab: {fileID: 5431372089691946670, guid: 6967b4135673c5d48802de882043fcb7,
     type: 3}
+  droppedApplePrefab: {fileID: 4851200420900205713, guid: f15ef36d3c808be4a97ff5b26bad727a,
+    type: 3}
   appleSpawnLocations:
   - {fileID: 4868223484386092}
   - {fileID: 4816456050126412}

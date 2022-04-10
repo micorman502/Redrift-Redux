@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ArtificialInertia : MonoBehaviour {
 
-	public Transform root; // Optional to set custom root in inspector
+	Transform root; // Optional to set custom root in inspector
 
 	void Awake() {
 		if(!root) {
@@ -13,20 +13,42 @@ public class ArtificialInertia : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision col) {
-		//CustomTags customTags = col.gameObject.GetComponent<CustomTags>();
-		if(root.parent != col.transform && col.gameObject.name == "SmallIsland(Clone)") {
+		CheckRoot();
+
+		if (col.gameObject.name == "SmallIsland(Clone)") {
 			root.SetParent(col.transform);
 		}
 	}
 
 	void OnCollisionStay(Collision col) {
-		//CustomTags customTags = col.gameObject.GetComponent<CustomTags>();
-		if(root.parent != col.transform && col.gameObject.name == "SmallIsland(Clone)") {
+		CheckRoot();
+
+		if (col.gameObject.name == "SmallIsland(Clone)") {
 			root.SetParent(col.transform);
 		}
 	}
 
 	void OnCollisionExit(Collision col) {
+		CheckRoot();
+
 		root.SetParent(null);
 	}
+
+	void CheckRoot ()
+    {
+		if (!root)
+		{
+			root = transform.root;
+		}
+	}
+
+	public void SetRoot (Transform newRoot)
+    {
+		root = newRoot;
+    }
+
+	public void SetRootParent (Transform newRootParent)
+    {
+		root.SetParent(newRootParent);
+    }
 }
