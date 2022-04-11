@@ -19890,21 +19890,18 @@ MonoBehaviour:
   mouseSensitivityY: 3.5
   walkSpeed: 5
   runSpeed: 9
-  jumpForce: 30000
+  jumpForce: 600
   smoothTime: 0.05
-  maxTooltipDistance: 5
   groundedMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  interactRange: 2.5
+  interactRange: 3
   fuelItem: {fileID: 0}
   playerCameraPostProcessingBehaviour: {fileID: 0}
   useParticles: {fileID: 198664128316266062}
   inventory: {fileID: 0}
   canvas: {fileID: 0}
   grounded: 0
-  distanceToTarget: 0
-  target: {fileID: 0}
   dead: 0
   healthAmountImage: {fileID: 0}
   hungerAmountImage: {fileID: 0}
@@ -19919,7 +19916,6 @@ MonoBehaviour:
   impactVelocityToDamage: 9.5
   impactDamage: 2
   handDamage: 15
-  rain: {fileID: 1199021711668516}
 --- !u!114 &114380057707737522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20007,7 +20003,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2e72a90bed473448ac52159a6a83f59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  root: {fileID: 0}
 --- !u!1 &1357071556584202
 GameObject:
   m_ObjectHideFlags: 0

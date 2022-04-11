@@ -2121,6 +2121,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &314782629 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1362253887463666, guid: 6b148acb52b6df547a13c5632a14e47b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1567227069}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &314782630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314782629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 503f1a759e968444b8de08a2a07d8b00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkRate: 1
+  spawnTarget: {fileID: 1567227070}
+  bounds: {x: 16, y: 0, z: 16}
+  spawns:
+  - spawnPrefab: {fileID: 1523322516565944, guid: c5b0387d80fa75244b875949079823ed,
+      type: 3}
+    raycastOffset: {x: 0, y: 200, z: 0}
+    raycastDirection: {x: 0, y: -1, z: 0}
+    boundsMultiplier: {x: 1, y: 1, z: 1}
+    initialSpawnAmountMin: 2
+    initialSpawnAmountMax: 5
+    spawnFrequency: 300
+    nextSpawnTime: 0
 --- !u!1 &338629050
 GameObject:
   m_ObjectHideFlags: 0
@@ -3687,7 +3718,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1.5
+  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &607462898
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -30749,6 +30780,7 @@ GameObject:
   - component: {fileID: 1294712837}
   - component: {fileID: 1294712839}
   - component: {fileID: 1294712838}
+  - component: {fileID: 1294712840}
   m_Layer: 5
   m_Name: Inventory
   m_TagString: Untagged
@@ -30773,7 +30805,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 231, y: -1.5776978}
-  m_SizeDelta: {x: 463, y: -243.07}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1294712838
 MonoBehaviour:
@@ -30792,11 +30824,11 @@ MonoBehaviour:
     m_Right: 10
     m_Top: 10
     m_Bottom: 10
-  m_ChildAlignment: 1
+  m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 60, y: 60}
-  m_Spacing: {x: 8, y: 8}
+  m_Spacing: {x: 6, y: 6}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!222 &1294712839
@@ -30807,6 +30839,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1294712836}
   m_CullTransparentMesh: 0
+--- !u!114 &1294712840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1294712836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 2
 --- !u!1 &1298884177
 GameObject:
   m_ObjectHideFlags: 0
@@ -31423,7 +31469,7 @@ MonoBehaviour:
   - {x: 42, y: -18, z: -150}
   - {x: -35, y: 5, z: -150}
   - {x: 35, y: 12, z: -150}
-  smallIslandSpawnTime: 2
+  smallIslandSpawnTime: 150
   smallIslandSpawnVariationAmt: 1
 --- !u!114 &1378863999
 MonoBehaviour:
@@ -37313,7 +37359,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1367341864001008, guid: 6b148acb52b6df547a13c5632a14e47b, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4995519350023358, guid: 6b148acb52b6df547a13c5632a14e47b, type: 3}
       propertyPath: m_RootOrder

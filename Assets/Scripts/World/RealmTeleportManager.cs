@@ -103,6 +103,7 @@ public class RealmTeleportManager : MonoBehaviour
                 return;
             }
         }
+
         Debug.Log("No realm found with the name: " + realmName);
     }
 

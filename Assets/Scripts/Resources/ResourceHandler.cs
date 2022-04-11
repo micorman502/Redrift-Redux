@@ -56,15 +56,11 @@ public class ResourceHandler : MonoBehaviour, IItemSaveable, IHotText, IResource
 		health -= 1;
 		if (health <= 0 && !resource.infiniteGathers)
 		{
-			if (!dontRegisterToHivemind)
-			{
-				HiveMind.Instance.RemoveResource(this);
-			}
-			if (resource.id == 5)
+			if (resource.resourceName == "Tree")
 			{ // This resource is a tree
 				GetComponent<TreeResource>().DropFruits();
 			}
-			Destroy(gameObject);
+			DestroyResource();
 		}
 
 		return returnedItems.ToArray();
@@ -86,18 +82,23 @@ public class ResourceHandler : MonoBehaviour, IItemSaveable, IHotText, IResource
 		health -= 1;
 		if (health <= 0 && !resource.infiniteGathers)
 		{
-			if (!dontRegisterToHivemind)
-			{
-				HiveMind.Instance.RemoveResource(this);
-			}
-			if (resource.id == 5)
+			if (resource.resourceName == "Tree")
 			{ // This resource is a tree
 				GetComponent<TreeResource>().DropFruits();
 			}
-			Destroy(gameObject);
+			DestroyResource();
 		}
 
 		return returnedItems.ToArray();
+	}
+
+	public virtual void DestroyResource ()
+	{
+		if (!dontRegisterToHivemind)
+		{
+			HiveMind.Instance.RemoveResource(this);
+		}
+		Destroy(gameObject);
 	}
 
 	public void GetData(out ItemSaveData data, out ObjectSaveData objData, out bool _dontSave)

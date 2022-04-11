@@ -74,11 +74,6 @@ public class SaveManager : MonoBehaviour {
 					inventory.LoadCreativeMode();
 					player.LoadCreativeMode();
 				}
-				else
-				{
-					inventory.SetupCreativeModeInventorySize();
-					player.LoadCreativeMode();
-				}
 			}
 		}
 	}
@@ -145,7 +140,15 @@ public class SaveManager : MonoBehaviour {
 				}
             }
 
+			if (save.mode == 1)
+            {
+				Debug.Log("setting up creative mode");
+				inventory.ManualSetupInventorySize(ItemDatabase.Instance.GetAllItems().Length);
+				player.LoadCreativeMode();
+			}
+
 			for (int i = 0; i < save.inventoryItems.Count; i++) {
+				Debug.Log("looping through items, currently at: " + i + " and id is: " + save.inventoryItems[i].id);
 				int id = save.inventoryItems[i].id;
 				ItemInfo item = null;
 				if (id >= 0)
@@ -163,7 +166,6 @@ public class SaveManager : MonoBehaviour {
 			if (save.playerDead) {
 				player.Die();
 			} else {
-				Debug.Log("loading realm index: " + save.realmIndex);
 				RealmTeleportManager.Instance.LoadFromSave(save.realmIndex);
 			}
 
@@ -247,7 +249,7 @@ public class SaveManager : MonoBehaviour {
 				Destroy(resourceObj);
 			}
 		}
-		inventory.Setup();
+		inventory.DefaultSetup();
 		inventory.ClearInventory();
 	}
 }

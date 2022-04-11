@@ -211,7 +211,7 @@ MonoBehaviour:
   - {fileID: 4868223484386092}
   - {fileID: 4816456050126412}
   - {fileID: 4035860026743536}
-  appleSpawnChance: 0.5
+  appleSpawnChance: 0.2
   handler: {fileID: 114997810272158888}
   apples: []
   spawnApples: 1

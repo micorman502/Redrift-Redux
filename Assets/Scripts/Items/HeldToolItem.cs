@@ -43,7 +43,7 @@ public class HeldToolItem : HeldItem
 
     public override void UseRepeating()
     {
-        if (controller.target == currentResourceObject)
+        if (controller.GetTarget() == currentResourceObject)
         {
             usedThisFrame = true;
             return;
@@ -55,7 +55,7 @@ public class HeldToolItem : HeldItem
         }
         if (currentResource == null)
         {
-            currentResource = controller.target.GetComponent<IResource>();
+            currentResource = controller.GetTarget().GetComponent<IResource>();
         }
         if (currentResource != null)
         {

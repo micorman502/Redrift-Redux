@@ -15,7 +15,7 @@ public class ArtificialInertia : MonoBehaviour {
 	void OnCollisionEnter(Collision col) {
 		CheckRoot();
 
-		if (col.gameObject.name == "SmallIsland(Clone)") {
+		if (col.gameObject.layer == LayerMask.NameToLayer("Small Island")) {
 			root.SetParent(col.transform);
 		}
 	}
@@ -23,7 +23,7 @@ public class ArtificialInertia : MonoBehaviour {
 	void OnCollisionStay(Collision col) {
 		CheckRoot();
 
-		if (col.gameObject.name == "SmallIsland(Clone)") {
+		if (col.gameObject.layer == LayerMask.NameToLayer("Small Island")) {
 			root.SetParent(col.transform);
 		}
 	}

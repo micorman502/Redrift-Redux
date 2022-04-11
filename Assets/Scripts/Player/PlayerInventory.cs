@@ -34,10 +34,12 @@ public class PlayerInventory : MonoBehaviour {
 	[SerializeField] int heldItemIndex = -1;
 	int previousHeldItemIndex = -1;
 
+	bool setup;
+
 
 	void Awake() {
 
-		Setup();
+		DefaultSetup();
 
 		audioManager = FindObjectOfType<AudioManager>();
 		saveManager = FindObjectOfType<SaveManager>();
@@ -47,12 +49,22 @@ public class PlayerInventory : MonoBehaviour {
 		//InventoryEvents.InitialiseInventoryUI(hotbarSize, items.Length);
 	}
 
-	public void Setup ()
+	public void DefaultSetup ()
     {
+		if (setup)
+			return;
+
 		SetupNewInventory(inventorySize);
+		setup = true;
 	}
 
-    private void Start()
+	public void ManualSetupInventorySize (int amt)
+	{
+		SetupNewInventory(amt);
+		setup = true;
+	}
+
+	private void Start()
     {
 		InventoryUIManager.Instance.GetInventoryUI(InventoryUIManager.InventoryType.Primary).Assign(inventory);
 		InventoryUpdate();
@@ -76,11 +88,6 @@ public class PlayerInventory : MonoBehaviour {
 
 		AddAllItems();
 	}
-
-	public void SetupCreativeModeInventorySize ()
-    {
-		SetupNewInventory(ItemDatabase.Instance.GetAllItems().Length);
-    }
 
 	public void Pickup(ItemHandler itemHandler) {
 		if (inventory.SpaceLeftForItem(new WorldItem(itemHandler.item, 1)) > 0)

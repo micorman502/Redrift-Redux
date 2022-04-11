@@ -22,8 +22,7 @@ public class TreeResource : MonoBehaviour, IItemSaveable {
 			float spawnedApples = 0;
 			for (int i = 0; i < appleSpawnLocations.Length; i++)
             {
-				spawnedApples += prng.Next(101) / 100f;
-
+				spawnedApples += prng.Next(101) / 100f < appleSpawnChance ? 1 : 0;
 			}
 
 			SpawnApples(Mathf.RoundToInt(spawnedApples));
@@ -89,7 +88,5 @@ public class TreeResource : MonoBehaviour, IItemSaveable {
 		SpawnApples(Mathf.RoundToInt(data.floatVal));
 
 		handler.health = data.num;
-
-		Debug.Log("loaded");
 	}
 }

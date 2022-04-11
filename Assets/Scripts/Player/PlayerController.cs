@@ -24,7 +24,6 @@ public class PlayerController : MonoBehaviour {
 	public float runSpeed;
 	public float jumpForce;
 	public float smoothTime;
-	[SerializeField] float maxTooltipDistance;
 	public LayerMask groundedMask;
 	public float interactRange = 2f;
 	public ItemInfo fuelItem;
@@ -33,28 +32,23 @@ public class PlayerController : MonoBehaviour {
 
 	public ParticleSystem useParticles;
 
-	private float verticalLookRotation;
+	float verticalLookRotation;
 
-	private float currentMoveSpeed;
-	private Vector3 moveAmount;
-	private Vector3 smoothMoveVelocity;
+	float currentMoveSpeed;
+	Vector3 moveAmount;
+	Vector3 smoothMoveVelocity;
 
 	[HideInInspector] public PlayerInventory inventory;
 	AudioManager audioManager;
 	PauseManager pauseManager;
 
 	public GameObject canvas;
-	Animator canvasAnim;
 
 	[HideInInspector] public bool grounded;
 
-	[HideInInspector] public float distanceToTarget; // Accesible from other GameObjects to see if they are in range of interaction and such //bruh
-	[HideInInspector] public GameObject target;
-	[HideInInspector] public RaycastHit targetHit;
-
-	private Vector3 spawnpoint;
-
-	private Quaternion startRot;
+	float distanceToTarget; // Accesible from other GameObjects to see if they are in range of interaction and such //bruh
+	GameObject target;
+	RaycastHit targetHit;
 
 	bool inMenu;
 
@@ -67,10 +61,6 @@ public class PlayerController : MonoBehaviour {
 
 	int difficulty;
 	int mode;
-
-	Color defaultFogColor;
-	float defaultFogDensity;
-	Color defaultPlayerCameraColor;
 
 	[HideInInspector] public bool dead = false;
 
@@ -96,8 +86,6 @@ public class PlayerController : MonoBehaviour {
 	bool ignoreFallDamage;
 	bool climbing;
 
-	public GameObject rain;
-
 	float flyDoubleTapCooldown;
 	bool flying;
 
@@ -118,16 +106,11 @@ public class PlayerController : MonoBehaviour {
 		GameObject scriptHolder = GameObject.FindGameObjectWithTag("ScriptHolder");
 		audioManager = scriptHolder.GetComponent<AudioManager>();
 		pauseManager = scriptHolder.GetComponent<PauseManager>();
-		canvasAnim = canvas.GetComponent<Animator>();
 
 		rb = GetComponent<Rigidbody>();
 		inventory = GetComponent<PlayerInventory>();
 		originalDrag = rb.drag;
 		playerCameraPostProcessingBehaviour = playerCamera.GetComponent<PostProcessingBehaviour>();
-
-		defaultFogColor = RenderSettings.fogColor;
-		defaultFogDensity = RenderSettings.fogDensity;
-		defaultPlayerCameraColor = playerCamera.GetComponent<Camera>().backgroundColor;
 
 		currentPlayer = this;
 	}
@@ -149,20 +132,15 @@ public class PlayerController : MonoBehaviour {
 		hunger = maxHunger;
 		LookLocker.Instance.SetLockedState(true);
 
-		//defaultLightProfile = lightPostProcessingProfile;
-		//defaultDarkProfile = darkPostProcessingProfile;
-
 		difficulty = FindObjectOfType<SaveManager>().difficulty;
 
 		persistentData = FindObjectOfType<PersistentData>();
 		if(!dead && !persistentData.loadingFromSave) {
 			RealmTeleportManager.Instance.TeleportToRealm("Light");
-			//EnterLightWorld();
 		}
 	}
 
 	void Update() {
-
 		if(!dead && mode != 1) {
 			LoseCalories(Time.deltaTime * hungerLoss);
 			if(hunger <= 10f) {
@@ -188,11 +166,7 @@ public class PlayerController : MonoBehaviour {
 
 		Vector3 moveDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
 
-		if(Input.GetButton("Sprint")) {
-			currentMoveSpeed = runSpeed;
-		} else {
-			currentMoveSpeed = walkSpeed;
-		}
+		currentMoveSpeed = Input.GetButton("Sprint") ? runSpeed : walkSpeed;
 
 		if(Input.GetButtonDown("Jump")) {
 			if(mode == 1) {
@@ -203,11 +177,11 @@ public class PlayerController : MonoBehaviour {
 						StartFlying();
 					}
 				} else {
-					flyDoubleTapCooldown = 0.5f;
+					flyDoubleTapCooldown = 0.375f;
 				}
 			}
 			if(grounded && !flying) {
-				rb.AddForce(transform.up * jumpForce);
+				rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
 			}
 		}
 		
@@ -239,7 +213,7 @@ public class PlayerController : MonoBehaviour {
 		RaycastHit hit;
 		Ray ray = playerCamera.GetComponent<Camera>().ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
 
-		Physics.Raycast(ray, out hit, maxTooltipDistance, -1, QueryTriggerInteraction.Collide);
+		Physics.Raycast(ray, out hit, interactRange, -1, QueryTriggerInteraction.Collide);
 
 		distanceToTarget = hit.distance;
 
@@ -249,17 +223,7 @@ public class PlayerController : MonoBehaviour {
 				target = hit.collider.gameObject;
 				targetHit = hit;
 
-				if(Input.GetMouseButtonDown(0) || Input.GetAxisRaw("ControllerTriggers") <= -0.1f) {
-					if(hit.collider.CompareTag("Resource")) {
-						if(distanceToTarget >= interactRange) {
-							Attack();
-						}
-					} else {
-						Attack();
-					}
-				}
-
-				if(target.CompareTag("Item") && distanceToTarget <= interactRange && !inventory.placingStructure) {
+				if(target.CompareTag("Item") && !inventory.placingStructure) {
 					AutoMiner autoMiner = null;
 					ItemHandler itemHandler = target.GetComponentInParent<ItemHandler>();
 					if(itemHandler.item.id == 23) { // Auto Miner
@@ -267,14 +231,7 @@ public class PlayerController : MonoBehaviour {
 						autoMiner = itemHandler.GetComponent<AutoMiner>();
 
 						if(inventory.currentSelectedItem.item && inventory.currentSelectedItem.item is ToolInfo) {
-							//tooltipText = "Hold [E] to pick up, [F] to replace tool";
 
-							if(Input.GetButton("Interact")) {
-								autoMiner.SetTool(inventory.currentSelectedItem.item);
-								inventory.inventory.RemoveItem(new WorldItem(inventory.inventory.Slots[inventory.selectedHotbarSlot].Item, 1)); //COME BACK
-								//inventory.hotbar.GetChild(inventory.selectedHotbarSlot).GetComponent<InventorySlot>().DecreaseItem(1);
-								//inventory.InventoryUpdate();
-							}
 
 						} else {
 							//tooltipText = "Hold [E] to pick up, [F] to gather items";
@@ -327,7 +284,7 @@ public class PlayerController : MonoBehaviour {
 						pickingUpTime = 0f;
 						pickingUp = false;
 					}
-				} else if(target.CompareTag("Resource") && distanceToTarget <= interactRange && !(inventory.currentSelectedItem.item is ToolInfo)) { // Gather resources
+				} else if(target.CompareTag("Resource") && !(inventory.currentSelectedItem.item is ToolInfo)) { // Gather resources
 					if(Input.GetMouseButton(0) || Input.GetAxisRaw("ControllerTriggers") <= -0.1f) {
 						if(!gathering) {
 							gathering = true;
@@ -372,33 +329,16 @@ public class PlayerController : MonoBehaviour {
 				if(gathering || pickingUp) {
 					CancelGatherAndPickup();
 				}
-				if(Input.GetMouseButtonDown(0) || Input.GetAxisRaw("ControllerTriggers") <= -0.1f) {
-					Attack();
-				}
 				target = null;
 			}
 		}
 
-		/*if(transform.position.y < -100f) {
-			if(currentWorld == WorldManager.WorldType.Light) {
-				EnterDarkWorld();
-				AchievementManager.Instance.GetAchievement(10); // Achievement: Explorer
-			} else {
-				EnterLightWorld();
-			}
-		}*/
-
-		CheckHotTextObjects();
+		CheckHotTextObjects(hit);
 		CheckInteractions(hit);
 	}
 
-	void CheckHotTextObjects ()
+	void CheckHotTextObjects (RaycastHit hit)
     {
-		RaycastHit hit;
-		Ray ray = playerCamera.GetComponent<Camera>().ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
-
-		Physics.Raycast(ray, out hit, maxTooltipDistance, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore);
-
 		if (hit.transform)
         {
 			GameObject hitObject = hit.transform.gameObject;
@@ -522,7 +462,7 @@ public class PlayerController : MonoBehaviour {
 		if(other.CompareTag("Item")) {
 			ItemHandler itemHandler = other.GetComponentInParent<ItemHandler>();
 			if(itemHandler) {
-				if(itemHandler.item.id == 36) { // Ladder
+				if(itemHandler.item.itemName == "Ladder") { // Ladder
 					StartClimbing();
 				}
 			}
@@ -534,7 +474,7 @@ public class PlayerController : MonoBehaviour {
 			if(other.CompareTag("Item")) {
 				ItemHandler itemHandler = other.GetComponentInParent<ItemHandler>();
 				if(itemHandler) {
-					if(itemHandler.item.id == 36) { // Ladder
+					if(itemHandler.item.itemName == "Ladder") { // Ladder
 						StartClimbing();
 					}
 				}
@@ -698,4 +638,9 @@ public class PlayerController : MonoBehaviour {
 			rb.MovePosition(rb.position + (transform.TransformDirection(moveAmount) * Time.fixedDeltaTime));
 		}
 	}
+
+	public GameObject GetTarget ()
+    {
+		return target;
+    }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Furnace : MonoBehaviour, IItemSaveable, IGetTriggerInfo {
+public class Furnace : MonoBehaviour, IItemSaveable, IItemInteractable, IGetTriggerInfo {
 
 	[SerializeField] string saveID;
 
@@ -23,19 +23,29 @@ public class Furnace : MonoBehaviour, IItemSaveable, IGetTriggerInfo {
 			ItemHandler itemHandler = col.GetComponent<ItemHandler>();
 			if (!itemHandler)
 				return;
-			if (itemHandler.item is FuelInfo)
-			{
+			if (AddItem(itemHandler.item))
+            {
 				Destroy(itemHandler.gameObject);
-				fuel += (itemHandler.item as FuelInfo).fuelValue;
-			}
-			else if (itemHandler.item is OreInfo && !currentSmeltingItem && fuel > 0)
-			{
-				currentSmeltingItem = itemHandler.item as OreInfo;
-				Destroy(itemHandler.gameObject);
-				Check();
 			}
 		}
 	}
+
+	bool AddItem (ItemInfo item)
+    {
+		if (item is FuelInfo)
+        {
+			fuel += (item as FuelInfo).fuelValue;
+			return true;
+        }
+
+		if (item is OreInfo && !currentSmeltingItem)
+        {
+			currentSmeltingItem = item as OreInfo;
+			return true;
+        }
+
+		return false;
+    }
 
 	public void GetTriggerInfoRepeating (Collider col)
     {
@@ -79,6 +89,15 @@ public class Furnace : MonoBehaviour, IItemSaveable, IGetTriggerInfo {
 		if(objRB) {
 			objRB.velocity = transform.forward;
 		}
+	}
+
+	public void Interact (WorldItem item)
+    {
+		if (!AddItem(item.item))
+			return;
+
+		PlayerInventory inventory = PlayerController.currentPlayer.gameObject.GetComponent<PlayerInventory>();
+		inventory.inventory.RemoveItem(item);
 	}
 
 	public void GetData (out ItemSaveData data,out ObjectSaveData objData, out bool dontSave)

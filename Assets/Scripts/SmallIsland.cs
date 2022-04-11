@@ -29,7 +29,7 @@ public class SmallIsland : MonoBehaviour, IItemSaveable {
         }
 		if (speed == 0)
         {
-			Destroy(gameObject);
+			Die();
         }
     }
 
@@ -64,19 +64,18 @@ public class SmallIsland : MonoBehaviour, IItemSaveable {
 
 	void Die ()
     {
-		if (transform.childCount > 0)
-		{
-			Transform[] children = transform.GetComponentsInChildren<Transform>();
+		Transform[] children = transform.GetComponentsInChildren<Transform>();
 
-			foreach (Transform child in children)
+		foreach (Transform child in children)
+		{
+			if (child.gameObject.GetComponent<PlayerController>())
 			{
-				if (!child.CompareTag("Player"))
-				{
-					Destroy(child.gameObject);
-				}
+				child.GetComponent<ArtificialInertia>().SetRootParent(null);
 			}
 		}
+
 		Destroy(Instantiate(destructionParticles, transform.position, Quaternion.identity), 6f);
+		gameObject.SetActive(false);
 		Destroy(gameObject);
 	}
 
