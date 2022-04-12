@@ -8,7 +8,6 @@ using TMPro;
 
 public class MenuSaveManager : MonoBehaviour {
 
-	PersistentData persistentData;
 
 	[SerializeField] GameObject saveListItem;
 	[SerializeField] GameObject saveList;
@@ -76,8 +75,8 @@ public class MenuSaveManager : MonoBehaviour {
 	}
 
 	public void LoadSave(int saveNum) {
-		persistentData.loadingFromSave = true;
-		persistentData.saveToLoad = saveNum;
+		PersistentData.Instance.loadingFromSave = true;
+		PersistentData.Instance.saveToLoad = saveNum;
 		Debug.Log("Loading save " + saveNum);
 		menuManager.LoadScene("World");
 	}
@@ -128,11 +127,11 @@ public class MenuSaveManager : MonoBehaviour {
 				}
 			}
 		}
-		persistentData.newSaveName = saveNameInputField.text;
-		persistentData.difficulty = saveDifficultyDropdown.value;
-		persistentData.mode = saveModeDropdown.value;
-		persistentData.loadingFromSave = false;
-		persistentData.saveToLoad = info.Length;
+		PersistentData.Instance.newSaveName = saveNameInputField.text;
+		PersistentData.Instance.difficulty = saveDifficultyDropdown.value;
+		PersistentData.Instance.mode = saveModeDropdown.value;
+		PersistentData.Instance.loadingFromSave = false;
+		PersistentData.Instance.saveToLoad = info.Length;
 		menuManager.LoadScene("World");
 	}
 }
