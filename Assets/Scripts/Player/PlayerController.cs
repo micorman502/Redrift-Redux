@@ -6,10 +6,16 @@ using UnityEngine.UI;
 using UnityEngine.AI;
 using UnityEngine.PostProcessing;
 using EZCameraShake;
+using System;
 
 public class PlayerController : MonoBehaviour {
 
 	public static PlayerController currentPlayer;
+	public static event Action<float> OnHealthChanged;
+	public static event Action<float> OnDamageTaken;
+	public static event Action<float> OnHungerChanged;
+	public static event Action<float> OnMaxHealthChanged;
+	public static event Action<float> OnMaxHungerChanged;
 
 	public GameObject playerCameraHolder;
 	public GameObject playerCamera;
@@ -64,11 +70,9 @@ public class PlayerController : MonoBehaviour {
 
 	[HideInInspector] public bool dead = false;
 
-	public Image healthAmountImage;
-	public Image hungerAmountImage;
-
 	public float maxHealth = 100f;
 	public float health;
+	[SerializeField] float invincibilityLength = 0.2f;
 	public float maxHunger = 100f;
 	public float hunger;
 
@@ -82,6 +86,8 @@ public class PlayerController : MonoBehaviour {
 	public float impactDamage = 20f;
 
 	public float handDamage = 15f;
+
+	float lastDamaged;
 
 	bool ignoreFallDamage;
 	bool climbing;
@@ -130,6 +136,10 @@ public class PlayerController : MonoBehaviour {
     void Start() {
 		health = maxHealth;
 		hunger = maxHunger;
+
+		OnMaxHealthChanged?.Invoke(maxHealth);
+		OnMaxHungerChanged?.Invoke(maxHunger);
+
 		LookLocker.Instance.SetLockedState(true);
 
 		difficulty = FindObjectOfType<SaveManager>().difficulty;
@@ -140,23 +150,36 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-	void Update() {
-		if(!dead && mode != 1) {
-			LoseCalories(Time.deltaTime * hungerLoss);
-			if(hunger <= 10f) {
-				TakeEffectDamage(Time.deltaTime * hungerDamage);
-				if(!infoText.activeSelf) {
-					infoText.SetActive(true);
-				}
-			} else if(infoText.activeSelf) {
+	void AdjustVitals ()
+    {
+		if (dead || mode == 1)
+			return;
+
+		LoseCalories(Time.fixedDeltaTime * hungerLoss);
+
+		if (hunger > fullLevel)
+        {
+			GainHealth(Time.fixedDeltaTime * fullHealthRegainAmount);
+		}
+
+		if (hunger <= 10f)
+		{
+			TakeDamage(Time.fixedDeltaTime * hungerDamage, true);
+			if (!infoText.activeSelf)
+			{
+				infoText.SetActive(true);
+			}
+		}
+		else
+		{
+			if (infoText.activeSelf)
+			{
 				infoText.SetActive(false);
 			}
 		}
+    }
 
-		if(hunger >= fullLevel) {
-			GainHealth(Time.deltaTime * fullHealthRegainAmount);
-		}
-
+	void Update() {
 		if(lockLook) {
 			transform.Rotate(Vector3.up * Input.GetAxisRaw("Mouse X") * mouseSensitivityX);
 			verticalLookRotation += Input.GetAxisRaw("Mouse Y") * mouseSensitivityY;
@@ -415,8 +438,6 @@ public class PlayerController : MonoBehaviour {
 
 	public void LoadCreativeMode() {
 		mode = 1;
-		hungerAmountImage.gameObject.SetActive(false);
-		healthAmountImage.gameObject.SetActive(false);
 	}
 
 	void SetInMenuState (bool _inMenu)
@@ -453,7 +474,7 @@ public class PlayerController : MonoBehaviour {
 			if(ignoreFallDamage) {
 				Invoke("ResetIgnoreFallDamage", 1f);
 			} else {
-				TakeDamage(col.relativeVelocity.magnitude * impactDamage);
+				TakeDamage(Mathf.Clamp(col.relativeVelocity.magnitude * impactDamage, 0, maxHealth - 5f));
 			}
 		}
 	}
@@ -462,7 +483,7 @@ public class PlayerController : MonoBehaviour {
 		if(other.CompareTag("Item")) {
 			ItemHandler itemHandler = other.GetComponentInParent<ItemHandler>();
 			if(itemHandler) {
-				if(itemHandler.item.itemName == "Ladder") { // Ladder
+				if(itemHandler.item.itemName == "Ladder") {
 					StartClimbing();
 				}
 			}
@@ -474,7 +495,7 @@ public class PlayerController : MonoBehaviour {
 			if(other.CompareTag("Item")) {
 				ItemHandler itemHandler = other.GetComponentInParent<ItemHandler>();
 				if(itemHandler) {
-					if(itemHandler.item.itemName == "Ladder") { // Ladder
+					if(itemHandler.item.itemName == "Ladder") {
 						StartClimbing();
 					}
 				}
@@ -538,37 +559,50 @@ public class PlayerController : MonoBehaviour {
 		if(health > maxHealth) {
 			health = maxHealth;
 		}
+
 		HealthChange();
 	}
 
-	public void TakeDamage(float amount) {
-		health -= amount;
-		CameraShaker.Instance.ShakeOnce(4f, 5f, 0.1f, 0.5f);
-		damagePanelAnim.Play();
-		if(health <= 0 && !dead) {
-			Die();
-		} else if(health < 0f) {
-			health = 0f;
-		}
-		HealthChange();
-	}
+	public void TakeDamage (float amount)
+    {
+		TakeDamage(amount, false);
+    }
 
-	public void TakeEffectDamage(float amount) {
+	public void TakeDamage(float amount, bool ignoreInvincibility) {
+		if (!ignoreInvincibility && Time.time < lastDamaged + invincibilityLength)
+			return;
+
 		health -= amount;
-		if(health <= 0 && !dead) {
-			Die();
-		} else if(health < 0f) {
-			health = 0f;
+		lastDamaged = Time.time;
+
+		OnDamageTaken?.Invoke(amount);
+
+		float effectIntensity = amount / 50;
+		CameraShaker.Instance.ShakeOnce(4f * effectIntensity, 5f * effectIntensity, 0.1f, 0.5f);
+
+		if (effectIntensity > 0.1f)
+		{
+			damagePanelAnim.Play();
 		}
+
+		if (health < 0)
+		{
+			if (!dead)
+			{
+				Die();
+			}
+			health = 0;
+		}
+
 		HealthChange();
 	}
 
 	void HungerChange() {
-		hungerAmountImage.fillAmount = hunger / maxHunger;
+		OnHungerChanged?.Invoke(hunger);
 	}
 
 	void HealthChange() {
-		healthAmountImage.fillAmount = health / maxHealth;
+		OnHealthChanged?.Invoke(health);
 	}
 
 	/*
@@ -617,6 +651,8 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
+		AdjustVitals();
+
 		if(climbing) {
 			Collider[] cols = Physics.OverlapCapsule(transform.position - Vector3.up * 0.5f, transform.position + Vector3.up * 0.5f, 0.5f);
 			if(cols.Length - 2 < 1) { // Doesn't seem to be a ladder near (Prevents flying). We do the -2 because the player and groundCheck collide with it.

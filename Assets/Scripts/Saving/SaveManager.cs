@@ -78,13 +78,15 @@ public class SaveManager : MonoBehaviour {
 		}
 	}
 
-	void Update() {
-		if(autoSave) {
-			autoSaveTimer -= Time.deltaTime;
-			if(autoSaveTimer <= 0f) {
-				SaveGame();
-				autoSaveTimer = autoSaveInterval;
-			}
+	void Update ()
+	{
+		if (!autoSave)
+			return;
+
+		if (Time.time > autoSaveTimer)
+		{
+			SaveGame();
+			autoSaveTimer = Time.time + autoSaveInterval;
 		}
 	}
 
@@ -142,13 +144,14 @@ public class SaveManager : MonoBehaviour {
 
 			if (save.mode == 1)
             {
-				Debug.Log("setting up creative mode");
 				inventory.ManualSetupInventorySize(ItemDatabase.Instance.GetAllItems().Length);
 				player.LoadCreativeMode();
-			}
+			} else
+            {
+				inventory.DefaultSetup();
+            }
 
 			for (int i = 0; i < save.inventoryItems.Count; i++) {
-				Debug.Log("looping through items, currently at: " + i + " and id is: " + save.inventoryItems[i].id);
 				int id = save.inventoryItems[i].id;
 				ItemInfo item = null;
 				if (id >= 0)

@@ -19,6 +19,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cc1dea67642fcc94793fc67b8b1116d7, type: 2}
   chances:
   - 1
-  maxGathers: 8
+  maxGathers: 3
   gatherTime: 12
   infiniteGathers: 0

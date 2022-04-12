@@ -40,8 +40,11 @@ public class Furnace : MonoBehaviour, IItemSaveable, IItemInteractable, IGetTrig
 
 		if (item is OreInfo && !currentSmeltingItem)
         {
-			currentSmeltingItem = item as OreInfo;
-			return true;
+			if (fuel > 0)
+			{
+				StartSmelting(item);
+				return true;
+			}
         }
 
 		return false;
@@ -61,7 +64,9 @@ public class Furnace : MonoBehaviour, IItemSaveable, IItemInteractable, IGetTrig
     }
 
 	void StartSmelting(ItemInfo item) {
-		//finishTime = Time.time + smeltTime;
+		if (fuel <= 0)
+			return;
+
 		currentSmeltingItem = item as OreInfo;
 		smoke.Play();
 		fire.Play();
@@ -97,7 +102,7 @@ public class Furnace : MonoBehaviour, IItemSaveable, IItemInteractable, IGetTrig
 			return;
 
 		PlayerInventory inventory = PlayerController.currentPlayer.gameObject.GetComponent<PlayerInventory>();
-		inventory.inventory.RemoveItem(item);
+		inventory.inventory.RemoveItem(new WorldItem(item.item, 1));
 	}
 
 	public void GetData (out ItemSaveData data,out ObjectSaveData objData, out bool dontSave)

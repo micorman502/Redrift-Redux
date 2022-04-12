@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PersistentData : MonoBehaviour {
 
+	public static PersistentData Instance;
 	public bool loadingFromSave;
 	public int saveToLoad;
 	public int difficulty;
@@ -11,15 +12,13 @@ public class PersistentData : MonoBehaviour {
 	public string newSaveName;
 
 	void Awake() {
-		PersistentData[] pds = FindObjectsOfType<PersistentData>();
-
-		if(pds.Length > 1) {
-			foreach(PersistentData pd in pds) {
-				if(pd != this) {
-					Destroy(pd.gameObject);
-				}
-			}
-		}
+		if (Instance)
+        {
+			//Debug.Log("There is already a PersistentData in existence. Destroying this PersistentData.");
+			Destroy(gameObject);
+			return;
+        }
+		Instance = this;
 
 		DontDestroyOnLoad(gameObject);
 	}
