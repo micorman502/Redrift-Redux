@@ -31,7 +31,7 @@ public class UIKeyToggler : MonoBehaviour
         target.SetActive(state);
         if (lockLook)
         {
-            PlayerEvents.OnLockStateSet(!state);
+            ControlEvents.LockStateSet(!state);
         }
         calledFunctions.Invoke(state);
     }

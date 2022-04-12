@@ -34,9 +34,9 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -65.75247, y: 0}
-  m_SizeDelta: {x: -131.5049, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 21.747528, y: 0}
+  m_SizeDelta: {x: 43.495102, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7205146440168509015
 CanvasRenderer:
@@ -66,16 +66,16 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 96eb65209cbe65e4daf2a0bc700ac960, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a742ba1b51f3de7479402b3d0c6c2e1a, type: 3}
   m_Type: 1
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 2
+  m_PixelsPerUnitMultiplier: 1.5
 --- !u!1 &1810859774963696790
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,7 +128,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   infoText: {fileID: 8978802548397578865}
   keybindObject: {fileID: 1120767680729236695}
+  keybindImage: {fileID: 6785562290940635762}
   keybindText: {fileID: 2580854907872953897}
+  mouseButtonLeftImage: {fileID: 21300000, guid: 32dd9fce7293b9949a3fbd7a638e8628,
+    type: 3}
+  mouseButtonMiddleImage: {fileID: 21300000, guid: 1444f1cf9b55917418cb0832cdfcd844,
+    type: 3}
+  mouseButtonRightImage: {fileID: 21300000, guid: 8359438ea62417748a2e1fbbf072734e,
+    type: 3}
 --- !u!1 &4582486283700720945
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,7 +305,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -0, y: 0}
+  m_SizeDelta: {x: -6, y: -6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8850893357662397415
 CanvasRenderer:
@@ -355,7 +362,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35.8
+  m_fontSize: 30.4
   m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -365,9 +372,9 @@ MonoBehaviour:
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 4096
   m_textAlignment: 65535
-  m_characterSpacing: 0
+  m_characterSpacing: -1
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: -20
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0

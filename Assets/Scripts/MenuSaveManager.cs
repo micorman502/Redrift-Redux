@@ -24,8 +24,6 @@ public class MenuSaveManager : MonoBehaviour {
 	[SerializeField] Text modeBlurb;
 	[SerializeField] Text saveErrorText;
 
-	SaveManager saveManager;
-
 	FileInfo[] info;
 
 	MenuManager menuManager;
@@ -44,7 +42,6 @@ public class MenuSaveManager : MonoBehaviour {
 	}
 
 	void Start() {
-		persistentData = FindObjectOfType<PersistentData>();
 		if(!Directory.Exists(Application.persistentDataPath + "/saves")) {
 			Directory.CreateDirectory(Application.persistentDataPath + "/saves");
 		}

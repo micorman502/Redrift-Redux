@@ -9,7 +9,6 @@ using Newtonsoft.Json;
 
 public class SaveManager : MonoBehaviour {
 	public static SaveManager Instance;
-	PersistentData persistentData;
 
 	[SerializeField] Animator canvasAnim;
 
@@ -41,7 +40,6 @@ public class SaveManager : MonoBehaviour {
 
 		inventory = playerObj.GetComponent<PlayerInventory>();
 		player = playerObj.GetComponent<PlayerController>();
-		persistentData = FindObjectOfType<PersistentData>();
 
 		CheckSaveDirectory();
 		DirectoryInfo dir = new DirectoryInfo(Application.persistentDataPath + "/saves");
@@ -52,24 +50,24 @@ public class SaveManager : MonoBehaviour {
 			autoSaveTimer = autoSaveInterval;
 		}
 
-		if (persistentData)
+		if (PersistentData.Instance)
 		{
 
-			if (persistentData.loadingFromSave)
+			if (PersistentData.Instance.loadingFromSave)
 			{
 				Debug.Log("loading");
-				LoadGame(persistentData.saveToLoad);
+				LoadGame(PersistentData.Instance.saveToLoad);
 			}
 			else
 			{
-				difficulty = persistentData.difficulty;
-				mode = persistentData.mode;
+				difficulty = PersistentData.Instance.difficulty;
+				mode = PersistentData.Instance.mode;
 				SaveGame();
 			}
 
 			if (mode == 1)
 			{ // Creative mode
-				if (!persistentData.loadingFromSave)
+				if (!PersistentData.Instance.loadingFromSave)
 				{
 					inventory.LoadCreativeMode();
 					player.LoadCreativeMode();
@@ -193,10 +191,10 @@ public class SaveManager : MonoBehaviour {
 		Save save = CreateSave();
 
 		string path;
-		if(persistentData.loadingFromSave) {
-			path = Application.persistentDataPath + "/saves/" + info[persistentData.saveToLoad].Name;
+		if(PersistentData.Instance.loadingFromSave) {
+			path = Application.persistentDataPath + "/saves/" + info[PersistentData.Instance.saveToLoad].Name;
 		} else {
-			path = Application.persistentDataPath + "/saves/" + persistentData.newSaveName + ".save";
+			path = Application.persistentDataPath + "/saves/" + PersistentData.Instance.newSaveName + ".save";
 		}
 		File.WriteAllText(path, JsonConvert.SerializeObject(save));
 

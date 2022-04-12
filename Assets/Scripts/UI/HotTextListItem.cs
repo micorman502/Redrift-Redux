@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class HotTextListItem : MonoBehaviour
 {
     [SerializeField] TMP_Text infoText;
     [SerializeField] GameObject keybindObject;
+    [SerializeField] Image keybindImage;
     [SerializeField] TMP_Text keybindText;
+    [SerializeField] Sprite mouseButtonLeftImage;
+    [SerializeField] Sprite mouseButtonMiddleImage;
+    [SerializeField] Sprite mouseButtonRightImage;
     HotTextInfo hotText;
     
     public void Setup (HotTextInfo hotText)
@@ -18,10 +23,33 @@ public class HotTextListItem : MonoBehaviour
 
         if (hotText.key != KeyCode.None)
         {
-            keybindText.text = hotText.key.ToString();
+            SetKeybind(hotText.key);
         } else
         {
             keybindObject.SetActive(false);
         }
+    }
+
+    void SetKeybind (KeyCode key)
+    {
+        keybindText.text = "";
+
+        if (key == KeyCode.Mouse0)
+        {
+            keybindImage.sprite = mouseButtonLeftImage;
+            return;
+        }
+        if (key == KeyCode.Mouse1)
+        {
+            keybindImage.sprite = mouseButtonRightImage;
+            return;
+        }
+        if (key == KeyCode.Mouse2)
+        {
+            keybindImage.sprite = mouseButtonMiddleImage;
+            return;
+        }
+
+        keybindText.text = hotText.key.ToString();
     }
 }

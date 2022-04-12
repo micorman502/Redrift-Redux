@@ -14,12 +14,12 @@ public class PlayerBuilding : MonoBehaviour
 
     void OnEnable()
     {
-        PlayerEvents.OnLockStateSet += SetInMenuState;
+        ControlEvents.OnLockStateSet += SetInMenuState;
     }
 
     void OnDisable()
     {
-        PlayerEvents.OnLockStateSet -= SetInMenuState;
+        ControlEvents.OnLockStateSet -= SetInMenuState;
     }
 
     void SetInMenuState (bool state)

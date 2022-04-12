@@ -8,12 +8,12 @@ public class RespawnManager : MonoBehaviour
     [SerializeField] PurgatoryTimer timer;
     private void OnEnable()
     {
-        PlayerEvents.OnPlayerDeath += ReceiveDeath;
+        PlayerController.OnDeath += ReceiveDeath;
     }
 
     private void OnDisable()
     {
-        PlayerEvents.OnPlayerDeath -= ReceiveDeath;
+        PlayerController.OnDeath -= ReceiveDeath;
     }
 
     void ReceiveDeath ()
@@ -24,6 +24,6 @@ public class RespawnManager : MonoBehaviour
 
     void RespawnPlayer ()
     {
-        PlayerEvents.RespawnPlayer();
+        PlayerController.currentPlayer.Respawn();
     }
 }

@@ -19,7 +19,7 @@ public class LootContainer : MonoBehaviour, IInteractable {
 			int amount = Random.Range(lootItem.minAmount, lootItem.maxAmount + 1);
 			for(int a = 0; a < amount; a++) {
 				if(Random.Range(0f, 1f) <= lootItem.chance) {
-					GameObject itemObj = Instantiate(lootItem.item.droppedPrefab, transform.position + Vector3.up * 0.3f + Random.onUnitSphere * 0.2f, lootItem.item.droppedPrefab.transform.rotation) as GameObject;
+					GameObject itemObj = Instantiate(lootItem.item.droppedPrefab, transform.position + Vector3.up * 0.3f + Random.onUnitSphere * 0.2f, lootItem.item.droppedPrefab.transform.rotation);
 					Rigidbody itemRB = itemObj.GetComponent<Rigidbody>();
 					if(itemRB) {
 						itemRB.AddExplosionForce(3f, transform.position, 2f);
@@ -28,7 +28,7 @@ public class LootContainer : MonoBehaviour, IInteractable {
 			}
 			i++;
 		}
-		GameObject obj = Instantiate(lootParticles, transform.position, Quaternion.identity) as GameObject;
+		GameObject obj = Instantiate(lootParticles, transform.position, Quaternion.identity);
 		Destroy(obj, 10f);
 		Destroy(gameObject);
 	}

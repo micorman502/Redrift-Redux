@@ -27,13 +27,10 @@ public class WorldManager : MonoBehaviour {
 
 	bool gameStarted;
 
-	PersistentData persistentData;
-
 	void Start() {
-		persistentData = FindObjectOfType<PersistentData>();
-		if(persistentData) {
-			difficulty = persistentData.difficulty;
-			if(!persistentData.loadingFromSave) {
+		if(PersistentData.Instance) {
+			difficulty = PersistentData.Instance.difficulty;
+			if(!PersistentData.Instance.loadingFromSave) {
 				GenerateWorld();
 			}
 		} else {

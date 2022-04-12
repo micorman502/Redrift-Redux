@@ -10,15 +10,11 @@ public class ResourceSpawner : MonoBehaviour
 	[SerializeField] Vector3 bounds;
     [SerializeField] ResourceSpawn[] spawns;
 
-	PersistentData persistentData;
-
 	private void Start ()
     {
-		persistentData = FindObjectOfType<PersistentData>();
-
-		if (persistentData)
+		if (PersistentData.Instance)
 		{
-			if (!persistentData.loadingFromSave)
+			if (!PersistentData.Instance.loadingFromSave)
 			{
 				SpawnInitialResources();
 			}

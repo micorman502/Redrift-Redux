@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using UnityEngine.UI;
-using UnityEngine.AI;
 using UnityEngine.PostProcessing;
 using EZCameraShake;
 using System;
@@ -16,6 +14,8 @@ public class PlayerController : MonoBehaviour {
 	public static event Action<float> OnHungerChanged;
 	public static event Action<float> OnMaxHealthChanged;
 	public static event Action<float> OnMaxHungerChanged;
+	public static event Action OnDeath;
+	public static event Action OnRespawn;
 
 	public GameObject playerCameraHolder;
 	public GameObject playerCamera;
@@ -47,8 +47,6 @@ public class PlayerController : MonoBehaviour {
 	[HideInInspector] public PlayerInventory inventory;
 	AudioManager audioManager;
 	PauseManager pauseManager;
-
-	public GameObject canvas;
 
 	[HideInInspector] public bool grounded;
 
@@ -101,8 +99,6 @@ public class PlayerController : MonoBehaviour {
 	float originalDrag;
 	float flyingDrag = 10f;
 
-	PersistentData persistentData;
-
 	GameObject currentHotTextObject;
 	GameObject lastInteractionGameObject;
 
@@ -123,14 +119,12 @@ public class PlayerController : MonoBehaviour {
 
     void OnEnable()
     {
-		PlayerEvents.RespawnPlayer += Respawn;
-		PlayerEvents.OnLockStateSet += (bool _locked) => { LockLook(_locked); SetInMenuState(!_locked); };
+		ControlEvents.OnLockStateSet += (bool _locked) => { LockLook(_locked); SetInMenuState(!_locked); };
 	}
 
     void OnDisable()
     {
-		PlayerEvents.RespawnPlayer -= Respawn;
-		PlayerEvents.OnLockStateSet -= (bool _locked) => { LockLook(_locked); SetInMenuState(!_locked); };
+		ControlEvents.OnLockStateSet -= (bool _locked) => { LockLook(_locked); SetInMenuState(!_locked); };
 	}
 
     void Start() {
@@ -144,8 +138,7 @@ public class PlayerController : MonoBehaviour {
 
 		difficulty = FindObjectOfType<SaveManager>().difficulty;
 
-		persistentData = FindObjectOfType<PersistentData>();
-		if(!dead && !persistentData.loadingFromSave) {
+		if(!dead && !PersistentData.Instance.loadingFromSave) {
 			RealmTeleportManager.Instance.TeleportToRealm("Light");
 		}
 	}
@@ -222,16 +215,6 @@ public class PlayerController : MonoBehaviour {
 		moveAmount = Vector3.SmoothDamp(moveAmount, targetMoveAmount, ref smoothMoveVelocity, smoothTime);
 
 		flyDoubleTapCooldown -= Time.deltaTime;
-
-		if(Input.GetKey(KeyCode.C)) {
-			if(canvas.activeSelf) {
-				canvas.SetActive(false);
-			}
-		} else {
-			if(!canvas.activeSelf) {
-				canvas.SetActive(true);
-			}
-		}
 
 		RaycastHit hit;
 		Ray ray = playerCamera.GetComponent<Camera>().ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
@@ -631,17 +614,22 @@ public class PlayerController : MonoBehaviour {
 		if(difficulty > 1) {
 			inventory.ClearInventory();
 		}
-		PlayerEvents.OnPlayerDeath();
+		OnDeath?.Invoke();
 
 		RealmTeleportManager.Instance.TeleportToRealm("Purgatory");
 
 		dead = true;
 	}
 
-	void Respawn() {
+	public void Respawn() {
+		if (!dead)
+			return;
+
 		health = maxHealth;
 		hunger = maxHunger;
 		dead = false;
+
+		OnRespawn?.Invoke();
 
 		RealmTeleportManager.Instance.TeleportToPreviousRealm();
 	}

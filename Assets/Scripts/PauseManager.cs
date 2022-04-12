@@ -57,7 +57,7 @@ public class PauseManager : MonoBehaviour {
 		Time.timeScale = originalTimeScale;
 		Cursor.lockState = CursorLockMode.None;
 		Cursor.visible = true;
-		Destroy(FindObjectOfType<PersistentData>().gameObject); // Destroy the persistent data object before we return to the menu, otherwise the game will save with a blank save name.
+		Destroy(PersistentData.Instance.gameObject); // Destroy the persistent data object before we return to the menu, otherwise the game will save with a blank save name.
 		SceneManager.LoadScene("Menu");
 	}
 }

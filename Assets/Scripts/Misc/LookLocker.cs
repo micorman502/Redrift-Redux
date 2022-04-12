@@ -19,12 +19,12 @@ public class LookLocker : MonoBehaviour
 
     private void OnEnable()
     {
-        PlayerEvents.OnLockStateSet += SetLockedState;
+        ControlEvents.OnLockStateSet += SetLockedState;
     }
 
     void OnDisable()
     {
-        PlayerEvents.OnLockStateSet -= SetLockedState;
+        ControlEvents.OnLockStateSet -= SetLockedState;
         SetLockedState(false);
     }
 
