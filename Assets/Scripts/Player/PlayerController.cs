@@ -32,7 +32,6 @@ public class PlayerController : MonoBehaviour {
 	public float smoothTime;
 	public LayerMask groundedMask;
 	public float interactRange = 2f;
-	public ItemInfo fuelItem;
 
 	[HideInInspector] public PostProcessingBehaviour playerCameraPostProcessingBehaviour;
 
@@ -261,27 +260,20 @@ public class PlayerController : MonoBehaviour {
 							UIEvents.InitialiseProgressBar(pickupTime);
 
 							if(pickingUpTime >= pickupTime) {
-								if(autoMiner) {
-									if(autoMiner.currentToolItem) {
-										inventory.inventory.AddItem(new WorldItem(autoMiner.GatherTool(), 1));
-									}
-
-									foreach(WorldItem item in autoMiner.items) {
-										inventory.inventory.AddItem(item);
-									}
-								}
-								if(itemHandler.item.id == 6) { // Is it a furnace?
-									Furnace furnace = itemHandler.GetComponent<Furnace>();
-									if(furnace) {
-										inventory.inventory.AddItem(new WorldItem(fuelItem, (int)Mathf.Floor(furnace.fuel))); // ONLY WORKS IF WOOD IS ONLY FUEL SOURCE
-										if(furnace.currentSmeltingItem) {
-											inventory.inventory.AddItem(new WorldItem(furnace.currentSmeltingItem, 1));
-										}
-									}
-								}
 								pickingUpTime = 0f;
 								UIEvents.UpdateProgressBar(pickingUpTime);
 								UIEvents.InitialiseProgressBar(pickupTime);
+
+								IItemPickup pickup = itemHandler.gameObject.GetComponent<IItemPickup>();
+								if (pickup != null)
+                                {
+									WorldItem[] itemPickups = pickup.Pickup();
+									for (int i = 0; i < itemPickups.Length; i++)
+                                    {
+										inventory.inventory.AddItem(itemPickups[i]);
+                                    }
+                                }
+
 								inventory.Pickup(itemHandler);
 								audioManager.Play("Grab");
 							}

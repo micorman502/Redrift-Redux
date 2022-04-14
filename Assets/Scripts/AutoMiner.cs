@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class AutoMiner : MonoBehaviour, IItemSaveable, IItemInteractable {
+public class AutoMiner : MonoBehaviour, IItemSaveable, IItemInteractable, IItemPickup {
 
 	[SerializeField] string saveID;
 
@@ -38,6 +38,18 @@ public class AutoMiner : MonoBehaviour, IItemSaveable, IItemInteractable {
 		agent = GetComponent<NavMeshAgent>();
 		GetComponent<AudioSource>().outputAudioMixerGroup = FindObjectOfType<SettingsManager>().audioMixer.FindMatchingGroups("Master")[0];
 	}
+
+	public WorldItem[] Pickup ()
+    {
+		List<WorldItem> pickupItems = items;
+
+		if (currentToolItem)
+        {
+			items.Add(new WorldItem(currentToolItem, 1));
+        }
+
+		return pickupItems.ToArray();
+    }
 	
 	void FixedUpdate() {
 		if(agent.isOnNavMesh) {

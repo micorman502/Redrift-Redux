@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Furnace : MonoBehaviour, IItemSaveable, IItemInteractable, IGetTriggerInfo {
+public class Furnace : MonoBehaviour, IItemPickup, IItemSaveable, IItemInteractable, IGetTriggerInfo {
 
 	[SerializeField] string saveID;
 
@@ -15,6 +15,17 @@ public class Furnace : MonoBehaviour, IItemSaveable, IItemInteractable, IGetTrig
 	[SerializeField] Transform dropPos;
 
 	public float smeltTime = 10f;
+
+	public WorldItem[] Pickup ()
+	{
+		List<WorldItem> pickups = new List<WorldItem>();
+
+		if (currentSmeltingItem) {
+			pickups.Add(new WorldItem(currentSmeltingItem, 1));
+		}
+
+		return pickups.ToArray();
+	}
 
 	public void GetTriggerInfo (Collider col)
     {
