@@ -241,9 +241,9 @@ public class PlayerController : MonoBehaviour {
 						} else {
 							//tooltipText = "Hold [E] to pick up, [F] to gather items";
 							if(Input.GetButton("Interact")) {
-								foreach(WorldItem item in autoMiner.items) {
+								/*foreach(WorldItem item in autoMiner.items) {
 									inventory.inventory.AddItem(item);
-								}
+								}*/
 
 								audioManager.Play("Grab");
 

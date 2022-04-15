@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class AutoMiner : MonoBehaviour, IItemSaveable, IItemInteractable, IItemPickup {
+public class AutoMiner : MonoBehaviour, IItemSaveable, IInteractable, IItemPickup {
 
 	[SerializeField] string saveID;
+	[SerializeField] ParticleSystem exhaustParticles;
+
+	[SerializeField] float gatherRange = 2.5f;
+	[SerializeField] ToolInfo tool;
 
 	NavMeshAgent agent;
 
@@ -15,25 +19,20 @@ public class AutoMiner : MonoBehaviour, IItemSaveable, IItemInteractable, IItemP
 
 	[HideInInspector] public ResourceHandler target;
 
-	float interactRange = 2.5f;
-
 	Animator animator;
 
 	bool moving = false;
 	bool gathering = false;
 
-	public List<WorldItem> items = new List<WorldItem>();
+	List<WorldItem> items = new List<WorldItem>();
 
 	float gatherTime = 0f;
 
-	public ToolInfo currentToolItem = null;
-	GameObject currentToolObj = null;
-
-	PlayerController player;
+	int ticksPerCheck = 25;
+	int curTick = 0;
 
 	void Start() {
 		hive = GameObject.FindGameObjectWithTag("ScriptHolder").GetComponent<HiveMind>();
-		player = FindObjectOfType<PlayerController>();
 		animator = GetComponent<Animator>();
 		agent = GetComponent<NavMeshAgent>();
 		GetComponent<AudioSource>().outputAudioMixerGroup = FindObjectOfType<SettingsManager>().audioMixer.FindMatchingGroups("Master")[0];
@@ -43,134 +42,119 @@ public class AutoMiner : MonoBehaviour, IItemSaveable, IItemInteractable, IItemP
     {
 		List<WorldItem> pickupItems = items;
 
-		if (currentToolItem)
-        {
-			items.Add(new WorldItem(currentToolItem, 1));
-        }
-
 		return pickupItems.ToArray();
     }
-	
-	void FixedUpdate() {
-		if(agent.isOnNavMesh) {
-			if(currentToolItem) {
-				if(target) {
-					if(!moving) {
-						moving = true;
-						animator.SetBool("Moving", moving);
-					}
-					if(Vector3.Distance(transform.position, target.transform.position) <= interactRange) {
-						if(!gathering) {
-							gathering = true;
-							animator.SetBool("Gathering", gathering);
-						}
-						if(moving) {
-							moving = false;
-							animator.SetBool("Moving", moving);
-						}
-						gatherTime += Time.deltaTime * currentToolItem.gatherSpeedMult;
-						if(gatherTime >= target.resource.gatherTime) {
-							WorldItem[] gatheredItems = target.ToolGather(currentToolItem);
-							foreach (WorldItem gathered in gatheredItems)
-							{
-								AddItem(gathered.item, gathered.amount);
-							}
-							gatherTime = 0f;
-						}
-					}
-				} else {
-					if(gathering) {
-						gathering = false;
-						gatherTime = 0f;
-						animator.SetBool("Gathering", gathering);
-					}
 
-					ResourceHandler closestHandler = null;
-					float closestDistance = Mathf.Infinity;
-					foreach(ResourceHandler resourceHandler in hive.worldResources) {
-						if(resourceHandler) {
-							float dist = Vector3.Distance(transform.position, resourceHandler.transform.position);
-							if(dist < closestDistance) {
-								closestDistance = dist;
-								closestHandler = resourceHandler;
-							}
-						}
-					}
+	void FixedUpdate ()
+	{
+		if (!agent.isOnNavMesh)
+			return;
+		curTick++;
+		if (curTick > ticksPerCheck)
+		{
+			curTick = 0;
+			ResourceCheck();
+		}
 
-					if(closestHandler != null) {
-						target = closestHandler;
-						if(agent.isStopped) {
-							agent.isStopped = false;
-						}
-						//target = hive.worldResources[Random.Range(0, hive.worldResources.Count)];
-						agent.SetDestination(target.transform.position);
-						if(Vector3.Distance(agent.destination, target.transform.position) > interactRange) {
-							target = null; 
-						}
-					} else {
-						if(!agent.isStopped) {
-							agent.isStopped = true;
-							moving = false;
-							animator.SetBool("Moving", moving);
-						}
+		if (moving || gathering)
+        {
+			ParticleSystem.EmissionModule mod = exhaustParticles.emission;
+			mod.rateOverTimeMultiplier = 1;
+        } else
+        {
+			ParticleSystem.EmissionModule mod = exhaustParticles.emission;
+			mod.rateOverTimeMultiplier = 0;
+		}
+
+		if (target)
+		{
+			if (!moving)
+			{
+				moving = true;
+				animator.SetBool("Moving", moving);
+			}
+			if (Vector3.Distance(transform.position, target.transform.position) <= gatherRange)
+			{
+				if (!gathering)
+				{
+					gathering = true;
+					animator.SetBool("Gathering", gathering);
+				}
+				if (moving)
+				{
+					moving = false;
+					animator.SetBool("Moving", moving);
+				}
+				gatherTime += Time.deltaTime * tool.gatherSpeedMult;
+				if (gatherTime >= target.resource.gatherTime)
+				{
+					WorldItem[] gatheredItems = target.ToolGather(tool);
+					foreach (WorldItem gathered in gatheredItems)
+					{
+						AddItem(gathered.item, gathered.amount);
 					}
+					gatherTime = 0f;
+					exhaustParticles.Emit(4);
 				}
 			}
-		} else {
-			//Debug.Log("Not on NavMesh");
-		}
-	}
-
-	public void Interact (WorldItem item)
-    {
-		SetTool(item.item);
-    }
-
-	public void SetTool(ItemInfo item) {
-		PlayerInventory inventory = PlayerController.currentPlayer.gameObject.GetComponent<PlayerInventory>();
-
-		if (!item)
-			return;
-		if (!(item is ToolInfo))
-			return;
-		inventory.inventory.RemoveItem(new WorldItem(item, 1));
-
-		if (currentToolItem)
-		{
-			inventory.inventory.AddItem(new WorldItem(currentToolItem, 1));
-		}
-
-		if (currentToolObj) {
-			Destroy(currentToolObj);
-		}
-
-		currentToolItem = item as ToolInfo;
-		GameObject obj = Instantiate(item.droppedPrefab, toolHolder.transform);
-
-		Rigidbody objRB = obj.GetComponent<Rigidbody>();
-		if(objRB) {
-			objRB.isKinematic = true;
-		}
-
-		ArtificialInertia inertia = obj.GetComponent<ArtificialInertia>();
-		if (inertia)
+		} else
         {
-			inertia.SetRoot(transform);
-        }
-		obj.tag = "Untagged";
-		foreach(Transform trans in obj.transform) {
-			trans.tag = "Untagged";
+			if (gathering)
+			{
+				gathering = false;
+				gatherTime = 0f;
+				animator.SetBool("Gathering", gathering);
+			}
+		}
+	}
+
+	void ResourceCheck ()
+    {
+
+		ResourceHandler closestHandler = null;
+		float closestDistance = Mathf.Infinity;
+		foreach (ResourceHandler resourceHandler in hive.worldResources)
+		{
+			if (resourceHandler)
+			{
+				float dist = Vector3.Distance(transform.position, resourceHandler.transform.position);
+				if (dist < closestDistance)
+				{
+					closestDistance = dist;
+					closestHandler = resourceHandler;
+				}
+			}
 		}
 
-		currentToolObj = obj;
+		if (closestHandler != null)
+		{
+			target = closestHandler;
+			if (agent.isStopped)
+			{
+				agent.isStopped = false;
+			}
+			//target = hive.worldResources[Random.Range(0, hive.worldResources.Count)];
+			agent.SetDestination(target.transform.position);
+			if (Vector3.Distance(agent.destination, target.transform.position) > gatherRange)
+			{
+				target = null;
+			}
+		}
+		else
+		{
+			if (!agent.isStopped)
+			{
+				agent.isStopped = true;
+				moving = false;
+				animator.SetBool("Moving", moving);
+			}
+		}
 	}
 
-	public ItemInfo GatherTool() {
-		ItemInfo returnItem = currentToolItem;
-		currentToolItem = null;
-		Destroy(currentToolObj);
-		return returnItem;
-	}
+	public void Interact ()
+    {
+		
+    }
 
 	public void ClearItems() {
 		items.Clear();
@@ -207,15 +191,6 @@ public class AutoMiner : MonoBehaviour, IItemSaveable, IItemInteractable, IItemP
         }
 		newData.itemAmounts = newAmts;
 
-		if (currentToolItem)
-		{
-			newData.itemID = currentToolItem.id;
-		}
-		else
-		{
-			newData.itemID = -1;
-		}
-
 		data = newData;
 		objData = newObjData;
 		dontSave = false;
@@ -232,9 +207,5 @@ public class AutoMiner : MonoBehaviour, IItemSaveable, IItemInteractable, IItemP
 			items[i].item = newItems[i];
 			items[i].amount = data.itemAmounts[i];
         }
-		if (data.itemID != -1)
-		{
-			SetTool(ItemDatabase.Instance.GetItem(data.itemID));
-		}
 	}
 }
