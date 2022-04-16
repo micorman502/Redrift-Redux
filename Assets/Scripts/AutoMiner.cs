@@ -15,8 +15,6 @@ public class AutoMiner : MonoBehaviour, IItemSaveable, IInteractable, IItemPicku
 
 	HiveMind hive;
 
-	public GameObject toolHolder;
-
 	[HideInInspector] public ResourceHandler target;
 
 	Animator animator;
@@ -94,7 +92,7 @@ public class AutoMiner : MonoBehaviour, IItemSaveable, IInteractable, IItemPicku
 						AddItem(gathered.item, gathered.amount);
 					}
 					gatherTime = 0f;
-					exhaustParticles.Emit(4);
+					exhaustParticles.Emit(6);
 				}
 			}
 		} else
@@ -110,7 +108,6 @@ public class AutoMiner : MonoBehaviour, IItemSaveable, IInteractable, IItemPicku
 
 	void ResourceCheck ()
     {
-
 		ResourceHandler closestHandler = null;
 		float closestDistance = Mathf.Infinity;
 		foreach (ResourceHandler resourceHandler in hive.worldResources)
@@ -133,7 +130,6 @@ public class AutoMiner : MonoBehaviour, IItemSaveable, IInteractable, IItemPicku
 			{
 				agent.isStopped = false;
 			}
-			//target = hive.worldResources[Random.Range(0, hive.worldResources.Count)];
 			agent.SetDestination(target.transform.position);
 			if (Vector3.Distance(agent.destination, target.transform.position) > gatherRange)
 			{
@@ -153,7 +149,21 @@ public class AutoMiner : MonoBehaviour, IItemSaveable, IInteractable, IItemPicku
 
 	public void Interact ()
     {
-		
+		Inventory inv = PlayerController.currentPlayer.gameObject.GetComponent<PlayerInventory>().inventory;
+
+		for (int i = items.Count - 1; i >= 0; i--)
+        {
+			int amt = inv.SpaceLeftForItem(items[i]);
+			if (amt == items[i].amount)
+            {
+				inv.AddItem(items[i]);
+				items.RemoveAt(i);
+            } else if (amt > 0)
+            {
+				inv.AddItem(new WorldItem(items[i].item, amt));
+				items[i].amount -= amt;
+			}
+        }
     }
 
 	public void ClearItems() {

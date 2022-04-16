@@ -264,17 +264,21 @@ public class PlayerController : MonoBehaviour {
 								UIEvents.UpdateProgressBar(pickingUpTime);
 								UIEvents.InitialiseProgressBar(pickupTime);
 
-								IItemPickup pickup = itemHandler.gameObject.GetComponent<IItemPickup>();
-								if (pickup != null)
-                                {
-									WorldItem[] itemPickups = pickup.Pickup();
-									for (int i = 0; i < itemPickups.Length; i++)
-                                    {
-										inventory.inventory.AddItem(itemPickups[i]);
-                                    }
-                                }
+								if (inventory.Pickup(itemHandler)) //if the item (e.g. autominer) has been succesfully picked up, then pick up whatever other items it has
+								{
+									IItemPickup pickup = itemHandler.gameObject.GetComponent<IItemPickup>();
+									if (pickup != null)
+									{
+										WorldItem[] itemPickups = pickup.Pickup();
+										for (int i = 0; i < itemPickups.Length; i++)
+										{
+											inventory.inventory.AddItem(itemPickups[i]);
+										}
+									}
 
-								inventory.Pickup(itemHandler);
+									Destroy(itemHandler.gameObject);
+								}
+
 								audioManager.Play("Grab");
 							}
 						}

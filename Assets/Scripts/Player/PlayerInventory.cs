@@ -89,12 +89,13 @@ public class PlayerInventory : MonoBehaviour {
 		AddAllItems();
 	}
 
-	public void Pickup(ItemHandler itemHandler) {
+	public bool Pickup(ItemHandler itemHandler) {
 		if (inventory.SpaceLeftForItem(new WorldItem(itemHandler.item, 1)) > 0)
 		{
 			inventory.AddItem(new WorldItem(itemHandler.item, 1));
-			Destroy(itemHandler.gameObject);
+			return true;
 		}
+		return false;
 	}
 
 	void Update() {

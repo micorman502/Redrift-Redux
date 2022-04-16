@@ -10,26 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6a7a2305287544428cbfad1cf276d74, type: 3}
-  m_Name: AutoMiner
+  m_Name: FloorSolid
   m_EditorClassIdentifier: 
   inputs:
   - item: {fileID: 11400000, guid: 60defaddcf0f8ff46adb2b4cb7af81a3, type: 2}
-    amount: 12
+    amount: 6
   - item: {fileID: 11400000, guid: 1e10d0584bbe2ee47ba56f3c6f0b6737, type: 2}
-    amount: 10
-  - item: {fileID: 11400000, guid: ea1231b87469d66478589fbd2574706c, type: 2}
-    amount: 4
-  - item: {fileID: 11400000, guid: 13919cb26fba1284689672e0315679e4, type: 2}
-    amount: 5
-  - item: {fileID: 11400000, guid: 71c476103a3447b43a7661653c637266, type: 2}
-    amount: 2
-  - item: {fileID: 11400000, guid: 34c4e7e00e74e0c42b342cf4513c2cb6, type: 2}
-    amount: 3
-  - item: {fileID: 11400000, guid: 8e2b06360f2cb914093f2e0c86d5ee65, type: 2}
     amount: 1
   replacedItems: []
   output:
-    item: {fileID: 11400000, guid: 5883cf46a796a7e40969f614714cf207, type: 2}
+    item: {fileID: 11400000, guid: f3e23d95dfc133440b15894be720c8fd, type: 2}
     amount: 1
-  categories: 04000000
+  categories: 01000000
   id: 0

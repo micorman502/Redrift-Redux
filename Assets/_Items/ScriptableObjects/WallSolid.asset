@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9054553737ebdbf499c59d51c1852601, type: 3}
+  m_Name: WallSolid
+  m_EditorClassIdentifier: 
+  itemName: Solid Wall
+  itemDescription: 
+  stackSize: 20
+  stackPrefix: x
+  id: 43
+  achievementId: -1
+  icon: {fileID: 21300000, guid: 1ad63e00781c97b44a599f265f976774, type: 3}
+  droppedPrefab: {fileID: 6711195964724409980, guid: f74d53a97b6f7174195ab8a9e41f637e,
+    type: 3}
+  gridSize: 0.5
+  possibleRotations:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 90, z: 0}
+  - {x: 0, y: 180, z: 0}
+  - {x: 0, y: 270, z: 0}
+  alignToNormal: 0
+  previewPrefab: {fileID: 3482069275546716652, guid: c5b02c5f9fb65a346861212e127f3417,
+    type: 3}
+  placedObject: {fileID: 5889373234210687809, guid: 6baff221271b0bd4789e9152df438dd5,
+    type: 3}

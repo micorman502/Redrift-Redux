@@ -9846,6 +9846,7 @@ GameObject:
   - component: {fileID: 4881463323550614}
   - component: {fileID: 33170080663814668}
   - component: {fileID: 23139157843174130}
+  - component: {fileID: 9018141899109611480}
   m_Layer: 0
   m_Name: IncineratorBody
   m_TagString: Item
@@ -9917,6 +9918,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &9018141899109611480
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470976222429368}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300006, guid: 1f51899c40bed5a498d478b56cba884e, type: 3}
 --- !u!1 &1482758497832466
 GameObject:
   m_ObjectHideFlags: 0
@@ -9989,7 +10004,6 @@ GameObject:
   - component: {fileID: 114367163112493028}
   - component: {fileID: 95522913344220394}
   - component: {fileID: 114442246878580386}
-  - component: {fileID: 7019148194566594797}
   - component: {fileID: 8183266222260845120}
   - component: {fileID: -4724502506944287200}
   m_Layer: 0
@@ -10032,7 +10046,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handler: {fileID: -4724502506944287200}
-  tooltip: 
   item: {fileID: 11400000, guid: 65c8437dd1294f74a9b51040628230ff, type: 2}
   saveID: worldItemIncinerator
   dontSave: 0
@@ -10070,19 +10083,6 @@ MonoBehaviour:
   tellParent: {fileID: 114984768749217530}
   smokeParticles: {fileID: 198916363195093056}
   fireParticles: {fileID: 198382665720565510}
---- !u!65 &7019148194566594797
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1552388535253870}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1.5, z: 1}
-  m_Center: {x: 0, y: 0.75, z: 0}
 --- !u!65 &8183266222260845120
 BoxCollider:
   m_ObjectHideFlags: 0

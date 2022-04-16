@@ -266,3 +266,19 @@ MonoBehaviour:
       type: 3}
     nameIdentifier: droppedItemGoldIngot
     id: 71
+  - prefab: {fileID: 4745434317370439412, guid: fa14fb58e59369a45a66442553d0bf64,
+      type: 3}
+    nameIdentifier: droppedItemFloorSolid
+    id: 71
+  - prefab: {fileID: 8111573108411210730, guid: f29e2473e72dd07479ee2261e33638d9,
+      type: 3}
+    nameIdentifier: worldItemFloorSolid
+    id: 71
+  - prefab: {fileID: 6711195964724409980, guid: f74d53a97b6f7174195ab8a9e41f637e,
+      type: 3}
+    nameIdentifier: droppedItemWallSolid
+    id: 71
+  - prefab: {fileID: 5889373234210687809, guid: 6baff221271b0bd4789e9152df438dd5,
+      type: 3}
+    nameIdentifier: worldItemWallSolid
+    id: 71
