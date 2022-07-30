@@ -3,5 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public interface IItemPickup {
-    WorldItem[] Pickup();
+    WorldItem[] GetItems();
+    void Pickup ();
 }

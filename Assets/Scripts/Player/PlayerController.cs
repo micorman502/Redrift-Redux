@@ -53,15 +53,6 @@ public class PlayerController : MonoBehaviour {
 	GameObject target;
 	RaycastHit targetHit;
 
-	bool inMenu;
-
-	bool lockLook;
-	bool gathering = false;
-	float gatheringTime;
-
-	bool pickingUp = false;
-	float pickingUpTime;
-
 	int difficulty;
 	int mode;
 
@@ -92,16 +83,15 @@ public class PlayerController : MonoBehaviour {
 	float flyDoubleTapCooldown;
 	bool flying;
 
-	IResource currentResource;
-	GameObject currentResourceObject;
-
 	float originalDrag;
 	float flyingDrag = 10f;
 
 	GameObject currentHotTextObject;
 	GameObject lastInteractionGameObject;
 
-	const float pickupTime = 0.15f;
+	/*const float pickupTime = 0.15f;
+	bool pickingUp = false;
+	float pickingUpTime;*/
 
 	void Awake() {
 		GameObject scriptHolder = GameObject.FindGameObjectWithTag("ScriptHolder");
@@ -116,16 +106,6 @@ public class PlayerController : MonoBehaviour {
 		currentPlayer = this;
 	}
 
-    void OnEnable()
-    {
-		ControlEvents.OnLockStateSet += (bool _locked) => { LockLook(_locked); SetInMenuState(!_locked); };
-	}
-
-    void OnDisable()
-    {
-		ControlEvents.OnLockStateSet -= (bool _locked) => { LockLook(_locked); SetInMenuState(!_locked); };
-	}
-
     void Start() {
 		health = maxHealth;
 		hunger = maxHunger;
@@ -133,7 +113,7 @@ public class PlayerController : MonoBehaviour {
 		OnMaxHealthChanged?.Invoke(maxHealth);
 		OnMaxHungerChanged?.Invoke(maxHunger);
 
-		LookLocker.Instance.SetLockedState(true);
+		LookLocker.MouseLocked = true;
 
 		difficulty = FindObjectOfType<SaveManager>().difficulty;
 
@@ -172,7 +152,7 @@ public class PlayerController : MonoBehaviour {
     }
 
 	void Update() {
-		if(lockLook) {
+		if(LookLocker.MouseLocked) {
 			transform.Rotate(Vector3.up * Input.GetAxisRaw("Mouse X") * mouseSensitivityX);
 			verticalLookRotation += Input.GetAxisRaw("Mouse Y") * mouseSensitivityY;
 			verticalLookRotation = Mathf.Clamp(verticalLookRotation, -90, 90);
@@ -218,17 +198,16 @@ public class PlayerController : MonoBehaviour {
 		RaycastHit hit;
 		Ray ray = playerCamera.GetComponent<Camera>().ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
 
-		Physics.Raycast(ray, out hit, interactRange, -1, QueryTriggerInteraction.Collide);
+		Physics.Raycast(ray, out hit, interactRange, -1, QueryTriggerInteraction.Ignore);
 
 		distanceToTarget = hit.distance;
 
-		if(!inMenu) {
-
+		if(LookLocker.MouseLocked) {
 			if(hit.collider) {
 				target = hit.collider.gameObject;
 				targetHit = hit;
 
-				if(target.CompareTag("Item") && !inventory.placingStructure) {
+				/*if(target.CompareTag("Item") && !inventory.placingStructure) {
 					AutoMiner autoMiner = null;
 					ItemHandler itemHandler = target.GetComponentInParent<ItemHandler>();
 					if(itemHandler.item.id == 23) { // Auto Miner
@@ -241,9 +220,9 @@ public class PlayerController : MonoBehaviour {
 						} else {
 							//tooltipText = "Hold [E] to pick up, [F] to gather items";
 							if(Input.GetButton("Interact")) {
-								/*foreach(WorldItem item in autoMiner.items) {
+								foreach(WorldItem item in autoMiner.items) {
 									inventory.inventory.AddItem(item);
-								}*/
+								}
 
 								audioManager.Play("Grab");
 
@@ -251,86 +230,9 @@ public class PlayerController : MonoBehaviour {
 							}
 						}
 					}
-					if(Input.GetButton("PickUp")) {
-						if(!pickingUp) {
-							pickingUp = true;
-						} else {
-							pickingUpTime += Time.deltaTime;
-							UIEvents.UpdateProgressBar(pickingUpTime);
-							UIEvents.InitialiseProgressBar(pickupTime);
-
-							if(pickingUpTime >= pickupTime) {
-								pickingUpTime = 0f;
-								UIEvents.UpdateProgressBar(pickingUpTime);
-								UIEvents.InitialiseProgressBar(pickupTime);
-
-								if (inventory.Pickup(itemHandler)) //if the item (e.g. autominer) has been succesfully picked up, then pick up whatever other items it has
-								{
-									IItemPickup pickup = itemHandler.gameObject.GetComponent<IItemPickup>();
-									if (pickup != null)
-									{
-										WorldItem[] itemPickups = pickup.Pickup();
-										for (int i = 0; i < itemPickups.Length; i++)
-										{
-											inventory.inventory.AddItem(itemPickups[i]);
-										}
-									}
-
-									Destroy(itemHandler.gameObject);
-								}
-
-								audioManager.Play("Grab");
-							}
-						}
-					} else if(pickingUp) {
-						pickingUpTime = 0f;
-						pickingUp = false;
-					}
-				} else if(target.CompareTag("Resource") && !(inventory.currentSelectedItem.item is ToolInfo)) { // Gather resources
-					if(Input.GetMouseButton(0) || Input.GetAxisRaw("ControllerTriggers") <= -0.1f) {
-						if(!gathering) {
-							gathering = true;
-							if (currentResource != null)
-							{
-								UIEvents.UpdateProgressBar(gatheringTime);
-								UIEvents.InitialiseProgressBar(currentResource.GetResource().gatherTime);
-							}
-						} else {
-
-							gatheringTime += Time.deltaTime;
-							if(currentResource == null || currentResourceObject != target) {
-								currentResource = target.GetComponent<IResource>();
-								if (currentResource == null)
-                                {
-									currentResource = target.GetComponentInParent<IResource>();
-                                }
-								if (currentResource != null)
-                                {
-									currentResourceObject = target;
-                                }
-							}
-							UIEvents.UpdateProgressBar(gatheringTime);
-							UIEvents.InitialiseProgressBar(currentResource.GetResource().gatherTime);
-
-							if (gatheringTime >= currentResource.GetResource().gatherTime) {
-								WorldItem[] gatheredItems = currentResource.HandGather();
-								foreach(WorldItem item in gatheredItems) {
-									inventory.inventory.AddItem(item);
-								}
-								gatheringTime = 0f;
-								CameraShaker.Instance.ShakeOnce(2f, 3f, 0.1f, 0.3f);
-							}
-						}
-					} else if(gathering || pickingUp) {
-						CancelGatherAndPickup();
-					}
-				} else if(gathering || pickingUp) {
-					CancelGatherAndPickup();
-				}
+					
+				}*/
 			} else {
-				if(gathering || pickingUp) {
-					CancelGatherAndPickup();
-				}
 				target = null;
 			}
 		}
@@ -417,15 +319,6 @@ public class PlayerController : MonoBehaviour {
 
 	public void LoadCreativeMode() {
 		mode = 1;
-	}
-
-	void SetInMenuState (bool _inMenu)
-    {
-		inMenu = _inMenu;
-    }
-
-	public bool InMenu() {
-		return inMenu;
 	}
 
 	public bool ActiveSystemMenu() {
@@ -599,13 +492,6 @@ public class PlayerController : MonoBehaviour {
 	}
 	*/
 
-	void CancelGatherAndPickup() {
-		gatheringTime = 0f;
-		pickingUpTime = 0f;
-		gathering = false;
-		pickingUp = false;
-	}
-
 	public void Die() {
 		if(difficulty > 1) {
 			inventory.ClearInventory();
@@ -628,10 +514,6 @@ public class PlayerController : MonoBehaviour {
 		OnRespawn?.Invoke();
 
 		RealmTeleportManager.Instance.TeleportToPreviousRealm();
-	}
-
-	public void LockLook(bool _lockLook) {
-		lockLook = _lockLook;
 	}
 
 	void FixedUpdate() {
@@ -662,5 +544,10 @@ public class PlayerController : MonoBehaviour {
 	public GameObject GetTarget ()
     {
 		return target;
+    }
+
+	public RaycastHit GetTargetRaycastHit ()
+    {
+		return targetHit;
     }
 }

@@ -6,11 +6,20 @@ using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour {
 
+	public static AudioManager Instance { get; private set; }
 	public Sound[] sounds;
 
 	SettingsManager settingsManager;
 
 	void Awake() {
+		if (Instance)
+        {
+			Debug.Log($"Duplicate Instance of '{this.GetType().Name}' exists on object '{gameObject.name}'. Destroying '{this.GetType().Name}'");
+			Destroy(this);
+			return;
+        }
+		Instance = this;
+
 		settingsManager = FindObjectOfType<SettingsManager>();
 		foreach(Sound s in sounds) {
 			s.source = gameObject.AddComponent<AudioSource>();

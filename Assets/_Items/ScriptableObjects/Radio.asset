@@ -15,6 +15,7 @@ MonoBehaviour:
   itemName: Radio
   itemDescription: 
   stackSize: 5
+  stackPrefix: x
   id: 0
   achievementId: -1
   icon: {fileID: 21300000, guid: f402684adb0b5444eae9c50ecc44f5c2, type: 3}

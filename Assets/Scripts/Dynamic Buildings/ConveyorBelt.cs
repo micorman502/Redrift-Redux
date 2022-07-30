@@ -14,12 +14,12 @@ public class ConveyorBelt : MonoBehaviour, IItemSaveable, IGetTriggerInfo, IInte
 	Animator anim;
 
 	public TellParent tellParent;
-	new AudioSource audio;
+	AudioSource audioSource;
 
 	void Awake() {
 		anim = GetComponent<Animator>();
-		audio = GetComponent<AudioSource>();
-		audio.outputAudioMixerGroup = FindObjectOfType<SettingsManager>().audioMixer.FindMatchingGroups("Master")[0];
+		audioSource = GetComponent<AudioSource>();
+		audioSource.outputAudioMixerGroup = FindObjectOfType<SettingsManager>().audioMixer.FindMatchingGroups("Master")[0];
 	}
 
 	void Start() {
@@ -78,12 +78,12 @@ public class ConveyorBelt : MonoBehaviour, IItemSaveable, IGetTriggerInfo, IInte
 
 	void UpdateActive() {
 		anim.SetBool("Active", active);
-		audio.mute = !active;
+		audioSource.mute = !active;
 	}
 
 	void UpdateSpeed() {
 		anim.SetFloat("Speed", speeds[speedNum]);
-		audio.pitch = 0.5f + speeds[speedNum] / 8f;
+		audioSource.pitch = 0.5f + speeds[speedNum] / 8f;
 	}
 
 	public void GetData(out ItemSaveData data, out ObjectSaveData objData, out bool dontSave)

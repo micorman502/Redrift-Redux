@@ -38,7 +38,7 @@ public class TooltipManager : MonoBehaviour
         tooltipShowAnim.Play();
         tooltipObject.SetActive(true);
         tooltipName.text = slot.Item.itemName;
-        tooltipDesc.text = slot.Item.itemDescription;
+        tooltipDesc.text = slot.Item.GetDescription();
     }
 
     public void HideTooltip ()

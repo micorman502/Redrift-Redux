@@ -19,4 +19,5 @@ MonoBehaviour:
   output:
     item: {fileID: 11400000, guid: 13919cb26fba1284689672e0315679e4, type: 2}
     amount: 2
-  categories: 0200000004000000
+  categories: 02000000
+  id: 0

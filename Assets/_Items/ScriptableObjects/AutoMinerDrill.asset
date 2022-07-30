@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AutoMinerDrill
   m_EditorClassIdentifier: 
   itemName: Auto Miner Drill
-  itemDescription: For use on an AutoMiner only
+  itemDescription: '[INTERNAL] For use on an AutoMiner only'
   stackSize: 1
   stackPrefix: x
   id: 0

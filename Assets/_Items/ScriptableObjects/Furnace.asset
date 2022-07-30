@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Furnace
   m_EditorClassIdentifier: 
   itemName: Furnace
-  itemDescription: 
+  itemDescription: Wood and ore, clay, etc. goes in, ingot comes out
   stackSize: 5
   stackPrefix: x
   id: 0

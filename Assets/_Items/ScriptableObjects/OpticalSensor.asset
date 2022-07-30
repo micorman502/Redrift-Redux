@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: OpticalSensor
   m_EditorClassIdentifier: 
   itemName: Optical Sensor
-  itemDescription: 
+  itemDescription: Used in automation technology
   stackSize: 100
   stackPrefix: x
   id: 39

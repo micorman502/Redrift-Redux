@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: PickaxeStone
   m_EditorClassIdentifier: 
   itemName: Stone Pickaxe
-  itemDescription: 
+  itemDescription: Good for mining, somewhat fast
   stackSize: 1
   stackPrefix: x
-  id: 0
+  id: 28
   achievementId: -1
   icon: {fileID: 21300000, guid: 0f51bee8c32fb6c468cb8b5b6e4914f7, type: 3}
   droppedPrefab: {fileID: 1786563341914446, guid: 5f34a8483f909ca45b40146cb394fb68,

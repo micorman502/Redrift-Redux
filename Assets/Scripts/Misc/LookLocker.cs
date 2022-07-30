@@ -1,11 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class LookLocker : MonoBehaviour
 {
     public static LookLocker Instance;
-    bool locked;
+
+    public static event Action<bool> OnLockStateSet;
+    static bool mouseLocked;
+    public static bool MouseLocked { get { return mouseLocked; } set { LockStateSet(value); } }
+
+    public static void LockStateSet (bool state)
+    {
+        OnLockStateSet?.Invoke(state);
+        mouseLocked = state;
+    }
 
     private void Awake()
     {
@@ -19,18 +29,17 @@ public class LookLocker : MonoBehaviour
 
     private void OnEnable()
     {
-        ControlEvents.OnLockStateSet += SetLockedState;
+        OnLockStateSet += LockMouse;
     }
 
     void OnDisable()
     {
-        ControlEvents.OnLockStateSet -= SetLockedState;
-        SetLockedState(false);
+        OnLockStateSet -= LockMouse;
+        LockMouse(false);
     }
 
-    public void SetLockedState(bool _state)
+    void LockMouse(bool locked)
     {
-        locked = _state;
         if (locked) {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
@@ -39,10 +48,5 @@ public class LookLocker : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
-    }
-
-    public bool GetState ()
-    {
-        return locked;
     }
 }

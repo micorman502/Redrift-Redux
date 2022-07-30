@@ -10,50 +10,39 @@ public class ProgressBarManager : MonoBehaviour
     [SerializeField] Text progressText;
     float totalTime;
     float currentTime;
-    bool updatedRecently;
-
-    void Update()
-    {
-        if (updatedRecently)
-        {
-            if (!progressContainer.activeSelf)
-            {
-                progressContainer.SetActive(true);
-            }
-        } else
-        {
-            if (progressContainer.activeSelf)
-            {
-                progressContainer.SetActive(false);
-            }
-        }
-        updatedRecently = false;
-    }
 
     void OnEnable()
     {
         UIEvents.InitialiseProgressBar += InitialiseProgressBar;
         UIEvents.UpdateProgressBar += UpdateCurrentProgressTime;
+        UIEvents.DisableProgressBar += DisableProgressBar;
+
+        progressContainer.SetActive(false);
     }
 
     void OnDisable()
     {
         UIEvents.InitialiseProgressBar -= InitialiseProgressBar;
         UIEvents.UpdateProgressBar -= UpdateCurrentProgressTime;
+        UIEvents.DisableProgressBar -= DisableProgressBar;
     }
 
     void InitialiseProgressBar (float newTotalTime)
     {
-        updatedRecently = true;
+        progressContainer.SetActive(true);
         totalTime = newTotalTime;
         UpdateVisuals();
     }
 
     void UpdateCurrentProgressTime (float newCurrentTime)
     {
-        updatedRecently = true;
         currentTime = newCurrentTime;
         UpdateVisuals();
+    }
+
+    void DisableProgressBar ()
+    {
+        progressContainer.SetActive(false);
     }
 
     void UpdateVisuals ()

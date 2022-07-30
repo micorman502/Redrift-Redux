@@ -52,10 +52,9 @@ public class SaveManager : MonoBehaviour {
 
 		if (PersistentData.Instance)
 		{
-
 			if (PersistentData.Instance.loadingFromSave)
 			{
-				Debug.Log("loading");
+				Debug.Log("Loading save #" + PersistentData.Instance.saveToLoad);
 				LoadGame(PersistentData.Instance.saveToLoad);
 			}
 			else
@@ -63,15 +62,14 @@ public class SaveManager : MonoBehaviour {
 				difficulty = PersistentData.Instance.difficulty;
 				mode = PersistentData.Instance.mode;
 				SaveGame();
-			}
-
-			if (mode == 1)
-			{ // Creative mode
-				if (!PersistentData.Instance.loadingFromSave)
+				if (mode == 1)
 				{
 					inventory.LoadCreativeMode();
 					player.LoadCreativeMode();
-				}
+				} else
+                {
+					inventory.DefaultSetup();
+                }
 			}
 		}
 	}
@@ -128,18 +126,6 @@ public class SaveManager : MonoBehaviour {
 
 			Save save = JsonConvert.DeserializeObject<Save>(File.ReadAllText(path));
 
-			for (int i = 0; i < save.savedObjects.Count; i++)
-            {
-				ObjectSaveData newObjData = save.savedObjects[i];
-				ItemSaveData newData = save.savedObjectsInfo[i];
-				GameObject newObj = Instantiate(ObjectDatabase.Instance.GetObject(newObjData.objectID), newObjData.position, newObjData.rotation);
-				IItemSaveable[] saveables = newObj.GetComponents<IItemSaveable>();
-				for (int s = 0; s < saveables.Length; s++)
-				{
-					saveables[s].SetData(newData, newObjData);
-				}
-            }
-
 			if (save.mode == 1)
             {
 				inventory.ManualSetupInventorySize(ItemDatabase.Instance.GetAllItems().Length);
@@ -179,6 +165,18 @@ public class SaveManager : MonoBehaviour {
 
 			inventory.InventoryUpdate();
 
+			for (int i = 0; i < save.savedObjects.Count; i++) //load up items and such last, to prevent a single error from breaking the loading loop 
+			{
+				ObjectSaveData newObjData = save.savedObjects[i];
+				ItemSaveData newData = save.savedObjectsInfo[i];
+				GameObject newObj = Instantiate(ObjectDatabase.Instance.GetObject(newObjData.objectID), newObjData.position, newObjData.rotation);
+				IItemSaveable[] saveables = newObj.GetComponents<IItemSaveable>();
+				for (int s = 0; s < saveables.Length; s++)
+				{
+					saveables[s].SetData(newData, newObjData);
+				}
+			}
+
 			saveText.text = "Game loaded from " + save.saveTime.ToString("HH:mm MMMM dd, yyyy");
 		} else {
 			saveText.text = "No game save found";
@@ -210,6 +208,8 @@ public class SaveManager : MonoBehaviour {
 		save.saveTime = DateTime.Now;
 
 		save.realmIndex = RealmTeleportManager.Instance.GetCurrentRealmIndex();
+
+		//inventory.DefaultSetup();
 
 		foreach(InventorySlot item in inventory.inventory.Slots) {
 			if(item.Item) {

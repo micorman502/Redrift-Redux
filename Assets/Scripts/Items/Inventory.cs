@@ -100,6 +100,27 @@ public class Inventory
 		}
 		return spaceLeft;
 	}
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="includeIncompleteStacks">If true, any InventorySlot with a Count above 0 counts towards the inventory being full</param>
+	/// <returns></returns>
+	public bool InventoryFull (bool includeIncompleteStacks)
+    {
+		foreach (InventorySlot slot in Slots)
+        {
+			if (slot.Count == 0)
+            {
+				return false;
+            }
+			if (slot.Count < slot.Item.stackSize && !includeIncompleteStacks)
+            {
+				return false;
+            }
+        }
+
+		return true;
+    }
 
 	public bool HasEmptySlots ()
     {

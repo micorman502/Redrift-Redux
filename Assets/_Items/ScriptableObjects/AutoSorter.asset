@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: AutoSorter
   m_EditorClassIdentifier: 
   itemName: Auto Sorter
-  itemDescription: 
+  itemDescription: Moves items through by checking what type they are
   stackSize: 20
+  stackPrefix: x
   id: 0
   achievementId: 9
   icon: {fileID: 21300000, guid: 53a0e3e55c0992e4ebc0cbc31799cbc8, type: 3}

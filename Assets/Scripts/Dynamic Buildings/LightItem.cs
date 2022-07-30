@@ -11,10 +11,10 @@ public class LightItem : MonoBehaviour, IItemSaveable, IInteractable {
 
 	public bool active = true;
 
-	new Light light;
+	Light pointLight;
 
 	void Awake() {
-		light = GetComponentInChildren<Light>();
+		pointLight = GetComponentInChildren<Light>();
 	}
 
 	void Start() {
@@ -49,11 +49,11 @@ public class LightItem : MonoBehaviour, IItemSaveable, IInteractable {
 	}
 
 	void UpdateActive() {
-		light.enabled = active;
+		pointLight.enabled = active;
 	}
 
 	void UpdateIntensity() {
-		light.intensity = intensities[intensityNum];
+		pointLight.intensity = intensities[intensityNum];
 	}
 
 	public void GetData(out ItemSaveData data, out ObjectSaveData objData, out bool dontSave)

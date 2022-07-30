@@ -16,7 +16,7 @@ public class Furnace : MonoBehaviour, IItemPickup, IItemSaveable, IItemInteracta
 
 	public float smeltTime = 10f;
 
-	public WorldItem[] Pickup ()
+	public WorldItem[] GetItems ()
 	{
 		List<WorldItem> pickups = new List<WorldItem>();
 
@@ -25,6 +25,11 @@ public class Furnace : MonoBehaviour, IItemPickup, IItemSaveable, IItemInteracta
 		}
 
 		return pickups.ToArray();
+	}
+
+	public void Pickup ()
+    {
+		//dummy
 	}
 
 	public void GetTriggerInfo (Collider col)

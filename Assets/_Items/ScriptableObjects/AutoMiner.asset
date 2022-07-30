@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: AutoMiner
   m_EditorClassIdentifier: 
   itemName: Auto Miner
-  itemDescription: 
+  itemDescription: Slow, automatic resource gatherer
   stackSize: 5
+  stackPrefix: x
   id: 0
   achievementId: 9
   icon: {fileID: 21300000, guid: 6be8251a5b997ad47aee64150b6454cd, type: 3}

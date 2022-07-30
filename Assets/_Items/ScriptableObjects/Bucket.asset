@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Bucket
   m_EditorClassIdentifier: 
   itemName: Bucket
-  itemDescription: 
+  itemDescription: Can be deployed and filled with things
   stackSize: 20
+  stackPrefix: x
   id: 0
   achievementId: -1
   icon: {fileID: 21300000, guid: 0b463bb90b5fb424abcbd70d84e0a237, type: 3}

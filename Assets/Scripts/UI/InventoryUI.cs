@@ -16,6 +16,7 @@ public class InventoryUI : MonoBehaviour
 		for (int i = 0; i < container.childCount; i++)
         {
 			Destroy(container.GetChild(i).gameObject);
+			container.GetChild(i).gameObject.GetComponent<InventorySlotUI>().Deassign();
         }
 		foreach (var slot in inventory.Slots)
 		{

@@ -6,4 +6,9 @@ using UnityEngine;
 public class FoodInfo : ItemInfo
 {
     public float calories;
+
+    public override string GetDescription ()
+    {
+        return base.GetDescription() + "\n" + calories + " Calories";
+    }
 }

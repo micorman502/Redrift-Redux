@@ -36,11 +36,16 @@ public class AutoMiner : MonoBehaviour, IItemSaveable, IInteractable, IItemPicku
 		GetComponent<AudioSource>().outputAudioMixerGroup = FindObjectOfType<SettingsManager>().audioMixer.FindMatchingGroups("Master")[0];
 	}
 
-	public WorldItem[] Pickup ()
+	public WorldItem[] GetItems ()
     {
 		List<WorldItem> pickupItems = items;
 
 		return pickupItems.ToArray();
+    }
+
+	public void Pickup ()
+    {
+		//dummy
     }
 
 	void FixedUpdate ()
@@ -153,7 +158,7 @@ public class AutoMiner : MonoBehaviour, IItemSaveable, IInteractable, IItemPicku
 
 		for (int i = items.Count - 1; i >= 0; i--)
         {
-			int amt = inv.SpaceLeftForItem(items[i]);
+			int amt = Mathf.Clamp(inv.SpaceLeftForItem(items[i]), 0, items[i].amount);
 			if (amt == items[i].amount)
             {
 				inv.AddItem(items[i]);

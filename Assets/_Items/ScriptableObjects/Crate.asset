@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Crate
   m_EditorClassIdentifier: 
   itemName: Crate
-  itemDescription: 
+  itemDescription: Contains some random items
   stackSize: 10
+  stackPrefix: x
   id: 0
   achievementId: -1
   icon: {fileID: 21300000, guid: d0e956ce47e9f76448d1c0e53de649a3, type: 3}

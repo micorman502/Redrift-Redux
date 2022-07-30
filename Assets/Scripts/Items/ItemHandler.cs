@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemHandler : MonoBehaviour, IItemSaveable {
+public class ItemHandler : MonoBehaviour, IItemSaveable, IItemPickup {
 
 	[SerializeField] HotTextHandler handler;
 	public ItemInfo item;
@@ -37,5 +37,15 @@ public class ItemHandler : MonoBehaviour, IItemSaveable {
 	{
 		transform.position = objData.position;
 		transform.rotation = objData.rotation;
+	}
+
+	public WorldItem[] GetItems ()
+    {
+		return new WorldItem[] { new WorldItem(item, 1) };
+	}
+
+	public void Pickup ()
+    {
+		Destroy(gameObject);
 	}
 }

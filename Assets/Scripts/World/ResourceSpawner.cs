@@ -92,8 +92,6 @@ public class ResourceSpawner : MonoBehaviour
 				}
 			}
 		}
-
-		Debug.Log("Nothing spawned.");
 	}
 
 	void SpawnResource (GameObject resource, Vector3 position, Quaternion rotation)

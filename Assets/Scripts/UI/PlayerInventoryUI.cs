@@ -12,10 +12,12 @@ public class PlayerInventoryUI : InventoryUI
 		for (int i = 0; i < container.childCount; i++)
 		{
 			Destroy(container.GetChild(i).gameObject);
+			container.GetChild(i).gameObject.GetComponent<InventorySlotUI>().Deassign();
 		}
 		for (int i = 0; i < hotbarContainer.childCount; i++)
 		{
 			Destroy(hotbarContainer.GetChild(i).gameObject);
+			hotbarContainer.GetChild(i).gameObject.GetComponent<InventorySlotUI>().Deassign();
 		}
 		for (int i = 0; i < inventory.Slots.Length; i++)
 		{

@@ -13,4 +13,9 @@ public class ItemInfo : ScriptableObject
 	public int achievementId = -1;
 	public Sprite icon;
 	public GameObject droppedPrefab;
+
+	public virtual string GetDescription ()
+    {
+		return itemDescription;
+    }
 }

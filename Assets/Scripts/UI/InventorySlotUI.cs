@@ -29,8 +29,8 @@ public class InventorySlotUI : MonoBehaviour
 		OnCountChanged(slot.Count);
 	}
 
-	private void OnDestroy()
-	{
+	public void Deassign ()
+    {
 		slot.CountChanged -= OnCountChanged;
 		slot.ItemChanged -= OnItemChanged;
 	}

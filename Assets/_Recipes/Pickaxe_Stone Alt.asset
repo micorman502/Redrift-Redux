@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6a7a2305287544428cbfad1cf276d74, type: 3}
-  m_Name: Pickaxe_Lightning 1
+  m_Name: Pickaxe_Stone Alt
   m_EditorClassIdentifier: 
   inputs:
-  - item: {fileID: 11400000, guid: 1298723ecdadd9441be0c619bf981016, type: 2}
+  - item: {fileID: 11400000, guid: a82041a624ea06740b506ed16cbc66f3, type: 2}
     amount: 1
-  - item: {fileID: 11400000, guid: ada74405c0b91a641bed3460f1a00d5e, type: 2}
+  - item: {fileID: 11400000, guid: 1e10d0584bbe2ee47ba56f3c6f0b6737, type: 2}
     amount: 2
   replacedItems: []
   output:
-    item: {fileID: 11400000, guid: a061a2a5da6ab444481d85357644cace, type: 2}
+    item: {fileID: 11400000, guid: b52f0e8a326894a439d7d3acd6bcc7f0, type: 2}
     amount: 1
   categories: 03000000
+  id: 0

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: UnityBuildSettings
   m_EditorClassIdentifier: 
   _basicSettings:
-    baseBuildFolder: C:\Users\Rugbu\Desktop\Adrift Super Unity Builder
-    buildPath: Adrift v0.2.9 $PLATFORM
+    baseBuildFolder: C:\Users\micro\Documents\Redrift Redux Builds
+    buildPath: Redrift Redux v0.3.0Pre $PLATFORM
     openFolderPostBuild: 1
   _productParameters:
-    buildCounter: 4
-    lastGeneratedVersion: 1.0.1480.2911
-    version: 1.0.$DAYSSINCE("January 1, 2015").$SECONDS
+    buildCounter: 6
+    lastGeneratedVersion: 0.3.0Pre
+    version: 0.3.0Pre
     autoGenerate: 1
   _releaseTypeList:
     releaseTypes:
@@ -65,7 +65,7 @@ MonoBehaviour:
       binaryNameFormat: '{0}.app'
       dataDirNameFormat: '{0}.app/Contents'
       targetGroup: 1
-    - enabled: 1
+    - enabled: 0
       distributionList:
         distributions: []
       architectures:
@@ -97,11 +97,11 @@ MonoBehaviour:
       targetGroup: 13
   _projectConfigurations:
     configSet:
-      _Buckets: ffffffff00000000ffffffff04000000ffffffff08000000ffffffff0700000005000000ffffffffffffffffffffffffffffffff03000000ffffffffffffffffffffffff
-      _HashCodes: 45cfcd621b9d631c314fbf2bcc0410707caa361dac1c022c7b864a10f11a9b2ce7bf39240000000000000000000000000000000000000000000000000000000000000000
-      _Next: ffffffffffffffff01000000ffffffffffffffffffffffffffffffff06000000020000000000000000000000000000000000000000000000000000000000000000000000
-      _Count: 9
-      _Version: 9
+      _Buckets: 05000000ffffffff0600000003000000000000000100000002000000
+      _HashCodes: 77a7aa19510e9f59ed43d334ba55b93b6d38f6476da5e2352d6dfd48
+      _Next: ffffffffffffffffffffffffffffffffffffffff04000000ffffffff
+      _Count: 7
+      _Version: 7
       _FreeList: -1
       _FreeCount: 0
       _Keys:
@@ -109,19 +109,9 @@ MonoBehaviour:
       - Release/PC
       - Release/OSX/OSX
       - Release/OSX
-      - Release/Linux/Linux Universal
-      - Release/Linux
       - Release/WebGL/WebGL
       - Release/WebGL
       - Release
-      - 
-      - 
-      - 
-      - 
-      - 
-      - 
-      - 
-      - 
       _Values:
       - enabled: 1
         childKeys: []
@@ -137,34 +127,12 @@ MonoBehaviour:
         childKeys: []
       - enabled: 1
         childKeys:
-        - Release/Linux/Linux Universal
-      - enabled: 1
-        childKeys: []
-      - enabled: 1
-        childKeys:
         - Release/WebGL/WebGL
       - enabled: 1
         childKeys:
         - Release/PC
         - Release/OSX
-        - Release/Linux
         - Release/WebGL
-      - enabled: 1
-        childKeys: []
-      - enabled: 1
-        childKeys: []
-      - enabled: 1
-        childKeys: []
-      - enabled: 1
-        childKeys: []
-      - enabled: 1
-        childKeys: []
-      - enabled: 1
-        childKeys: []
-      - enabled: 1
-        childKeys: []
-      - enabled: 1
-        childKeys: []
     showViewOptions: 0
     showConfigs: 0
     showBuildInfo: 0

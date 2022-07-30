@@ -9,23 +9,7 @@ public class PlayerBuilding : MonoBehaviour
     [SerializeField] ItemInfo buildingTemp;
     BuildingInfo currentBuilding;
     GameObject previewObject;
-    bool inMenu;
     int currentRotation;
-
-    void OnEnable()
-    {
-        ControlEvents.OnLockStateSet += SetInMenuState;
-    }
-
-    void OnDisable()
-    {
-        ControlEvents.OnLockStateSet -= SetInMenuState;
-    }
-
-    void SetInMenuState (bool state)
-    {
-        inMenu = !state;
-    }
 
     private void Update ()
     {
@@ -67,7 +51,7 @@ public class PlayerBuilding : MonoBehaviour
 
     public void PlaceBuilding ()
     {
-        if (inMenu)
+        if (!LookLocker.MouseLocked)
             return;
         if (inventory.inventory.GetItemTotal(currentBuilding) > 0)
         {
@@ -100,7 +84,7 @@ public class PlayerBuilding : MonoBehaviour
 
     public bool IsBuilding ()
     {
-        if (previewObject)
+        if (previewObject && currentBuilding)
         {
             return true;
         } else

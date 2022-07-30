@@ -32,7 +32,7 @@ public class HeldToolItem : HeldItem
                     inventory.inventory.AddItem(gathered);
                 }
             }
-            UIEvents.UpdateProgressBar(gatherLength);
+            UIEvents.CallUpdateProgressBar(gatherLength);
         } else
         {
             gatherLength = 0;
@@ -43,7 +43,7 @@ public class HeldToolItem : HeldItem
 
     public override void UseRepeating()
     {
-        if (controller.GetTarget() == currentResourceObject)
+        if (controller.GetTarget() == currentResourceObject && currentResourceObject != null)
         {
             usedThisFrame = true;
             return;
@@ -55,12 +55,12 @@ public class HeldToolItem : HeldItem
         }
         if (currentResource == null)
         {
-            currentResource = controller.GetTarget().GetComponent<IResource>();
+            currentResource = controller.GetTarget()?.GetComponent<IResource>();
         }
         if (currentResource != null)
         {
             usedThisFrame = true;
-            UIEvents.InitialiseProgressBar(currentResource.GetResource().gatherTime / tool.gatherSpeedMult);
+            UIEvents.CallInitialiseProgressBar(currentResource.GetResource().gatherTime / tool.gatherSpeedMult);
         }
     }
 }

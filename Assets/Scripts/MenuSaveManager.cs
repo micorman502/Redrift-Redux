@@ -77,7 +77,6 @@ public class MenuSaveManager : MonoBehaviour {
 	public void LoadSave(int saveNum) {
 		PersistentData.Instance.loadingFromSave = true;
 		PersistentData.Instance.saveToLoad = saveNum;
-		Debug.Log("Loading save " + saveNum);
 		menuManager.LoadScene("World");
 	}
 

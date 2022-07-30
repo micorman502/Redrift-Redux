@@ -14,6 +14,7 @@ public class PauseManager : MonoBehaviour {
 	[SerializeField] Animator canvasAnim;
 
 	void Start() {
+		Time.timeScale = 1;
 		originalTimeScale = Time.timeScale;
 		player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 	}

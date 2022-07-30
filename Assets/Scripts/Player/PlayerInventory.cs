@@ -6,21 +6,18 @@ using UnityEngine.UI;
 public class PlayerInventory : MonoBehaviour {
 
 	[SerializeField] int hotbarSize;
-	[SerializeField] GameObject placementParticleSystem;
 
 	public GameObject inventoryContainer;
 
-
+	[SerializeField] HeldItem nullItem;
 	[SerializeField] HeldItem[] heldItems;
+
 
 	[SerializeField] int inventorySize;
 	public Inventory inventory;
 	[SerializeField] InventorySlot heldItemSlot;
-	//[SerializeField] WorldItem[] items;
 
 	PlayerController player;
-
-	AudioManager audioManager;
 
 	[HideInInspector] public bool placingStructure;
 
@@ -28,25 +25,25 @@ public class PlayerInventory : MonoBehaviour {
 	public WorldItem currentSelectedItem;
 
 	SaveManager saveManager;
+	AudioManager audioManager;
+	[SerializeField] GameObject placementParticleSystem;
 
 	int mode;
 
-	[SerializeField] int heldItemIndex = -1;
-	int previousHeldItemIndex = -1;
+	int heldItemIndex = -2;
+	HeldItem currentHeldItem = null;
+	int previousHeldItemIndex = -2;
 
 	bool setup;
 
 
 	void Awake() {
-
 		DefaultSetup();
 
 		audioManager = FindObjectOfType<AudioManager>();
 		saveManager = FindObjectOfType<SaveManager>();
 
 		player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-
-		//InventoryEvents.InitialiseInventoryUI(hotbarSize, items.Length);
 	}
 
 	public void DefaultSetup ()
@@ -66,7 +63,7 @@ public class PlayerInventory : MonoBehaviour {
 
 	private void Start()
     {
-		InventoryUIManager.Instance.GetInventoryUI(InventoryUIManager.InventoryType.Primary).Assign(inventory);
+		EquipHeldItem(-1);
 		InventoryUpdate();
 	}
 
@@ -79,6 +76,8 @@ public class PlayerInventory : MonoBehaviour {
 
 		inventory = new Inventory(inventorySize);
 		inventory.ItemOverflow += SimpleDropItem;
+
+		InventoryUIManager.Instance.GetInventoryUI(InventoryUIManager.InventoryType.Primary).Assign(inventory);
 	}
 
     public void LoadCreativeMode() {
@@ -107,26 +106,30 @@ public class PlayerInventory : MonoBehaviour {
 			}
 		}
 
-		if((Input.GetAxisRaw("Mouse ScrollWheel") != 0 || Input.GetButtonDown("CycleRight") || Input.GetButtonDown("CycleLeft")) && !player.InMenu()) {
-			if(Input.GetAxisRaw("Mouse ScrollWheel") > 0 || Input.GetButtonDown("CycleLeft")) {
-				ScrollHotbar(-1);
-			} else {
-				ScrollHotbar(1);
-			}
-		}
-		CheckItemFunctions();
+		currentHeldItem?.ItemUpdate();
 
+		if (!LookLocker.MouseLocked)
+			return;
 
-		if(!player.dead) {
-			if(currentSelectedItem.item && !player.InMenu()) {
-				if(Input.GetButtonDown("Drop")) {
-					if(Input.GetButton("Supersize")) {
-						if(mode != 1) {
+		if (!player.dead)
+		{
+			if (currentSelectedItem.item)
+			{
+				if (Input.GetButtonDown("Drop"))
+				{
+					if (Input.GetButton("Supersize"))
+					{
+						if (mode != 1)
+						{
 							DropItem(currentSelectedItem.item, Ping(5, inventory.GetItemTotal(currentSelectedItem.item)));
-						} else {
+						}
+						else
+						{
 							DropItem(currentSelectedItem.item, 5);
 						}
-					} else {
+					}
+					else
+					{
 						DropItem(currentSelectedItem.item, 1);
 					}
 
@@ -135,46 +138,48 @@ public class PlayerInventory : MonoBehaviour {
 			}
 		}
 
-		if (heldItemIndex != -1)
-			heldItems[heldItemIndex].ItemUpdate();
+		if ((Input.GetAxisRaw("Mouse ScrollWheel") != 0 || Input.GetButtonDown("CycleRight") || Input.GetButtonDown("CycleLeft")))
+		{
+			if (Input.GetAxisRaw("Mouse ScrollWheel") > 0 || Input.GetButtonDown("CycleLeft"))
+			{
+				ScrollHotbar(-1);
+			}
+			else
+			{
+				ScrollHotbar(1);
+			}
+		}
+		CheckItemFunctions();
 	}
+
 
 	void CheckItemFunctions ()
     {
-		if (heldItemIndex >= heldItems.Length)
-			return;
 		if (Input.GetMouseButtonDown(0))
         {
-			if (heldItemIndex != -1)
-				heldItems[heldItemIndex].Use();
+			currentHeldItem?.Use();
         }
 		if (Input.GetMouseButton(0))
 		{
-			if (heldItemIndex != -1)
-				heldItems[heldItemIndex].UseRepeating();
+			currentHeldItem?.UseRepeating();
 		}
 		if (Input.GetMouseButtonDown(1))
         {
-			if (heldItemIndex != -1)
-				heldItems[heldItemIndex].AltUse();
+			currentHeldItem?.AltUse();
         }
 		if (Input.GetMouseButton(1))
 		{
-			if (heldItemIndex != -1)
-				heldItems[heldItemIndex].AltUseRepeating();
+			currentHeldItem?.AltUseRepeating();
 		} 
 		if (Input.GetKeyDown(KeyCode.R))
         {
-			if (heldItemIndex != -1)
-				heldItems[heldItemIndex].SpecialUse();
+			currentHeldItem?.SpecialUse();
 		}
-		//the heldItemIndex check is done 4 times in case the heldItemIndex changes in the process of doing, say, the Use() functions.
 	}
 
     void FixedUpdate()
     {
-		if (heldItemIndex != -1)
-			heldItems[heldItemIndex].ItemFixedUpdate();
+		currentHeldItem?.ItemFixedUpdate();
 	}
 
     void ScrollHotbar (int scrollAmt)
@@ -276,16 +281,14 @@ public class PlayerInventory : MonoBehaviour {
         }
 
 		heldItemIndex = _index;
+		currentHeldItem = GetHeldItem(heldItemIndex);
 
-		if (previousHeldItemIndex != -1)
-		{
-			heldItems[previousHeldItemIndex].SetChildState(false);
-		}
+		GetHeldItem(previousHeldItemIndex).SetChildState(false);
 		previousHeldItemIndex = heldItemIndex;
 
 		if (_index != -1)
 		{
-			heldItems[_index].SetChildState(true);
+			currentHeldItem.SetChildState(true);
 		}
     }
 
@@ -400,4 +403,20 @@ public class PlayerInventory : MonoBehaviour {
 		currentSelectedItem = new WorldItem(inventory.Slots[selectedHotbarSlot].Item, inventory.Slots[selectedHotbarSlot].Count);
 	}
 
+	HeldItem GetHeldItem (int index)
+    {
+		if (index >= heldItems.Length)
+		{
+			Debug.LogWarning("GetHeldItem's 'index' parameter is above heldItems.Length");
+			return nullItem;
+		}
+
+		if (index > -1)
+        {
+			return heldItems[index];
+        } else
+        {
+			return nullItem;
+        }
+    }
 }
