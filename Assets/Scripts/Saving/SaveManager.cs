@@ -62,14 +62,6 @@ public class SaveManager : MonoBehaviour {
 				difficulty = PersistentData.Instance.difficulty;
 				mode = PersistentData.Instance.mode;
 				SaveGame();
-				if (mode == 1)
-				{
-					inventory.LoadCreativeMode();
-					player.LoadCreativeMode();
-				} else
-                {
-					inventory.DefaultSetup();
-                }
 			}
 		}
 	}
@@ -126,14 +118,20 @@ public class SaveManager : MonoBehaviour {
 
 			Save save = JsonConvert.DeserializeObject<Save>(File.ReadAllText(path));
 
-			if (save.mode == 1)
+			try
+			{
+				if (save.mode == 0)
+				{
+					inventory.DefaultSetup();
+				}
+				else
+				{
+					inventory.LoadCreativeMode();
+				}
+			} catch (Exception e)
             {
-				inventory.ManualSetupInventorySize(ItemDatabase.Instance.GetAllItems().Length);
-				player.LoadCreativeMode();
-			} else
-            {
-				inventory.DefaultSetup();
-            }
+				Debug.Log("Error while initialising inventory in SaveManager.LoadGame, Caught exception " + e.Message);
+			}
 
 			for (int i = 0; i < save.inventoryItems.Count; i++) {
 				int id = save.inventoryItems[i].id;
@@ -148,8 +146,8 @@ public class SaveManager : MonoBehaviour {
 
 			player.transform.position = save.playerTransform.position;
 			player.transform.rotation = save.playerTransform.rotation;
-			player.hunger = save.playerHunger;
-			player.health = save.playerHealth;
+			player.SetVitals(save.playerHealth, save.playerHunger);
+
 			if (save.playerDead) {
 				player.Die();
 			} else {
@@ -165,17 +163,23 @@ public class SaveManager : MonoBehaviour {
 
 			inventory.InventoryUpdate();
 
-			for (int i = 0; i < save.savedObjects.Count; i++) //load up items and such last, to prevent a single error from breaking the loading loop 
+			try
 			{
-				ObjectSaveData newObjData = save.savedObjects[i];
-				ItemSaveData newData = save.savedObjectsInfo[i];
-				GameObject newObj = Instantiate(ObjectDatabase.Instance.GetObject(newObjData.objectID), newObjData.position, newObjData.rotation);
-				IItemSaveable[] saveables = newObj.GetComponents<IItemSaveable>();
-				for (int s = 0; s < saveables.Length; s++)
+				for (int i = 0; i < save.savedObjects.Count; i++) //load up items and such last, to prevent a single error from breaking the loading loop 
 				{
-					saveables[s].SetData(newData, newObjData);
+					ObjectSaveData newObjData = save.savedObjects[i];
+					ItemSaveData newData = save.savedObjectsInfo[i];
+					GameObject newObj = Instantiate(ObjectDatabase.Instance.GetObject(newObjData.objectID), newObjData.position, newObjData.rotation);
+					IItemSaveable[] saveables = newObj.GetComponents<IItemSaveable>();
+					for (int s = 0; s < saveables.Length; s++)
+					{
+						saveables[s].SetData(newData, newObjData);
+					}
 				}
-			}
+			} catch (Exception e)
+            {
+				Debug.Log("Error while loading savedObjects in SaveManager.LoadGame, Caught exception " + e.Message);
+            }
 
 			saveText.text = "Game loaded from " + save.saveTime.ToString("HH:mm MMMM dd, yyyy");
 		} else {
@@ -203,8 +207,9 @@ public class SaveManager : MonoBehaviour {
 		Save save = new Save();
 
 		save.playerTransform = new ObjectSaveData(player.transform.position, player.transform.rotation, 0);
-		save.playerHealth = player.health;
-		save.playerHunger = player.hunger;
+		player.GetVitals(out float maxHealth, out float health, out float maxFood, out float food);
+		save.playerHealth = health;
+		save.playerHunger = food;
 		save.saveTime = DateTime.Now;
 
 		save.realmIndex = RealmTeleportManager.Instance.GetCurrentRealmIndex();

@@ -18,8 +18,13 @@ public class HeldToolItem : HeldItem
         tool = item as ToolInfo;
     }
 
-    public override void ItemUpdate()
+    public override void ItemUpdate ()
     {
+        if (!usedThisFrame)
+        {
+            UIEvents.CallDisableProgressBar();
+        }
+
         if (usedThisFrame && currentResource != null)
         {
             gatherLength += Time.deltaTime;
@@ -33,7 +38,8 @@ public class HeldToolItem : HeldItem
                 }
             }
             UIEvents.CallUpdateProgressBar(gatherLength);
-        } else
+        }
+        else
         {
             gatherLength = 0;
         }

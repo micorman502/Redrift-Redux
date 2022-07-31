@@ -109,7 +109,7 @@ public class Inventory
     {
 		foreach (InventorySlot slot in Slots)
         {
-			if (slot.Count == 0)
+			if (slot.Count <= 0)
             {
 				return false;
             }

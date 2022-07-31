@@ -5,7 +5,7 @@ using UnityEngine;
 public class HeldFoodItem : HeldItem
 {
     [SerializeField] PlayerInventory inventory;
-    [SerializeField] PlayerController controller;
+    [SerializeField] PlayerVitals vitals;
     FoodInfo food;
 
     private void Awake()
@@ -17,7 +17,7 @@ public class HeldFoodItem : HeldItem
         inventory.inventory.RemoveItem(new WorldItem(item, 1), out int amtTaken);
         if (amtTaken >= 1)
         {
-            controller.GainCalories(food.calories);
+            vitals.AddFood(food.calories);
         }
     }
 }

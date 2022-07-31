@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5fbc7b00640b124ebf5d2be109c1040, type: 3}
   m_Name: _NullItem
   m_EditorClassIdentifier: 
-  itemName: 
-  itemDescription: 
-  stackSize: 100
+  itemName: '[null]'
+  itemDescription: This description should not be visible anywhere.
+  stackSize: 1
   stackPrefix: x
-  id: 0
+  id: -1
   achievementId: -1
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: ed096614aaf674a4587057454853681e, type: 3}
   droppedPrefab: {fileID: 0}
-  gatherSpeedMult: 0
-  gatherAmountMult: 0
+  gatherSpeedMult: 1
+  gatherAmountMult: 1

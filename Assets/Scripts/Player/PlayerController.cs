@@ -9,14 +9,10 @@ using System;
 public class PlayerController : MonoBehaviour {
 
 	public static PlayerController currentPlayer;
-	public static event Action<float> OnHealthChanged;
-	public static event Action<float> OnDamageTaken;
-	public static event Action<float> OnHungerChanged;
-	public static event Action<float> OnMaxHealthChanged;
-	public static event Action<float> OnMaxHungerChanged;
 	public static event Action OnDeath;
 	public static event Action OnRespawn;
 
+	[SerializeField] PlayerVitals vitals;
 	public GameObject playerCameraHolder;
 	public GameObject playerCamera;
 	public Animation damagePanelAnim;
@@ -58,18 +54,6 @@ public class PlayerController : MonoBehaviour {
 
 	[HideInInspector] public bool dead = false;
 
-	public float maxHealth = 100f;
-	public float health;
-	[SerializeField] float invincibilityLength = 0.2f;
-	public float maxHunger = 100f;
-	public float hunger;
-
-	public float hungerLoss = 0.1f;
-	public float hungerDamage = 2f;
-
-	public float fullLevel = 90f;
-	public float fullHealthRegainAmount = 1f;
-
 	public float impactVelocityToDamage = 1f;
 	public float impactDamage = 20f;
 
@@ -107,12 +91,6 @@ public class PlayerController : MonoBehaviour {
 	}
 
     void Start() {
-		health = maxHealth;
-		hunger = maxHunger;
-
-		OnMaxHealthChanged?.Invoke(maxHealth);
-		OnMaxHungerChanged?.Invoke(maxHunger);
-
 		LookLocker.MouseLocked = true;
 
 		difficulty = FindObjectOfType<SaveManager>().difficulty;
@@ -121,35 +99,6 @@ public class PlayerController : MonoBehaviour {
 			RealmTeleportManager.Instance.TeleportToRealm("Light");
 		}
 	}
-
-	void AdjustVitals ()
-    {
-		if (dead || mode == 1)
-			return;
-
-		LoseCalories(Time.fixedDeltaTime * hungerLoss);
-
-		if (hunger > fullLevel)
-        {
-			GainHealth(Time.fixedDeltaTime * fullHealthRegainAmount);
-		}
-
-		if (hunger <= 10f)
-		{
-			TakeDamage(Time.fixedDeltaTime * hungerDamage, true);
-			if (!infoText.activeSelf)
-			{
-				infoText.SetActive(true);
-			}
-		}
-		else
-		{
-			if (infoText.activeSelf)
-			{
-				infoText.SetActive(false);
-			}
-		}
-    }
 
 	void Update() {
 		if(LookLocker.MouseLocked) {
@@ -346,7 +295,7 @@ public class PlayerController : MonoBehaviour {
 			if(ignoreFallDamage) {
 				Invoke("ResetIgnoreFallDamage", 1f);
 			} else {
-				TakeDamage(Mathf.Clamp(col.relativeVelocity.magnitude * impactDamage, 0, maxHealth - 5f));
+				vitals.RemoveHealth(Mathf.Clamp(col.relativeVelocity.magnitude * impactDamage, 0, 80f));
 			}
 		}
 	}
@@ -410,73 +359,6 @@ public class PlayerController : MonoBehaviour {
 		ignoreFallDamage = false;
 	}
 
-	public void GainCalories(float amount) {
-		hunger += amount;
-		if(hunger > maxHunger) {
-			hunger = maxHunger;
-		}
-		HungerChange();
-	}
-
-	void LoseCalories(float amount) {
-		hunger -= amount;
-		HungerChange();
-		if(hunger < 0f) {
-			hunger = 0f;
-		}
-	}
-
-	void GainHealth(float amount) {
-		health += amount;
-		if(health > maxHealth) {
-			health = maxHealth;
-		}
-
-		HealthChange();
-	}
-
-	public void TakeDamage (float amount)
-    {
-		TakeDamage(amount, false);
-    }
-
-	public void TakeDamage(float amount, bool ignoreInvincibility) {
-		if (!ignoreInvincibility && Time.time < lastDamaged + invincibilityLength)
-			return;
-
-		health -= amount;
-		lastDamaged = Time.time;
-
-		OnDamageTaken?.Invoke(amount);
-
-		float effectIntensity = amount / 50;
-		CameraShaker.Instance.ShakeOnce(4f * effectIntensity, 5f * effectIntensity, 0.1f, 0.5f);
-
-		if (effectIntensity > 0.1f)
-		{
-			damagePanelAnim.Play();
-		}
-
-		if (health < 0)
-		{
-			if (!dead)
-			{
-				Die();
-			}
-			health = 0;
-		}
-
-		HealthChange();
-	}
-
-	void HungerChange() {
-		OnHungerChanged?.Invoke(hunger);
-	}
-
-	void HealthChange() {
-		OnHealthChanged?.Invoke(health);
-	}
-
 	/*
 	void ApplyHealthEffects() {
 		MotionBlurModel.Settings motionBlurSettings = playerCameraPostProcessingBehaviour.profile.motionBlur.settings;
@@ -507,17 +389,15 @@ public class PlayerController : MonoBehaviour {
 		if (!dead)
 			return;
 
-		health = maxHealth;
-		hunger = maxHunger;
 		dead = false;
 
 		OnRespawn?.Invoke();
 
+		vitals.AddHealth(1000f);
 		RealmTeleportManager.Instance.TeleportToPreviousRealm();
 	}
 
 	void FixedUpdate() {
-		AdjustVitals();
 
 		if(climbing) {
 			Collider[] cols = Physics.OverlapCapsule(transform.position - Vector3.up * 0.5f, transform.position + Vector3.up * 0.5f, 0.5f);
@@ -550,4 +430,14 @@ public class PlayerController : MonoBehaviour {
     {
 		return targetHit;
     }
+
+	public void SetVitals (float health, float food)
+    {
+		vitals.SetVitals(health, food);
+    }
+
+	public void GetVitals (out float maxHealth, out float health, out float maxFood, out float food)
+	{
+		vitals.GetVitals(out maxHealth, out health, out maxFood, out food);
+	}
 }

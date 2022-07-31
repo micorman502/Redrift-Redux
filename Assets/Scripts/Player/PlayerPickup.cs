@@ -10,13 +10,11 @@ public class PlayerPickup : MonoBehaviour
     const float pickupTime = 0.15f;
     bool pickingUp = false;
     float pickupStartedTime;
+	bool keyHeldAfterPickup; //True if the pickup key is still held after picking up an item succesfully.
+
 	GameObject initialTarget;
 
 
-    void Start()
-    {
-        
-    }
 
     void LateUpdate()
     {
@@ -44,16 +42,32 @@ public class PlayerPickup : MonoBehaviour
 				StartPickup(target);
 			}
 		}
+
+		if (!Input.GetButton("PickUp") && keyHeldAfterPickup)
+        {
+			keyHeldAfterPickup = false;
+        }
 	}
 
 	void StartPickup (GameObject target)
     {
 		if (!target)
 			return;
-		if (target.GetComponent<IItemPickup>() == null)
+		if (target.GetComponent<IItemPickup>() == null && target.GetComponentInParent<IItemPickup>() == null)
+		{
+			PickupStartFail();
 			return;
+		}
+		if (!PickupChecks(target))
+		{
+			PickupStartFail();
+			return;
+		}
 		if (playerInventory.inventory.InventoryFull(false))
+		{
+			PickupStartFail();
 			return;
+		}
 
 		initialTarget = target;
 		pickupStartedTime = Time.time;
@@ -66,6 +80,7 @@ public class PlayerPickup : MonoBehaviour
     {
 		if (initialTarget != playerController.GetTarget())
 		{
+			PickupStartFail();
 			CancelPickup();
 			return;
 		}
@@ -84,6 +99,8 @@ public class PlayerPickup : MonoBehaviour
     {
 		PickupItems();
 
+		keyHeldAfterPickup = true;
+
 		CancelPickup();
     }
 
@@ -97,6 +114,36 @@ public class PlayerPickup : MonoBehaviour
 	void PickupItems ()
     {
 		IItemPickup[] pickups = initialTarget.GetComponents<IItemPickup>();
+		if (pickups.Length == 0)
+        {
+			pickups = initialTarget.GetComponentsInParent<IItemPickup>();
+        }
+
+		bool allChecksPassed = PickupChecks();
+
+		for (int i = 0; i < pickups.Length; i++)
+		{
+			WorldItem[] items = pickups[i].GetItems();
+
+			for (int j = 0; j < items.Length; j++) //checks
+			{
+				if (allChecksPassed)
+                {
+					playerInventory.inventory.AddItem(items[j]);
+					pickups[i].Pickup();
+				}
+			}
+		}
+	}
+
+	bool PickupChecks (GameObject target)
+    {
+		/*IItemPickup[] pickups = target.GetComponents<IItemPickup>();
+		  		if (pickups.Length == 0)
+        {
+			pickups = initialTarget.GetComponentsInParent<IItemPickup>();
+        }
+
 		bool allChecksPassed = true;
 
 		for (int i = 0; i < pickups.Length; i++)
@@ -117,20 +164,21 @@ public class PlayerPickup : MonoBehaviour
 			{
 				allChecksPassed = false;
 			}
-		}
+		}*/
 
-		for (int i = 0; i < pickups.Length; i++)
+		return true;
+	}
+
+	bool PickupChecks ()
+	{
+		return PickupChecks(initialTarget);
+	}
+
+	void PickupStartFail ()
+	{
+		if (!keyHeldAfterPickup)
 		{
-			WorldItem[] items = pickups[i].GetItems();
-
-			for (int j = 0; j < items.Length; j++) //checks
-			{
-				if (allChecksPassed)
-                {
-					playerInventory.inventory.AddItem(items[j]);
-					pickups[i].Pickup();
-				}
-			}
+			UIEvents.CallProgressBarFail();
 		}
 	}
 }

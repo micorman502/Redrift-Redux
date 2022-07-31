@@ -7,19 +7,19 @@ public class UIVitalsManager : MonoBehaviour
 {
     [SerializeField] Image healthRing;
     [SerializeField] Image healthIcon;
-    [SerializeField] Image hungerRing;
-    [SerializeField] Image hungerIcon;
+    [SerializeField] Image foodRing;
+    [SerializeField] Image foodIcon;
     float maxHealth;
-    float maxHunger;
+    float maxFood;
     float health;
-    float hunger;
+    float Food;
 
     private void Awake ()
     {
-        PlayerController.OnHealthChanged += OnHealthChanged;
-        PlayerController.OnHungerChanged += OnHungerChanged;
-        PlayerController.OnMaxHealthChanged += OnMaxHealthChanged;
-        PlayerController.OnMaxHungerChanged += OnMaxHungerChanged;
+        PlayerVitals.OnHealthChanged += OnHealthChanged;
+        PlayerVitals.OnFoodChanged += OnFoodChanged;
+        PlayerVitals.OnMaxHealthChanged += OnMaxHealthChanged;
+        PlayerVitals.OnMaxFoodChanged += OnMaxFoodChanged;
     }
 
     private void Start ()
@@ -32,18 +32,16 @@ public class UIVitalsManager : MonoBehaviour
 
     private void OnDestroy ()
     {
-        PlayerController.OnHealthChanged -= OnHealthChanged;
-        PlayerController.OnHungerChanged -= OnHungerChanged;
-        PlayerController.OnMaxHealthChanged -= OnMaxHealthChanged;
-        PlayerController.OnMaxHungerChanged -= OnMaxHungerChanged;
+        PlayerVitals.OnHealthChanged -= OnHealthChanged;
+        PlayerVitals.OnFoodChanged -= OnFoodChanged;
+        PlayerVitals.OnMaxHealthChanged -= OnMaxHealthChanged;
+        PlayerVitals.OnMaxFoodChanged -= OnMaxFoodChanged;
     }
 
     void SetupCreativeMode ()
     {
-        healthRing.enabled = false;
-        hungerRing.enabled = false;
-        healthIcon.enabled = false;
-        hungerIcon.enabled = false;
+        healthRing.color = Color.white;
+        foodRing.color = Color.white;
     }
 
     void OnHealthChanged (float health)
@@ -57,14 +55,14 @@ public class UIVitalsManager : MonoBehaviour
         OnHealthChanged(health);
     }
 
-    void OnHungerChanged (float hunger)
+    void OnFoodChanged (float Food)
     {
-        hungerRing.fillAmount = hunger / maxHunger;
+        foodRing.fillAmount = Food / maxFood;
     }
 
-    void OnMaxHungerChanged (float maxHunger)
+    void OnMaxFoodChanged (float maxFood)
     {
-        this.maxHunger = maxHunger;
-        OnHealthChanged(hunger);
+        this.maxFood = maxFood;
+        OnHealthChanged(Food);
     }
 }

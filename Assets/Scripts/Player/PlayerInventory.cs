@@ -38,7 +38,17 @@ public class PlayerInventory : MonoBehaviour {
 
 
 	void Awake() {
-		DefaultSetup();
+		if (!PersistentData.Instance.loadingFromSave)
+		{
+			if (PersistentData.Instance.mode == 0)
+			{
+				DefaultSetup();
+			}
+			else
+			{
+				LoadCreativeMode();
+			}
+		}
 
 		audioManager = FindObjectOfType<AudioManager>();
 		saveManager = FindObjectOfType<SaveManager>();
