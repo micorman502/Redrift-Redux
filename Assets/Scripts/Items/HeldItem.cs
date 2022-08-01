@@ -53,11 +53,17 @@ public class HeldItem : MonoBehaviour
 
     }
 
-    public virtual void SetChildState(bool _state)
+    public virtual void SetChildStateFunctions (bool state)
+    {
+
+    }
+
+    public void SetChildState(bool state)
     {
         if (itemGameObject)
         {
-            itemGameObject.SetActive(_state);
+            itemGameObject.SetActive(state);
         }
+        SetChildStateFunctions(state);
     }
 }

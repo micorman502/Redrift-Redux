@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerBuilding : MonoBehaviour
 {
     [SerializeField] PlayerInventory inventory;
+    [SerializeField] Transform camTransform;
     [SerializeField] Transform buildingPlacementPoint;
     [SerializeField] ItemInfo buildingTemp;
     BuildingInfo currentBuilding;
@@ -15,16 +16,56 @@ public class PlayerBuilding : MonoBehaviour
     {
         if (IsBuilding())
         {
-            AlignBuilding();
-            NoticeTextManager.Instance.AddNoticeText("[LMB] to place, [R] to rotate", 2);
+            AlignBuildingRot();
+            AlignBuildingPos();
         }
     }
 
-    void AlignBuilding ()
+    void AlignBuildingPos ()
     {
-        Vector3 pos = buildingPlacementPoint.transform.position;
-        float grid = currentBuilding.gridSize * 4;
-        previewObject.transform.position = new Vector3(Mathf.Round(pos.x * grid) / grid, Mathf.Round(pos.y * grid) / grid, Mathf.Round(pos.z * grid) / grid);
+        Vector3 placementPos = buildingPlacementPoint.transform.position;
+        Vector3 pos;
+
+        if (currentBuilding.gridSize <= 0)
+        {
+            pos = placementPos;
+        }
+        else
+        {
+            float grid = currentBuilding.gridSize * 4;
+            pos = new Vector3(Mathf.Round(placementPos.x * grid) / grid, Mathf.Round(placementPos.y * grid) / grid, Mathf.Round(placementPos.z * grid) / grid);
+        }
+
+        if (currentBuilding.alignToNormal)
+        {
+            if (Physics.Raycast(camTransform.position, camTransform.forward, out RaycastHit hitInfo, 5f, ~LayerMask.GetMask("Ignore Raycast"), QueryTriggerInteraction.Ignore))
+            {
+                pos = hitInfo.point;
+            }
+        }
+
+        previewObject.transform.position = pos + Vector3.Scale(previewObject.transform.up, currentBuilding.upwardsOffset);
+    }
+
+    public void AlignBuildingRot ()
+    {
+        if (!previewObject)
+            return;
+
+        Vector3 normal = Vector3.zero;
+        if (currentBuilding.alignToNormal)
+        {
+            if (Physics.Raycast(camTransform.position, camTransform.forward, out RaycastHit hitInfo, 5f, ~LayerMask.GetMask("Ignore Raycast"), QueryTriggerInteraction.Ignore))
+            {
+                normal = hitInfo.normal;
+            }
+        }
+
+        previewObject.transform.up = normal;
+
+        previewObject.transform.rotation *= Quaternion.Euler(currentBuilding.possibleRotations[currentRotation]);
+
+        //previewObject.transform.eulerAngles = currentBuilding.possibleRotations[currentRotation];
     }
 
     public void StartBuilding (BuildingInfo building)
@@ -36,8 +77,9 @@ public class PlayerBuilding : MonoBehaviour
 
         currentBuilding = building;
         previewObject = Instantiate(building.previewPrefab, buildingPlacementPoint.position, Quaternion.identity);
-        AlignBuilding();
-        SetBuildingRotation(currentRotation);
+
+        AlignBuildingRot();
+        AlignBuildingPos();
     }
 
     public void StopBuilding ()
@@ -55,31 +97,25 @@ public class PlayerBuilding : MonoBehaviour
             return;
         if (inventory.inventory.GetItemTotal(currentBuilding) > 0)
         {
-            Instantiate(currentBuilding.placedObject, previewObject.transform.position, Quaternion.Euler(currentBuilding.possibleRotations[currentRotation]));
-            AlignBuilding();
+            AlignBuildingRot();
+            AlignBuildingPos();
+
+            Instantiate(currentBuilding.placedObject, previewObject.transform.position, previewObject.transform.rotation);
             inventory.inventory.RemoveItem(new WorldItem(currentBuilding, 1));
         }
     }
 
-    public void RotateBuilding (int rotationChange)
+    public void SetBuildingRotation (int rotationChange)
     {
-        SetBuildingRotation(currentRotation + rotationChange);
-    }
-
-    public void SetBuildingRotation (int rotationAmount)
-    {
-        if (!previewObject)
-            return;
-        if (rotationAmount < 0)
+        currentRotation += rotationChange;
+        if (currentRotation < 0)
         {
-            rotationAmount = currentBuilding.possibleRotations.Length;
-        } else if (rotationAmount >= currentBuilding.possibleRotations.Length)
-        {
-            rotationAmount = 0;
+            currentRotation = currentBuilding.possibleRotations.Length;
         }
-        currentRotation = rotationAmount;
-
-        previewObject.transform.eulerAngles = currentBuilding.possibleRotations[currentRotation];
+        else if (currentRotation >= currentBuilding.possibleRotations.Length)
+        {
+            currentRotation = 0;
+        }
     }
 
     public bool IsBuilding ()

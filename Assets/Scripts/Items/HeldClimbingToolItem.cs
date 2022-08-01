@@ -21,7 +21,7 @@ public class HeldClimbingToolItem : HeldItem
     {
         bool facingGround = Physics.SphereCast(rayPos.position, climbingTool.radius, rayPos.transform.forward, out RaycastHit dummy, climbingTool.range, -1, QueryTriggerInteraction.Ignore);
 
-        if (Input.GetMouseButton(1) && facingGround)
+        if (Input.GetMouseButton(0) && facingGround)
         {
             hooked = true;
         }
@@ -43,9 +43,16 @@ public class HeldClimbingToolItem : HeldItem
         }
     }
 
-    public override void SetChildState (bool _state)
+    public override void SetChildStateFunctions (bool state)
     {
-        base.SetChildState(_state);
         hooked = false;
+
+        if (state)
+        {
+            HotTextManager.Instance.ReplaceHotText(new HotTextInfo("to hook", KeyCode.Mouse0, 0, "climbingTool"));
+        } else
+        {
+            HotTextManager.Instance.RemoveHotText("climbingTool");
+        }
     }
 }

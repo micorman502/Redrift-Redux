@@ -20021,6 +20021,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: {fileID: 114380057707737522}
+  camTransform: {fileID: 4198836532632250}
   buildingPlacementPoint: {fileID: 3631764980751552735}
   buildingTemp: {fileID: 11400000, guid: 8e2b06360f2cb914093f2e0c86d5ee65, type: 2}
 --- !u!114 &114004087794179738

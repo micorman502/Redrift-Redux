@@ -69,7 +69,7 @@ public class PlayerInventory : MonoBehaviour {
 		for (int i = 0; i < heldItems.Length; i++)
         {
 			HeldItem heldItem = heldItems[i];
-			string baseInfo = $"Held Item '{heldItem.gameObject.name}' Id #{i}";
+			string baseInfo = $"Held Item '{heldItem.gameObject.name}' #{i}";
 
 			if (heldItems[i].item == null)
             {
@@ -86,7 +86,7 @@ public class PlayerInventory : MonoBehaviour {
 
 				if (heldItems[j].item == heldItem.item)
                 {
-					string secondInfo = $" and Held Item '{heldItem.gameObject.name}' Id #{i}";
+					string secondInfo = $" and Held Item '{heldItem.gameObject.name}' #{i}";
 					Debug.LogWarning(baseInfo + secondInfo + " have the same item!");
                 }
             }

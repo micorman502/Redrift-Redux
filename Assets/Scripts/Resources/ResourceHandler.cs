@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResourceHandler : MonoBehaviour, IItemSaveable, IHotText, IResource {
+public class ResourceHandler : MonoBehaviour, IItemSaveable, IResource {
 	[SerializeField] bool dontSave;
 	[SerializeField] string saveID;
 	[SerializeField] bool dontRegisterToHivemind;
@@ -24,16 +24,6 @@ public class ResourceHandler : MonoBehaviour, IItemSaveable, IHotText, IResource
 			health = resource.maxGathers;
 		}
 	}
-
-	public void HideHotText ()
-    {
-		HotTextManager.Instance.RemoveHotText("resource");
-	}
-
-	public void ShowHotText ()
-    {
-		HotTextManager.Instance.ReplaceHotText(new HotTextInfo(" to gather <" + resource.resourceName + ">", KeyCode.Mouse0, 6, "resource"));
-    }
 
 	public Resource GetResource ()
     {

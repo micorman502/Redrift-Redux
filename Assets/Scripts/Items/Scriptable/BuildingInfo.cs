@@ -6,6 +6,7 @@ using UnityEngine;
 public class BuildingInfo : ItemInfo
 {
     public float gridSize;
+    public Vector3 upwardsOffset;
     public Vector3[] possibleRotations;
     public bool alignToNormal;
     public GameObject previewPrefab;

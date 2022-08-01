@@ -21,7 +21,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 3664104bbeca8a042887af7bac768fb3, type: 3}
   droppedPrefab: {fileID: 7660720418245111992, guid: 179fd29995af1fd428df3942b77aada5,
     type: 3}
-  gridSize: 50
+  gridSize: 0
   possibleRotations:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 90, z: 0}

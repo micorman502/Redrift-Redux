@@ -15,6 +15,7 @@ public class UIVitalsManager : MonoBehaviour
     float food;
 
     float lastEat;
+    float lastDamage;
 
     private void Awake ()
     {
@@ -30,6 +31,12 @@ public class UIVitalsManager : MonoBehaviour
         {
             SetupCreativeMode();
         }
+    }
+
+    void Update ()
+    {
+        foodIcon.transform.localScale = Vector3.Lerp(Vector3.one * 1.3f, Vector3.one, (Time.time - lastEat) * 2.5f);
+        healthIcon.transform.localScale = Vector3.Lerp(Vector3.one * 0.7f, Vector3.one, (Time.time - lastDamage) * 2.5f);
     }
 
     private void OnDestroy ()
@@ -48,6 +55,11 @@ public class UIVitalsManager : MonoBehaviour
 
     void OnHealthChanged (float health)
     {
+        if (health - this.health < -2.5f)
+        {
+            lastDamage = Time.time;
+        }
+        this.health = health;
         healthRing.fillAmount = health / maxHealth;
     }
 
@@ -59,12 +71,18 @@ public class UIVitalsManager : MonoBehaviour
 
     void OnFoodChanged (float food)
     {
+        if (food - this.food > 2.5f)
+        {
+            lastEat = Time.time;
+        }
+
+        this.food = food;
         foodRing.fillAmount = food / maxFood;
     }
 
     void OnMaxFoodChanged (float maxFood)
     {
         this.maxFood = maxFood;
-        OnHealthChanged(food);
+        OnFoodChanged(food);
     }
 }

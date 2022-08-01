@@ -25,18 +25,22 @@ public class HeldBuildingItem : HeldItem
 
     public override void SpecialUse()
     {
-        playerBuilding.RotateBuilding(1);
+        playerBuilding.SetBuildingRotation(1);
     }
 
-    public override void SetChildState(bool _state)
+    public override void SetChildStateFunctions (bool state)
     {
-        if (!_state)
+        if (state)
         {
-            playerBuilding.StopBuilding();
+            HotTextManager.Instance.ReplaceHotText(new HotTextInfo("to build", KeyCode.Mouse0, 0, "buildingBuild"));
+            HotTextManager.Instance.ReplaceHotText(new HotTextInfo("to rotate", KeyCode.R, 1, "buildingRotate"));
         }
-        if (itemGameObject)
+        else
         {
-            itemGameObject.SetActive(_state);
+            HotTextManager.Instance.RemoveHotText("buildingBuild");
+            HotTextManager.Instance.RemoveHotText("buildingRotate");
+
+            playerBuilding.StopBuilding();
         }
     }
 }

@@ -20,4 +20,16 @@ public class HeldFoodItem : HeldItem
             vitals.AddFood(food.calories);
         }
     }
+
+    public override void SetChildStateFunctions (bool state)
+    {
+        if (state)
+        {
+            HotTextManager.Instance.ReplaceHotText(new HotTextInfo("to eat", KeyCode.Mouse0, 0, "food"));
+        }
+        else
+        {
+            HotTextManager.Instance.RemoveHotText("food");
+        }
+    }
 }

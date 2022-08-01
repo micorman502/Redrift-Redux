@@ -14,6 +14,9 @@ public class HeldToolItem : HeldItem
     float gatherLength;
     bool gathering;
 
+    bool showingHotText;
+    Resource lastHotTextResource;
+
     IResource currentResource;
     GameObject currentResourceObject;
 
@@ -24,6 +27,22 @@ public class HeldToolItem : HeldItem
 
     public override void ItemUpdate ()
     {
+        GameObject playerTarget = controller.GetTarget();
+        if (playerTarget)
+        {
+            IResource resource = playerTarget.GetComponent<IResource>();
+            if (resource != null)
+            {
+                EnableHotText(resource);
+            } else
+            {
+                DisableHotText();
+            }
+        } else
+        {
+            DisableHotText();
+        }
+
         if (gathering)
         {
             if (keyPressedThisFrame)
@@ -37,7 +56,7 @@ public class HeldToolItem : HeldItem
         {
             if (keyPressedThisFrame)
             {
-                StartGather(controller.GetTarget());
+                StartGather(playerTarget);
             }
         }
 
@@ -123,5 +142,32 @@ public class HeldToolItem : HeldItem
     public override void UseRepeating()
     {
         keyPressedThisFrame = true;
+    }
+
+    void DisableHotText ()
+    {
+        if (!showingHotText)
+            return;
+
+        HotTextManager.Instance.RemoveHotText("resource");
+        showingHotText = false;
+        lastHotTextResource = null;
+    }
+
+    void EnableHotText (IResource resource)
+    {
+        if (resource.GetResource() == lastHotTextResource)
+            return;
+        HotTextManager.Instance.ReplaceHotText(new HotTextInfo("to gather <" + resource.GetResource().resourceName + ">", KeyCode.Mouse0, 6, "resource"));
+        showingHotText = true;
+        lastHotTextResource = resource.GetResource();
+    }
+
+    public override void SetChildStateFunctions (bool state)
+    {
+        if (!state)
+        {
+            DisableHotText();
+        }
     }
 }
