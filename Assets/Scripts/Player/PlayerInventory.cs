@@ -81,6 +81,9 @@ public class PlayerInventory : MonoBehaviour {
             }
 			for (int j = 0; j < heldItems.Length; j++)
             {
+				if (j == i)
+					continue;
+
 				if (heldItems[j].item == heldItem.item)
                 {
 					string secondInfo = $" and Held Item '{heldItem.gameObject.name}' Id #{i}";
