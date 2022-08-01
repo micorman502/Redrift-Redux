@@ -56,10 +56,9 @@ public class PlayerController : MonoBehaviour {
 
 	public float impactVelocityToDamage = 1f;
 	public float impactDamage = 20f;
+	float lastImpact;
 
 	public float handDamage = 15f;
-
-	float lastDamaged;
 
 	bool ignoreFallDamage;
 	bool climbing;
@@ -295,7 +294,11 @@ public class PlayerController : MonoBehaviour {
 			if(ignoreFallDamage) {
 				Invoke("ResetIgnoreFallDamage", 1f);
 			} else {
-				vitals.RemoveHealth(Mathf.Clamp(col.relativeVelocity.magnitude * impactDamage, 0, 80f));
+				if (Time.time > lastImpact + 0.3f)
+				{
+					vitals.RemoveHealth(Mathf.Clamp(col.relativeVelocity.magnitude * impactDamage, 0, 80f));
+					lastImpact = Time.time;
+				}
 			}
 		}
 	}
@@ -375,6 +378,9 @@ public class PlayerController : MonoBehaviour {
 	*/
 
 	public void Die() {
+		if (dead)
+			return;
+
 		if(difficulty > 1) {
 			inventory.ClearInventory();
 		}

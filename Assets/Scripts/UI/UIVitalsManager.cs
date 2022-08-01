@@ -12,7 +12,9 @@ public class UIVitalsManager : MonoBehaviour
     float maxHealth;
     float maxFood;
     float health;
-    float Food;
+    float food;
+
+    float lastEat;
 
     private void Awake ()
     {
@@ -55,14 +57,14 @@ public class UIVitalsManager : MonoBehaviour
         OnHealthChanged(health);
     }
 
-    void OnFoodChanged (float Food)
+    void OnFoodChanged (float food)
     {
-        foodRing.fillAmount = Food / maxFood;
+        foodRing.fillAmount = food / maxFood;
     }
 
     void OnMaxFoodChanged (float maxFood)
     {
         this.maxFood = maxFood;
-        OnHealthChanged(Food);
+        OnHealthChanged(food);
     }
 }

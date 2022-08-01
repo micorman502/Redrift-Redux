@@ -289,4 +289,12 @@ MonoBehaviour:
   - prefab: {fileID: 5513360910384791838, guid: 287939ff089f661479e65db2ba2da62a,
       type: 3}
     nameIdentifier: droppedItemClimbingPickIron
-    id: 76
+    id: 77
+  - prefab: {fileID: 8722164161970421496, guid: 64ca8dde1d11a234a96e2c6e39161e4e,
+      type: 3}
+    nameIdentifier: droppedItemWoodPile
+    id: 78
+  - prefab: {fileID: 2077363444749702600, guid: 621950488c472ef49bca5614b5e4ae08,
+      type: 3}
+    nameIdentifier: worldItemWoodPile
+    id: 79

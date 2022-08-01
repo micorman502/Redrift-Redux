@@ -36,6 +36,9 @@ public class PlayerInventory : MonoBehaviour {
 
 	bool setup;
 
+	bool usePressed;
+	bool altUsePressed;
+
 
 	void Awake() {
 		if (!PersistentData.Instance.loadingFromSave)
@@ -54,7 +57,38 @@ public class PlayerInventory : MonoBehaviour {
 		saveManager = FindObjectOfType<SaveManager>();
 
 		player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+
+		if (ItemDatabase.itemDebugMode)
+        {
+			DebugItems();
+        }
 	}
+
+	void DebugItems ()
+    {
+		for (int i = 0; i < heldItems.Length; i++)
+        {
+			HeldItem heldItem = heldItems[i];
+			string baseInfo = $"Held Item '{heldItem.gameObject.name}' Id #{i}";
+
+			if (heldItems[i].item == null)
+            {
+				Debug.LogWarning(baseInfo + " is missing its item");
+            }
+			if (heldItems[i].itemGameObject == null)
+            {
+				Debug.LogWarning(baseInfo + " is missing its itemGameObject");
+            }
+			for (int j = 0; j < heldItems.Length; j++)
+            {
+				if (heldItems[j].item == heldItem.item)
+                {
+					string secondInfo = $" and Held Item '{heldItem.gameObject.name}' Id #{i}";
+					Debug.LogWarning(baseInfo + secondInfo + " have the same item!");
+                }
+            }
+        }
+    }
 
 	public void DefaultSetup ()
     {
@@ -168,19 +202,31 @@ public class PlayerInventory : MonoBehaviour {
 		if (Input.GetMouseButtonDown(0))
         {
 			currentHeldItem?.Use();
+			usePressed = true;
         }
 		if (Input.GetMouseButton(0))
 		{
 			currentHeldItem?.UseRepeating();
 		}
+		else if (usePressed)
+		{
+			currentHeldItem?.StopUse();
+			altUsePressed = false;
+		}
 		if (Input.GetMouseButtonDown(1))
         {
 			currentHeldItem?.AltUse();
+			altUsePressed = true;
         }
 		if (Input.GetMouseButton(1))
 		{
 			currentHeldItem?.AltUseRepeating();
-		} 
+		}
+		else if (altUsePressed)
+		{
+			currentHeldItem?.StopAltUse();
+			altUsePressed = false;
+		}
 		if (Input.GetKeyDown(KeyCode.R))
         {
 			currentHeldItem?.SpecialUse();

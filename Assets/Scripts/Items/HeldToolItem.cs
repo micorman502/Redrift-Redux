@@ -8,8 +8,12 @@ public class HeldToolItem : HeldItem
     [SerializeField] PlayerInventory inventory;
     [SerializeField] Animation anim;
     ToolInfo tool;
-    bool usedThisFrame;
+    bool keyPressedThisFrame;
+    float gatherStartedTime;
+    float gatherDuration;
     float gatherLength;
+    bool gathering;
+
     IResource currentResource;
     GameObject currentResourceObject;
 
@@ -20,53 +24,104 @@ public class HeldToolItem : HeldItem
 
     public override void ItemUpdate ()
     {
-        if (!usedThisFrame)
+        if (gathering)
         {
-            UIEvents.CallDisableProgressBar();
-        }
-
-        if (usedThisFrame && currentResource != null)
-        {
-            gatherLength += Time.deltaTime;
-            if (gatherLength >= currentResource.GetResource().gatherTime / tool.gatherSpeedMult)
+            if (keyPressedThisFrame)
             {
-                gatherLength = 0;
-                WorldItem[] gatheredItems = currentResource.ToolGather(tool);
-                foreach (WorldItem gathered in gatheredItems)
-                {
-                    inventory.inventory.AddItem(gathered);
-                }
+                ProgressGather();
+            } else
+            {
+                StopGather();
             }
-            UIEvents.CallUpdateProgressBar(gatherLength);
-        }
-        else
+        } else
         {
-            gatherLength = 0;
+            if (keyPressedThisFrame)
+            {
+                StartGather(controller.GetTarget());
+            }
         }
 
-        usedThisFrame = false;
+        keyPressedThisFrame = false;
+    }
+
+    void StopGather ()
+    {
+        if (!gathering)
+            return;
+        gathering = false;
+
+        currentResourceObject = null;
+        currentResource = null;
+
+        UIEvents.CallDisableProgressBar();
+    }
+
+    void StartGather (GameObject target)
+    {
+        if (gathering)
+            return;
+        if (!target)
+            return;
+
+        IResource resource = target.GetComponent<IResource>();
+        if (resource == null)
+        {
+            UIEvents.CallProgressBarFail();
+            return;
+        }
+
+        gathering = true;
+        gatherStartedTime = Time.time;
+        gatherDuration = resource.GetResource().gatherTime / tool.gatherSpeedMult;
+
+        currentResourceObject = target;
+        currentResource = resource;
+
+        UIEvents.CallInitialiseProgressBar(gatherDuration);
+    }
+
+    void ProgressGather ()
+    {
+        if (!gathering)
+            return;
+        if (!currentResourceObject)
+        {
+            StopGather();
+            return;
+        }
+        GameObject controllerTarget = controller.GetTarget();
+        if (!controllerTarget || controllerTarget != currentResourceObject && controllerTarget.transform.parent != currentResourceObject.transform.parent)
+        {
+            StopGather();
+            return;
+        }
+
+        float progression = Time.time - gatherStartedTime;
+
+        UIEvents.CallUpdateProgressBar(progression);
+
+        if (progression > gatherDuration)
+        {
+            FinishGather();
+        }
+    }
+
+    void FinishGather ()
+    {
+        if (!gathering)
+            return;
+
+        WorldItem[] gatheredItems = currentResource.ToolGather(tool);
+        foreach (WorldItem gathered in gatheredItems)
+        {
+            inventory.inventory.AddItem(gathered);
+        }
+
+        StopGather();
     }
 
     public override void UseRepeating()
     {
-        if (controller.GetTarget() == currentResourceObject && currentResourceObject != null)
-        {
-            usedThisFrame = true;
-            return;
-        }
-        else
-        {
-            currentResource = null;
-            currentResourceObject = null;
-        }
-        if (currentResource == null)
-        {
-            currentResource = controller.GetTarget()?.GetComponent<IResource>();
-        }
-        if (currentResource != null)
-        {
-            usedThisFrame = true;
-            UIEvents.CallInitialiseProgressBar(currentResource.GetResource().gatherTime / tool.gatherSpeedMult);
-        }
+        keyPressedThisFrame = true;
     }
 }

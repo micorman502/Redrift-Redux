@@ -17,6 +17,11 @@ public class HeldItem : MonoBehaviour
 
     }
 
+    public virtual void StopUse ()
+    {
+
+    }
+
     public virtual void AltUse()
     {
 

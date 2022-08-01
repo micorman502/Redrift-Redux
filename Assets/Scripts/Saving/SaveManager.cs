@@ -119,6 +119,16 @@ public class SaveManager : MonoBehaviour {
 			Save save = JsonConvert.DeserializeObject<Save>(File.ReadAllText(path));
 
 			try
+            {
+				PersistentData.Instance.difficulty = save.difficulty;
+				PersistentData.Instance.mode = save.mode;
+				PersistentData.Instance.loadingFromSave = true;
+            } catch (Exception e)
+            {
+				Debug.Log("Error while initialising PersistentData in SaveManager.LoadGame, Caught exception " + e.Message);
+			}
+
+			try
 			{
 				if (save.mode == 0)
 				{
