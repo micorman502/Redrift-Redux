@@ -69,7 +69,7 @@ public class HotTextManager : MonoBehaviour
             int priority = hotText[id].priority;
 
             if (hottexts.Count > 0) {
-                for (int i = 0; i < hottexts.Count; i++)
+                /*for (int i = 0; i < hottexts.Count; i++)
                 {
                     if (hottexts[i].priority >= priority)
                     {
@@ -80,7 +80,7 @@ public class HotTextManager : MonoBehaviour
                         hottexts.Insert(i+1, hotText[id]);
                         break;
                     }
-                }
+                }*/ //Maybe i shouldn't comment it out, but wtf am i supposed to do?
             } else
             {
                 hottexts.Add(hotText[id]);

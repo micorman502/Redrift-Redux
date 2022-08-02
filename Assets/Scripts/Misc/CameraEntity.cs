@@ -5,8 +5,8 @@ using System;
 
 public class CameraEntity : MonoBehaviour
 {
-    public static Transform currentCameraTransform;
-    public event Action OnCurrentCameraDestroyed;
+    //public static Transform currentCameraTransform;
+    //public event Action OnCurrentCameraDestroyed;
     // Start is called before the first frame update
     void Start()
     {

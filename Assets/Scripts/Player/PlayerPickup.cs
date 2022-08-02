@@ -7,10 +7,13 @@ public class PlayerPickup : MonoBehaviour
     [SerializeField] PlayerInventory playerInventory;
     [SerializeField] PlayerController playerController;
 
-    const float pickupTime = 0.15f;
+    const float basePickupTime = 0.4f;
     bool pickingUp = false;
     float pickupStartedTime;
 	bool keyHeldAfterPickup; //True if the pickup key is still held after picking up an item succesfully.
+
+	float lastPickup;
+	int currentPickupCombo;
 
 	GameObject initialTarget;
 
@@ -18,6 +21,11 @@ public class PlayerPickup : MonoBehaviour
 
     void LateUpdate()
     {
+		if (Time.time > lastPickup + basePickupTime * 1.5f)
+		{
+			currentPickupCombo = 0;
+		}
+
 		GameObject target = playerController.GetTarget();
 		RaycastHit hit = playerController.GetTargetRaycastHit();
 
@@ -73,7 +81,7 @@ public class PlayerPickup : MonoBehaviour
 		pickupStartedTime = Time.time;
 		pickingUp = true;
 
-		UIEvents.CallInitialiseProgressBar(pickupTime);
+		UIEvents.CallInitialiseProgressBar(basePickupTime);
 	}
 
 	void ProgressPickup ()
@@ -89,7 +97,7 @@ public class PlayerPickup : MonoBehaviour
 
 		UIEvents.CallUpdateProgressBar(progression);
 
-		if (progression > pickupTime)
+		if (progression > (currentPickupCombo > 1 ? basePickupTime / currentPickupCombo : basePickupTime))
         {
 			FinishPickup();
         }
@@ -97,9 +105,15 @@ public class PlayerPickup : MonoBehaviour
 
 	void FinishPickup () //actually pick up something, then cancel pickup.
     {
-		PickupItems();
+		bool itemPickedUp = PickupItems();
 
 		keyHeldAfterPickup = true;
+
+		if (itemPickedUp)
+		{
+			currentPickupCombo++;
+			lastPickup = Time.time;
+		}
 
 		CancelPickup();
     }
@@ -111,8 +125,9 @@ public class PlayerPickup : MonoBehaviour
 		UIEvents.CallDisableProgressBar();
     }
 
-	void PickupItems ()
+	bool PickupItems () //returns true if any items were picked up
     {
+		bool anyItemPickedUp = false;
 		IItemPickup[] pickups = initialTarget.GetComponents<IItemPickup>();
 		if (pickups.Length == 0)
         {
@@ -129,11 +144,17 @@ public class PlayerPickup : MonoBehaviour
 			{
 				if (allChecksPassed)
                 {
+					if (!anyItemPickedUp && playerInventory.inventory.SpaceLeftForItem(items[j]) > 0)
+                    {
+						anyItemPickedUp = true;
+                    }
 					playerInventory.inventory.AddItem(items[j]);
 					pickups[i].Pickup();
 				}
 			}
 		}
+
+		return anyItemPickedUp;
 	}
 
 	bool PickupChecks (GameObject target)

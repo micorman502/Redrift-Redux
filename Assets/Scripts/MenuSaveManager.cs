@@ -5,6 +5,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class MenuSaveManager : MonoBehaviour {
 
@@ -112,20 +113,34 @@ public class MenuSaveManager : MonoBehaviour {
 	}
 
 	public void CreateNewSave() {
-		if(string.IsNullOrEmpty(saveNameInputField.text)) {
+		string saveName = saveNameInputField.text;
+
+		if(string.IsNullOrEmpty(saveName)) {
 			saveErrorText.text = "Please enter a valid name.";
 			saveErrorText.gameObject.SetActive(true);
 			return;
 		} else {
 			foreach(FileInfo f in info) {
 				string[] infoSplit = f.Name.Split('.');
-				if(infoSplit[infoSplit.Length - 2] == saveNameInputField.text) {
+				if(infoSplit[infoSplit.Length - 2] == saveName) {
 					saveErrorText.text = "Please enter a name that isn't taken.";
 					saveErrorText.gameObject.SetActive(true);
 					return;
 				}
 			}
 		}
+		try
+		{
+			FileStream newFile = File.Create(SaveManager.GetSavePath(saveName, false));
+			newFile.Close();
+		} catch (Exception e)
+        {
+			Debug.LogWarning("Could not create save named '" + saveName + "', due to exception '" + e.Message + "'.");
+			saveErrorText.text = "Please enter a valid name.";
+			saveErrorText.gameObject.SetActive(true);
+			return; 
+		}
+
 		PersistentData.Instance.newSaveName = saveNameInputField.text;
 		PersistentData.Instance.difficulty = saveDifficultyDropdown.value;
 		PersistentData.Instance.mode = saveModeDropdown.value;

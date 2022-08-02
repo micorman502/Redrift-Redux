@@ -9,7 +9,7 @@ public class HeldItem : MonoBehaviour
 
     public virtual void Use()
     {
-        Debug.Log("use");
+
     }
 
     public virtual void UseRepeating()

@@ -6,12 +6,15 @@ public class Furnace : MonoBehaviour, IItemPickup, IItemSaveable, IItemInteracta
 
 	[SerializeField] string saveID;
 
+	[SerializeField] int fuelPerSmelt;
+
 	public GameObject fireLight;
 	public ParticleSystem smoke;
 	public ParticleSystem fire;
 
-	[HideInInspector] public float fuel = 0;
+	[SerializeField] int fuel = 0;
 	[HideInInspector] public OreInfo currentSmeltingItem;
+	bool smelting;
 	[SerializeField] Transform dropPos;
 
 	public float smeltTime = 10f;
@@ -41,6 +44,7 @@ public class Furnace : MonoBehaviour, IItemPickup, IItemSaveable, IItemInteracta
 				return;
 			if (AddItem(itemHandler.item))
             {
+				itemHandler.gameObject.SetActive(false);
 				Destroy(itemHandler.gameObject);
 			}
 		}
@@ -56,7 +60,7 @@ public class Furnace : MonoBehaviour, IItemPickup, IItemSaveable, IItemInteracta
 
 		if (item is OreInfo && !currentSmeltingItem)
         {
-			if (fuel > 0)
+			if (fuel >= fuelPerSmelt)
 			{
 				StartSmelting(item);
 				return true;
@@ -73,16 +77,19 @@ public class Furnace : MonoBehaviour, IItemPickup, IItemSaveable, IItemInteracta
 
 	void Check ()
     {
-		if (currentSmeltingItem && fuel >= 1)
+		if (currentSmeltingItem && fuel >= fuelPerSmelt)
         {
 			StartSmelting(currentSmeltingItem);
         }
     }
 
 	void StartSmelting(ItemInfo item) {
-		if (fuel <= 0)
+		if (smelting)
+			return;
+		if (fuel < fuelPerSmelt)
 			return;
 
+		smelting = true;
 		currentSmeltingItem = item as OreInfo;
 		smoke.Play();
 		fire.Play();
@@ -92,13 +99,20 @@ public class Furnace : MonoBehaviour, IItemPickup, IItemSaveable, IItemInteracta
 
 	void FinishSmelting ()
     {
+		if (!smelting)
+			return;
+
 		DropItem(currentSmeltingItem.smeltResult);
-		fuel--;
+		fuel -= fuelPerSmelt;
 		StopSmelting();
 	}
 
 	void StopSmelting() {
+		if (!smelting)
+			return;
+
 		currentSmeltingItem = null;
+		smelting = false;
 		smoke.Stop();
 		fire.Stop();
 		fireLight.SetActive(false);
@@ -126,7 +140,7 @@ public class Furnace : MonoBehaviour, IItemPickup, IItemSaveable, IItemInteracta
 		ItemSaveData newData = new ItemSaveData();
 		ObjectSaveData newObjData = new ObjectSaveData(transform.position, transform.rotation, ObjectDatabase.Instance.GetIntID(saveID));
 
-		newData.floatVal = fuel;
+		newData.num = fuel;
 		if (currentSmeltingItem)
 		{
 			newData.itemID = currentSmeltingItem.id;
@@ -145,7 +159,7 @@ public class Furnace : MonoBehaviour, IItemPickup, IItemSaveable, IItemInteracta
     {
 		transform.position = objData.position;
 		transform.rotation = objData.rotation;
-		fuel = data.floatVal;
+		fuel = data.num;
 		if (data.itemID != -1)
 		{
 			currentSmeltingItem = ItemDatabase.Instance.GetItem(data.itemID) as OreInfo;

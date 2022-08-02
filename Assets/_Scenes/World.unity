@@ -32503,6 +32503,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1342240420}
   - component: {fileID: 1342240421}
+  - component: {fileID: 1342240422}
   m_Layer: 0
   m_Name: DarkEnvironment
   m_TagString: Untagged
@@ -32562,6 +32563,31 @@ MonoBehaviour:
   - {x: 30, y: -2, z: -150}
   smallIslandSpawnTime: 30
   smallIslandSpawnVariationAmt: 0
+--- !u!114 &1342240422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1342240419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 503f1a759e968444b8de08a2a07d8b00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkRate: 1
+  spawnTarget: {fileID: 1643817343}
+  bounds: {x: 22.5, y: 0, z: 22.5}
+  spawns:
+  - spawnPrefab: {fileID: 5970644240723651174, guid: 3db2ce2a098d78246b10dd12a461d382,
+      type: 3}
+    raycastOffset: {x: 0, y: -200, z: 0}
+    raycastDirection: {x: 0, y: 1, z: 0}
+    boundsMultiplier: {x: 1, y: 1, z: 1}
+    initialSpawnAmountMin: 1
+    initialSpawnAmountMax: 2
+    spawnFrequency: 350
+    nextSpawnTime: 0
 --- !u!1 &1371173133
 GameObject:
   m_ObjectHideFlags: 0
@@ -50956,7 +50982,8 @@ MonoBehaviour:
     hidden: 0
     realmTeleportPosition: {fileID: 546438324}
     realmEnterParticles: {fileID: 0}
-    realmObjects: []
+    realmObjects:
+    - {fileID: 626331518}
     realmPostProcessing: {fileID: 11400000, guid: 9c60b9ce4eed2944d808fc3bb00598a0,
       type: 2}
     cameraBGColour: {r: 0.5137255, g: 0.8980392, b: 1, a: 1}
@@ -50979,6 +51006,7 @@ MonoBehaviour:
     realmEnterParticles: {fileID: 0}
     realmObjects:
     - {fileID: 156722491}
+    - {fileID: 168070002}
     realmPostProcessing: {fileID: 11400000, guid: 8aba0b272bd05064ca7206fdc87a2483,
       type: 2}
     cameraBGColour: {r: 0, g: 0, b: 0, a: 1}

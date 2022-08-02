@@ -204,9 +204,9 @@ public class SaveManager : MonoBehaviour {
 
 		string path;
 		if(PersistentData.Instance.loadingFromSave) {
-			path = Application.persistentDataPath + "/saves/" + info[PersistentData.Instance.saveToLoad].Name;
+			path = GetSavePath(info[PersistentData.Instance.saveToLoad].Name, true);
 		} else {
-			path = Application.persistentDataPath + "/saves/" + PersistentData.Instance.newSaveName + ".save";
+			path = GetSavePath(PersistentData.Instance.newSaveName, false);
 		}
 		File.WriteAllText(path, JsonConvert.SerializeObject(save));
 
@@ -267,6 +267,18 @@ public class SaveManager : MonoBehaviour {
 		}
 		inventory.DefaultSetup();
 		inventory.ClearInventory();
+	}
+
+	public static string GetSavePath (string saveName, bool nameIncludesFileExtension)
+    {
+		if (nameIncludesFileExtension)
+		{
+			return Application.persistentDataPath + "/saves/" + saveName;
+		}
+		else
+		{
+			return Application.persistentDataPath + "/saves/" + saveName + ".save";
+		}
 	}
 }
 

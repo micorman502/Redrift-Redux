@@ -122,7 +122,7 @@ public class PlayerVitals : MonoBehaviour, IDamageable, IHealable, IFood, IKilla
 
     void FoodTick ()
     {
-        currentFoodSegment = Mathf.RoundToInt(currentFood / (maxFood / segments));
+        currentFoodSegment = Mathf.CeilToInt(currentFood / (maxFood / segments));
 
         if (currentFoodSegment == 1)
         {

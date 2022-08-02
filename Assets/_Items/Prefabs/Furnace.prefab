@@ -96,6 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   saveID: worldItemFurnace
+  fuelPerSmelt: 3
   fireLight: {fileID: 1283816334304629871}
   smoke: {fileID: 6350280906050997781}
   fire: {fileID: 4891352954977313854}

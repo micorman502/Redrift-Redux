@@ -22,6 +22,7 @@ MonoBehaviour:
   droppedPrefab: {fileID: 8722164161970421496, guid: 64ca8dde1d11a234a96e2c6e39161e4e,
     type: 3}
   gridSize: 0
+  upwardsOffset: {x: 0, y: 0.5, z: 0}
   possibleRotations:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 90, z: 0}

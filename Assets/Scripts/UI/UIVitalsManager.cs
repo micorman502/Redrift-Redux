@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class UIVitalsManager : MonoBehaviour
 {
@@ -13,9 +14,6 @@ public class UIVitalsManager : MonoBehaviour
     float maxFood;
     float health;
     float food;
-
-    float lastEat;
-    float lastDamage;
 
     private void Awake ()
     {
@@ -31,12 +29,6 @@ public class UIVitalsManager : MonoBehaviour
         {
             SetupCreativeMode();
         }
-    }
-
-    void Update ()
-    {
-        foodIcon.transform.localScale = Vector3.Lerp(Vector3.one * 1.3f, Vector3.one, (Time.time - lastEat) * 2.5f);
-        healthIcon.transform.localScale = Vector3.Lerp(Vector3.one * 0.7f, Vector3.one, (Time.time - lastDamage) * 2.5f);
     }
 
     private void OnDestroy ()
@@ -57,7 +49,10 @@ public class UIVitalsManager : MonoBehaviour
     {
         if (health - this.health < -2.5f)
         {
-            lastDamage = Time.time;
+            foodIcon.transform.DOComplete();
+            healthIcon.transform.DOPunchScale(-Vector3.one * 0.2f, 0.3f);
+            healthIcon.color = Color.black;
+            healthIcon.DOColor(Color.white, 0.3f);
         }
         this.health = health;
         healthRing.fillAmount = health / maxHealth;
@@ -73,7 +68,8 @@ public class UIVitalsManager : MonoBehaviour
     {
         if (food - this.food > 2.5f)
         {
-            lastEat = Time.time;
+            foodIcon.transform.DOComplete();
+            foodIcon.transform.DOPunchScale(Vector3.one * 0.2f, 0.3f);
         }
 
         this.food = food;
