@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : MonoBehaviour, IInteractable, IItemSaveable {
+public class Door : MonoBehaviour, IInteractable, IItemSaveable, IHotText {
 
 	[SerializeField] ItemHandler handler;
 	[SerializeField] string saveID;
@@ -47,5 +47,15 @@ public class Door : MonoBehaviour, IInteractable, IItemSaveable {
 		transform.rotation = objData.rotation;
 
 		SetState(data.boolVal);
+	}
+
+	void IHotText.HideHotText ()
+	{
+		HotTextManager.Instance.RemoveHotText(new HotTextInfo("", KeyCode.F, 11, "toggleDoor"));
+	}
+
+	void IHotText.ShowHotText ()
+	{
+		HotTextManager.Instance.ReplaceHotText(new HotTextInfo(open ? "to close door" : "to open door", KeyCode.F, 11, "toggleDoor"));
 	}
 }

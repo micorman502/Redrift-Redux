@@ -4,14 +4,30 @@ using UnityEngine;
 
 public class HeldDeployableItem : HeldItem
 {
+    [SerializeField] Transform camPoint;
     [SerializeField] PlayerInventory inventory;
+
+    void Start ()
+    {
+        if (!camPoint)
+        {
+            camPoint = Camera.main.transform;
+        }
+    }
+
     public override void Use()
     {
         inventory.inventory.RemoveItem(new WorldItem(item, 1), out int amtTaken);
         if (amtTaken >= 1)
         {
             DeployableInfo deployable = (DeployableInfo)item;
-            Instantiate(deployable.deployedObject, transform.position, Quaternion.identity);
+            Vector3 spawnPos = transform.position;
+            if (Physics.Raycast(camPoint.position, camPoint.forward, out RaycastHit hit, PlayerController.interactRange))
+            {
+                spawnPos = hit.point + hit.normal * 0.6f;
+            }
+
+            Instantiate(deployable.deployedObject, spawnPos, Quaternion.identity);
         }
     }
 

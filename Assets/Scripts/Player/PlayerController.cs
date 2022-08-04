@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour {
 	public float jumpForce;
 	public float smoothTime;
 	public LayerMask groundedMask;
-	public float interactRange = 2f;
+	public const float interactRange = 4.5f;
 
 	[HideInInspector] public PostProcessingBehaviour playerCameraPostProcessingBehaviour;
 
@@ -69,12 +69,7 @@ public class PlayerController : MonoBehaviour {
 	float originalDrag;
 	float flyingDrag = 10f;
 
-	GameObject currentHotTextObject;
 	GameObject lastInteractionGameObject;
-
-	/*const float pickupTime = 0.15f;
-	bool pickingUp = false;
-	float pickingUpTime;*/
 
 	void Awake() {
 		GameObject scriptHolder = GameObject.FindGameObjectWithTag("ScriptHolder");
@@ -185,54 +180,8 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 
-		CheckHotTextObjects(hit);
 		CheckInteractions(hit);
 	}
-
-	void CheckHotTextObjects (RaycastHit hit)
-    {
-		if (hit.transform)
-        {
-			GameObject hitObject = hit.transform.gameObject;
-
-			IHotText hotText = GetHotText(hitObject);
-
-			if (hotText != null)
-            {
-				if (currentHotTextObject)
-                {
-					if (currentHotTextObject != hitObject)
-                    {
-						GetHotText(currentHotTextObject).HideHotText();
-
-						currentHotTextObject = hitObject;
-						hotText.ShowHotText();
-                    }
-                } else
-                {
-					hotText.ShowHotText();
-					currentHotTextObject = hitObject;
-                }
-            }
-        } else
-        {
-			if (currentHotTextObject)
-            {
-				GetHotText(currentHotTextObject).HideHotText();
-				currentHotTextObject = null;
-            }
-        }
-	}
-
-	IHotText GetHotText (GameObject target)
-    {
-		IHotText hotText = target.GetComponent<IHotText>();
-		if (hotText == null)
-        {
-			hotText = target.GetComponentInParent<IHotText>();
-        }
-		return hotText;
-    }
 
 	void CheckInteractions (RaycastHit hit)
     {

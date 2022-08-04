@@ -5,7 +5,7 @@ using UnityEngine;
 public class HotTextManager : MonoBehaviour
 {
     public static HotTextManager Instance;
-    Dictionary<string, HotTextInfo> hotText = new Dictionary<string, HotTextInfo>();
+    Dictionary<string, HotTextInfo> hotTexts = new Dictionary<string, HotTextInfo>();
     [SerializeField] Transform hotTextHolder;
     [SerializeField] GameObject hotTextObject;
 
@@ -22,9 +22,9 @@ public class HotTextManager : MonoBehaviour
 
     public void AddHotText (HotTextInfo info)
     {
-        if (!hotText.ContainsKey(info.id))
+        if (!hotTexts.ContainsKey(info.id))
         {
-            hotText.Add(info.id, info);
+            hotTexts.Add(info.id, info);
             ReloadUI();
         } else
         {
@@ -39,9 +39,9 @@ public class HotTextManager : MonoBehaviour
 
     public void RemoveHotText (string id)
     {
-        if (hotText.ContainsKey(id))
+        if (hotTexts.ContainsKey(id))
         {
-            hotText.Remove(id);
+            hotTexts.Remove(id);
             ReloadUI();
         }
         else
@@ -52,11 +52,11 @@ public class HotTextManager : MonoBehaviour
 
     public void ReplaceHotText (HotTextInfo info)
     {
-        if (hotText.ContainsKey(info.id))
+        if (hotTexts.ContainsKey(info.id))
         {
-            hotText.Remove(info.id);
+            hotTexts.Remove(info.id);
         }
-        hotText.Add(info.id, info);
+        hotTexts.Add(info.id, info);
         ReloadUI();
     }
 
@@ -64,26 +64,26 @@ public class HotTextManager : MonoBehaviour
     {
         List<HotTextInfo> hottexts = new List<HotTextInfo>();
 
-        foreach (string id in hotText.Keys)
+        foreach (string id in hotTexts.Keys)
         {
-            int priority = hotText[id].priority;
+            int priority = hotTexts[id].priority;
 
             if (hottexts.Count > 0) {
-                /*for (int i = 0; i < hottexts.Count; i++)
+                for (int i = 0; i < hottexts.Count; i++)
                 {
                     if (hottexts[i].priority >= priority)
                     {
-                        hottexts.Insert(i, hotText[id]);
+                        hottexts.Insert(i, hotTexts[id]);
                         break;
                     } else
                     {
-                        hottexts.Insert(i+1, hotText[id]);
+                        hottexts.Insert(i+1, hotTexts[id]);
                         break;
                     }
-                }*/ //Maybe i shouldn't comment it out, but wtf am i supposed to do?
+                }
             } else
             {
-                hottexts.Add(hotText[id]);
+                hottexts.Add(hotTexts[id]);
             }
         }
 

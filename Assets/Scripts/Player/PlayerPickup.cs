@@ -81,7 +81,7 @@ public class PlayerPickup : MonoBehaviour
 		pickupStartedTime = Time.time;
 		pickingUp = true;
 
-		UIEvents.CallInitialiseProgressBar(basePickupTime);
+		UIEvents.CallInitialiseProgressBar(GetPickupSpeed());
 	}
 
 	void ProgressPickup ()
@@ -97,7 +97,7 @@ public class PlayerPickup : MonoBehaviour
 
 		UIEvents.CallUpdateProgressBar(progression);
 
-		if (progression > (currentPickupCombo > 1 ? basePickupTime / currentPickupCombo : basePickupTime))
+		if (progression > GetPickupSpeed())
         {
 			FinishPickup();
         }
@@ -111,6 +111,11 @@ public class PlayerPickup : MonoBehaviour
 
 		if (itemPickedUp)
 		{
+			if (Time.time > lastPickup + 0.05f)
+			{
+				AudioManager.Instance.Play("Pickup");
+			}
+
 			currentPickupCombo++;
 			lastPickup = Time.time;
 		}
@@ -201,5 +206,11 @@ public class PlayerPickup : MonoBehaviour
 		{
 			UIEvents.CallProgressBarFail();
 		}
+	}
+
+	float GetPickupSpeed ()
+    {
+		return Mathf.Clamp((currentPickupCombo > 1 ? basePickupTime / currentPickupCombo : basePickupTime), 0.075f, basePickupTime);
+
 	}
 }

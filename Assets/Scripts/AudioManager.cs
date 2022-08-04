@@ -40,6 +40,7 @@ public class AudioManager : MonoBehaviour {
 			return;
 		}
 		s.source.pitch = UnityEngine.Random.Range(s.minPitch, s.maxPitch);
+		s.source.clip = s.clip;
 		s.source.Play();
 	}
 }

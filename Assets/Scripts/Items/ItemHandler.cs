@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemHandler : MonoBehaviour, IItemSaveable, IItemPickup {
+public class ItemHandler : MonoBehaviour, IItemSaveable, IItemPickup, IHotText {
 
-	[SerializeField] HotTextHandler handler;
 	public ItemInfo item;
 
 	[SerializeField] string saveID;
@@ -28,11 +27,6 @@ public class ItemHandler : MonoBehaviour, IItemSaveable, IItemPickup {
 		_dontSave = dontSave;
 	}
 
-	void Start ()
-    {
-		handler.AddHotText(new HotTextInfo("to pickup <" + item.itemName + ">", KeyCode.E, 7, "itemHandlerPickup"));
-    }
-
 	public void SetData(ItemSaveData data, ObjectSaveData objData)
 	{
 		transform.position = objData.position;
@@ -47,5 +41,15 @@ public class ItemHandler : MonoBehaviour, IItemSaveable, IItemPickup {
 	public void Pickup ()
     {
 		Destroy(gameObject);
+	}
+
+	void IHotText.HideHotText()
+    {
+		HotTextManager.Instance.RemoveHotText(new HotTextInfo("to pickup <" + item.itemName + ">", KeyCode.E, 10, "itemHandler"));
+    }
+
+	void IHotText.ShowHotText()
+    {
+		HotTextManager.Instance.ReplaceHotText(new HotTextInfo("to pickup <" + item.itemName + ">", KeyCode.E, 10, "itemHandler"));
 	}
 }

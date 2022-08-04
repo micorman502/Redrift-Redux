@@ -242,7 +242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handler: {fileID: 4166919599868268569}
-  item: {fileID: 11400000, guid: ea3dec4fdcf484b46a6d28d36fa965fb, type: 2}
+  item: {fileID: 11400000, guid: 3bccbe89fd4b47e42aa179cbc62b150d, type: 2}
   saveID: worldItemDoorDouble
   dontSave: 1
 --- !u!114 &5814489925090556709

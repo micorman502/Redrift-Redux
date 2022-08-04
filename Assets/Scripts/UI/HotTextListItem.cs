@@ -37,16 +37,19 @@ public class HotTextListItem : MonoBehaviour
         if (key == KeyCode.Mouse0)
         {
             keybindImage.sprite = mouseButtonLeftImage;
+            keybindImage.type = Image.Type.Simple;
             return;
         }
         if (key == KeyCode.Mouse1)
         {
             keybindImage.sprite = mouseButtonRightImage;
+            keybindImage.type = Image.Type.Simple;
             return;
         }
         if (key == KeyCode.Mouse2)
         {
             keybindImage.sprite = mouseButtonMiddleImage;
+            keybindImage.type = Image.Type.Simple;
             return;
         }
 

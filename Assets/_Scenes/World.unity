@@ -2422,7 +2422,7 @@ MonoBehaviour:
   m_ChildAlignment: 3
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 175, y: 40}
+  m_CellSize: {x: 180, y: 50}
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 1
   m_ConstraintCount: 1
@@ -50761,11 +50761,11 @@ MonoBehaviour:
     minPitch: 0.7
     maxPitch: 0.75
     source: {fileID: 0}
-  - name: Grab
-    clip: {fileID: 8300000, guid: e46dd4ac29928c14e9205fde043fd068, type: 3}
+  - name: Pickup
+    clip: {fileID: 8300000, guid: 3652bc55bc2bc7c4585eac1d9209ced5, type: 3}
     volume: 0.9
-    minPitch: 0.45
-    maxPitch: 0.55
+    minPitch: 0.9
+    maxPitch: 1
     source: {fileID: 0}
   - name: ThunderBig
     clip: {fileID: 8300000, guid: ee5022e77b3b20d49a807f1ba56ef881, type: 3}

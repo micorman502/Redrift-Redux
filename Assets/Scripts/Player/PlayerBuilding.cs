@@ -63,7 +63,7 @@ public class PlayerBuilding : MonoBehaviour
 
         previewObject.transform.up = normal;
 
-        previewObject.transform.rotation *= Quaternion.Euler(currentBuilding.possibleRotations[currentRotation]);
+        previewObject.transform.rotation *= Quaternion.Euler(GetCurrentRotation());
 
         //previewObject.transform.eulerAngles = currentBuilding.possibleRotations[currentRotation];
     }
@@ -102,6 +102,8 @@ public class PlayerBuilding : MonoBehaviour
 
             Instantiate(currentBuilding.placedObject, previewObject.transform.position, previewObject.transform.rotation);
             inventory.inventory.RemoveItem(new WorldItem(currentBuilding, 1));
+
+            AudioManager.Instance.Play("Build");
         }
     }
 
@@ -127,5 +129,10 @@ public class PlayerBuilding : MonoBehaviour
         {
             return false;
         }
+    }
+
+    Vector3 GetCurrentRotation ()
+    {
+        return currentBuilding.possibleRotations[Mathf.Clamp(currentRotation, 0, currentBuilding.possibleRotations.Length - 1)];
     }
 }

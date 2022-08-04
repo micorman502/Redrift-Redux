@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 114936360078197654}
   - component: {fileID: 54344118679507228}
   - component: {fileID: 114711722454453078}
-  - component: {fileID: -696279161130812319}
   m_Layer: 6
   m_Name: Crate
   m_TagString: Item
@@ -50,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handler: {fileID: -696279161130812319}
+  handler: {fileID: 0}
   item: {fileID: 11400000, guid: 02a4627bd0006d54bace935afcf26aa5, type: 2}
   saveID: worldItemCrate
   dontSave: 0
@@ -179,17 +178,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2e72a90bed473448ac52159a6a83f59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &-696279161130812319
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1365681976019388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c4a01748dd43fc45a34ec9689c324a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
