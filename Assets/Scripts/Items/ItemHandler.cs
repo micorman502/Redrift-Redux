@@ -52,4 +52,9 @@ public class ItemHandler : MonoBehaviour, IItemSaveable, IItemPickup, IHotText {
     {
 		HotTextManager.Instance.ReplaceHotText(new HotTextInfo("to pickup <" + item.itemName + ">", KeyCode.E, 10, "itemHandler"));
 	}
+
+	void IHotText.UpdateHotText()
+    {
+		HotTextManager.Instance.UpdateHotText(new HotTextInfo("to pickup <" + item.itemName + ">", KeyCode.E, 10, "itemHandler"));
+	}
 }

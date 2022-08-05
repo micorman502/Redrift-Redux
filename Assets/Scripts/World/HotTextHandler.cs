@@ -43,6 +43,16 @@ public class HotTextHandler : MonoBehaviour, IHotText
         }
     }
 
+    public void UpdateHotText ()
+    {
+        shown = true;
+
+        for (int i = 0; i < hotTexts.Count; i++)
+        {
+            HotTextManager.Instance.UpdateHotText(hotTexts[i]);
+        }
+    }
+
     void OnDestroy ()
     {
         HideHotText();

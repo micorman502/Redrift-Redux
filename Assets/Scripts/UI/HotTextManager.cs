@@ -20,6 +20,23 @@ public class HotTextManager : MonoBehaviour
         Instance = this;
     }
 
+    public void UpdateHotText (HotTextInfo info)
+    {
+        if (hotTexts.ContainsKey(info.id))
+        {
+            if (hotTexts[info.id].text != info.text)
+            {
+                hotTexts[info.id].text = info.text;
+                hotTexts[info.id].priority = info.priority;
+
+                ReloadUI();
+            }
+        } else
+        {
+            Debug.LogWarning("Cannot UpdateHotText, as there is no Hot Text with Id: " + info.id);
+        }
+    }
+
     public void AddHotText (HotTextInfo info)
     {
         if (!hotTexts.ContainsKey(info.id))
@@ -28,7 +45,7 @@ public class HotTextManager : MonoBehaviour
             ReloadUI();
         } else
         {
-            Debug.LogWarning("Cannot AddHotText, as there is already a Hot Text with ID: " + info.id + ". Should ReplaceHotText be used instead?");
+            Debug.LogWarning("Cannot AddHotText, as there is already a Hot Text with Id: " + info.id + ". Should ReplaceHotText be used instead?");
         }
     }
 
@@ -46,7 +63,7 @@ public class HotTextManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Cannot RemoveHotText, as there is no Hot Text with ID: " + id);
+            Debug.LogWarning("Cannot RemoveHotText, as there is no Hot Text with Id: " + id);
         }
     }
 

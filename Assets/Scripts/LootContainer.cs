@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LootContainer : MonoBehaviour, IInteractable {
+public class LootContainer : MonoBehaviour, IInteractable, IHotText {
 
 	public LootItem[] loot;
 
@@ -31,6 +31,21 @@ public class LootContainer : MonoBehaviour, IInteractable {
 		GameObject obj = Instantiate(lootParticles, transform.position, Quaternion.identity);
 		Destroy(obj, 10f);
 		Destroy(gameObject);
+	}
+
+	void IHotText.HideHotText ()
+	{
+		HotTextManager.Instance.RemoveHotText(new HotTextInfo("", KeyCode.F, 12, "openCrate"));
+	}
+
+	void IHotText.ShowHotText ()
+	{
+		HotTextManager.Instance.ReplaceHotText(new HotTextInfo("To open crate", KeyCode.F, 12, "openCrate"));
+	}
+
+	void IHotText.UpdateHotText ()
+	{
+		HotTextManager.Instance.UpdateHotText(new HotTextInfo("To open crate", KeyCode.F, 12, "openCrate"));
 	}
 }
 

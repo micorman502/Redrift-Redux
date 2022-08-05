@@ -5,5 +5,6 @@ using UnityEngine;
 public interface IHotText
 {
     void ShowHotText ();
+    void UpdateHotText ();
     void HideHotText ();
 }

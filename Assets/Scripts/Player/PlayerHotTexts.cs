@@ -17,8 +17,8 @@ public class PlayerHotTexts : MonoBehaviour
     {
         IHotText[] newHotTexts = GetHotTexts(controller.GetTarget());
 
-        TryAddHotTexts(newHotTexts);
         TryRemoveHotTexts(newHotTexts);
+        TryAddHotTexts(newHotTexts);
 
         UpdateHotTexts();
     }
@@ -27,19 +27,18 @@ public class PlayerHotTexts : MonoBehaviour
     {
         for (int i = currentHotTexts.Count - 1; i >= 0; i--)
         {
-            bool currentHotTextFound = false;
+            bool removingHotTextFound = false; //if the hot text we are trying to remove has been found in newHotTexts
             for (int j = 0; j < newHotTexts.Length; j++)
             {
                 if (newHotTexts[j] == currentHotTexts[i])
                 {
-                    currentHotTextFound = true;
+                    removingHotTextFound = true;
                     break;
                 }
             }
-            if (!currentHotTextFound)
+            if (!removingHotTextFound) //don't remove the hottext if it exists in currentHotTexts and newHotTexts.
             {
-                currentHotTexts[i].HideHotText();
-                currentHotTexts.RemoveAt(i);
+                RemoveHotText(i);
             }
         }
     }
@@ -48,28 +47,40 @@ public class PlayerHotTexts : MonoBehaviour
     {
         for (int i = 0; i < newHotTexts.Length; i++)
         {
-            int newHotTextIndex = i;
+            bool addingHotTextExists = false; //if the hot text we are trying to add exists in currentHotTexts
             for (int j = 0; j < currentHotTexts.Count; j++)
             {
                 if (newHotTexts[i] == currentHotTexts[j])
                 {
-                    newHotTextIndex = -1;
+                    addingHotTextExists = true;
                     break;
                 }
             }
 
-            if (newHotTextIndex != -1)
+            if (!addingHotTextExists) //don't add the hottext if it already exists in currentHotTexts and newHotTexts.
             {
-                currentHotTexts.Add(newHotTexts[newHotTextIndex]);
+                AddHotText(newHotTexts[i]);
             }
         }
+    }
+
+    void RemoveHotText (int index)
+    {
+        currentHotTexts[index].HideHotText();
+        currentHotTexts.RemoveAt(index);
+    }
+
+    void AddHotText (IHotText hotText)
+    {
+        currentHotTexts.Add(hotText);
+        hotText.ShowHotText();
     }
 
     void UpdateHotTexts ()
     {
         for (int i = 0; i < currentHotTexts.Count; i++)
         {
-            currentHotTexts[i].ShowHotText();
+            currentHotTexts[i].UpdateHotText();
         }
     }
 
@@ -82,6 +93,7 @@ public class PlayerHotTexts : MonoBehaviour
         {
             hotTexts = target.GetComponentsInParent<IHotText>();
         }
+
         return hotTexts;
     }
 }
