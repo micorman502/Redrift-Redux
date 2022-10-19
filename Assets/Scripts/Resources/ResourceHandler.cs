@@ -6,6 +6,7 @@ public class ResourceHandler : MonoBehaviour, IItemSaveable, IResource {
 	[SerializeField] bool dontSave;
 	[SerializeField] string saveID;
 	[SerializeField] bool dontRegisterToHivemind;
+	[SerializeField] GameObject deathObject;
 	public Resource resource;
 
 	public int health;
@@ -73,7 +74,7 @@ public class ResourceHandler : MonoBehaviour, IItemSaveable, IResource {
 		if (health <= 0 && !resource.infiniteGathers)
 		{
 			if (resource.resourceName == "Tree")
-			{ // This resource is a tree
+			{ // This resource is a tree //dumbest comment in existence
 				GetComponent<TreeResource>().DropFruits();
 			}
 			DestroyResource();
@@ -87,6 +88,10 @@ public class ResourceHandler : MonoBehaviour, IItemSaveable, IResource {
 		if (!dontRegisterToHivemind)
 		{
 			HiveMind.Instance.RemoveResource(this);
+		}
+		if (deathObject)
+		{
+			Destroy(Instantiate(deathObject, transform.position, transform.rotation), 10);
 		}
 		Destroy(gameObject);
 	}

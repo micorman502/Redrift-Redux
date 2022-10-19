@@ -45,7 +45,7 @@ public class AutoMiner : MonoBehaviour, IItemSaveable, IInteractable, IItemPicku
 
 	public void Pickup ()
     {
-		//dummy
+		items.Clear(); //kinda useless but here, idk... just in case?
     }
 
 	void FixedUpdate ()

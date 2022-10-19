@@ -21,7 +21,7 @@ public class HeldDeployableItem : HeldItem
         if (amtTaken >= 1)
         {
             DeployableInfo deployable = (DeployableInfo)item;
-            Vector3 spawnPos = transform.position;
+            Vector3 spawnPos = camPoint.position + camPoint.forward * 2.5f;
             if (Physics.Raycast(camPoint.position, camPoint.forward, out RaycastHit hit, PlayerController.interactRange))
             {
                 spawnPos = hit.point + hit.normal * 0.6f;

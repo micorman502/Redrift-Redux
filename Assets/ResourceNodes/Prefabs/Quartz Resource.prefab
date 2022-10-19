@@ -124,6 +124,8 @@ MonoBehaviour:
   dontSave: 0
   saveID: resourceQuartz
   dontRegisterToHivemind: 0
+  deathObject: {fileID: 670752909559086452, guid: 97fa68b80b300a14ab9e6c6318464da3,
+    type: 3}
   resource: {fileID: 11400000, guid: e7d12b2a9c2e8d842834b6882e335e1d, type: 2}
   health: 0
 --- !u!33 &5956834060613736754

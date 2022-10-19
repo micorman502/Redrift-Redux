@@ -118,6 +118,8 @@ MonoBehaviour:
   dontSave: 1
   saveID: resourceTree
   dontRegisterToHivemind: 0
+  deathObject: {fileID: 6796773874796555553, guid: 456a8ceba34802b4e95868665862112a,
+    type: 3}
   resource: {fileID: 11400000, guid: 704d728cff76bff459184853ac5af545, type: 2}
   health: 0
 --- !u!33 &33497336482235432
