@@ -226,9 +226,9 @@ public class SaveManager : MonoBehaviour {
 
 		//inventory.DefaultSetup();
 
-		foreach(InventorySlot item in inventory.inventory.Slots) {
-			if(item.Item) {
-				save.inventoryItems.Add(new WorldItem(item.Item, item.Count));
+		foreach(InventorySlot slot in inventory.inventory.Slots) {
+			if(slot.Item) {
+				save.inventoryItems.Add(new WorldItem(slot.Item, slot.Count));
 			} else {
 				save.inventoryItems.Add(new SerializedWorldItem(-1, -1));
 			}
