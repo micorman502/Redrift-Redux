@@ -19,7 +19,6 @@ public class ConveyorBelt : MonoBehaviour, IItemSaveable, IGetTriggerInfo, IInte
 	void Awake() {
 		anim = GetComponent<Animator>();
 		audioSource = GetComponent<AudioSource>();
-		audioSource.outputAudioMixerGroup = FindObjectOfType<SettingsManager>().audioMixer.FindMatchingGroups("Master")[0];
 	}
 
 	void Start() {
@@ -38,7 +37,7 @@ public class ConveyorBelt : MonoBehaviour, IItemSaveable, IGetTriggerInfo, IInte
 		{
 			itemRB.velocity = (itemRB.velocity + transform.forward).normalized * speeds[speedNum];
 			//itemRB.AddForce((transform.forward * speeds[speedNum]) - Vector3.Project(itemRB.velocity - Vector3.one, transform.forward.normalized));
-			//itemRB.AddRelativeForce(transform.forward * speeds[speedNum] - itemRB.velocity); // TODO: PUT IN FIXEDUPDATE!!!
+			//itemRB.AddRelativeForce(transform.forward * speeds[speedNum] - itemRB.velocity); // TODO: PUT IN FIXEDUPDATE!!! //Waltuh
 		}
 	}
 

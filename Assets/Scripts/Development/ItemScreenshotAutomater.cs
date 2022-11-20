@@ -29,6 +29,6 @@ public class ItemScreenshotAutomater : MonoBehaviour
 
     string GetPath ()
     {
-        return Application.dataPath + defaultPath + (useTargetItemName ? targetItem.itemName : overrideItemName) + ".png";
+        return Application.dataPath + defaultPath + (useTargetItemName ? targetItem.name : overrideItemName) + ".png";
     }
 }

@@ -33,7 +33,6 @@ public class AutoMiner : MonoBehaviour, IItemSaveable, IInteractable, IItemPicku
 		hive = GameObject.FindGameObjectWithTag("ScriptHolder").GetComponent<HiveMind>();
 		animator = GetComponent<Animator>();
 		agent = GetComponent<NavMeshAgent>();
-		GetComponent<AudioSource>().outputAudioMixerGroup = FindObjectOfType<SettingsManager>().audioMixer.FindMatchingGroups("Master")[0];
 	}
 
 	public WorldItem[] GetItems ()

@@ -25,9 +25,7 @@ public class AudioManager : MonoBehaviour {
 			s.source = gameObject.AddComponent<AudioSource>();
 			s.source.clip = s.clip;
 
-			if(settingsManager) {
-				s.source.outputAudioMixerGroup = settingsManager.audioMixer.FindMatchingGroups("Master")[0];
-			}
+			UpdateVolume(CurrentSettings.CurrentSettingsData.volume);
 
 			s.source.volume = s.volume;
 		}
@@ -43,6 +41,11 @@ public class AudioManager : MonoBehaviour {
 		s.source.clip = s.clip;
 		s.source.Play();
 	}
+
+	public void UpdateVolume (float value)
+    {
+		AudioListener.volume = Mathf.Clamp01(value);
+    }
 }
 
 [System.Serializable]
