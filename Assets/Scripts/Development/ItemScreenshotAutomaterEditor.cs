@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(ItemScreenshotAutomator))]
-public class ItemScreenshotAutomatorEditor : Editor
+[CustomEditor(typeof(ItemScreenshotAutomater))]
+public class ItemScreenshotAutomaterEditor : Editor
 {
 
     public override void OnInspectorGUI ()
@@ -13,7 +13,7 @@ public class ItemScreenshotAutomatorEditor : Editor
         DrawDefaultInspector();
         if (GUILayout.Button("Take Screenshot"))
         {
-            ((ItemScreenshotAutomator)target).CaptureImage();
+            ((ItemScreenshotAutomater)target).CaptureImage();
         }
     }
 }

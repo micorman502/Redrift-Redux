@@ -1,11 +1,12 @@
 using System.IO;
 using UnityEngine;
 
-public class ItemScreenshotAutomator : MonoBehaviour
+public class ItemScreenshotAutomater : MonoBehaviour
 {
     const string defaultPath = "/_Items/Icons/";
-    [SerializeField] ItemScreenshotData data;
+    [SerializeField] bool useTargetItemName;
     [SerializeField] ItemInfo targetItem;
+    [SerializeField] string overrideItemName;
     [SerializeField] Camera targetCamera;
 
     public void CaptureImage ()
@@ -21,13 +22,13 @@ public class ItemScreenshotAutomator : MonoBehaviour
         RenderTexture.active = currentRT;
 
         byte[] bytes = image.EncodeToPNG();
-        Destroy(image);
+        DestroyImmediate(image);
 
         File.WriteAllBytes(GetPath(), bytes);
     }
 
     string GetPath ()
     {
-        return Application.dataPath + (data.useDefaultPath ? defaultPath : data.customPath) + targetItem.itemName + ".png";
+        return Application.dataPath + defaultPath + (useTargetItemName ? targetItem.itemName : overrideItemName) + ".png";
     }
 }
