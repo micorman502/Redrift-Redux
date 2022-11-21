@@ -158,7 +158,7 @@ public class HeldToolItem : HeldItem
     {
         if (resource.GetResource() == lastHotTextResource)
             return;
-        HotTextManager.Instance.ReplaceHotText(new HotTextInfo("to gather <" + resource.GetResource().resourceName + ">", KeyCode.Mouse0, 6, "resource"));
+        HotTextManager.Instance.ReplaceHotText(new HotTextInfo("Gather", KeyCode.Mouse0, 6, "resource"));
         showingHotText = true;
         lastHotTextResource = resource.GetResource();
     }

@@ -45,16 +45,16 @@ public class ItemHandler : MonoBehaviour, IItemSaveable, IItemPickup, IHotText {
 
 	void IHotText.HideHotText()
     {
-		HotTextManager.Instance.RemoveHotText(new HotTextInfo("to pickup <" + item.itemName + ">", KeyCode.E, 10, "itemHandler"));
+		HotTextManager.Instance.RemoveHotText(new HotTextInfo("Pickup", KeyCode.E, 10, "itemHandler"));
     }
 
 	void IHotText.ShowHotText()
     {
-		HotTextManager.Instance.ReplaceHotText(new HotTextInfo("to pickup <" + item.itemName + ">", KeyCode.E, 10, "itemHandler"));
+		HotTextManager.Instance.ReplaceHotText(new HotTextInfo("Pickup", KeyCode.E, 10, "itemHandler"));
 	}
 
 	void IHotText.UpdateHotText()
     {
-		HotTextManager.Instance.UpdateHotText(new HotTextInfo("to pickup <" + item.itemName + ">", KeyCode.E, 10, "itemHandler"));
+		HotTextManager.Instance.UpdateHotText(new HotTextInfo("Pickup", KeyCode.E, 10, "itemHandler"));
 	}
 }

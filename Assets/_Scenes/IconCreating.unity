@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useTargetItemName: 1
-  targetItem: {fileID: 11400000, guid: a82041a624ea06740b506ed16cbc66f3, type: 2}
+  targetItem: {fileID: 11400000, guid: 01a3733e20ab96f40b6fbf5a02089e44, type: 2}
   overrideItemName: 
   targetCamera: {fileID: 129524832}
 --- !u!124 &129524831

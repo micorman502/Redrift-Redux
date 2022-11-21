@@ -173,23 +173,19 @@ public class SaveManager : MonoBehaviour {
 
 			inventory.InventoryUpdate();
 
-			try
+			for (int i = 0; i < save.savedObjects.Count; i++) //load up items and such last, to prevent a single error from breaking the loading loop 
 			{
-				for (int i = 0; i < save.savedObjects.Count; i++) //load up items and such last, to prevent a single error from breaking the loading loop 
+				ObjectSaveData newObjData = save.savedObjects[i];
+				ItemSaveData newData = save.savedObjectsInfo[i];
+				GameObject newObj = Instantiate(ObjectDatabase.Instance.GetObject(newObjData.objectID), newObjData.position, newObjData.rotation);
+				IItemSaveable[] saveables = newObj.GetComponents<IItemSaveable>();
+				Debug.Log("saveable length: " + saveables.Length);
+				for (int s = 0; s < saveables.Length; s++)
 				{
-					ObjectSaveData newObjData = save.savedObjects[i];
-					ItemSaveData newData = save.savedObjectsInfo[i];
-					GameObject newObj = Instantiate(ObjectDatabase.Instance.GetObject(newObjData.objectID), newObjData.position, newObjData.rotation);
-					IItemSaveable[] saveables = newObj.GetComponents<IItemSaveable>();
-					for (int s = 0; s < saveables.Length; s++)
-					{
-						saveables[s].SetData(newData, newObjData);
-					}
+					Debug.Log(s);
+					saveables[s].SetData(newData, newObjData);
 				}
-			} catch (Exception e)
-            {
-				Debug.Log("Error while loading savedObjects in SaveManager.LoadGame, Caught exception " + e.Message);
-            }
+			}
 
 			saveText.text = "Game loaded from " + save.saveTime.ToString("HH:mm MMMM dd, yyyy");
 		} else {

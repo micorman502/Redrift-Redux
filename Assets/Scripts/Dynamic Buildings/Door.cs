@@ -56,11 +56,11 @@ public class Door : MonoBehaviour, IInteractable, IItemSaveable, IHotText {
 
 	void IHotText.ShowHotText ()
 	{
-		HotTextManager.Instance.ReplaceHotText(new HotTextInfo(open ? "to close door" : "to open door", KeyCode.F, 11, "toggleDoor"));
+		HotTextManager.Instance.ReplaceHotText(new HotTextInfo(open ? "Close" : "Open", KeyCode.F, 11, "toggleDoor"));
 	}
 
 	void IHotText.UpdateHotText ()
 	{
-		HotTextManager.Instance.UpdateHotText(new HotTextInfo(open ? "to close door" : "to open door", KeyCode.F, 11, "toggleDoor"));
+		HotTextManager.Instance.UpdateHotText(new HotTextInfo(open ? "Close" : "Open", KeyCode.F, 11, "toggleDoor"));
 	}
 }

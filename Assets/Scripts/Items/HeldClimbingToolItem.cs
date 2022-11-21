@@ -49,7 +49,7 @@ public class HeldClimbingToolItem : HeldItem
 
         if (state)
         {
-            HotTextManager.Instance.ReplaceHotText(new HotTextInfo("to hook", KeyCode.Mouse0, 0, "climbingTool"));
+            HotTextManager.Instance.ReplaceHotText(new HotTextInfo("Hook", KeyCode.Mouse0, 0, "climbingTool"));
         } else
         {
             HotTextManager.Instance.RemoveHotText("climbingTool");

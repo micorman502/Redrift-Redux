@@ -75,6 +75,8 @@ public class PlayerBuilding : MonoBehaviour
             StopBuilding();
         }
 
+        HotTextManager.Instance.ReplaceHotText(new HotTextInfo("Rotate", KeyCode.R, 1, "buildingRotate"));
+
         currentBuilding = building;
         previewObject = Instantiate(building.previewPrefab, buildingPlacementPoint.position, Quaternion.identity);
 
@@ -88,6 +90,7 @@ public class PlayerBuilding : MonoBehaviour
         {
             currentBuilding = null;
             Destroy(previewObject);
+            HotTextManager.Instance.RemoveHotText("buildingRotate");
         }
     }
 
@@ -109,6 +112,9 @@ public class PlayerBuilding : MonoBehaviour
 
     public void SetBuildingRotation (int rotationChange)
     {
+        if (!currentBuilding)
+            return;
+
         currentRotation += rotationChange;
         if (currentRotation < 0)
         {

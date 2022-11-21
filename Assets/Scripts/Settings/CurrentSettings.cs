@@ -18,7 +18,6 @@ public static class CurrentSettings
         if (initialised)
             return;
 
-        Debug.Log("Current Settings Initialised.");
         resolutions = Screen.resolutions;
 
         LoadSaveString(saveString);
@@ -36,8 +35,6 @@ public static class CurrentSettings
     public static void ApplySettingsData ()
     {
         CurrentSettingsData = new SettingsData(ModifiableSettingsData);
-
-        Debug.Log("Settings Data applied.");
 
         OnCurrentSettingsDataUpdate?.Invoke();
     }

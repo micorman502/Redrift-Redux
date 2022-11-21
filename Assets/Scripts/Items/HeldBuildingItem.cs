@@ -32,13 +32,11 @@ public class HeldBuildingItem : HeldItem
     {
         if (state)
         {
-            HotTextManager.Instance.ReplaceHotText(new HotTextInfo("to build", KeyCode.Mouse0, 0, "buildingBuild"));
-            HotTextManager.Instance.ReplaceHotText(new HotTextInfo("to rotate", KeyCode.R, 1, "buildingRotate"));
+            HotTextManager.Instance.ReplaceHotText(new HotTextInfo("Build", KeyCode.Mouse0, 0, "buildingBuild"));
         }
         else
         {
             HotTextManager.Instance.RemoveHotText("buildingBuild");
-            HotTextManager.Instance.RemoveHotText("buildingRotate");
 
             playerBuilding.StopBuilding();
         }

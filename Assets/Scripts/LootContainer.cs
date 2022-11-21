@@ -40,12 +40,12 @@ public class LootContainer : MonoBehaviour, IInteractable, IHotText {
 
 	void IHotText.ShowHotText ()
 	{
-		HotTextManager.Instance.ReplaceHotText(new HotTextInfo("To open crate", KeyCode.F, 12, "openCrate"));
+		HotTextManager.Instance.ReplaceHotText(new HotTextInfo("Open", KeyCode.F, 12, "openCrate"));
 	}
 
 	void IHotText.UpdateHotText ()
 	{
-		HotTextManager.Instance.UpdateHotText(new HotTextInfo("To open crate", KeyCode.F, 12, "openCrate"));
+		HotTextManager.Instance.UpdateHotText(new HotTextInfo("Open", KeyCode.F, 12, "openCrate"));
 	}
 }
 

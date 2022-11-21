@@ -36,7 +36,7 @@ public class HeldDeployableItem : HeldItem
     {
         if (state)
         {
-            HotTextManager.Instance.ReplaceHotText(new HotTextInfo("to deploy", KeyCode.Mouse0, 0, "deployable"));
+            HotTextManager.Instance.ReplaceHotText(new HotTextInfo("Deploy", KeyCode.Mouse0, 0, "deployable"));
         }
         else
         {

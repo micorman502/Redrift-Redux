@@ -301,7 +301,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handler: {fileID: -6849379725450154469}
   item: {fileID: 11400000, guid: 7e893ac772f0390488171e9fe11f1a08, type: 2}
   saveID: worldItemRadio
   dontSave: 1
@@ -419,7 +418,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

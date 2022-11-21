@@ -25,7 +25,7 @@ public class HeldFoodItem : HeldItem
     {
         if (state)
         {
-            HotTextManager.Instance.ReplaceHotText(new HotTextInfo("to eat", KeyCode.Mouse0, 0, "food"));
+            HotTextManager.Instance.ReplaceHotText(new HotTextInfo("Eat", KeyCode.Mouse0, 0, "food"));
         }
         else
         {

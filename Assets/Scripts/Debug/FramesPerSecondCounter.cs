@@ -20,12 +20,17 @@ public class FramesPerSecondCounter : MonoBehaviour
         if (!counterEnabled)
             return;
 
-        rawFpsText.text = "FPS (Raw): " + GetFPS();
+        rawFpsText.text = "FPS (Raw): " + Mathf.Round(GetFPS() * 20) / 20;
 
+        ManageFPSAverage();
+    }
+
+    void ManageFPSAverage ()
+    {
         fpsList.Add(GetFPS());
         if (fpsList.Count > fpsAveraging)
         {
-            fpsList.RemoveAt(fpsList.Count - 1);
+            fpsList.RemoveAt(0);
         }
 
         float average = 0;
@@ -35,7 +40,7 @@ public class FramesPerSecondCounter : MonoBehaviour
         }
         average /= fpsList.Count;
 
-        averagedFpsText.text = "FPS (Average): " + average.ToString();
+        averagedFpsText.text = "FPS (Average): " + (Mathf.Round(average * 20) / 20).ToString();
     }
 
     void SetState (bool enabled)

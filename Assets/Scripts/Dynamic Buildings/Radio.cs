@@ -64,7 +64,7 @@ public class Radio : MonoBehaviour, IItemSaveable, IInteractable {
 			anim.SetBool("playing", false);
 		} else {
 			anim.SetBool("playing", true);
-			anim.playbackTime = 0;
+			//anim.playbackTime = 0;
 			anim.SetFloat("bpm", availiableSongs[currentSong].bpm);
 		}
 	}
