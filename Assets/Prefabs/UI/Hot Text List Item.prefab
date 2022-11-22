@@ -86,6 +86,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1786688895778605885}
   - component: {fileID: 2126267534491500244}
+  - component: {fileID: 2929362157487055605}
   m_Layer: 5
   m_Name: Hot Text List Item
   m_TagString: Untagged
@@ -136,6 +137,22 @@ MonoBehaviour:
     type: 3}
   mouseButtonRightImage: {fileID: 21300000, guid: 8359438ea62417748a2e1fbbf072734e,
     type: 3}
+--- !u!111 &2929362157487055605
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810859774963696790}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 21088c735548d6a47a448a7f049d7922, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 21088c735548d6a47a448a7f049d7922, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &4582486283700720945
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,11 +245,11 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 15
+  m_fontSize: 10.45
   m_fontSizeBase: 15
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 0
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1

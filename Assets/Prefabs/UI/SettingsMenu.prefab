@@ -2551,11 +2551,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 43978457945fc3546920ac31277504c2, type: 3}
-    m_FontSize: 14
+    m_FontSize: 22
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 10
-    m_MaxSize: 40
+    m_MinSize: 20
+    m_MaxSize: 22
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -5757,6 +5757,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   postProcessingToggle: {fileID: 114103078706968830}
+  postProcessingText: {fileID: 114061714702362780}
   fieldOfViewSlider: {fileID: 114545718506451592}
   fieldOfViewText: {fileID: 114111819032731612}
   volumeSlider: {fileID: 114641244770845988}
@@ -5764,8 +5765,11 @@ MonoBehaviour:
   mouseSensitivitySlider: {fileID: 114475085756697818}
   mouseSensitivityText: {fileID: 114935564451433006}
   resolutionDropdown: {fileID: 114702314992312656}
+  resolutionText: {fileID: 114190060179764986}
   graphicsDropdown: {fileID: 114889920742437016}
+  graphicsText: {fileID: 114830292880345918}
   fullscreenDropdown: {fileID: 114781363808063678}
+  fullscreenText: {fileID: 114417935026590946}
 --- !u!1 &1860200717234222
 GameObject:
   m_ObjectHideFlags: 0

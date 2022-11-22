@@ -179,10 +179,8 @@ public class SaveManager : MonoBehaviour {
 				ItemSaveData newData = save.savedObjectsInfo[i];
 				GameObject newObj = Instantiate(ObjectDatabase.Instance.GetObject(newObjData.objectID), newObjData.position, newObjData.rotation);
 				IItemSaveable[] saveables = newObj.GetComponents<IItemSaveable>();
-				Debug.Log("saveable length: " + saveables.Length);
 				for (int s = 0; s < saveables.Length; s++)
 				{
-					Debug.Log(s);
 					saveables[s].SetData(newData, newObjData);
 				}
 			}

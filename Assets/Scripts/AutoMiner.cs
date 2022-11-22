@@ -218,8 +218,7 @@ public class AutoMiner : MonoBehaviour, IItemSaveable, IInteractable, IItemPicku
 		List<ItemInfo> newItems = SaveManager.Instance.IDsToItems(data.itemIDs);
 		for (int i = 0; i < newItems.Count; i++)
         {
-			items[i].item = newItems[i];
-			items[i].amount = data.itemAmounts[i];
+			items.Add(new WorldItem(newItems[i], data.itemAmounts[i]));
         }
 	}
 }

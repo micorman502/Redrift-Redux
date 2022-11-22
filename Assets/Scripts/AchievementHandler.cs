@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class AchievementHandler : MonoBehaviour {
 
 	public Achievement achievement;
 
 	public Image backgroundImage;
-	public Text achievementNameText;
-	public Text achievementDescText;
+	public TMP_Text achievementNameText;
+	public TMP_Text achievementDescText;
 	public Image achievementIconImage;
 }

@@ -15,4 +15,4 @@ MonoBehaviour:
   achievementID: 8
   achievementName: Superpower
   achievementDesc: Obtain a lightning pickaxe
-  achievementIcon: {fileID: 21300000, guid: 65c36766c94776d4bb5269114c47b3ca, type: 3}
+  achievementIcon: {fileID: 21300000, guid: 6a744dcf1f9eb7249bccd06e4ead8c0c, type: 3}

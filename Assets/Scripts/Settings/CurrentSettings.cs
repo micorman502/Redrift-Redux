@@ -5,6 +5,7 @@ using System;
 
 public static class CurrentSettings
 {
+    public readonly static string[] fullscreenModes = new string[4]{ "Exclusive Full Screen", "Fullscreen Window", "Maximised Window", "Windowed"};
     public static event Action OnCurrentSettingsDataUpdate;
     public static SettingsData CurrentSettingsData { get; private set; }
     public static SettingsData ModifiableSettingsData;
@@ -34,6 +35,9 @@ public static class CurrentSettings
 
     public static void ApplySettingsData ()
     {
+        if (SettingsData.IdenticalSettings(CurrentSettingsData, ModifiableSettingsData))
+            return;
+
         CurrentSettingsData = new SettingsData(ModifiableSettingsData);
 
         OnCurrentSettingsDataUpdate?.Invoke();
@@ -80,6 +84,25 @@ public class SettingsData {
         this.resolutionIndex = 0;
         this.graphicsIndex = 0;
         this.fullscreenIndex = 0;
+    }
+
+    public static bool IdenticalSettings (SettingsData a, SettingsData b) //probably a better way to do this, please update this in future if there is
+    {
+        if (a.postProcessing != b.postProcessing)
+            return false;
+        if (a.fieldOfView != b.fieldOfView)
+            return false;
+        if (a.volume != b.volume)
+            return false;
+        if (a.mouseSensitivity != b.mouseSensitivity)
+            return false;
+        if (a.resolutionIndex != b.resolutionIndex)
+            return false;
+        if (a.graphicsIndex != b.graphicsIndex)
+            return false;
+        if (a.fullscreenIndex != b.fullscreenIndex)
+            return false;
+        return true;
     }
 
     public bool postProcessing;

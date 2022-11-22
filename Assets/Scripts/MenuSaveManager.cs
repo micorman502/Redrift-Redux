@@ -9,7 +9,7 @@ using System;
 
 public class MenuSaveManager : MonoBehaviour {
 
-
+	public static MenuSaveManager Instance;
 	[SerializeField] GameObject saveListItem;
 	[SerializeField] GameObject saveList;
 
@@ -38,6 +38,14 @@ public class MenuSaveManager : MonoBehaviour {
 		"Creative: Health and hunger disabled, with an infinite supply of all items and the ability to fly."};
 
 	void Awake() {
+		if (Instance)
+		{
+			Debug.Log($"Duplicate Instance of '{this.GetType().Name}' exists on object '{gameObject.name}'. Destroying '{this.GetType().Name}'");
+			Destroy(this);
+			return;
+		}
+		Instance = this;
+
 		menuManager = FindObjectOfType<MenuManager>();
 	}
 
@@ -60,9 +68,9 @@ public class MenuSaveManager : MonoBehaviour {
 			saveListItems.Add(go);
 			SaveListItem item = go.GetComponent<SaveListItem>();
 			string[] infoSplit = info[saveNum].Name.Split('.');
-			item.Setup(infoSplit[infoSplit.Length - 2]);
+			item.Setup(infoSplit[infoSplit.Length - 2], saveNum);
 			item.GetLoadSaveButton().onClick.AddListener(delegate { LoadSave(saveNum); });
-			item.GetConfirmDeleteButton().onClick.AddListener(delegate { DeleteSave(saveNum); });
+			//item.GetConfirmDeleteButton().onClick.AddListener(delegate { DeleteSave(saveNum); });
 		}
 	}
 
