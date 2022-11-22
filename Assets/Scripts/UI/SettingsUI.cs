@@ -23,13 +23,12 @@ public class SettingsUI : MonoBehaviour
     [SerializeField] Text graphicsText;
     [SerializeField] Dropdown fullscreenDropdown;
     [SerializeField] Text fullscreenText;
-    bool initialised;
+    static bool initialised;
     bool awaitingSettingsApply;
 
     void OnEnable ()
     {
         CurrentSettings.OnCurrentSettingsDataUpdate += OnCurrentSettingsDataUpdate;
-        OnCurrentSettingsDataUpdate();
     }
 
     void OnDisable ()
@@ -42,18 +41,18 @@ public class SettingsUI : MonoBehaviour
         InitialiseUI();
     }
 
-    void InitialiseUI ()
+    void InitialiseUI () //note how ModifiableSettingsData is used; this is in order to allow changes (e.g. 14% volume to 33% volume) to be visually persistent between scenes, so players won't accidentally apply settings that they set previously.
     {
-        postProcessingToggle.isOn = CurrentSettings.CurrentSettingsData.postProcessing;
-        fieldOfViewSlider.value = CurrentSettings.CurrentSettingsData.fieldOfView;
-        volumeSlider.value = CurrentSettings.CurrentSettingsData.volume;
-        mouseSensitivitySlider.value = CurrentSettings.CurrentSettingsData.mouseSensitivity;
+        postProcessingToggle.isOn = CurrentSettings.ModifiableSettingsData.postProcessing;
+        fieldOfViewSlider.value = CurrentSettings.ModifiableSettingsData.fieldOfView;
+        volumeSlider.value = CurrentSettings.ModifiableSettingsData.volume;
+        mouseSensitivitySlider.value = CurrentSettings.ModifiableSettingsData.mouseSensitivity;
 
         InitialiseDropdowns();
 
-        resolutionDropdown.value = CurrentSettings.CurrentSettingsData.resolutionIndex;
-        graphicsDropdown.value = CurrentSettings.CurrentSettingsData.graphicsIndex;
-        fullscreenDropdown.value = CurrentSettings.CurrentSettingsData.fullscreenIndex;
+        resolutionDropdown.value = CurrentSettings.ModifiableSettingsData.resolutionIndex;
+        graphicsDropdown.value = CurrentSettings.ModifiableSettingsData.graphicsIndex;
+        fullscreenDropdown.value = CurrentSettings.ModifiableSettingsData.fullscreenIndex;
 
         initialised = true;
     }
@@ -88,13 +87,13 @@ public class SettingsUI : MonoBehaviour
 
     void OnCurrentSettingsDataUpdate ()
     {
-        SetPostProcessing(CurrentSettings.CurrentSettingsData.postProcessing);
-        SetFieldOfView(CurrentSettings.CurrentSettingsData.fieldOfView);
-        SetVolume(CurrentSettings.CurrentSettingsData.volume);
-        SetMouseSensitivity(CurrentSettings.CurrentSettingsData.mouseSensitivity);
-        SetResolutionIndex(CurrentSettings.CurrentSettingsData.resolutionIndex);
-        SetGraphicsIndex(CurrentSettings.CurrentSettingsData.graphicsIndex);
-        SetFullscreenIndex(CurrentSettings.CurrentSettingsData.fullscreenIndex);
+        SetPostProcessing(CurrentSettings.ModifiableSettingsData.postProcessing);
+        SetFieldOfView(CurrentSettings.ModifiableSettingsData.fieldOfView);
+        SetVolume(CurrentSettings.ModifiableSettingsData.volume);
+        SetMouseSensitivity(CurrentSettings.ModifiableSettingsData.mouseSensitivity);
+        SetResolutionIndex(CurrentSettings.ModifiableSettingsData.resolutionIndex);
+        SetGraphicsIndex(CurrentSettings.ModifiableSettingsData.graphicsIndex);
+        SetFullscreenIndex(CurrentSettings.ModifiableSettingsData.fullscreenIndex);
     }
 
     public void SetPostProcessing (bool value)
@@ -125,7 +124,8 @@ public class SettingsUI : MonoBehaviour
 
     public void SetVolume (float value)
     {
-        volumeText.text = "Volume | " + (Mathf.Round(value * 100) / 100) * 100 + "%";
+        value = (Mathf.Round(value * 100) / 100);
+        volumeText.text = "Volume | " + value * 100 + "%";
         if (!initialised)
             return;
         CurrentSettings.ModifiableSettingsData.volume = value;
