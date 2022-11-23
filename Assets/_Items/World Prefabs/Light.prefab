@@ -48,7 +48,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handler: {fileID: -7867130091431583635}
   item: {fileID: 11400000, guid: 54aff0ee6bd8fa54ea6150a7e090eccd, type: 2}
   saveID: worldItemLight
   dontSave: 1
@@ -65,14 +64,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handler: {fileID: 1794554666995405539}
+  pointLight: {fileID: 2983287041281333117}
   saveID: worldItemLight
-  intensities:
-  - 0
-  - 0.25
-  - 0.5
-  - 1
-  intensityNum: 0
-  active: 0
+  intensity: 1.25
+  intensityVariation: 0.35
+  intensityVariationSpeed: 0.5
 --- !u!65 &2092277236284917176
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -141,7 +137,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.880899, g: 0.6933962, b: 1, a: 1}
-  m_Intensity: 0.5
+  m_Intensity: 2
   m_Range: 20
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208

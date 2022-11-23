@@ -354,9 +354,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '
-
-'
+  m_text: NA
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -383,7 +381,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 100
+  m_fontSize: 64.3
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -546,6 +544,7 @@ Animation:
   m_Animation: {fileID: 7400000, guid: 746ce6a9653107040827bcf4f418bb66, type: 2}
   m_Animations:
   - {fileID: 7400000, guid: 746ce6a9653107040827bcf4f418bb66, type: 2}
+  - {fileID: 7400000, guid: 9b9c822c6f7b5cc4c9acce3545ec53b8, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -562,6 +561,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e775ef92631f3d6418268a31231e4026, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  updateAnimation: {fileID: 111562763241186360}
   iconBackground: {fileID: 1306163732334951915}
   iconImage: {fileID: 114876956867526970}
   countText: {fileID: 6313536322987139562}

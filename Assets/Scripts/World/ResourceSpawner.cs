@@ -84,7 +84,7 @@ public class ResourceSpawner : MonoBehaviour
 			RaycastHit hit;
 			if (Physics.Raycast(checkPos, checkDir, out hit, 500f))
 			{
-				if (hit.transform.gameObject.layer == LayerMask.NameToLayer("World"))
+				if (hit.collider.gameObject.layer == LayerMask.NameToLayer("World"))
 				{
 					SpawnResource(spawn.spawnPrefab, hit.point, Quaternion.LookRotation(hit.normal));
 

@@ -8,7 +8,9 @@ public class Radio : MonoBehaviour, IItemSaveable, IInteractable {
 	[SerializeField] string saveID;
 	[SerializeField] GameObject slider;
 	[SerializeField] Vector2 sliderMinMax;
-	[SerializeField] AudioSource audioSource;
+	[SerializeField] AudioSource songAudio;
+	[SerializeField] AudioSource noiseAudio;
+	[SerializeField] AudioClip casetteSound;
 	[SerializeField] Song[] availiableSongs;
 	Animator anim;
 	int currentSong = -1;
@@ -40,20 +42,35 @@ public class Radio : MonoBehaviour, IItemSaveable, IInteractable {
 			currentSong = -1;
 		}
 
-		if (currentSong == -1) {
-			UpdateGraphics();
-		}
-
 		if (currentSong >= 0)
 		{
-			audioSource.clip = availiableSongs[song].clip;
-			audioSource.Play();
+			SongSwitched();
 		} else
         {
-			audioSource.Stop();
+			StopSong();
         }
 
 		UpdateGraphics();
+	}
+
+	void SongSwitched ()
+    {
+		songAudio.clip = casetteSound;
+		songAudio.Play();
+		Invoke("PlaySong", casetteSound.length);
+    }
+
+	void PlaySong ()
+    {
+		noiseAudio.Play();
+		songAudio.clip = CurrentSongClip();
+		songAudio.Play();
+    }
+
+	void StopSong ()
+    {
+		songAudio.Stop();
+		noiseAudio.Stop();
 	}
 
 	void UpdateGraphics() {
@@ -68,6 +85,17 @@ public class Radio : MonoBehaviour, IItemSaveable, IInteractable {
 			anim.SetFloat("bpm", availiableSongs[currentSong].bpm);
 		}
 	}
+
+	AudioClip CurrentSongClip ()
+    {
+		if (currentSong == -1)
+        {
+			return null;
+        } else
+        {
+			return availiableSongs[currentSong].clip;
+        }
+    }
 
 	public void GetData(out ItemSaveData data, out ObjectSaveData objData, out bool dontSave)
 	{

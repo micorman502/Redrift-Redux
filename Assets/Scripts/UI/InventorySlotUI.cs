@@ -11,6 +11,7 @@ using UnityEngine.UI;
 /// </summary>
 public class InventorySlotUI : MonoBehaviour
 {
+	[SerializeField] Animation updateAnimation;
 	[SerializeField] Image iconBackground;
 	[SerializeField] Image iconImage;
 	[SerializeField] TMP_Text countText;
@@ -49,6 +50,8 @@ public class InventorySlotUI : MonoBehaviour
 			iconImage.sprite = item.icon;
 			iconImage.color = Color.white;
 		}
+
+		PlayUpdateAnimation();
 	}
 
 	void OnCountChanged(int count)
@@ -60,6 +63,22 @@ public class InventorySlotUI : MonoBehaviour
 		else
 		{
 			countText.text = count.ToString();
+		}
+
+		PlayUpdateAnimation();
+	}
+
+	void PlayUpdateAnimation ()
+    {
+		if (updateAnimation)
+		{
+			if (updateAnimation.GetClipCount() == 1)
+			{
+				updateAnimation.Play();
+			} else
+            {
+				updateAnimation.Play("Inventory Slot Value Update");
+            }
 		}
 	}
 

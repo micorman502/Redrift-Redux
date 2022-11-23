@@ -47,7 +47,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handler: {fileID: -7732946242045057006}
   item: {fileID: 11400000, guid: 04424a78eb00de8419d4ba5e07c6e1f7, type: 2}
   saveID: worldItemLadder
   dontSave: 0
@@ -86,7 +85,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6430860717391082982}
   - component: {fileID: 4870086552193701096}
-  m_Layer: 2
+  m_Layer: 12
   m_Name: Trigger
   m_TagString: Item
   m_Icon: {fileID: 0}

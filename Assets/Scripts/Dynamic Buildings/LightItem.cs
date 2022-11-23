@@ -2,66 +2,57 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LightItem : MonoBehaviour, IItemSaveable, IInteractable {
+public class LightItem : MonoBehaviour, IItemSaveable, IInteractable, IHotText {
 
 	[SerializeField] ItemHandler handler;
+	[SerializeField] Light pointLight;
 	[SerializeField] string saveID;
-	public float[] intensities = { 0f, 0.25f, 0.5f, 1f };
-	public int intensityNum = 0;
-
-	public bool active = true;
-
-	Light pointLight;
-
-	void Awake() {
-		pointLight = GetComponentInChildren<Light>();
-	}
+	[SerializeField] float intensity;
+	[SerializeField] float intensityVariation;
+	[SerializeField] float intensityVariationSpeed;
+	bool lightOn;
 
 	void Start() {
-		UpdateActive();
-		UpdateIntensity();
+		SetState(lightOn); //just to make sure the light is enabled/disabled properly when it's a new game
 	}
 
 	public void Interact ()
     {
-		IncreaseIntensity();
+		Toggle();
     }
 
-	public void SetIntensity(int newIntensityNum) {
-		intensityNum = newIntensityNum;
-		if (intensityNum >= intensities.Length)
+	public void Toggle ()
+    {
+		SetState(!lightOn);
+    }
+
+	void Update ()
+    {
+		if (intensityVariation <= 0)
+			return;
+
+		pointLight.intensity = intensity + ((Mathf.PerlinNoise(Time.time * intensityVariationSpeed, Time.time * intensityVariationSpeed) * intensityVariation * 2) - intensityVariation);
+    }
+
+	public void SetState (bool on)
+    {
+		lightOn = on;
+		if (lightOn)
         {
-			intensityNum = 0;
+			pointLight.enabled = true;
+			pointLight.intensity = intensity;
+        } else
+        {
+			pointLight.enabled = false;
         }
-
-		if(intensities[intensityNum] == 0) {
-			active = false;
-			UpdateActive();
-		} else if(!active) {
-			active = true;
-			UpdateActive();
-		}
-		UpdateIntensity();
-	}
-
-	public void IncreaseIntensity() {
-		SetIntensity(intensityNum + 1);
-	}
-
-	void UpdateActive() {
-		pointLight.enabled = active;
-	}
-
-	void UpdateIntensity() {
-		pointLight.intensity = intensities[intensityNum];
-	}
+    }
 
 	public void GetData(out ItemSaveData data, out ObjectSaveData objData, out bool dontSave)
 	{
 		ItemSaveData newData = new ItemSaveData();
 		ObjectSaveData newObjData = new ObjectSaveData(transform.position, transform.rotation, ObjectDatabase.Instance.GetIntID(saveID));
 
-		newData.num = intensityNum;
+		newData.boolVal = lightOn;
 
 		data = newData;
 		objData = newObjData;
@@ -73,6 +64,21 @@ public class LightItem : MonoBehaviour, IItemSaveable, IInteractable {
 		transform.position = objData.position;
 		transform.rotation = objData.rotation;
 
-		SetIntensity(data.num);
+		SetState(lightOn);
+	}
+
+	void IHotText.HideHotText ()
+	{
+		HotTextManager.Instance.RemoveHotText(new HotTextInfo(lightOn ? "Turn Off" : "Turn On", KeyCode.F, 10, "lightToggle"));
+	}
+
+	void IHotText.ShowHotText ()
+	{
+		HotTextManager.Instance.ReplaceHotText(new HotTextInfo(lightOn ? "Turn Off" : "Turn On", KeyCode.F, 10, "lightToggle"));
+	}
+
+	void IHotText.UpdateHotText ()
+	{
+		HotTextManager.Instance.UpdateHotText(new HotTextInfo(lightOn ? "Turn Off" : "Turn On", KeyCode.F, 10, "lightToggle"));
 	}
 }

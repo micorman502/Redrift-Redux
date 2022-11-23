@@ -3,7 +3,22 @@ guid: 513520a95dd73854f9dea1347c400526
 ModelImporter:
   serializedVersion: 21100
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: IslandDirt
+    second: {fileID: 2100000, guid: d9860cba369ae9c41b29a126471d7863, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: IslandGrass
+    second: {fileID: 2100000, guid: fabfae8329f3b2743b89092514441db7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: IslandSand
+    second: {fileID: 2100000, guid: 3072889994f3a5c4185f1d0fee1cedb8, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
