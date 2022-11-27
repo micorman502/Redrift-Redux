@@ -471,7 +471,7 @@ public class PlayerInventory : MonoBehaviour {
 
 		if (index > -1)
         {
-			if ( heldItems[index].GetType() == HeldItem.eq)
+			//if ( heldItems[index].GetType() == HeldItem)
 			return heldItems[index];
         } else
         {
