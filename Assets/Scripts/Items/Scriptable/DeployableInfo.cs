@@ -7,4 +7,5 @@ public class DeployableInfo : ItemInfo
 {
     public GameObject deployedObject;
     public Vector3 deployPlacementOffset;
+    public bool placeableMidAir;
 }

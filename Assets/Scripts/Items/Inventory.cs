@@ -84,7 +84,10 @@ public class Inventory
 
 		return total;
 	}
-
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <returns>How much of a certain item can fit within this inventory.</returns>
 	public int SpaceLeftForItem (WorldItem item)
     {
 		int spaceLeft = 0;
@@ -137,48 +140,34 @@ public class Inventory
 	/// <summary>
 	/// Remove an amount of an item from the inventory. If there are left overs, they are ignored, so an amount you know is present via GetItemTotal.
 	/// </summary>
-	public void RemoveItem(WorldItem item)
+	/// <returns>The amount of items that were successfully taken.</returns>
+	public int RemoveItem(WorldItem item)
 	{
+		int amountTaken = 0;
 		foreach (var slot in Slots)
 		{
 			if(slot.Item == item.item)
 			{
-				item.amount -= slot.Remove(item.amount);
+				int removingAmt = slot.Remove(item.amount);
+				item.amount -= removingAmt;
+				amountTaken += removingAmt;
 
 				if(item.amount == 0)
 				{
 					InventoryChanged?.Invoke();
-					return;
+					return amountTaken;
 				}
 			}
 		}
 
 		Debug.LogError($"Left over items in RemoveItem(item, amount)! {item.amount}");
+		return amountTaken;
 	}
 
-	/// <summary>
-	/// Remove an amount of an item from the inventory. amountTaken returns the initial item count - amount left
-	/// </summary>
-	public void RemoveItem(WorldItem item, out int amountTaken)
-	{
-		int initAmount = item.amount;
-		foreach (var slot in Slots)
-		{
-			if (slot.Item == item.item)
-			{
-				item.amount -= slot.Remove(item.amount);
-
-				if (item.amount == 0)
-				{
-					amountTaken = initAmount;
-					InventoryChanged?.Invoke();
-					return;
-				}
-			}
-		}
-		InventoryChanged?.Invoke();
-		amountTaken = initAmount - item.amount;
-	}
+	public int RemoveItem (ItemInfo item)
+    {
+		return RemoveItem(new WorldItem(item, 1));
+    }
 
 	/// <summary>
 	/// Directly set a slot to an item. Returns an error if the value is out of bounds

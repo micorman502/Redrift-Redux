@@ -14,8 +14,7 @@ public class HeldFoodItem : HeldItem
     }
     public override void Use()
     {
-        inventory.inventory.RemoveItem(new WorldItem(item, 1), out int amtTaken);
-        if (amtTaken >= 1)
+        if (inventory.inventory.RemoveItem(item) >= 1)
         {
             vitals.AddFood(food.calories);
         }

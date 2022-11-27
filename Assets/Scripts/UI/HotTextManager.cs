@@ -6,6 +6,7 @@ public class HotTextManager : MonoBehaviour
 {
     public static HotTextManager Instance;
     Dictionary<string, HotTextInfo> hotTexts = new Dictionary<string, HotTextInfo>();
+    Dictionary<string, HotTextListItem> hotTextListItems = new Dictionary<string, HotTextListItem>();
     [SerializeField] Transform hotTextHolder;
     [SerializeField] GameObject hotTextObject;
 
@@ -22,18 +23,12 @@ public class HotTextManager : MonoBehaviour
 
     public void UpdateHotText (HotTextInfo info)
     {
-        if (hotTexts.ContainsKey(info.id))
+        if (hotTextListItems.ContainsKey(info.id))
         {
-            if (hotTexts[info.id].text != info.text)
-            {
-                hotTexts[info.id].text = info.text;
-                hotTexts[info.id].priority = info.priority;
-
-                ReloadUI();
-            }
+            hotTextListItems[info.id].Setup(info);
         } else
         {
-            Debug.LogWarning("Cannot UpdateHotText, as there is no Hot Text with Id: " + info.id);
+            AddHotText(info);
         }
     }
 
@@ -106,7 +101,9 @@ public class HotTextManager : MonoBehaviour
 
         for (int i = 0; i < hotTextHolder.childCount; i++)
         {
-            Destroy(hotTextHolder.GetChild(i).gameObject);
+            GameObject child =  hotTextHolder.GetChild(i).gameObject;
+            Destroy(child);
+            hotTextListItems.Remove(child.GetComponent<HotTextListItem>().hotText.id);
         }
 
         for (int i = 0; i < hottexts.Count; i++)
@@ -115,8 +112,11 @@ public class HotTextManager : MonoBehaviour
             if (hottexts[i] == null)
             {
                 Debug.Log("hot text is null");
-            }
-            hotTextListItem.GetComponent<HotTextListItem>().Setup(hottexts[i]);
+            };
+            HotTextListItem listItem =  hotTextListItem.GetComponent<HotTextListItem>();
+            listItem.Setup(hottexts[i]);
+            listItem.PlayAnimation();
+            hotTextListItems.Add(hottexts[i].id, listItem);
         }
     }
 }
@@ -128,6 +128,25 @@ public class HotTextInfo
     public KeyCode key = KeyCode.None;
     public int priority;
     public string id;
+    public bool blocked; //If the usual input for this hotkey is "blocked" and will not work (for example, while trying to deploy an autominer mid-air)
+
+    public HotTextInfo (HotTextInfo newInfo)
+    {
+        this.text = newInfo.text;
+        this.key = newInfo.key;
+        this.priority = newInfo.priority;
+        this.id = newInfo.id;
+        this.blocked = newInfo.blocked;
+    }
+
+    public HotTextInfo (string text, KeyCode key, int priority, string id, bool blocked)
+    {
+        this.text = text;
+        this.key = key;
+        this.priority = priority;
+        this.id = id;
+        this.blocked = blocked;
+    }
 
     public HotTextInfo (string text, KeyCode key, int priority, string id)
     {
@@ -135,11 +154,13 @@ public class HotTextInfo
         this.key = key;
         this.priority = priority;
         this.id = id;
+        this.blocked = false;
     }
     public HotTextInfo (string text, int priority, string id)
     {
         this.text = text;
         this.priority = priority;
         this.id = id;
+        this.blocked = false;
     }
 }

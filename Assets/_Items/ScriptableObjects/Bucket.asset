@@ -16,7 +16,7 @@ MonoBehaviour:
   itemDescription: Can be deployed and filled with things
   stackSize: 20
   stackPrefix: x
-  id: 0
+  id: 4
   achievementId: -1
   icon: {fileID: 21300000, guid: 0b463bb90b5fb424abcbd70d84e0a237, type: 3}
   droppedPrefab: {fileID: 5076475376411239330, guid: e756702831adc3e4190a05512852d196,
@@ -24,3 +24,4 @@ MonoBehaviour:
   deployedObject: {fileID: 1866602517762588, guid: 8ab3016be8d000144b2d098465c24525,
     type: 3}
   deployPlacementOffset: {x: 0, y: 0, z: 0}
+  placeableMidAir: 1

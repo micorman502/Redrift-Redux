@@ -386,8 +386,7 @@ public class PlayerInventory : MonoBehaviour {
 
 	public void DropItem(ItemInfo item, int amount)
 	{
-		inventory.RemoveItem(new WorldItem(item, 1), out int amtTaken);
-		amount = amtTaken;
+		amount = inventory.RemoveItem(item);
 		for (int i = 0; i < amount; i++)
 		{
 			GameObject itemObj = Instantiate(item.droppedPrefab, player.playerCamera.transform.position + player.playerCamera.transform.forward * 1.25f + Vector3.up * i * (item.droppedPrefab.GetComponentInChildren<Renderer>().bounds.size.y + 0.1f), player.playerCamera.transform.rotation);
@@ -472,6 +471,7 @@ public class PlayerInventory : MonoBehaviour {
 
 		if (index > -1)
         {
+			if ( heldItems[index].GetType() == HeldItem.eq)
 			return heldItems[index];
         } else
         {

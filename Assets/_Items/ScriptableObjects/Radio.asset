@@ -16,7 +16,7 @@ MonoBehaviour:
   itemDescription: 
   stackSize: 5
   stackPrefix: x
-  id: 0
+  id: 30
   achievementId: -1
   icon: {fileID: 21300000, guid: f402684adb0b5444eae9c50ecc44f5c2, type: 3}
   droppedPrefab: {fileID: 1811452115459055501, guid: df6ee83ce5b15264193f0a975dd6e0f2,
@@ -24,3 +24,4 @@ MonoBehaviour:
   deployedObject: {fileID: 1846644513687052, guid: 3d2d859efe0f4284f963594e749efdd2,
     type: 3}
   deployPlacementOffset: {x: 0, y: 0, z: 0}
+  placeableMidAir: 1

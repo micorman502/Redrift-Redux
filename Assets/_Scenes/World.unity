@@ -24990,7 +24990,7 @@ GameObject:
   m_Component:
   - component: {fileID: 865400448}
   - component: {fileID: 865400449}
-  m_Layer: 12
+  m_Layer: 4
   m_Name: Water Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38878,6 +38878,16 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
+    - target: {fileID: 23029161075497060, guid: 6b148acb52b6df547a13c5632a14e47b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d26ed0c9b5b048e4380ee3a160966de1, type: 2}
+    - target: {fileID: 23029161075497060, guid: 6b148acb52b6df547a13c5632a14e47b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 74045b919c348bf42a48f9566a47f7a8, type: 2}
     - target: {fileID: 114921472513299056, guid: 6b148acb52b6df547a13c5632a14e47b,
         type: 3}
       propertyPath: dontSave

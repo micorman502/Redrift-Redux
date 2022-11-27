@@ -301,8 +301,12 @@ MonoBehaviour:
   - prefab: {fileID: 5846268148311734213, guid: f7e6cfd24cc613442bda721fb8c14e45,
       type: 3}
     nameIdentifier: worldItemDoorDouble
-    id: 79
+    id: 80
   - prefab: {fileID: 6277328390078987910, guid: 25d73925da44be447a341694c083b4ba,
       type: 3}
     nameIdentifier: droppedItemDoorDouble
-    id: 79
+    id: 81
+  - prefab: {fileID: 2483805464790223854, guid: 73ab5504c9522874d9c8fe632012e1e1,
+      type: 3}
+    nameIdentifier: droppedItemSand
+    id: 81

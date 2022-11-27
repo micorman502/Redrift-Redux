@@ -6,6 +6,7 @@ using TMPro;
 
 public class HotTextListItem : MonoBehaviour
 {
+    [SerializeField] Animation initialAnimation;
     [SerializeField] TMP_Text infoText;
     [SerializeField] GameObject keybindObject;
     [SerializeField] Image keybindImage;
@@ -13,26 +14,37 @@ public class HotTextListItem : MonoBehaviour
     [SerializeField] Sprite mouseButtonLeftImage;
     [SerializeField] Sprite mouseButtonMiddleImage;
     [SerializeField] Sprite mouseButtonRightImage;
-    HotTextInfo hotText;
-    
+    [SerializeField] Sprite defaultKeySprite;
+    public HotTextInfo hotText { get; private set; }
+
+    public void PlayAnimation () //the HotTextManager uses this; when a new HotTextListItem appears, you want to play the animation. However, if it is just replacing a previous one, don't play the animation.
+    {
+        initialAnimation.Play();
+    }
+
     public void Setup (HotTextInfo hotText)
     {
         this.hotText = hotText;
 
         infoText.text = hotText.text;
 
-        if (hotText.key != KeyCode.None)
-        {
-            SetKeybind(hotText.key);
-        } else
-        {
-            keybindObject.SetActive(false);
-        }
+        SetKeybind(hotText.key);
     }
 
     void SetKeybind (KeyCode key)
     {
         keybindText.text = "";
+        string keyBindString = hotText.key.ToString();
+
+        if (hotText.blocked)
+        {
+            keybindImage.color = Color.grey;
+            keyBindString = "";
+        }
+        else
+        {
+            keybindImage.color = Color.white;
+        }
 
         if (key == KeyCode.Mouse0)
         {
@@ -53,6 +65,9 @@ public class HotTextListItem : MonoBehaviour
             return;
         }
 
-        keybindText.text = hotText.key.ToString();
+        keybindImage.sprite = defaultKeySprite;
+        keybindImage.type = Image.Type.Sliced;
+
+        keybindText.text = keyBindString;
     }
 }

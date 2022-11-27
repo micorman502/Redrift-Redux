@@ -15,7 +15,8 @@ MonoBehaviour:
   itemName: Water Bucket
   itemDescription: 
   stackSize: 5
-  id: 0
+  stackPrefix: x
+  id: 34
   achievementId: -1
   icon: {fileID: 21300000, guid: 7ba9a3cf059da694e91d5b30b93b2180, type: 3}
   droppedPrefab: {fileID: 8936224179510503587, guid: c21bb7216d8c5fe4e99e9a745f61e7ed,
@@ -23,3 +24,4 @@ MonoBehaviour:
   deployedObject: {fileID: 1551644089404962, guid: c28ffaf35df5d264cb4c4b8ccb508e2e,
     type: 3}
   deployPlacementOffset: {x: 0, y: 0, z: 0}
+  placeableMidAir: 1

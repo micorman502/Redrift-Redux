@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
 	public float smoothTime;
 
 	float currentMoveSpeed;
+	Vector3 moveDir; //raw, base move direction
 	Vector3 moveAmount;
 	Vector3 smoothMoveVelocity;
 
@@ -44,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
 	void Update ()
 	{
 
-		Vector3 moveDir = new Vector3(Input.GetAxisRaw("Sideways"), Input.GetAxisRaw("Vertical"), Input.GetAxisRaw("Forward")).normalized;
+		moveDir = new Vector3(Input.GetAxisRaw("Sideways"), Input.GetAxisRaw("Vertical"), Input.GetAxisRaw("Forward")).normalized;
 
 		currentMoveSpeed = Input.GetButton("Sprint") ? runSpeed : walkSpeed;
 
@@ -73,10 +74,6 @@ public class PlayerMovement : MonoBehaviour
 				rb.AddForce(transform.up * jumpForce, ForceMode.VelocityChange);
 			}
 		}
-
-		Vector3 targetMoveAmount = moveDir * currentMoveSpeed;
-
-		moveAmount = Vector3.SmoothDamp(moveAmount, targetMoveAmount, ref smoothMoveVelocity, smoothTime);
 
 		flyDoubleTapCooldown -= Time.deltaTime;
 
@@ -110,7 +107,7 @@ public class PlayerMovement : MonoBehaviour
 
 		if (!flying && !climbing && !inWater)
         {
-			moveAmount.y = 0;
+			moveDir.y = 0;
 		}
 	}
 
@@ -125,6 +122,10 @@ public class PlayerMovement : MonoBehaviour
 		grounded = groundCols.Length > 0;
 
 		ManageMovementStates();
+
+		Vector3 targetMoveAmount = moveDir * currentMoveSpeed;
+
+		moveAmount = Vector3.SmoothDamp(moveAmount, targetMoveAmount, ref smoothMoveVelocity, smoothTime);
 
 		if (climbing)
 		{
