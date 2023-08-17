@@ -9,7 +9,7 @@ public class Door : MonoBehaviour, IInteractable, IItemSaveable, IHotText {
 	Animator anim;
 	bool open = false;
 
-	void Start() {
+	void Awake () {
 		anim = GetComponent<Animator>();
 	}
 
@@ -51,16 +51,16 @@ public class Door : MonoBehaviour, IInteractable, IItemSaveable, IHotText {
 
 	void IHotText.HideHotText ()
 	{
-		HotTextManager.Instance.RemoveHotText(new HotTextInfo("", KeyCode.F, 11, "toggleDoor"));
+		HotTextManager.Instance.RemoveHotText(new HotTextInfo("", KeyCode.F, HotTextInfo.Priority.Open, "toggleDoor"));
 	}
 
 	void IHotText.ShowHotText ()
 	{
-		HotTextManager.Instance.ReplaceHotText(new HotTextInfo(open ? "Close" : "Open", KeyCode.F, 11, "toggleDoor"));
+		HotTextManager.Instance.ReplaceHotText(new HotTextInfo(open ? "Close" : "Open", KeyCode.F, HotTextInfo.Priority.Open, "toggleDoor"));
 	}
 
 	void IHotText.UpdateHotText ()
 	{
-		HotTextManager.Instance.UpdateHotText(new HotTextInfo(open ? "Close" : "Open", KeyCode.F, 11, "toggleDoor"));
+		HotTextManager.Instance.UpdateHotText(new HotTextInfo(open ? "Close" : "Open", KeyCode.F, HotTextInfo.Priority.Open, "toggleDoor"));
 	}
 }

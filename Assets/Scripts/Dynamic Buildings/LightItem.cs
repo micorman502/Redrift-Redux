@@ -69,16 +69,16 @@ public class LightItem : MonoBehaviour, IItemSaveable, IInteractable, IHotText {
 
 	void IHotText.HideHotText ()
 	{
-		HotTextManager.Instance.RemoveHotText(new HotTextInfo(lightOn ? "Turn Off" : "Turn On", KeyCode.F, 10, "lightToggle"));
+		HotTextManager.Instance.RemoveHotText(new HotTextInfo(lightOn ? "Turn Off" : "Turn On", KeyCode.F, HotTextInfo.Priority.Interact, "lightToggle"));
 	}
 
 	void IHotText.ShowHotText ()
 	{
-		HotTextManager.Instance.ReplaceHotText(new HotTextInfo(lightOn ? "Turn Off" : "Turn On", KeyCode.F, 10, "lightToggle"));
+		HotTextManager.Instance.ReplaceHotText(new HotTextInfo(lightOn ? "Turn Off" : "Turn On", KeyCode.F, HotTextInfo.Priority.Interact, "lightToggle"));
 	}
 
 	void IHotText.UpdateHotText ()
 	{
-		HotTextManager.Instance.UpdateHotText(new HotTextInfo(lightOn ? "Turn Off" : "Turn On", KeyCode.F, 10, "lightToggle"));
+		HotTextManager.Instance.UpdateHotText(new HotTextInfo(lightOn ? "Turn Off" : "Turn On", KeyCode.F, HotTextInfo.Priority.Interact, "lightToggle"));
 	}
 }

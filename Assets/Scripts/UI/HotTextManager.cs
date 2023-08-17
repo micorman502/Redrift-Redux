@@ -78,18 +78,22 @@ public class HotTextManager : MonoBehaviour
 
         foreach (string id in hotTexts.Keys)
         {
-            int priority = hotTexts[id].priority;
+            HotTextInfo.Priority priority = hotTexts[id].priority;
 
             if (hottexts.Count > 0) {
                 for (int i = 0; i < hottexts.Count; i++)
                 {
-                    if (hottexts[i].priority >= priority)
+                    if (hottexts[i].priority == priority)
                     {
                         hottexts.Insert(i, hotTexts[id]);
                         break;
-                    } else
+                    } else if (hottexts[i].priority > priority)
                     {
-                        hottexts.Insert(i+1, hotTexts[id]);
+                        hottexts.Insert(i, hotTexts[id]);
+                        break;
+                    } else if (i == hottexts.Count - 1)
+                    {
+                        hottexts.Add(hotTexts[id]);
                         break;
                     }
                 }
@@ -126,7 +130,8 @@ public class HotTextInfo
 {
     public string text;
     public KeyCode key = KeyCode.None;
-    public int priority;
+    public enum Priority { UseItem, AltUseItem, Build, Rotate, Pickup, Interact, Open };
+    public Priority priority;
     public string id;
     public bool blocked; //If the usual input for this hotkey is "blocked" and will not work (for example, while trying to deploy an autominer mid-air)
 
@@ -139,7 +144,7 @@ public class HotTextInfo
         this.blocked = newInfo.blocked;
     }
 
-    public HotTextInfo (string text, KeyCode key, int priority, string id, bool blocked)
+    public HotTextInfo (string text, KeyCode key, Priority priority, string id, bool blocked)
     {
         this.text = text;
         this.key = key;
@@ -148,7 +153,7 @@ public class HotTextInfo
         this.blocked = blocked;
     }
 
-    public HotTextInfo (string text, KeyCode key, int priority, string id)
+    public HotTextInfo (string text, KeyCode key, Priority priority, string id)
     {
         this.text = text;
         this.key = key;
@@ -156,7 +161,7 @@ public class HotTextInfo
         this.id = id;
         this.blocked = false;
     }
-    public HotTextInfo (string text, int priority, string id)
+    public HotTextInfo (string text, Priority priority, string id)
     {
         this.text = text;
         this.priority = priority;

@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 114241112111771592}
   - component: {fileID: 33765890939712516}
   - component: {fileID: 23894253114857878}
-  - component: {fileID: 95281849260440218}
   - component: {fileID: 64247753242735322}
   m_Layer: 0
   m_Name: DarkIsland
@@ -31,6 +30,7 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -50,6 +50,7 @@ MonoBehaviour:
   dontSave: 1
   saveID: 0
   dontRegisterToHivemind: 1
+  deathObject: {fileID: 0}
   resource: {fileID: 11400000, guid: 85888302b409fcd4699b0f611b370231, type: 2}
   health: 0
 --- !u!33 &33765890939712516
@@ -103,25 +104,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!95 &95281849260440218
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1974803944537682}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 98d959ab6a8da274fbbaaeb4a6569411, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!64 &64247753242735322
 MeshCollider:
   m_ObjectHideFlags: 0

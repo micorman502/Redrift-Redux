@@ -75,7 +75,7 @@ public class PlayerBuilding : MonoBehaviour
             StopBuilding();
         }
 
-        HotTextManager.Instance.ReplaceHotText(new HotTextInfo("Rotate", KeyCode.R, 1, "buildingRotate"));
+        HotTextManager.Instance.ReplaceHotText(new HotTextInfo("Rotate", KeyCode.R, HotTextInfo.Priority.Rotate, "buildingRotate"));
 
         currentBuilding = building;
         previewObject = Instantiate(building.previewPrefab, buildingPlacementPoint.position, Quaternion.identity);

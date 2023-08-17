@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Radio : MonoBehaviour, IItemSaveable, IInteractable {
+public class Radio : MonoBehaviour, IItemSaveable, IInteractable, IHotText {
 
 	[SerializeField] ItemHandler handler;
 	[SerializeField] string saveID;
@@ -115,6 +115,23 @@ public class Radio : MonoBehaviour, IItemSaveable, IInteractable {
 		transform.rotation = objData.rotation;
 
 		SetSong(data.num);
+	}
+
+	void IHotText.HideHotText ()
+	{
+		HotTextManager.Instance.RemoveHotText(new HotTextInfo("", KeyCode.F, HotTextInfo.Priority.Open, "radioSwitch"));
+	}
+
+	void IHotText.ShowHotText ()
+	{
+		string infoText = ((currentSong + 1) >= availiableSongs.Length) ? "Turn Off" : (currentSong == -1) ? "Turn On" : "Next Song";
+		HotTextManager.Instance.ReplaceHotText(new HotTextInfo(infoText, KeyCode.F, HotTextInfo.Priority.Open, "radioSwitch"));
+	}
+
+	void IHotText.UpdateHotText ()
+	{
+		string infoText = ((currentSong + 1) >= availiableSongs.Length) ? "Turn Off" : (currentSong == -1) ? "Turn On" : "Next Song";
+		HotTextManager.Instance.UpdateHotText(new HotTextInfo(infoText, KeyCode.F, HotTextInfo.Priority.Open, "radioSwitch"));
 	}
 }
 

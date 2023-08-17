@@ -309,4 +309,12 @@ MonoBehaviour:
   - prefab: {fileID: 2483805464790223854, guid: 73ab5504c9522874d9c8fe632012e1e1,
       type: 3}
     nameIdentifier: droppedItemSand
-    id: 81
+    id: 82
+  - prefab: {fileID: 2070620076365560296, guid: 7ed85cbeb64fba44791f32165a150379,
+      type: 3}
+    nameIdentifier: pickupWood
+    id: 83
+  - prefab: {fileID: 8052680824985969947, guid: 725d12b47d665aa45877ffed8bcd847b,
+      type: 3}
+    nameIdentifier: droppedItemResin
+    id: 84

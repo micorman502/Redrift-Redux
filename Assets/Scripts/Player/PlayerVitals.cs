@@ -3,25 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class PlayerVitals : MonoBehaviour, IDamageable, IHealable, IFood, IKillable
+public class PlayerVitals : MonoBehaviour, IDamageable, IHealable, IKillable
 {
     public static event Action<float> OnMaxHealthChanged;
     public static event Action<float> OnHealthChanged;
-    public static event Action<float> OnMaxFoodChanged;
-    public static event Action<float> OnFoodChanged;
-
-    public const int segments = 3;
 
     [SerializeField] PlayerController controller;
-    [SerializeField] float wellFedHealthRegenRate;
-    [SerializeField] float underFedHealthLossRate;
-    [SerializeField] float hungerLossRate;
     float maxHealth = 100f;
     float currentHealth = 100f;
-    float maxFood = 100f;
-    float currentFood = 100f;
-
-    int currentFoodSegment;
 
     void Start ()
     {
@@ -33,35 +22,23 @@ public class PlayerVitals : MonoBehaviour, IDamageable, IHealable, IFood, IKilla
         if (!PersistentData.Instance.loadingFromSave)
         {
             currentHealth = maxHealth;
-            currentFood = maxFood;
         }
 
         OnMaxHealthChanged?.Invoke(maxHealth);
         OnHealthChanged?.Invoke(currentHealth);
-        OnMaxFoodChanged?.Invoke(maxFood);
-        OnFoodChanged?.Invoke(currentFood);
     }
 
     public void SetVitals (float health, float food)
     {
         currentHealth = health;
-        currentFood = food;
 
         HealthUpdate();
-        FoodUpdate();
     }
 
-    public void GetVitals (out float maxHealth, out float health, out float maxFood, out float food)
+    public void GetVitals (out float maxHealth, out float health)
     {
         maxHealth = this.maxHealth;
         health = this.currentHealth;
-        maxFood = this.maxFood;
-        food = this.currentFood;
-    }
-
-    void FixedUpdate ()
-    {
-        FoodTick();
     }
 
     public void AddHealth (float healthAdded)
@@ -89,50 +66,6 @@ public class PlayerVitals : MonoBehaviour, IDamageable, IHealable, IFood, IKilla
         }
 
         HealthUpdate();
-    }
-
-    public void AddFood (float foodAdded)
-    {
-        currentFood += foodAdded;
-
-        if (currentFood > maxFood)
-        {
-            currentFood = maxFood;
-        }
-
-        FoodUpdate();
-    }
-
-    public void RemoveFood (float foodRemoved)
-    {
-        currentFood -= foodRemoved;
-
-        if (currentFood < 0)
-        {
-            currentFood = 0;
-        }
-
-        FoodUpdate();
-    }
-
-    void FoodUpdate ()
-    {
-        OnFoodChanged?.Invoke(currentFood);
-    }
-
-    void FoodTick ()
-    {
-        currentFoodSegment = Mathf.CeilToInt(currentFood / (maxFood / segments));
-
-        if (currentFoodSegment == 1)
-        {
-            RemoveHealth(underFedHealthLossRate * Time.fixedDeltaTime);
-        } else if (currentFoodSegment >= 3)
-        {
-            AddHealth(wellFedHealthRegenRate * Time.fixedDeltaTime);
-        }
-
-        RemoveFood(hungerLossRate * Time.fixedDeltaTime);
     }
 
     void HealthUpdate ()

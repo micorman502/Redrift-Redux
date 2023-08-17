@@ -211,9 +211,9 @@ public class SaveManager : MonoBehaviour {
 		Save save = new Save();
 
 		save.playerTransform = new ObjectSaveData(player.transform.position, player.transform.rotation, 0);
-		player.GetVitals(out float maxHealth, out float health, out float maxFood, out float food);
+		player.GetVitals(out float maxHealth, out float health);
 		save.playerHealth = health;
-		save.playerHunger = food;
+
 		save.saveTime = DateTime.Now;
 
 		save.realmIndex = RealmTeleportManager.Instance.GetCurrentRealmIndex();

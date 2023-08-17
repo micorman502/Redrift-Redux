@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AutoSorter : MonoBehaviour, IItemSaveable, IGetTriggerInfo, IItemInteractable {
+public class AutoSorter : MonoBehaviour, IHotText, IItemSaveable, IGetTriggerInfo, IItemInteractable {
 
 	[SerializeField] ItemHandler handler;
 	[SerializeField] string saveID;
@@ -114,5 +114,22 @@ public class AutoSorter : MonoBehaviour, IItemSaveable, IGetTriggerInfo, IItemIn
 			SetItem(ItemDatabase.Instance.GetItem(data.itemID));
 		}
 		SetBlacklistMode(data.boolVal);
+	}
+
+	void IHotText.HideHotText ()
+	{
+		HotTextManager.Instance.RemoveHotText(new HotTextInfo("", KeyCode.F, HotTextInfo.Priority.Interact, "autosorterInteract"));
+	}
+
+	void IHotText.ShowHotText ()
+	{
+		//string infoText = (sortingItem ? sortingItem.name : "") + (blackListEnabled ? " (Blacklist)" : " (Whitelist)");
+		HotTextManager.Instance.ReplaceHotText(new HotTextInfo("Set Item", KeyCode.F, HotTextInfo.Priority.Interact, "autosorterInteract"));
+	}
+
+	void IHotText.UpdateHotText ()
+	{
+		//string infoText = (sortingItem ? sortingItem.name : "") + (blackListEnabled ? " (Blacklist)" : " (Whitelist)");
+		HotTextManager.Instance.UpdateHotText(new HotTextInfo("Set Item", KeyCode.F, HotTextInfo.Priority.Interact, "autosorterInteract"));
 	}
 }

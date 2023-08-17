@@ -240,8 +240,8 @@ public class PlayerController : MonoBehaviour
 		vitals.SetVitals(health, food);
 	}
 
-	public void GetVitals (out float maxHealth, out float health, out float maxFood, out float food)
+	public void GetVitals (out float maxHealth, out float health)
 	{
-		vitals.GetVitals(out maxHealth, out health, out maxFood, out food);
+		vitals.GetVitals(out maxHealth, out health);
 	}
 }
