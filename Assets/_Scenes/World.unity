@@ -25785,7 +25785,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1378863997}
-  m_RootOrder: 10
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &1141609920
 ParticleSystem:
@@ -31990,7 +31990,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1342240420
 Transform:
   m_ObjectHideFlags: 0
@@ -32299,9 +32299,9 @@ Transform:
   - {fileID: 1435915331}
   - {fileID: 2017209645}
   - {fileID: 688265730}
+  - {fileID: 1141609919}
   - {fileID: 1081975487}
   - {fileID: 1567227070}
-  - {fileID: 1141609919}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -50091,7 +50091,7 @@ MonoBehaviour:
     fogColour: {r: 0.5137255, g: 0.8980392, b: 1, a: 1}
     fogDensity: 0.0065
   - realmName: Dark
-    hidden: 1
+    hidden: 0
     realmTeleportPosition: {fileID: 257595947}
     realmEnterParticles: {fileID: 1872495467}
     realmObjects:
@@ -50113,7 +50113,7 @@ MonoBehaviour:
     cameraBGColour: {r: 0, g: 0, b: 0, a: 1}
     fogColour: {r: 0, g: 0, b: 0, a: 1}
     fogDensity: 0.08
-  teleportYPosition: -999
+  teleportYPosition: -99.5
 --- !u!850595691 &2059371449
 LightingSettings:
   m_ObjectHideFlags: 0
