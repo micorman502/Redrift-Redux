@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour {
 
+	public static PauseManager Instance { get; private set; }
 	PlayerController player;
 
 	float originalTimeScale;
@@ -13,7 +14,18 @@ public class PauseManager : MonoBehaviour {
 
 	[SerializeField] Animator canvasAnim;
 
-	void Start() {
+    void Awake ()
+    {
+		if (Instance)
+		{
+			Destroy(this);
+			return;
+		}
+
+		Instance = this;
+	}
+
+    void Start() {
 		Time.timeScale = 1;
 		originalTimeScale = Time.timeScale;
 		player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();

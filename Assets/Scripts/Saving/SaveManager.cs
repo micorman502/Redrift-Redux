@@ -8,7 +8,7 @@ using UnityEngine.UI;
 using Newtonsoft.Json;
 
 public class SaveManager : MonoBehaviour {
-	public static SaveManager Instance;
+	public static SaveManager Instance { get; private set; }
 
 	[SerializeField] Animator canvasAnim;
 
@@ -29,12 +29,16 @@ public class SaveManager : MonoBehaviour {
 	float autoSaveTimer = 0f;
 
 	void Awake() {
+		if (!GameManager.gameInitialised)
+			return;
+
 		if (Instance)
         {
 			Destroy(this);
 			return;
         }
 		Instance = this;
+
 		GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
 		worldManager = FindObjectOfType<WorldManager>();
 

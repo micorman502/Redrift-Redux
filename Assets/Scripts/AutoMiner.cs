@@ -13,8 +13,6 @@ public class AutoMiner : MonoBehaviour, IItemSaveable, IInteractable, IItemPicku
 
 	NavMeshAgent agent;
 
-	HiveMind hive;
-
 	[HideInInspector] public ResourceHandler target;
 
 	Animator animator;
@@ -30,7 +28,6 @@ public class AutoMiner : MonoBehaviour, IItemSaveable, IInteractable, IItemPicku
 	int curTick = 0;
 
 	void Start() {
-		hive = GameObject.FindGameObjectWithTag("ScriptHolder").GetComponent<HiveMind>();
 		animator = GetComponent<Animator>();
 		agent = GetComponent<NavMeshAgent>();
 	}
@@ -114,7 +111,7 @@ public class AutoMiner : MonoBehaviour, IItemSaveable, IInteractable, IItemPicku
     {
 		ResourceHandler closestHandler = null;
 		float closestDistance = Mathf.Infinity;
-		foreach (ResourceHandler resourceHandler in hive.worldResources)
+		foreach (ResourceHandler resourceHandler in HiveMind.Instance.worldResources)
 		{
 			if (resourceHandler)
 			{
