@@ -164,33 +164,24 @@ public class PlayerPickup : MonoBehaviour
 
 	bool PickupChecks (GameObject target)
     {
-		/*IItemPickup[] pickups = target.GetComponents<IItemPickup>();
-		  		if (pickups.Length == 0)
+		IItemPickup[] pickups = target.GetComponents<IItemPickup>();
+		if (pickups.Length == 0)
         {
 			pickups = initialTarget.GetComponentsInParent<IItemPickup>();
         }
-
-		bool allChecksPassed = true;
 
 		for (int i = 0; i < pickups.Length; i++)
 		{
 			WorldItem[] items = pickups[i].GetItems();
 
-			bool checksPassed = true;
-
 			for (int j = 0; j < items.Length; j++) //checks
 			{
 				if (playerInventory.inventory.SpaceLeftForItem(items[j]) <= 0)
 				{
-					checksPassed = false;
+					return false;
 				}
 			}
-
-			if (!checksPassed)
-			{
-				allChecksPassed = false;
-			}
-		}*/
+		}
 
 		return true;
 	}
