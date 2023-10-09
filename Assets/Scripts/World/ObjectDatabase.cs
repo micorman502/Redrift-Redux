@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ObjectDatabase : MonoBehaviour
 {
-    public static ObjectDatabase Instance;
+    public static ObjectDatabase Instance { get; private set; }
     [SerializeField] ObjectRegister register;
     Dictionary<string, ObjectRegisterObject> idAcessibleObjects = new Dictionary<string, ObjectRegisterObject>();
 
@@ -51,12 +51,12 @@ public class ObjectDatabase : MonoBehaviour
         return idAcessibleObjects[id].prefab;
     }
 
-    public int GetIntID (string id)
+    public int GetIntegerID (string stringId)
     {
-        if (!idAcessibleObjects.ContainsKey(id))
+        if (!idAcessibleObjects.ContainsKey(stringId))
         {
-            Debug.Log("Nope on id: " + id);
+            Debug.Log("No object found for stringId '" + stringId + "'");
         }
-        return idAcessibleObjects[id].id;
+        return idAcessibleObjects[stringId].id;
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class ItemDatabase : MonoBehaviour
 {
     public const bool itemDebugMode = true;
-    public static ItemDatabase Instance;
+    public static ItemDatabase Instance { get; private set; }
     [SerializeField] ItemRegister register;
 
     private void Awake ()
@@ -73,5 +73,33 @@ public class ItemDatabase : MonoBehaviour
     public ItemInfo GetItem (int id)
     {
         return register.items[id];
+    }
+
+    public ItemInfo GetItemByInternalName (string objectName)
+    {
+        for (int i = 0; i < register.items.Length; i++)
+        {
+            if (register.items[i].name == objectName)
+            {
+                return register.items[i];
+            }
+        }
+
+        Debug.Log("No item with the object name '" + objectName + "' could be found. Returning first item.");
+        return register.items[0];
+    }
+
+    public ItemInfo GetItemByExternalName (string itemName)
+    {
+        for (int i = 0; i < register.items.Length; i++)
+        {
+            if (register.items[i].itemName == itemName)
+            {
+                return register.items[i];
+            }
+        }
+
+        Debug.Log("No item with the name '" + itemName + "' could be found. Returning first item.");
+        return register.items[0];
     }
 }

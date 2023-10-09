@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu]
 public class Achievement : ScriptableObject {
 
+	public int id;
 	public int achievementID;
 
 	public string achievementName;
