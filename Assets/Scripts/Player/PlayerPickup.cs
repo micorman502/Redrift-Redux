@@ -165,7 +165,7 @@ public class PlayerPickup : MonoBehaviour
 	bool PickupChecks (GameObject target)
     {
 		IItemPickup[] pickups = target.GetComponents<IItemPickup>();
-		if (pickups.Length == 0)
+		if (pickups.Length == 0 && initialTarget)
         {
 			pickups = initialTarget.GetComponentsInParent<IItemPickup>();
         }
