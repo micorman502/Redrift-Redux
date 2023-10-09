@@ -134,7 +134,7 @@ public class SaveManager : MonoBehaviour {
 				}
 				catch (Exception e)
 				{
-					Debug.Log("Error while initialising PersistentData in SaveManager.LoadGame, Caught exception " + e.Message);
+					Debug.LogWarning("Error while initialising PersistentData in SaveManager.LoadGame, Caught exception " + e.Message);
 				}
 
 				try
@@ -150,7 +150,7 @@ public class SaveManager : MonoBehaviour {
 				}
 				catch (Exception e)
 				{
-					Debug.Log("Error while initialising inventory in SaveManager.LoadGame, Caught exception " + e.Message);
+					Debug.LogWarning("Error while initialising inventory in SaveManager.LoadGame, Caught exception " + e.Message);
 				}
 
 				for (int i = 0; i < save.inventoryItems.Count; i++)
@@ -200,9 +200,10 @@ public class SaveManager : MonoBehaviour {
 				}
 
 				saveText.text = "Game loaded from " + save.saveTime.ToString("HH:mm MMMM dd, yyyy");
-			} catch
+			} catch (Exception e)
             {
 				saveText.text = "Error while loading. Saving disabled.";
+				Debug.LogWarning("Error while loading. Saving disabled. Caught exception: " + e.Message + ", with stack trace: " + e.StackTrace);
 				disableSaving = true;
             }
 		} else {
