@@ -28,6 +28,8 @@ public class SaveManager : MonoBehaviour {
 	float autoSaveInterval = 120f;
 	float autoSaveTimer = 0f;
 
+	bool disableSaving;
+
 	void Awake() {
 		if (!GameManager.gameInitialised)
 			return;
@@ -120,82 +122,98 @@ public class SaveManager : MonoBehaviour {
 		if (File.Exists(path)) {
 			ClearWorld();
 
-			Save save = JsonConvert.DeserializeObject<Save>(File.ReadAllText(path));
-
-			try
-            {
-				PersistentData.Instance.difficulty = save.difficulty;
-				PersistentData.Instance.mode = save.mode;
-				PersistentData.Instance.loadingFromSave = true;
-            } catch (Exception e)
-            {
-				Debug.Log("Error while initialising PersistentData in SaveManager.LoadGame, Caught exception " + e.Message);
-			}
-
 			try
 			{
-				if (save.mode == 0)
+				Save save = JsonConvert.DeserializeObject<Save>(File.ReadAllText(path));
+
+				try
 				{
-					inventory.DefaultSetup();
+					PersistentData.Instance.difficulty = save.difficulty;
+					PersistentData.Instance.mode = save.mode;
+					PersistentData.Instance.loadingFromSave = true;
+				}
+				catch (Exception e)
+				{
+					Debug.Log("Error while initialising PersistentData in SaveManager.LoadGame, Caught exception " + e.Message);
+				}
+
+				try
+				{
+					if (save.mode == 0)
+					{
+						inventory.DefaultSetup();
+					}
+					else
+					{
+						inventory.LoadCreativeMode();
+					}
+				}
+				catch (Exception e)
+				{
+					Debug.Log("Error while initialising inventory in SaveManager.LoadGame, Caught exception " + e.Message);
+				}
+
+				for (int i = 0; i < save.inventoryItems.Count; i++)
+				{
+					int id = save.inventoryItems[i].id;
+					ItemInfo item = null;
+					if (id >= 0)
+					{
+						item = ItemDatabase.Instance.GetItem(id);
+					}
+					inventory.inventory.SetSlot(new WorldItem(item, save.inventoryItems[i].amount), i);
+				}
+
+
+				player.transform.position = save.playerTransform.position;
+				player.transform.rotation = save.playerTransform.rotation;
+				player.SetVitals(save.playerHealth, save.playerHunger);
+
+				if (save.playerDead)
+				{
+					player.Die();
 				}
 				else
 				{
-					inventory.LoadCreativeMode();
+					RealmTeleportManager.Instance.LoadFromSave(save.realmIndex);
 				}
-			} catch (Exception e)
+
+				player.rb.velocity = save.playerVelocity;
+
+				difficulty = save.difficulty;
+				mode = save.mode;
+
+				AchievementManager.Instance.SetAchievements(save.achievementIDs);
+
+				inventory.InventoryUpdate();
+
+				for (int i = 0; i < save.savedObjects.Count; i++) //load up items and such last, to prevent a single error from breaking the loading loop 
+				{
+					ObjectSaveData newObjData = save.savedObjects[i];
+					ItemSaveData newData = save.savedObjectsInfo[i];
+					GameObject newObj = Instantiate(ObjectDatabase.Instance.GetObject(newObjData.objectID), newObjData.position, newObjData.rotation);
+					IItemSaveable[] saveables = newObj.GetComponents<IItemSaveable>();
+					for (int s = 0; s < saveables.Length; s++)
+					{
+						saveables[s].SetData(newData, newObjData);
+					}
+				}
+
+				saveText.text = "Game loaded from " + save.saveTime.ToString("HH:mm MMMM dd, yyyy");
+			} catch
             {
-				Debug.Log("Error while initialising inventory in SaveManager.LoadGame, Caught exception " + e.Message);
-			}
-
-			for (int i = 0; i < save.inventoryItems.Count; i++) {
-				int id = save.inventoryItems[i].id;
-				ItemInfo item = null;
-				if (id >= 0)
-				{
-					item = ItemDatabase.Instance.GetItem(id);
-				}
-				inventory.inventory.SetSlot(new WorldItem(item, save.inventoryItems[i].amount), i);
-			}
-
-
-			player.transform.position = save.playerTransform.position;
-			player.transform.rotation = save.playerTransform.rotation;
-			player.SetVitals(save.playerHealth, save.playerHunger);
-
-			if (save.playerDead) {
-				player.Die();
-			} else {
-				RealmTeleportManager.Instance.LoadFromSave(save.realmIndex);
-			}
-
-			player.rb.velocity = save.playerVelocity;
-
-			difficulty = save.difficulty;
-			mode = save.mode;
-
-			AchievementManager.Instance.SetAchievements(save.achievementIDs);
-
-			inventory.InventoryUpdate();
-
-			for (int i = 0; i < save.savedObjects.Count; i++) //load up items and such last, to prevent a single error from breaking the loading loop 
-			{
-				ObjectSaveData newObjData = save.savedObjects[i];
-				ItemSaveData newData = save.savedObjectsInfo[i];
-				GameObject newObj = Instantiate(ObjectDatabase.Instance.GetObject(newObjData.objectID), newObjData.position, newObjData.rotation);
-				IItemSaveable[] saveables = newObj.GetComponents<IItemSaveable>();
-				for (int s = 0; s < saveables.Length; s++)
-				{
-					saveables[s].SetData(newData, newObjData);
-				}
-			}
-
-			saveText.text = "Game loaded from " + save.saveTime.ToString("HH:mm MMMM dd, yyyy");
+				saveText.text = "Error while loading. Saving disabled.";
+				disableSaving = true;
+            }
 		} else {
 			saveText.text = "No game save found";
 		}
 	}
 
 	public void SaveGame() {
+		if (disableSaving)
+			return;
+
 		canvasAnim.SetTrigger("Save");
 		CheckSaveDirectory();
 		Save save = CreateSave();
