@@ -13,15 +13,16 @@ MonoBehaviour:
   m_Name: Furnace
   m_EditorClassIdentifier: 
   itemName: Furnace
-  itemDescription: Wood and ore, clay, etc. goes in, ingot comes out
+  itemDescription: Smelts raw materials. 3 wood required per smelt.
   stackSize: 5
   stackPrefix: x
-  id: 0
+  id: 17
   achievementId: 6
   icon: {fileID: 21300000, guid: 49c74c6ec6f6aa947b7592bcfc673add, type: 3}
   droppedPrefab: {fileID: 7236087398120845593, guid: fe92e72464b38e941a9a612a4030d841,
     type: 3}
   gridSize: 0.5
+  upwardsOffset: {x: 0, y: 0, z: 0}
   possibleRotations:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 90, z: 0}

@@ -32906,7 +32906,7 @@ MonoBehaviour:
     boundsMultiplier: {x: 1, y: 1, z: 1}
     initialSpawnAmountMin: 125
     initialSpawnAmountMax: 175
-    spawnFrequency: 300
+    spawnFrequency: 300000
     nextSpawnTime: 0
   - spawnPrefab: {fileID: 2070620076365560296, guid: 7ed85cbeb64fba44791f32165a150379,
       type: 3}
@@ -32916,6 +32916,15 @@ MonoBehaviour:
     initialSpawnAmountMin: 5
     initialSpawnAmountMax: 8
     spawnFrequency: 700
+    nextSpawnTime: 0
+  - spawnPrefab: {fileID: 1947450143509860, guid: 78341bb0c31c4f54493eba09b10f7179,
+      type: 3}
+    raycastOffset: {x: 0, y: -200, z: 0}
+    raycastDirection: {x: 0, y: 1, z: 0}
+    boundsMultiplier: {x: 1, y: 1, z: 1}
+    initialSpawnAmountMin: 1
+    initialSpawnAmountMax: 1
+    spawnFrequency: 160
     nextSpawnTime: 0
 --- !u!1 &1422590304
 GameObject:
