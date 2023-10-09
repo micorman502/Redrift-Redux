@@ -5,6 +5,7 @@ using UnityEngine;
 public class AchievementDatabase : MonoBehaviour
 {
     public static AchievementDatabase Instance { get; private set; }
+    static AchievementRegister Register;
     [SerializeField] AchievementRegister register;
 
     private void Awake ()
@@ -17,52 +18,54 @@ public class AchievementDatabase : MonoBehaviour
         }
         Instance = this;
 
+        Register = register;
+
         IDAchievements();
     }
 
-    void IDAchievements ()
+    static void IDAchievements ()
     {
-        for (int i = 0; i < register.achievements.Length; i++)
+        for (int i = 0; i < Register.achievements.Length; i++)
         {
-            register.achievements[i].id = i;
+            Register.achievements[i].id = i;
         }
     }
 
-    public Achievement[] GetAllAchievements ()
+    public static Achievement[] GetAllAchievements ()
     {
-        return register.achievements;
+        return Register.achievements;
     }
 
-    public Achievement GetAchievement (int id)
+    public static Achievement GetAchievement (int id)
     {
-        return register.achievements[id];
+        return Register.achievements[id];
     }
 
-    public Achievement GetAchievementByInternalName (string objectName)
+    public static Achievement GetAchievementByInternalName (string objectName)
     {
-        for (int i = 0; i < register.achievements.Length; i++)
+        for (int i = 0; i < Register.achievements.Length; i++)
         {
-            if (register.achievements[i].name == objectName)
+            if (Register.achievements[i].name == objectName)
             {
-                return register.achievements[i];
+                return Register.achievements[i];
             }
         }
 
         Debug.Log("No achievement with the object name '" + objectName + "' could be found. Returning first achievement.");
-        return register.achievements[0];
+        return Register.achievements[0];
     }
 
-    public Achievement GetAchievementByExternalName (string achievementName)
+    public static Achievement GetAchievementByExternalName (string achievementName)
     {
-        for (int i = 0; i < register.achievements.Length; i++)
+        for (int i = 0; i < Register.achievements.Length; i++)
         {
-            if (register.achievements[i].achievementName == achievementName)
+            if (Register.achievements[i].achievementName == achievementName)
             {
-                return register.achievements[i];
+                return Register.achievements[i];
             }
         }
 
         Debug.Log("No achievement with the name '" + achievementName + "' could be found. Returning first achievement.");
-        return register.achievements[0];
+        return Register.achievements[0];
     }
 }

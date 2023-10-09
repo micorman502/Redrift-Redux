@@ -130,7 +130,7 @@ public class PlayerInventory : MonoBehaviour {
     public void LoadCreativeMode() {
 		mode = 1;
 
-		SetupNewInventory(ItemDatabase.Instance.GetAllItems().Length);
+		SetupNewInventory(ItemDatabase.GetAllItems().Length);
 
 		AddAllItems();
 	}
@@ -409,7 +409,7 @@ public class PlayerInventory : MonoBehaviour {
 	void AddAllItems() {
 		InventoryUIManager.Instance.GetInventoryUI(InventoryUIManager.InventoryType.Primary).Assign(inventory);
 		int i = 0;
-		foreach(ItemInfo item in ItemDatabase.Instance.GetAllItems()) {
+		foreach(ItemInfo item in ItemDatabase.GetAllItems()) {
 			inventory.SetSlot(new WorldItem(item, item.stackSize), i);
 			i++;
 		}

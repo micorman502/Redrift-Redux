@@ -16,8 +16,6 @@ public class RecipeManager : MonoBehaviour {
 	public RectTransform craftingScrollRectTransform;
 	ScrollRect craftingScrollRect;
 
-	public RecipeRegister register;
-
 	public GameObject craftingRecipePrefab;
 
 	Inventory inventory;
@@ -25,14 +23,6 @@ public class RecipeManager : MonoBehaviour {
 	void Awake() {
 		craftingScrollRect = craftingScrollRectTransform.GetComponent<ScrollRect>();
 	}
-
-	void IDRecipes ()
-    {
-		for (int i = 0; i <register.recipes.Length; i++)
-        {
-			register.recipes[i].id = i;
-        }
-    }
 
 	void Start() {
 		inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>().inventory;
@@ -54,7 +44,7 @@ public class RecipeManager : MonoBehaviour {
 		ClearRecipes();
 		int i = 0;
 
-		foreach (Recipe recipe in register.recipes) {
+		foreach (Recipe recipe in RecipeDatabase.GetAllRecipes()) {
 			if(recipe.categories.Contains(c) || c == 0) {
 				GameObject recipeObj = Instantiate(craftingRecipePrefab, craftingRecipeContainer);
 				recipeObj.GetComponent<RecipeListItem>().Setup(recipe, inventory);

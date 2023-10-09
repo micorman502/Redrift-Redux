@@ -5,8 +5,9 @@ using UnityEngine;
 public class ObjectDatabase : MonoBehaviour
 {
     public static ObjectDatabase Instance { get; private set; }
+    static ObjectRegister Register;
     [SerializeField] ObjectRegister register;
-    Dictionary<string, ObjectRegisterObject> idAcessibleObjects = new Dictionary<string, ObjectRegisterObject>();
+    static Dictionary<string, ObjectRegisterObject> idAcessibleObjects = new Dictionary<string, ObjectRegisterObject>();
 
     private void Awake ()
     {
@@ -18,40 +19,42 @@ public class ObjectDatabase : MonoBehaviour
         }
         Instance = this;
 
+        Register = register;
+
         Initialise();
     }
 
-    void Initialise ()
+    static void Initialise ()
     {
-        for (int i = 0; i < register.objects.Length; i++)
+        for (int i = 0; i < Register.objects.Length; i++)
         {
-            register.objects[i].id = i;
-            idAcessibleObjects.Add(register.objects[i].nameIdentifier, register.objects[i]);
+            Register.objects[i].id = i;
+            idAcessibleObjects.Add(Register.objects[i].nameIdentifier, Register.objects[i]);
         }
     }
 
-    public GameObject[] GetAllObjects ()
+    public static GameObject[] GetAllObjects ()
     {
-        GameObject[] objects = new GameObject[register.objects.Length];
-        for (int i = 0; i < register.objects.Length; i++)
+        GameObject[] objects = new GameObject[Register.objects.Length];
+        for (int i = 0; i < Register.objects.Length; i++)
         {
-            objects[i] = register.objects[i].prefab;
+            objects[i] = Register.objects[i].prefab;
         }
 
         return objects;
     }
 
-    public GameObject GetObject (int id)
+    public static GameObject GetObject (int id)
     {
-        return register.objects[id].prefab;
+        return Register.objects[id].prefab;
     }
 
-    public GameObject GetObject (string id)
+    public static GameObject GetObject (string id)
     {
         return idAcessibleObjects[id].prefab;
     }
 
-    public int GetIntegerID (string stringId)
+    public static int GetIntegerID (string stringId)
     {
         if (!idAcessibleObjects.ContainsKey(stringId))
         {

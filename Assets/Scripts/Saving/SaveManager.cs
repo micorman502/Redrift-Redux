@@ -87,7 +87,7 @@ public class SaveManager : MonoBehaviour {
 	public List<ItemInfo> IDsToItems(List<int> IDs) {
 		List<ItemInfo> items = new List<ItemInfo>();
 		foreach(int itemID in IDs) {
-			items.Add(ItemDatabase.Instance.GetItem(itemID));
+			items.Add(ItemDatabase.GetItem(itemID));
 		}
 		return items;
 	}
@@ -159,7 +159,7 @@ public class SaveManager : MonoBehaviour {
 					ItemInfo item = null;
 					if (id >= 0)
 					{
-						item = ItemDatabase.Instance.GetItem(id);
+						item = ItemDatabase.GetItem(id);
 					}
 					inventory.inventory.SetSlot(new WorldItem(item, save.inventoryItems[i].amount), i);
 				}
@@ -191,7 +191,7 @@ public class SaveManager : MonoBehaviour {
 				{
 					ObjectSaveData newObjData = save.savedObjects[i];
 					ItemSaveData newData = save.savedObjectsInfo[i];
-					GameObject newObj = Instantiate(ObjectDatabase.Instance.GetObject(newObjData.objectID), newObjData.position, newObjData.rotation);
+					GameObject newObj = Instantiate(ObjectDatabase.GetObject(newObjData.objectID), newObjData.position, newObjData.rotation);
 					IItemSaveable[] saveables = newObj.GetComponents<IItemSaveable>();
 					for (int s = 0; s < saveables.Length; s++)
 					{

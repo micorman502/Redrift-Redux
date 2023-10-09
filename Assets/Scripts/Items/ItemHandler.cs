@@ -19,7 +19,7 @@ public class ItemHandler : MonoBehaviour, IItemSaveable, IItemPickup, IHotText {
 		}
 
 		ItemSaveData newData = new ItemSaveData();
-		ObjectSaveData newObjData = new ObjectSaveData(transform.position, transform.rotation, ObjectDatabase.Instance.GetIntegerID(saveID));
+		ObjectSaveData newObjData = new ObjectSaveData(transform.position, transform.rotation, ObjectDatabase.GetIntegerID(saveID));
 
 
 		data = newData;

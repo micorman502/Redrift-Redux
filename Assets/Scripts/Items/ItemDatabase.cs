@@ -6,6 +6,7 @@ public class ItemDatabase : MonoBehaviour
 {
     public const bool itemDebugMode = true;
     public static ItemDatabase Instance { get; private set; }
+    static ItemRegister Register;
     [SerializeField] ItemRegister register;
 
     private void Awake ()
@@ -18,6 +19,8 @@ public class ItemDatabase : MonoBehaviour
         }
         Instance = this;
 
+        Register = register;
+
         IDItems();
 
         if (itemDebugMode)
@@ -26,11 +29,11 @@ public class ItemDatabase : MonoBehaviour
         }
     }
 
-    void IDItems ()
+    static void IDItems ()
     {
-        for (int i = 0; i < register.items.Length; i++)
+        for (int i = 0; i < Register.items.Length; i++)
         {
-            register.items[i].id = i;
+            Register.items[i].id = i;
         }
     }
 
@@ -65,41 +68,41 @@ public class ItemDatabase : MonoBehaviour
         }
     }
 
-    public ItemInfo[] GetAllItems ()
+    public static ItemInfo[] GetAllItems ()
     {
-        return register.items;
+        return Register.items;
     }
 
-    public ItemInfo GetItem (int id)
+    public static ItemInfo GetItem (int id)
     {
-        return register.items[id];
+        return Register.items[id];
     }
 
-    public ItemInfo GetItemByInternalName (string objectName)
+    public static ItemInfo GetItemByInternalName (string objectName)
     {
-        for (int i = 0; i < register.items.Length; i++)
+        for (int i = 0; i < Register.items.Length; i++)
         {
-            if (register.items[i].name == objectName)
+            if (Register.items[i].name == objectName)
             {
-                return register.items[i];
+                return Register.items[i];
             }
         }
 
         Debug.Log("No item with the object name '" + objectName + "' could be found. Returning first item.");
-        return register.items[0];
+        return Register.items[0];
     }
 
-    public ItemInfo GetItemByExternalName (string itemName)
+    public static ItemInfo GetItemByExternalName (string itemName)
     {
-        for (int i = 0; i < register.items.Length; i++)
+        for (int i = 0; i < Register.items.Length; i++)
         {
-            if (register.items[i].itemName == itemName)
+            if (Register.items[i].itemName == itemName)
             {
-                return register.items[i];
+                return Register.items[i];
             }
         }
 
         Debug.Log("No item with the name '" + itemName + "' could be found. Returning first item.");
-        return register.items[0];
+        return Register.items[0];
     }
 }

@@ -88,7 +88,7 @@ public class ConveyorBelt : MonoBehaviour, IItemSaveable, IGetTriggerInfo, IInte
 	public void GetData(out ItemSaveData data, out ObjectSaveData objData, out bool dontSave)
 	{
 		ItemSaveData newData = new ItemSaveData();
-		ObjectSaveData newObjData = new ObjectSaveData(transform.position, transform.rotation, ObjectDatabase.Instance.GetIntegerID(saveID));
+		ObjectSaveData newObjData = new ObjectSaveData(transform.position, transform.rotation, ObjectDatabase.GetIntegerID(saveID));
 
 		newData.num = speedNum;
 

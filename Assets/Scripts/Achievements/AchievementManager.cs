@@ -10,7 +10,6 @@ public class AchievementManager : MonoBehaviour {
 	public GameObject achievementPrefab;
 
 	bool[] hasAchievements;
-	public Achievement[] achievements;
 
 	AchievementHandler[] achievementHandlers;
 
@@ -25,32 +24,36 @@ public class AchievementManager : MonoBehaviour {
 		Instance = this;
 		player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 
-		hasAchievements = new bool[achievements.Length];
-		achievementHandlers = new AchievementHandler[achievements.Length];
+		int achievementCount = AchievementDatabase.GetAllAchievements().Length;
+		hasAchievements = new bool[achievementCount];
+		achievementHandlers = new AchievementHandler[achievementCount];
 
-		for(int i = 0; i < achievements.Length; i++) {
+		int i = 0;
+		foreach (Achievement achievement in AchievementDatabase.GetAllAchievements())
+        {
 			GameObject achievementObj = Instantiate(achievementPrefab, acievementList);
 			AchievementHandler handler = achievementObj.GetComponent<AchievementHandler>();
-			handler.achievementNameText.text = achievements[i].achievementName;
-			handler.achievementDescText.text = achievements[i].achievementDesc;
-			handler.achievementIconImage.sprite = achievements[i].achievementIcon;
-			handler.achievement = achievements[i];
+			handler.achievementNameText.text = achievement.achievementName;
+			handler.achievementDescText.text = achievement.achievementDesc;
+			handler.achievementIconImage.sprite = achievement.achievementIcon;
+			handler.achievement = achievement;
 			achievementHandlers[i] = handler;
+
+			i++;
 		}
 	}
 
 	public void ShowAchievement(int achievementID) {
 		GameObject achievementObj = Instantiate(achievementPrefab, achievementContainer);
 		AchievementHandler handler = achievementObj.GetComponent<AchievementHandler>();
-		int i = 0;
-		foreach(Achievement achievement in achievements) {
-			if(achievements[i].achievementID == achievementID) {
-				handler.achievementNameText.text = achievements[i].achievementName;
-				handler.achievementDescText.text = achievements[i].achievementDesc;
-				handler.achievementIconImage.sprite = achievements[i].achievementIcon;
+
+		foreach(Achievement achievement in AchievementDatabase.GetAllAchievements()) {
+			if(achievement.achievementID == achievementID) {
+				handler.achievementNameText.text = achievement.achievementName;
+				handler.achievementDescText.text = achievement.achievementDesc;
+				handler.achievementIconImage.sprite = achievement.achievementIcon;
 				break;
 			}
-			i++;
 		}
 
 		Destroy(achievementObj, 7f);
@@ -58,7 +61,7 @@ public class AchievementManager : MonoBehaviour {
 
 	public void SetAchievements(List<int> achievementIDs) {
 		for(int i = 0; i < achievementIDs.Count; i++) {
-			foreach(Achievement achievement in achievements) {
+			foreach(Achievement achievement in AchievementDatabase.GetAllAchievements()) {
 				if(achievement.achievementID == achievementIDs[i]) {
 					hasAchievements[achievement.achievementID] = true;
 					break;
@@ -79,13 +82,11 @@ public class AchievementManager : MonoBehaviour {
 		if(!hasAchievements[_achievementID]) {
 			ShowAchievement(_achievementID);
 
-			int i = 0;
-			foreach(Achievement achievement in achievements) {
-				if(achievements[i].achievementID == _achievementID) {
+			foreach(Achievement achievement in AchievementDatabase.GetAllAchievements()) {
+				if(achievement.achievementID == _achievementID) {
 					hasAchievements[_achievementID] = true;
 					break;
 				}
-				i++;
 			}
 
 			foreach(AchievementHandler handler in achievementHandlers) { // Set the achievement background to green in the achievement UI

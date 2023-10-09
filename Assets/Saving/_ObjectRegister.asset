@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b760ebfd60375e747bd7c368520c8d75, type: 3}
-  m_Name: ObjectRegister
+  m_Name: _ObjectRegister
   m_EditorClassIdentifier: 
   objects:
   - prefab: {fileID: 1629223841368952097, guid: cc45e8d4773e93f449934991850f2fba,

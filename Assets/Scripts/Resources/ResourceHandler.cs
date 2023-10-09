@@ -99,7 +99,7 @@ public class ResourceHandler : MonoBehaviour, IItemSaveable, IResource {
 	public void GetData(out ItemSaveData data, out ObjectSaveData objData, out bool _dontSave)
 	{
 		ItemSaveData newData = new ItemSaveData();
-		ObjectSaveData newObjData = new ObjectSaveData(transform.position, transform.rotation, dontSave ? -1 : ObjectDatabase.Instance.GetIntegerID(saveID));
+		ObjectSaveData newObjData = new ObjectSaveData(transform.position, transform.rotation, dontSave ? -1 : ObjectDatabase.GetIntegerID(saveID));
 
 		newData.num = health;
 

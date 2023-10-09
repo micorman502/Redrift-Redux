@@ -5,6 +5,7 @@ using UnityEngine;
 public class RecipeDatabase : MonoBehaviour
 {
     public static RecipeDatabase Instance { get; private set; }
+    static RecipeRegister Register;
     [SerializeField] RecipeRegister register;
 
     private void Awake ()
@@ -17,38 +18,40 @@ public class RecipeDatabase : MonoBehaviour
         }
         Instance = this;
 
-        IDItems();
+        Register = register;
+
+        IDRecipes();
     }
 
-    void IDItems ()
+    static void IDRecipes ()
     {
-        for (int i = 0; i < register.recipes.Length; i++)
+        for (int i = 0; i < Register.recipes.Length; i++)
         {
-            register.recipes[i].id = i;
+            Register.recipes[i].id = i;
         }
     }
 
-    public Recipe[] GetAllRecipes ()
+    public static Recipe[] GetAllRecipes ()
     {
-        return register.recipes;
+        return Register.recipes;
     }
 
-    public Recipe GetRecipe (int id)
+    public static Recipe GetRecipe (int id)
     {
-        return register.recipes[id];
+        return Register.recipes[id];
     }
 
-    public Recipe GetRecipeByInternalName (string objectName)
+    public static Recipe GetRecipeByInternalName (string objectName)
     {
-        for (int i = 0; i < register.recipes.Length; i++)
+        for (int i = 0; i < Register.recipes.Length; i++)
         {
-            if (register.recipes[i].name == objectName)
+            if (Register.recipes[i].name == objectName)
             {
-                return register.recipes[i];
+                return Register.recipes[i];
             }
         }
 
         Debug.Log("No recipe with the object name '" + objectName + "' could be found. Returning first recipe.");
-        return register.recipes[0];
+        return Register.recipes[0];
     }
 }
