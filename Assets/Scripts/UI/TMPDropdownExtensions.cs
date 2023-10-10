@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class DropdownExtensions : MonoBehaviour //provides more functions to dropdowns
+public class TMPDropdownExtensions : MonoBehaviour
 {
-    [SerializeField] Dropdown target;
+    [SerializeField] TMP_Dropdown target;
     [SerializeField] Dropdown.DropdownEvent extraEvent;
 
     public void NextOption ()
@@ -14,7 +14,8 @@ public class DropdownExtensions : MonoBehaviour //provides more functions to dro
         if (target.value + 1 >= target.options.Count)
         {
             target.value = 0;
-        } else
+        }
+        else
         {
             target.value++;
         }
@@ -25,7 +26,8 @@ public class DropdownExtensions : MonoBehaviour //provides more functions to dro
         if (target.value - 1 < 0)
         {
             target.value = target.options.Count - 1;
-        } else
+        }
+        else
         {
             target.value--;
         }

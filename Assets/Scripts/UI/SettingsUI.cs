@@ -5,24 +5,31 @@ using System;
 using System.Linq;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine.PostProcessing;
 
 public class SettingsUI : MonoBehaviour
 {
+    [Header("Graphics")]
+    [SerializeField] TMP_Dropdown resolutionDropdown;
+    [SerializeField] TMP_Text resolutionLabel;
+    [SerializeField] TMP_Dropdown graphicsDropdown;
+    [SerializeField] TMP_Text graphicsLabel;
+    [SerializeField] TMP_Dropdown fullscreenDropdown;
+    [SerializeField] TMP_Text fullscreenLabel;
     [SerializeField] Toggle postProcessingToggle;
-    [SerializeField] Text postProcessingText;
-    [SerializeField] Slider fieldOfViewSlider;
-    [SerializeField] Text fieldOfViewText;
+    [SerializeField] TMP_Text postProcessingLabel;
+    [Header("Audio")]
     [SerializeField] Slider volumeSlider;
-    [SerializeField] Text volumeText;
+    [SerializeField] TMP_Text volumeLabel;
+    [SerializeField] TMP_Text volumeReadout;
+    [Header("Gameplay")]
+    [SerializeField] Slider fieldOfViewSlider;
+    [SerializeField] TMP_Text fieldOfViewLabel;
+    [SerializeField] TMP_Text fieldOfViewReadout;
     [SerializeField] Slider mouseSensitivitySlider;
-    [SerializeField] Text mouseSensitivityText;
-    [SerializeField] Dropdown resolutionDropdown;
-    [SerializeField] Text resolutionText;
-    [SerializeField] Dropdown graphicsDropdown;
-    [SerializeField] Text graphicsText;
-    [SerializeField] Dropdown fullscreenDropdown;
-    [SerializeField] Text fullscreenText;
+    [SerializeField] TMP_Text mouseSensitivityLabel;
+    [SerializeField] TMP_Text mouseSensitivityReadout;
     static bool initialised;
     bool awaitingSettingsApply;
 
@@ -59,27 +66,27 @@ public class SettingsUI : MonoBehaviour
 
     void InitialiseDropdowns ()
     {
-        List<Dropdown.OptionData> resolutionOptions = new List<Dropdown.OptionData>();
+        List<TMP_Dropdown.OptionData> resolutionOptions = new List<TMP_Dropdown.OptionData>();
         for (int i = 0; i < CurrentSettings.resolutions.Length; i++)
         {
-            resolutionOptions.Add(new Dropdown.OptionData(CurrentSettings.resolutions[i].width + "x" + CurrentSettings.resolutions[i].height));
+            resolutionOptions.Add(new TMP_Dropdown.OptionData(CurrentSettings.resolutions[i].width + "x" + CurrentSettings.resolutions[i].height));
         }
         resolutionDropdown.ClearOptions();
         resolutionDropdown.options = resolutionOptions;
 
-        List<Dropdown.OptionData> graphicsOptions = new List<Dropdown.OptionData>();
+        List<TMP_Dropdown.OptionData> graphicsOptions = new List<TMP_Dropdown.OptionData>();
         for (int i = 0; i < QualitySettings.names.Length; i++)
         {
-            graphicsOptions.Add(new Dropdown.OptionData(QualitySettings.names[i]));
+            graphicsOptions.Add(new TMP_Dropdown.OptionData(QualitySettings.names[i]));
         }
         graphicsDropdown.ClearOptions();
         graphicsDropdown.options = graphicsOptions;
 
-        List<Dropdown.OptionData> fullscreenOptions = new List<Dropdown.OptionData>();
+        List<TMP_Dropdown.OptionData> fullscreenOptions = new List<TMP_Dropdown.OptionData>();
 
         for (int i = 0; i < CurrentSettings.fullscreenModes.Length; i++)
         {
-            fullscreenOptions.Add(new Dropdown.OptionData(CurrentSettings.fullscreenModes[i]));
+            fullscreenOptions.Add(new TMP_Dropdown.OptionData(CurrentSettings.fullscreenModes[i]));
         }
         fullscreenDropdown.ClearOptions();
         fullscreenDropdown.options = fullscreenOptions;
@@ -98,7 +105,7 @@ public class SettingsUI : MonoBehaviour
 
     public void SetPostProcessing (bool value)
     {
-        postProcessingText.text = "Post-Processing";
+        postProcessingLabel.text = "Post-Processing";
         if (!initialised)
             return;
         CurrentSettings.ModifiableSettingsData.postProcessing = value;
@@ -106,12 +113,13 @@ public class SettingsUI : MonoBehaviour
         if (value == CurrentSettings.CurrentSettingsData.postProcessing)
             return;
 
-        postProcessingText.text += "*";
+        postProcessingLabel.text += "*";
     }
 
     public void SetFieldOfView (float value)
     {
-        fieldOfViewText.text = "FOV | " + Mathf.Round(value * 10) / 10;
+        fieldOfViewReadout.text = (Mathf.Round(value * 10) / 10).ToString();
+        fieldOfViewLabel.text = "Field of View";
         if (!initialised)
             return;
         CurrentSettings.ModifiableSettingsData.fieldOfView = value;
@@ -119,13 +127,14 @@ public class SettingsUI : MonoBehaviour
         if (value == CurrentSettings.CurrentSettingsData.fieldOfView)
             return;
 
-        fieldOfViewText.text += "*";
+        fieldOfViewLabel.text += "*";
     }
 
     public void SetVolume (float value)
     {
         value = (Mathf.Round(value * 100) / 100);
-        volumeText.text = "Volume | " + value * 100 + "%";
+        volumeReadout.text = (value * 100).ToString();
+        volumeLabel.text = "Volume";
         if (!initialised)
             return;
         CurrentSettings.ModifiableSettingsData.volume = value;
@@ -133,12 +142,13 @@ public class SettingsUI : MonoBehaviour
         if (value == CurrentSettings.CurrentSettingsData.volume)
             return;
 
-        volumeText.text += "*";
+        volumeLabel.text += "*";
     }
 
     public void SetMouseSensitivity (float value)
     {
-        mouseSensitivityText.text = "Sensitivity | " + Mathf.Round(value * 10) / 10;
+        mouseSensitivityReadout.text = (Mathf.Round(value * 10) / 10).ToString();
+        mouseSensitivityLabel.text = "Mouse Sensitivity";
         if (!initialised)
             return;
         CurrentSettings.ModifiableSettingsData.mouseSensitivity = value;
@@ -146,12 +156,12 @@ public class SettingsUI : MonoBehaviour
         if (value == CurrentSettings.CurrentSettingsData.mouseSensitivity)
             return;
 
-        mouseSensitivityText.text += "*";
+        mouseSensitivityLabel.text += "*";
     }
 
     public void SetResolutionIndex (int value)
     {
-        resolutionText.text = "Resolution";
+        resolutionLabel.text = "Resolution";
         if (!initialised)
             return;
         CurrentSettings.ModifiableSettingsData.resolutionIndex = value;
@@ -159,12 +169,12 @@ public class SettingsUI : MonoBehaviour
         if (value == CurrentSettings.CurrentSettingsData.resolutionIndex)
             return;
 
-        resolutionText.text += "*";
+        resolutionLabel.text += "*";
     }
 
     public void SetGraphicsIndex (int value)
     {
-        graphicsText.text = "Graphics";
+        graphicsLabel.text = "Graphics";
         if (!initialised)
             return;
         CurrentSettings.ModifiableSettingsData.graphicsIndex = value;
@@ -172,12 +182,12 @@ public class SettingsUI : MonoBehaviour
         if (value == CurrentSettings.CurrentSettingsData.graphicsIndex)
             return;
 
-        graphicsText.text += "*";
+        graphicsLabel.text += "*";
     }
 
     public void SetFullscreenIndex (int value)
     {
-        fullscreenText.text = "Fullscreen Mode";
+        fullscreenLabel.text = "Fullscreen";
         if (!initialised)
             return;
         CurrentSettings.ModifiableSettingsData.fullscreenIndex = value;
@@ -185,7 +195,7 @@ public class SettingsUI : MonoBehaviour
         if (value == CurrentSettings.CurrentSettingsData.fullscreenIndex)
             return;
 
-        fullscreenText.text += "*";
+        fullscreenLabel.text += "*";
     }
 
     public void ApplySettings ()

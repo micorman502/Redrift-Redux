@@ -39355,7 +39355,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1668648055}
   m_Direction: 2
   m_Value: 0.99999994
-  m_Size: 0.37600824
+  m_Size: 0.3760082
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -49831,6 +49831,46 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -294.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851278091323875295, guid: b44f94649985b5b43868e4a7c611683a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1444759423}
+    - target: {fileID: 6851278091323875295, guid: b44f94649985b5b43868e4a7c611683a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1444759423}
+    - target: {fileID: 6851278091323875295, guid: b44f94649985b5b43868e4a7c611683a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851278091323875295, guid: b44f94649985b5b43868e4a7c611683a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851278091323875295, guid: b44f94649985b5b43868e4a7c611683a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.Animator, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851278091323875295, guid: b44f94649985b5b43868e4a7c611683a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UnityEngine.Animator, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851278091323875295, guid: b44f94649985b5b43868e4a7c611683a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: SettingsMenuExit
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851278091323875295, guid: b44f94649985b5b43868e4a7c611683a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
+      value: PauseMenuEnter
       objectReference: {fileID: 0}
     - target: {fileID: 8239311241230739471, guid: b44f94649985b5b43868e4a7c611683a,
         type: 3}
