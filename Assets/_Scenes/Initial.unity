@@ -434,6 +434,12 @@ MonoBehaviour:
     minPitch: 0.9
     maxPitch: 1
     source: {fileID: 0}
+  - name: UIHover
+    clip: {fileID: 8300000, guid: d2c2abdcaa91dbf4eb9f571e8b83c5dd, type: 3}
+    volume: 0.25
+    minPitch: 0.8
+    maxPitch: 0.9
+    source: {fileID: 0}
 --- !u!114 &862312594
 MonoBehaviour:
   m_ObjectHideFlags: 0
