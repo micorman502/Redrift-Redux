@@ -13,16 +13,14 @@ public class MenuSaveManager : MonoBehaviour {
 	[SerializeField] GameObject saveListItem;
 	[SerializeField] GameObject saveList;
 
-	[SerializeField] Text errorText;
-
 	[SerializeField] Animator canvasAnim;
 
-	[SerializeField] InputField saveNameInputField;
-	[SerializeField] Dropdown saveDifficultyDropdown;
-	[SerializeField] Dropdown saveModeDropdown;
-	[SerializeField] Text difficultyBlurb;
-	[SerializeField] Text modeBlurb;
-	[SerializeField] Text saveErrorText;
+	[SerializeField] TMP_InputField saveNameInputField;
+	[SerializeField] TMP_Dropdown saveDifficultyDropdown;
+	[SerializeField] TMP_Dropdown saveModeDropdown;
+	[SerializeField] TMP_Text difficultyBlurb;
+	[SerializeField] TMP_Text modeBlurb;
+	[SerializeField] TMP_Text saveErrorText;
 
 	FileInfo[] info;
 
@@ -30,12 +28,18 @@ public class MenuSaveManager : MonoBehaviour {
 
 	List<GameObject> saveListItems = new List<GameObject>();
 
-	string[] difficultyBlurbs = {"Easy: Keep your inventory items when you die and start with 2 crates.",
-		"Normal: Keep your inventory items when you die.",
-		"Hard: Lose your inventory items when you die."};
+	string[] difficultyBlurbs = {"Keep your inventory items when you die and start with 2 crates.",
+		"Keep your inventory items when you die.",
+		"Lose your inventory items when you die."};
+	string[] difficultyNames = {"Easy",
+		"Normal",
+		"Hard"};
 
-	string[] modeBlurbs = {"Survival: Survive on the island.",
-		"Creative: Health and hunger disabled, with an infinite supply of all items and the ability to fly."};
+
+	string[] modeBlurbs = {"Survive on the island.",
+		"Health and hunger disabled, with an infinite supply of all items and the ability to fly."};
+	string[] modeNames = {"Survival",
+		"Creative"};
 
 	void Awake() {
 		if (Instance)
@@ -55,9 +59,31 @@ public class MenuSaveManager : MonoBehaviour {
 		}
 		DirectoryInfo dir = new DirectoryInfo(Application.persistentDataPath + "/saves");
 		info = dir.GetFiles("*.*");
+
 		RenderList();
+		InitialiseDropdowns();
+
 		OnChangeDifficulty();
 		OnChangeMode();
+	}
+
+	void InitialiseDropdowns ()
+    {
+		List<TMP_Dropdown.OptionData> difficultyOptions = new List<TMP_Dropdown.OptionData>();
+		saveDifficultyDropdown.ClearOptions();
+		for (int i = 0; i < difficultyNames.Length; i++)
+        {
+			difficultyOptions.Add(new TMP_Dropdown.OptionData(difficultyNames[i]));
+        }
+		saveDifficultyDropdown.AddOptions(difficultyOptions);
+
+		List<TMP_Dropdown.OptionData> modeOptions = new List<TMP_Dropdown.OptionData>();
+		saveModeDropdown.ClearOptions();
+		for (int i = 0; i < modeNames.Length; i++)
+		{
+			modeOptions.Add(new TMP_Dropdown.OptionData(modeNames[i]));
+		}
+		saveModeDropdown.AddOptions(modeOptions);
 	}
 
 	void RenderList() {
@@ -144,8 +170,11 @@ public class MenuSaveManager : MonoBehaviour {
 		} catch (Exception e)
         {
 			Debug.LogWarning("Could not create save named '" + saveName + "', due to exception '" + e.Message + "'.");
-			saveErrorText.text = "Please enter a valid name.";
-			saveErrorText.gameObject.SetActive(true);
+			if (saveErrorText)
+			{
+				saveErrorText.text = "Please enter a valid name.";
+				saveErrorText.gameObject.SetActive(true);
+			}
 			return; 
 		}
 
