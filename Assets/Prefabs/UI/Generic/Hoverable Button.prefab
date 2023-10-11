@@ -184,6 +184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 7535225904043419654}
+  hoverSfxName: UIHover
   hoverBoolName: mouseHover
 --- !u!114 &6192392075272200925
 MonoBehaviour:

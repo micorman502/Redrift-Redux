@@ -20,6 +20,8 @@ public class MenuSaveManager : MonoBehaviour {
 	[SerializeField] TMP_Dropdown saveModeDropdown;
 	[SerializeField] TMP_Text difficultyBlurb;
 	[SerializeField] TMP_Text modeBlurb;
+
+	[SerializeField] GameObject saveErrorHolder;
 	[SerializeField] TMP_Text saveErrorText;
 
 	FileInfo[] info;
@@ -27,6 +29,10 @@ public class MenuSaveManager : MonoBehaviour {
 	MenuManager menuManager;
 
 	List<GameObject> saveListItems = new List<GameObject>();
+
+	string worldName;
+	int difficulty;
+	int gamemode;
 
 	string[] difficultyBlurbs = {"Keep your inventory items when you die and start with 2 crates.",
 		"Keep your inventory items when you die.",
@@ -60,11 +66,14 @@ public class MenuSaveManager : MonoBehaviour {
 		DirectoryInfo dir = new DirectoryInfo(Application.persistentDataPath + "/saves");
 		info = dir.GetFiles("*.*");
 
+		saveErrorHolder.SetActive(false);
+
 		RenderList();
 		InitialiseDropdowns();
 
-		OnChangeDifficulty();
-		OnChangeMode();
+		OnChangeDifficulty(1);
+		OnChangeMode(0);
+		OnChangeName("World " + (info.Length + 1));
 	}
 
 	void InitialiseDropdowns ()
@@ -89,13 +98,12 @@ public class MenuSaveManager : MonoBehaviour {
 	void RenderList() {
 		saveNameInputField.text = "World " + (info.Length + 1);
 		for(int i = 0; i < info.Length; i++) {
-			int saveNum = i;
 			GameObject go = Instantiate(saveListItem, saveList.transform);
 			saveListItems.Add(go);
 			SaveListItem item = go.GetComponent<SaveListItem>();
-			string[] infoSplit = info[saveNum].Name.Split('.');
-			item.Setup(infoSplit[infoSplit.Length - 2], saveNum);
-			item.GetLoadSaveButton().onClick.AddListener(delegate { LoadSave(saveNum); });
+			string[] infoSplit = info[i].Name.Split('.');
+			item.Setup(infoSplit[infoSplit.Length - 2], i);
+			item.GetLoadSaveButton().onClick.AddListener(delegate { LoadSave(i); });
 			//item.GetConfirmDeleteButton().onClick.AddListener(delegate { DeleteSave(saveNum); });
 		}
 	}
@@ -104,9 +112,10 @@ public class MenuSaveManager : MonoBehaviour {
 		foreach(GameObject go in saveListItems) {
 			Destroy(go);
 		}
+		saveListItems.Clear();
+
 		DirectoryInfo dir = new DirectoryInfo(Application.persistentDataPath + "/saves");
 		info = dir.GetFiles("*.*");
-		saveListItems.Clear();
 	}
 
 	public void LoadSave(int saveNum) {
@@ -138,49 +147,90 @@ public class MenuSaveManager : MonoBehaviour {
 		saveNameInputField.ActivateInputField();
 	}
 
-	public void OnChangeDifficulty() {
-		difficultyBlurb.text = difficultyBlurbs[saveDifficultyDropdown.value];
+	public void OnChangeName (string _worldName)
+    {
+		saveNameInputField.SetTextWithoutNotify(_worldName);
+
+		ChangeName(_worldName);
+    }
+
+	void ChangeName (string _worldName)
+    {
+		worldName = _worldName;
+
+		if (string.IsNullOrEmpty(worldName))
+		{
+			saveErrorText.text = "Please enter a valid name.";
+			saveErrorHolder.SetActive(true);
+			return;
+		}
+		foreach (FileInfo f in info)
+		{
+			string[] infoSplit = f.Name.Split('.');
+			if (infoSplit[infoSplit.Length - 2] == worldName)
+			{
+				saveErrorText.text = "Please enter a name that isn't taken.";
+				saveErrorHolder.SetActive(true);
+				return;
+			}
+		}
+
+		saveErrorHolder.SetActive(false);
 	}
 
-	public void OnChangeMode() {
-		modeBlurb.text = modeBlurbs[saveModeDropdown.value];
+	public void OnChangeDifficulty(int _difficulty) {
+		difficultyBlurb.text = difficultyBlurbs[saveDifficultyDropdown.value];
+		saveDifficultyDropdown.SetValueWithoutNotify(_difficulty);
+
+		ChangeDifficulty(_difficulty);
 	}
+
+	void ChangeDifficulty (int _difficulty)
+    {
+		difficulty = _difficulty;
+	}
+
+	public void OnChangeMode(int _gamemode) {
+		modeBlurb.text = modeBlurbs[saveModeDropdown.value];
+		saveModeDropdown.SetValueWithoutNotify(_gamemode);
+
+		ChangeMode(_gamemode);
+	}
+
+	void ChangeMode (int _gamemode)
+    {
+		gamemode = _gamemode;
+    }
 
 	public void CreateNewSave() {
-		string saveName = saveNameInputField.text;
-
-		if(string.IsNullOrEmpty(saveName)) {
-			saveErrorText.text = "Please enter a valid name.";
-			saveErrorText.gameObject.SetActive(true);
+		if(string.IsNullOrEmpty(worldName))
 			return;
-		} else {
-			foreach(FileInfo f in info) {
-				string[] infoSplit = f.Name.Split('.');
-				if(infoSplit[infoSplit.Length - 2] == saveName) {
-					saveErrorText.text = "Please enter a name that isn't taken.";
-					saveErrorText.gameObject.SetActive(true);
-					return;
-				}
+
+		foreach (FileInfo f in info)
+		{
+			string[] infoSplit = f.Name.Split('.');
+			if (infoSplit[infoSplit.Length - 2] == worldName)
+			{
+				return;
 			}
 		}
+
 		try
 		{
-			FileStream newFile = File.Create(SaveManager.GetSavePath(saveName, false));
+			FileStream newFile = File.Create(SaveManager.GetSavePath(worldName, false));
 			newFile.Close();
-		} catch (Exception e)
-        {
-			Debug.LogWarning("Could not create save named '" + saveName + "', due to exception '" + e.Message + "'.");
-			if (saveErrorText)
-			{
-				saveErrorText.text = "Please enter a valid name.";
-				saveErrorText.gameObject.SetActive(true);
-			}
-			return; 
+		}
+		catch (Exception e)
+		{
+			Debug.LogWarning("Could not create save named '" + worldName + "', due to exception '" + e.Message + "'.");
+			saveErrorText.text = "Unexpected exception: " + e.Message;
+			saveErrorText.gameObject.SetActive(true);
+			return;
 		}
 
-		PersistentData.Instance.newSaveName = saveNameInputField.text;
-		PersistentData.Instance.difficulty = saveDifficultyDropdown.value;
-		PersistentData.Instance.mode = saveModeDropdown.value;
+		PersistentData.Instance.newSaveName = worldName;
+		PersistentData.Instance.difficulty = difficulty;
+		PersistentData.Instance.mode = gamemode;
 		PersistentData.Instance.loadingFromSave = false;
 		PersistentData.Instance.saveToLoad = info.Length;
 		menuManager.LoadScene("World");
