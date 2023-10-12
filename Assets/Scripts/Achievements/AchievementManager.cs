@@ -13,8 +13,6 @@ public class AchievementManager : MonoBehaviour {
 
 	AchievementHandler[] achievementHandlers;
 
-	PlayerController player;
-
 	void Awake() {
 		if (Instance)
         {
@@ -22,7 +20,6 @@ public class AchievementManager : MonoBehaviour {
 			return;
         }
 		Instance = this;
-		player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 
 		int achievementCount = AchievementDatabase.GetAllAchievements().Length;
 		hasAchievements = new bool[achievementCount];
@@ -43,7 +40,7 @@ public class AchievementManager : MonoBehaviour {
 		}
 	}
 
-	public void ShowAchievement(int achievementID) {
+    public void ShowAchievement(int achievementID) {
 		GameObject achievementObj = Instantiate(achievementPrefab, achievementContainer);
 		AchievementHandler handler = achievementObj.GetComponent<AchievementHandler>();
 
