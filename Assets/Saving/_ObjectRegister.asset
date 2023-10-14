@@ -306,15 +306,23 @@ MonoBehaviour:
       type: 3}
     nameIdentifier: droppedItemDoorDouble
     id: 81
-  - prefab: {fileID: 2483805464790223854, guid: 73ab5504c9522874d9c8fe632012e1e1,
+  - prefab: {fileID: 7130249548374244762, guid: 2a37e7a3061aa724a892e550c39747d5,
       type: 3}
-    nameIdentifier: droppedItemSand
+    nameIdentifier: droppedItemDoorSolid
     id: 82
   - prefab: {fileID: 2070620076365560296, guid: 7ed85cbeb64fba44791f32165a150379,
       type: 3}
     nameIdentifier: pickupWood
     id: 83
-  - prefab: {fileID: 8052680824985969947, guid: 725d12b47d665aa45877ffed8bcd847b,
+  - prefab: {fileID: 8245448996926063280, guid: f8273fbe6b671c2479edf9072e9bdc9e,
       type: 3}
-    nameIdentifier: droppedItemResin
+    nameIdentifier: worldItemDoorSolid
+    id: 84
+  - prefab: {fileID: 8892163534873669021, guid: a45456231c1f7984ba24f3cf3a4ccd88,
+      type: 3}
+    nameIdentifier: droppedItemDoorDoubleSolid
+    id: 84
+  - prefab: {fileID: 3376051884318697083, guid: f25328b22d4cf29479696d0afbce0009,
+      type: 3}
+    nameIdentifier: worldItemDoorDoubleSolid
     id: 84

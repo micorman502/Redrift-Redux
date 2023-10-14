@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9054553737ebdbf499c59d51c1852601, type: 3}
-  m_Name: FloorSolid
+  m_Name: DoorDoubleSolid
   m_EditorClassIdentifier: 
-  itemName: Solid Floor
-  itemDescription: 
+  itemName: Solid Double Door
+  itemDescription: Opens backwards
   stackSize: 20
   stackPrefix: x
-  id: 40
+  id: 47
   achievementId: -1
-  icon: {fileID: 21300000, guid: cd5fdc98b7b9bc74385a64933bf691a0, type: 3}
-  droppedPrefab: {fileID: 4745434317370439412, guid: fa14fb58e59369a45a66442553d0bf64,
+  icon: {fileID: 21300000, guid: e8f50fd8f7f795b47b42a2c86ec96df3, type: 3}
+  droppedPrefab: {fileID: 8892163534873669021, guid: a45456231c1f7984ba24f3cf3a4ccd88,
     type: 3}
   gridSize: 0.5
   upwardsOffset: {x: 0, y: 0, z: 0}
@@ -29,7 +29,7 @@ MonoBehaviour:
   - {x: 0, y: 180, z: 0}
   - {x: 0, y: 270, z: 0}
   alignToNormal: 0
-  previewPrefab: {fileID: 9098290101114580629, guid: 053d6f1a9ad270748addb499da1f6922,
+  previewPrefab: {fileID: 6561355344752329659, guid: ccd036a894c0641438ab7f0e387f85f4,
     type: 3}
-  placedObject: {fileID: 8111573108411210730, guid: f29e2473e72dd07479ee2261e33638d9,
+  placedObject: {fileID: 3376051884318697083, guid: f25328b22d4cf29479696d0afbce0009,
     type: 3}

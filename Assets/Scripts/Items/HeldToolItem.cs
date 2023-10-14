@@ -6,7 +6,7 @@ public class HeldToolItem : HeldItem
 {
     [SerializeField] PlayerController controller;
     [SerializeField] PlayerInventory inventory;
-    [SerializeField] Animation anim;
+    [SerializeField] Animator anim;
     ToolInfo tool;
     bool keyPressedThisFrame;
     float gatherStartedTime;
@@ -73,6 +73,11 @@ public class HeldToolItem : HeldItem
         currentResource = null;
 
         UIEvents.CallDisableProgressBar();
+
+        if (anim)
+        {
+            anim.SetBool("Gather", false);
+        }
     }
 
     void StartGather (GameObject target)
@@ -97,6 +102,11 @@ public class HeldToolItem : HeldItem
         currentResource = resource;
 
         UIEvents.CallInitialiseProgressBar(gatherDuration);
+
+        if (anim)
+        {
+            anim.SetBool("Gather", true);
+        }
     }
 
     void ProgressGather ()
