@@ -4,13 +4,54 @@ using UnityEngine;
 
 [CreateAssetMenu]
 public class Recipe : ScriptableObject {
-	public WorldItem[] inputs;
+    public enum RecipeCategory { All, Construction, Resources, Tools, Automation, Decoration };
+    public WorldItem[] inputs;
 	public WorldItem[] replacedItems;
 	public WorldItem output;
-	public RecipeManager.Categories[] categories;
+	public RecipeCategory[] categories;
     public int id;
 
-	public bool UsesItem (WorldItem item)
+    #region Self-Contained Functions
+    public bool MatchesCategory (RecipeCategory otherCategory)
+    {
+        foreach (RecipeCategory category in categories)
+        {
+            if (EqualCategories(category, otherCategory))
+                return true;
+        }
+
+        return false;
+    }
+
+    public bool MatchesCategories (RecipeCategory[] otherCategories)
+    {
+        foreach (RecipeCategory category in categories)
+        {
+            foreach (RecipeCategory otherCategory in otherCategories)
+            {
+                if (category == otherCategory)
+                    return true;
+            }
+        }
+
+        return false;
+    }
+
+    static bool EqualCategories (RecipeCategory a, RecipeCategory b)
+    {
+        if (a == b)
+            return true;
+        if (a == RecipeCategory.All)
+            return true;
+        if (b == RecipeCategory.All)
+            return true;
+        return false;
+    }
+
+    #endregion
+
+    #region Inventory Functions
+    public bool UsesItem (WorldItem item)
     {
 		foreach (WorldItem input in inputs)
         {
@@ -26,45 +67,50 @@ public class Recipe : ScriptableObject {
     {
 		List<WorldItem> newOutputs = new List<WorldItem>();
 
-		for (int i = 0; i < replacedItems.Length; i++)
+        newOutputs.Add(output);
+        for (int i = 0; i < replacedItems.Length; i++)
 		{
 			newOutputs.Add(replacedItems[i]);
 		}
-		newOutputs.Add(output);
 
 		return newOutputs.ToArray();
     }
 
     public bool IsCraftable(Inventory inventory)
     {
-        int[] inputAmounts = new int[inputs.Length];
+        if (inventory.SpaceLeftForItem(output) < output.amount)
+            return false;
 
-        foreach (InventorySlot invItem in inventory.Slots)
+        foreach (WorldItem item in inputs) //check to ensure that the crafting ingredients are available
         {
-            if (invItem.Item)
+            if (inventory.GetItemTotal(item.item) < item.amount)
             {
-                int i = 0;
-                foreach (WorldItem item in inputs)
-                {
-                    if (invItem.Item == item.item)
-                    {
-                        inputAmounts[i] += invItem.Count;
-                        break;
-                    }
-                    i++;
-                }
+                return false;
             }
         }
 
-        bool canCraft = true;
-        for (int i = 0; i < inputAmounts.Length; i++)
-        {
-            if (!(inputAmounts[i] >= inputs[i].amount))
-            {
-                canCraft = false;
-            }
-        }
-
-        return canCraft;
+        return true;
     }
+
+    public void Craft (Inventory inventory)
+    {
+        Craft(inventory, false);
+    }
+
+    public void Craft (Inventory inventory, bool doCraftableCheck)
+    {
+        if (doCraftableCheck && !IsCraftable(inventory))
+            return;
+
+        foreach (WorldItem item in inputs)
+        {
+            inventory.RemoveItem(item);
+        }
+
+        foreach (WorldItem item in TotalOutputs())
+        {
+            inventory.AddItem(item);
+        }
+    }
+    #endregion
 }

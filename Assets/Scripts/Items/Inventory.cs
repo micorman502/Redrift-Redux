@@ -25,20 +25,24 @@ public class Inventory
 	/// Add an amount of an item to the inventory
 	/// </summary>
 	/// <returns>The amount that was successfully added</returns>
-	public int AddItem(WorldItem item)
+	public int AddItem (WorldItem item)
+    {
+		return AddItem(item.item, item.amount);
+    }
+	public int AddItem(ItemInfo item, int amount)
 	{
-		int reserve = item.amount;
+		int reserve = amount;
 
 		foreach (var slot in Slots)
 		{
-			if(slot.Item == item.item)
+			if(slot.Item == item)
 			{
 				reserve -= slot.Add(reserve);
 
 				if(reserve == 0)
 				{
 					InventoryChanged?.Invoke();
-					return item.amount;
+					return amount;
 				}
 			}
 		}
@@ -47,13 +51,13 @@ public class Inventory
 		{
 			if(slot.Item == null)
 			{
-				slot.Initialize(item.item, 0);
+				slot.Initialize(item, 0);
 				reserve -= slot.Add(reserve);
 
 				if(reserve == 0)
 				{
 					InventoryChanged?.Invoke();
-					return item.amount;
+					return amount;
 				}
 			}
 		}
@@ -61,9 +65,9 @@ public class Inventory
 		InventoryChanged?.Invoke();
 		if (reserve > 0)
         {
-			ItemOverflow?.Invoke(new WorldItem(item.item,  reserve));
+			ItemOverflow?.Invoke(new WorldItem(item,  reserve));
         }
-		return item.amount;
+		return amount;
 	}
 
 	/// <summary>
@@ -90,15 +94,19 @@ public class Inventory
 	/// <returns>How much of a certain item can fit within this inventory.</returns>
 	public int SpaceLeftForItem (WorldItem item)
     {
+		return SpaceLeftForItem(item.item, item.amount);
+    }
+	public int SpaceLeftForItem (ItemInfo item, int amount)
+    {
 		int spaceLeft = 0;
 		foreach (var slot in Slots)
 		{
 			if (slot.Item == null)
 			{
-				spaceLeft += item.item.stackSize;
-			} else if (slot.Item == item.item)
+				spaceLeft += item.stackSize;
+			} else if (slot.Item == item)
             {
-				spaceLeft += item.item.stackSize - slot.Count;
+				spaceLeft += item.stackSize - slot.Count;
             }
 		}
 		return spaceLeft;
@@ -141,18 +149,23 @@ public class Inventory
 	/// Remove an amount of an item from the inventory. If there are left overs, they are ignored, so an amount you know is present via GetItemTotal.
 	/// </summary>
 	/// <returns>The amount of items that were successfully taken.</returns>
-	public int RemoveItem(WorldItem item)
+	public int RemoveItem (WorldItem item)
+    {
+		return RemoveItem(item.item, item.amount);
+    }
+
+	public int RemoveItem(ItemInfo item, int amount)
 	{
 		int amountTaken = 0;
 		foreach (var slot in Slots)
 		{
-			if(slot.Item == item.item)
+			if(slot.Item == item)
 			{
-				int removingAmt = slot.Remove(item.amount);
-				item.amount -= removingAmt;
+				int removingAmt = slot.Remove(amount);
+				amount -= removingAmt;
 				amountTaken += removingAmt;
 
-				if(item.amount == 0)
+				if(amount == 0)
 				{
 					InventoryChanged?.Invoke();
 					return amountTaken;
@@ -160,13 +173,13 @@ public class Inventory
 			}
 		}
 
-		Debug.LogError($"Left over items in RemoveItem(item, amount)! {item.amount}");
+		Debug.LogError($"Left over items in RemoveItem(item, amount)! {amount}"); //ISSUE: I have gotten a "Left over items in RemoveItem(item, amount)! 0" error before. Not sure what to make of this.
 		return amountTaken;
 	}
 
 	public int RemoveItem (ItemInfo item)
     {
-		return RemoveItem(new WorldItem(item, 1));
+		return RemoveItem(item, 1);
     }
 
 	/// <summary>
@@ -174,12 +187,16 @@ public class Inventory
 	/// </summary>
 	public void SetSlot (WorldItem item, int slotIndex)
     {
+		SetSlot(item.item, item.amount, slotIndex);
+    }
+	public void SetSlot (ItemInfo item, int amount, int slotIndex)
+    {
 		if (slotIndex >= Slots.Length)
         {
 			Debug.LogError($"SetSlot's slotIndex was outside the allowed bounds at slotIndex: {slotIndex}");
 			return;
         }
-		Slots[slotIndex].Initialize(item.item, item.amount);
+		Slots[slotIndex].Initialize(item, amount);
 		InventoryChanged?.Invoke();
 	}
 }

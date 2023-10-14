@@ -20,3 +20,4 @@ MonoBehaviour:
     item: {fileID: 11400000, guid: ea3dec4fdcf484b46a6d28d36fa965fb, type: 2}
     amount: 1
   categories: 01000000
+  id: 12

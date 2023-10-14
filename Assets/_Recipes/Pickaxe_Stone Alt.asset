@@ -16,10 +16,10 @@ MonoBehaviour:
   - item: {fileID: 11400000, guid: a82041a624ea06740b506ed16cbc66f3, type: 2}
     amount: 1
   - item: {fileID: 11400000, guid: 1e10d0584bbe2ee47ba56f3c6f0b6737, type: 2}
-    amount: 2
+    amount: 3
   replacedItems: []
   output:
     item: {fileID: 11400000, guid: b52f0e8a326894a439d7d3acd6bcc7f0, type: 2}
     amount: 1
   categories: 03000000
-  id: 0
+  id: 2

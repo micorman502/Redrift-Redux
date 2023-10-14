@@ -8,17 +8,11 @@ public class CraftingSlot : MonoBehaviour {
 	[SerializeField] Image icon;
 	[SerializeField] Text amountText;
 
-	PlayerInventory inventory;
-
-	void Start() {
-		inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>();
-	}
-
 	public void Setup (WorldItem newItem)
 	{
 		item = newItem;
 		icon.sprite = item.item.icon;
-		amountText.text = item.amount.ToString();
+		amountText.text = item.amount > 1 ? item.amount.ToString() : "";
 	}
 
 	public void OnItemPointerEnter() {

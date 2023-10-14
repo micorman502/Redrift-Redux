@@ -11,5 +11,4 @@ public static class InventoryEvents
     public static Action<int, int> InitialiseInventoryUI = delegate { }; //hotbar size, total inventory size
     public static Action<ItemInfo, InventorySlot> SetHoveredItem = delegate { };
     public static Action LeaveHoveredItem = delegate { };
-    public static Action<Recipe> ConstructItem = delegate { };
 }

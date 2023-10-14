@@ -98,12 +98,13 @@ public class MenuSaveManager : MonoBehaviour {
 	void RenderList() {
 		saveNameInputField.text = "World " + (info.Length + 1);
 		for(int i = 0; i < info.Length; i++) {
+			int saveNum = i; //this line seems unnecessary, but save numbers / indexes in PersistentData seem to be 1 higher than they should be without it. So, don't touch until it's figured out.
 			GameObject go = Instantiate(saveListItem, saveList.transform);
 			saveListItems.Add(go);
 			SaveListItem item = go.GetComponent<SaveListItem>();
-			string[] infoSplit = info[i].Name.Split('.');
-			item.Setup(infoSplit[infoSplit.Length - 2], i);
-			item.GetLoadSaveButton().onClick.AddListener(delegate { LoadSave(i); });
+			string[] infoSplit = info[saveNum].Name.Split('.');
+			item.Setup(infoSplit[infoSplit.Length - 2], saveNum);
+			item.GetLoadSaveButton().onClick.AddListener(delegate { LoadSave(saveNum); });
 			//item.GetConfirmDeleteButton().onClick.AddListener(delegate { DeleteSave(saveNum); });
 		}
 	}
