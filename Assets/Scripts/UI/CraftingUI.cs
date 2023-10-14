@@ -27,7 +27,7 @@ public class CraftingUI : MonoBehaviour //creates and assists with interacts bet
     PlayerCrafting crafting;
 
     #region Initialisation
-    void Awake ()
+    void Start ()
     {
         if (Instance)
         {
