@@ -95,11 +95,16 @@ public class RealmTeleportManager : MonoBehaviour
 
     public void TeleportToRealm (string realmName)
     {
+        TeleportToRealm(realmName, true);
+    }
+
+    public void TeleportToRealm (string realmName, bool doTeleport)
+    {
         for (int i = 0; i < realms.Length; i++)
         {
             if (realms[i].realmName == realmName)
             {
-                TeleportToRealm(i);
+                TeleportToRealm(i, doTeleport);
                 return;
             }
         }
@@ -108,6 +113,11 @@ public class RealmTeleportManager : MonoBehaviour
     }
 
     public void TeleportToRealm (int realmIndex)
+    {
+        TeleportToRealm(realmIndex, true);
+    }
+
+    public void TeleportToRealm (int realmIndex, bool doTeleport)
     {
         if (currentRealm != null)
         {
@@ -120,8 +130,10 @@ public class RealmTeleportManager : MonoBehaviour
 
         EnableRealm(currentRealmIndex);
 
-
-        TeleportPlayer(realmIndex);
+        if (doTeleport)
+        {
+            TeleportPlayer(realmIndex);
+        }
     }
 
     void DisableRealm (int realmIndex)
@@ -178,12 +190,15 @@ public class RealmTeleportManager : MonoBehaviour
 
     void TeleportPlayer (int targetRealm)
     {
+        if (!realms[targetRealm].realmTeleportPosition)
+            return;
+
         PlayerController.currentPlayer.transform.position = realms[targetRealm].realmTeleportPosition.position;
     }
 
     void TeleportPlayerToCurrentRealm ()
     {
-        PlayerController.currentPlayer.transform.position = realms[currentRealmIndex].realmTeleportPosition.position;
+        TeleportPlayer(currentRealmIndex);
     }
 
     public int GetCurrentRealmIndex ()

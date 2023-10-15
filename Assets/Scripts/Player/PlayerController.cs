@@ -34,8 +34,6 @@ public class PlayerController : MonoBehaviour
 	AudioManager audioManager;
 	PauseManager pauseManager;
 
-	[HideInInspector] public bool grounded;
-
 	float distanceToTarget; // Accesible from other GameObjects to see if they are in range of interaction and such //bruh
 	GameObject target;
 	RaycastHit targetHit;
@@ -222,7 +220,7 @@ public class PlayerController : MonoBehaviour
 		OnRespawn?.Invoke();
 
 		vitals.AddHealth(1000f);
-		RealmTeleportManager.Instance.TeleportToPreviousRealm();
+		RealmTeleportManager.Instance.TeleportToRealm("Light");
 	}
 
 	public GameObject GetTarget ()

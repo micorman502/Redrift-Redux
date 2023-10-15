@@ -16,5 +16,16 @@ public class PurgatoryTimer : MonoBehaviour
     void Update()
     {
         text.text = (Mathf.Round((timeSet + duration - Time.time) * 10) / 10).ToString();
+
+        if (Time.time > timeSet + duration)
+            RespawnPlayer();
+    }
+
+    void RespawnPlayer ()
+    {
+        if (!PlayerController.currentPlayer.dead)
+            return;
+
+        PlayerController.currentPlayer.Respawn();
     }
 }

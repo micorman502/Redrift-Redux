@@ -27,18 +27,17 @@ public class ConveyorBelt : MonoBehaviour, IItemSaveable, IGetTriggerInfo, IInte
 	}
 
 	public void GetTriggerInfoRepeating (Collider col)
-    {
-		Rigidbody itemRB = col.GetComponent<Rigidbody>();
+	{
+		if (!active)
+			return;
+
+		Rigidbody itemRB = col.attachedRigidbody;
 		if (!itemRB)
-		{
-			itemRB = col.GetComponentInParent<Rigidbody>();
-		}
-		if (itemRB)
-		{
-			itemRB.velocity = (itemRB.velocity + transform.forward).normalized * speeds[speedNum];
-			//itemRB.AddForce((transform.forward * speeds[speedNum]) - Vector3.Project(itemRB.velocity - Vector3.one, transform.forward.normalized));
-			//itemRB.AddRelativeForce(transform.forward * speeds[speedNum] - itemRB.velocity); // TODO: PUT IN FIXEDUPDATE!!! //Waltuh
-		}
+			return;
+
+		itemRB.velocity = (itemRB.velocity + transform.forward).normalized * speeds[speedNum];
+		//itemRB.AddForce((transform.forward * speeds[speedNum]) - Vector3.Project(itemRB.velocity - Vector3.one, transform.forward.normalized));
+		//itemRB.AddRelativeForce(transform.forward * speeds[speedNum] - itemRB.velocity); // TODO: PUT IN FIXEDUPDATE!!! //Waltuh
 	}
 
 	public void GetTriggerInfo (Collider col)

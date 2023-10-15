@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
 	const float baseDrag = 0.5f;
 
 	[HideInInspector] public Rigidbody rb;
+	[SerializeField] SphereCollider groundCheckReference;
 
 	public float walkSpeed;
 	public float runSpeed;
@@ -26,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
 
 	//Movement States
 	bool climbing;
-	bool grounded;
+	[SerializeField] bool grounded;
 	bool inWater;
 	bool flying;
 
@@ -115,7 +116,7 @@ public class PlayerMovement : MonoBehaviour
 	{
 		Collider[] waterCols = Physics.OverlapCapsule(transform.position - Vector3.up * 0.5f, transform.position + Vector3.up * 0.5f, 0.5f, LayerMask.GetMask("Water"));
 		Collider[] ladderCols = Physics.OverlapCapsule(transform.position - Vector3.up * 0.5f, transform.position + Vector3.up * 0.5f, 0.5f, LayerMask.GetMask("Ladder"));
-		Collider[] groundCols = Physics.OverlapBox(transform.position - Vector3.up * 0.5f, 0.5f * Vector3.one, Quaternion.identity, ~LayerMask.GetMask("Ignore Raycast", "Player", "PlayerGroundCheck"), QueryTriggerInteraction.Ignore);
+		Collider[] groundCols = Physics.OverlapSphere(groundCheckReference.transform.position, groundCheckReference.radius, ~LayerMask.GetMask("Ignore Raycast", "Player", "PlayerGroundCheck"), QueryTriggerInteraction.Ignore);
 
 		climbing = ladderCols.Length > 0;
 		inWater = waterCols.Length > 0;
