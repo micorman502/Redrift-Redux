@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CraftingUI : MonoBehaviour //creates and assists with interacts between and amongst CraftingUI scripts and player scripts (e.g. PlayerInventory)
+public class CraftingUI : MonoBehaviour //creates and assists with interactions between and amongst CraftingUI scripts and player scripts (e.g. PlayerInventory)
 {
     public static CraftingUI Instance { get; private set; }
 

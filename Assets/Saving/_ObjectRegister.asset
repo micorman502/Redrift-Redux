@@ -321,8 +321,15 @@ MonoBehaviour:
   - prefab: {fileID: 8892163534873669021, guid: a45456231c1f7984ba24f3cf3a4ccd88,
       type: 3}
     nameIdentifier: droppedItemDoorDoubleSolid
-    id: 84
+    id: 85
   - prefab: {fileID: 3376051884318697083, guid: f25328b22d4cf29479696d0afbce0009,
       type: 3}
     nameIdentifier: worldItemDoorDoubleSolid
-    id: 84
+    id: 86
+  - prefab: {fileID: 1020139488580098639, guid: aa4fa6b56f070b14ba9094edc81af34a,
+      type: 3}
+    nameIdentifier: droppedItemGrappleIron
+    id: 87
+  - prefab: {fileID: 472510647620999602, guid: 645f008ee3ceae5478e8de1a0631d15d, type: 3}
+    nameIdentifier: droppedItemGrappleCopper
+    id: 87

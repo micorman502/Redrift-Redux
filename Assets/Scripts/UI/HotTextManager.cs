@@ -10,6 +10,8 @@ public class HotTextManager : MonoBehaviour
     [SerializeField] Transform hotTextHolder;
     [SerializeField] GameObject hotTextObject;
 
+    bool queueUIReload;
+
     private void Awake ()
     {
         if (Instance)
@@ -19,6 +21,16 @@ public class HotTextManager : MonoBehaviour
             return;
         }
         Instance = this;
+    }
+
+    void Update ()
+    {
+        if (queueUIReload)
+        {
+            queueUIReload = false;
+
+            ReloadUI();
+        }
     }
 
     public void UpdateHotText (HotTextInfo info)
@@ -37,7 +49,7 @@ public class HotTextManager : MonoBehaviour
         if (!hotTexts.ContainsKey(info.id))
         {
             hotTexts.Add(info.id, info);
-            ReloadUI();
+            QueueUIReload();
         } else
         {
             Debug.LogWarning("Cannot AddHotText, as there is already a Hot Text with Id: " + info.id + ". Should ReplaceHotText be used instead?");
@@ -54,7 +66,7 @@ public class HotTextManager : MonoBehaviour
         if (hotTexts.ContainsKey(id))
         {
             hotTexts.Remove(id);
-            ReloadUI();
+            QueueUIReload();
         }
         else
         {
@@ -69,7 +81,12 @@ public class HotTextManager : MonoBehaviour
             hotTexts.Remove(info.id);
         }
         hotTexts.Add(info.id, info);
-        ReloadUI();
+        QueueUIReload();
+    }
+
+    void QueueUIReload ()
+    {
+        queueUIReload = true;
     }
 
     void ReloadUI ()
@@ -102,6 +119,8 @@ public class HotTextManager : MonoBehaviour
                 hottexts.Add(hotTexts[id]);
             }
         }
+
+        Debug.Log(hottexts.Count);
 
         for (int i = 0; i < hotTextHolder.childCount; i++)
         {
