@@ -9,16 +9,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4379201058741912}
-  - component: {fileID: 114241112111771592}
   - component: {fileID: 33765890939712516}
   - component: {fileID: 23894253114857878}
   - component: {fileID: 64247753242735322}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: DarkIsland
-  m_TagString: Resource
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 4294967294
   m_IsActive: 1
 --- !u!4 &4379201058741912
 Transform:
@@ -27,32 +26,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1974803944537682}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1659930817562338615}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114241112111771592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1974803944537682}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f79061d20a842d469809a664dac9635, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dontSave: 1
-  saveID: 0
-  dontRegisterToHivemind: 1
-  deathObject: {fileID: 0}
-  resource: {fileID: 11400000, guid: 85888302b409fcd4699b0f611b370231, type: 2}
-  health: 0
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &33765890939712516
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -81,8 +63,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bbfe26394f30d8c47b3d662ed71f075f, type: 2}
-  - {fileID: 2100000, guid: 7154a468391bf6d45a70ab0edeb0e953, type: 2}
+  - {fileID: 2100000, guid: 78969431ad5aabb47ab65a334c981e22, type: 2}
+  - {fileID: 2100000, guid: 77145ed75e6bc564cb8643e6ada915fe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -118,3 +100,60 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300004, guid: 98d959ab6a8da274fbbaaeb4a6569411, type: 3}
+--- !u!1 &2780651135764696967
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1659930817562338615}
+  - component: {fileID: 2192912081176603607}
+  m_Layer: 0
+  m_Name: Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1659930817562338615
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2780651135764696967}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4379201058741912}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2192912081176603607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2780651135764696967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 503f1a759e968444b8de08a2a07d8b00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkRate: 1
+  spawnTarget: {fileID: 4379201058741912}
+  bounds: {x: 22.5, y: 0, z: 22.5}
+  spawns:
+  - spawnPrefab: {fileID: 227868291145765972, guid: 3410e4e7c0c8a28418c016ed1e63990c,
+      type: 3}
+    raycastOffset: {x: 0, y: 200, z: 0}
+    raycastDirection: {x: 0, y: -1, z: 0}
+    boundsMultiplier: {x: 1, y: 1, z: 1}
+    initialSpawnAmountMin: 1
+    initialSpawnAmountMax: 2
+    spawnFrequency: 350
+    nextSpawnTime: 0

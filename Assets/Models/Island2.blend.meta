@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 601581e17567d124e8c734134b8c9851
 ModelImporter:
-  serializedVersion: 21100
+  serializedVersion: 21202
   internalIDToNameTable:
   - first:
       1: 100000
@@ -74,12 +74,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Island2Dirt
-    second: {fileID: 2100000, guid: d9860cba369ae9c41b29a126471d7863, type: 2}
+    second: {fileID: 2100000, guid: 96406cd947e3702419cb416ea1ddc427, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Island2Grass
-    second: {fileID: 2100000, guid: fabfae8329f3b2743b89092514441db7, type: 2}
+    second: {fileID: 2100000, guid: 75c9094f0b56a024aab9f98675f351ea, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -95,6 +95,7 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
     motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
@@ -124,6 +125,7 @@ ModelImporter:
     importBlendShapes: 1
     importCameras: 0
     importLights: 0
+    nodeNameCollisionStrategy: 0
     fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
@@ -135,6 +137,7 @@ ModelImporter:
     skinWeightsMode: 0
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
+    optimizeBones: 1
     meshOptimizationFlags: -1
     indexFormat: 1
     secondaryUVAngleDistortion: 8
