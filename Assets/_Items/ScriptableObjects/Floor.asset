@@ -16,12 +16,14 @@ MonoBehaviour:
   itemDescription: 
   stackSize: 20
   stackPrefix: x
-  id: 0
+  id: 15
   achievementId: 2
   icon: {fileID: 21300000, guid: 70a9cacecab29f6419ddc2034150ca10, type: 3}
   droppedPrefab: {fileID: 4888179155233729200, guid: df04021c2e5bb2044a282d8e36fbbae3,
     type: 3}
   gridSize: 0.5
+  approximateRadius: 1
+  upwardsOffset: {x: 0, y: 0, z: 0}
   possibleRotations:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 90, z: 0}
