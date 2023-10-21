@@ -116,7 +116,7 @@ public class PlayerBuilding : MonoBehaviour
         if (inventory.inventory.GetItemTotal(currentBuilding) <= 0)
             return false;
         Physics.Linecast(camTransform.position, previewObject.transform.position, out RaycastHit hit, LayerMask.GetMask("World"), QueryTriggerInteraction.Ignore);
-        if (Vector3.Distance(hit.point, previewObject.transform.position) > currentBuilding.approximateRadius)
+        if (hit.transform && Vector3.Distance(hit.point, previewObject.transform.position) > currentBuilding.approximateRadius)
             return false;
 
         return true;
