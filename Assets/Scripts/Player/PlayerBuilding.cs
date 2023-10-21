@@ -98,16 +98,27 @@ public class PlayerBuilding : MonoBehaviour
     {
         if (!LookLocker.MouseLocked)
             return;
-        if (inventory.inventory.GetItemTotal(currentBuilding) > 0)
-        {
-            AlignBuildingRot();
-            AlignBuildingPos();
+        if (!BuildingValid())
+            return;
+        AlignBuildingRot();
+        AlignBuildingPos();
 
-            Instantiate(currentBuilding.placedObject, previewObject.transform.position, previewObject.transform.rotation);
-            inventory.inventory.RemoveItem(new WorldItem(currentBuilding, 1));
+        Instantiate(currentBuilding.placedObject, previewObject.transform.position, previewObject.transform.rotation);
+        inventory.inventory.RemoveItem(new WorldItem(currentBuilding, 1));
 
-            AudioManager.Instance.Play("Build");
-        }
+        AudioManager.Instance.Play("Build");
+    }
+
+    bool BuildingValid ()
+    {
+        if (!currentBuilding)
+            return false;
+        if (inventory.inventory.GetItemTotal(currentBuilding) <= 0)
+            return false;
+        if (Physics.Linecast(camTransform.position, previewObject.transform.position, ~LayerMask.GetMask("Player", "PlayerGroundCheck"), QueryTriggerInteraction.Ignore))
+            return false;
+
+        return true;
     }
 
     public void SetBuildingRotation (int rotationChange)
