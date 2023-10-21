@@ -332,4 +332,8 @@ MonoBehaviour:
     id: 87
   - prefab: {fileID: 472510647620999602, guid: 645f008ee3ceae5478e8de1a0631d15d, type: 3}
     nameIdentifier: droppedItemGrappleCopper
-    id: 87
+    id: 88
+  - prefab: {fileID: 9058147206523128972, guid: ec156e67770c7654e909d00805b3fa13,
+      type: 3}
+    nameIdentifier: resourceSiliconNode
+    id: 88

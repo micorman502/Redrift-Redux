@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 53d39e7a4c9ac5a40b92a8a9a7ba92eb, type: 3}
-  m_Name: IronOre
+  m_Name: res_Stone
   m_EditorClassIdentifier: 
-  resourceName: Iron Ore
-  prefab: {fileID: 1078551866452224, guid: ffaf4c1f892bb4a49b183f3d4721e106, type: 3}
-  id: 2
+  resourceName: Stone
+  prefab: {fileID: 1813677803362390, guid: 2dba0152a55eceb4fab9f576fbbf9bd1, type: 3}
+  id: 4
   resourceItems:
-  - {fileID: 11400000, guid: 7126648dde3fce64fb14c7cadd9038fe, type: 2}
+  - {fileID: 11400000, guid: 1e10d0584bbe2ee47ba56f3c6f0b6737, type: 2}
   chances:
   - 1
-  maxGathers: 5
-  gatherTime: 12
+  maxGathers: 8
+  gatherTime: 8
   infiniteGathers: 0

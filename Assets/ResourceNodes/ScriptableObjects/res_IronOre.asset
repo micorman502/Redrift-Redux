@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 53d39e7a4c9ac5a40b92a8a9a7ba92eb, type: 3}
-  m_Name: Tree
+  m_Name: res_IronOre
   m_EditorClassIdentifier: 
-  resourceName: Tree
-  prefab: {fileID: 1523322516565944, guid: c5b0387d80fa75244b875949079823ed, type: 3}
-  id: 5
+  resourceName: Iron Ore
+  prefab: {fileID: 1078551866452224, guid: ffaf4c1f892bb4a49b183f3d4721e106, type: 3}
+  id: 2
   resourceItems:
-  - {fileID: 11400000, guid: 60defaddcf0f8ff46adb2b4cb7af81a3, type: 2}
+  - {fileID: 11400000, guid: 7126648dde3fce64fb14c7cadd9038fe, type: 2}
   chances:
   - 1
-  maxGathers: 6
-  gatherTime: 2.5
+  maxGathers: 5
+  gatherTime: 12
   infiniteGathers: 0

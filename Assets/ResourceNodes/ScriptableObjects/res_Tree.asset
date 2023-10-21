@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 53d39e7a4c9ac5a40b92a8a9a7ba92eb, type: 3}
-  m_Name: CopperOre
+  m_Name: res_Tree
   m_EditorClassIdentifier: 
-  resourceName: Copper Ore
-  prefab: {fileID: 1947450143509860, guid: 78341bb0c31c4f54493eba09b10f7179, type: 3}
-  id: 0
+  resourceName: Tree
+  prefab: {fileID: 1523322516565944, guid: c5b0387d80fa75244b875949079823ed, type: 3}
+  id: 5
   resourceItems:
-  - {fileID: 11400000, guid: cc1dea67642fcc94793fc67b8b1116d7, type: 2}
+  - {fileID: 11400000, guid: 60defaddcf0f8ff46adb2b4cb7af81a3, type: 2}
   chances:
   - 1
-  maxGathers: 3
-  gatherTime: 12
+  maxGathers: 6
+  gatherTime: 2.5
   infiniteGathers: 0

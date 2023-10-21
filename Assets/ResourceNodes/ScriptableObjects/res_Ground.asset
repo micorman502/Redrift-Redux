@@ -10,15 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 53d39e7a4c9ac5a40b92a8a9a7ba92eb, type: 3}
-  m_Name: Mountain
+  m_Name: res_Ground
   m_EditorClassIdentifier: 
-  resourceName: Mountain
+  resourceName: Ground
   prefab: {fileID: 0}
-  id: 3
+  id: 1
   resourceItems:
-  - {fileID: 11400000, guid: 1e10d0584bbe2ee47ba56f3c6f0b6737, type: 2}
+  - {fileID: 11400000, guid: 4c86a247f11b50449a1ffe306894dd30, type: 2}
+  - {fileID: 11400000, guid: b10baaad17f1c344194cb78d2e0d1f97, type: 2}
   chances:
   - 1
+  - 0.33
   maxGathers: 0
-  gatherTime: 8
+  gatherTime: 1
   infiniteGathers: 1

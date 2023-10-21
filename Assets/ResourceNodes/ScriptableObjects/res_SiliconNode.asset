@@ -10,15 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 53d39e7a4c9ac5a40b92a8a9a7ba92eb, type: 3}
-  m_Name: Quartz
+  m_Name: res_SiliconNode
   m_EditorClassIdentifier: 
-  resourceName: Quartz
-  prefab: {fileID: 5970644240723651174, guid: 3db2ce2a098d78246b10dd12a461d382, type: 3}
-  id: 6
+  resourceName: Silicon Node
+  prefab: {fileID: 9058147206523128972, guid: ec156e67770c7654e909d00805b3fa13, type: 3}
+  id: 7
   resourceItems:
-  - {fileID: 11400000, guid: 19959c1ad811c5946bf57467378b4830, type: 2}
+  - {fileID: 11400000, guid: 543cff03c890414498c3dbf496ca8913, type: 2}
+  - {fileID: 11400000, guid: ae8fcd34f9c789148acaf4358b6c5f2b, type: 2}
   chances:
   - 1
-  maxGathers: 3
+  - 0.33
+  maxGathers: 2
   gatherTime: 10
   infiniteGathers: 0
