@@ -95,7 +95,7 @@ public class Bucket : MonoBehaviour {
 	}
 
 	void CheckWorldType() {
-		if(transform.position.x < 5000f) {
+		if(transform.position.y > -100f) {
 			worldType = WorldManager.WorldType.Light;
 		} else {
 			worldType = WorldManager.WorldType.Dark;
