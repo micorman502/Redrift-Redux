@@ -4920,6 +4920,7 @@ Transform:
   - {fileID: 485412287032514809}
   - {fileID: 8356256043195753846}
   - {fileID: 174707529714665965}
+  - {fileID: 2224583471668426245}
   m_Father: {fileID: 4879005457162818}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -20059,6 +20060,7 @@ MonoBehaviour:
   - {fileID: 8213135374421508676}
   - {fileID: 5139214947727300771}
   - {fileID: 1851545866688191424}
+  - {fileID: 8089612297590379779}
   inventorySize: 30
   placingStructure: 0
   selectedHotbarSlot: 0
@@ -25627,6 +25629,55 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1201969699713308056
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2224583471668426245}
+  - component: {fileID: 8089612297590379779}
+  m_Layer: 11
+  m_Name: Mulberry Held Item
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2224583471668426245
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201969699713308056}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6331217043424805275}
+  m_Father: {fileID: 4198538540125010}
+  m_RootOrder: 48
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8089612297590379779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201969699713308056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8679950b38869b479775ee9b4170064, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 7c6fb0a483f68174dbdbc5e677cfe1e7, type: 2}
+  itemGameObject: {fileID: 6671749660753550113}
+  inventory: {fileID: 114380057707737522}
+  vitals: {fileID: 2606645611693725356}
 --- !u!1 &1268462874647331696
 GameObject:
   m_ObjectHideFlags: 0
@@ -32312,6 +32363,92 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 781084286d736d845938d2e642d9f009,
     type: 3}
   m_PrefabInstance: {fileID: 5758172150666226483}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5789299419597858416
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2224583471668426245}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: d92377bc50d19e44ea8cc4e857a3ec8a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d92377bc50d19e44ea8cc4e857a3ec8a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d92377bc50d19e44ea8cc4e857a3ec8a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d92377bc50d19e44ea8cc4e857a3ec8a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d92377bc50d19e44ea8cc4e857a3ec8a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d92377bc50d19e44ea8cc4e857a3ec8a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d92377bc50d19e44ea8cc4e857a3ec8a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d92377bc50d19e44ea8cc4e857a3ec8a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d92377bc50d19e44ea8cc4e857a3ec8a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d92377bc50d19e44ea8cc4e857a3ec8a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d92377bc50d19e44ea8cc4e857a3ec8a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d92377bc50d19e44ea8cc4e857a3ec8a,
+        type: 3}
+      propertyPath: m_Name
+      value: Mulberry
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d92377bc50d19e44ea8cc4e857a3ec8a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d92377bc50d19e44ea8cc4e857a3ec8a, type: 3}
+--- !u!4 &6331217043424805275 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d92377bc50d19e44ea8cc4e857a3ec8a,
+    type: 3}
+  m_PrefabInstance: {fileID: 5789299419597858416}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6671749660753550113 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d92377bc50d19e44ea8cc4e857a3ec8a,
+    type: 3}
+  m_PrefabInstance: {fileID: 5789299419597858416}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5833016292180426556
 PrefabInstance:

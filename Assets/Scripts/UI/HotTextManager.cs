@@ -120,8 +120,6 @@ public class HotTextManager : MonoBehaviour
             }
         }
 
-        Debug.Log(hottexts.Count);
-
         for (int i = 0; i < hotTextHolder.childCount; i++)
         {
             GameObject child =  hotTextHolder.GetChild(i).gameObject;

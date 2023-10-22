@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 33564945448396882}
   - component: {fileID: 23029161075497060}
   - component: {fileID: 64195554821977784}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MountainIsland
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4995519350023358}
-  m_Layer: 0
+  - component: {fileID: 314782630}
+  m_Layer: 3
   m_Name: Island2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,6 +133,40 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &314782630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362253887463666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 503f1a759e968444b8de08a2a07d8b00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkRate: 1
+  spawnTarget: {fileID: 4995519350023358}
+  bounds: {x: 16, y: 0, z: 16}
+  spawns:
+  - spawnPrefab: {fileID: 1523322516565944, guid: c5b0387d80fa75244b875949079823ed,
+      type: 3}
+    raycastOffset: {x: 0, y: 200, z: 0}
+    raycastDirection: {x: 0, y: -1, z: 0}
+    boundsMultiplier: {x: 1, y: 1, z: 1}
+    initialSpawnAmountMin: 1
+    initialSpawnAmountMax: 2
+    spawnFrequency: 400
+    nextSpawnTime: 0
+  - spawnPrefab: {fileID: 129081422961363737, guid: f7177a55266349a409944e3e82327ba1,
+      type: 3}
+    raycastOffset: {x: 0, y: 200, z: 0}
+    raycastDirection: {x: 0, y: -1, z: 0}
+    boundsMultiplier: {x: 1, y: 1, z: 1}
+    initialSpawnAmountMin: 2
+    initialSpawnAmountMax: 5
+    spawnFrequency: 200
+    nextSpawnTime: 0
 --- !u!1 &1367341864001008
 GameObject:
   m_ObjectHideFlags: 0

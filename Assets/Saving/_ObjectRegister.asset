@@ -336,4 +336,11 @@ MonoBehaviour:
   - prefab: {fileID: 9058147206523128972, guid: ec156e67770c7654e909d00805b3fa13,
       type: 3}
     nameIdentifier: resourceSiliconNode
-    id: 88
+    id: 89
+  - prefab: {fileID: 129081422961363737, guid: f7177a55266349a409944e3e82327ba1, type: 3}
+    nameIdentifier: resourceTreeMulberry
+    id: 89
+  - prefab: {fileID: 6532653544664487598, guid: 277be14c6a1a8d148b403e3ffc64891a,
+      type: 3}
+    nameIdentifier: droppedItemMulberry
+    id: 89

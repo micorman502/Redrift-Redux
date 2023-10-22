@@ -86,7 +86,7 @@ public class ResourceSpawner : MonoBehaviour
 			{
 				if (hit.collider.gameObject.layer == LayerMask.NameToLayer("World"))
 				{
-					SpawnResource(spawn.spawnPrefab, hit.point, Quaternion.LookRotation(hit.normal));
+					SpawnResource(spawn.spawnPrefab, hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal));
 
 					return;
 				}
@@ -98,7 +98,7 @@ public class ResourceSpawner : MonoBehaviour
     {
 		GameObject obj = Instantiate(resource, position, rotation);
 		HiveMind.Instance.AddResource(obj.GetComponent<ResourceHandler>());
-		obj.transform.Rotate(Vector3.forward * Random.Range(0f, 360f));
+		obj.transform.Rotate(Vector3.up * Random.Range(0f, 360f));
 	}
 }
 

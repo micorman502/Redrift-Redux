@@ -45,7 +45,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.35, y: 1.5, z: 0.35}
+  m_Size: {x: 0.35, y: 0.35, z: 1.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2804661098930711777
 MonoBehaviour:
@@ -107,11 +107,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c772a5e545380b749947f8a8946794d4, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c772a5e545380b749947f8a8946794d4, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c772a5e545380b749947f8a8946794d4, type: 3}
       propertyPath: m_LocalRotation.y
@@ -123,7 +123,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c772a5e545380b749947f8a8946794d4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c772a5e545380b749947f8a8946794d4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
