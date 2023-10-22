@@ -45140,7 +45140,7 @@ GameObject:
   - component: {fileID: 1895658906}
   - component: {fileID: 1895658905}
   - component: {fileID: 1895658904}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Void Ocean
   m_TagString: Untagged
   m_Icon: {fileID: 0}
