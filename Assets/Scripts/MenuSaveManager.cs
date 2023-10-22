@@ -180,7 +180,7 @@ public class MenuSaveManager : MonoBehaviour {
 	}
 
 	public void OnChangeDifficulty(int _difficulty) {
-		difficultyBlurb.text = difficultyBlurbs[saveDifficultyDropdown.value];
+		difficultyBlurb.text = difficultyBlurbs[_difficulty];
 		saveDifficultyDropdown.SetValueWithoutNotify(_difficulty);
 
 		ChangeDifficulty(_difficulty);
@@ -192,7 +192,7 @@ public class MenuSaveManager : MonoBehaviour {
 	}
 
 	public void OnChangeMode(int _gamemode) {
-		modeBlurb.text = modeBlurbs[saveModeDropdown.value];
+		modeBlurb.text = modeBlurbs[_gamemode];
 		saveModeDropdown.SetValueWithoutNotify(_gamemode);
 
 		ChangeMode(_gamemode);
