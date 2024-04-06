@@ -94,6 +94,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 7535225904043419654}
   hoverSfxName: UIHover
+  clickSfxName: UIClick
   hoverBoolName: mouseHover
 --- !u!114 &6192392075272200925
 MonoBehaviour:
@@ -143,7 +144,19 @@ MonoBehaviour:
   - eventID: 4
     callback:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 865509703820543000}
+          m_TargetAssemblyTypeName: HoverableUI, Assembly-CSharp
+          m_MethodName: OnClick
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!95 &7535225904043419654
 Animator:
   serializedVersion: 4
