@@ -37749,6 +37749,41 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1546869074}
     m_Modifications:
+    - target: {fileID: 6192392075272200925, guid: 573fae5ed101b8845b3df6d5cf8f6e51,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6192392075272200925, guid: 573fae5ed101b8845b3df6d5cf8f6e51,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6192392075272200925, guid: 573fae5ed101b8845b3df6d5cf8f6e51,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2019392284}
+    - target: {fileID: 6192392075272200925, guid: 573fae5ed101b8845b3df6d5cf8f6e51,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6192392075272200925, guid: 573fae5ed101b8845b3df6d5cf8f6e51,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CreateNewSave
+      objectReference: {fileID: 0}
+    - target: {fileID: 6192392075272200925, guid: 573fae5ed101b8845b3df6d5cf8f6e51,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MenuSaveManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6192392075272200925, guid: 573fae5ed101b8845b3df6d5cf8f6e51,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6268377736882416179, guid: 573fae5ed101b8845b3df6d5cf8f6e51,
         type: 3}
       propertyPath: m_Pivot.x
