@@ -6,6 +6,7 @@ public class HoverableUI : MonoBehaviour
 {
     [SerializeField] Animator animator;
     [SerializeField] string hoverSfxName;
+    [SerializeField] string clickSfxName;
     [SerializeField] string hoverBoolName;
     
     public void SetHoverState (bool state)
@@ -16,5 +17,10 @@ public class HoverableUI : MonoBehaviour
         {
             AudioManager.Instance.Play(hoverSfxName);
         }
+    }
+
+    public void OnClick ()
+    {
+        AudioManager.Instance.Play(clickSfxName);
     }
 }
