@@ -42,13 +42,7 @@ public class PlayerController : MonoBehaviour
 
 	[HideInInspector] public bool dead = false;
 
-	public float impactVelocityToDamage = 1f;
-	public float impactDamage = 20f;
-	float lastImpact;
-
 	public float handDamage = 15f;
-
-	bool ignoreFallDamage;
 
 	GameObject lastInteractionGameObject;
 
@@ -167,31 +161,6 @@ public class PlayerController : MonoBehaviour
 				}
 			}
 		}
-	}
-
-	void OnCollisionEnter (Collision col)
-	{
-		if (col.relativeVelocity.magnitude >= impactVelocityToDamage && !dead && PersistentData.Instance.mode != 1)
-		{
-			if (ignoreFallDamage)
-			{
-				Invoke("ResetIgnoreFallDamage", 1f);
-			}
-			else
-			{
-				if (Time.time > lastImpact + 0.3f)
-				{
-					vitals.RemoveHealth(Mathf.Clamp(col.relativeVelocity.magnitude * impactDamage, 0, 80f));
-					lastImpact = Time.time;
-				}
-			}
-		}
-	}
-
-
-	void ResetIgnoreFallDamage ()
-	{
-		ignoreFallDamage = false;
 	}
 
 	public void Die ()
