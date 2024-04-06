@@ -1,14 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class ResourceHandler : MonoBehaviour, IItemSaveable, IResource {
+	[Header("Save Info")]
 	[SerializeField] bool dontSave;
 	[SerializeField] string saveID;
 	[SerializeField] bool dontRegisterToHivemind;
-	[SerializeField] GameObject deathObject;
+
+	[Header("Resource Info")]
 	[SerializeField] Resource resource;
 	[SerializeField] int health;
+
+	[Header("Visual")]
+	[SerializeField] GameObject deathObject;
+	[SerializeField] GameObject optionalVisual;
 
 	bool loaded;
 
@@ -54,6 +61,11 @@ public class ResourceHandler : MonoBehaviour, IItemSaveable, IResource {
 				returnedItems.Add(new WorldItem(item, gatherMult));
 			}
 			i++;
+		}
+
+		if (optionalVisual)
+		{
+			optionalVisual.transform.DOShakeRotation(0.5f, 5f);
 		}
 
 		health -= 1;

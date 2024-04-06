@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TreeResource : ResourceHandler {
 
+	[Header("Tree and Apple Info")]
 	[SerializeField] GameObject applePrefab;
 	[SerializeField] GameObject droppedApplePrefab;
 	[SerializeField] Transform[] appleSpawnLocations;
