@@ -30,10 +30,7 @@ public class AchievementManager : MonoBehaviour {
         {
 			GameObject achievementObj = Instantiate(achievementPrefab, acievementList);
 			AchievementHandler handler = achievementObj.GetComponent<AchievementHandler>();
-			handler.achievementNameText.text = achievement.achievementName;
-			handler.achievementDescText.text = achievement.achievementDesc;
-			handler.achievementIconImage.sprite = achievement.achievementIcon;
-			handler.achievement = achievement;
+			handler.Setup(achievement);
 			achievementHandlers[i] = handler;
 
 			i++;
@@ -46,9 +43,8 @@ public class AchievementManager : MonoBehaviour {
 
 		foreach(Achievement achievement in AchievementDatabase.GetAllAchievements()) {
 			if(achievement.achievementID == achievementID) {
-				handler.achievementNameText.text = achievement.achievementName;
-				handler.achievementDescText.text = achievement.achievementDesc;
-				handler.achievementIconImage.sprite = achievement.achievementIcon;
+				handler.Setup(achievement);
+				handler.SetAchievementState(true);
 				break;
 			}
 		}
@@ -67,7 +63,7 @@ public class AchievementManager : MonoBehaviour {
 
 			foreach(AchievementHandler handler in achievementHandlers) {
 				if(handler.achievement.achievementID == achievementIDs[i]) {
-					handler.backgroundImage.color = Color.green;
+					handler.SetAchievementState(true);
 				}
 			}
 		}
@@ -88,7 +84,7 @@ public class AchievementManager : MonoBehaviour {
 
 			foreach(AchievementHandler handler in achievementHandlers) { // Set the achievement background to green in the achievement UI
 				if(handler.achievement.achievementID == _achievementID) {
-					handler.backgroundImage.color = Color.green;
+					handler.SetAchievementState(true);
 				}
 			}
 		}
