@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 using Newtonsoft.Json;
 
 public class SaveManager : MonoBehaviour {
@@ -12,7 +12,7 @@ public class SaveManager : MonoBehaviour {
 
 	[SerializeField] Animator canvasAnim;
 
-	public Text saveText;
+	public TMP_Text saveText;
 
 	PlayerInventory inventory;
 	PlayerController player;
