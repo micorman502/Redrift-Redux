@@ -44,24 +44,24 @@ public class CraftingUIPanel : MonoBehaviour //panel for displaying and crafting
         OnInventoryChanged();
     }
 
-    void Start ()
+    void OnEnable ()
     {
         playerInventory = Player.CurrentInstance.GetComponent<PlayerInventory>().inventory;
         playerInventory.InventoryChanged += OnInventoryChanged;
 
+        if (!recipe)
+            return;
+
         OnInventoryChanged();
     }
 
-    void OnDestroy ()
+    void OnDisable ()
     {
         playerInventory.InventoryChanged -= OnInventoryChanged;
     }
 
     void OnInventoryChanged () //the way updating craftability works is messy right now - ideally it's cleaned up in future, but not entirely sure how to approach that right now
     {
-        if (playerInventory == null)
-            return;
-
         SetCraftability(recipe.IsCraftable(playerInventory));
     }
 
