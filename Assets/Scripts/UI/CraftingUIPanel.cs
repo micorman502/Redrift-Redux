@@ -7,7 +7,8 @@ using TMPro;
 public class CraftingUIPanel : MonoBehaviour //panel for displaying and crafting a recipe.
 {
     [SerializeField] CraftingSlot outputSlot;
-    [SerializeField] TMP_Text outputText;
+    [SerializeField] TMP_Text outputName;
+    [SerializeField] TMP_Text outputDesc;
     [SerializeField] Button craftButton;
 
     [SerializeField] Transform inputHolder;
@@ -25,7 +26,8 @@ public class CraftingUIPanel : MonoBehaviour //panel for displaying and crafting
         recipe = _recipe;
 
         outputSlot.Setup(recipe.output);
-        outputText.text = recipe.output.item.itemName;
+        outputName.text = recipe.output.item.itemName;
+        outputDesc.text = recipe.output.item.itemDescription;
 
         foreach (GameObject inputObject in inputObjects)
         {
