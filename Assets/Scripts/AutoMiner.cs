@@ -85,7 +85,7 @@ public class AutoMiner : MonoBehaviour, IItemSaveable, IInteractable, IItemPicku
 					animator.SetBool("Moving", moving);
 				}
 				gatherTime += Time.deltaTime * tool.gatherSpeedMult;
-				if (gatherTime >= target.resource.gatherTime)
+				if (gatherTime >= target.GetResource().gatherTime)
 				{
 					WorldItem[] gatheredItems = target.ToolGather(tool);
 					foreach (WorldItem gathered in gatheredItems)

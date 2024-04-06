@@ -7,31 +7,43 @@ public class ResourceHandler : MonoBehaviour, IItemSaveable, IResource {
 	[SerializeField] string saveID;
 	[SerializeField] bool dontRegisterToHivemind;
 	[SerializeField] GameObject deathObject;
-	public Resource resource;
+	[SerializeField] Resource resource;
+	[SerializeField] int health;
 
-	public int health;
+	bool loaded;
 
-	void Awake() {
-		if (!dontRegisterToHivemind)
-		{
-			HiveMind.Instance.AddResource(this);
-		}
+	void Awake ()
+	{
+		PreLoadInitialise();
 	}
 
 	void Start ()
     {
+		if (loaded)
+			return;
+
+		PostLoadInitialise();
+		loaded = true;
+	}
+
+	protected virtual void PreLoadInitialise ()
+    {
+		if (!dontRegisterToHivemind)
+		{
+			HiveMind.Instance.AddResource(this);
+		}
 		if (health == 0)
 		{
 			health = resource.maxGathers;
 		}
 	}
 
-	public Resource GetResource ()
+	protected virtual void PostLoadInitialise ()
     {
-		return resource;
+
     }
 
-	public WorldItem[] HandGather()
+	protected virtual WorldItem[] Gather (int gatherMult)
 	{
 		List<WorldItem> returnedItems = new List<WorldItem>();
 		int i = 0;
@@ -39,7 +51,7 @@ public class ResourceHandler : MonoBehaviour, IItemSaveable, IResource {
 		{
 			if (Random.Range(0f, 1f) <= resource.chances[i])
 			{
-				returnedItems.Add(new WorldItem(item, 1));
+				returnedItems.Add(new WorldItem(item, gatherMult));
 			}
 			i++;
 		}
@@ -47,36 +59,6 @@ public class ResourceHandler : MonoBehaviour, IItemSaveable, IResource {
 		health -= 1;
 		if (health <= 0 && !resource.infiniteGathers)
 		{
-			if (resource.resourceName == "Tree")
-			{ // This resource is a tree
-				GetComponent<TreeResource>().DropFruits();
-			}
-			DestroyResource();
-		}
-
-		return returnedItems.ToArray();
-	}
-
-	public WorldItem[] ToolGather(ToolInfo tool)
-	{
-		List<WorldItem> returnedItems = new List<WorldItem>();
-		int i = 0;
-		foreach (ItemInfo item in resource.resourceItems)
-		{
-			if (Random.Range(0f, 1f) <= resource.chances[i])
-			{
-				returnedItems.Add(new WorldItem(item, tool.gatherAmountMult));
-			}
-			i++;
-		}
-
-		health -= 1;
-		if (health <= 0 && !resource.infiniteGathers)
-		{
-			if (resource.resourceName == "Tree")
-			{ // This resource is a tree //dumbest comment in existence
-				GetComponent<TreeResource>().DropFruits();
-			}
 			DestroyResource();
 		}
 
@@ -96,7 +78,32 @@ public class ResourceHandler : MonoBehaviour, IItemSaveable, IResource {
 		Destroy(gameObject);
 	}
 
-	public void GetData(out ItemSaveData data, out ObjectSaveData objData, out bool _dontSave)
+	public void SetHealth (int _health)
+    {
+		health = _health;
+    } 
+
+	public Resource GetResource ()
+    {
+		return resource;
+    }
+
+	public int GetHealth ()
+    {
+		return health;
+    }
+
+	public WorldItem[] HandGather()
+	{
+		return Gather(1);
+	}
+
+	public WorldItem[] ToolGather(ToolInfo tool)
+	{
+		return Gather(tool.gatherAmountMult);
+	}
+
+	public virtual void GetData(out ItemSaveData data, out ObjectSaveData objData, out bool _dontSave)
 	{
 		ItemSaveData newData = new ItemSaveData();
 		ObjectSaveData newObjData = new ObjectSaveData(transform.position, transform.rotation, dontSave ? -1 : ObjectDatabase.GetIntegerID(saveID));
@@ -110,9 +117,17 @@ public class ResourceHandler : MonoBehaviour, IItemSaveable, IResource {
 
 	public void SetData(ItemSaveData data, ObjectSaveData objData)
 	{
+		Load(data, objData);
+		PostLoadInitialise();
+	}
+
+	protected virtual void Load (ItemSaveData data, ObjectSaveData objData)
+    {
 		transform.position = objData.position;
 		transform.rotation = objData.rotation;
 
 		health = data.num;
+
+		loaded = true;
 	}
 }

@@ -1,15 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using DG.Tweening;
+using TMPro;
 
 public class TooltipManager : MonoBehaviour
 {
     [SerializeField] GameObject tooltipObject;
     [SerializeField] Animation tooltipShowAnim;
-    [SerializeField] Text tooltipName;
-    [SerializeField] Text tooltipDesc;
+    [SerializeField] TMP_Text tooltipName;
+    [SerializeField] TMP_Text tooltipDesc;
     public static TooltipManager Instance;
 
     private void Awake()

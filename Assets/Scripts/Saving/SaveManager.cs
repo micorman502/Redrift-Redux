@@ -278,7 +278,7 @@ public class SaveManager : MonoBehaviour {
 		}
 
 		foreach(GameObject resourceObj in GameObject.FindGameObjectsWithTag("Resource")) {
-			if(resourceObj.GetComponent<ResourceHandler>().resource.prefab) {
+			if(resourceObj.GetComponent<ResourceHandler>().GetResource().prefab) {
 				Destroy(resourceObj);
 			}
 		}
