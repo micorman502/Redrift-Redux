@@ -8,6 +8,7 @@ public class HeldGrappleItem : HeldItem
     GrappleInfo grappleInfo;
     [SerializeField] Transform grappleRestPoint;
     [SerializeField] GameObject grappleHeadVisual;
+    [SerializeField] LineRenderer rope;
     Vector3 grapplePoint;
 
     bool grappled; // true if grapple has reached grapplePoint
@@ -18,6 +19,8 @@ public class HeldGrappleItem : HeldItem
     void Awake ()
     {
         grappleInfo = item as GrappleInfo;
+
+        rope.positionCount = 2;
     }
 
     public override void Use ()
@@ -54,6 +57,9 @@ public class HeldGrappleItem : HeldItem
         {
             grappleHeadVisual.transform.position = Vector3.Lerp(grappleRestPoint.position, grapplePoint, (Time.time - lastUse) / grappleTime);
         }
+
+        rope.SetPosition(0, Vector3.zero);
+        rope.SetPosition(1, grappleHeadVisual.transform.localPosition);
     }
 
     public override void SetChildStateFunctions (bool state)
