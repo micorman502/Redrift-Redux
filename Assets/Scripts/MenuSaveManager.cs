@@ -7,7 +7,8 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 
-public class MenuSaveManager : MonoBehaviour {
+public class MenuSaveManager : MonoBehaviour
+{
 
 	public static MenuSaveManager Instance;
 	[SerializeField] GameObject saveListItem;
@@ -28,7 +29,7 @@ public class MenuSaveManager : MonoBehaviour {
 
 	MenuManager menuManager;
 
-	List<GameObject> saveListItems = new List<GameObject>();
+	List<SaveListItem> saveListItems = new List<SaveListItem>();
 
 	string worldName;
 	int difficulty;
@@ -47,7 +48,8 @@ public class MenuSaveManager : MonoBehaviour {
 	string[] modeNames = {"Survival",
 		"Creative"};
 
-	void Awake() {
+	void Awake ()
+	{
 		if (Instance)
 		{
 			Debug.Log($"Duplicate Instance of '{this.GetType().Name}' exists on object '{gameObject.name}'. Destroying '{this.GetType().Name}'");
@@ -59,8 +61,10 @@ public class MenuSaveManager : MonoBehaviour {
 		menuManager = FindObjectOfType<MenuManager>();
 	}
 
-	void Start() {
-		if(!Directory.Exists(Application.persistentDataPath + "/saves")) {
+	void Start ()
+	{
+		if (!Directory.Exists(Application.persistentDataPath + "/saves"))
+		{
 			Directory.CreateDirectory(Application.persistentDataPath + "/saves");
 		}
 		DirectoryInfo dir = new DirectoryInfo(Application.persistentDataPath + "/saves");
@@ -77,13 +81,13 @@ public class MenuSaveManager : MonoBehaviour {
 	}
 
 	void InitialiseDropdowns ()
-    {
+	{
 		List<TMP_Dropdown.OptionData> difficultyOptions = new List<TMP_Dropdown.OptionData>();
 		saveDifficultyDropdown.ClearOptions();
 		for (int i = 0; i < difficultyNames.Length; i++)
-        {
+		{
 			difficultyOptions.Add(new TMP_Dropdown.OptionData(difficultyNames[i]));
-        }
+		}
 		saveDifficultyDropdown.AddOptions(difficultyOptions);
 
 		List<TMP_Dropdown.OptionData> modeOptions = new List<TMP_Dropdown.OptionData>();
@@ -95,13 +99,17 @@ public class MenuSaveManager : MonoBehaviour {
 		saveModeDropdown.AddOptions(modeOptions);
 	}
 
-	void RenderList() {
+	void RenderList ()
+	{
 		saveNameInputField.text = "World " + (info.Length + 1);
-		for(int i = 0; i < info.Length; i++) {
+		for (int i = 0; i < info.Length; i++)
+		{
 			int saveNum = i; //this line seems unnecessary, but save numbers / indexes in PersistentData seem to be 1 higher than they should be without it. So, don't touch until it's figured out.
+
 			GameObject go = Instantiate(saveListItem, saveList.transform);
-			saveListItems.Add(go);
 			SaveListItem item = go.GetComponent<SaveListItem>();
+			saveListItems.Add(item);
+
 			string[] infoSplit = info[saveNum].Name.Split('.');
 			item.Setup(infoSplit[infoSplit.Length - 2], saveNum);
 			item.GetLoadSaveButton().onClick.AddListener(delegate { LoadSave(saveNum); });
@@ -109,9 +117,11 @@ public class MenuSaveManager : MonoBehaviour {
 		}
 	}
 
-	void ClearList() {
-		foreach(GameObject go in saveListItems) {
-			Destroy(go);
+	void ClearList ()
+	{
+		foreach (SaveListItem saveItem in saveListItems)
+		{
+			Destroy(saveItem.gameObject);
 		}
 		saveListItems.Clear();
 
@@ -119,16 +129,20 @@ public class MenuSaveManager : MonoBehaviour {
 		info = dir.GetFiles("*.*");
 	}
 
-	public void LoadSave(int saveNum) {
+	public void LoadSave (int saveNum)
+	{
 		PersistentData.Instance.loadingFromSave = true;
 		PersistentData.Instance.saveToLoad = saveNum;
 		menuManager.LoadScene("World");
 	}
 
-	public void DeleteSave(int saveNum) {
-		foreach(GameObject go in saveListItems) {
-			if(go.GetComponentInChildren<Text>().text == info[saveNum].Name) {
-				Destroy(go);
+	public void DeleteSave (int saveNum)
+	{
+		foreach (SaveListItem saveItem in saveListItems)
+		{
+			if (saveItem.GetSaveNumber() == saveNum)
+			{
+				Destroy(saveItem.gameObject);
 				break;
 			}
 		}
@@ -137,26 +151,28 @@ public class MenuSaveManager : MonoBehaviour {
 		RenderList();
 	}
 
-	public void OpenNewSaveMenu() {
+	public void OpenNewSaveMenu ()
+	{
 		canvasAnim.SetTrigger("NewSaveMenuEnter");
 		canvasAnim.SetTrigger("PlayMenuExit");
 		Invoke("SelectSaveNameInputField", 0.1f); // Kinda hacky, but gets the job done :)
 	}
 
-	public void SelectSaveNameInputField() {
+	public void SelectSaveNameInputField ()
+	{
 		saveNameInputField.Select();
 		saveNameInputField.ActivateInputField();
 	}
 
 	public void OnChangeName (string _worldName)
-    {
+	{
 		saveNameInputField.SetTextWithoutNotify(_worldName);
 
 		ChangeName(_worldName);
-    }
+	}
 
 	void ChangeName (string _worldName)
-    {
+	{
 		worldName = _worldName;
 
 		if (string.IsNullOrEmpty(worldName))
@@ -179,7 +195,8 @@ public class MenuSaveManager : MonoBehaviour {
 		saveErrorHolder.SetActive(false);
 	}
 
-	public void OnChangeDifficulty(int _difficulty) {
+	public void OnChangeDifficulty (int _difficulty)
+	{
 		difficultyBlurb.text = difficultyBlurbs[_difficulty];
 		saveDifficultyDropdown.SetValueWithoutNotify(_difficulty);
 
@@ -187,11 +204,12 @@ public class MenuSaveManager : MonoBehaviour {
 	}
 
 	void ChangeDifficulty (int _difficulty)
-    {
+	{
 		difficulty = _difficulty;
 	}
 
-	public void OnChangeMode(int _gamemode) {
+	public void OnChangeMode (int _gamemode)
+	{
 		modeBlurb.text = modeBlurbs[_gamemode];
 		saveModeDropdown.SetValueWithoutNotify(_gamemode);
 
@@ -199,12 +217,13 @@ public class MenuSaveManager : MonoBehaviour {
 	}
 
 	void ChangeMode (int _gamemode)
-    {
+	{
 		gamemode = _gamemode;
-    }
+	}
 
-	public void CreateNewSave() {
-		if(string.IsNullOrEmpty(worldName))
+	public void CreateNewSave ()
+	{
+		if (string.IsNullOrEmpty(worldName))
 			return;
 
 		foreach (FileInfo f in info)

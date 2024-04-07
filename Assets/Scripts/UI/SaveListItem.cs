@@ -60,4 +60,9 @@ public class SaveListItem : MonoBehaviour
             confirmDeleteUnderlay.fillAmount = 0;
         }
     }
+
+    public int GetSaveNumber ()
+    {
+        return saveNum;
+    }
 }
