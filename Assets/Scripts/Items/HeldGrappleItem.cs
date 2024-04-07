@@ -6,6 +6,7 @@ public class HeldGrappleItem : HeldItem
 {
     [SerializeField] Rigidbody playerRigidbody;
     GrappleInfo grappleInfo;
+    [SerializeField] AudioSource grappleSFX;
     [SerializeField] Transform grappleRestPoint;
     [SerializeField] GameObject grappleHeadVisual;
     [SerializeField] LineRenderer rope;
@@ -82,6 +83,8 @@ public class HeldGrappleItem : HeldItem
             return;
         if (!GrappleChecks())
             return;
+
+        grappleSFX?.Play();
 
         lastUse = Time.time;
 
