@@ -3965,7 +3965,7 @@ PrefabInstance:
     - target: {fileID: 1255909805562498906, guid: 69d80e1b259f1dd41bff67c629fb80fc,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1255909805562498906, guid: 69d80e1b259f1dd41bff67c629fb80fc,
         type: 3}
@@ -14460,7 +14460,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1074519523}
-  - {fileID: 1881989712}
   - {fileID: 597080897}
   - {fileID: 1901149711}
   m_Father: {fileID: 1444759422}
@@ -44944,86 +44943,6 @@ MonoBehaviour:
   lightingParticles: {fileID: 1864550601}
   lightningStoneItem: {fileID: 11400000, guid: ada74405c0b91a641bed3460f1a00d5e, type: 2}
   island: {fileID: 1643817344}
---- !u!1 &1881989711
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1881989712}
-  - component: {fileID: 1881989714}
-  - component: {fileID: 1881989713}
-  m_Layer: 5
-  m_Name: Save Disclaimer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1881989712
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1881989711}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 717942883}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -104.29, y: -36.539978}
-  m_SizeDelta: {x: 228.58, y: -92.07}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1881989713
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1881989711}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: 9c61c11b65993a54bb9b483406c744fb, type: 3}
-    m_FontSize: 25
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 0
-    m_MaxSize: 145
-    m_Alignment: 7
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: 'NOTE: Saving is currently incomplete. Some things will not save properly.'
---- !u!222 &1881989714
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1881989711}
-  m_CullTransparentMesh: 1
 --- !u!1 &1882972531
 GameObject:
   m_ObjectHideFlags: 0
@@ -45357,7 +45276,7 @@ RectTransform:
   - {fileID: 1555287811}
   - {fileID: 1075861969}
   m_Father: {fileID: 717942883}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -47071,9 +46990,10 @@ MonoBehaviour:
   dontSave: 1
   saveID: 0
   dontRegisterToHivemind: 1
-  deathObject: {fileID: 0}
   resource: {fileID: 11400000, guid: 85888302b409fcd4699b0f611b370231, type: 2}
   health: 0
+  deathObject: {fileID: 0}
+  optionalVisual: {fileID: 0}
 --- !u!33 &2547716109358915897
 MeshFilter:
   m_ObjectHideFlags: 0

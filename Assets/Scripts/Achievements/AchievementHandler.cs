@@ -6,12 +6,14 @@ using TMPro;
 
 public class AchievementHandler : MonoBehaviour {
 
-	public Achievement achievement;
+	Achievement achievement;
 
-	public Image backgroundImage;
-	public TMP_Text achievementNameText;
-	public TMP_Text achievementDescText;
-	public Image achievementIconImage;
+	[SerializeField] Image backgroundImage;
+	[SerializeField] TMP_Text achievementNameText;
+	[SerializeField] TMP_Text achievementDescText;
+	[SerializeField] Image achievementIconImage;
+	[SerializeField] Color baseColour;
+	[SerializeField] Color unlockedColour;
 	bool unlocked;
 
 	public void Setup (Achievement _achievement)
@@ -35,7 +37,7 @@ public class AchievementHandler : MonoBehaviour {
 
 		if (!unlocked)
 		{
-			backgroundImage.color = Color.white;
+			backgroundImage.color = baseColour;
 			achievementDescText.text = "? ? ?";
 			achievementIconImage.color = Color.black;
 
@@ -44,6 +46,11 @@ public class AchievementHandler : MonoBehaviour {
 
 		achievementDescText.text = achievement.achievementDesc;
 		achievementIconImage.color = Color.white;
-		backgroundImage.color = Color.white;
+		backgroundImage.color = unlockedColour;
 	}
+
+	public Achievement GetAchievement ()
+    {
+		return achievement;
+    }
 }

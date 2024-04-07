@@ -62,7 +62,7 @@ public class AchievementManager : MonoBehaviour {
 			}
 
 			foreach(AchievementHandler handler in achievementHandlers) {
-				if(handler.achievement.achievementID == achievementIDs[i]) {
+				if(handler.GetAchievement().achievementID == achievementIDs[i]) {
 					handler.SetAchievementState(true);
 				}
 			}
@@ -83,7 +83,7 @@ public class AchievementManager : MonoBehaviour {
 			}
 
 			foreach(AchievementHandler handler in achievementHandlers) { // Set the achievement background to green in the achievement UI
-				if(handler.achievement.achievementID == _achievementID) {
+				if(handler.GetAchievement().achievementID == _achievementID) {
 					handler.SetAchievementState(true);
 				}
 			}
