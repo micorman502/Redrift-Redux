@@ -22,4 +22,5 @@ MonoBehaviour:
     item: {fileID: 11400000, guid: 3bccbe89fd4b47e42aa179cbc62b150d, type: 2}
     amount: 1
   categories: 01000000
-  id: 0
+  id: 14
+  achievementId: -1

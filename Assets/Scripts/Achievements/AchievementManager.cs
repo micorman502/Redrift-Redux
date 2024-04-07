@@ -72,6 +72,7 @@ public class AchievementManager : MonoBehaviour {
 	public void GetAchievement(int _achievementID) {
 		if (_achievementID <= -1)
 			return;
+
 		if(!hasAchievements[_achievementID]) {
 			ShowAchievement(_achievementID);
 

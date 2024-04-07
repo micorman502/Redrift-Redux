@@ -10,6 +10,7 @@ public class Recipe : ScriptableObject {
 	public WorldItem output;
 	public RecipeCategory[] categories;
     public int id;
+    public int achievementId = -1;
 
     #region Self-Contained Functions
     public bool MatchesCategory (RecipeCategory otherCategory)

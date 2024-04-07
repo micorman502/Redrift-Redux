@@ -21,3 +21,4 @@ MonoBehaviour:
     amount: 1
   categories: 01000000
   id: 10
+  achievementId: -1

@@ -13,6 +13,12 @@ public class PlayerCrafting : MonoBehaviour
 
     public void CraftRecipe (Recipe recipe, bool doCraftableCheck)
     {
+        if (recipe.IsCraftable(inventory.inventory))
+        {
+            AchievementManager.Instance.GetAchievement(recipe.achievementId);
+            AchievementManager.Instance.GetAchievement(recipe.output.item.achievementId);
+        }
+
         recipe.Craft(inventory.inventory, doCraftableCheck);
     }
 }

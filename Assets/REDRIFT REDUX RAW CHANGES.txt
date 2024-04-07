@@ -37,6 +37,7 @@ Furnaces require 3 wood per item smelted
 Conveyor Belts no longer have variable speed options, their speed is determined by tier
 The Auto Miner has been redesigned. It no longer takes a pickaxe, but has a tank design with a front drill that slowly gathers resources.
 The Auto Sorter can now be switched between "Whitelist" and "Blacklist" mode
+Improved building previews
 
 Changed underlying systems for Items almost completely
 Changed underlying systems for saving almost completely
