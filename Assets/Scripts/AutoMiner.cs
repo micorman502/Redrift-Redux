@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class AutoMiner : MonoBehaviour, IItemSaveable, IInteractable, IItemPickup {
+public class AutoMiner : MonoBehaviour, IItemSaveable, IInteractable, IItemPickup, IHotText {
 
 	[SerializeField] string saveID;
 	[SerializeField] ParticleSystem exhaustParticles;
@@ -154,15 +154,19 @@ public class AutoMiner : MonoBehaviour, IItemSaveable, IInteractable, IItemPicku
 
 		for (int i = items.Count - 1; i >= 0; i--)
         {
-			int amt = Mathf.Clamp(inv.SpaceLeftForItem(items[i]), 0, items[i].amount);
+			int amt = Mathf.Clamp(inv.SpaceLeftForItem(items[i]), 1, items[i].amount);
 			if (amt == items[i].amount)
             {
 				inv.AddItem(items[i]);
 				items.RemoveAt(i);
-            } else if (amt > 0)
+				continue;
+            } 
+			
+			if (amt > 0)
             {
 				inv.AddItem(new WorldItem(items[i].item, amt));
 				items[i].amount -= amt;
+				continue;
 			}
         }
     }
@@ -217,5 +221,22 @@ public class AutoMiner : MonoBehaviour, IItemSaveable, IInteractable, IItemPicku
         {
 			items.Add(new WorldItem(newItems[i], data.itemAmounts[i]));
         }
+	}
+
+	public void HideHotText ()
+	{
+		HotTextManager.Instance.RemoveHotText(new HotTextInfo("", KeyCode.F, HotTextInfo.Priority.Interact, "autominerInteract"));
+	}
+
+	public void ShowHotText ()
+	{
+		//string infoText = (sortingItem ? sortingItem.name : "") + (blackListEnabled ? " (Blacklist)" : " (Whitelist)");
+		HotTextManager.Instance.ReplaceHotText(new HotTextInfo("Collect", KeyCode.F, HotTextInfo.Priority.Interact, "autominerInteract"));
+	}
+
+	public void UpdateHotText ()
+	{
+		//string infoText = (sortingItem ? sortingItem.name : "") + (blackListEnabled ? " (Blacklist)" : " (Whitelist)");
+		HotTextManager.Instance.UpdateHotText(new HotTextInfo("Collect", KeyCode.F, HotTextInfo.Priority.Interact, "autominerInteract"));
 	}
 }
