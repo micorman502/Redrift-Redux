@@ -45860,6 +45860,7 @@ MonoBehaviour:
     cameraBGColour: {r: 0.5137255, g: 0.8980392, b: 1, a: 1}
     fogColour: {r: 0.5137255, g: 0.8980392, b: 1, a: 1}
     fogDensity: 0.0065
+    achievementId: -1
   - realmName: Dark
     hidden: 0
     realmTeleportPosition: {fileID: 0}
@@ -45871,6 +45872,7 @@ MonoBehaviour:
     cameraBGColour: {r: 0, g: 0, b: 0, a: 1}
     fogColour: {r: 0, g: 0, b: 0, a: 1}
     fogDensity: 0.025
+    achievementId: 10
   - realmName: Purgatory
     hidden: 1
     realmTeleportPosition: {fileID: 662518168}
@@ -45882,6 +45884,7 @@ MonoBehaviour:
     cameraBGColour: {r: 0, g: 0, b: 0, a: 1}
     fogColour: {r: 0, g: 0, b: 0, a: 1}
     fogDensity: 0.08
+    achievementId: -1
   teleportYPosition: -99999
 --- !u!1 &1948178220
 GameObject:

@@ -173,6 +173,8 @@ public class RealmTeleportManager : MonoBehaviour
             config.realmEnterParticles.time = 0;
             config.realmEnterParticles.Play();
         }
+
+        AchievementManager.Instance.GetAchievement(config.achievementId);
     }
 
     int GetNextRealm ()
@@ -225,4 +227,6 @@ public class RealmConfig
     public Color cameraBGColour;
     public Color fogColour;
     public float fogDensity;
+
+    public int achievementId = -1;
 }
