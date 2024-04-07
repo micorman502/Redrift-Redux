@@ -135,15 +135,6 @@ public class PlayerInventory : MonoBehaviour {
 		AddAllItems();
 	}
 
-	public bool Pickup(ItemHandler itemHandler) {
-		if (inventory.SpaceLeftForItem(new WorldItem(itemHandler.item, 1)) > 0)
-		{
-			inventory.AddItem(new WorldItem(itemHandler.item, 1));
-			return true;
-		}
-		return false;
-	}
-
 	void Update() {
 
 		for(int i = 0; i < hotbarSize; i++) {

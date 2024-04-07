@@ -143,19 +143,25 @@ public class PlayerPickup : MonoBehaviour
 
 		for (int i = 0; i < pickups.Length; i++)
 		{
+			if (!allChecksPassed)
+				break;
+
 			WorldItem[] items = pickups[i].GetItems();
 
 			for (int j = 0; j < items.Length; j++) //checks
 			{
-				if (allChecksPassed)
-                {
-					if (!anyItemPickedUp && playerInventory.inventory.SpaceLeftForItem(items[j]) > 0)
-                    {
-						anyItemPickedUp = true;
-                    }
-					playerInventory.inventory.AddItem(items[j]);
-					pickups[i].Pickup();
+				if (!anyItemPickedUp && playerInventory.inventory.SpaceLeftForItem(items[j]) > 0)
+				{
+					anyItemPickedUp = true;
 				}
+
+				if (items[j].item.achievementId > -1)
+				{
+					AchievementManager.Instance.GetAchievement(items[j].item.achievementId);
+				}
+
+				playerInventory.inventory.AddItem(items[j]);
+				pickups[i].Pickup();
 			}
 		}
 
