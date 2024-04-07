@@ -67,24 +67,33 @@ public class SaveManager : MonoBehaviour {
 			{
 				difficulty = PersistentData.Instance.difficulty;
 				mode = PersistentData.Instance.mode;
-				SaveGame();
 			}
 		}
 	}
 
-	void Update ()
-	{
+    void Start ()
+    {
+        if (!PersistentData.Instance.loadingFromSave)
+        {
+			SaveGame();
+		}
+    }
+
+    void FixedUpdate ()
+    {
 		if (!autoSave)
 			return;
 
-		if (Time.time > autoSaveTimer)
+		autoSaveTimer -= Time.fixedDeltaTime;
+
+		if (autoSaveTimer <= 0)
 		{
 			SaveGame();
-			autoSaveTimer = Time.time + autoSaveInterval;
+			autoSaveTimer = autoSaveInterval;
 		}
 	}
 
-	public List<ItemInfo> IDsToItems(List<int> IDs) {
+    public List<ItemInfo> IDsToItems(List<int> IDs) {
 		List<ItemInfo> items = new List<ItemInfo>();
 		foreach(int itemID in IDs) {
 			items.Add(ItemDatabase.GetItem(itemID));
@@ -187,11 +196,16 @@ public class SaveManager : MonoBehaviour {
 
 				inventory.InventoryUpdate();
 
+				int lastObjectId = -1;
+
 				for (int i = 0; i < save.savedObjects.Count; i++) //load up items and such last, to prevent a single error from breaking the loading loop 
 				{
 					ObjectSaveData newObjData = save.savedObjects[i];
 					ItemSaveData newData = save.savedObjectsInfo[i];
 					GameObject newObj = Instantiate(ObjectDatabase.GetObject(newObjData.objectID), newObjData.position, newObjData.rotation);
+
+					lastObjectId = newObjData.objectID;
+
 					IItemSaveable[] saveables = newObj.GetComponents<IItemSaveable>();
 					for (int s = 0; s < saveables.Length; s++)
 					{
@@ -199,16 +213,27 @@ public class SaveManager : MonoBehaviour {
 					}
 				}
 
+				if (save.savedObjects.Count <= 1)
+                {
+					DisableSaving($"Load warning due to save.savedObjects being 1 or less. Object ID is {lastObjectId}", $"Saving disabled. Tell the developer: 1 or less savedObjects, Object ID is {lastObjectId}.");
+					return;
+                }
+
 				saveText.text = "Game loaded from " + save.saveTime.ToString("HH:mm MMMM dd, yyyy");
 			} catch (Exception e)
             {
-				saveText.text = "Error while loading. Saving disabled.";
-				Debug.LogWarning("Error while loading. Saving disabled. Caught exception: " + e.Message + ", with stack trace: " + e.StackTrace);
-				disableSaving = true;
+				DisableSaving(exceptionMessage: "Error while loading. Saving disabled. Caught exception: " + e.Message + ", with stack trace: " + e.StackTrace);
             }
 		} else {
 			saveText.text = "No game save found";
 		}
+	}
+
+	void DisableSaving (string exceptionMessage, string baseMessage = "Error while loading. Saving disabled.")
+    {
+		saveText.text = baseMessage;
+		Debug.LogWarning(exceptionMessage);
+		disableSaving = true;
 	}
 
 	public void SaveGame() {
@@ -251,6 +276,8 @@ public class SaveManager : MonoBehaviour {
 			}
 		}
 
+		int loopCount = 0;
+		int saveableCount = FindInterfaces.Find<IItemSaveable>().Count;
 		foreach (IItemSaveable saveable in FindInterfaces.Find<IItemSaveable>())
         {
 			saveable.GetData(out ItemSaveData data, out ObjectSaveData objData, out bool dontSave);
@@ -258,7 +285,13 @@ public class SaveManager : MonoBehaviour {
 				continue;
 			save.savedObjects.Add(objData);
 			save.savedObjectsInfo.Add(data);
+			loopCount++;
 		}
+
+		if (loopCount <= 10)
+        {
+			Debug.LogWarning($"Saveable Count is suspiciously low, with only {saveableCount} objects found. Saveables were looped through {saveableCount} times.");
+        }
 
 		save.achievementIDs = AchievementManager.Instance.ObtainedAchievements();
 
