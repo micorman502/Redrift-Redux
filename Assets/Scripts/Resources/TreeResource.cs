@@ -68,7 +68,14 @@ public class TreeResource : ResourceHandler {
 		return ret;
     }
 
-	public override void GetData(out ItemSaveData data, out ObjectSaveData objData, out bool dontSave)
+    public override void DestroyResource ()
+    {
+        base.DestroyResource();
+
+		DropFruits();
+    }
+
+    public override void GetData(out ItemSaveData data, out ObjectSaveData objData, out bool dontSave)
 	{
 		base.GetData(out ItemSaveData newData, out ObjectSaveData newObjData, out bool _dontSave);
 
