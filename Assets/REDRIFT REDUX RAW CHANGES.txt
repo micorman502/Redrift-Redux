@@ -1,0 +1,43 @@
+REDRIFT REDUX RAW CHANGES
+UPDATING FROM ADRIFT 0.2.9 TO R:R 0.3.0
+
+Revamped most UI in the game, including: 
+- Title UI
+- Settings UI
+- Save UI
+- New Game UI
+- Crafting UI
+- Achievements UI
+UI Redesign is inspired by Rugbug Redfern's Remastering [Adrift] video, at https://www.youtube.com/watch?v=JRsDmnR3xc4
+Improved Inventory UI
+New Button Prompt system that is dynamic and supports having as many button prompts shown as needed.
+
+The Dark Realm is no longer a separate region, but is under the main island, specifcally below the new, vast Void Ocean.
+Removed the Hunger mechanic completely.
+Buildings now check for line of sight before being placed.
+Shrunk the player slightly.
+
+New Items:
+- Quartz and Glass
+- Conveyor Belt T2 (old Conveyor Belt is now Conveyor Belt T1)
+- Optical Sensor
+- Climbing Picks (Stone and Iron tiers)
+- Grappling Hooks (Iron and Copper tiers)
+- Mulberry
+- Solid walls, floors, and doors (purely visual difference to normal versions)
+- Double doors
+
+New Resources:
+- Fallen logs (spawns on the main island)
+- Mulberry trees (spawns on light islands)
+- Quartz spikes (spawns underneath "Void Crag" islands, slightly below the Void Ocean)
+- Silicon nodes (spawns undernearth the main dark island)
+
+Furnaces require 3 wood per item smelted
+Conveyor Belts no longer have variable speed options, their speed is determined by tier
+The Auto Miner has been redesigned. It no longer takes a pickaxe, but has a tank design with a front drill that slowly gathers resources.
+The Auto Sorter can now be switched between "Whitelist" and "Blacklist" mode
+
+Changed underlying systems for Items almost completely
+Changed underlying systems for saving almost completely
+Countless minor and moderate backend changes to Achievements, Recipes, Resources, and more!

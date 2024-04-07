@@ -75,6 +75,9 @@ public class SettingsApplier : MonoBehaviour
 
     void UpdateResolutionValue (int value)
     {
+        if (Screen.resolutions.Length <= 0)
+            return;
+
         Screen.SetResolution(Screen.resolutions[value].width, Screen.resolutions[value].height, Screen.fullScreen);
     }
 
