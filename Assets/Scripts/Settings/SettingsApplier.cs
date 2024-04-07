@@ -88,6 +88,9 @@ public class SettingsApplier : MonoBehaviour
 
     void UpdateFullscreenValue (int value)
     {
+        if (Application.platform == RuntimePlatform.WebGLPlayer)
+            return;
+
         Screen.fullScreenMode = (FullScreenMode)value;
     }
 
