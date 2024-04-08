@@ -332,6 +332,11 @@ public class SaveManager : MonoBehaviour {
 		inventory.ClearInventory();
 	}
 
+	public int GetSaveSeed ()
+    {
+		return saveSeed;
+    }
+
 	public float GetSaveAge ()
     {
 		return saveAgeCounter;
