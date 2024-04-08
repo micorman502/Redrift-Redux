@@ -332,6 +332,11 @@ public class SaveManager : MonoBehaviour {
 		inventory.ClearInventory();
 	}
 
+	public float GetSaveAge ()
+    {
+		return saveAgeCounter;
+    }
+
 	public static string GetSavePath (string saveName, bool nameIncludesFileExtension)
     {
 		if (nameIncludesFileExtension)
