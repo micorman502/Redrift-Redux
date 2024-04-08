@@ -118,6 +118,8 @@ public class PlayerBuilding : MonoBehaviour
         Physics.Linecast(camTransform.position, previewObject.transform.position, out RaycastHit hit, LayerMask.GetMask("World"), QueryTriggerInteraction.Ignore);
         if (hit.transform && Vector3.Distance(hit.point, previewObject.transform.position) > currentBuilding.approximateRadius)
             return false;
+        if (Physics.CheckSphere(previewObject.transform.position, 1f, LayerMask.GetMask("Block Building")))
+            return false;
 
         return true;
     }
