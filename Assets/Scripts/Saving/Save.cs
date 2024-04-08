@@ -18,6 +18,9 @@ public class Save {
 
 	public DateTime saveTime;
 
+	public float saveAgeSeconds;
+	public int randomSeed;
+
 	public int realmIndex;
 
 	public int difficulty;

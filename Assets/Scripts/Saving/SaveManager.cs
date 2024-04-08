@@ -28,6 +28,9 @@ public class SaveManager : MonoBehaviour {
 	float autoSaveInterval = 120f;
 	float autoSaveTimer = 0f;
 
+	float saveAgeCounter = 0f;
+	int saveSeed;
+
 	bool disableSaving;
 
 	void Awake() {
@@ -67,6 +70,8 @@ public class SaveManager : MonoBehaviour {
 			{
 				difficulty = PersistentData.Instance.difficulty;
 				mode = PersistentData.Instance.mode;
+
+				saveSeed = UnityEngine.Random.Range(int.MinValue, int.MaxValue);
 			}
 		}
 	}
@@ -81,6 +86,8 @@ public class SaveManager : MonoBehaviour {
 
     void FixedUpdate ()
     {
+		saveAgeCounter += Time.fixedDeltaTime;
+
 		if (!autoSave)
 			return;
 
@@ -134,6 +141,9 @@ public class SaveManager : MonoBehaviour {
 			try
 			{
 				Save save = JsonConvert.DeserializeObject<Save>(File.ReadAllText(path));
+
+				saveAgeCounter = save.saveAgeSeconds;
+				saveSeed = save.randomSeed;
 
 				try
 				{
@@ -263,6 +273,9 @@ public class SaveManager : MonoBehaviour {
 		save.playerHealth = health;
 
 		save.saveTime = DateTime.Now;
+
+		save.saveAgeSeconds = saveAgeCounter;
+		save.randomSeed = saveSeed;
 
 		save.realmIndex = RealmTeleportManager.Instance.GetCurrentRealmIndex();
 
