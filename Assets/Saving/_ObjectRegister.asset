@@ -339,8 +339,15 @@ MonoBehaviour:
     id: 89
   - prefab: {fileID: 129081422961363737, guid: f7177a55266349a409944e3e82327ba1, type: 3}
     nameIdentifier: resourceTreeMulberry
-    id: 89
+    id: 90
   - prefab: {fileID: 6532653544664487598, guid: 277be14c6a1a8d148b403e3ffc64891a,
       type: 3}
     nameIdentifier: droppedItemMulberry
-    id: 89
+    id: 91
+  - prefab: {fileID: 501257986627863571, guid: b798609763784c5479c78dce354187e7, type: 3}
+    nameIdentifier: droppedItemStairsU2X2
+    id: 91
+  - prefab: {fileID: 3769292127366859782, guid: bbd860eaf6db4a24780118f5e8dbb591,
+      type: 3}
+    nameIdentifier: worldItemStairsU2X2
+    id: 91
