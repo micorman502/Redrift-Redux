@@ -54935,7 +54935,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85f6d5ad6ef3623479e92268f81cebe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yStart: -100
   dragMin: 1
   damageMin: 2
   yEnd: -200
@@ -55552,8 +55551,7 @@ MonoBehaviour:
     hidden: 0
     realmTeleportPosition: {fileID: 0}
     realmEnterParticles: {fileID: 0}
-    realmObjects:
-    - {fileID: 156722491}
+    realmObjects: []
     realmPostProcessing: {fileID: 11400000, guid: 8aba0b272bd05064ca7206fdc87a2483,
       type: 2}
     cameraBGColour: {r: 0, g: 0, b: 0, a: 1}

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class VoidOcean : MonoBehaviour
 {
-    [SerializeField] float yStart;
+    public const float startThreshold = -100f;
     [SerializeField] float dragMin;
     [SerializeField] float damageMin;
     [SerializeField] float yEnd;
@@ -15,7 +15,7 @@ public class VoidOcean : MonoBehaviour
 
     void Awake ()
     {
-        dragDiff = Mathf.Abs(yEnd - yStart);
+        dragDiff = Mathf.Abs(yEnd - startThreshold);
     }
 
     void OnTriggerStay (Collider other)
@@ -41,13 +41,13 @@ public class VoidOcean : MonoBehaviour
 
     float CalculateDamage (Vector3 bodyPos)
     {
-        float distance = Mathf.Abs(bodyPos.y - yStart);
+        float distance = Mathf.Abs(bodyPos.y - startThreshold);
         return Mathf.Lerp(damageMin, damageMax, distance / dragDiff);
     }
 
     float CalculateDrag (Vector3 bodyPos)
     {
-        float distance = Mathf.Abs(bodyPos.y - yStart);
+        float distance = Mathf.Abs(bodyPos.y - startThreshold);
         return Mathf.Lerp(dragMin, dragMax, distance / dragDiff);
     }
 
