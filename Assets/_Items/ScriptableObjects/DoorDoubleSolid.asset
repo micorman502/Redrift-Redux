@@ -17,7 +17,7 @@ MonoBehaviour:
   stackSize: 20
   stackPrefix: x
   id: 47
-  achievementId: -1
+  achievementId: 2
   icon: {fileID: 21300000, guid: e8f50fd8f7f795b47b42a2c86ec96df3, type: 3}
   droppedPrefab: {fileID: 8892163534873669021, guid: a45456231c1f7984ba24f3cf3a4ccd88,
     type: 3}
