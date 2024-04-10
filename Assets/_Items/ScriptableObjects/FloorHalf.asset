@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9054553737ebdbf499c59d51c1852601, type: 3}
+  m_Name: FloorHalf
+  m_EditorClassIdentifier: 
+  itemName: Floor Half
+  itemDescription: 
+  stackSize: 20
+  stackPrefix: x
+  id: 52
+  achievementId: 2
+  icon: {fileID: 21300000, guid: ed096614aaf674a4587057454853681e, type: 3}
+  droppedPrefab: {fileID: 8417306529483710484, guid: a02bfec342b4690488d1535d74d724e6,
+    type: 3}
+  gridSize: 0.5
+  approximateRadius: 1
+  upwardsOffset: {x: 0, y: 0, z: 0}
+  possibleRotations:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 90, z: 0}
+  - {x: 0, y: 180, z: 0}
+  - {x: 0, y: 270, z: 0}
+  alignToNormal: 0
+  previewPrefab: {fileID: 9069427821864725824, guid: e4f9a2a38938b3a47bed66300f1c79b9,
+    type: 3}
+  placedObject: {fileID: 4542551454481947503, guid: 18a42db4dcb69e14d9eaffacb9a4d266,
+    type: 3}

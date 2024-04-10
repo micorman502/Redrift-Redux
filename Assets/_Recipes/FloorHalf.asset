@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a7a2305287544428cbfad1cf276d74, type: 3}
+  m_Name: FloorHalf
+  m_EditorClassIdentifier: 
+  inputs:
+  - item: {fileID: 11400000, guid: 60defaddcf0f8ff46adb2b4cb7af81a3, type: 2}
+    amount: 2
+  replacedItems: []
+  output:
+    item: {fileID: 11400000, guid: 17f56daba04f92e498786a1cee71cf42, type: 2}
+    amount: 1
+  categories: 01000000
+  id: 6
+  achievementId: -1

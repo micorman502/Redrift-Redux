@@ -346,8 +346,16 @@ MonoBehaviour:
     id: 91
   - prefab: {fileID: 501257986627863571, guid: b798609763784c5479c78dce354187e7, type: 3}
     nameIdentifier: droppedItemStairsU2X2
-    id: 91
+    id: 92
   - prefab: {fileID: 3769292127366859782, guid: bbd860eaf6db4a24780118f5e8dbb591,
       type: 3}
     nameIdentifier: worldItemStairsU2X2
-    id: 91
+    id: 93
+  - prefab: {fileID: 4542551454481947503, guid: 18a42db4dcb69e14d9eaffacb9a4d266,
+      type: 3}
+    nameIdentifier: worldItemFloorHalf
+    id: 93
+  - prefab: {fileID: 8417306529483710484, guid: a02bfec342b4690488d1535d74d724e6,
+      type: 3}
+    nameIdentifier: droppedItemFloorHalf
+    id: 93
