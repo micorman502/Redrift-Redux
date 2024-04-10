@@ -354,8 +354,16 @@ MonoBehaviour:
   - prefab: {fileID: 4542551454481947503, guid: 18a42db4dcb69e14d9eaffacb9a4d266,
       type: 3}
     nameIdentifier: worldItemFloorHalf
-    id: 93
+    id: 94
   - prefab: {fileID: 8417306529483710484, guid: a02bfec342b4690488d1535d74d724e6,
       type: 3}
     nameIdentifier: droppedItemFloorHalf
-    id: 93
+    id: 95
+  - prefab: {fileID: 3042881700849456875, guid: 1115b1c409dabb740ae39c81f813e0b3,
+      type: 3}
+    nameIdentifier: worldItemFurnaceAuto
+    id: 95
+  - prefab: {fileID: 8060456525579216590, guid: 5b81544634c6d924f8f55a5be1eefb04,
+      type: 3}
+    nameIdentifier: droppedItemFurnaceAuto
+    id: 95

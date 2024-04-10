@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9054553737ebdbf499c59d51c1852601, type: 3}
-  m_Name: Furnace
+  m_Name: FurnaceAuto
   m_EditorClassIdentifier: 
-  itemName: Furnace
-  itemDescription: Smelts manually added raw materials. 3 wood per smelt.
+  itemName: Auto Furnace
+  itemDescription: Smelts raw materials placed in the front port. 3 wood per smelt.
   stackSize: 5
   stackPrefix: x
-  id: 17
+  id: 0
   achievementId: 6
-  icon: {fileID: 21300000, guid: 49c74c6ec6f6aa947b7592bcfc673add, type: 3}
-  droppedPrefab: {fileID: 7236087398120845593, guid: fe92e72464b38e941a9a612a4030d841,
+  icon: {fileID: 21300000, guid: ed096614aaf674a4587057454853681e, type: 3}
+  droppedPrefab: {fileID: 8060456525579216590, guid: 5b81544634c6d924f8f55a5be1eefb04,
     type: 3}
   gridSize: 0.5
   approximateRadius: 1
@@ -30,7 +30,7 @@ MonoBehaviour:
   - {x: 0, y: 180, z: 0}
   - {x: 0, y: 270, z: 0}
   alignToNormal: 0
-  previewPrefab: {fileID: 1279076705729118, guid: 19e194416f636d84fbdfbf4a4bd6a778,
+  previewPrefab: {fileID: 245918805485910323, guid: e4590b601aafeb644b1e7458c43d251a,
     type: 3}
-  placedObject: {fileID: 1039647288645722, guid: 09ffc11aa8e95f14189efd5d1b7ac51f,
+  placedObject: {fileID: 3042881700849456875, guid: 1115b1c409dabb740ae39c81f813e0b3,
     type: 3}

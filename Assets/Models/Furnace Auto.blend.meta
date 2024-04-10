@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 78f95d4bc726073408408c23f7495615
+guid: 472d5454cb97a464d993f49a0c55085d
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
@@ -7,8 +7,18 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Stairs
-    second: {fileID: 2100000, guid: 9cee84c82da8e8444be419c46e1dcf1b, type: 2}
+      name: Input Output
+    second: {fileID: 2100000, guid: 693088f54544e6249a722ca65b2af162, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Iron
+    second: {fileID: 2100000, guid: 83928c0f83e4b8a40b757858dc33ef75, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stone
+    second: {fileID: 2100000, guid: d40c3ab505c6a7c4fbebe59073cd3a2c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
