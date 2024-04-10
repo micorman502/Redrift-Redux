@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Furnace : MonoBehaviour, IItemPickup, IItemSaveable, IItemInteractable, IGetTriggerInfo {
+public class Furnace : MonoBehaviour, IItemPickup, IItemSaveable, IItemInteractable, IGetTriggerInfo, IHotText {
 
 	[SerializeField] string saveID;
 
@@ -165,5 +165,22 @@ public class Furnace : MonoBehaviour, IItemPickup, IItemSaveable, IItemInteracta
 			currentSmeltingItem = ItemDatabase.GetItem(data.itemID) as OreInfo;
 		}
 		Check();
+	}
+
+	public void HideHotText ()
+	{
+		HotTextManager.Instance.RemoveHotText(new HotTextInfo("", KeyCode.F, HotTextInfo.Priority.Interact, "furnaceInteract"));
+	}
+
+	public void ShowHotText ()
+	{
+		//string infoText = (sortingItem ? sortingItem.name : "") + (blackListEnabled ? " (Blacklist)" : " (Whitelist)");
+		HotTextManager.Instance.ReplaceHotText(new HotTextInfo("Add Item", KeyCode.F, HotTextInfo.Priority.Interact, "furnaceInteract"));
+	}
+
+	public void UpdateHotText ()
+	{
+		//string infoText = (sortingItem ? sortingItem.name : "") + (blackListEnabled ? " (Blacklist)" : " (Whitelist)");
+		HotTextManager.Instance.UpdateHotText(new HotTextInfo("Add Item", KeyCode.F, HotTextInfo.Priority.Interact, "furnaceInteract"));
 	}
 }
