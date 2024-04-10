@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class VoidOcean : MonoBehaviour
 {
-    public const float startThreshold = -100f;
+    public const float startThreshold = -99.85f;
     [SerializeField] float dragMin;
     [SerializeField] float damageMin;
     [SerializeField] float yEnd;

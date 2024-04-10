@@ -875,9 +875,9 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -435976598009805063, guid: 314147b820e2bdd4f8e9ea7c7ceecb3c, type: 3}
---- !u!1 &156722491 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1199021711668516, guid: 58c3dc293c422254b967cc574d836720,
+--- !u!198 &156722495 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198829741638714986, guid: 58c3dc293c422254b967cc574d836720,
     type: 3}
   m_PrefabInstance: {fileID: 250817377}
   m_PrefabAsset: {fileID: 0}
@@ -1341,6 +1341,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1199021711668516, guid: 58c3dc293c422254b967cc574d836720, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4250821142860420, guid: 58c3dc293c422254b967cc574d836720, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1371,6 +1375,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4250821142860420, guid: 58c3dc293c422254b967cc574d836720, type: 3}
       propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82975349904087718, guid: 58c3dc293c422254b967cc574d836720,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114171360967303788, guid: 58c3dc293c422254b967cc574d836720,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114380057707737522, guid: 58c3dc293c422254b967cc574d836720,
@@ -1551,6 +1565,16 @@ PrefabInstance:
     - target: {fileID: 114794400459759650, guid: 58c3dc293c422254b967cc574d836720,
         type: 3}
       propertyPath: lightRealmtooltipTextColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199384491909901808, guid: 58c3dc293c422254b967cc574d836720,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199669415378355576, guid: 58c3dc293c422254b967cc574d836720,
+        type: 3}
+      propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 306981092930001935, guid: 58c3dc293c422254b967cc574d836720,
@@ -2433,6 +2457,7 @@ Transform:
   - {fileID: 1233969442}
   - {fileID: 662899099}
   - {fileID: 1942569933}
+  - {fileID: 797339988}
   m_Father: {fileID: 2019392280}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -25071,6 +25096,53 @@ Transform:
   m_Father: {fileID: 1540912621}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &797339987
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 797339988}
+  - component: {fileID: 797339989}
+  m_Layer: 0
+  m_Name: Weather Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &797339988
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797339987}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 365841473}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &797339989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797339987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4929ffd985200e34bbfe5f094afdba74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rainParticles: {fileID: 156722495}
+  rainStartThreshold: 0.4
+  weatherChangeCoeff: 300
 --- !u!1001 &828969700
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -62425,8 +62497,7 @@ MonoBehaviour:
     hidden: 1
     realmTeleportPosition: {fileID: 662518168}
     realmEnterParticles: {fileID: 0}
-    realmObjects:
-    - {fileID: 156722491}
+    realmObjects: []
     realmPostProcessing: {fileID: 11400000, guid: 8aba0b272bd05064ca7206fdc87a2483,
       type: 2}
     cameraBGColour: {r: 0, g: 0, b: 0, a: 1}

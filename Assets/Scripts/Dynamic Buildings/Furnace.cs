@@ -91,9 +91,11 @@ public class Furnace : MonoBehaviour, IItemPickup, IItemSaveable, IItemInteracta
 
 		smelting = true;
 		currentSmeltingItem = item as OreInfo;
+
 		smoke.Play();
 		fire.Play();
 		fireLight.SetActive(true);
+
 		Invoke("FinishSmelting", smeltTime);
 	}
 
@@ -113,6 +115,7 @@ public class Furnace : MonoBehaviour, IItemPickup, IItemSaveable, IItemInteracta
 
 		currentSmeltingItem = null;
 		smelting = false;
+
 		smoke.Stop();
 		fire.Stop();
 		fireLight.SetActive(false);
