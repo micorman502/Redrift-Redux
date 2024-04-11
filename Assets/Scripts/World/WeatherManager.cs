@@ -9,10 +9,10 @@ public class WeatherManager : MonoBehaviour
     float currentIntensity;
     float intensityOffset;
 
-    [SerializeField] ParticleSystem rainParticles;
-    ParticleSystem.EmissionModule rainEmission;
-    [SerializeField] float rainStartThreshold = 0.4f;
+    [SerializeField] WeatherEffect[] weatherEffects;
     [SerializeField] float weatherChangeCoeff = 300f;
+
+    [SerializeField] bool enableDebugGUI;
 
 
     void Awake ()
@@ -25,12 +25,18 @@ public class WeatherManager : MonoBehaviour
         Instance = this;
     }
 
+    void OnGUI ()
+    {
+        if (!enableDebugGUI)
+            return;
+
+        GUI.Box(new Rect(0, 0, 600, 100), "Intensity: " + currentIntensity);
+    }
+
     void Start ()
     {
         int seed = SaveManager.Instance.GetSaveSeed();
         intensityOffset = (seed / 16384) - (seed - Mathf.RoundToInt(seed / 10) * 10);
-
-        rainEmission = rainParticles.emission;
 
         CalculateIntensity();
     }
@@ -39,7 +45,7 @@ public class WeatherManager : MonoBehaviour
     {
         CalculateIntensity();
 
-        UpdateVisuals();
+        UpdateWeatherEffects();
     }
 
     void CalculateIntensity ()
@@ -47,12 +53,20 @@ public class WeatherManager : MonoBehaviour
         float time = SaveManager.Instance.GetSaveAge() / weatherChangeCoeff;
 
         currentIntensity = Mathf.PerlinNoise(time, intensityOffset);
+        currentIntensity += Mathf.PerlinNoise((time * 2f) - (intensityOffset / 2f), intensityOffset) * 0.2f;
+        currentIntensity = Mathf.Clamp01(currentIntensity);
+
+        for (int i = 0; i < weatherEffects.Length; i++)
+        {
+            weatherEffects[i].WeatherTick(CurrentIntensity);
+        }
     }
 
-    void UpdateVisuals ()
+    void UpdateWeatherEffects ()
     {
-        float rainCoeff = Mathf.Clamp01(CurrentIntensity - rainStartThreshold) * (1 / (1 - rainStartThreshold));
-
-        rainEmission.rateOverTimeMultiplier = rainCoeff * 450f;
+        for (int i = 0; i < weatherEffects.Length; i++)
+        {
+            weatherEffects[i].WeatherTick(CurrentIntensity);
+        }
     }
 }
