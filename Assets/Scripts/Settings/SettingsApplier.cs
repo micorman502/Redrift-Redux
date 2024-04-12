@@ -97,7 +97,7 @@ public class SettingsApplier : MonoBehaviour
 
     void UpdatePhysicsTickrateValue (int value)
     {
-        value = Mathf.Clamp(value, 50, 120);
+        value = Mathf.Clamp(value, 40, 120);
         Time.fixedDeltaTime = 1f / value;
     }
 

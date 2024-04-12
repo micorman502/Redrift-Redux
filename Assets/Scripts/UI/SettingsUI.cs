@@ -207,7 +207,7 @@ public class SettingsUI : MonoBehaviour
     public void SetPhysicsTickrate (float value)
     {
         int roundedValue = Mathf.RoundToInt(value);
-        physicsTickrateReadout.text = roundedValue.ToString();
+        physicsTickrateReadout.text = Mathf.Round(value).ToString();
         physicsTickrateLabel.text = "Tickrate";
 
         if (value < 40 || value > 120)
