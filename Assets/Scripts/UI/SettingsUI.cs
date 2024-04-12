@@ -24,6 +24,9 @@ public class SettingsUI : MonoBehaviour
     [SerializeField] TMP_Text volumeLabel;
     [SerializeField] TMP_Text volumeReadout;
     [Header("Gameplay")]
+    [SerializeField] Slider physicsTickrateSlider;
+    [SerializeField] TMP_Text physicsTickrateLabel;
+    [SerializeField] TMP_Text physicsTickrateReadout;
     [SerializeField] Slider fieldOfViewSlider;
     [SerializeField] TMP_Text fieldOfViewLabel;
     [SerializeField] TMP_Text fieldOfViewReadout;
@@ -54,6 +57,7 @@ public class SettingsUI : MonoBehaviour
         fieldOfViewSlider.value = CurrentSettings.ModifiableSettingsData.fieldOfView;
         volumeSlider.value = CurrentSettings.ModifiableSettingsData.volume;
         mouseSensitivitySlider.value = CurrentSettings.ModifiableSettingsData.mouseSensitivity;
+        physicsTickrateSlider.value = CurrentSettings.ModifiableSettingsData.physicsTickrate;
 
         InitialiseDropdowns();
 
@@ -101,6 +105,7 @@ public class SettingsUI : MonoBehaviour
         SetResolutionIndex(CurrentSettings.ModifiableSettingsData.resolutionIndex);
         SetGraphicsIndex(CurrentSettings.ModifiableSettingsData.graphicsIndex);
         SetFullscreenIndex(CurrentSettings.ModifiableSettingsData.fullscreenIndex);
+        SetPhysicsTickrate(CurrentSettings.ModifiableSettingsData.physicsTickrate);
     }
 
     public void SetPostProcessing (bool value)
@@ -196,6 +201,25 @@ public class SettingsUI : MonoBehaviour
             return;
 
         fullscreenLabel.text += "*";
+    }
+
+
+    public void SetPhysicsTickrate (float value)
+    {
+        int roundedValue = Mathf.RoundToInt(value);
+        physicsTickrateReadout.text = roundedValue.ToString();
+        physicsTickrateLabel.text = "Tickrate";
+
+        if (value < 40 || value > 120)
+            return;
+        if (!initialised)
+            return;
+        CurrentSettings.ModifiableSettingsData.physicsTickrate = roundedValue;
+        
+        if (value == CurrentSettings.CurrentSettingsData.physicsTickrate)
+            return;
+
+        physicsTickrateLabel.text += "*";
     }
 
     public void ApplySettings ()

@@ -32,6 +32,7 @@ public class SettingsApplier : MonoBehaviour
         UpdateResolutionValue(CurrentSettings.CurrentSettingsData.resolutionIndex);
         UpdateGraphicsValue(CurrentSettings.CurrentSettingsData.graphicsIndex);
         UpdateFullscreenValue(CurrentSettings.CurrentSettingsData.fullscreenIndex);
+        UpdatePhysicsTickrateValue(CurrentSettings.CurrentSettingsData.physicsTickrate);
     }
 
     void OnSceneLoaded (Scene scene, LoadSceneMode loadSceneMode)
@@ -92,6 +93,12 @@ public class SettingsApplier : MonoBehaviour
             return;
 
         Screen.fullScreenMode = (FullScreenMode)value;
+    }
+
+    void UpdatePhysicsTickrateValue (int value)
+    {
+        value = Mathf.Clamp(value, 50, 120);
+        Time.fixedDeltaTime = 1f / value;
     }
 
     bool InGame ()

@@ -85,7 +85,7 @@ public class SettingsData {
         this.resolutionIndex = Mathf.RoundToInt(Screen.resolutions.Length / 2f);
         this.graphicsIndex = Mathf.RoundToInt(QualitySettings.names.Length / 2f);
         this.fullscreenIndex = 0;
-        this.physicsTickrate = 50;
+        this.physicsTickrate = 40;
     }
 
     public static bool IdenticalSettings (SettingsData a, SettingsData b) //probably a better way to do this, please update this in future if there is
