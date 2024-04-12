@@ -25026,7 +25026,7 @@ MonoBehaviour:
   - {fileID: 1996693426}
   - {fileID: 918191525}
   weatherChangeCoeff: 300
-  enableDebugGUI: 1
+  enableDebugGUI: 0
 --- !u!1 &822687698 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5381c2107687acd459bf17351b9aeaf2,
