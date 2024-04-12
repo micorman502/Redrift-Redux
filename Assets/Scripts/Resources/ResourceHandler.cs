@@ -14,6 +14,7 @@ public class ResourceHandler : MonoBehaviour, IItemSaveable, IResource {
 	[SerializeField] int health;
 
 	[Header("Visual")]
+	[SerializeField] GameObject gatherFX;
 	[SerializeField] GameObject deathObject;
 	[SerializeField] GameObject optionalVisual;
 
@@ -63,16 +64,14 @@ public class ResourceHandler : MonoBehaviour, IItemSaveable, IResource {
 			i++;
 		}
 
-		if (optionalVisual)
-		{
-			optionalVisual.transform.DOShakeRotation(0.5f, 5f);
-		}
-
 		health -= 1;
 		if (health <= 0 && !resource.infiniteGathers)
 		{
 			DestroyResource();
-		}
+		} else
+        {
+			GatherFX();
+        }
 
 		return returnedItems.ToArray();
 	}
@@ -83,11 +82,34 @@ public class ResourceHandler : MonoBehaviour, IItemSaveable, IResource {
 		{
 			HiveMind.Instance.RemoveResource(this);
 		}
+
+		DestroyFX();
+
+		Destroy(gameObject);
+	}
+
+	protected virtual void GatherFX ()
+	{
+		if (optionalVisual)
+		{
+			optionalVisual.transform.DOShakeRotation(0.5f, 5f);
+		}
+		if (gatherFX)
+		{
+			Destroy(Instantiate(gatherFX, transform.position, transform.rotation), 7f);
+		}
+	}
+
+	protected virtual void DestroyFX ()
+	{
 		if (deathObject)
 		{
-			Destroy(Instantiate(deathObject, transform.position, transform.rotation), 10);
+			Destroy(Instantiate(deathObject, transform.position, transform.rotation), 7f);
 		}
-		Destroy(gameObject);
+		if (optionalVisual)
+		{
+			optionalVisual.transform.DOKill();
+		}
 	}
 
 	public void SetHealth (int _health)
