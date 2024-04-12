@@ -22,6 +22,6 @@ MonoBehaviour:
   droppedPrefab: {fileID: 472510647620999602, guid: 645f008ee3ceae5478e8de1a0631d15d,
     type: 3}
   range: 50
-  travelSpeed: 50
+  travelSpeed: 60
   pullForce: 2.5
   cooldown: 7.5
