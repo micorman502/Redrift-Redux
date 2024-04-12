@@ -362,8 +362,12 @@ MonoBehaviour:
   - prefab: {fileID: 3042881700849456875, guid: 1115b1c409dabb740ae39c81f813e0b3,
       type: 3}
     nameIdentifier: worldItemFurnaceAuto
-    id: 95
+    id: 96
   - prefab: {fileID: 8060456525579216590, guid: 5b81544634c6d924f8f55a5be1eefb04,
       type: 3}
     nameIdentifier: droppedItemFurnaceAuto
-    id: 95
+    id: 97
+  - prefab: {fileID: 8867880941123541123, guid: b08b43956078d5d4487cf3896c533dd3,
+      type: 3}
+    nameIdentifier: worldItemLightningStone
+    id: 98

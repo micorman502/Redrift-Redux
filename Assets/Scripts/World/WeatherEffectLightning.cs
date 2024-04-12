@@ -12,7 +12,7 @@ public class WeatherEffectLightning : WeatherEffectParticles
     [SerializeField] float lightningSpawnRadius;
     [SerializeField] float lightningEffectRadius;
     [SerializeField] float lightningDamage;
-    [SerializeField] ItemInfo itemFromVoidOceanStrike;
+    [SerializeField] GameObject voidOceanStrikeItem;
     [SerializeField] int strikesPerItemSpawn = 2;
 
 
@@ -80,7 +80,7 @@ public class WeatherEffectLightning : WeatherEffectParticles
             {
                 if (colliders[i].gameObject.GetComponent<VoidOcean>())
                 {
-                    Instantiate(itemFromVoidOceanStrike.droppedPrefab, hitPoint + Vector3.up * 0.6f, Quaternion.identity);
+                    Instantiate(voidOceanStrikeItem, hitPoint + Vector3.up * 0.6f, Quaternion.identity);
                 }
             }
             IDamageable damageable = colliders[i].GetComponent<IDamageable>();

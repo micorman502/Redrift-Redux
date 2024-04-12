@@ -8,7 +8,9 @@ public class ItemHandler : MonoBehaviour, IItemSaveable, IItemPickup, IHotText {
 
 	[SerializeField] string saveID;
 	[SerializeField] bool dontSave;
-	public void GetData(out ItemSaveData data, out ObjectSaveData objData, out bool _dontSave)
+	protected bool loaded;
+
+	public virtual void GetData(out ItemSaveData data, out ObjectSaveData objData, out bool _dontSave)
 	{
 		if (dontSave)
         {
@@ -29,8 +31,15 @@ public class ItemHandler : MonoBehaviour, IItemSaveable, IItemPickup, IHotText {
 
 	public void SetData(ItemSaveData data, ObjectSaveData objData)
 	{
+		Load(data, objData);
+	}
+
+	protected virtual void Load (ItemSaveData data, ObjectSaveData objData)
+    {
 		transform.position = objData.position;
 		transform.rotation = objData.rotation;
+
+		loaded = true;
 	}
 
 	public WorldItem[] GetItems ()
