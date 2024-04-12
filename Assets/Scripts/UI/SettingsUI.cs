@@ -65,6 +65,8 @@ public class SettingsUI : MonoBehaviour
         graphicsDropdown.value = CurrentSettings.ModifiableSettingsData.graphicsIndex;
         fullscreenDropdown.value = CurrentSettings.ModifiableSettingsData.fullscreenIndex;
 
+        OnCurrentSettingsDataUpdate(); // NOT REDUNDANT!
+
         initialised = true;
     }
 
