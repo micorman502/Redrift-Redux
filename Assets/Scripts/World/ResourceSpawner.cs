@@ -8,6 +8,7 @@ public class ResourceSpawner : MonoBehaviour
 	int curTick;
 	[SerializeField] Transform spawnTarget;
 	[SerializeField] Vector3 bounds;
+	[SerializeField] QueryTriggerInteraction triggerInteraction = QueryTriggerInteraction.Ignore;
     [SerializeField] ResourceSpawn[] spawns;
 
 	private void Start ()
@@ -82,7 +83,7 @@ public class ResourceSpawner : MonoBehaviour
 		{
 			Debug.DrawRay(checkPos, checkDir, Color.red, 50f);
 			RaycastHit hit;
-			if (Physics.Raycast(checkPos, checkDir, out hit, 500f, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore))
+			if (Physics.Raycast(checkPos, checkDir, out hit, 500f, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Collide))
 			{
 				if (hit.collider.gameObject.layer == LayerMask.NameToLayer("World"))
 				{
@@ -116,6 +117,11 @@ public class ResourceSpawn
 
 	public void SetNextSpawnTime ()
     {
+		if (spawnFrequency < 0)
+        {
+			nextSpawnTime = float.MaxValue;
+			return;
+        }
 		nextSpawnTime = Time.time + spawnFrequency;
     }
 }

@@ -3983,6 +3983,7 @@ MonoBehaviour:
   checkRate: 1
   spawnTarget: {fileID: 973447281}
   bounds: {x: 22.5, y: 0, z: 22.5}
+  triggerInteraction: 1
   spawns:
   - spawnPrefab: {fileID: 1523322516565944, guid: c5b0387d80fa75244b875949079823ed,
       type: 3}
@@ -4000,7 +4001,7 @@ MonoBehaviour:
     boundsMultiplier: {x: 1, y: 1, z: 1}
     initialSpawnAmountMin: 125
     initialSpawnAmountMax: 175
-    spawnFrequency: 300
+    spawnFrequency: -1
     nextSpawnTime: 0
 --- !u!1 &546438323
 GameObject:
@@ -25142,6 +25143,7 @@ MonoBehaviour:
   checkRate: 1
   spawnTarget: {fileID: 828969708}
   bounds: {x: 7, y: 0, z: 7}
+  triggerInteraction: 1
   spawns:
   - spawnPrefab: {fileID: 1078551866452224, guid: ffaf4c1f892bb4a49b183f3d4721e106,
       type: 3}
@@ -31812,6 +31814,7 @@ MonoBehaviour:
   checkRate: 1
   spawnTarget: {fileID: 1050056205}
   bounds: {x: 35, y: 0, z: 35}
+  triggerInteraction: 1
   spawns:
   - spawnPrefab: {fileID: 5970644240723651174, guid: 3db2ce2a098d78246b10dd12a461d382,
       type: 3}
@@ -39715,6 +39718,7 @@ MonoBehaviour:
   checkRate: 1
   spawnTarget: {fileID: 828969706}
   bounds: {x: 45, y: 0, z: 45}
+  triggerInteraction: 1
   spawns:
   - spawnPrefab: {fileID: 1523322516565944, guid: c5b0387d80fa75244b875949079823ed,
       type: 3}
@@ -39759,7 +39763,7 @@ MonoBehaviour:
     boundsMultiplier: {x: 1, y: 1, z: 1}
     initialSpawnAmountMin: 125
     initialSpawnAmountMax: 175
-    spawnFrequency: 300000
+    spawnFrequency: -1
     nextSpawnTime: 0
   - spawnPrefab: {fileID: 2070620076365560296, guid: 7ed85cbeb64fba44791f32165a150379,
       type: 3}
@@ -53940,6 +53944,7 @@ MonoBehaviour:
   checkRate: 1
   spawnTarget: {fileID: 2063022347}
   bounds: {x: 35, y: 0, z: 35}
+  triggerInteraction: 1
   spawns:
   - spawnPrefab: {fileID: 5970644240723651174, guid: 3db2ce2a098d78246b10dd12a461d382,
       type: 3}
