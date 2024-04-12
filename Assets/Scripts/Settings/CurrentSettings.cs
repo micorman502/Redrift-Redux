@@ -53,12 +53,6 @@ public static class CurrentSettings
         if (saveString == "" || saveString == null)
         {
             CurrentSettingsData = new SettingsData();
-
-            int midRangeQualityIndex = Mathf.RoundToInt(QualitySettings.names.Length / 2f);
-            int midRangeResolutionIndex = Mathf.RoundToInt(resolutions.Length / 2f);
-
-            CurrentSettingsData.graphicsIndex = midRangeQualityIndex;
-            CurrentSettingsData.resolutionIndex = midRangeResolutionIndex;
         } else
         {
             CurrentSettingsData = new SettingsData(JsonUtility.FromJson<SettingsData>(saveString));
@@ -79,6 +73,7 @@ public class SettingsData {
         this.resolutionIndex = newData.resolutionIndex;
         this.graphicsIndex = newData.graphicsIndex;
         this.fullscreenIndex = newData.fullscreenIndex;
+        this.physicsTickrate = newData.physicsTickrate;
     }
 
     public SettingsData () //basically defines default settings
@@ -87,9 +82,10 @@ public class SettingsData {
         this.fieldOfView = 75f;
         this.volume = 0.8f;
         this.mouseSensitivity = 3.5f;
-        this.resolutionIndex = 0;
-        this.graphicsIndex = 0;
+        this.resolutionIndex = Mathf.RoundToInt(Screen.resolutions.Length / 2f);
+        this.graphicsIndex = Mathf.RoundToInt(QualitySettings.names.Length / 2f);
         this.fullscreenIndex = 0;
+        this.physicsTickrate = 50;
     }
 
     public static bool IdenticalSettings (SettingsData a, SettingsData b) //probably a better way to do this, please update this in future if there is
@@ -108,6 +104,8 @@ public class SettingsData {
             return false;
         if (a.fullscreenIndex != b.fullscreenIndex)
             return false;
+        if (a.physicsTickrate != b.physicsTickrate)
+            return false;
         return true;
     }
 
@@ -118,5 +116,6 @@ public class SettingsData {
     public int resolutionIndex;
     public int graphicsIndex;
     public int fullscreenIndex;
+    public int physicsTickrate;
 }
 
