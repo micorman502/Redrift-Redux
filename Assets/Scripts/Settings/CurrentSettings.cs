@@ -53,6 +53,12 @@ public static class CurrentSettings
         if (saveString == "" || saveString == null)
         {
             CurrentSettingsData = new SettingsData();
+
+            int midRangeQualityIndex = Mathf.RoundToInt(QualitySettings.names.Length / 2f);
+            int midRangeResolutionIndex = Mathf.RoundToInt(resolutions.Length / 2f);
+
+            CurrentSettingsData.graphicsIndex = midRangeQualityIndex;
+            CurrentSettingsData.resolutionIndex = midRangeResolutionIndex;
         } else
         {
             CurrentSettingsData = new SettingsData(JsonUtility.FromJson<SettingsData>(saveString));
