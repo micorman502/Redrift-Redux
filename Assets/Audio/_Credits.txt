@@ -4,3 +4,4 @@ grapple: https://freesound.org/people/pengo_au/sounds/90143/
 void bubble: https://freesound.org/people/martats/sounds/127830/
 
 tree destroy leaf rustle: https://freesound.org/people/j1987/sounds/106130/
+stone destroy crumble: https://freesound.org/people/NeoSpica/sounds/512243/

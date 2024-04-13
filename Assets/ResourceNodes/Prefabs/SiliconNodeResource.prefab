@@ -110,10 +110,12 @@ MonoBehaviour:
   dontSave: 0
   saveID: resourceSiliconNode
   dontRegisterToHivemind: 0
-  deathObject: {fileID: 670752909559086452, guid: 97fa68b80b300a14ab9e6c6318464da3,
-    type: 3}
   resource: {fileID: 11400000, guid: b1d4d3aebe0f8494dabd677441f634ad, type: 2}
   health: 0
+  gatherFX: {fileID: 670752909559086452, guid: 97fa68b80b300a14ab9e6c6318464da3, type: 3}
+  destroyFX: {fileID: 804671207453080489, guid: ec5ba0a8276b410428000815161d8a30,
+    type: 3}
+  optionalVisual: {fileID: 0}
 --- !u!208 &9175664380057593762
 NavMeshObstacle:
   m_ObjectHideFlags: 0

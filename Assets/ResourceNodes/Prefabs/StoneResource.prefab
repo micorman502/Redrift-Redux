@@ -53,8 +53,8 @@ MonoBehaviour:
   dontRegisterToHivemind: 0
   resource: {fileID: 11400000, guid: 331b12aed5cf22d4bae3b266c9ec9dbd, type: 2}
   health: 0
-  gatherFX: {fileID: 0}
-  destroyFX: {fileID: 670752909559086452, guid: 97fa68b80b300a14ab9e6c6318464da3,
+  gatherFX: {fileID: 670752909559086452, guid: 97fa68b80b300a14ab9e6c6318464da3, type: 3}
+  destroyFX: {fileID: 804671207453080489, guid: ec5ba0a8276b410428000815161d8a30,
     type: 3}
   optionalVisual: {fileID: 0}
 --- !u!95 &95150292210513718
