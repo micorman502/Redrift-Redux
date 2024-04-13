@@ -22,7 +22,7 @@ MonoBehaviour:
   replacedItems: []
   output:
     item: {fileID: 11400000, guid: a99cfd9dd1c3a34478552a9d427545f6, type: 2}
-    amount: 0
+    amount: 1
   categories: 0100000004000000
   id: 36
   achievementId: 9

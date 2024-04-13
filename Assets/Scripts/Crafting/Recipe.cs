@@ -7,7 +7,7 @@ public class Recipe : ScriptableObject {
     public enum RecipeCategory { All, Construction, Resources, Tools, Automation, Decoration };
     public WorldItem[] inputs;
 	public WorldItem[] replacedItems;
-	public WorldItem output;
+	public WorldItem output = new WorldItem(null, 1);
 	public RecipeCategory[] categories;
     public int id;
     public int achievementId = -1;
