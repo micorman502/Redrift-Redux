@@ -15,7 +15,7 @@ public class ResourceHandler : MonoBehaviour, IItemSaveable, IResource {
 
 	[Header("Visual")]
 	[SerializeField] GameObject gatherFX;
-	[SerializeField] GameObject deathObject;
+	[SerializeField] GameObject destroyFX;
 	[SerializeField] GameObject optionalVisual;
 
 	bool loaded;
@@ -102,9 +102,9 @@ public class ResourceHandler : MonoBehaviour, IItemSaveable, IResource {
 
 	protected virtual void DestroyFX ()
 	{
-		if (deathObject)
+		if (destroyFX)
 		{
-			Destroy(Instantiate(deathObject, transform.position, transform.rotation), 7f);
+			Destroy(Instantiate(destroyFX, transform.position, transform.rotation), 7f);
 		}
 		if (optionalVisual)
 		{

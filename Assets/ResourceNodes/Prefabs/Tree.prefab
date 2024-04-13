@@ -121,7 +121,9 @@ MonoBehaviour:
   dontRegisterToHivemind: 0
   resource: {fileID: 11400000, guid: 704d728cff76bff459184853ac5af545, type: 2}
   health: 0
-  deathObject: {fileID: 6796773874796555553, guid: 456a8ceba34802b4e95868665862112a,
+  gatherFX: {fileID: 6796773874796555553, guid: 456a8ceba34802b4e95868665862112a,
+    type: 3}
+  destroyFX: {fileID: 5568250031719099515, guid: 4eec9e29de5db174a9ddbe2ddeb4cbdd,
     type: 3}
   optionalVisual: {fileID: 9119788094803115593}
   applePrefab: {fileID: 5431372089691946670, guid: 6967b4135673c5d48802de882043fcb7,

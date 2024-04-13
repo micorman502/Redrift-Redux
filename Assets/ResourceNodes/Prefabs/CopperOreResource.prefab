@@ -51,10 +51,12 @@ MonoBehaviour:
   dontSave: 0
   saveID: resourceCopperOre
   dontRegisterToHivemind: 0
-  deathObject: {fileID: 670752909559086452, guid: 97fa68b80b300a14ab9e6c6318464da3,
-    type: 3}
   resource: {fileID: 11400000, guid: d4aa8df93459e6241ab266f993a8177f, type: 2}
   health: 0
+  gatherFX: {fileID: 0}
+  destroyFX: {fileID: 670752909559086452, guid: 97fa68b80b300a14ab9e6c6318464da3,
+    type: 3}
+  optionalVisual: {fileID: 0}
 --- !u!95 &95627421998644428
 Animator:
   serializedVersion: 4

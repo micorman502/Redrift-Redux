@@ -51,10 +51,12 @@ MonoBehaviour:
   dontSave: 0
   saveID: resourceIronOre
   dontRegisterToHivemind: 0
-  deathObject: {fileID: 670752909559086452, guid: 97fa68b80b300a14ab9e6c6318464da3,
-    type: 3}
   resource: {fileID: 11400000, guid: 398b2d55c5b81ea40b6f5c8a7879a039, type: 2}
   health: 0
+  gatherFX: {fileID: 0}
+  destroyFX: {fileID: 670752909559086452, guid: 97fa68b80b300a14ab9e6c6318464da3,
+    type: 3}
+  optionalVisual: {fileID: 0}
 --- !u!95 &95435628683722432
 Animator:
   serializedVersion: 4
