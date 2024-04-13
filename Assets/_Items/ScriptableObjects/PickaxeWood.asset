@@ -21,5 +21,5 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 10ad2ea65cf09f14099600cdfd745294, type: 3}
   droppedPrefab: {fileID: 1894212421264514, guid: bad2dcd76f004ad4391e3bbe7833c713,
     type: 3}
-  gatherSpeedMult: 1.5
+  gatherSpeedMult: 1.4
   gatherAmountMult: 1
