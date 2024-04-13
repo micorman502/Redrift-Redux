@@ -93,15 +93,15 @@ public class Recipe : ScriptableObject {
         return true;
     }
 
-    public void Craft (Inventory inventory)
+    public bool Craft (Inventory inventory)
     {
-        Craft(inventory, false);
+        return Craft(inventory, true);
     }
 
-    public void Craft (Inventory inventory, bool doCraftableCheck)
+    public bool Craft (Inventory inventory, bool doCraftableCheck)
     {
         if (doCraftableCheck && !IsCraftable(inventory))
-            return;
+            return false;
 
         foreach (WorldItem item in inputs)
         {
@@ -112,6 +112,8 @@ public class Recipe : ScriptableObject {
         {
             inventory.AddItem(item);
         }
+
+        return true;
     }
     #endregion
 }
