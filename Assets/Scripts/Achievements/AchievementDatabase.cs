@@ -36,6 +36,11 @@ public class AchievementDatabase : MonoBehaviour
         return Register.achievements;
     }
 
+    public static int TotalAchievementCount ()
+    {
+        return Register.achievements.Length;
+    }
+
     public static Achievement GetAchievement (int id)
     {
         return Register.achievements[id];
