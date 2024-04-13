@@ -4834,12 +4834,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8870113404255085201}
-  - component: {fileID: 8827740291349438771}
+  - component: {fileID: 1771468098444598893}
   - component: {fileID: 8890808269802884879}
   - component: {fileID: 8882639869475614513}
   - component: {fileID: 8810638843652018373}
   - component: {fileID: 8923428187697238697}
-  - component: {fileID: 1771468098444598893}
   - component: {fileID: 8766382055052372043}
   - component: {fileID: 8778588432597408805}
   - component: {fileID: 8827308674053828001}
@@ -4868,7 +4867,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8827740291349438771
+--- !u!114 &1771468098444598893
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4877,12 +4876,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 8867880941123541123}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
+  m_Script: {fileID: 11500000, guid: 853067ddc243a83499cccdd2aa2a233e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: ada74405c0b91a641bed3460f1a00d5e, type: 2}
   saveID: worldItemLightningStone
   dontSave: 0
+  fadeTime: 40
+  minScale: {x: 0.1, y: 0.1, z: 0.1}
 --- !u!33 &8890808269802884879
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4969,22 +4970,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &1771468098444598893
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8867880941123541123}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 853067ddc243a83499cccdd2aa2a233e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: ada74405c0b91a641bed3460f1a00d5e, type: 2}
-  saveID: worldItemLightningStone
-  dontSave: 0
-  fadeTime: 40
 --- !u!198 &8766382055052372043
 ParticleSystem:
   m_ObjectHideFlags: 0
