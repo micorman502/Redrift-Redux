@@ -83,7 +83,7 @@ public class ResourceSpawner : MonoBehaviour
 		{
 			Debug.DrawRay(checkPos, checkDir, Color.red, 50f);
 			RaycastHit hit;
-			if (Physics.Raycast(checkPos, checkDir, out hit, 500f, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Collide))
+			if (Physics.Raycast(checkPos, checkDir, out hit, 500f, Physics.DefaultRaycastLayers, triggerInteraction))
 			{
 				if (hit.collider.gameObject.layer == LayerMask.NameToLayer("World"))
 				{
