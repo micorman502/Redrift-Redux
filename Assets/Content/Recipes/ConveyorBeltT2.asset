@@ -10,19 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6a7a2305287544428cbfad1cf276d74, type: 3}
-  m_Name: FurnaceAuto
+  m_Name: ConveyorBeltT2
   m_EditorClassIdentifier: 
   inputs:
+  - item: {fileID: 11400000, guid: 60defaddcf0f8ff46adb2b4cb7af81a3, type: 2}
+    amount: 5
   - item: {fileID: 11400000, guid: 1e10d0584bbe2ee47ba56f3c6f0b6737, type: 2}
-    amount: 8
-  - item: {fileID: 11400000, guid: ea1231b87469d66478589fbd2574706c, type: 2}
     amount: 2
   - item: {fileID: 11400000, guid: 13919cb26fba1284689672e0315679e4, type: 2}
     amount: 2
   replacedItems: []
   output:
-    item: {fileID: 11400000, guid: a99cfd9dd1c3a34478552a9d427545f6, type: 2}
+    item: {fileID: 11400000, guid: e57ea78aef44f1f4db801b9b3f269bcf, type: 2}
     amount: 1
-  categories: 0100000004000000
-  id: 36
+  categories: 04000000
+  id: 19
   achievementId: 9
+  hideInCraftingUI: 1

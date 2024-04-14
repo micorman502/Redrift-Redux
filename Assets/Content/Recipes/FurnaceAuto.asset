@@ -10,17 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6a7a2305287544428cbfad1cf276d74, type: 3}
-  m_Name: Incinerator
+  m_Name: FurnaceAuto
   m_EditorClassIdentifier: 
   inputs:
   - item: {fileID: 11400000, guid: 1e10d0584bbe2ee47ba56f3c6f0b6737, type: 2}
-    amount: 3
+    amount: 8
   - item: {fileID: 11400000, guid: ea1231b87469d66478589fbd2574706c, type: 2}
-    amount: 10
+    amount: 2
+  - item: {fileID: 11400000, guid: 13919cb26fba1284689672e0315679e4, type: 2}
+    amount: 2
   replacedItems: []
   output:
-    item: {fileID: 11400000, guid: 65c8437dd1294f74a9b51040628230ff, type: 2}
+    item: {fileID: 11400000, guid: a99cfd9dd1c3a34478552a9d427545f6, type: 2}
     amount: 1
-  categories: 01000000
-  id: 25
-  achievementId: -1
+  categories: 0100000004000000
+  id: 36
+  achievementId: 9
+  hideInCraftingUI: 1

@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: BuildingRegister
   m_EditorClassIdentifier: 
   autoFindBuildings: 1
-  buildings:
-  - {fileID: 11400000, guid: 7772ac7d5904b114d929ec5d7baf8852, type: 2}
+  buildings: []

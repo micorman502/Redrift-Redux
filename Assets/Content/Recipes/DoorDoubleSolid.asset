@@ -10,17 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6a7a2305287544428cbfad1cf276d74, type: 3}
-  m_Name: FloorSolid
+  m_Name: DoorDoubleSolid
   m_EditorClassIdentifier: 
   inputs:
   - item: {fileID: 11400000, guid: 60defaddcf0f8ff46adb2b4cb7af81a3, type: 2}
     amount: 6
   - item: {fileID: 11400000, guid: 1e10d0584bbe2ee47ba56f3c6f0b6737, type: 2}
-    amount: 1
+    amount: 3
   replacedItems: []
   output:
-    item: {fileID: 11400000, guid: f3e23d95dfc133440b15894be720c8fd, type: 2}
+    item: {fileID: 11400000, guid: 2a3e42bf760cb3846b9b2f2f6e7b04f8, type: 2}
     amount: 1
   categories: 01000000
-  id: 7
+  id: 15
   achievementId: -1
+  hideInCraftingUI: 1

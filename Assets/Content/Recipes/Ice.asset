@@ -10,15 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6a7a2305287544428cbfad1cf276d74, type: 3}
-  m_Name: WoodPileToWood
+  m_Name: Ice
   m_EditorClassIdentifier: 
   inputs:
-  - item: {fileID: 11400000, guid: 966d43846ef5557458a540c24d80b534, type: 2}
-    amount: 1
-  replacedItems: []
+  - item: {fileID: 11400000, guid: f3d9331c6ded1e4488f7bac7e0a8f8c4, type: 2}
+    amount: 2
+  replacedItems:
+  - item: {fileID: 11400000, guid: 296e1243692f86144accc4a222765046, type: 2}
+    amount: 2
   output:
-    item: {fileID: 11400000, guid: 60defaddcf0f8ff46adb2b4cb7af81a3, type: 2}
-    amount: 20
-  categories: 02000000
-  id: 31
+    item: {fileID: 11400000, guid: ae8fcd34f9c789148acaf4358b6c5f2b, type: 2}
+    amount: 1
+  categories: 01000000
+  id: 23
   achievementId: -1
+  hideInCraftingUI: 1

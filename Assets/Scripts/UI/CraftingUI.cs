@@ -91,7 +91,7 @@ public class CraftingUI : MonoBehaviour //creates and assists with interactions 
 
         foreach (Recipe recipe in RecipeDatabase.GetAllRecipes())
         {
-            if (recipe.MatchesCategory(currentCategory))
+            if (recipe.MatchesCategory(currentCategory) && !recipe.hideInCraftingUI)
             {
                 CraftingUISelectable selectable = Instantiate(selectablePrefab, selectablesHolder).GetComponent<CraftingUISelectable>();
                 craftingSelectables.Add(selectable);

@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6a7a2305287544428cbfad1cf276d74, type: 3}
-  m_Name: FloorHalf
+  m_Name: WoodPileToWood
   m_EditorClassIdentifier: 
   inputs:
-  - item: {fileID: 11400000, guid: 60defaddcf0f8ff46adb2b4cb7af81a3, type: 2}
-    amount: 2
+  - item: {fileID: 11400000, guid: 966d43846ef5557458a540c24d80b534, type: 2}
+    amount: 1
   replacedItems: []
   output:
-    item: {fileID: 11400000, guid: 17f56daba04f92e498786a1cee71cf42, type: 2}
-    amount: 1
-  categories: 01000000
-  id: 6
+    item: {fileID: 11400000, guid: 60defaddcf0f8ff46adb2b4cb7af81a3, type: 2}
+    amount: 20
+  categories: 02000000
+  id: 31
   achievementId: -1
+  hideInCraftingUI: 1

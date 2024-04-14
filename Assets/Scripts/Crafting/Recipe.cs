@@ -11,6 +11,7 @@ public class Recipe : ScriptableObject {
 	public RecipeCategory[] categories;
     public int id;
     public int achievementId = -1;
+    public bool hideInCraftingUI;
 
     #region Self-Contained Functions
     public bool MatchesCategory (RecipeCategory otherCategory)

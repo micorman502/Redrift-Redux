@@ -10,15 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6a7a2305287544428cbfad1cf276d74, type: 3}
-  m_Name: Box
+  m_Name: WallSolid
   m_EditorClassIdentifier: 
   inputs:
   - item: {fileID: 11400000, guid: 60defaddcf0f8ff46adb2b4cb7af81a3, type: 2}
-    amount: 2
+    amount: 6
+  - item: {fileID: 11400000, guid: 1e10d0584bbe2ee47ba56f3c6f0b6737, type: 2}
+    amount: 1
   replacedItems: []
   output:
-    item: {fileID: 11400000, guid: 8e2b06360f2cb914093f2e0c86d5ee65, type: 2}
+    item: {fileID: 11400000, guid: 8ff0a9018128cbd479dfb134c6e1a400, type: 2}
     amount: 1
   categories: 01000000
-  id: 10
+  id: 9
   achievementId: -1
+  hideInCraftingUI: 1
