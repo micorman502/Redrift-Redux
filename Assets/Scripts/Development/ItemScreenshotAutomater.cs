@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ItemScreenshotAutomater : MonoBehaviour
 {
-    const string defaultPath = "/_Items/Icons/";
+    const string defaultPath = "/Content/_Items/Icons/";
     [SerializeField] bool useTargetItemName;
     [SerializeField] ItemInfo targetItem;
     [SerializeField] string overrideItemName;
