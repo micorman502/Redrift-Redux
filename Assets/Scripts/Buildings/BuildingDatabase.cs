@@ -97,4 +97,9 @@ public class BuildingDatabase : MonoBehaviour
         Debug.Log("No building with the name '" + buildingName + "' could be found. Returning first building.");
         return Register.buildings[0];
     }
+
+    public static Recipe[] GetAllBuildingRecipes ()
+    {
+        return Register.buildingRecipes;
+    }
 }

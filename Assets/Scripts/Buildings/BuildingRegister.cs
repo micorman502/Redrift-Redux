@@ -9,6 +9,7 @@ public class BuildingRegister : ScriptableObject
 {
     public bool autoFindBuildings;
     public BuildingData[] buildings;
+    public Recipe[] buildingRecipes;
 
     public void SearchBuildings ()
     {
