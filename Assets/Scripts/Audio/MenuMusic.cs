@@ -11,7 +11,7 @@ public class MenuMusic : MonoBehaviour
         music.Play();
     }
 
-    void OnDestroy ()
+    void OnDisable ()
     {
         music.Stop();
     }
