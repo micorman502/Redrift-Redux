@@ -23,19 +23,9 @@ public class BuildingDatabase : MonoBehaviour
 
         Register.SearchBuildings();
 
-        IDBuildings();
-
         if (buildingDebugMode)
         {
             DebugBuildings();
-        }
-    }
-
-    static void IDBuildings ()
-    {
-        for (int i = 0; i < Register.buildings.Length; i++)
-        {
-            Register.buildings[i].id = i;
         }
     }
 
@@ -44,33 +34,33 @@ public class BuildingDatabase : MonoBehaviour
         for (int i = 0; i < register.buildings.Length; i++)
         {
 
-            BuildingData building = register.buildings[i];
+            BuildingInfo building = register.buildings[i];
 
             if (building)
             {
                 if (building.previewPrefab == null)
                 {
-                    Debug.LogWarning(building.buildingName + " is missing its previewPrefab");
+                    Debug.LogWarning(building.itemName + " is missing its previewPrefab");
                 }
                 if (building.placedObject == null)
                 {
-                    Debug.LogWarning(building.buildingName + " is missing its placedObject");
+                    Debug.LogWarning(building.itemName + " is missing its placedObject");
                 }
             }
         }
     }
 
-    public static BuildingData[] GetAllBuildings ()
+    public static BuildingInfo[] GetAllBuildings ()
     {
         return Register.buildings;
     }
 
-    public static BuildingData GetBuilding (int id)
+    public static BuildingInfo GetBuilding (int id)
     {
         return Register.buildings[id];
     }
 
-    public static BuildingData GetBuildingByInternalName (string objectName)
+    public static BuildingInfo GetBuildingByInternalName (string objectName)
     {
         for (int i = 0; i < Register.buildings.Length; i++)
         {
@@ -84,11 +74,11 @@ public class BuildingDatabase : MonoBehaviour
         return Register.buildings[0];
     }
 
-    public static BuildingData GetBuildingByExternalName (string buildingName)
+    public static BuildingInfo GetBuildingByExternalName (string buildingName)
     {
         for (int i = 0; i < Register.buildings.Length; i++)
         {
-            if (Register.buildings[i].buildingName == buildingName)
+            if (Register.buildings[i].itemName == buildingName)
             {
                 return Register.buildings[i];
             }
