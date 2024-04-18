@@ -43,13 +43,24 @@ public class PauseManager : MonoBehaviour {
     }
 
 	public void Pause() {
-		canvasAnim.SetTrigger("PauseMenuEnter");
-		Time.timeScale = 0f;
+		if (paused)
+			return;
+
 		paused = true;
+
+		canvasAnim.SetTrigger("PauseMenuEnter");
+
+		Time.timeScale = 0f;
+		LookLocker.AddUnlockingObject(this);
 	}
 
 	public void Resume() {
-		if(canvasAnim.GetCurrentAnimatorStateInfo(0).IsName("PauseMenuEnter")) {
+		if (!paused)
+			return;
+
+		paused = false;
+
+		if (canvasAnim.GetCurrentAnimatorStateInfo(0).IsName("PauseMenuEnter")) {
 			canvasAnim.SetTrigger("PauseMenuExit");
 		}
 		if(canvasAnim.GetCurrentAnimatorStateInfo(1).IsName("SettingsMenuEnter")) {
@@ -60,16 +71,23 @@ public class PauseManager : MonoBehaviour {
 		}
 		if(canvasAnim.GetCurrentAnimatorStateInfo(3).IsName("HelpMenuEnter")) {
 			canvasAnim.SetTrigger("HelpMenuExit");
-		}
-		Time.timeScale = originalTimeScale;
-		paused = false;
+        }
+
+        Time.timeScale = originalTimeScale;
+		LookLocker.RemoveUnlockingObject(this);
 	}
 
-	public void Menu() {
+    public void Menu() {
+		if (!paused)
+			return;
+
 		paused = false;
+
 		Time.timeScale = originalTimeScale;
-		Cursor.lockState = CursorLockMode.None;
-		Cursor.visible = true;
+		// Stop this from unlocking the mouse, but also make sure the default state of MouseLocked is false.
+		LookLocker.RemoveUnlockingObject(this);
+		LookLocker.MouseLocked = false;
+
 		Destroy(PersistentData.Instance.gameObject); // Destroy the persistent data object before we return to the menu, otherwise the game will save with a blank save name.
 		SceneManager.LoadScene("Menu");
 	}
