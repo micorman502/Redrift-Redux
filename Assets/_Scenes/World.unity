@@ -54413,7 +54413,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   types: 00000000
   inventoryUis:
-  - {fileID: 0}
+  - {fileID: 720287680}
 --- !u!1001 &2144785986
 PrefabInstance:
   m_ObjectHideFlags: 0
