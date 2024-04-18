@@ -15096,6 +15096,7 @@ GameObject:
   - component: {fileID: 720287677}
   - component: {fileID: 720287676}
   - component: {fileID: 720287679}
+  - component: {fileID: 720287680}
   m_Layer: 5
   m_Name: Inventory UI
   m_TagString: Untagged
@@ -15202,10 +15203,26 @@ MonoBehaviour:
   target: {fileID: 498361258}
   canvasTarget: {fileID: 0}
   toggleKey: 9
-  lockLook: 1
+  unlockLook: 1
   calledFunctions:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &720287680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720287674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8edd062f3b0193942820df588be58012, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  container: {fileID: 1294712837}
+  slotPrefab: {fileID: 1580106656157342, guid: 27d0572ee343eab419c8431cfbce44fe, type: 3}
+  hotbarSlots: 6
+  hotbarContainer: {fileID: 972327863}
 --- !u!1 &741576495
 GameObject:
   m_ObjectHideFlags: 0
@@ -25266,7 +25283,7 @@ MonoBehaviour:
   target: {fileID: 0}
   canvasTarget: {fileID: 852349883}
   toggleKey: 46
-  lockLook: 0
+  unlockLook: 0
   calledFunctions:
     m_PersistentCalls:
       m_Calls: []
@@ -39795,7 +39812,6 @@ GameObject:
   - component: {fileID: 1444759420}
   - component: {fileID: 1444759419}
   - component: {fileID: 1444759423}
-  - component: {fileID: 1444759424}
   m_Layer: 5
   m_Name: Main UI
   m_TagString: Untagged
@@ -39916,22 +39932,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1444759424
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1444759418}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8edd062f3b0193942820df588be58012, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  container: {fileID: 1294712837}
-  slotPrefab: {fileID: 1580106656157342, guid: 27d0572ee343eab419c8431cfbce44fe, type: 3}
-  hotbarSlots: 6
-  hotbarContainer: {fileID: 972327863}
 --- !u!1 &1466766339
 GameObject:
   m_ObjectHideFlags: 0
@@ -51310,7 +51310,7 @@ MonoBehaviour:
   target: {fileID: 717942882}
   canvasTarget: {fileID: 0}
   toggleKey: 27
-  lockLook: 1
+  unlockLook: 1
   calledFunctions:
     m_PersistentCalls:
       m_Calls:
@@ -54413,7 +54413,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   types: 00000000
   inventoryUis:
-  - {fileID: 1444759424}
+  - {fileID: 0}
 --- !u!1001 &2144785986
 PrefabInstance:
   m_ObjectHideFlags: 0

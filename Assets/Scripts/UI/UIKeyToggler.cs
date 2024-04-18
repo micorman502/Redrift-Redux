@@ -9,7 +9,7 @@ public class UIKeyToggler : MonoBehaviour
     [SerializeField] GameObject target;
     [SerializeField] Canvas canvasTarget;
     [SerializeField] KeyCode toggleKey;
-    [SerializeField] bool lockLook;
+    [SerializeField] bool unlockLook;
     public UnityEvent<bool> calledFunctions;
     // Start is called before the first frame update
     void Start()
@@ -39,10 +39,26 @@ public class UIKeyToggler : MonoBehaviour
             canvasTarget.enabled = activeState;
         }
 
-        if (lockLook)
+        ManageLookUnlocking();
+
+        if (unlockLook)
         {
             LookLocker.MouseLocked = !state;
         }
         calledFunctions.Invoke(state);
+    }
+
+    void ManageLookUnlocking ()
+    {
+        if (!unlockLook)
+            return;
+
+        if (state)
+        {
+            LookLocker.AddUnlockingObject(this);
+        } else
+        {
+            LookLocker.RemoveUnlockingObject(this);
+        }
     }
 }

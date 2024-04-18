@@ -48,8 +48,11 @@ public static class LookLocker
         SetCursorState(currentUnlockingObjects.Count == 0);
     }
 
-    public static void AddUnlockingObject (object newObject)
+    public static void AddUnlockingObject (object newObject, bool checkDuplicates = true)
     {
+        if (checkDuplicates && currentUnlockingObjects.Contains(newObject))
+            return;
+
         currentUnlockingObjects.Add(newObject);
 
         SetCursorState(currentUnlockingObjects.Count == 0);

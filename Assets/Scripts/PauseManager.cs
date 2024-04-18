@@ -51,7 +51,6 @@ public class PauseManager : MonoBehaviour {
 		canvasAnim.SetTrigger("PauseMenuEnter");
 
 		Time.timeScale = 0f;
-		LookLocker.AddUnlockingObject(this);
 	}
 
 	public void Resume() {
@@ -74,7 +73,6 @@ public class PauseManager : MonoBehaviour {
         }
 
         Time.timeScale = originalTimeScale;
-		LookLocker.RemoveUnlockingObject(this);
 	}
 
     public void Menu() {
@@ -84,8 +82,6 @@ public class PauseManager : MonoBehaviour {
 		paused = false;
 
 		Time.timeScale = originalTimeScale;
-		// Stop this from unlocking the mouse, but also make sure the default state of MouseLocked is false.
-		LookLocker.RemoveUnlockingObject(this);
 		LookLocker.MouseLocked = false;
 
 		Destroy(PersistentData.Instance.gameObject); // Destroy the persistent data object before we return to the menu, otherwise the game will save with a blank save name.
