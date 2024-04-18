@@ -6,6 +6,7 @@ using UnityEngine;
 public class HeldConstructionTool : HeldItem
 {
     public static Action<HeldConstructionTool> OnOpenSelectionMenu;
+    public static Action<HeldConstructionTool> OnCloseSelectionMenu;
     PlayerBuilding building;
 
 
@@ -21,5 +22,15 @@ public class HeldConstructionTool : HeldItem
         base.AltUse();
 
         OnOpenSelectionMenu?.Invoke(this);
+    }
+
+    public override void SetChildStateFunctions (bool state)
+    {
+        base.SetChildStateFunctions(state);
+
+        if (!state)
+        {
+            OnCloseSelectionMenu?.Invoke(this);
+        }
     }
 }
