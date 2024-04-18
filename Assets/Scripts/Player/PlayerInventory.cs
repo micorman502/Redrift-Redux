@@ -62,6 +62,12 @@ public class PlayerInventory : MonoBehaviour {
         {
 			DebugItems();
         }
+
+		nullItem.Initialise(gameObject);
+		for (int i = 0; i < heldItems.Length; i++)
+        {
+			heldItems[i].Initialise(gameObject);
+        }
 	}
 
 	void DebugItems ()

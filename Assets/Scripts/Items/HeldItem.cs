@@ -7,6 +7,11 @@ public class HeldItem : MonoBehaviour
     public ItemInfo item;
     public GameObject itemGameObject;
 
+    public virtual void Initialise (GameObject owner)
+    {
+
+    }
+
     public virtual void Use()
     {
 
