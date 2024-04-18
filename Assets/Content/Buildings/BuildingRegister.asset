@@ -13,4 +13,29 @@ MonoBehaviour:
   m_Name: BuildingRegister
   m_EditorClassIdentifier: 
   autoFindBuildings: 1
-  buildings: []
+  buildings:
+  - {fileID: 11400000, guid: f6fd9ef27de49334d841104c120fcfed, type: 2}
+  - {fileID: 11400000, guid: 8e2b06360f2cb914093f2e0c86d5ee65, type: 2}
+  - {fileID: 11400000, guid: 322c123cfd818fd47950d704e81dd2f1, type: 2}
+  - {fileID: 11400000, guid: eda8cd479833b8649945ad344a643265, type: 2}
+  - {fileID: 11400000, guid: e57ea78aef44f1f4db801b9b3f269bcf, type: 2}
+  - {fileID: 11400000, guid: ea3dec4fdcf484b46a6d28d36fa965fb, type: 2}
+  - {fileID: 11400000, guid: 3bccbe89fd4b47e42aa179cbc62b150d, type: 2}
+  - {fileID: 11400000, guid: 2a3e42bf760cb3846b9b2f2f6e7b04f8, type: 2}
+  - {fileID: 11400000, guid: c7b7b25c6e1320e46a4123833c45f3e6, type: 2}
+  - {fileID: 11400000, guid: 59b97cefec97c5a4c83eefffc9ca45b0, type: 2}
+  - {fileID: 11400000, guid: 17f56daba04f92e498786a1cee71cf42, type: 2}
+  - {fileID: 11400000, guid: f3e23d95dfc133440b15894be720c8fd, type: 2}
+  - {fileID: 11400000, guid: ba3a4d2a615eb574d858043e846fbde0, type: 2}
+  - {fileID: 11400000, guid: 4d66aab45fd39aa46bd3f9e06c5e33f7, type: 2}
+  - {fileID: 11400000, guid: a99cfd9dd1c3a34478552a9d427545f6, type: 2}
+  - {fileID: 11400000, guid: e16dd43f8e3437e4090deb09fc04a355, type: 2}
+  - {fileID: 11400000, guid: ae8fcd34f9c789148acaf4358b6c5f2b, type: 2}
+  - {fileID: 11400000, guid: 65c8437dd1294f74a9b51040628230ff, type: 2}
+  - {fileID: 11400000, guid: 04424a78eb00de8419d4ba5e07c6e1f7, type: 2}
+  - {fileID: 11400000, guid: 54aff0ee6bd8fa54ea6150a7e090eccd, type: 2}
+  - {fileID: 11400000, guid: be6c602b92b6bf749931e7c7ccab8c9c, type: 2}
+  - {fileID: 11400000, guid: 05be672c5638b59429c3e9636d47fa09, type: 2}
+  - {fileID: 11400000, guid: 8ff0a9018128cbd479dfb134c6e1a400, type: 2}
+  - {fileID: 11400000, guid: 966d43846ef5557458a540c24d80b534, type: 2}
+  buildingRecipes: []
