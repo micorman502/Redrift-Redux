@@ -178,6 +178,8 @@ public class HeldToolItem : HeldItem
         if (!state)
         {
             DisableHotText();
+
+            StopGather();
         }
     }
 }
