@@ -10,6 +10,17 @@ public class Tooltip : MonoBehaviour
     [SerializeField] TMP_Text tooltipNameText;
     [SerializeField] TMP_Text tooltipDescText;
 
+    public void SetTooltip (Recipe recipe)
+    {
+        if (recipe == null)
+        {
+            SetState(false);
+            return;
+        }
+
+        SetTooltip(recipe.output.item.itemName, recipe.GetInputsString());
+    }
+
     public void SetTooltip (ItemInfo item)
     {
         if (item == null)

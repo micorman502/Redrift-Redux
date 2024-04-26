@@ -11,7 +11,10 @@ public class HoverableUI : MonoBehaviour
     
     public void SetHoverState (bool state)
     {
-        animator.SetBool(hoverBoolName, state);
+        if (animator)
+        {
+            animator.SetBool(hoverBoolName, state);
+        }
 
         if (state)
         {

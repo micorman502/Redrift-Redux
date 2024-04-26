@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class CraftingSlot : MonoBehaviour {
 	WorldItem item;
 	[SerializeField] Image icon;
-	[SerializeField] Text amountText;
+	[SerializeField] TMP_Text amountText;
 
 	public void Setup (WorldItem newItem)
 	{

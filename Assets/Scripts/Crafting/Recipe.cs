@@ -39,6 +39,22 @@ public class Recipe : ScriptableObject {
         return false;
     }
 
+    public string GetInputsString ()
+    {
+        string inputString = "";
+
+        for (int i = 0; i < inputs.Length; i++)
+        {
+            inputString += $"{inputs[i].item.itemName} x{inputs[i].amount}";
+            if (i < inputs.Length - 1)
+            {
+                inputString += ", ";
+            }
+        }
+
+        return inputString;
+    }
+
     static bool EqualCategories (RecipeCategory a, RecipeCategory b)
     {
         if (a == b)
