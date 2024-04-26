@@ -2318,6 +2318,7 @@ GameObject:
   - component: {fileID: 304792517}
   - component: {fileID: 304792516}
   - component: {fileID: 304792515}
+  - component: {fileID: 304792520}
   m_Layer: 5
   m_Name: Construction UI
   m_TagString: Untagged
@@ -2338,7 +2339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryKeyToggler: {fileID: 720287679}
-  targetCanvas: {fileID: 304792518}
+  targetToggler: {fileID: 304792520}
 --- !u!114 &304792516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2421,6 +2422,26 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &304792520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 304792514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61cce447667941e4f9349f02765cc5fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+  target: {fileID: 0}
+  canvasTarget: {fileID: 304792518}
+  toggleKey: 0
+  unlockLook: 1
+  calledFunctions:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &312077767
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,8 +13,6 @@ public static class LookLocker
     {
         locked = _locked;
 
-        CheckUnlockingObjects();
-
         if (currentUnlockingObjects.Count > 0)
             return;
 
@@ -23,6 +21,8 @@ public static class LookLocker
 
     static bool GetLockState ()
     {
+        CheckUnlockingObjects();
+
         if (currentUnlockingObjects.Count > 0)
             return false;
 
@@ -44,8 +44,13 @@ public static class LookLocker
                 currentUnlockingObjects.RemoveAt(i);
             }
         }
+    }
 
-        SetCursorState(currentUnlockingObjects.Count == 0);
+    public static void ClearUnlockingObjects ()
+    {
+        currentUnlockingObjects.Clear();
+
+        SetCursorState(MouseLocked);
     }
 
     public static void AddUnlockingObject (object newObject, bool checkDuplicates = true)
@@ -55,7 +60,7 @@ public static class LookLocker
 
         currentUnlockingObjects.Add(newObject);
 
-        SetCursorState(currentUnlockingObjects.Count == 0);
+        SetCursorState(MouseLocked);
     }
 
     public static void RemoveUnlockingObject (object removingObject)
@@ -69,6 +74,6 @@ public static class LookLocker
             }
         }
 
-        SetCursorState(currentUnlockingObjects.Count == 0);
+        SetCursorState(MouseLocked);
     }
 }
