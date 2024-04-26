@@ -2360,6 +2360,9 @@ MonoBehaviour:
   constructionRecipePrefab: {fileID: 3767840301928944837, guid: 5c8e61c74ea8f0d4c9defb5654a2470a,
     type: 3}
   constructionRecipeHolder: {fileID: 1909272899}
+  categoryPrefab: {fileID: 6813948844058038794, guid: 2c4629ea9e1b07243b7110d82fade6da,
+    type: 3}
+  categoryHolder: {fileID: 1326441668}
 --- !u!114 &304792516
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -7,10 +7,20 @@ public class ConstructionUI : MonoBehaviour, IRecipeUIParent
     [SerializeField] UIKeyToggler inventoryKeyToggler;
     [SerializeField] UIKeyToggler targetToggler;
     [SerializeField] Tooltip tooltip;
+
+    [Header("Prefabs and Holders")]
     [SerializeField] GameObject constructionRecipePrefab;
     [SerializeField] Transform constructionRecipeHolder;
+    [SerializeField] GameObject categoryPrefab;
+    [SerializeField] Transform categoryHolder;
+
     HeldConstructionTool currentTarget;
     Recipe.RecipeCategory currentCategory;
+
+    void Awake ()
+    {
+        InstantiateCategories();
+    }
 
     void OnEnable ()
     {
@@ -69,6 +79,17 @@ public class ConstructionUI : MonoBehaviour, IRecipeUIParent
         newItem.Setup(this, targetRecipe);
     }
 
+    void InstantiateCategories ()
+    {
+        string[] categoryNames = System.Enum.GetNames(typeof(Recipe.RecipeCategory));
+
+        for (int i = 0; i < categoryNames.Length; i++)
+        {
+            CraftingUICategorySelectable categorySelectable = Instantiate(categoryPrefab, categoryHolder).GetComponent<CraftingUICategorySelectable>();
+            categorySelectable.Setup(this, (Recipe.RecipeCategory)i); //a bit ugly here, but not sure of a better way
+        }
+    }
+
     void SetCategory (Recipe.RecipeCategory category)
     {
         currentCategory = category;
@@ -92,6 +113,6 @@ public class ConstructionUI : MonoBehaviour, IRecipeUIParent
 
     public void OnRecipeButtonClicked (Recipe recipe)
     {
-
+        
     }
 }
