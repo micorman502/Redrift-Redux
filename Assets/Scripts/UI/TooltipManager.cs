@@ -5,10 +5,7 @@ using TMPro;
 
 public class TooltipManager : MonoBehaviour
 {
-    [SerializeField] GameObject tooltipObject;
-    [SerializeField] Animation tooltipShowAnim;
-    [SerializeField] TMP_Text tooltipName;
-    [SerializeField] TMP_Text tooltipDesc;
+    [SerializeField] Tooltip target;
     public static TooltipManager Instance;
 
     private void Awake()
@@ -19,7 +16,8 @@ public class TooltipManager : MonoBehaviour
             return;
         }
         Instance = this;
-        HideTooltip();
+
+        target.SetState(false);
     }
 
     public void SetTooltip (InventorySlotUI ui)
@@ -29,21 +27,17 @@ public class TooltipManager : MonoBehaviour
 
     public void SetTooltip (InventorySlot slot)
     {
-        if (slot == null || slot.Item == null)
+        if (slot == null)
         {
-            HideTooltip();
+            target.SetState(false);
             return;
         }
-        tooltipShowAnim.Play();
-        tooltipObject.SetActive(true);
-        tooltipName.text = slot.Item.itemName;
-        tooltipDesc.text = slot.Item.GetDescription();
+
+        target.SetTooltip(slot.Item);
     }
 
-    public void HideTooltip ()
+    public void SetTooltipState (bool state)
     {
-        tooltipObject.SetActive(false);
-        tooltipName.text = "";
-        tooltipDesc.text = "";
+        target.SetState(state);
     }
 }

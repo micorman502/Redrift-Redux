@@ -1,0 +1,44 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using TMPro;
+
+public class Tooltip : MonoBehaviour
+{
+    [SerializeField] GameObject holder;
+    [SerializeField] Animation tooltipShowAnim;
+    [SerializeField] TMP_Text tooltipNameText;
+    [SerializeField] TMP_Text tooltipDescText;
+
+    public void SetTooltip (ItemInfo item)
+    {
+        if (item == null)
+        {
+            SetState(false);
+            return;
+        }
+
+        SetTooltip(item.itemName, item.itemDescription);
+    }
+
+    public void SetTooltip (string tooltipName, string tooltipDesc)
+    {
+        SetState(true);
+
+        tooltipNameText.text = tooltipName;
+        tooltipDescText.text = tooltipDesc;
+    }
+
+    public void SetState (bool activeState)
+    {
+        if (activeState == holder.activeSelf)
+            return;
+
+        holder.SetActive(activeState);
+
+        if (activeState)
+        {
+            tooltipShowAnim.Play();
+        }
+    }
+}

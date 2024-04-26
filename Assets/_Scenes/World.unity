@@ -4314,10 +4314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a6069c7850b3704189bbaec627c76ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tooltipObject: {fileID: 1323751527}
-  tooltipShowAnim: {fileID: 1323751529}
-  tooltipName: {fileID: 1606536601}
-  tooltipDesc: {fileID: 377315327}
+  target: {fileID: 1323751532}
 --- !u!1 &544039590
 GameObject:
   m_ObjectHideFlags: 0
@@ -40069,6 +40066,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1323751528}
+  - component: {fileID: 1323751532}
   - component: {fileID: 1323751530}
   - component: {fileID: 1323751531}
   - component: {fileID: 1323751529}
@@ -40136,6 +40134,22 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
+--- !u!114 &1323751532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1323751527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c115c7e24a62e940a099168a4c128e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holder: {fileID: 191331096}
+  tooltipShowAnim: {fileID: 1323751529}
+  tooltipNameText: {fileID: 1606536601}
+  tooltipDescText: {fileID: 377315327}
 --- !u!1 &1326441667
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,6 +13,6 @@ public class InventorySlotUITooltip : MonoBehaviour, IPointerEnterHandler, IPoin
 
 	void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
 	{
-		TooltipManager.Instance.HideTooltip();
+		TooltipManager.Instance.SetTooltipState(false);
 	}
 }
