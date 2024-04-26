@@ -7,16 +7,18 @@ public class CraftingUICategorySelectable : MonoBehaviour
 {
     [SerializeField] TMP_Text categoryText;
     Recipe.RecipeCategory category;
+    IRecipeUIParent parent;
 
-    public void Setup (Recipe.RecipeCategory _category)
+    public void Setup (IRecipeUIParent _parent, Recipe.RecipeCategory _category)
     {
         category = _category;
+        parent = _parent;
 
         categoryText.text = category.ToString();
     }
 
     public void OnClick ()
     {
-        CraftingUI.Instance.UpdateCurrentCategory(category);
+        parent.OnCategoryButtonClicked(category);
     }
 }

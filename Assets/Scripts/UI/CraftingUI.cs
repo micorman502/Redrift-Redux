@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CraftingUI : MonoBehaviour //creates and assists with interactions between and amongst CraftingUI scripts and player scripts (e.g. PlayerInventory)
+public class CraftingUI : MonoBehaviour, IRecipeUIParent //creates and assists with interactions between and amongst CraftingUI scripts and player scripts (e.g. PlayerInventory)
 {
     public static CraftingUI Instance { get; private set; }
 
@@ -62,7 +62,7 @@ public class CraftingUI : MonoBehaviour //creates and assists with interactions 
         for (int i = 0; i < categoryNames.Length; i++)
         {
             CraftingUICategorySelectable categorySelectable = Instantiate(categorySelectablePrefab, categoryHolder).GetComponent<CraftingUICategorySelectable>();
-            categorySelectable.Setup((Recipe.RecipeCategory)i); //a bit ugly here, but not sure of a better way
+            categorySelectable.Setup(this, (Recipe.RecipeCategory)i); //a bit ugly here, but not sure of a better way
         }
     }
 
@@ -96,7 +96,7 @@ public class CraftingUI : MonoBehaviour //creates and assists with interactions 
                 CraftingUISelectable selectable = Instantiate(selectablePrefab, selectablesHolder).GetComponent<CraftingUISelectable>();
                 craftingSelectables.Add(selectable);
 
-                selectable.Setup(recipe);
+                selectable.Setup(this, recipe);
             }
         }
     }
@@ -106,6 +106,25 @@ public class CraftingUI : MonoBehaviour //creates and assists with interactions 
         currentRecipe = recipe;
 
         craftingUIPanel.Setup(recipe);
+    }
+
+    public void OnCategoryButtonClicked (Recipe.RecipeCategory category)
+    {
+        UpdateCurrentCategory(category);
+    }
+
+    public void OnRecipeButtonClicked (Recipe recipe)
+    {
+        UpdateCurrentRecipe(recipe);
+    }
+
+    public void OnRecipeButtonEntered (Recipe recipe)
+    {
+        //DUMMY
+    }
+    public void OnRecipeButtonExited ()
+    {
+        //DUMMY
     }
 
     #endregion

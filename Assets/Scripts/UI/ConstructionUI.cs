@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ConstructionUI : MonoBehaviour
+public class ConstructionUI : MonoBehaviour, IRecipeUIParent
 {
     [SerializeField] UIKeyToggler inventoryKeyToggler;
     [SerializeField] UIKeyToggler targetToggler;
@@ -64,18 +64,34 @@ public class ConstructionUI : MonoBehaviour
 
     void InstantiateConstructionRecipeItem (Recipe targetRecipe)
     {
-        ConstructionRecipeItemUI newItem = Instantiate(constructionRecipePrefab, constructionRecipeHolder).GetComponent<ConstructionRecipeItemUI>();
+        CraftingUISelectable newItem = Instantiate(constructionRecipePrefab, constructionRecipeHolder).GetComponent<CraftingUISelectable>();
 
         newItem.Setup(this, targetRecipe);
     }
 
-    public void OnRecipeHoverEnter (Recipe recipe)
+    void SetCategory (Recipe.RecipeCategory category)
+    {
+        currentCategory = category;
+
+        RefreshUI();
+    }
+
+    public void OnRecipeButtonEntered (Recipe recipe)
     {
         tooltip.SetTooltip(recipe);
     }
-
-    public void OnRecipeHoverExit ()
+    public void OnRecipeButtonExited ()
     {
         tooltip.SetState(false);
+    }
+
+    public void OnCategoryButtonClicked (Recipe.RecipeCategory category)
+    {
+        SetCategory(category);
+    }
+
+    public void OnRecipeButtonClicked (Recipe recipe)
+    {
+
     }
 }
