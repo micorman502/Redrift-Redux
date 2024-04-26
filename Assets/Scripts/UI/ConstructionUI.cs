@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ConstructionUI : MonoBehaviour
 {
+    [SerializeField] UIKeyToggler inventoryKeyToggler;
+    [SerializeField] Canvas targetCanvas;
     HeldConstructionTool currentTarget;
     Recipe.RecipeCategory currentCategory;
 
@@ -11,6 +13,8 @@ public class ConstructionUI : MonoBehaviour
     {
         HeldConstructionTool.OnOpenSelectionMenu += OnOpenSelectionMenu;
         HeldConstructionTool.OnCloseSelectionMenu += OnCloseSelectionMenu;
+
+        targetCanvas.enabled = false;
     }
 
     void OnDisable ()
@@ -23,6 +27,9 @@ public class ConstructionUI : MonoBehaviour
     {
         currentTarget = target;
 
+        targetCanvas.enabled = true;
+        inventoryKeyToggler.SetState(false);
+
         RefreshUI();
     }
 
@@ -30,6 +37,8 @@ public class ConstructionUI : MonoBehaviour
     {
         if (target != currentTarget)
             return;
+
+        targetCanvas.enabled = false;
 
         currentTarget = null;
     }
