@@ -7,6 +7,7 @@ public class HeldConstructionTool : HeldItem
 {
     public static Action<HeldConstructionTool> OnOpenSelectionMenu;
     public static Action<HeldConstructionTool> OnCloseSelectionMenu;
+    PlayerInventory playerInventory;
     PlayerBuilding building;
     Recipe currentRecipe;
 
@@ -15,6 +16,7 @@ public class HeldConstructionTool : HeldItem
         base.Initialise(owner);
 
         building = owner.GetComponent<PlayerBuilding>();
+        playerInventory = owner.GetComponent<PlayerInventory>();
     }
 
     public override void Use ()
@@ -25,6 +27,8 @@ public class HeldConstructionTool : HeldItem
             return;
 
         building.PlaceBuilding();
+
+        UpdateHotText();
     }
 
     public override void AltUse ()
@@ -45,7 +49,7 @@ public class HeldConstructionTool : HeldItem
 
         if (state)
         {
-            HotTextManager.Instance.ReplaceHotText(new HotTextInfo("Build", KeyCode.Mouse0, HotTextInfo.Priority.UseItem, "buildingBuild"));
+            UpdateHotText();
             HotTextManager.Instance.ReplaceHotText(new HotTextInfo("Select Build", KeyCode.Mouse1, HotTextInfo.Priority.AltUseItem, "buildingSelect"));
         }
         else
@@ -55,7 +59,25 @@ public class HeldConstructionTool : HeldItem
 
             OnCloseSelectionMenu?.Invoke(this);
             building.StopBuilding();
+            currentRecipe = null;
         }
+    }
+
+    void UpdateHotText ()
+    {
+        if (!currentRecipe)
+        {
+            HotTextManager.Instance.ReplaceHotText(new HotTextInfo("Build", KeyCode.Mouse0, HotTextInfo.Priority.UseItem, "buildingBuild", true));
+            return;
+        }
+
+        if (playerInventory.inventory.GetItemTotal(currentRecipe.output.item) > 0)
+        {
+            HotTextManager.Instance.ReplaceHotText(new HotTextInfo("Build (From Inventory)", KeyCode.Mouse0, HotTextInfo.Priority.UseItem, "buildingBuild"));
+            return;
+        }
+
+        HotTextManager.Instance.ReplaceHotText(new HotTextInfo("Build (From Crafting)", KeyCode.Mouse0, HotTextInfo.Priority.UseItem, "buildingBuild"));
     }
 
     public virtual void SetConstruction (Recipe constructionRecipe)
@@ -65,5 +87,7 @@ public class HeldConstructionTool : HeldItem
         OnCloseSelectionMenu?.Invoke(this);
 
         building.StartBuilding((BuildingInfo)constructionRecipe.output.item, currentRecipe);
+
+        UpdateHotText();
     }
 }
