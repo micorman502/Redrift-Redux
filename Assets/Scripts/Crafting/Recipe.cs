@@ -115,7 +115,7 @@ public class Recipe : ScriptableObject {
         return Craft(inventory, true);
     }
 
-    public bool Craft (Inventory inventory, bool doCraftableCheck)
+    public bool Craft (Inventory inventory, bool doCraftableCheck, bool craftOutput = true)
     {
         if (doCraftableCheck && !IsCraftable(inventory))
             return false;
@@ -125,9 +125,14 @@ public class Recipe : ScriptableObject {
             inventory.RemoveItem(item);
         }
 
-        foreach (WorldItem item in TotalOutputs())
+        foreach (WorldItem item in replacedItems)
         {
             inventory.AddItem(item);
+        }
+
+        if (craftOutput)
+        {
+            inventory.AddItem(output);
         }
 
         return true;

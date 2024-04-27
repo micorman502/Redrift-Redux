@@ -9,6 +9,7 @@ public class PlayerBuilding : MonoBehaviour
     [SerializeField] Transform buildingPlacementPoint;
     [SerializeField] ItemInfo buildingTemp;
     BuildingInfo currentBuilding;
+    Recipe currentBuildingRecipe;
     GameObject previewObject;
     int currentRotation;
 
@@ -68,7 +69,7 @@ public class PlayerBuilding : MonoBehaviour
         //previewObject.transform.eulerAngles = currentBuilding.possibleRotations[currentRotation];
     }
 
-    public void StartBuilding (BuildingInfo building)
+    public void StartBuilding (BuildingInfo building, Recipe buildingRecipe = null)
     {
         if (currentBuilding)
         {
@@ -78,6 +79,7 @@ public class PlayerBuilding : MonoBehaviour
         HotTextManager.Instance.ReplaceHotText(new HotTextInfo("Rotate", KeyCode.R, HotTextInfo.Priority.Rotate, "buildingRotate"));
 
         currentBuilding = building;
+        currentBuildingRecipe = buildingRecipe;
         previewObject = Instantiate(building.previewPrefab, buildingPlacementPoint.position, Quaternion.identity);
 
         AlignBuildingRot();
@@ -104,7 +106,7 @@ public class PlayerBuilding : MonoBehaviour
         AlignBuildingPos();
 
         Instantiate(currentBuilding.placedObject, previewObject.transform.position, previewObject.transform.rotation);
-        inventory.inventory.RemoveItem(new WorldItem(currentBuilding, 1));
+        ConsumeItems();
 
         AudioManager.Instance.Play("Build");
     }
@@ -113,7 +115,7 @@ public class PlayerBuilding : MonoBehaviour
     {
         if (!currentBuilding)
             return false;
-        if (inventory.inventory.GetItemTotal(currentBuilding) <= 0)
+        if (!ItemsValid())
             return false;
         Physics.Linecast(camTransform.position, previewObject.transform.position, out RaycastHit hit, LayerMask.GetMask("World"), QueryTriggerInteraction.Ignore);
         if (hit.transform && Vector3.Distance(hit.point, previewObject.transform.position) > currentBuilding.approximateRadius)
@@ -122,6 +124,32 @@ public class PlayerBuilding : MonoBehaviour
             return false;
 
         return true;
+    }
+
+    bool ItemsValid ()
+    {
+        if (currentBuildingRecipe)
+        {
+            if (!currentBuildingRecipe.IsCraftable(inventory.inventory))
+                return false;
+        } else
+        {
+            if (inventory.inventory.GetItemTotal(currentBuilding) <= 0)
+                return false;
+        }
+
+        return true;
+    }
+
+    void ConsumeItems ()
+    {
+        if (currentBuildingRecipe)
+        {
+            currentBuildingRecipe.Craft(inventory.inventory, false, false);
+        } else
+        {
+            inventory.inventory.RemoveItem(new WorldItem(currentBuilding, 1));
+        }
     }
 
     public void SetBuildingRotation (int rotationChange)

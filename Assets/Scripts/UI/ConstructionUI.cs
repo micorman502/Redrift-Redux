@@ -113,6 +113,6 @@ public class ConstructionUI : MonoBehaviour, IRecipeUIParent
 
     public void OnRecipeButtonClicked (Recipe recipe)
     {
-        
+        currentTarget.SetConstruction(recipe);
     }
 }

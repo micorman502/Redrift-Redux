@@ -22,4 +22,4 @@ MonoBehaviour:
   categories: 02000000
   id: 31
   achievementId: -1
-  hideInCraftingUI: 1
+  hideInCraftingUI: 0

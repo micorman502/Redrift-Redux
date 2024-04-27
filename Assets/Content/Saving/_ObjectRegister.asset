@@ -371,3 +371,7 @@ MonoBehaviour:
       type: 3}
     nameIdentifier: worldItemLightningStone
     id: 98
+  - prefab: {fileID: 8427282034627052911, guid: 631a9db4f336262498766ed95cc07b02,
+      type: 3}
+    nameIdentifier: droppedItemConstructionHammer
+    id: 98
