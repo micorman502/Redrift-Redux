@@ -70,6 +70,8 @@ public class ConstructionUI : MonoBehaviour, IRecipeUIParent
                 InstantiateConstructionRecipeItem(buildingRecipe);
             }
         }
+
+        tooltip.SetState(false);
     }
 
     void InstantiateConstructionRecipeItem (Recipe targetRecipe)
