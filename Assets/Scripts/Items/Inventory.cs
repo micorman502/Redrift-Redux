@@ -173,7 +173,6 @@ public class Inventory
 			}
 		}
 
-		Debug.LogError($"Left over items in RemoveItem(item, amount)! {amount}"); //ISSUE: I have gotten a "Left over items in RemoveItem(item, amount)! 0" error before. Not sure what to make of this.
 		return amountTaken;
 	}
 

@@ -102,11 +102,13 @@ public class PlayerBuilding : MonoBehaviour
             return;
         if (!BuildingValid())
             return;
+        if (!ItemCheck())
+            return;
+
         AlignBuildingRot();
         AlignBuildingPos();
 
         Instantiate(currentBuilding.placedObject, previewObject.transform.position, previewObject.transform.rotation);
-        ConsumeItems();
 
         AudioManager.Instance.Play("Build");
     }
@@ -114,8 +116,6 @@ public class PlayerBuilding : MonoBehaviour
     bool BuildingValid ()
     {
         if (!currentBuilding)
-            return false;
-        if (!ItemsValid())
             return false;
         Physics.Linecast(camTransform.position, previewObject.transform.position, out RaycastHit hit, LayerMask.GetMask("World"), QueryTriggerInteraction.Ignore);
         if (hit.transform && Vector3.Distance(hit.point, previewObject.transform.position) > currentBuilding.approximateRadius)
@@ -126,19 +126,15 @@ public class PlayerBuilding : MonoBehaviour
         return true;
     }
 
-    bool ItemsValid ()
+    bool ItemCheck ()
     {
-        if (currentBuildingRecipe)
-        {
-            if (!currentBuildingRecipe.IsCraftable(inventory.inventory))
-                return false;
-        } else
-        {
-            if (inventory.inventory.GetItemTotal(currentBuilding) <= 0)
-                return false;
-        }
+        if (inventory.inventory.RemoveItem(new WorldItem(currentBuilding, 1)) > 0)
+            return true;
 
-        return true;
+        if (currentBuildingRecipe && currentBuildingRecipe.Craft(inventory.inventory, true, false))
+            return true;
+
+        return false;
     }
 
     void ConsumeItems ()
