@@ -9,10 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5886667584914923379}
-  - component: {fileID: 5775654231454197257}
+  - component: {fileID: 4638762182672533895}
   - component: {fileID: 5892916727254460401}
   - component: {fileID: 5903110585822028229}
-  - component: {fileID: 5831439527670206905}
   - component: {fileID: 5861163316673360893}
   - component: {fileID: 6005866954190584531}
   - component: {fileID: 4244676208692699253}
@@ -33,11 +32,12 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5775654231454197257
+--- !u!114 &4638762182672533895
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,13 +46,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 5889373234210687809}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
+  m_Script: {fileID: 11500000, guid: 7c515dd076e6fc3458a121dbe13266dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handler: {fileID: 4244676208692699253}
   item: {fileID: 11400000, guid: 8ff0a9018128cbd479dfb134c6e1a400, type: 2}
   saveID: worldItemWallSolid
   dontSave: 0
+  maxHealth: 100
+  flammable: 1
+  flameReductionSpeed: 2
+  flameFxPrefab: {fileID: 8568619364269199404, guid: 7c68543bf0d70f54d97e2975fd9fa3fa,
+    type: 3}
 --- !u!33 &5892916727254460401
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -103,25 +107,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!95 &5831439527670206905
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5889373234210687809}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 71a87b71ac8ee6644b2f85875307e011, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!65 &5861163316673360893
 BoxCollider:
   m_ObjectHideFlags: 0

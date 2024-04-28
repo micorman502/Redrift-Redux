@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3772348337855845384}
-  - component: {fileID: 6375295279289248023}
+  - component: {fileID: 8755348336486947406}
   - component: {fileID: 5540971452853962326}
   - component: {fileID: 7695126586221037309}
   - component: {fileID: 5849684339688649667}
@@ -36,7 +36,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6375295279289248023
+--- !u!114 &8755348336486947406
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,12 +45,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 3769292127366859782}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
+  m_Script: {fileID: 11500000, guid: 7c515dd076e6fc3458a121dbe13266dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: be6c602b92b6bf749931e7c7ccab8c9c, type: 2}
   saveID: worldItemStairsU2X2
   dontSave: 0
+  maxHealth: 100
+  flammable: 1
+  flameReductionSpeed: 2
+  flameFxPrefab: {fileID: 8568619364269199404, guid: 7c68543bf0d70f54d97e2975fd9fa3fa,
+    type: 3}
 --- !u!208 &5540971452853962326
 NavMeshObstacle:
   m_ObjectHideFlags: 0

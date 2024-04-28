@@ -12,6 +12,7 @@ public class WeatherEffectLightning : WeatherEffectParticles
     [SerializeField] float lightningSpawnRadius;
     [SerializeField] float lightningEffectRadius;
     [SerializeField] float lightningDamage;
+    [SerializeField] float lightningIgnitionStrength;
     [SerializeField] GameObject voidOceanStrikeItem;
     [SerializeField] int strikesPerItemSpawn = 2;
 
@@ -84,10 +85,17 @@ public class WeatherEffectLightning : WeatherEffectParticles
                 }
             }
             IDamageable damageable = colliders[i].GetComponent<IDamageable>();
-            if (damageable == null)
-                continue;
+            IFlammable flammable = colliders[i].GetComponent<IFlammable>();
 
-            damageable.RemoveHealth(lightningDamage);
+            if (damageable != null)
+            {
+                damageable.RemoveHealth(lightningDamage);
+            }
+
+            if (flammable != null)
+            {
+                flammable.Ignite(lightningIgnitionStrength);
+            }
         }
     }
 }

@@ -26295,6 +26295,7 @@ MonoBehaviour:
   lightningSpawnRadius: 100
   lightningEffectRadius: 1
   lightningDamage: 30
+  lightningIgnitionStrength: 10
   voidOceanStrikeItem: {fileID: 8867880941123541123, guid: b08b43956078d5d4487cf3896c533dd3,
     type: 3}
   strikesPerItemSpawn: 2

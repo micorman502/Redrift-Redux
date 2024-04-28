@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IFlammable
 {
-    public void Ignite (int ignitionStrength);
-    public void Extinguish (int extinguishStrength);
+    public void Ignite (float ignitionStrength);
+    public void Extinguish (float extinguishStrength);
 }
