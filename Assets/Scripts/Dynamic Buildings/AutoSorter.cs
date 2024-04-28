@@ -39,18 +39,21 @@ public class AutoSorter : MonoBehaviour, IHotText, IItemSaveable, IGetTriggerInf
 	}
 
 	void TrySortItem (ItemHandler handler)
-    {
-		if (handler)
+	{
+		if (!handler)
+			return;
+
+		bool itemsMatch = handler.item == sortingItem;
+		if (itemsMatch && blackListEnabled)
+			return;
+		if (!itemsMatch && !blackListEnabled)
+			return;
+
+		handler.gameObject.transform.position = exit.position;
+		Rigidbody objRB = handler.GetComponent<Rigidbody>();
+		if (objRB)
 		{
-			if (handler.item == sortingItem && !blackListEnabled || handler.item != sortingItem && blackListEnabled)
-			{
-				handler.gameObject.transform.position = exit.position;
-				Rigidbody objRB = handler.GetComponent<Rigidbody>();
-				if (objRB)
-				{
-					objRB.velocity = transform.forward * 2f;
-				}
-			}
+			objRB.velocity = transform.forward * 2f;
 		}
 	}
 
