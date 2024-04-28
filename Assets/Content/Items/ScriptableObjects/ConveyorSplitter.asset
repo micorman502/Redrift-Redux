@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9054553737ebdbf499c59d51c1852601, type: 3}
+  m_Name: ConveyorSplitter
+  m_EditorClassIdentifier: 
+  itemName: Conveyor Splitter
+  itemDescription: Splits items from 1 input to 2 outputs.
+  stackSize: 20
+  stackPrefix: x
+  id: 0
+  achievementId: -1
+  icon: {fileID: 21300000, guid: 874d8401331ede14087e8d8d486ddda6, type: 3}
+  droppedPrefab: {fileID: 7624798493003499748, guid: ae8b0ed131900c048b17d34b34a1cd19,
+    type: 3}
+  gridSize: 0.5
+  approximateRadius: 0.25
+  upwardsOffset: {x: 0, y: 0, z: 0}
+  possibleRotations:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 90, z: 0}
+  - {x: 0, y: 180, z: 0}
+  - {x: 0, y: 270, z: 0}
+  alignToNormal: 0
+  previewPrefab: {fileID: 2536448328428124824, guid: d6f7a2b0ec9313c479144b6f58f028ce,
+    type: 3}
+  placedObject: {fileID: 8285443072313535877, guid: b05acc55482b3394cbb5c105337967c0,
+    type: 3}

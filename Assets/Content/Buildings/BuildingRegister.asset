@@ -38,6 +38,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 05be672c5638b59429c3e9636d47fa09, type: 2}
   - {fileID: 11400000, guid: 8ff0a9018128cbd479dfb134c6e1a400, type: 2}
   - {fileID: 11400000, guid: 966d43846ef5557458a540c24d80b534, type: 2}
+  - {fileID: 11400000, guid: 99f977f9abce157489d907c81ca11ff1, type: 2}
   buildingRecipes:
   - {fileID: 11400000, guid: e92cf4e36e40b2d42abaf64a1cea1f3d, type: 2}
   - {fileID: 11400000, guid: be0c066bec2935744a565533ac480fbf, type: 2}
@@ -57,6 +58,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 44f086614438c9e478e09d2437265866, type: 2}
   - {fileID: 11400000, guid: c322e1efb7bec9f48bcf9f586269ddbd, type: 2}
   - {fileID: 11400000, guid: 2fb795efcd87dd24d9b9c3bbd6c7d30b, type: 2}
+  - {fileID: 11400000, guid: 9c1ba6f6e120e2541b6be2cbd9eab73d, type: 2}
   - {fileID: 11400000, guid: 27e297d381c44354591ea30c8fd43172, type: 2}
   - {fileID: 11400000, guid: f7faeeba4f954d34393b42db86580725, type: 2}
   - {fileID: 11400000, guid: 7fd2807e26214104f8a44c558052689e, type: 2}

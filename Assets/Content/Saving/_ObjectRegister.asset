@@ -374,4 +374,12 @@ MonoBehaviour:
   - prefab: {fileID: 8427282034627052911, guid: 631a9db4f336262498766ed95cc07b02,
       type: 3}
     nameIdentifier: droppedItemConstructionHammer
-    id: 98
+    id: 99
+  - prefab: {fileID: 7624798493003499748, guid: ae8b0ed131900c048b17d34b34a1cd19,
+      type: 3}
+    nameIdentifier: droppedItemConveyorSplitter
+    id: 99
+  - prefab: {fileID: 8285443072313535877, guid: b05acc55482b3394cbb5c105337967c0,
+      type: 3}
+    nameIdentifier: worldItemConveyorSplitter
+    id: 99

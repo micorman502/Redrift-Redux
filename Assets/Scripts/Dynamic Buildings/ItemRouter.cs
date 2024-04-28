@@ -7,13 +7,14 @@ public class ItemRouter : MonoBehaviour, IItemSaveable, IGetTriggerInfo
 	[SerializeField] string saveID;
     [SerializeField] Transform[] outputPoints;
     int currentOutput;
+	float lastRoute;
 
 	public void GetTriggerInfo (Collider col)
 	{
-		if (col.CompareTag("Item"))
+		/*if (col.CompareTag("Item"))
 		{
 			TryRouteItem(col.GetComponentInParent<ItemHandler>());
-		}
+		}*/
 	}
 
 	public void GetTriggerInfoRepeating (Collider col)
@@ -26,6 +27,8 @@ public class ItemRouter : MonoBehaviour, IItemSaveable, IGetTriggerInfo
 
 	void TryRouteItem (ItemHandler handler)
 	{
+		if (Time.time < lastRoute + 0.1f)
+			return;
 		if (!handler)
 			return;
 
@@ -35,6 +38,8 @@ public class ItemRouter : MonoBehaviour, IItemSaveable, IGetTriggerInfo
 		{
 			objRB.velocity = transform.forward * 2f;
 		}
+
+		lastRoute = Time.time;
 
 		currentOutput++;
 
