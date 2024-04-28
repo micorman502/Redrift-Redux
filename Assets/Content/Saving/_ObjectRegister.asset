@@ -378,8 +378,15 @@ MonoBehaviour:
   - prefab: {fileID: 7624798493003499748, guid: ae8b0ed131900c048b17d34b34a1cd19,
       type: 3}
     nameIdentifier: droppedItemConveyorSplitter
-    id: 99
+    id: 100
   - prefab: {fileID: 8285443072313535877, guid: b05acc55482b3394cbb5c105337967c0,
       type: 3}
     nameIdentifier: worldItemConveyorSplitter
-    id: 99
+    id: 101
+  - prefab: {fileID: 276975029315504631, guid: 6f67085bbdce8ac40bfd37a818a1bce5, type: 3}
+    nameIdentifier: droppedItemConveyorMerger
+    id: 102
+  - prefab: {fileID: 7287280446218242714, guid: e344e19679dca2445a35f3e2b5a58327,
+      type: 3}
+    nameIdentifier: worldItemConveyorMerger
+    id: 103
