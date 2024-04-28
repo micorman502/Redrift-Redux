@@ -6,6 +6,7 @@ public class ConveyorBelt : MonoBehaviour, IItemSaveable, IGetTriggerInfo, IInte
 
 	[SerializeField] ItemHandler handler;
 	[SerializeField] string saveID;
+	[SerializeField] bool isScoop;
 	public float[] speeds = { 0f, 1f, 2f, 8f };
 	public int speedNum = 0;
 
@@ -35,7 +36,13 @@ public class ConveyorBelt : MonoBehaviour, IItemSaveable, IGetTriggerInfo, IInte
 		if (!itemRB)
 			return;
 
-		itemRB.velocity = (itemRB.velocity + transform.forward).normalized * speeds[speedNum];
+		Vector3 addedVelocity = isScoop ? (transform.up + transform.forward * 0.1f) : transform.forward;
+
+		itemRB.velocity = (itemRB.velocity + addedVelocity).normalized * speeds[speedNum];
+		if (isScoop)
+        {
+			itemRB.AddForce(-Physics.gravity);
+        }
 		//itemRB.AddForce((transform.forward * speeds[speedNum]) - Vector3.Project(itemRB.velocity - Vector3.one, transform.forward.normalized));
 		//itemRB.AddRelativeForce(transform.forward * speeds[speedNum] - itemRB.velocity); // TODO: PUT IN FIXEDUPDATE!!! //Waltuh
 	}

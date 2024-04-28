@@ -10,27 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9054553737ebdbf499c59d51c1852601, type: 3}
-  m_Name: ConveyorBeltT1
+  m_Name: ScoopT1
   m_EditorClassIdentifier: 
-  itemName: Conveyor Belt T1
-  itemDescription: Moves items around, very slow
+  itemName: Scoop T1
+  itemDescription: Moves items up, very slow
   stackSize: 20
   stackPrefix: x
-  id: 8
-  achievementId: 9
-  icon: {fileID: 21300000, guid: c693b71270bf2194bb4747486fdf67f7, type: 3}
-  droppedPrefab: {fileID: 6269948709102445229, guid: 802c74e54e67a8d4cb28c0eea706efc6,
+  id: 0
+  achievementId: -1
+  icon: {fileID: 21300000, guid: 120bf54dff785a0429b068b814e9c12a, type: 3}
+  droppedPrefab: {fileID: 1297370092982529254, guid: 506707e8244c4824ab5d0fbe85073ab8,
     type: 3}
   gridSize: 0.5
   approximateRadius: 0.25
-  upwardsOffset: {x: 0, y: 0.5, z: 0}
+  upwardsOffset: {x: 0, y: 0, z: 0}
   possibleRotations:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 90, z: 0}
   - {x: 0, y: 180, z: 0}
   - {x: 0, y: 270, z: 0}
   alignToNormal: 0
-  previewPrefab: {fileID: 1613053436950400, guid: a4ff52b46054d2d46813f88e787392d7,
+  previewPrefab: {fileID: 5367242657939713580, guid: c59aed8defec72d4c81627647f754099,
     type: 3}
-  placedObject: {fileID: 1070651816951194, guid: 2adc991730722e34184fbd8d6aa78f40,
+  placedObject: {fileID: 3698281101057608639, guid: 5454a60c92733354498c166dfc6b3f0c,
     type: 3}
