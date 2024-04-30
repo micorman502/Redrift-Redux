@@ -23,7 +23,7 @@ MonoBehaviour:
     type: 3}
   gridSize: 0.5
   approximateRadius: 0.25
-  upwardsOffset: {x: 0, y: 0.5, z: 0}
+  upwardsOffset: {x: 0, y: 0, z: 0}
   possibleRotations:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 90, z: 0}

@@ -6,8 +6,10 @@ using UnityEngine;
 /// </summary>
 public class InventorySlot
 {
-	public ItemInfo Item { get; private set; }
-	public int Count { get; private set; }
+	public ItemInfo Item { get { return item; } protected set { SetItem(value); } }
+	protected ItemInfo item;
+	public int Count { get { return count; } protected set { SetCount(value); } }
+	protected int count;
 
 	public Action<int> CountChanged;
 	public Action<ItemInfo> ItemChanged;
@@ -16,6 +18,16 @@ public class InventorySlot
 	{
 		Clear();
 	}
+
+	protected virtual void SetCount (int value)
+	{
+		count = value;
+	}
+
+	protected virtual void SetItem (ItemInfo value)
+    {
+		item = value;
+    }
 
 	public void Initialize(ItemInfo item, int count)
 	{
@@ -132,136 +144,3 @@ public class InventorySlot
 		return $"{{ {(Item ? Item.ToString() : "Null")}, {Count.ToString()} }}";
 	}
 }
-
-/*
-using System;
-
-public class InventorySlot
-{
-	// I use the _ to mean NEVER modify this outside of its getter/setter method
-	Item _item;
-	public Item Item
-	{
-		get
-		{
-			return _item;
-		}
-		set
-		{
-			_item = value;
-
-			ItemChanged?.Invoke(_item);
-			if(_item == null)
-			{
-				_count = 0;
-			}
-		}
-	}
-
-	int _count;
-	public int Count
-	{
-		get
-		{
-			return _count;
-		}
-		set
-		{
-			_count = value;
-
-			CountChanged?.Invoke(_count);
-			if(_count == 0)
-			{
-				_item = null;
-			}
-		}
-	}
-
-	public Action<int> CountChanged;
-	public Action<Item> ItemChanged;
-
-	public InventorySlot()
-	{
-		Clear();
-	}
-
-	public void SetItem(Item item)
-	{
-		Item = item;
-	}
-
-	/// <summary>
-	/// Add an amount to this inventory slot
-	/// </summary>
-	/// <returns>The amount added</returns>
-	public int Add(int amount)
-	{
-		// the total amount we could possibly add to this slot
-		int possible = Item.stackSize - Count;
-
-		if(amount > possible)
-		{
-			amount = possible;
-		}
-
-		Count += amount;
-
-		return amount;
-	}
-
-	/// <summary>
-	/// Remove an amount from this inventory slot
-	/// </summary>
-	/// <returns>The amount removed</returns>
-	public int Remove(int amount)
-	{
-		if(amount > Count)
-		{
-			amount = Count;
-		}
-
-		Count -= amount;
-
-		return amount;
-	}
-
-	/// <summary>
-	/// Dump this slot's contents on another slot. This slot will dump as much as possible, and retain the rest.
-	/// A common situation in most games would be when you drag this slot onto another one, and it moves or adds to the other slot's contents.
-	/// </summary>
-	public void Dump(InventorySlot victim)
-	{
-		if(Item == victim.Item)
-		{
-			Count -= victim.Add(Count);
-		}
-		else
-		{
-			Swap(victim);
-		}
-	}
-
-	/// <summary>
-	/// Swap the contents of this and another slot
-	/// </summary>
-	public void Swap(InventorySlot other)
-	{
-		Item tempItem = other.Item;
-		int tempCount = other.Count;
-
-		other.Initialize(Item, Count);
-		Initialize(tempItem, tempCount);
-	}
-
-	public void Clear()
-	{
-		Initialize(null, 0);
-	}
-
-	public override string ToString()
-	{
-		return $"{{ {(Item ? Item.ToString() : "Null")}, {Count.ToString()} }}";
-	}
-}
-
-*/

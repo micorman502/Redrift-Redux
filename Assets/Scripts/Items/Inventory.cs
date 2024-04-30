@@ -9,7 +9,7 @@ public class Inventory
 {
 	public Action InventoryChanged; // Only triggers when the inventory is changed via any of the functions it provides.
 	public Action<WorldItem> ItemOverflow; 
-	public InventorySlot[] Slots { get; private set; }
+	public InventorySlot[] Slots { get; protected set; }
 
 	public Inventory(int size)
 	{

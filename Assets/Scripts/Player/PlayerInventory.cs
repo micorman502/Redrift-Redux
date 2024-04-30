@@ -120,14 +120,21 @@ public class PlayerInventory : MonoBehaviour {
 		InventoryUpdate();
 	}
 
-	void SetupNewInventory (int inventorySize)
+	void SetupNewInventory (int inventorySize, bool creative = false)
     {
 		if (inventory != null)
         {
 			inventory.ItemOverflow -= SimpleDropItem;
         }
 
-		inventory = new Inventory(inventorySize);
+		if (creative)
+        {
+			inventory = new CreativeInventory(inventorySize);
+        } else
+        {
+			inventory = new Inventory(inventorySize);
+        }
+
 		inventory.ItemOverflow += SimpleDropItem;
 
 		InventoryUIManager.Instance.GetInventoryUI(InventoryUIManager.InventoryType.Primary).Assign(inventory);
@@ -136,7 +143,7 @@ public class PlayerInventory : MonoBehaviour {
     public void LoadCreativeMode() {
 		mode = 1;
 
-		SetupNewInventory(ItemDatabase.GetAllItems().Length);
+		SetupNewInventory(ItemDatabase.GetAllItems().Length, true);
 
 		AddAllItems();
 	}
