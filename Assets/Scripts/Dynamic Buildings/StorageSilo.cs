@@ -55,24 +55,30 @@ public class StorageSilo : MonoBehaviour, IItemPickup, IItemSaveable, IItemInter
 		}
 	}
 
-	bool AddItem (ItemInfo item)
+	bool AddItem (ItemInfo item, Inventory playerInventory)
 	{
-		if (item == null)
-			return false;
-
-		if (!slot.Item)
+		if (slot.Add(item, 1) > 0)
 		{
-			slot.Initialize(item, 1);
-			return true;
-		}
-		if (slot.Item == item)
-		{
-			slot.Add(1);
+			playerInventory.AddItem(slot.Item, 1);
 			return true;
 		}
 
 		return false;
 	}
+
+	bool RemoveItem (ItemInfo item, Inventory playerInventory)
+    {
+		if (!slot.Item)
+			return false;
+
+		if (item == null || item != slot.Item)
+        {
+			playerInventory.AddItem(slot.Item, 1);
+			return slot.Remove(1) > 0;
+        }
+
+		return false;
+    }
 
 	public void GetTriggerInfoRepeating (Collider col)
 	{
@@ -91,11 +97,15 @@ public class StorageSilo : MonoBehaviour, IItemPickup, IItemSaveable, IItemInter
 
 	public void Interact (WorldItem item)
 	{
-		if (!AddItem(item.item))
-			return;
-
 		PlayerInventory inventory = PlayerController.currentPlayer.gameObject.GetComponent<PlayerInventory>();
-		inventory.inventory.RemoveItem(new WorldItem(item.item, 1));
+		if (RemoveItem(item.item, inventory.inventory))
+        {
+			return;
+		}
+		if (AddItem(item.item, inventory.inventory))
+        {
+			return;
+		}
 	}
 
 	public void GetData (out ItemSaveData data, out ObjectSaveData objData, out bool dontSave)

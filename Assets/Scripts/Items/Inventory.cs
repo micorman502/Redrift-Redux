@@ -1,5 +1,7 @@
 using System.Text;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -13,13 +15,31 @@ public class Inventory
 
 	public Inventory(int size)
 	{
+		InitialiseSlots<InventorySlot>(size);
+	}
+
+	Inventory()
+    {
+
+    }
+
+	protected void InitialiseSlots<T> (int size) where T : InventorySlot
+    {
 		Slots = new InventorySlot[size];
 
-		for(int i = 0; i < Slots.Length; i++)
+		for (int i = 0; i < Slots.Length; i++)
 		{
 			Slots[i] = new InventorySlot();
 		}
 	}
+	
+	public Inventory CreateCustomInventory<T> (int size) where T : InventorySlot
+    {
+		Inventory newInventory = new Inventory();
+		newInventory.InitialiseSlots<T>(size);
+
+		return newInventory;
+    }
 
 	/// <summary>
 	/// Add an amount of an item to the inventory

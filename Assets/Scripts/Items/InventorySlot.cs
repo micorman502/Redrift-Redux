@@ -39,6 +39,10 @@ public class InventorySlot
 		CountChanged?.Invoke(Count);
 	}
 
+	/// <summary>
+	/// Add an amount to this inventory slot
+	/// </summary>
+	/// <returns>The amount added</returns>
 	public int Add (ItemInfo item, int amount)
 	{
 		if (item == null)
