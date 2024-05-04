@@ -136,12 +136,34 @@ public class StorageSilo : MonoBehaviour, IItemPickup, IItemSaveable, IItemInter
 	{
 		if (!inventory.Slots[0].Item)
 		{
-			itemText.text = "";
+			itemText.text = GetCapacityInfo(4);
 			return;
 		}
 
-		itemText.text = $"{inventory.Slots[0].Item.itemName} {inventory.Slots[0].Item.stackPrefix}{inventory.Slots[0].Count}";
+		itemText.text = $"{inventory.Slots[0].Item.itemName}\n{inventory.Slots[0].Item.stackPrefix}{inventory.Slots[0].Count}\n{GetCapacityInfo(4)}";
 
+	}
+
+	string GetCapacityInfo (int length)
+    {
+		float capacityUsed = 0;
+
+		capacityUsed = inventory.Slots[0].MaxStack == 0 ? 0 : inventory.Slots[0].Count / (float)inventory.Slots[0].MaxStack;
+
+		string capacityInfo = "[";
+		for (int i = 1; i < length + 1; i++)
+        {
+			if (capacityUsed >= (1f / length) * i)
+            {
+				capacityInfo += "#";
+            } else
+            {
+				capacityInfo += "-";
+            }
+        }
+		capacityInfo += "]";
+
+		return capacityInfo;
 	}
 
 	public void HideHotText ()

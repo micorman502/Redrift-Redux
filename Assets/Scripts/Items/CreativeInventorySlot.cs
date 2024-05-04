@@ -8,4 +8,9 @@ public class CreativeInventorySlot : InventorySlot
     {
         count = 1;
     }
+
+    protected override int GetMaxStack ()
+    {
+        return base.GetMaxStack() * 2;
+    }
 }
