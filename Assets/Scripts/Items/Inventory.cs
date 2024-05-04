@@ -94,9 +94,9 @@ public class Inventory
 	/// <returns>How much of a certain item can fit within this inventory.</returns>
 	public int SpaceLeftForItem (WorldItem item)
     {
-		return SpaceLeftForItem(item.item, item.amount);
+		return SpaceLeftForItem(item.item);
     }
-	public int SpaceLeftForItem (ItemInfo item, int amount)
+	public int SpaceLeftForItem (ItemInfo item)
     {
 		int spaceLeft = 0;
 		foreach (var slot in Slots)

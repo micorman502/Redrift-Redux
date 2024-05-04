@@ -10,6 +10,7 @@ public class InventorySlot
 	protected ItemInfo item;
 	public int Count { get { return count; } protected set { SetCount(value); } }
 	protected int count;
+	public int MaxStack { get { return GetMaxStack(); } }
 
 	public Action<int> CountChanged;
 	public Action<ItemInfo> ItemChanged;
@@ -45,7 +46,7 @@ public class InventorySlot
 	public int Add(int amount)
 	{
 		// the total amount we could possibly add to this slot
-		int possible = Item.stackSize - Count;
+		int possible = MaxStack - Count;
 
 		if(amount > possible)
 		{
@@ -143,4 +144,9 @@ public class InventorySlot
 	{
 		return $"{{ {(Item ? Item.ToString() : "Null")}, {Count.ToString()} }}";
 	}
+
+	protected virtual int GetMaxStack ()
+    {
+		return Item ? Item.stackSize : 0;
+    }
 }
