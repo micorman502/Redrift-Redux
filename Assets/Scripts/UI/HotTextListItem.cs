@@ -66,7 +66,7 @@ public class HotTextListItem : MonoBehaviour
         }
 
         keybindImage.sprite = defaultKeySprite;
-        keybindImage.type = Image.Type.Sliced;
+        //keybindImage.type = Image.Type.Sliced;
 
         keybindText.text = keyBindString;
     }

@@ -127,7 +127,7 @@ public class Inventory
 				spaceLeft += item.stackSize;
 			} else if (slot.Item == item)
             {
-				spaceLeft += item.stackSize - slot.Count;
+				spaceLeft += slot.MaxStack - slot.Count;
             }
 		}
 		return spaceLeft;

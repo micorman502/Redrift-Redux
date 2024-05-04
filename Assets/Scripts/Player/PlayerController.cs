@@ -44,7 +44,9 @@ public class PlayerController : MonoBehaviour
 
 	public float handDamage = 15f;
 
-	GameObject lastInteractionGameObject;
+	float lastInteract;
+	float timeBetweenInteractions;
+	const float baseTimeBetweenInteractions = 1.2f;
 
 	void Awake ()
 	{
@@ -92,12 +94,12 @@ public class PlayerController : MonoBehaviour
 		{
 			if (hit.collider)
 			{
-				target = hit.collider.gameObject;
+				SetTarget(hit.collider.gameObject);
 				targetHit = hit;
 			}
 			else
 			{
-				target = null;
+				SetTarget(null);
 			}
 		}
 
@@ -107,60 +109,57 @@ public class PlayerController : MonoBehaviour
 	void CheckInteractions (RaycastHit hit)
 	{
 		if (Input.GetButtonDown("Interact"))
-		{
+        {
 			if (!hit.transform)
 				return;
-			lastInteractionGameObject = hit.transform.gameObject;
 
-			IInteractable interactable = hit.transform.gameObject.GetComponent<IInteractable>();
-			if (interactable == null)
-			{
-				interactable = hit.transform.gameObject.GetComponentInParent<IInteractable>();
-			}
-			if (interactable != null)
-			{
-				interactable.Interact();
-			}
+			Interact(hit.transform.gameObject);
+			return;
+        }
+		if (!Input.GetButton("Interact"))
+        {
+			timeBetweenInteractions = baseTimeBetweenInteractions;
+			return;
+        }
+		if (Time.time < lastInteract + timeBetweenInteractions)
+			return;
+		
+		if (!hit.transform)
+			return;
 
-			IItemInteractable itemInteractable = hit.transform.gameObject.GetComponent<IItemInteractable>();
-			if (itemInteractable == null)
-			{
-				itemInteractable = hit.transform.gameObject.GetComponentInParent<IItemInteractable>();
-			}
-			if (itemInteractable != null)
-			{
-				itemInteractable.Interact(inventory.GetHeldItem());
-			}
+		Interact(hit.transform.gameObject);
+	}
 
+	void Interact (GameObject interactTarget)
+    {
+		IInteractable interactable = interactTarget.GetComponent<IInteractable>();
+		if (interactable == null)
+		{
+			interactable = interactTarget.GetComponentInParent<IInteractable>();
 		}
+		if (interactable != null)
+		{
+			interactable.Interact();
+			lastInteract = Time.time;
+		}
+
+		IItemInteractable itemInteractable = interactTarget.GetComponent<IItemInteractable>();
+		if (itemInteractable == null)
+		{
+			itemInteractable = interactTarget.GetComponentInParent<IItemInteractable>();
+		}
+		if (itemInteractable != null)
+		{
+			itemInteractable.Interact(inventory.GetHeldItem());
+			lastInteract = Time.time;
+		}
+
+		timeBetweenInteractions = Mathf.Lerp(timeBetweenInteractions, 0.025f, 0.25f);
 	}
 
 	public bool ActiveSystemMenu ()
 	{
 		return pauseManager.paused;
-	}
-
-	void Attack ()
-	{ //COME BACK
-		if (target)
-		{
-			Health targetHealth = target.GetComponent<Health>();
-			if (targetHealth)
-			{
-				if (inventory.currentSelectedItem.item)
-				{
-					WeaponHandler handler = inventory.currentSelectedItem.item.droppedPrefab.GetComponent<WeaponHandler>();
-					if (handler && handler.weapon.type == Weapon.WeaponType.Melee)
-					{
-						targetHealth.TakeDamage(handler.weapon.damage);
-					}
-				}
-				else
-				{
-					targetHealth.TakeDamage(handDamage);
-				}
-			}
-		}
 	}
 
 	public void Die ()
@@ -191,6 +190,15 @@ public class PlayerController : MonoBehaviour
 		vitals.AddHealth(1000f);
 		RealmTeleportManager.Instance.TeleportToRealm("Light");
 	}
+
+	void SetTarget (GameObject newTarget)
+    {
+		if (newTarget == target)
+			return;
+
+		target = newTarget;
+		timeBetweenInteractions = baseTimeBetweenInteractions;
+    }
 
 	public GameObject GetTarget ()
 	{

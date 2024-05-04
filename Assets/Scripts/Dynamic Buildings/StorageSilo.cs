@@ -160,7 +160,7 @@ public class StorageSilo : MonoBehaviour, IItemPickup, IItemSaveable, IItemInter
 				capacityInfo += "#";
             } else
             {
-				capacityInfo += "-";
+				capacityInfo += "_";
             }
         }
 		capacityInfo += "]";
