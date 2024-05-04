@@ -129,7 +129,7 @@ public class PlayerInventory : MonoBehaviour {
 
 		if (creative)
         {
-			inventory = new CreativeInventory(inventorySize);
+			inventory = Inventory.CreateCustomInventory<CreativeInventorySlot>(inventorySize);
         } else
         {
 			inventory = new Inventory(inventorySize);

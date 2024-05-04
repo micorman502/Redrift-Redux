@@ -23,17 +23,17 @@ public class Inventory
 
     }
 
-	protected void InitialiseSlots<T> (int size) where T : InventorySlot
+	protected void InitialiseSlots<T> (int size) where T : InventorySlot, new()
     {
-		Slots = new InventorySlot[size];
+		Slots = new T[size];
 
 		for (int i = 0; i < Slots.Length; i++)
 		{
-			Slots[i] = new InventorySlot();
+			Slots[i] = InventorySlot.CreateCustomInventorySlot<T>();
 		}
 	}
 	
-	public Inventory CreateCustomInventory<T> (int size) where T : InventorySlot
+	public static Inventory CreateCustomInventory<T> (int size) where T : InventorySlot, new()
     {
 		Inventory newInventory = new Inventory();
 		newInventory.InitialiseSlots<T>(size);

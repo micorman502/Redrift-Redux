@@ -15,6 +15,11 @@ public class InventorySlot
 	public Action<int> CountChanged;
 	public Action<ItemInfo> ItemChanged;
 
+	public static T CreateCustomInventorySlot<T> () where T : InventorySlot, new()
+	{
+		return new T();
+	}
+
 	public InventorySlot ()
 	{
 		Clear();

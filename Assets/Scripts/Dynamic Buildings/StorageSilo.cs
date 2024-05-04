@@ -47,7 +47,7 @@ public class StorageSilo : MonoBehaviour, IItemPickup, IItemSaveable, IItemInter
 			ItemHandler itemHandler = col.GetComponent<ItemHandler>();
 			if (!itemHandler)
 				return;
-			if (AddItem(itemHandler.item))
+			if (AddItem(itemHandler.item, null))
 			{
 				itemHandler.gameObject.SetActive(false);
 				Destroy(itemHandler.gameObject);
