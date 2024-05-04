@@ -110,6 +110,8 @@ public class PlayerBuilding : MonoBehaviour
 
         Instantiate(currentBuilding.placedObject, previewObject.transform.position, previewObject.transform.rotation);
 
+        ConsumeItems();
+
         AudioManager.Instance.Play("Build");
     }
 
@@ -128,7 +130,7 @@ public class PlayerBuilding : MonoBehaviour
 
     bool ItemCheck ()
     {
-        if (inventory.inventory.RemoveItem(new WorldItem(currentBuilding, 1)) > 0)
+        if (inventory.inventory.GetItemTotal(currentBuilding) > 0)
             return true;
 
         if (currentBuildingRecipe && currentBuildingRecipe.Craft(inventory.inventory, true, false))
