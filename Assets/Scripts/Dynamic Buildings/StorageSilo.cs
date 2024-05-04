@@ -26,6 +26,8 @@ public class StorageSilo : MonoBehaviour, IItemPickup, IItemSaveable, IItemInter
 		ExpandedInventorySlot expandedSlot = inventory.Slots[0] as ExpandedInventorySlot;
 
 		expandedSlot.MaxStackMultiplier = stackSizeMultiplier;
+
+		UpdateVisuals();
 	}
 
 	public WorldItem[] GetItems ()
