@@ -15,7 +15,7 @@ public class InventorySlot
 	public Action<int> CountChanged;
 	public Action<ItemInfo> ItemChanged;
 
-	public InventorySlot()
+	public InventorySlot ()
 	{
 		Clear();
 	}
@@ -26,11 +26,11 @@ public class InventorySlot
 	}
 
 	protected virtual void SetItem (ItemInfo value)
-    {
+	{
 		item = value;
-    }
+	}
 
-	public void Initialize(ItemInfo item, int count)
+	public void Initialize (ItemInfo item, int count)
 	{
 		Item = item;
 		Count = count;
@@ -39,22 +39,30 @@ public class InventorySlot
 		CountChanged?.Invoke(Count);
 	}
 
+	public int Add (ItemInfo item, int amount)
+	{
+		if (item == null || item != Item)
+			return 0;
+
+		return Add(amount);
+	}
+
 	/// <summary>
 	/// Add an amount to this inventory slot
 	/// </summary>
 	/// <returns>The amount added</returns>
-	public int Add(int amount)
+	public int Add (int amount)
 	{
 		// the total amount we could possibly add to this slot
 		int possible = MaxStack - Count;
 
-		if(amount > possible)
+		if (amount > possible)
 		{
 			amount = possible;
 		}
 
 		Count += amount;
-		if(Count == 0)
+		if (Count == 0)
 		{
 			Clear();
 		}
@@ -67,15 +75,15 @@ public class InventorySlot
 	/// Remove an amount from this inventory slot
 	/// </summary>
 	/// <returns>The amount removed</returns>
-	public int Remove(int amount)
+	public int Remove (int amount)
 	{
-		if(amount > Count)
+		if (amount > Count)
 		{
 			amount = Count;
 		}
 
 		Count -= amount;
-		if(Count == 0)
+		if (Count == 0)
 		{
 			Clear();
 		}
@@ -88,12 +96,12 @@ public class InventorySlot
 	/// Dump this slot's contents on another slot. This slot will dump as much as possible, and retain the rest.
 	/// A common situation in most games would be when you drag this slot onto another one, and it moves or adds to the other slot's contents.
 	/// </summary>
-	public void Dump(InventorySlot victim)
+	public void Dump (InventorySlot victim)
 	{
-		if(Item == victim.Item && victim.Item) 
+		if (Item == victim.Item && victim.Item)
 		{
 			Count -= victim.Add(Count);
-			if(Count == 0)
+			if (Count == 0)
 			{
 				Clear();
 			}
@@ -108,7 +116,7 @@ public class InventorySlot
 	/// <summary>
 	/// Swap the contents of this and another slot
 	/// </summary>
-	public void Swap(InventorySlot other)
+	public void Swap (InventorySlot other)
 	{
 		ItemInfo tempItem = other.Item;
 		int tempCount = other.Count;
@@ -117,17 +125,17 @@ public class InventorySlot
 		Initialize(tempItem, tempCount);
 	}
 
-	public void Split(InventorySlot other)
+	public void Split (InventorySlot other)
 	{
-		if(Item == other.Item || other.Item == null) // cant do shit if its not the same item
+		if (Item == other.Item || other.Item == null) // cant do shit if its not the same item
 		{
-			if(other.Item == null)
+			if (other.Item == null)
 			{
 				other.Initialize(Item, 0);
 			}
 
 			Count -= other.Add(Mathf.CeilToInt((float)Count / 2));
-			if(Count == 0)
+			if (Count == 0)
 			{
 				Clear();
 			}
@@ -135,18 +143,18 @@ public class InventorySlot
 		}
 	}
 
-	public void Clear()
+	public void Clear ()
 	{
 		Initialize(null, 0);
 	}
 
-	public override string ToString()
+	public override string ToString ()
 	{
 		return $"{{ {(Item ? Item.ToString() : "Null")}, {Count.ToString()} }}";
 	}
 
 	protected virtual int GetMaxStack ()
-    {
+	{
 		return Item ? Item.stackSize : 0;
-    }
+	}
 }
