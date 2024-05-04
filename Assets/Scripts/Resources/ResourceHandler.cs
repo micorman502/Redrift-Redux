@@ -157,9 +157,6 @@ public class ResourceHandler : MonoBehaviour, IItemSaveable, IResource {
 
 	protected virtual void Load (ItemSaveData data, ObjectSaveData objData)
     {
-		transform.position = objData.position;
-		transform.rotation = objData.rotation;
-
 		health = data.num;
 
 		loaded = true;

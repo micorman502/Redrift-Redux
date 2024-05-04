@@ -36,9 +36,6 @@ public class ItemHandler : MonoBehaviour, IItemSaveable, IItemPickup, IHotText {
 
 	protected virtual void Load (ItemSaveData data, ObjectSaveData objData)
     {
-		transform.position = objData.position;
-		transform.rotation = objData.rotation;
-
 		loaded = true;
 	}
 

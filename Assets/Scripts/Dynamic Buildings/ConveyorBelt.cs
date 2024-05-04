@@ -105,9 +105,6 @@ public class ConveyorBelt : MonoBehaviour, IItemSaveable, IGetTriggerInfo, IInte
 
 	public void SetData(ItemSaveData data, ObjectSaveData objData)
 	{
-		transform.position = objData.position;
-		transform.rotation = objData.rotation;
-
 		SetSpeed(data.num);
 	}
 }

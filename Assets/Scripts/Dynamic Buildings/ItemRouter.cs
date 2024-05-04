@@ -68,9 +68,6 @@ public class ItemRouter : MonoBehaviour, IItemSaveable, IGetTriggerInfo
 
 	protected virtual void Load (ItemSaveData data, ObjectSaveData objData)
 	{
-		transform.position = objData.position;
-		transform.rotation = objData.rotation;
-
 		currentOutput = data.num;
 	}
 }

@@ -43,9 +43,6 @@ public class Door : MonoBehaviour, IInteractable, IItemSaveable, IHotText {
 
 	public void SetData (ItemSaveData data, ObjectSaveData objData)
 	{
-		transform.position = objData.position;
-		transform.rotation = objData.rotation;
-
 		SetState(data.boolVal);
 	}
 

@@ -109,9 +109,6 @@ public class AutoSorter : MonoBehaviour, IHotText, IItemSaveable, IGetTriggerInf
 
 	public void SetData(ItemSaveData data, ObjectSaveData objData)
 	{
-		transform.position = objData.position;
-		transform.rotation = objData.rotation;
-
 		if (data.itemID != -1)
 		{
 			SetItem(ItemDatabase.GetItem(data.itemID));

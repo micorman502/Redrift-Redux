@@ -160,8 +160,6 @@ public class Furnace : MonoBehaviour, IItemPickup, IItemSaveable, IItemInteracta
 
 	public void SetData (ItemSaveData data, ObjectSaveData objData)
     {
-		transform.position = objData.position;
-		transform.rotation = objData.rotation;
 		fuel = data.num;
 		if (data.itemID != -1)
 		{

@@ -111,9 +111,6 @@ public class Radio : MonoBehaviour, IItemSaveable, IInteractable, IHotText {
 
 	public void SetData(ItemSaveData data, ObjectSaveData objData)
 	{
-		transform.position = objData.position;
-		transform.rotation = objData.rotation;
-
 		SetSong(data.num);
 	}
 

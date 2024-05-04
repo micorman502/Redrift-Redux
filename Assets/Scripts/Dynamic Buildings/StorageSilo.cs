@@ -121,9 +121,6 @@ public class StorageSilo : MonoBehaviour, IItemPickup, IItemSaveable, IItemInter
 
 	public void SetData (ItemSaveData data, ObjectSaveData objData)
 	{
-		transform.position = objData.position;
-		transform.rotation = objData.rotation;
-
 		Initialise();
 
 		if (data.itemID > -1)

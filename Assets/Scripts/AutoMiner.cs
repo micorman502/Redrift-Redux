@@ -213,9 +213,6 @@ public class AutoMiner : MonoBehaviour, IItemSaveable, IInteractable, IItemPicku
 
 	public void SetData(ItemSaveData data, ObjectSaveData objData)
 	{
-		transform.position = objData.position;
-		transform.rotation = objData.rotation;
-
 		List<ItemInfo> newItems = SaveManager.Instance.IDsToItems(data.itemIDs);
 		for (int i = 0; i < newItems.Count; i++)
         {
