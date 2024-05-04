@@ -5,7 +5,7 @@ using TMPro;
 
 public class StorageSilo : MonoBehaviour, IItemPickup, IItemSaveable, IItemInteractable, IGetTriggerInfo, IHotText
 {
-	ExpandedInventorySlot slot;
+	Inventory inventory;
 	[SerializeField] string saveID;
 	[SerializeField] int stackSizeMultiplier = 2;
 
@@ -19,18 +19,20 @@ public class StorageSilo : MonoBehaviour, IItemPickup, IItemSaveable, IItemInter
 
 	void Initialise ()
 	{
-		if (slot != null)
+		if (inventory != null)
 			return;
 
-		slot = new ExpandedInventorySlot();
-		slot.MaxStackMultiplier = stackSizeMultiplier;
+		inventory = Inventory.CreateCustomInventory<ExpandedInventorySlot>(1);
+		ExpandedInventorySlot expandedSlot = inventory.Slots[0] as ExpandedInventorySlot;
+
+		expandedSlot.MaxStackMultiplier = stackSizeMultiplier;
 	}
 
 	public WorldItem[] GetItems ()
 	{
 		WorldItem[] pickups = new WorldItem[1];
 
-		pickups[0] = new WorldItem(slot.Item, slot.Count);
+		pickups[0] = new WorldItem(inventory.Slots[0].Item, inventory.Slots[0].Count);
 
 		return pickups;
 	}
@@ -47,38 +49,15 @@ public class StorageSilo : MonoBehaviour, IItemPickup, IItemSaveable, IItemInter
 			ItemHandler itemHandler = col.GetComponent<ItemHandler>();
 			if (!itemHandler)
 				return;
-			if (AddItem(itemHandler.item, null))
+			if (inventory.AddItem(itemHandler.item, 1) > 0)
 			{
+				UpdateVisuals();
+
 				itemHandler.gameObject.SetActive(false);
 				Destroy(itemHandler.gameObject);
 			}
 		}
 	}
-
-	bool AddItem (ItemInfo item, Inventory playerInventory)
-	{
-		if (slot.Add(item, 1) > 0)
-		{
-			playerInventory.AddItem(slot.Item, 1);
-			return true;
-		}
-
-		return false;
-	}
-
-	bool RemoveItem (ItemInfo item, Inventory playerInventory)
-    {
-		if (!slot.Item)
-			return false;
-
-		if (item == null || item != slot.Item)
-        {
-			playerInventory.AddItem(slot.Item, 1);
-			return slot.Remove(1) > 0;
-        }
-
-		return false;
-    }
 
 	public void GetTriggerInfoRepeating (Collider col)
 	{
@@ -97,15 +76,21 @@ public class StorageSilo : MonoBehaviour, IItemPickup, IItemSaveable, IItemInter
 
 	public void Interact (WorldItem item)
 	{
-		PlayerInventory inventory = PlayerController.currentPlayer.gameObject.GetComponent<PlayerInventory>();
-		if (RemoveItem(item.item, inventory.inventory))
+		Inventory playerInventory = PlayerController.currentPlayer.gameObject.GetComponent<PlayerInventory>().inventory;
+
+		bool addingItem = playerInventory.HasEmptySlots() == true && item.item != null || playerInventory.Slots[0].Item == item.item;
+		
+		if (addingItem)
         {
+			playerInventory.RemoveItem(item.item, 1);
+			inventory.AddItem(item.item, 1);
 			return;
-		}
-		if (AddItem(item.item, inventory.inventory))
-        {
-			return;
-		}
+        }
+
+		playerInventory.AddItem(inventory.Slots[0].Item, 1, true);
+		inventory.RemoveItem(inventory.Slots[0].Item, 1);
+
+		UpdateVisuals();
 	}
 
 	public void GetData (out ItemSaveData data, out ObjectSaveData objData, out bool dontSave)
@@ -113,8 +98,8 @@ public class StorageSilo : MonoBehaviour, IItemPickup, IItemSaveable, IItemInter
 		ItemSaveData newData = new ItemSaveData();
 		ObjectSaveData newObjData = new ObjectSaveData(transform.position, transform.rotation, ObjectDatabase.GetIntegerID(saveID));
 
-		newData.num = slot.Count;
-		newData.itemID = slot.Item ? slot.Item.id : -1;
+		newData.num = inventory.Slots[0].Count;
+		newData.itemID = inventory.Slots[0].Item ? inventory.Slots[0].Item.id : -1;
 
 		data = newData;
 		objData = newObjData;
@@ -130,7 +115,7 @@ public class StorageSilo : MonoBehaviour, IItemPickup, IItemSaveable, IItemInter
 
 		if (data.itemID > -1)
 		{
-			slot.Initialize(ItemDatabase.GetItem(data.itemID), data.num);
+			inventory.SetSlot(ItemDatabase.GetItem(data.itemID), data.num, 0);
 		}
 
 		UpdateVisuals();
@@ -138,13 +123,13 @@ public class StorageSilo : MonoBehaviour, IItemPickup, IItemSaveable, IItemInter
 
 	void UpdateVisuals ()
 	{
-		if (!slot.Item)
+		if (!inventory.Slots[0].Item)
 		{
 			itemText.text = "";
 			return;
 		}
 
-		itemText.text = $"{slot.Item.itemName} {slot.Item.stackPrefix}{slot.Count}";
+		itemText.text = $"{inventory.Slots[0].Item.itemName} {inventory.Slots[0].Item.stackPrefix}{inventory.Slots[0].Count}";
 
 	}
 

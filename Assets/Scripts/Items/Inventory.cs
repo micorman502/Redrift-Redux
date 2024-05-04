@@ -49,7 +49,8 @@ public class Inventory
     {
 		return AddItem(item.item, item.amount);
     }
-	public int AddItem(ItemInfo item, int amount)
+
+	public int AddItem(ItemInfo item, int amount, bool forced = false)
 	{
 		int reserve = amount;
 
@@ -83,9 +84,9 @@ public class Inventory
 		}
 
 		InventoryChanged?.Invoke();
-		if (reserve > 0)
+		if (reserve > 0 && forced)
         {
-			ItemOverflow?.Invoke(new WorldItem(item,  reserve));
+			ItemOverflow?.Invoke(new WorldItem(item, reserve));
         }
 		return amount;
 	}
