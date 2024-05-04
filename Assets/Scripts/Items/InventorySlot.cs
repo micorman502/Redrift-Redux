@@ -41,7 +41,16 @@ public class InventorySlot
 
 	public int Add (ItemInfo item, int amount)
 	{
-		if (item == null || item != Item)
+		if (item == null)
+			return 0;
+
+		if (Item == null)
+        {
+			Initialize(item, amount);
+			return amount;
+        }
+
+		if (item != Item)
 			return 0;
 
 		return Add(amount);
