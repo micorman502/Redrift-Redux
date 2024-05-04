@@ -48,27 +48,6 @@ public class InventorySlot
 	/// Add an amount to this inventory slot
 	/// </summary>
 	/// <returns>The amount added</returns>
-	public int Add (ItemInfo item, int amount)
-	{
-		if (item == null)
-			return 0;
-
-		if (Item == null)
-        {
-			Initialize(item, amount);
-			return amount;
-        }
-
-		if (item != Item)
-			return 0;
-
-		return Add(amount);
-	}
-
-	/// <summary>
-	/// Add an amount to this inventory slot
-	/// </summary>
-	/// <returns>The amount added</returns>
 	public int Add (int amount)
 	{
 		// the total amount we could possibly add to this slot

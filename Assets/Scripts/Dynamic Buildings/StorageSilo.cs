@@ -30,9 +30,16 @@ public class StorageSilo : MonoBehaviour, IItemPickup, IItemSaveable, IItemInter
 
 	public WorldItem[] GetItems ()
 	{
-		WorldItem[] pickups = new WorldItem[1];
+		WorldItem[] pickups;
 
-		pickups[0] = new WorldItem(inventory.Slots[0].Item, inventory.Slots[0].Count);
+		if (inventory.Slots[0].Item)
+        {
+			pickups = new WorldItem[1];
+			pickups[0] = new WorldItem(inventory.Slots[0].Item, inventory.Slots[0].Count);
+		} else
+        {
+			pickups = new WorldItem[0];
+        }
 
 		return pickups;
 	}
@@ -78,14 +85,18 @@ public class StorageSilo : MonoBehaviour, IItemPickup, IItemSaveable, IItemInter
 	{
 		Inventory playerInventory = PlayerController.currentPlayer.gameObject.GetComponent<PlayerInventory>().inventory;
 
-		bool addingItem = playerInventory.HasEmptySlots() == true && item.item != null || playerInventory.Slots[0].Item == item.item;
+		bool addingItem = (inventory.HasEmptySlots() == true || inventory.Slots[0].Item == item.item) && item.item != null;
 		
 		if (addingItem)
         {
-			playerInventory.RemoveItem(item.item, 1);
 			inventory.AddItem(item.item, 1);
+			playerInventory.RemoveItem(item.item, 1);
+			UpdateVisuals();
 			return;
         }
+
+		if (inventory.HasEmptySlots())
+			return;
 
 		playerInventory.AddItem(inventory.Slots[0].Item, 1, true);
 		inventory.RemoveItem(inventory.Slots[0].Item, 1);
@@ -146,7 +157,7 @@ public class StorageSilo : MonoBehaviour, IItemPickup, IItemSaveable, IItemInter
 
 	public void UpdateHotText ()
 	{
-		//string infoText = (sortingItem ? sortingItem.name : "") + (blackListEnabled ? " (Blacklist)" : " (Whitelist)");
-		HotTextManager.Instance.UpdateHotText(new HotTextInfo("Add Item", KeyCode.F, HotTextInfo.Priority.Interact, "storageSiloInteract"));
+		string infoText = inventory.HasEmptySlots() ? "Add Item" : (inventory.InventoryFull(false) ? "Remove Item" : "Remove/Add Item");
+		HotTextManager.Instance.UpdateHotText(new HotTextInfo(infoText, KeyCode.F, HotTextInfo.Priority.Interact, "storageSiloInteract"));
 	}
 }

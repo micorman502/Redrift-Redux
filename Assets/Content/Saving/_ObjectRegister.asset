@@ -393,8 +393,16 @@ MonoBehaviour:
   - prefab: {fileID: 1297370092982529254, guid: 506707e8244c4824ab5d0fbe85073ab8,
       type: 3}
     nameIdentifier: droppedItemScoopT1
-    id: 103
+    id: 104
   - prefab: {fileID: 3698281101057608639, guid: 5454a60c92733354498c166dfc6b3f0c,
       type: 3}
     nameIdentifier: worldItemScoopT1
-    id: 103
+    id: 105
+  - prefab: {fileID: 2426737943743737748, guid: c17e0c8d86a622242abe391fa2331acb,
+      type: 3}
+    nameIdentifier: droppedItemStorageSilo
+    id: 105
+  - prefab: {fileID: 1145727047149891207, guid: 89406103b74053045acf7523873266a5,
+      type: 3}
+    nameIdentifier: worldItemStorageSilo
+    id: 105

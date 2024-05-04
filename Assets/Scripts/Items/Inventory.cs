@@ -52,18 +52,18 @@ public class Inventory
 
 	public int AddItem(ItemInfo item, int amount, bool forced = false)
 	{
-		int reserve = amount;
+		int initialAmount = amount;
 
 		foreach (var slot in Slots)
 		{
 			if(slot.Item == item)
 			{
-				reserve -= slot.Add(reserve);
+				amount -= slot.Add(amount);
 
-				if(reserve == 0)
+				if(amount == 0)
 				{
 					InventoryChanged?.Invoke();
-					return amount;
+					return initialAmount;
 				}
 			}
 		}
@@ -73,22 +73,22 @@ public class Inventory
 			if(slot.Item == null)
 			{
 				slot.Initialize(item, 0);
-				reserve -= slot.Add(reserve);
+				amount -= slot.Add(amount);
 
-				if(reserve == 0)
+				if(amount == 0)
 				{
 					InventoryChanged?.Invoke();
-					return amount;
+					return initialAmount;
 				}
 			}
 		}
 
 		InventoryChanged?.Invoke();
-		if (reserve > 0 && forced)
+		if (amount > 0 && forced)
         {
-			ItemOverflow?.Invoke(new WorldItem(item, reserve));
+			ItemOverflow?.Invoke(new WorldItem(item, amount));
         }
-		return amount;
+		return initialAmount - amount;
 	}
 
 	/// <summary>
@@ -145,7 +145,7 @@ public class Inventory
             {
 				return false;
             }
-			if (slot.Count < slot.Item.stackSize && !includeIncompleteStacks)
+			if (slot.Count < slot.MaxStack && !includeIncompleteStacks)
             {
 				return false;
             }
