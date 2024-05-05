@@ -25282,6 +25282,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1532546090071800, guid: 976407ce05dc3cd4c86fe65b37f260a5, type: 3}
+      propertyPath: m_TagString
+      value: Resource
+      objectReference: {fileID: 0}
+    - target: {fileID: 1532546090071800, guid: 976407ce05dc3cd4c86fe65b37f260a5, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967294
       objectReference: {fileID: 0}
@@ -25378,6 +25382,26 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 828969700}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &828969711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828969701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f79061d20a842d469809a664dac9635, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dontSave: 1
+  saveID: 0
+  dontRegisterToHivemind: 1
+  resource: {fileID: 11400000, guid: 85888302b409fcd4699b0f611b370231, type: 2}
+  health: 0
+  gatherFX: {fileID: 0}
+  destroyFX: {fileID: 0}
+  optionalVisual: {fileID: 0}
 --- !u!1 &845265121
 GameObject:
   m_ObjectHideFlags: 0
@@ -33373,6 +33397,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1181947318}
   m_CullTransparentMesh: 1
+--- !u!1 &1192071823 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1080536333061988, guid: 6b148acb52b6df547a13c5632a14e47b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1567227069}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1192071828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192071823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f79061d20a842d469809a664dac9635, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dontSave: 1
+  saveID: 0
+  dontRegisterToHivemind: 1
+  resource: {fileID: 11400000, guid: 85888302b409fcd4699b0f611b370231, type: 2}
+  health: 0
+  gatherFX: {fileID: 0}
+  destroyFX: {fileID: 0}
+  optionalVisual: {fileID: 0}
 --- !u!1 &1202503424
 GameObject:
   m_ObjectHideFlags: 0
@@ -45757,6 +45807,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1378863997}
     m_Modifications:
+    - target: {fileID: 1080536333061988, guid: 6b148acb52b6df547a13c5632a14e47b, type: 3}
+      propertyPath: m_TagString
+      value: Resource
+      objectReference: {fileID: 0}
     - target: {fileID: 1362253887463666, guid: 6b148acb52b6df547a13c5632a14e47b, type: 3}
       propertyPath: m_Name
       value: Island2
@@ -49928,21 +49982,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1378863997}
     m_Modifications:
-    - target: {fileID: 594470470981996526, guid: dd02abbf7c1a1314195abf3e3ac4c5b4,
-        type: 3}
-      propertyPath: baseOffset.x
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 594470470981996526, guid: dd02abbf7c1a1314195abf3e3ac4c5b4,
-        type: 3}
-      propertyPath: baseOffset.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 594470470981996526, guid: dd02abbf7c1a1314195abf3e3ac4c5b4,
-        type: 3}
-      propertyPath: offsetIncrement
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 3391694382641676774, guid: dd02abbf7c1a1314195abf3e3ac4c5b4,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -49966,7 +50005,7 @@ PrefabInstance:
     - target: {fileID: 8146272337719442207, guid: dd02abbf7c1a1314195abf3e3ac4c5b4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -63.4
+      value: -64.37
       objectReference: {fileID: 0}
     - target: {fileID: 8146272337719442207, guid: dd02abbf7c1a1314195abf3e3ac4c5b4,
         type: 3}

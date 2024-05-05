@@ -16,7 +16,7 @@ MonoBehaviour:
   - item: {fileID: 11400000, guid: 1298723ecdadd9441be0c619bf981016, type: 2}
     amount: 1
   - item: {fileID: 11400000, guid: ada74405c0b91a641bed3460f1a00d5e, type: 2}
-    amount: 2
+    amount: 3
   replacedItems: []
   output:
     item: {fileID: 11400000, guid: a061a2a5da6ab444481d85357644cace, type: 2}
@@ -24,3 +24,4 @@ MonoBehaviour:
   categories: 03000000
   id: 4
   achievementId: -1
+  hideInCraftingUI: 0
