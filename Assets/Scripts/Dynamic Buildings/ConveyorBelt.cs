@@ -1,8 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ConveyorBelt : MonoBehaviour, IItemSaveable, IGetTriggerInfo, IInteractable {
+	public event Action<float> OnSpeedSet;
+	public float Speed { get { return GetSpeed(); } }
 
 	[SerializeField] ItemHandler handler;
 	[SerializeField] string saveID;
@@ -38,7 +41,7 @@ public class ConveyorBelt : MonoBehaviour, IItemSaveable, IGetTriggerInfo, IInte
 
 		Vector3 addedVelocity = isScoop ? (transform.up + transform.forward * 0.1f) : transform.forward;
 
-		itemRB.velocity = (itemRB.velocity + addedVelocity).normalized * speeds[speedNum];
+		itemRB.velocity = (itemRB.velocity + addedVelocity).normalized * Speed;
 		if (isScoop)
         {
 			itemRB.AddForce(-Physics.gravity);
@@ -62,7 +65,7 @@ public class ConveyorBelt : MonoBehaviour, IItemSaveable, IGetTriggerInfo, IInte
 		if(speedNum >= speeds.Length) {
 			speedNum = 0;
 		}
-		if(speeds[speedNum] == 0) {
+		if(Speed == 0) {
 			active = false;
 			UpdateActive();
 		} else if(!active) {
@@ -82,14 +85,21 @@ public class ConveyorBelt : MonoBehaviour, IItemSaveable, IGetTriggerInfo, IInte
 	}
 
 	void UpdateActive() {
-		anim.SetBool("Active", active);
+		anim?.SetBool("Active", active);
 		audioSource.mute = !active;
 	}
 
 	void UpdateSpeed() {
-		anim.SetFloat("Speed", speeds[speedNum]);
-		audioSource.pitch = 0.5f + speeds[speedNum] / 8f;
+		anim?.SetFloat("Speed", Speed);
+		audioSource.pitch = 0.5f + Speed / 8f;
+
+		OnSpeedSet?.Invoke(Speed);
 	}
+
+	float GetSpeed ()
+    {
+		return speeds[speedNum];
+    }
 
 	public void GetData(out ItemSaveData data, out ObjectSaveData objData, out bool dontSave)
 	{
