@@ -7,23 +7,24 @@ public class HeldBuildingItem : HeldItem
     [SerializeField] PlayerBuilding playerBuilding;
     BuildingInfo building;
 
-    void Awake()
+    void Awake ()
     {
         building = item as BuildingInfo;
     }
 
-    public override void Use()
+    public override void Use ()
     {
         if (playerBuilding.IsBuilding())
         {
             playerBuilding.PlaceBuilding();
-        } else
+        }
+        else
         {
             playerBuilding.StartBuilding(building);
         }
     }
 
-    public override void SpecialUse()
+    public override void SpecialUse ()
     {
         playerBuilding.SetBuildingRotation(1);
     }

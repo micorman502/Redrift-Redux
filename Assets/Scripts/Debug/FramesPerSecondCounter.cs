@@ -11,7 +11,7 @@ public class FramesPerSecondCounter : MonoBehaviour
     List<float> fpsList = new List<float>();
     bool counterEnabled;
 
-    void Update()
+    void Update ()
     {
         if (Input.GetKeyDown(KeyCode.Period))
         {

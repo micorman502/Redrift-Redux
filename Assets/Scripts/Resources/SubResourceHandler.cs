@@ -6,18 +6,18 @@ public class SubResourceHandler : MonoBehaviour, IResource //this is to be used 
 {
     [SerializeField] ResourceHandler handler;
 
-	public Resource GetResource()
-	{
-		return handler.GetResource();
-	}
+    public Resource GetResource ()
+    {
+        return handler.GetResource();
+    }
 
-	public WorldItem[] HandGather()
-	{
-		return handler.HandGather();
-	}
+    public WorldItem[] HandGather ()
+    {
+        return handler.HandGather();
+    }
 
-	public WorldItem[] ToolGather(ToolInfo tool)
-	{
-		return handler.ToolGather(tool);
-	}
+    public WorldItem[] ToolGather (ToolInfo tool)
+    {
+        return handler.ToolGather(tool);
+    }
 }

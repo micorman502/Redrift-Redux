@@ -2,62 +2,65 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : MonoBehaviour, IInteractable, IItemSaveable, IHotText {
+public class Door : MonoBehaviour, IInteractable, IItemSaveable, IHotText
+{
 
-	[SerializeField] ItemHandler handler;
-	[SerializeField] string saveID;
-	Animator anim;
-	bool open = false;
+    [SerializeField] ItemHandler handler;
+    [SerializeField] string saveID;
+    Animator anim;
+    bool open = false;
 
-	void Awake () {
-		anim = GetComponent<Animator>();
-	}
-
-	public void Interact ()
+    void Awake ()
     {
-		ToggleOpen();
+        anim = GetComponent<Animator>();
     }
 
-	public void ToggleOpen() {
-		SetState(!open);
-	}
-
-	public void SetState(bool state)
+    public void Interact ()
     {
-		open = state;
+        ToggleOpen();
+    }
 
-		anim.SetBool("Open", state);
-	}
+    public void ToggleOpen ()
+    {
+        SetState(!open);
+    }
 
-	public void GetData (out ItemSaveData data, out ObjectSaveData objData, out bool dontSave)
-	{
-		ItemSaveData newData = new ItemSaveData();
-		ObjectSaveData newObjData = new ObjectSaveData(transform.position, transform.rotation, ObjectDatabase.GetIntegerID(saveID));
+    public void SetState (bool state)
+    {
+        open = state;
 
-		newData.boolVal = open;
+        anim.SetBool("Open", state);
+    }
 
-		data = newData;
-		objData = newObjData;
-		dontSave = false;
-	}
+    public void GetData (out ItemSaveData data, out ObjectSaveData objData, out bool dontSave)
+    {
+        ItemSaveData newData = new ItemSaveData();
+        ObjectSaveData newObjData = new ObjectSaveData(transform.position, transform.rotation, ObjectDatabase.GetIntegerID(saveID));
 
-	public void SetData (ItemSaveData data, ObjectSaveData objData)
-	{
-		SetState(data.boolVal);
-	}
+        newData.boolVal = open;
 
-	void IHotText.HideHotText ()
-	{
-		HotTextManager.Instance.RemoveHotText(new HotTextInfo("", KeyCode.F, HotTextInfo.Priority.Open, "toggleDoor"));
-	}
+        data = newData;
+        objData = newObjData;
+        dontSave = false;
+    }
 
-	void IHotText.ShowHotText ()
-	{
-		HotTextManager.Instance.ReplaceHotText(new HotTextInfo(open ? "Close" : "Open", KeyCode.F, HotTextInfo.Priority.Open, "toggleDoor"));
-	}
+    public void SetData (ItemSaveData data, ObjectSaveData objData)
+    {
+        SetState(data.boolVal);
+    }
 
-	void IHotText.UpdateHotText ()
-	{
-		HotTextManager.Instance.UpdateHotText(new HotTextInfo(open ? "Close" : "Open", KeyCode.F, HotTextInfo.Priority.Open, "toggleDoor"));
-	}
+    void IHotText.HideHotText ()
+    {
+        HotTextManager.Instance.RemoveHotText(new HotTextInfo("", KeyCode.F, HotTextInfo.Priority.Open, "toggleDoor"));
+    }
+
+    void IHotText.ShowHotText ()
+    {
+        HotTextManager.Instance.ReplaceHotText(new HotTextInfo(open ? "Close" : "Open", KeyCode.F, HotTextInfo.Priority.Open, "toggleDoor"));
+    }
+
+    void IHotText.UpdateHotText ()
+    {
+        HotTextManager.Instance.UpdateHotText(new HotTextInfo(open ? "Close" : "Open", KeyCode.F, HotTextInfo.Priority.Open, "toggleDoor"));
+    }
 }

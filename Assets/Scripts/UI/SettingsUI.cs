@@ -217,7 +217,7 @@ public class SettingsUI : MonoBehaviour
         if (!initialised)
             return;
         CurrentSettings.ModifiableSettingsData.physicsTickrate = roundedValue;
-        
+
         if (value == CurrentSettings.CurrentSettingsData.physicsTickrate)
             return;
 

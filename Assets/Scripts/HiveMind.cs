@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HiveMind : MonoBehaviour {
-	public static HiveMind Instance;
-	public List<ResourceHandler> worldResources = new List<ResourceHandler>();
+public class HiveMind : MonoBehaviour
+{
+    public static HiveMind Instance;
+    public List<ResourceHandler> worldResources = new List<ResourceHandler>();
 
-    private void Awake()
+    private void Awake ()
     {
         if (Instance)
         {
@@ -15,11 +16,13 @@ public class HiveMind : MonoBehaviour {
         }
         Instance = this;
     }
-    public void AddResource(ResourceHandler handler) {
-		worldResources.Add(handler);
-	}
+    public void AddResource (ResourceHandler handler)
+    {
+        worldResources.Add(handler);
+    }
 
-	public void RemoveResource(ResourceHandler handler) {
-		worldResources.Remove(handler);
-	}
+    public void RemoveResource (ResourceHandler handler)
+    {
+        worldResources.Remove(handler);
+    }
 }

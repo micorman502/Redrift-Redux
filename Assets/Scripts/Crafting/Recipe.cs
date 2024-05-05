@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class Recipe : ScriptableObject {
+public class Recipe : ScriptableObject
+{
     public enum RecipeCategory { All, Construction, Resources, Tools, Automation, Decoration };
     public WorldItem[] inputs;
-	public WorldItem[] replacedItems;
-	public WorldItem output = new WorldItem(null, 1);
-	public RecipeCategory[] categories;
+    public WorldItem[] replacedItems;
+    public WorldItem output = new WorldItem(null, 1);
+    public RecipeCategory[] categories;
     public int id;
     public int achievementId = -1;
     public bool hideInCraftingUI;
@@ -71,30 +72,30 @@ public class Recipe : ScriptableObject {
     #region Inventory Functions
     public bool UsesItem (WorldItem item)
     {
-		foreach (WorldItem input in inputs)
+        foreach (WorldItem input in inputs)
         {
-			if (item.item == input.item)
+            if (item.item == input.item)
             {
-				return true;
+                return true;
             }
         }
-		return false;
+        return false;
     }
 
-	public WorldItem[] TotalOutputs () //return outputs, including replacedItems
+    public WorldItem[] TotalOutputs () //return outputs, including replacedItems
     {
-		List<WorldItem> newOutputs = new List<WorldItem>();
+        List<WorldItem> newOutputs = new List<WorldItem>();
 
         newOutputs.Add(output);
         for (int i = 0; i < replacedItems.Length; i++)
-		{
-			newOutputs.Add(replacedItems[i]);
-		}
+        {
+            newOutputs.Add(replacedItems[i]);
+        }
 
-		return newOutputs.ToArray();
+        return newOutputs.ToArray();
     }
 
-    public bool IsCraftable(Inventory inventory)
+    public bool IsCraftable (Inventory inventory)
     {
         if (inventory.SpaceLeftForItem(output) < output.amount)
             return false;

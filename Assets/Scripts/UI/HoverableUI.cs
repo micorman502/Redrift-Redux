@@ -8,7 +8,7 @@ public class HoverableUI : MonoBehaviour
     [SerializeField] string hoverSfxName;
     [SerializeField] string clickSfxName;
     [SerializeField] string hoverBoolName;
-    
+
     public void SetHoverState (bool state)
     {
         if (animator)

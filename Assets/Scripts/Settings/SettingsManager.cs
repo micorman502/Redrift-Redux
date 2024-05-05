@@ -6,7 +6,8 @@ using UnityEngine.Audio;
 using UnityEngine.UI;
 using UnityEngine.PostProcessing;
 
-public class SettingsManager : MonoBehaviour {
+public class SettingsManager : MonoBehaviour
+{
     const string settingsPrefName = "settingsString";
     void Awake ()
     {

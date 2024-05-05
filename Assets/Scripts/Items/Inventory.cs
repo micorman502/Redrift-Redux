@@ -9,214 +9,215 @@ using UnityEngine;
 /// </summary>
 public class Inventory
 {
-	public Action InventoryChanged; // Only triggers when the inventory is changed via any of the functions it provides.
-	public Action<WorldItem> ItemOverflow; 
-	public InventorySlot[] Slots { get; protected set; }
+    public Action InventoryChanged; // Only triggers when the inventory is changed via any of the functions it provides.
+    public Action<WorldItem> ItemOverflow;
+    public InventorySlot[] Slots { get; protected set; }
 
-	public Inventory(int size)
-	{
-		InitialiseSlots<InventorySlot>(size);
-	}
+    public Inventory (int size)
+    {
+        InitialiseSlots<InventorySlot>(size);
+    }
 
-	Inventory()
+    Inventory ()
     {
 
     }
 
-	protected void InitialiseSlots<T> (int size) where T : InventorySlot, new()
+    protected void InitialiseSlots<T> (int size) where T : InventorySlot, new()
     {
-		Slots = new T[size];
+        Slots = new T[size];
 
-		for (int i = 0; i < Slots.Length; i++)
-		{
-			Slots[i] = InventorySlot.CreateCustomInventorySlot<T>();
-		}
-	}
-	
-	public static Inventory CreateCustomInventory<T> (int size) where T : InventorySlot, new()
-    {
-		Inventory newInventory = new Inventory();
-		newInventory.InitialiseSlots<T>(size);
-
-		return newInventory;
-    }
-
-	/// <summary>
-	/// Add an amount of an item to the inventory
-	/// </summary>
-	/// <returns>The amount that was successfully added</returns>
-	public int AddItem (WorldItem item)
-    {
-		return AddItem(item.item, item.amount);
-    }
-
-	public int AddItem(ItemInfo item, int amount, bool forced = false)
-	{
-		int initialAmount = amount;
-
-		foreach (var slot in Slots)
-		{
-			if(slot.Item == item)
-			{
-				amount -= slot.Add(amount);
-
-				if(amount == 0)
-				{
-					InventoryChanged?.Invoke();
-					return initialAmount;
-				}
-			}
-		}
-
-		foreach (var slot in Slots)
-		{
-			if(slot.Item == null)
-			{
-				slot.Initialize(item, 0);
-				amount -= slot.Add(amount);
-
-				if(amount == 0)
-				{
-					InventoryChanged?.Invoke();
-					return initialAmount;
-				}
-			}
-		}
-
-		InventoryChanged?.Invoke();
-		if (amount > 0 && forced)
+        for (int i = 0; i < Slots.Length; i++)
         {
-			ItemOverflow?.Invoke(new WorldItem(item, amount));
+            Slots[i] = InventorySlot.CreateCustomInventorySlot<T>();
         }
-		return initialAmount - amount;
-	}
-
-	/// <summary>
-	/// Get the total number of an item in the inventory
-	/// </summary>
-	/// <returns>The total number of the specified item in the inventory</returns>
-	public int GetItemTotal(ItemInfo item)
-	{
-		int total = 0;
-
-		foreach (var slot in Slots)
-		{
-			if(slot.Item == item)
-			{
-				total += slot.Count;
-			}
-		}
-
-		return total;
-	}
-	/// <summary>
-	/// 
-	/// </summary>
-	/// <returns>How much of a certain item can fit within this inventory.</returns>
-	public int SpaceLeftForItem (WorldItem item)
-    {
-		return SpaceLeftForItem(item.item);
     }
-	public int SpaceLeftForItem (ItemInfo item)
+
+    public static Inventory CreateCustomInventory<T> (int size) where T : InventorySlot, new()
     {
-		int spaceLeft = 0;
-		foreach (var slot in Slots)
-		{
-			if (slot.Item == null)
-			{
-				spaceLeft += item.stackSize;
-			} else if (slot.Item == item)
-            {
-				spaceLeft += slot.MaxStack - slot.Count;
-            }
-		}
-		return spaceLeft;
-	}
-	/// <summary>
-	/// 
-	/// </summary>
-	/// <param name="includeIncompleteStacks">If true, any InventorySlot with a Count above 0 counts towards the inventory being full</param>
-	/// <returns></returns>
-	public bool InventoryFull (bool includeIncompleteStacks)
+        Inventory newInventory = new Inventory();
+        newInventory.InitialiseSlots<T>(size);
+
+        return newInventory;
+    }
+
+    /// <summary>
+    /// Add an amount of an item to the inventory
+    /// </summary>
+    /// <returns>The amount that was successfully added</returns>
+    public int AddItem (WorldItem item)
     {
-		foreach (InventorySlot slot in Slots)
+        return AddItem(item.item, item.amount);
+    }
+
+    public int AddItem (ItemInfo item, int amount, bool forced = false)
+    {
+        int initialAmount = amount;
+
+        foreach (var slot in Slots)
         {
-			if (slot.Count <= 0)
+            if (slot.Item == item)
             {
-				return false;
-            }
-			if (slot.Count < slot.MaxStack && !includeIncompleteStacks)
-            {
-				return false;
+                amount -= slot.Add(amount);
+
+                if (amount == 0)
+                {
+                    InventoryChanged?.Invoke();
+                    return initialAmount;
+                }
             }
         }
 
-		return true;
-    }
-
-	public bool HasEmptySlots ()
-    {
-		foreach (var slot in Slots)
-		{
-			if (slot.Item == null)
-			{
-				return true;
-			}
-		}
-		return false;
-	}
-
-	/// <summary>
-	/// Remove an amount of an item from the inventory. If there are left overs, they are ignored, so an amount you know is present via GetItemTotal.
-	/// </summary>
-	/// <returns>The amount of items that were successfully taken.</returns>
-	public int RemoveItem (WorldItem item)
-    {
-		return RemoveItem(item.item, item.amount);
-    }
-
-	public int RemoveItem(ItemInfo item, int amount)
-	{
-		int amountTaken = 0;
-		foreach (var slot in Slots)
-		{
-			if(slot.Item == item)
-			{
-				int removingAmt = slot.Remove(amount);
-				amount -= removingAmt;
-				amountTaken += removingAmt;
-
-				if(amount == 0)
-				{
-					InventoryChanged?.Invoke();
-					return amountTaken;
-				}
-			}
-		}
-
-		return amountTaken;
-	}
-
-	public int RemoveItem (ItemInfo item)
-    {
-		return RemoveItem(item, 1);
-    }
-
-	/// <summary>
-	/// Directly set a slot to an item. Returns an error if the value is out of bounds
-	/// </summary>
-	public void SetSlot (WorldItem item, int slotIndex)
-    {
-		SetSlot(item.item, item.amount, slotIndex);
-    }
-	public void SetSlot (ItemInfo item, int amount, int slotIndex)
-    {
-		if (slotIndex >= Slots.Length)
+        foreach (var slot in Slots)
         {
-			Debug.LogError($"SetSlot's slotIndex was outside the allowed bounds at slotIndex: {slotIndex}");
-			return;
+            if (slot.Item == null)
+            {
+                slot.Initialize(item, 0);
+                amount -= slot.Add(amount);
+
+                if (amount == 0)
+                {
+                    InventoryChanged?.Invoke();
+                    return initialAmount;
+                }
+            }
         }
-		Slots[slotIndex].Initialize(item, amount);
-		InventoryChanged?.Invoke();
-	}
+
+        InventoryChanged?.Invoke();
+        if (amount > 0 && forced)
+        {
+            ItemOverflow?.Invoke(new WorldItem(item, amount));
+        }
+        return initialAmount - amount;
+    }
+
+    /// <summary>
+    /// Get the total number of an item in the inventory
+    /// </summary>
+    /// <returns>The total number of the specified item in the inventory</returns>
+    public int GetItemTotal (ItemInfo item)
+    {
+        int total = 0;
+
+        foreach (var slot in Slots)
+        {
+            if (slot.Item == item)
+            {
+                total += slot.Count;
+            }
+        }
+
+        return total;
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns>How much of a certain item can fit within this inventory.</returns>
+    public int SpaceLeftForItem (WorldItem item)
+    {
+        return SpaceLeftForItem(item.item);
+    }
+    public int SpaceLeftForItem (ItemInfo item)
+    {
+        int spaceLeft = 0;
+        foreach (var slot in Slots)
+        {
+            if (slot.Item == null)
+            {
+                spaceLeft += item.stackSize;
+            }
+            else if (slot.Item == item)
+            {
+                spaceLeft += slot.MaxStack - slot.Count;
+            }
+        }
+        return spaceLeft;
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="includeIncompleteStacks">If true, any InventorySlot with a Count above 0 counts towards the inventory being full</param>
+    /// <returns></returns>
+    public bool InventoryFull (bool includeIncompleteStacks)
+    {
+        foreach (InventorySlot slot in Slots)
+        {
+            if (slot.Count <= 0)
+            {
+                return false;
+            }
+            if (slot.Count < slot.MaxStack && !includeIncompleteStacks)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public bool HasEmptySlots ()
+    {
+        foreach (var slot in Slots)
+        {
+            if (slot.Item == null)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /// <summary>
+    /// Remove an amount of an item from the inventory. If there are left overs, they are ignored, so an amount you know is present via GetItemTotal.
+    /// </summary>
+    /// <returns>The amount of items that were successfully taken.</returns>
+    public int RemoveItem (WorldItem item)
+    {
+        return RemoveItem(item.item, item.amount);
+    }
+
+    public int RemoveItem (ItemInfo item, int amount)
+    {
+        int amountTaken = 0;
+        foreach (var slot in Slots)
+        {
+            if (slot.Item == item)
+            {
+                int removingAmt = slot.Remove(amount);
+                amount -= removingAmt;
+                amountTaken += removingAmt;
+
+                if (amount == 0)
+                {
+                    InventoryChanged?.Invoke();
+                    return amountTaken;
+                }
+            }
+        }
+
+        return amountTaken;
+    }
+
+    public int RemoveItem (ItemInfo item)
+    {
+        return RemoveItem(item, 1);
+    }
+
+    /// <summary>
+    /// Directly set a slot to an item. Returns an error if the value is out of bounds
+    /// </summary>
+    public void SetSlot (WorldItem item, int slotIndex)
+    {
+        SetSlot(item.item, item.amount, slotIndex);
+    }
+    public void SetSlot (ItemInfo item, int amount, int slotIndex)
+    {
+        if (slotIndex >= Slots.Length)
+        {
+            Debug.LogError($"SetSlot's slotIndex was outside the allowed bounds at slotIndex: {slotIndex}");
+            return;
+        }
+        Slots[slotIndex].Initialize(item, amount);
+        InventoryChanged?.Invoke();
+    }
 }

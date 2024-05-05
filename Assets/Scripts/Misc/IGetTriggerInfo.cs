@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IGetTriggerInfo
 {
-    void GetTriggerInfo(Collider col);
-    void GetTriggerInfoRepeating(Collider col);
+    void GetTriggerInfo (Collider col);
+    void GetTriggerInfoRepeating (Collider col);
 }

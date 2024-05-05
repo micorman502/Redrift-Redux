@@ -62,7 +62,7 @@ public class ConstructionUI : MonoBehaviour, IRecipeUIParent
         {
             Destroy(constructionRecipeHolder.GetChild(i).gameObject);
         }
-        
+
         foreach (Recipe buildingRecipe in BuildingDatabase.GetAllBuildingRecipes())
         {
             if (buildingRecipe.MatchesCategory(currentCategory))

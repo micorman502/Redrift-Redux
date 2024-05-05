@@ -11,14 +11,15 @@ public class InitialLoadOverlay : MonoBehaviour
     float loadTime;
     bool doEffect;
     // Start is called before the first frame update
-    void Start()
+    void Start ()
     {
         if (!PersistentData.Instance.loadingFromSave)
         {
             doEffect = true;
             baseColour = overlayImage.color;
             loadTime = Time.time;
-        } else
+        }
+        else
         {
             overlayImage.gameObject.SetActive(false);
         }
@@ -31,7 +32,8 @@ public class InitialLoadOverlay : MonoBehaviour
             if (Time.time < loadTime + overlayDuration)
             {
                 overlayImage.color = Color.Lerp(baseColour, Color.clear, (Time.unscaledTime - loadTime) / overlayDuration);
-            } else
+            }
+            else
             {
                 doEffect = false;
                 enabled = false;

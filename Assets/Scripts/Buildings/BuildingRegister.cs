@@ -20,6 +20,6 @@ public class BuildingRegister : ScriptableObject
             return;
 
         RegisterUtils.PopulateRegister(this, ref buildings);
-        
+
     }
 }

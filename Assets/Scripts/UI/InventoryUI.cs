@@ -7,20 +7,20 @@ using UnityEngine;
 /// </summary>
 public class InventoryUI : MonoBehaviour
 {
-	
-	[SerializeField] internal Transform container;
-	[SerializeField] internal GameObject slotPrefab;
 
-	public virtual void Assign(Inventory inventory)
-	{
-		for (int i = 0; i < container.childCount; i++)
+    [SerializeField] internal Transform container;
+    [SerializeField] internal GameObject slotPrefab;
+
+    public virtual void Assign (Inventory inventory)
+    {
+        for (int i = 0; i < container.childCount; i++)
         {
-			Destroy(container.GetChild(i).gameObject);
-			container.GetChild(i).gameObject.GetComponent<InventorySlotUI>().Deassign();
+            Destroy(container.GetChild(i).gameObject);
+            container.GetChild(i).gameObject.GetComponent<InventorySlotUI>().Deassign();
         }
-		foreach (var slot in inventory.Slots)
-		{
-			Instantiate(slotPrefab, container).GetComponent<InventorySlotUI>().Initialize(slot);
-		}
-	}
+        foreach (var slot in inventory.Slots)
+        {
+            Instantiate(slotPrefab, container).GetComponent<InventorySlotUI>().Initialize(slot);
+        }
+    }
 }

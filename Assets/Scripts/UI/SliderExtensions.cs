@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class SliderExtensions : MonoBehaviour
 {
     [SerializeField] Slider target;
-    
+
     public void FakeUpdateValue ()
     {
         target.value = target.value;

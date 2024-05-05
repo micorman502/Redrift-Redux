@@ -14,7 +14,8 @@ public class DropdownExtensions : MonoBehaviour //provides more functions to dro
         if (target.value + 1 >= target.options.Count)
         {
             target.value = 0;
-        } else
+        }
+        else
         {
             target.value++;
         }
@@ -25,7 +26,8 @@ public class DropdownExtensions : MonoBehaviour //provides more functions to dro
         if (target.value - 1 < 0)
         {
             target.value = target.options.Count - 1;
-        } else
+        }
+        else
         {
             target.value--;
         }

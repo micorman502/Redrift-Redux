@@ -37,7 +37,8 @@ public class HeldClimbingToolItem : HeldItem
         {
             rb.velocity = rb.velocity / (1 + climbingTool.drag * Time.fixedDeltaTime);
             itemGameObject.transform.localEulerAngles = originalEuler + new Vector3(10, 0, 0); //TEMP
-        } else
+        }
+        else
         {
             itemGameObject.transform.localEulerAngles = originalEuler;
         }
@@ -50,7 +51,8 @@ public class HeldClimbingToolItem : HeldItem
         if (state)
         {
             HotTextManager.Instance.ReplaceHotText(new HotTextInfo("Hook", KeyCode.Mouse0, 0, "climbingTool"));
-        } else
+        }
+        else
         {
             HotTextManager.Instance.RemoveHotText("climbingTool");
         }

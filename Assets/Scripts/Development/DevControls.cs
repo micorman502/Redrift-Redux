@@ -2,26 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DevControls : MonoBehaviour {
+public class DevControls : MonoBehaviour
+{
 
-	PlayerInventory inventory;
+    PlayerInventory inventory;
 
-	SaveManager saveManager;
+    SaveManager saveManager;
 
-	void Awake() {
-		inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>();
-		saveManager = GameObject.FindGameObjectWithTag("ScriptHolder").GetComponent<SaveManager>();
-	}
+    void Awake ()
+    {
+        inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>();
+        saveManager = GameObject.FindGameObjectWithTag("ScriptHolder").GetComponent<SaveManager>();
+    }
 
-	void Update() {
-		if(Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.I)) {
-			AddAllItems();
-		}
-	}
+    void Update ()
+    {
+        if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.I))
+        {
+            AddAllItems();
+        }
+    }
 
-	void AddAllItems() {
-		foreach(ItemInfo item in ItemDatabase.GetAllItems()) {
-			inventory.inventory.AddItem(new WorldItem(item, 1));
-		}
-	}
+    void AddAllItems ()
+    {
+        foreach (ItemInfo item in ItemDatabase.GetAllItems())
+        {
+            inventory.inventory.AddItem(new WorldItem(item, 1));
+        }
+    }
 }

@@ -9,18 +9,18 @@ public class InventorySlotSelectorUI : MonoBehaviour //not the best implementati
     InventorySlot slot;
     bool state;
     // Start is called before the first frame update
-    void Start()
+    void Start ()
     {
         slot = slotUI.GetSlot();
         selector.SetActive(false);
     }
 
-    void OnEnable()
+    void OnEnable ()
     {
         InventoryEvents.UpdateSelectedSlot += OnSelectorStateUpdate;
     }
 
-    void OnDisable()
+    void OnDisable ()
     {
         InventoryEvents.UpdateSelectedSlot -= OnSelectorStateUpdate;
     }
@@ -30,7 +30,8 @@ public class InventorySlotSelectorUI : MonoBehaviour //not the best implementati
         if (slot == _slot)
         {
             selector.SetActive(true);
-        } else
+        }
+        else
         {
             selector.SetActive(false);
         }

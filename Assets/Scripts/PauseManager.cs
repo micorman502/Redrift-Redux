@@ -3,88 +3,98 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PauseManager : MonoBehaviour {
+public class PauseManager : MonoBehaviour
+{
 
-	public static PauseManager Instance { get; private set; }
-	PlayerController player;
+    public static PauseManager Instance { get; private set; }
+    PlayerController player;
 
-	float originalTimeScale;
+    float originalTimeScale;
 
-	[HideInInspector] public bool paused = false;
+    [HideInInspector] public bool paused = false;
 
-	[SerializeField] Animator canvasAnim;
+    [SerializeField] Animator canvasAnim;
 
     void Awake ()
     {
-		if (Instance)
-		{
-			Destroy(this);
-			return;
-		}
+        if (Instance)
+        {
+            Destroy(this);
+            return;
+        }
 
-		Instance = this;
-	}
+        Instance = this;
+    }
 
-    void Start() {
-		Time.timeScale = 1;
-		originalTimeScale = Time.timeScale;
-		player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-	}
-
-	public void SetPauseState (bool isPaused)
+    void Start ()
     {
-		if (isPaused)
+        Time.timeScale = 1;
+        originalTimeScale = Time.timeScale;
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+    }
+
+    public void SetPauseState (bool isPaused)
+    {
+        if (isPaused)
         {
-			Pause();
-        } else
+            Pause();
+        }
+        else
         {
-			Resume();
+            Resume();
         }
     }
 
-	public void Pause() {
-		if (paused)
-			return;
+    public void Pause ()
+    {
+        if (paused)
+            return;
 
-		paused = true;
+        paused = true;
 
-		canvasAnim.SetTrigger("PauseMenuEnter");
+        canvasAnim.SetTrigger("PauseMenuEnter");
 
-		Time.timeScale = 0f;
-	}
+        Time.timeScale = 0f;
+    }
 
-	public void Resume() {
-		if (!paused)
-			return;
+    public void Resume ()
+    {
+        if (!paused)
+            return;
 
-		paused = false;
+        paused = false;
 
-		if (canvasAnim.GetCurrentAnimatorStateInfo(0).IsName("PauseMenuEnter")) {
-			canvasAnim.SetTrigger("PauseMenuExit");
-		}
-		if(canvasAnim.GetCurrentAnimatorStateInfo(1).IsName("SettingsMenuEnter")) {
-			canvasAnim.SetTrigger("SettingsMenuExit");
-		}
-		if(canvasAnim.GetCurrentAnimatorStateInfo(2).IsName("AchievementMenuEnter")) {
-			canvasAnim.SetTrigger("AchievementMenuExit");
-		}
-		if(canvasAnim.GetCurrentAnimatorStateInfo(3).IsName("HelpMenuEnter")) {
-			canvasAnim.SetTrigger("HelpMenuExit");
+        if (canvasAnim.GetCurrentAnimatorStateInfo(0).IsName("PauseMenuEnter"))
+        {
+            canvasAnim.SetTrigger("PauseMenuExit");
+        }
+        if (canvasAnim.GetCurrentAnimatorStateInfo(1).IsName("SettingsMenuEnter"))
+        {
+            canvasAnim.SetTrigger("SettingsMenuExit");
+        }
+        if (canvasAnim.GetCurrentAnimatorStateInfo(2).IsName("AchievementMenuEnter"))
+        {
+            canvasAnim.SetTrigger("AchievementMenuExit");
+        }
+        if (canvasAnim.GetCurrentAnimatorStateInfo(3).IsName("HelpMenuEnter"))
+        {
+            canvasAnim.SetTrigger("HelpMenuExit");
         }
 
         Time.timeScale = originalTimeScale;
-	}
+    }
 
-    public void Menu() {
-		if (!paused)
-			return;
+    public void Menu ()
+    {
+        if (!paused)
+            return;
 
-		paused = false;
+        paused = false;
 
-		Time.timeScale = originalTimeScale;
-		LookLocker.MouseLocked = false;
+        Time.timeScale = originalTimeScale;
+        LookLocker.MouseLocked = false;
 
-		Destroy(PersistentData.Instance.gameObject); // Destroy the persistent data object before we return to the menu, otherwise the game will save with a blank save name.
-		SceneManager.LoadScene("Menu");
-	}
+        Destroy(PersistentData.Instance.gameObject); // Destroy the persistent data object before we return to the menu, otherwise the game will save with a blank save name.
+        SceneManager.LoadScene("Menu");
+    }
 }

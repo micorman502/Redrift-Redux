@@ -12,13 +12,13 @@ public class UIKeyToggler : MonoBehaviour
     [SerializeField] bool unlockLook;
     public UnityEvent<bool> calledFunctions;
     // Start is called before the first frame update
-    void Start()
+    void Start ()
     {
         SetState(state);
     }
 
     // Update is called once per frame
-    void Update()
+    void Update ()
     {
         if (Input.GetKeyDown(toggleKey))
         {
@@ -56,7 +56,8 @@ public class UIKeyToggler : MonoBehaviour
         if (state)
         {
             LookLocker.AddUnlockingObject(this);
-        } else
+        }
+        else
         {
             LookLocker.RemoveUnlockingObject(this);
         }

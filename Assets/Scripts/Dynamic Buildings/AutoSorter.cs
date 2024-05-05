@@ -2,134 +2,137 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AutoSorter : MonoBehaviour, IHotText, IItemSaveable, IGetTriggerInfo, IItemInteractable {
+public class AutoSorter : MonoBehaviour, IHotText, IItemSaveable, IGetTriggerInfo, IItemInteractable
+{
 
-	[SerializeField] ItemHandler handler;
-	[SerializeField] string saveID;
-	[SerializeField] IndicatorLight indicator;
-	public TellParent tellParent;
+    [SerializeField] ItemHandler handler;
+    [SerializeField] string saveID;
+    [SerializeField] IndicatorLight indicator;
+    public TellParent tellParent;
 
-	public Transform exit;
+    public Transform exit;
 
-	public ItemInfo sortingItem;
+    public ItemInfo sortingItem;
 
-	public bool blackListEnabled;
+    public bool blackListEnabled;
 
-	public Renderer iconRenderer;
+    public Renderer iconRenderer;
 
-	public void Interact (WorldItem item)
+    public void Interact (WorldItem item)
     {
-		SetItem(item.item);
+        SetItem(item.item);
     }
 
-	public void GetTriggerInfo (Collider col)
+    public void GetTriggerInfo (Collider col)
     {
-		if (col.CompareTag("Item"))
-		{
-			TrySortItem(col.GetComponentInParent<ItemHandler>());
-		}
-	}
-
-	public void GetTriggerInfoRepeating (Collider col)
-    {
-		if (col.CompareTag("Item"))
-		{
-			TrySortItem(col.GetComponentInParent<ItemHandler>());
-		}
-	}
-
-	void TrySortItem (ItemHandler handler)
-	{
-		if (!handler)
-			return;
-
-		bool itemsMatch = handler.item == sortingItem;
-		if (itemsMatch && blackListEnabled)
-			return;
-		if (!itemsMatch && !blackListEnabled)
-			return;
-
-		handler.gameObject.transform.position = exit.position;
-		Rigidbody objRB = handler.GetComponent<Rigidbody>();
-		if (objRB)
-		{
-			objRB.velocity = transform.forward * 2f;
-		}
-	}
-
-	public void SetItem(ItemInfo item) {
-		if (sortingItem == item)
+        if (col.CompareTag("Item"))
         {
-			SetBlacklistMode(!blackListEnabled);
-			return;
+            TrySortItem(col.GetComponentInParent<ItemHandler>());
         }
-		if (!item)
-		{
-			RemoveItem();
-			return;
-		}
-		sortingItem = item;
-		iconRenderer.gameObject.SetActive(true);
-		iconRenderer.material.mainTexture = item.icon.texture;
-	}
-
-	public void RemoveItem() {
-		sortingItem = null;
-		iconRenderer.material.mainTexture = null;
-		iconRenderer.gameObject.SetActive(false);
-	}
-
-	void SetBlacklistMode (bool mode)
-    {
-		blackListEnabled = mode;
-
-		indicator.SetState(!blackListEnabled);
     }
 
-	public void GetData(out ItemSaveData data, out ObjectSaveData objData, out bool dontSave)
-	{
-		ItemSaveData newData = new ItemSaveData();
-		ObjectSaveData newObjData = new ObjectSaveData(transform.position, transform.rotation, ObjectDatabase.GetIntegerID(saveID));
+    public void GetTriggerInfoRepeating (Collider col)
+    {
+        if (col.CompareTag("Item"))
+        {
+            TrySortItem(col.GetComponentInParent<ItemHandler>());
+        }
+    }
 
-		newData.boolVal = blackListEnabled;
+    void TrySortItem (ItemHandler handler)
+    {
+        if (!handler)
+            return;
 
-		if (sortingItem)
-		{
-			newData.itemID = sortingItem.id;
-		}
-		else
-		{
-			newData.itemID = -1;
-		}
+        bool itemsMatch = handler.item == sortingItem;
+        if (itemsMatch && blackListEnabled)
+            return;
+        if (!itemsMatch && !blackListEnabled)
+            return;
 
-		data = newData;
-		objData = newObjData;
-		dontSave = false;
-	}
+        handler.gameObject.transform.position = exit.position;
+        Rigidbody objRB = handler.GetComponent<Rigidbody>();
+        if (objRB)
+        {
+            objRB.velocity = transform.forward * 2f;
+        }
+    }
 
-	public void SetData(ItemSaveData data, ObjectSaveData objData)
-	{
-		if (data.itemID != -1)
-		{
-			SetItem(ItemDatabase.GetItem(data.itemID));
-		}
-		SetBlacklistMode(data.boolVal);
-	}
+    public void SetItem (ItemInfo item)
+    {
+        if (sortingItem == item)
+        {
+            SetBlacklistMode(!blackListEnabled);
+            return;
+        }
+        if (!item)
+        {
+            RemoveItem();
+            return;
+        }
+        sortingItem = item;
+        iconRenderer.gameObject.SetActive(true);
+        iconRenderer.material.mainTexture = item.icon.texture;
+    }
 
-	void IHotText.HideHotText ()
-	{
-		HotTextManager.Instance.RemoveHotText(new HotTextInfo("", KeyCode.F, HotTextInfo.Priority.Interact, "autosorterInteract"));
-	}
+    public void RemoveItem ()
+    {
+        sortingItem = null;
+        iconRenderer.material.mainTexture = null;
+        iconRenderer.gameObject.SetActive(false);
+    }
 
-	void IHotText.ShowHotText ()
-	{
-		//string infoText = (sortingItem ? sortingItem.name : "") + (blackListEnabled ? " (Blacklist)" : " (Whitelist)");
-		HotTextManager.Instance.ReplaceHotText(new HotTextInfo("Set Item", KeyCode.F, HotTextInfo.Priority.Interact, "autosorterInteract"));
-	}
+    void SetBlacklistMode (bool mode)
+    {
+        blackListEnabled = mode;
 
-	void IHotText.UpdateHotText ()
-	{
-		//string infoText = (sortingItem ? sortingItem.name : "") + (blackListEnabled ? " (Blacklist)" : " (Whitelist)");
-		HotTextManager.Instance.UpdateHotText(new HotTextInfo("Set Item", KeyCode.F, HotTextInfo.Priority.Interact, "autosorterInteract"));
-	}
+        indicator.SetState(!blackListEnabled);
+    }
+
+    public void GetData (out ItemSaveData data, out ObjectSaveData objData, out bool dontSave)
+    {
+        ItemSaveData newData = new ItemSaveData();
+        ObjectSaveData newObjData = new ObjectSaveData(transform.position, transform.rotation, ObjectDatabase.GetIntegerID(saveID));
+
+        newData.boolVal = blackListEnabled;
+
+        if (sortingItem)
+        {
+            newData.itemID = sortingItem.id;
+        }
+        else
+        {
+            newData.itemID = -1;
+        }
+
+        data = newData;
+        objData = newObjData;
+        dontSave = false;
+    }
+
+    public void SetData (ItemSaveData data, ObjectSaveData objData)
+    {
+        if (data.itemID != -1)
+        {
+            SetItem(ItemDatabase.GetItem(data.itemID));
+        }
+        SetBlacklistMode(data.boolVal);
+    }
+
+    void IHotText.HideHotText ()
+    {
+        HotTextManager.Instance.RemoveHotText(new HotTextInfo("", KeyCode.F, HotTextInfo.Priority.Interact, "autosorterInteract"));
+    }
+
+    void IHotText.ShowHotText ()
+    {
+        //string infoText = (sortingItem ? sortingItem.name : "") + (blackListEnabled ? " (Blacklist)" : " (Whitelist)");
+        HotTextManager.Instance.ReplaceHotText(new HotTextInfo("Set Item", KeyCode.F, HotTextInfo.Priority.Interact, "autosorterInteract"));
+    }
+
+    void IHotText.UpdateHotText ()
+    {
+        //string infoText = (sortingItem ? sortingItem.name : "") + (blackListEnabled ? " (Blacklist)" : " (Whitelist)");
+        HotTextManager.Instance.UpdateHotText(new HotTextInfo("Set Item", KeyCode.F, HotTextInfo.Priority.Interact, "autosorterInteract"));
+    }
 }

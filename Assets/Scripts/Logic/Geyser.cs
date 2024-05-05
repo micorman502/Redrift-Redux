@@ -9,7 +9,7 @@ public class Geyser : MonoBehaviour
     [SerializeField] GameObject effectArea;
     [SerializeField] Vector3 effectForce;
 
-    
+
     [SerializeField] int minFrequency;
     [SerializeField] int maxFrequency;
     float frequency;

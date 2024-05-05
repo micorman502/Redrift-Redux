@@ -4,11 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class VersionManager : MonoBehaviour {
+public class VersionManager : MonoBehaviour
+{
 
-	[SerializeField] TMP_Text versionText;
+    [SerializeField] TMP_Text versionText;
 
-	void Start() {
-		versionText.text = "v" + Application.version;
-	}
+    void Start ()
+    {
+        versionText.text = "v" + Application.version;
+    }
 }

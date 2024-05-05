@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IItemInteractable
 {
-    void Interact(WorldItem item);
+    void Interact (WorldItem item);
 }

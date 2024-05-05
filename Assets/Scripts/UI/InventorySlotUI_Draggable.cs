@@ -12,62 +12,62 @@ using UnityEngine.UI;
 /// </summary>
 public class InventorySlotUI_Draggable : InventorySlotUI, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler
 {
-	[SerializeField] Animation hoverAnim;
-	[SerializeField] GameObject previewPrefab;
-	GameObject previewPrefabInstance;
-	
-	static InventorySlotUI_Draggable hover;
-	bool dragging;
+    [SerializeField] Animation hoverAnim;
+    [SerializeField] GameObject previewPrefab;
+    GameObject previewPrefabInstance;
 
-	void IPointerDownHandler.OnPointerDown(PointerEventData eventData)
-	{
-		if (eventData.button != PointerEventData.InputButton.Left)
-			return;
-		dragging = true;
-		previewPrefabInstance = Instantiate(previewPrefab, transform);
-		previewPrefabInstance.GetComponent<InventorySlotUI>().Initialize(slot);
-	}
+    static InventorySlotUI_Draggable hover;
+    bool dragging;
 
-	void IPointerUpHandler.OnPointerUp(PointerEventData eventData)
-	{
-		if (eventData.button != PointerEventData.InputButton.Left)
-			return;
-		dragging = false;
-		previewPrefabInstance.GetComponent<InventorySlotUI>().Deassign();
-		Destroy(previewPrefabInstance);
-		
-		if(hover && hover != this)
-		{
-			if(eventData.button == PointerEventData.InputButton.Left)
-			{
-				slot.Dump(hover.slot);
-			}
-			else
-			{
-				slot.Split(hover.slot);
-			}
-		}
-	}
+    void IPointerDownHandler.OnPointerDown (PointerEventData eventData)
+    {
+        if (eventData.button != PointerEventData.InputButton.Left)
+            return;
+        dragging = true;
+        previewPrefabInstance = Instantiate(previewPrefab, transform);
+        previewPrefabInstance.GetComponent<InventorySlotUI>().Initialize(slot);
+    }
 
-	void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
-	{
-		hover = this;
-		if (hoverAnim)
+    void IPointerUpHandler.OnPointerUp (PointerEventData eventData)
+    {
+        if (eventData.button != PointerEventData.InputButton.Left)
+            return;
+        dragging = false;
+        previewPrefabInstance.GetComponent<InventorySlotUI>().Deassign();
+        Destroy(previewPrefabInstance);
+
+        if (hover && hover != this)
         {
-			hoverAnim.Play();
+            if (eventData.button == PointerEventData.InputButton.Left)
+            {
+                slot.Dump(hover.slot);
+            }
+            else
+            {
+                slot.Split(hover.slot);
+            }
         }
-	}
+    }
 
-	void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
-	{
-		hover = null;
-	}
+    void IPointerEnterHandler.OnPointerEnter (PointerEventData eventData)
+    {
+        hover = this;
+        if (hoverAnim)
+        {
+            hoverAnim.Play();
+        }
+    }
 
-	private void Update()
-	{
-		if (dragging)
-		{
-			previewPrefabInstance.transform.position = Mouse.current.position.ReadValue();
-		}
-	}
+    void IPointerExitHandler.OnPointerExit (PointerEventData eventData)
+    {
+        hover = null;
+    }
+
+    private void Update ()
+    {
+        if (dragging)
+        {
+            previewPrefabInstance.transform.position = Mouse.current.position.ReadValue();
+        }
+    }
 }

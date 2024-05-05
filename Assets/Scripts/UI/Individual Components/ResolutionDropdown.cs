@@ -12,7 +12,7 @@ public class ResolutionDropdown : MonoBehaviour
     Resolution[] resolutions;
 
 
-    void Start()
+    void Start ()
     {
         int screenMode = PlayerPrefs.GetInt(fullscreenPrefName, 0);
         fullscreenDropdown.value = screenMode;
@@ -51,13 +51,13 @@ public class ResolutionDropdown : MonoBehaviour
         PlayerPrefs.SetInt(fullscreenPrefName, 3);
     }
 
-    public void SetMaximisedWindowed()
+    public void SetMaximisedWindowed ()
     {
         Screen.fullScreenMode = FullScreenMode.MaximizedWindow;
         PlayerPrefs.SetInt(fullscreenPrefName, 2);
     }
 
-    public void SetFullscreenWindowed()
+    public void SetFullscreenWindowed ()
     {
         Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
         PlayerPrefs.SetInt(fullscreenPrefName, 1);

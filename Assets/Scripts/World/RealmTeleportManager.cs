@@ -32,7 +32,8 @@ public class RealmTeleportManager : MonoBehaviour
         {
             Initialise();
             EnableRealm(currentRealmIndex);
-        } else
+        }
+        else
         {
             Initialise();
             TeleportToRealm(0);

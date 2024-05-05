@@ -58,7 +58,7 @@ public class WeatherEffect : MonoBehaviour
     {
 
     }
-    
+
     protected virtual void Tick ()
     {
 

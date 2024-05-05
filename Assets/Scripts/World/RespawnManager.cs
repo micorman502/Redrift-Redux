@@ -6,12 +6,12 @@ public class RespawnManager : MonoBehaviour
 {
     [SerializeField] float respawnTime;
     [SerializeField] PurgatoryTimer timer;
-    private void OnEnable()
+    private void OnEnable ()
     {
         PlayerController.OnDeath += ReceiveDeath;
     }
 
-    private void OnDisable()
+    private void OnDisable ()
     {
         PlayerController.OnDeath -= ReceiveDeath;
     }

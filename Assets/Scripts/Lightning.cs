@@ -2,37 +2,44 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Lightning : MonoBehaviour {
+public class Lightning : MonoBehaviour
+{
 
-	public ParticleSystem lightingParticles;
-	public ItemInfo lightningStoneItem;
-	public GameObject island;
+    public ParticleSystem lightingParticles;
+    public ItemInfo lightningStoneItem;
+    public GameObject island;
 
-	List<ParticleCollisionEvent> collisionEvents;
+    List<ParticleCollisionEvent> collisionEvents;
 
-	float nextStoneSpawnTime = 0f;
-	float stoneSpawnTime = 5f;
+    float nextStoneSpawnTime = 0f;
+    float stoneSpawnTime = 5f;
 
-	void Start() {
-		collisionEvents = new List<ParticleCollisionEvent>();
-	}
+    void Start ()
+    {
+        collisionEvents = new List<ParticleCollisionEvent>();
+    }
 
-	void OnParticleCollision(GameObject other) {
-		if(Time.time >= nextStoneSpawnTime) {
-			nextStoneSpawnTime = stoneSpawnTime + Time.time;
-			ParticlePhysicsExtensions.GetCollisionEvents(lightingParticles, other, collisionEvents);
+    void OnParticleCollision (GameObject other)
+    {
+        if (Time.time >= nextStoneSpawnTime)
+        {
+            nextStoneSpawnTime = stoneSpawnTime + Time.time;
+            ParticlePhysicsExtensions.GetCollisionEvents(lightingParticles, other, collisionEvents);
 
-			for(int i = 0; i < collisionEvents.Count; i++) {
-				if(collisionEvents[i].colliderComponent.gameObject == island) {
-					GameObject stoneObj = Instantiate(lightningStoneItem.droppedPrefab, collisionEvents[i].intersection + Vector3.up * 0.3f, lightningStoneItem.droppedPrefab.transform.rotation) as GameObject;
+            for (int i = 0; i < collisionEvents.Count; i++)
+            {
+                if (collisionEvents[i].colliderComponent.gameObject == island)
+                {
+                    GameObject stoneObj = Instantiate(lightningStoneItem.droppedPrefab, collisionEvents[i].intersection + Vector3.up * 0.3f, lightningStoneItem.droppedPrefab.transform.rotation) as GameObject;
 
-					Rigidbody objRB = stoneObj.GetComponent<Rigidbody>();
-					if(objRB) {
-						objRB.AddExplosionForce(1f, collisionEvents[0].intersection - Vector3.up * 0.5f, 2f);
-					}
-					break;
-				}
-			}
-		}
-	}
+                    Rigidbody objRB = stoneObj.GetComponent<Rigidbody>();
+                    if (objRB)
+                    {
+                        objRB.AddExplosionForce(1f, collisionEvents[0].intersection - Vector3.up * 0.5f, 2f);
+                    }
+                    break;
+                }
+            }
+        }
+    }
 }

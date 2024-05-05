@@ -11,7 +11,7 @@ public class Tread : MonoBehaviour
     [SerializeField] float offsetIncrement;
 
     // Update is called once per frame
-    void Update()
+    void Update ()
     {
         rend.materials[materialIndex].mainTextureOffset = baseOffset * offset;
 

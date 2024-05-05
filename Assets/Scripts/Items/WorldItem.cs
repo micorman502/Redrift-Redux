@@ -19,19 +19,20 @@ public class WorldItem
         if (amount >= item.stackSize)
         {
             return true;
-        } else
+        }
+        else
         {
             return false;
         }
     }
 
-    public WorldItem(ItemInfo _item, int _amount)
+    public WorldItem (ItemInfo _item, int _amount)
     {
         item = _item;
         amount = _amount;
     }
 
-    public WorldItem()
+    public WorldItem ()
     {
         item = null;
         amount = 0;

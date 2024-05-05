@@ -11,13 +11,13 @@ public class VoidOceanBubbles : MonoBehaviour
     [SerializeField] float baseYPos;
 
     // Start is called before the first frame update
-    void Start()
+    void Start ()
     {
-        
+
     }
 
     // Update is called once per frame
-    void Update()
+    void Update ()
     {
         Vector3 playerPos = PlayerController.currentPlayer ? PlayerController.currentPlayer.transform.position : Vector3.zero;
         if (RealmTeleportManager.Instance.GetCurrentRealmName() == targetRealm)
@@ -25,7 +25,8 @@ public class VoidOceanBubbles : MonoBehaviour
             transform.position = new Vector3(playerPos.x, baseYPos, playerPos.z);
             ParticleSystem.EmissionModule emission = particles.emission;
             emission.rateOverTime = Mathf.Clamp(emissionStartDistance - (playerPos.y - transform.position.y), 0, 10) * baseParticleEmissions;
-        } else
+        }
+        else
         {
             transform.position = new Vector3(0, baseYPos, 0);
         }

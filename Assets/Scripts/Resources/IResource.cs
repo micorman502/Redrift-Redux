@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IResource
 {
-    WorldItem[] HandGather();
-    WorldItem[] ToolGather(ToolInfo tool);
-    Resource GetResource();
+    WorldItem[] HandGather ();
+    WorldItem[] ToolGather (ToolInfo tool);
+    Resource GetResource ();
 }

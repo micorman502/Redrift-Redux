@@ -20,7 +20,7 @@ public class HeldToolItem : HeldItem
     IResource currentResource;
     GameObject currentResourceObject;
 
-    void Awake()
+    void Awake ()
     {
         tool = item as ToolInfo;
     }
@@ -34,11 +34,13 @@ public class HeldToolItem : HeldItem
             if (resource != null)
             {
                 EnableHotText(resource);
-            } else
+            }
+            else
             {
                 DisableHotText();
             }
-        } else
+        }
+        else
         {
             DisableHotText();
         }
@@ -48,11 +50,13 @@ public class HeldToolItem : HeldItem
             if (keyPressedThisFrame)
             {
                 ProgressGather();
-            } else
+            }
+            else
             {
                 StopGather();
             }
-        } else
+        }
+        else
         {
             if (keyPressedThisFrame)
             {
@@ -149,7 +153,7 @@ public class HeldToolItem : HeldItem
         StopGather();
     }
 
-    public override void UseRepeating()
+    public override void UseRepeating ()
     {
         keyPressedThisFrame = true;
     }

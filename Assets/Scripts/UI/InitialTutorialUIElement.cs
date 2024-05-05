@@ -6,7 +6,7 @@ public class InitialTutorialUIElement : MonoBehaviour
 {
     [SerializeField] KeyCode key;
     // Start is called before the first frame update
-    void Start()
+    void Start ()
     {
         if (PersistentData.Instance.loadingFromSave)
         {
@@ -15,7 +15,7 @@ public class InitialTutorialUIElement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void Update ()
     {
         if (Input.GetKeyDown(key))
         {

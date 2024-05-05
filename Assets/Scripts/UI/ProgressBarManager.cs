@@ -14,7 +14,7 @@ public class ProgressBarManager : MonoBehaviour
     const float failImageDisplayTime = 0.1f;
     float lastFail;
 
-    void OnEnable()
+    void OnEnable ()
     {
         UIEvents.InitialiseProgressBar += InitialiseProgressBar;
         UIEvents.UpdateProgressBar += UpdateCurrentProgressTime;
@@ -25,7 +25,7 @@ public class ProgressBarManager : MonoBehaviour
         failImage.gameObject.SetActive(false);
     }
 
-    void OnDisable()
+    void OnDisable ()
     {
         UIEvents.InitialiseProgressBar -= InitialiseProgressBar;
         UIEvents.UpdateProgressBar -= UpdateCurrentProgressTime;

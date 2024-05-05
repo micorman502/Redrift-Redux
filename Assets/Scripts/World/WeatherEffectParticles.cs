@@ -28,7 +28,8 @@ public class WeatherEffectParticles : WeatherEffect
         if (active)
         {
             particles.gameObject.SetActive(true);
-        } else
+        }
+        else
         {
             particles.gameObject.SetActive(false);
         }

@@ -144,7 +144,8 @@ public class PlayerBuilding : MonoBehaviour
         if (currentBuildingRecipe)
         {
             currentBuildingRecipe.Craft(inventory.inventory, false, false);
-        } else
+        }
+        else
         {
             inventory.inventory.RemoveItem(new WorldItem(currentBuilding, 1));
         }
@@ -171,7 +172,8 @@ public class PlayerBuilding : MonoBehaviour
         if (previewObject && currentBuilding)
         {
             return true;
-        } else
+        }
+        else
         {
             return false;
         }

@@ -6,7 +6,7 @@ public class HotTextHandler : MonoBehaviour, IHotText
 {
     List<HotTextInfo> hotTexts = new List<HotTextInfo>();
     bool shown;
-    
+
     public void AddHotText (HotTextInfo hotText)
     {
         if (shown)

@@ -17,7 +17,7 @@ public class HeldDeployableItem : HeldItem
         }
     }
 
-    public override void Use()
+    public override void Use ()
     {
         if (inventory.inventory.GetItemTotal(item) > 0)
         {
@@ -25,7 +25,8 @@ public class HeldDeployableItem : HeldItem
             if (Physics.Raycast(camPoint.position, camPoint.forward, out RaycastHit hit, PlayerController.interactRange))
             {
                 spawnPos = hit.point + hit.normal * 0.6f;
-            } else if (!deployable.placeableMidAir)
+            }
+            else if (!deployable.placeableMidAir)
             {
                 return; //if the raycast didn't find any ground, and the deployable can't be placed mid-air, return
             }
@@ -46,7 +47,8 @@ public class HeldDeployableItem : HeldItem
         if (Physics.Raycast(camPoint.position, camPoint.forward, out RaycastHit hit, PlayerController.interactRange))
         {
             HotTextManager.Instance.UpdateHotText(new HotTextInfo("Deploy", KeyCode.Mouse0, 0, "deployable", false));
-        } else
+        }
+        else
         {
             HotTextManager.Instance.UpdateHotText(new HotTextInfo("Deploy", KeyCode.Mouse0, 0, "deployable", true));
         }
@@ -59,7 +61,8 @@ public class HeldDeployableItem : HeldItem
             if (deployable.placeableMidAir)
             {
                 HotTextManager.Instance.ReplaceHotText(new HotTextInfo("Deploy", KeyCode.Mouse0, 0, "deployable", false));
-            } else
+            }
+            else
             {
                 HotTextManager.Instance.ReplaceHotText(new HotTextInfo("Deploy", KeyCode.Mouse0, 0, "deployable", true));
             }

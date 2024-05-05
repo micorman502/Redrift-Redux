@@ -9,7 +9,7 @@ public class NoticeTextManager : MonoBehaviour
     List<NoticeTextPriority> textPriority = new List<NoticeTextPriority>();
     public static NoticeTextManager Instance;
 
-    private void Awake()
+    private void Awake ()
     {
         if (Instance)
         {
@@ -24,12 +24,12 @@ public class NoticeTextManager : MonoBehaviour
         textPriority.Add(new NoticeTextPriority(text, priority));
     }
 
-    public void AddNoticeText(string text, int priority, float duration)
+    public void AddNoticeText (string text, int priority, float duration)
     {
         textPriority.Add(new NoticeTextPriority(text, priority, duration));
     }
 
-    void LateUpdate()
+    void LateUpdate ()
     {
         string text = "";
         int currentPriority = -1;
@@ -65,7 +65,7 @@ public class NoticeTextPriority
         timeAdded = Time.time;
     }
 
-    public NoticeTextPriority(string _text, int _priority, float _duration)
+    public NoticeTextPriority (string _text, int _priority, float _duration)
     {
         text = _text;
         priority = _priority;

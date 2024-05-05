@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public static class FindInterfaces
 {
-    public static List<T> Find<T>() //thanks https://answers.unity.com/questions/863509/how-can-i-find-all-objects-that-have-a-script-that.html
+    public static List<T> Find<T> () //thanks https://answers.unity.com/questions/863509/how-can-i-find-all-objects-that-have-a-script-that.html
     {
         List<T> interfaces = new List<T>();
         GameObject[] rootGameObjects = SceneManager.GetActiveScene().GetRootGameObjects();

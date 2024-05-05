@@ -9,7 +9,7 @@ public class InventoryUIManager : MonoBehaviour
     [SerializeField] InventoryUI[] inventoryUis;
     public static InventoryUIManager Instance;
 
-    private void Awake()
+    private void Awake ()
     {
         if (Instance)
         {

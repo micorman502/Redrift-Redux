@@ -38,7 +38,8 @@ public class HotTextManager : MonoBehaviour
         if (hotTextListItems.ContainsKey(info.id))
         {
             hotTextListItems[info.id].Setup(info);
-        } else
+        }
+        else
         {
             AddHotText(info);
         }
@@ -50,7 +51,8 @@ public class HotTextManager : MonoBehaviour
         {
             hotTexts.Add(info.id, info);
             QueueUIReload();
-        } else
+        }
+        else
         {
             Debug.LogWarning("Cannot AddHotText, as there is already a Hot Text with Id: " + info.id + ". Should ReplaceHotText be used instead?");
         }
@@ -97,24 +99,28 @@ public class HotTextManager : MonoBehaviour
         {
             HotTextInfo.Priority priority = hotTexts[id].priority;
 
-            if (hottexts.Count > 0) {
+            if (hottexts.Count > 0)
+            {
                 for (int i = 0; i < hottexts.Count; i++)
                 {
                     if (hottexts[i].priority == priority)
                     {
                         hottexts.Insert(i, hotTexts[id]);
                         break;
-                    } else if (hottexts[i].priority > priority)
+                    }
+                    else if (hottexts[i].priority > priority)
                     {
                         hottexts.Insert(i, hotTexts[id]);
                         break;
-                    } else if (i == hottexts.Count - 1)
+                    }
+                    else if (i == hottexts.Count - 1)
                     {
                         hottexts.Add(hotTexts[id]);
                         break;
                     }
                 }
-            } else
+            }
+            else
             {
                 hottexts.Add(hotTexts[id]);
             }
@@ -122,7 +128,7 @@ public class HotTextManager : MonoBehaviour
 
         for (int i = 0; i < hotTextHolder.childCount; i++)
         {
-            GameObject child =  hotTextHolder.GetChild(i).gameObject;
+            GameObject child = hotTextHolder.GetChild(i).gameObject;
             Destroy(child);
             hotTextListItems.Remove(child.GetComponent<HotTextListItem>().hotText.id);
         }
@@ -134,7 +140,7 @@ public class HotTextManager : MonoBehaviour
             {
                 Debug.Log("hot text is null");
             };
-            HotTextListItem listItem =  hotTextListItem.GetComponent<HotTextListItem>();
+            HotTextListItem listItem = hotTextListItem.GetComponent<HotTextListItem>();
             listItem.Setup(hottexts[i]);
             listItem.PlayAnimation();
             hotTextListItems.Add(hottexts[i].id, listItem);

@@ -7,5 +7,5 @@ public class ClimbingToolInfo : ItemInfo
 {
     public float range;
     public float radius;
-    public float drag; 
+    public float drag;
 }

@@ -13,7 +13,8 @@ public class AutoLoader : MonoBehaviour
         if (Application.isEditor)
         {
             SceneManager.LoadScene("Menu");
-        } else
+        }
+        else
         {
             SceneManager.LoadScene("Logo");
         }

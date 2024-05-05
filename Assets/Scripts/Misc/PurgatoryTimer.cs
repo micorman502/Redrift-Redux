@@ -13,7 +13,7 @@ public class PurgatoryTimer : MonoBehaviour
         duration = time;
     }
 
-    void Update()
+    void Update ()
     {
         text.text = (Mathf.Round((timeSet + duration - Time.time) * 10) / 10).ToString();
 

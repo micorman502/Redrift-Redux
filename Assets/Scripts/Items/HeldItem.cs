@@ -12,12 +12,12 @@ public class HeldItem : MonoBehaviour
 
     }
 
-    public virtual void Use()
+    public virtual void Use ()
     {
 
     }
 
-    public virtual void UseRepeating()
+    public virtual void UseRepeating ()
     {
 
     }
@@ -27,23 +27,23 @@ public class HeldItem : MonoBehaviour
 
     }
 
-    public virtual void AltUse()
+    public virtual void AltUse ()
     {
 
     }
 
 
-    public virtual void AltUseRepeating()
+    public virtual void AltUseRepeating ()
     {
 
     }
 
-    public virtual void StopAltUse()
+    public virtual void StopAltUse ()
     {
 
     }
 
-    public virtual void SpecialUse()
+    public virtual void SpecialUse ()
     {
 
     }
@@ -63,7 +63,7 @@ public class HeldItem : MonoBehaviour
 
     }
 
-    public void SetChildState(bool state)
+    public void SetChildState (bool state)
     {
         if (itemGameObject)
         {

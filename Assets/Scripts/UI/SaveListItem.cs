@@ -14,7 +14,7 @@ public class SaveListItem : MonoBehaviour
     [SerializeField] Image confirmDeleteUnderlay;
     bool confirmingDelete;
     float confirmDeleteTimer;
-    
+
     public void Setup (string saveName, int saveNumber)
     {
         saveText.text = saveName;

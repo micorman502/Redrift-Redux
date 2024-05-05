@@ -10,204 +10,206 @@ public class PlayerPickup : MonoBehaviour
     const float basePickupTime = 0.4f;
     bool pickingUp = false;
     float pickupStartedTime;
-	bool keyHeldAfterPickup; //True if the pickup key is still held after picking up an item succesfully.
+    bool keyHeldAfterPickup; //True if the pickup key is still held after picking up an item succesfully.
 
-	float lastPickup;
-	int currentPickupCombo;
+    float lastPickup;
+    int currentPickupCombo;
 
-	GameObject initialTarget;
+    GameObject initialTarget;
 
 
 
-    void LateUpdate()
+    void LateUpdate ()
     {
-		if (Time.time > lastPickup + basePickupTime * 1.5f)
-		{
-			currentPickupCombo = 0;
-		}
-
-		GameObject target = playerController.GetTarget();
-		RaycastHit hit = playerController.GetTargetRaycastHit();
-
-		if (!LookLocker.MouseLocked)
-			return;
-		if (!hit.collider)
-			return;
-
-		if (pickingUp)
+        if (Time.time > lastPickup + basePickupTime * 1.5f)
         {
-			if (Input.GetButton("PickUp"))
-			{
-				ProgressPickup();
-			} else
+            currentPickupCombo = 0;
+        }
+
+        GameObject target = playerController.GetTarget();
+        RaycastHit hit = playerController.GetTargetRaycastHit();
+
+        if (!LookLocker.MouseLocked)
+            return;
+        if (!hit.collider)
+            return;
+
+        if (pickingUp)
+        {
+            if (Input.GetButton("PickUp"))
             {
-				CancelPickup();
+                ProgressPickup();
             }
-        } else
-        {
-			if (Input.GetButton("PickUp"))
-			{
-				StartPickup(target);
-			}
-		}
-
-		if (!Input.GetButton("PickUp") && keyHeldAfterPickup)
-        {
-			keyHeldAfterPickup = false;
+            else
+            {
+                CancelPickup();
+            }
         }
-	}
-
-	void StartPickup (GameObject target)
-    {
-		if (!target)
-			return;
-		if (target.GetComponent<IItemPickup>() == null && target.GetComponentInParent<IItemPickup>() == null)
-		{
-			PickupStartFail();
-			return;
-		}
-		if (!PickupChecks(target))
-		{
-			PickupStartFail();
-			return;
-		}
-		if (playerInventory.inventory.InventoryFull(false))
-		{
-			PickupStartFail();
-			return;
-		}
-
-		initialTarget = target;
-		pickupStartedTime = Time.time;
-		pickingUp = true;
-
-		UIEvents.CallInitialiseProgressBar(GetPickupSpeed());
-	}
-
-	void ProgressPickup ()
-    {
-		if (initialTarget != playerController.GetTarget())
-		{
-			PickupStartFail();
-			CancelPickup();
-			return;
-		}
-
-		float progression = Time.time - pickupStartedTime;
-
-		UIEvents.CallUpdateProgressBar(progression);
-
-		if (progression > GetPickupSpeed())
+        else
         {
-			FinishPickup();
+            if (Input.GetButton("PickUp"))
+            {
+                StartPickup(target);
+            }
         }
-	}
 
-	void FinishPickup () //actually pick up something, then cancel pickup.
-    {
-		bool itemPickedUp = PickupItems();
-
-		keyHeldAfterPickup = true;
-
-		if (itemPickedUp)
-		{
-			if (Time.time > lastPickup + 0.05f)
-			{
-				AudioManager.Instance.Play("Pickup");
-			}
-
-			currentPickupCombo++;
-			lastPickup = Time.time;
-		}
-
-		CancelPickup();
+        if (!Input.GetButton("PickUp") && keyHeldAfterPickup)
+        {
+            keyHeldAfterPickup = false;
+        }
     }
 
-	void CancelPickup ()
+    void StartPickup (GameObject target)
     {
-		pickingUp = false;
+        if (!target)
+            return;
+        if (target.GetComponent<IItemPickup>() == null && target.GetComponentInParent<IItemPickup>() == null)
+        {
+            PickupStartFail();
+            return;
+        }
+        if (!PickupChecks(target))
+        {
+            PickupStartFail();
+            return;
+        }
+        if (playerInventory.inventory.InventoryFull(false))
+        {
+            PickupStartFail();
+            return;
+        }
 
-		UIEvents.CallDisableProgressBar();
+        initialTarget = target;
+        pickupStartedTime = Time.time;
+        pickingUp = true;
+
+        UIEvents.CallInitialiseProgressBar(GetPickupSpeed());
     }
 
-	bool PickupItems () //returns true if any items were picked up
+    void ProgressPickup ()
     {
-		bool anyItemPickedUp = false;
-		IItemPickup[] pickups = initialTarget.GetComponents<IItemPickup>();
-		if (pickups.Length == 0)
+        if (initialTarget != playerController.GetTarget())
         {
-			pickups = initialTarget.GetComponentsInParent<IItemPickup>();
+            PickupStartFail();
+            CancelPickup();
+            return;
         }
 
-		bool allChecksPassed = PickupChecks();
+        float progression = Time.time - pickupStartedTime;
 
-		for (int i = 0; i < pickups.Length; i++)
-		{
-			if (!allChecksPassed)
-				break;
+        UIEvents.CallUpdateProgressBar(progression);
 
-			WorldItem[] items = pickups[i].GetItems();
-
-			for (int j = 0; j < items.Length; j++) //checks
-			{
-				if (!anyItemPickedUp && playerInventory.inventory.SpaceLeftForItem(items[j]) > 0)
-				{
-					anyItemPickedUp = true;
-				}
-
-				if (items[j].item.achievementId > -1)
-				{
-					AchievementManager.Instance.GetAchievement(items[j].item.achievementId);
-				}
-
-				playerInventory.inventory.AddItem(items[j]);
-				pickups[i].Pickup();
-			}
-		}
-
-		return anyItemPickedUp;
-	}
-
-	bool PickupChecks (GameObject target)
-    {
-		IItemPickup[] pickups = target.GetComponents<IItemPickup>();
-		if (pickups.Length == 0 && initialTarget)
+        if (progression > GetPickupSpeed())
         {
-			pickups = initialTarget.GetComponentsInParent<IItemPickup>();
+            FinishPickup();
+        }
+    }
+
+    void FinishPickup () //actually pick up something, then cancel pickup.
+    {
+        bool itemPickedUp = PickupItems();
+
+        keyHeldAfterPickup = true;
+
+        if (itemPickedUp)
+        {
+            if (Time.time > lastPickup + 0.05f)
+            {
+                AudioManager.Instance.Play("Pickup");
+            }
+
+            currentPickupCombo++;
+            lastPickup = Time.time;
         }
 
-		for (int i = 0; i < pickups.Length; i++)
-		{
-			WorldItem[] items = pickups[i].GetItems();
+        CancelPickup();
+    }
 
-			for (int j = 0; j < items.Length; j++) //checks
-			{
-				if (playerInventory.inventory.SpaceLeftForItem(items[j]) <= 0)
-				{
-					return false;
-				}
-			}
-		}
-
-		return true;
-	}
-
-	bool PickupChecks ()
-	{
-		return PickupChecks(initialTarget);
-	}
-
-	void PickupStartFail ()
-	{
-		if (!keyHeldAfterPickup)
-		{
-			UIEvents.CallProgressBarFail();
-		}
-	}
-
-	float GetPickupSpeed ()
+    void CancelPickup ()
     {
-		return Mathf.Clamp((currentPickupCombo > 1 ? basePickupTime / currentPickupCombo : basePickupTime), 0.075f, basePickupTime);
+        pickingUp = false;
 
-	}
+        UIEvents.CallDisableProgressBar();
+    }
+
+    bool PickupItems () //returns true if any items were picked up
+    {
+        bool anyItemPickedUp = false;
+        IItemPickup[] pickups = initialTarget.GetComponents<IItemPickup>();
+        if (pickups.Length == 0)
+        {
+            pickups = initialTarget.GetComponentsInParent<IItemPickup>();
+        }
+
+        bool allChecksPassed = PickupChecks();
+
+        for (int i = 0; i < pickups.Length; i++)
+        {
+            if (!allChecksPassed)
+                break;
+
+            WorldItem[] items = pickups[i].GetItems();
+
+            for (int j = 0; j < items.Length; j++) //checks
+            {
+                if (!anyItemPickedUp && playerInventory.inventory.SpaceLeftForItem(items[j]) > 0)
+                {
+                    anyItemPickedUp = true;
+                }
+
+                if (items[j].item.achievementId > -1)
+                {
+                    AchievementManager.Instance.GetAchievement(items[j].item.achievementId);
+                }
+
+                playerInventory.inventory.AddItem(items[j]);
+                pickups[i].Pickup();
+            }
+        }
+
+        return anyItemPickedUp;
+    }
+
+    bool PickupChecks (GameObject target)
+    {
+        IItemPickup[] pickups = target.GetComponents<IItemPickup>();
+        if (pickups.Length == 0 && initialTarget)
+        {
+            pickups = initialTarget.GetComponentsInParent<IItemPickup>();
+        }
+
+        for (int i = 0; i < pickups.Length; i++)
+        {
+            WorldItem[] items = pickups[i].GetItems();
+
+            for (int j = 0; j < items.Length; j++) //checks
+            {
+                if (playerInventory.inventory.SpaceLeftForItem(items[j]) <= 0)
+                {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    bool PickupChecks ()
+    {
+        return PickupChecks(initialTarget);
+    }
+
+    void PickupStartFail ()
+    {
+        if (!keyHeldAfterPickup)
+        {
+            UIEvents.CallProgressBarFail();
+        }
+    }
+
+    float GetPickupSpeed ()
+    {
+        return Mathf.Clamp((currentPickupCombo > 1 ? basePickupTime / currentPickupCombo : basePickupTime), 0.075f, basePickupTime);
+
+    }
 }

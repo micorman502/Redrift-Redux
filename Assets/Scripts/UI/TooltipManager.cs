@@ -8,7 +8,7 @@ public class TooltipManager : MonoBehaviour
     [SerializeField] Tooltip target;
     public static TooltipManager Instance;
 
-    private void Awake()
+    private void Awake ()
     {
         if (Instance)
         {

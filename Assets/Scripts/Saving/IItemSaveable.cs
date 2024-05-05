@@ -4,10 +4,10 @@ using UnityEngine;
 
 public interface IItemSaveable
 {
-    void GetData(out ItemSaveData data, out ObjectSaveData objData, out bool dontSave);
+    void GetData (out ItemSaveData data, out ObjectSaveData objData, out bool dontSave);
 
-    void SetData(ItemSaveData data, ObjectSaveData objData);
-	/* GENERIC
+    void SetData (ItemSaveData data, ObjectSaveData objData);
+    /* GENERIC
     public int saveID;
     	public void GetData (out ItemSaveData data,out ObjectSaveData objData, out bool dontSave)
     {

@@ -71,7 +71,8 @@ public class HeldGrappleItem : HeldItem
         {
             StopGrapple();
             HotTextManager.Instance.RemoveHotText("grappleTool");
-        } else
+        }
+        else
         {
             HotTextManager.Instance.ReplaceHotText(new HotTextInfo("Grapple", KeyCode.Mouse0, HotTextInfo.Priority.UseItem, "grappleTool", !grappling && !GrappleChecks()));
         }

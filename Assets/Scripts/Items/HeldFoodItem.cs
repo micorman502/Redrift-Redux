@@ -8,7 +8,7 @@ public class HeldFoodItem : HeldItem
     [SerializeField] PlayerVitals vitals;
     FoodInfo food;
 
-    private void Awake()
+    private void Awake ()
     {
         food = item as FoodInfo;
     }

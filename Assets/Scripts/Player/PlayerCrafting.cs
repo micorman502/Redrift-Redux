@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerCrafting : MonoBehaviour
 {
     [SerializeField] PlayerInventory inventory;
-    
+
     public void CraftRecipe (Recipe recipe)
     {
         CraftRecipe(recipe, true);

@@ -5,7 +5,7 @@ using System;
 
 public static class CurrentSettings
 {
-    public readonly static string[] fullscreenModes = new string[4]{ "Exclusive Full Screen", "Fullscreen Window", "Maximised Window", "Windowed"};
+    public readonly static string[] fullscreenModes = new string[4] { "Exclusive Full Screen", "Fullscreen Window", "Maximised Window", "Windowed" };
     public static event Action OnCurrentSettingsDataUpdate;
     public static SettingsData CurrentSettingsData { get; private set; }
     public static SettingsData ModifiableSettingsData;
@@ -53,7 +53,8 @@ public static class CurrentSettings
         if (saveString == "" || saveString == null)
         {
             CurrentSettingsData = new SettingsData();
-        } else
+        }
+        else
         {
             CurrentSettingsData = new SettingsData(JsonUtility.FromJson<SettingsData>(saveString));
         }
@@ -63,7 +64,8 @@ public static class CurrentSettings
 }
 
 [System.Serializable]
-public class SettingsData {
+public class SettingsData
+{
     public SettingsData (SettingsData newData)
     {
         this.postProcessing = newData.postProcessing;

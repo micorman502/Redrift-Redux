@@ -2,65 +2,66 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemHandler : MonoBehaviour, IItemSaveable, IItemPickup, IHotText {
+public class ItemHandler : MonoBehaviour, IItemSaveable, IItemPickup, IHotText
+{
 
-	public ItemInfo item;
+    public ItemInfo item;
 
-	[SerializeField] string saveID;
-	[SerializeField] bool dontSave;
-	protected bool loaded;
+    [SerializeField] string saveID;
+    [SerializeField] bool dontSave;
+    protected bool loaded;
 
-	public virtual void GetData(out ItemSaveData data, out ObjectSaveData objData, out bool _dontSave)
-	{
-		if (dontSave)
+    public virtual void GetData (out ItemSaveData data, out ObjectSaveData objData, out bool _dontSave)
+    {
+        if (dontSave)
         {
-			data = new ItemSaveData();
-			objData = new ObjectSaveData();
-			_dontSave = dontSave;
-			return;
-		}
+            data = new ItemSaveData();
+            objData = new ObjectSaveData();
+            _dontSave = dontSave;
+            return;
+        }
 
-		ItemSaveData newData = new ItemSaveData();
-		ObjectSaveData newObjData = new ObjectSaveData(transform.position, transform.rotation, ObjectDatabase.GetIntegerID(saveID));
+        ItemSaveData newData = new ItemSaveData();
+        ObjectSaveData newObjData = new ObjectSaveData(transform.position, transform.rotation, ObjectDatabase.GetIntegerID(saveID));
 
 
-		data = newData;
-		objData = newObjData;
-		_dontSave = dontSave;
-	}
-
-	public void SetData(ItemSaveData data, ObjectSaveData objData)
-	{
-		Load(data, objData);
-	}
-
-	protected virtual void Load (ItemSaveData data, ObjectSaveData objData)
-    {
-		loaded = true;
-	}
-
-	public WorldItem[] GetItems ()
-    {
-		return new WorldItem[] { new WorldItem(item, 1) };
-	}
-
-	public void Pickup ()
-    {
-		Destroy(gameObject);
-	}
-
-	void IHotText.HideHotText()
-    {
-		HotTextManager.Instance.RemoveHotText(new HotTextInfo("Pickup", KeyCode.E, HotTextInfo.Priority.Pickup, "itemHandler"));
+        data = newData;
+        objData = newObjData;
+        _dontSave = dontSave;
     }
 
-	void IHotText.ShowHotText()
+    public void SetData (ItemSaveData data, ObjectSaveData objData)
     {
-		HotTextManager.Instance.ReplaceHotText(new HotTextInfo("Pickup", KeyCode.E, HotTextInfo.Priority.Pickup, "itemHandler"));
-	}
+        Load(data, objData);
+    }
 
-	void IHotText.UpdateHotText()
+    protected virtual void Load (ItemSaveData data, ObjectSaveData objData)
     {
-		HotTextManager.Instance.UpdateHotText(new HotTextInfo("Pickup", KeyCode.E, HotTextInfo.Priority.Pickup, "itemHandler"));
-	}
+        loaded = true;
+    }
+
+    public WorldItem[] GetItems ()
+    {
+        return new WorldItem[] { new WorldItem(item, 1) };
+    }
+
+    public void Pickup ()
+    {
+        Destroy(gameObject);
+    }
+
+    void IHotText.HideHotText ()
+    {
+        HotTextManager.Instance.RemoveHotText(new HotTextInfo("Pickup", KeyCode.E, HotTextInfo.Priority.Pickup, "itemHandler"));
+    }
+
+    void IHotText.ShowHotText ()
+    {
+        HotTextManager.Instance.ReplaceHotText(new HotTextInfo("Pickup", KeyCode.E, HotTextInfo.Priority.Pickup, "itemHandler"));
+    }
+
+    void IHotText.UpdateHotText ()
+    {
+        HotTextManager.Instance.UpdateHotText(new HotTextInfo("Pickup", KeyCode.E, HotTextInfo.Priority.Pickup, "itemHandler"));
+    }
 }

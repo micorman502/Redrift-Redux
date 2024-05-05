@@ -25,7 +25,8 @@ public class VoidOceanAudio : MonoBehaviour
             float volume = Mathf.Clamp01((audioStartDistance - distanceFromSurface) / audioStartDistance);
             aboveOceanAudio.volume = volume * volumeCoefficient;
             belowOceanAudio.volume = 0;
-        } else
+        }
+        else
         {
             aboveOceanAudio.volume = 0;
             belowOceanAudio.volume = 1 * volumeCoefficient;
