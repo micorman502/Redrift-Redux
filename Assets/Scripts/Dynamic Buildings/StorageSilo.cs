@@ -88,7 +88,7 @@ public class StorageSilo : MonoBehaviour, IItemPickup, IItemSaveable, IItemInter
     {
         Inventory playerInventory = PlayerController.currentPlayer.gameObject.GetComponent<PlayerInventory>().inventory;
 
-        bool addingItem = (inventory.HasEmptySlots() == true || inventory.Slots[0].Item == item.item) && item.item != null;
+        bool addingItem = (inventory.HasEmptySlots() == true || inventory.Slots[0].Item == item.item) && item.item != null && inventory.SpaceLeftForItem(item.item) > 0;
 
         if (addingItem)
         {
