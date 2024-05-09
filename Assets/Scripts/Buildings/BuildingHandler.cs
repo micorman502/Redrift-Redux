@@ -85,6 +85,7 @@ public class BuildingHandler : ItemHandler, IDamageable, IFlammable
     {
         base.GetData(out data, out objData, out _dontSave);
 
+        data = new ItemSaveData();
         data.floatVal = health;
         data.num = Mathf.CeilToInt(flameStrength);
     }

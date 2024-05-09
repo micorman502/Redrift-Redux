@@ -22,6 +22,7 @@ public class ItemHandlerFading : ItemHandler
     {
         base.GetData(out data, out objData, out _dontSave);
 
+        data = new ItemSaveData();
         data.floatVal = currentFade;
     }
 
