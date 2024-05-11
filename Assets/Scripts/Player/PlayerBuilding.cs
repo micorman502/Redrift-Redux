@@ -87,18 +87,20 @@ public class PlayerBuilding : MonoBehaviour
 
     public void StopBuilding ()
     {
-        if (preview)
-        {
-            currentBuilding = null;
-            Destroy(preview);
-            HotTextManager.Instance.RemoveHotText("buildingRotate");
-        }
+        if (!preview)
+            return;
+
+        currentBuilding = null;
+        Destroy(preview.gameObject);
+
+        HotTextManager.Instance.RemoveHotText("buildingRotate");
     }
 
     public void PlaceBuilding ()
     {
         if (!LookLocker.MouseLocked)
             return;
+
         if (!BuildingValid())
             return;
         if (!ItemCheck())
@@ -118,6 +120,10 @@ public class PlayerBuilding : MonoBehaviour
     {
         if (!currentBuilding)
             return false;
+
+        if (!preview.IsValid())
+            return false;
+
         Physics.Linecast(camTransform.position, preview.transform.position, out RaycastHit hit, LayerMask.GetMask("World"), QueryTriggerInteraction.Ignore);
         if (hit.transform && Vector3.Distance(hit.point, preview.transform.position) > currentBuilding.approximateRadius)
             return false;
@@ -153,15 +159,7 @@ public class PlayerBuilding : MonoBehaviour
         if (!currentBuilding)
             return;
 
-        currentRotation += rotationChange;
-        if (currentRotation < 0)
-        {
-            currentRotation = currentBuilding.possibleRotations.Length;
-        }
-        else if (currentRotation >= currentBuilding.possibleRotations.Length)
-        {
-            currentRotation = 0;
-        }
+        currentRotation = Mathf.RoundToInt(Mathf.Repeat(currentRotation + rotationChange, currentBuilding.possibleRotations.Length));
     }
 
     public bool IsBuilding ()

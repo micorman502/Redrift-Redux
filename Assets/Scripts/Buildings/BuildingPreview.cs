@@ -41,6 +41,6 @@ public class BuildingPreview : MonoBehaviour
 
     bool CheckBox (LayerMask layerMask, QueryTriggerInteraction triggerInteraction = QueryTriggerInteraction.Collide, bool extendCheck = false)
     {
-        return Physics.CheckBox(checkArea.transform.position + checkArea.center, checkArea.size * (extendCheck ? 1.01f : 1f), checkArea.transform.rotation, layerMask, triggerInteraction);
+        return Physics.CheckBox(checkArea.transform.position + checkArea.center, checkArea.size * (extendCheck ? 1.01f : 1f) / 2f, checkArea.transform.rotation, layerMask, triggerInteraction);
     }
 }
