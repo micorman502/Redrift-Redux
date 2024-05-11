@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5861163316673360893}
   - component: {fileID: 6005866954190584531}
   - component: {fileID: 4244676208692699253}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Wall Solid
   m_TagString: Item
   m_Icon: {fileID: 0}

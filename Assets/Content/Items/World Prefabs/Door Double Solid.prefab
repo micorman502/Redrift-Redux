@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3362447533383720397}
   - component: {fileID: 3354468595765629991}
   - component: {fileID: 1700101407094166110}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Door R
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 3426611887845207717}
   - component: {fileID: 4103045296522777074}
   - component: {fileID: 5056389984636191143}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Door Double Solid
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 3522054278382173143}
   - component: {fileID: 3522054278382173142}
   - component: {fileID: 2996262325617232592}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Door L
   m_TagString: Item
   m_Icon: {fileID: 0}

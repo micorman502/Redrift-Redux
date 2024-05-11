@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8792142004522025707}
   - component: {fileID: 3883178936192756304}
   - component: {fileID: -7732946242045057006}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Ladder
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6430860717391082982}
   - component: {fileID: 4870086552193701096}
-  m_Layer: 12
+  m_Layer: 15
   m_Name: Trigger
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 7060711316938589557}
   - component: {fileID: 2130529430663694544}
   - component: {fileID: 4231121954473140996}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Visual
   m_TagString: Item
   m_Icon: {fileID: 0}

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 95170584492243480}
   - component: {fileID: 1598542066547082575}
   - component: {fileID: -1660632433419594470}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Door
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -31,6 +31,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4524818530799326}
   m_Father: {fileID: 0}
@@ -48,7 +49,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handler: {fileID: -1660632433419594470}
   item: {fileID: 11400000, guid: ea3dec4fdcf484b46a6d28d36fa965fb, type: 2}
   saveID: worldItemDoor
   dontSave: 1
@@ -68,7 +68,7 @@ MonoBehaviour:
   saveID: worldItemDoor
 --- !u!95 &95170584492243480
 Animator:
-  serializedVersion: 3
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -81,6 +81,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -125,7 +126,7 @@ GameObject:
   - component: {fileID: 33223154271029616}
   - component: {fileID: 23273454217019546}
   - component: {fileID: 1893340082695996322}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Door
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -142,6 +143,7 @@ Transform:
   m_LocalRotation: {x: -0.0000004768371, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4448344203495320}
   m_RootOrder: 0

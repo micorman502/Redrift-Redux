@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 732392557863866976}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Exit R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8282193008922194793}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Exit L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77,7 +77,7 @@ GameObject:
   - component: {fileID: 7047383163096519644}
   - component: {fileID: 1624346304392365126}
   - component: {fileID: 2189215139515600316}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: ConveyorSplitter
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -201,7 +201,7 @@ GameObject:
   - component: {fileID: 8316003818359663567}
   - component: {fileID: 8252856888127690359}
   - component: {fileID: 8263105668068963947}
-  m_Layer: 7
+  m_Layer: 15
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -377,6 +377,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ConveyorSplitter
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3b5e5a3e1b2cfba40b6e2bfd9a9986cf,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b5e5a3e1b2cfba40b6e2bfd9a9986cf, type: 3}

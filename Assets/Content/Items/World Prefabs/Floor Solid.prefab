@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7076416412140141043}
   - component: {fileID: 7479204820187181505}
   - component: {fileID: 2869215620876223072}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Floor Solid
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 4289567445524635613}
   - component: {fileID: 592315529988280762}
   - component: {fileID: 3321329029931880721}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Floor Solid
   m_TagString: Item
   m_Icon: {fileID: 0}

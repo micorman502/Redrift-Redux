@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 82349076515235410}
   - component: {fileID: 208470062905171278}
   - component: {fileID: -4630490304524261038}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: ConveyorBeltT1
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -32,6 +32,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4480413846311504}
   - {fileID: 4970537473756220}
@@ -55,13 +56,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handler: {fileID: -4630490304524261038}
   item: {fileID: 11400000, guid: eda8cd479833b8649945ad344a643265, type: 2}
   saveID: Down There VVV
   dontSave: 1
 --- !u!95 &95874512166827808
 Animator:
-  serializedVersion: 3
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -74,6 +74,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -92,6 +93,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   handler: {fileID: 114396557718733982}
   saveID: worldItemConveyorBeltT1
+  isScoop: 0
   speeds:
   - 0
   - 0.5
@@ -232,7 +234,7 @@ GameObject:
   - component: {fileID: 4741693213860812}
   - component: {fileID: 33812133821218188}
   - component: {fileID: 23826041584388762}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Cylinder_003
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -249,6 +251,7 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0, y: 0, z: -0.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4617926048861842}
   m_RootOrder: 4
@@ -314,7 +317,7 @@ GameObject:
   - component: {fileID: 4970537473756220}
   - component: {fileID: 33743739001370488}
   - component: {fileID: 23656907727624166}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Cylinder
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -331,6 +334,7 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4617926048861842}
   m_RootOrder: 1
@@ -397,7 +401,7 @@ GameObject:
   - component: {fileID: 33836309750675320}
   - component: {fileID: 65202632868630492}
   - component: {fileID: 114545526320037542}
-  m_Layer: 7
+  m_Layer: 15
   m_Name: ConveyorTrigger
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -414,6 +418,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4617926048861842}
   m_RootOrder: 6
@@ -468,7 +473,7 @@ GameObject:
   - component: {fileID: 65826104493674194}
   - component: {fileID: 65202382620449242}
   - component: {fileID: 4667583843127996288}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: ConveyorSides
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -485,6 +490,7 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4617926048861842}
   m_RootOrder: 0
@@ -589,7 +595,7 @@ GameObject:
   - component: {fileID: 4834956946663956}
   - component: {fileID: 33856345407671642}
   - component: {fileID: 23693704500639794}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Cylinder_004
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -606,6 +612,7 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0, y: 0, z: -0.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4617926048861842}
   m_RootOrder: 5
@@ -671,7 +678,7 @@ GameObject:
   - component: {fileID: 4642949575291258}
   - component: {fileID: 33360729184189616}
   - component: {fileID: 23172007351603278}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Cylinder_001
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -688,6 +695,7 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0, y: 0, z: 0.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4617926048861842}
   m_RootOrder: 2
@@ -753,7 +761,7 @@ GameObject:
   - component: {fileID: 4569788613992462}
   - component: {fileID: 33880068151699658}
   - component: {fileID: 23181903144988758}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Cylinder_002
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -770,6 +778,7 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0, y: 0, z: 0.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4617926048861842}
   m_RootOrder: 3

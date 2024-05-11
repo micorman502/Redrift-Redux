@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 114820459306625786}
   - component: {fileID: 33641129791002434}
   - component: {fileID: 23642951526774622}
-  m_Layer: 7
+  m_Layer: 15
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,6 +30,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.2, z: -0.6}
   m_LocalScale: {x: 0.6, y: 0.2, z: 0.8}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4436277710746248}
   m_RootOrder: 3
@@ -123,7 +124,7 @@ GameObject:
   - component: {fileID: 4795596506449648}
   - component: {fileID: 33799553000197410}
   - component: {fileID: 23135923292617666}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Item Icon BG
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -140,6 +141,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.3766, z: 0}
   m_LocalScale: {x: 0.03, y: 1, z: 0.03}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4436277710746248}
   m_RootOrder: 2
@@ -205,7 +207,7 @@ GameObject:
   - component: {fileID: 4109729676180440}
   - component: {fileID: 33572694156910162}
   - component: {fileID: 23197317055640976}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Item Icon
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -222,6 +224,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0.383, z: 0}
   m_LocalScale: {x: 0.025, y: 1, z: 0.025}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4436277710746248}
   m_RootOrder: 1
@@ -291,7 +294,7 @@ GameObject:
   - component: {fileID: 1383405895837962985}
   - component: {fileID: 7238792767280973171}
   - component: {fileID: -1396632230313751415}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: AutoSorter
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -308,6 +311,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4637491758631984}
   - {fileID: 4109729676180440}
@@ -330,7 +334,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handler: {fileID: -1396632230313751415}
   item: {fileID: 11400000, guid: f6fd9ef27de49334d841104c120fcfed, type: 2}
   saveID: worldItemAutoSorter
   dontSave: 1
@@ -419,7 +422,7 @@ GameObject:
   - component: {fileID: 4637491758631984}
   - component: {fileID: 33084244326769398}
   - component: {fileID: 23349284732375782}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Visual
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -436,6 +439,7 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4436277710746248}
   m_RootOrder: 0
@@ -500,7 +504,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4450110036669020}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Exit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -517,6 +521,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.2, z: 0.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4436277710746248}
   m_RootOrder: 4
@@ -533,7 +538,7 @@ GameObject:
   - component: {fileID: 4108128500558040918}
   - component: {fileID: 4618090759948343487}
   - component: {fileID: 681471223872815395}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -550,6 +555,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.363, z: -0.173}
   m_LocalScale: {x: 0.34248, y: 0.06, z: 0.06}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4436277710746248}
   m_RootOrder: 5

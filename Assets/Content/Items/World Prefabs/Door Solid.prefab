@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8245448996926064210}
   - component: {fileID: 8245448996926063927}
   - component: {fileID: 8245448996926064051}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Door Solid
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 8245448996926064426}
   - component: {fileID: 8245448996926062680}
   - component: {fileID: 8245448996926064169}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Door
   m_TagString: Item
   m_Icon: {fileID: 0}

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4212224508243222574}
   - component: {fileID: 2579657117796310885}
   - component: {fileID: -3343362371649114281}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Furnace
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 4716176479978542919}
   - component: {fileID: 4891352954977313854}
   - component: {fileID: 44281342753683614}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4950,7 +4950,7 @@ GameObject:
   m_Component:
   - component: {fileID: 237765282886061418}
   - component: {fileID: 4850858619417207583}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: FireLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5045,7 +5045,7 @@ GameObject:
   - component: {fileID: 7872670002508943080}
   - component: {fileID: 3319029102340457730}
   - component: {fileID: 6031534105416911071}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Visual
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -5130,7 +5130,7 @@ GameObject:
   - component: {fileID: 1008647853031569260}
   - component: {fileID: 6350280906050997781}
   - component: {fileID: 5434567366248692591}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9953,7 +9953,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7650379210330619672}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Item Drop Pos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9984,7 +9984,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1197655069603671079}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}

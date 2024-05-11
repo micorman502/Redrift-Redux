@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4782744900821408}
   - component: {fileID: 33914296390827290}
   - component: {fileID: 23414320812111444}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: IncineratorCap
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -28,6 +28,7 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4835869195889318}
   m_RootOrder: 1
@@ -93,7 +94,7 @@ GameObject:
   - component: {fileID: 4433718326744990}
   - component: {fileID: 198382665720565510}
   - component: {fileID: 199414089144128428}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,6 +111,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.000000029802322, z: 0.000000059604645}
   m_LocalScale: {x: 1, y: 1.0000005, z: 1.0000005}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4940808823722952}
   m_RootOrder: 1
@@ -4935,6 +4937,7 @@ ParticleSystemRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_RenderMode: 0
+  m_MeshDistribution: 0
   m_SortMode: 0
   m_MinParticleSize: 0
   m_MaxParticleSize: 0.5
@@ -4958,6 +4961,10 @@ ParticleSystemRenderer:
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
+  m_MeshWeighting: 1
+  m_MeshWeighting1: 1
+  m_MeshWeighting2: 1
+  m_MeshWeighting3: 1
   m_MaskInteraction: 0
 --- !u!1 &1409493743555992
 GameObject:
@@ -4970,7 +4977,7 @@ GameObject:
   - component: {fileID: 4681553925081530}
   - component: {fileID: 198916363195093056}
   - component: {fileID: 199678880474774212}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4987,6 +4994,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4940808823722952}
   m_RootOrder: 0
@@ -9811,6 +9819,7 @@ ParticleSystemRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_RenderMode: 0
+  m_MeshDistribution: 0
   m_SortMode: 0
   m_MinParticleSize: 0
   m_MaxParticleSize: 0.5
@@ -9834,6 +9843,10 @@ ParticleSystemRenderer:
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
+  m_MeshWeighting: 1
+  m_MeshWeighting1: 1
+  m_MeshWeighting2: 1
+  m_MeshWeighting3: 1
   m_MaskInteraction: 0
 --- !u!1 &1470976222429368
 GameObject:
@@ -9847,7 +9860,7 @@ GameObject:
   - component: {fileID: 33170080663814668}
   - component: {fileID: 23139157843174130}
   - component: {fileID: 9018141899109611480}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: IncineratorBody
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -9864,6 +9877,7 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4835869195889318}
   m_RootOrder: 0
@@ -9943,7 +9957,7 @@ GameObject:
   - component: {fileID: 4490994682562836}
   - component: {fileID: 65080065245975990}
   - component: {fileID: 114984768749217530}
-  m_Layer: 7
+  m_Layer: 15
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9960,6 +9974,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.281, z: 0}
   m_LocalScale: {x: 0.8, y: 0.4, z: 0.8}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4835869195889318}
   m_RootOrder: 4
@@ -10006,7 +10021,7 @@ GameObject:
   - component: {fileID: 114442246878580386}
   - component: {fileID: 8183266222260845120}
   - component: {fileID: -4724502506944287200}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Incinerator
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -10023,6 +10038,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4881463323550614}
   - {fileID: 4782744900821408}
@@ -10045,13 +10061,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handler: {fileID: -4724502506944287200}
   item: {fileID: 11400000, guid: 65c8437dd1294f74a9b51040628230ff, type: 2}
   saveID: worldItemIncinerator
   dontSave: 0
 --- !u!95 &95522913344220394
 Animator:
-  serializedVersion: 3
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -10064,6 +10079,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -10117,7 +10133,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4940808823722952}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10134,6 +10150,7 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0.376, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4681553925081530}
   - {fileID: 4433718326744990}
@@ -10151,7 +10168,7 @@ GameObject:
   - component: {fileID: 4878097201325384}
   - component: {fileID: 33092360047531628}
   - component: {fileID: 23402472713358188}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: IncineratorExhaust
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -10168,6 +10185,7 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4835869195889318}
   m_RootOrder: 2
@@ -10233,7 +10251,7 @@ GameObject:
   - component: {fileID: 4442717328444026}
   - component: {fileID: 33432729507916142}
   - component: {fileID: 23345501918144764}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: IncineratorSpokes
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -10250,6 +10268,7 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4835869195889318}
   m_RootOrder: 3

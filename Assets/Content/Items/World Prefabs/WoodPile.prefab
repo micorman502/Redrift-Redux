@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2034460209347843966}
   - component: {fileID: 2175761080873543898}
   - component: {fileID: 2072314605119783346}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: WoodPile
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -30,6 +30,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8872215999634041464}
   - {fileID: 5035595634292000764}
@@ -49,7 +50,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handler: {fileID: 2072314605119783346}
   item: {fileID: 11400000, guid: 966d43846ef5557458a540c24d80b534, type: 2}
   saveID: worldItemWoodPile
   dontSave: 0
@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 5035595634292000764}
   - component: {fileID: 7661431384231413872}
   - component: {fileID: 6138161784969824417}
-  m_Layer: 6
+  m_Layer: 15
   m_Name: Visual (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,6 +122,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: -0.25, z: -0.25}
   m_LocalScale: {x: 1.4999996, y: 1.34, z: 1.4999998}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2079625436475326310}
   m_RootOrder: 1
@@ -189,7 +190,7 @@ GameObject:
   - component: {fileID: 8872215999634041464}
   - component: {fileID: 7942335548660228094}
   - component: {fileID: 1155965423359853246}
-  m_Layer: 6
+  m_Layer: 15
   m_Name: Visual (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,6 +207,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0.2, z: 0}
   m_LocalScale: {x: 1.4999996, y: 1.34, z: 1.4999998}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2079625436475326310}
   m_RootOrder: 0
@@ -273,7 +275,7 @@ GameObject:
   - component: {fileID: 5411630725288600762}
   - component: {fileID: 1482001354492622288}
   - component: {fileID: 5186131318372492741}
-  m_Layer: 6
+  m_Layer: 15
   m_Name: Visual (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -290,6 +292,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: -0.25, z: 0.25}
   m_LocalScale: {x: 1.4999996, y: 1.34, z: 1.4999998}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2079625436475326310}
   m_RootOrder: 2

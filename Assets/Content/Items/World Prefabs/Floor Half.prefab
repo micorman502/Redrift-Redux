@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8367653354065747800}
   - component: {fileID: 5161170729915683135}
   - component: {fileID: 7030050431076848020}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Floor Half
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 3291007098887469430}
   - component: {fileID: 2905670107357770052}
   - component: {fileID: 7514813288131511013}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Floor
   m_TagString: Item
   m_Icon: {fileID: 0}

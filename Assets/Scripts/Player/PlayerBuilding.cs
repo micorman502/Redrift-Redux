@@ -7,10 +7,9 @@ public class PlayerBuilding : MonoBehaviour
     [SerializeField] PlayerInventory inventory;
     [SerializeField] Transform camTransform;
     [SerializeField] Transform buildingPlacementPoint;
-    [SerializeField] ItemInfo buildingTemp;
     BuildingInfo currentBuilding;
     Recipe currentBuildingRecipe;
-    GameObject previewObject;
+    BuildingPreview preview;
     int currentRotation;
 
     private void Update ()
@@ -45,12 +44,12 @@ public class PlayerBuilding : MonoBehaviour
             }
         }
 
-        previewObject.transform.position = pos + Vector3.Scale(previewObject.transform.up, currentBuilding.upwardsOffset);
+        preview.transform.position = pos + Vector3.Scale(preview.transform.up, currentBuilding.upwardsOffset);
     }
 
     public void AlignBuildingRot ()
     {
-        if (!previewObject)
+        if (!preview)
             return;
 
         Vector3 normal = Vector3.zero;
@@ -62,9 +61,9 @@ public class PlayerBuilding : MonoBehaviour
             }
         }
 
-        previewObject.transform.up = normal;
+        preview.transform.up = normal;
 
-        previewObject.transform.rotation *= Quaternion.Euler(GetCurrentRotation());
+        preview.transform.rotation *= Quaternion.Euler(GetCurrentRotation());
 
         //previewObject.transform.eulerAngles = currentBuilding.possibleRotations[currentRotation];
     }
@@ -80,7 +79,7 @@ public class PlayerBuilding : MonoBehaviour
 
         currentBuilding = building;
         currentBuildingRecipe = buildingRecipe;
-        previewObject = Instantiate(building.previewPrefab, buildingPlacementPoint.position, Quaternion.identity);
+        preview = Instantiate(building.previewPrefab, buildingPlacementPoint.position, Quaternion.identity).GetComponent<BuildingPreview>();
 
         AlignBuildingRot();
         AlignBuildingPos();
@@ -88,10 +87,10 @@ public class PlayerBuilding : MonoBehaviour
 
     public void StopBuilding ()
     {
-        if (previewObject)
+        if (preview)
         {
             currentBuilding = null;
-            Destroy(previewObject);
+            Destroy(preview);
             HotTextManager.Instance.RemoveHotText("buildingRotate");
         }
     }
@@ -108,7 +107,7 @@ public class PlayerBuilding : MonoBehaviour
         AlignBuildingRot();
         AlignBuildingPos();
 
-        Instantiate(currentBuilding.placedObject, previewObject.transform.position, previewObject.transform.rotation);
+        Instantiate(currentBuilding.placedObject, preview.transform.position, preview.transform.rotation);
 
         ConsumeItems();
 
@@ -119,10 +118,8 @@ public class PlayerBuilding : MonoBehaviour
     {
         if (!currentBuilding)
             return false;
-        Physics.Linecast(camTransform.position, previewObject.transform.position, out RaycastHit hit, LayerMask.GetMask("World"), QueryTriggerInteraction.Ignore);
-        if (hit.transform && Vector3.Distance(hit.point, previewObject.transform.position) > currentBuilding.approximateRadius)
-            return false;
-        if (Physics.CheckSphere(previewObject.transform.position, 1f, LayerMask.GetMask("Block Building")))
+        Physics.Linecast(camTransform.position, preview.transform.position, out RaycastHit hit, LayerMask.GetMask("World"), QueryTriggerInteraction.Ignore);
+        if (hit.transform && Vector3.Distance(hit.point, preview.transform.position) > currentBuilding.approximateRadius)
             return false;
 
         return true;
@@ -169,7 +166,7 @@ public class PlayerBuilding : MonoBehaviour
 
     public bool IsBuilding ()
     {
-        if (previewObject && currentBuilding)
+        if (preview && currentBuilding)
         {
             return true;
         }

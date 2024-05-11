@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2476948317586482070}
   - component: {fileID: 5460261268641515345}
   - component: {fileID: -4384965305606957996}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Ice
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -29,6 +29,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8731063678374411422}
   m_Father: {fileID: 0}
@@ -46,8 +47,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handler: {fileID: -4384965305606957996}
-  tooltip: 
   item: {fileID: 11400000, guid: ae8fcd34f9c789148acaf4358b6c5f2b, type: 2}
   saveID: worldItemIce
   dontSave: 0
@@ -87,7 +86,7 @@ GameObject:
   - component: {fileID: 8731063678374411422}
   - component: {fileID: 803128287483454362}
   - component: {fileID: 1137661331905857730}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Visual
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -104,6 +103,7 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4402439798475222}
   m_RootOrder: 0

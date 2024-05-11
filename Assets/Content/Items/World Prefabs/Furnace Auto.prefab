@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2866157044847081949}
   - component: {fileID: 8221734072194580644}
   - component: {fileID: 7012873713617024478}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4839,7 +4839,7 @@ GameObject:
   - component: {fileID: 1174628725660577439}
   - component: {fileID: 717485481149944276}
   - component: {fileID: 8908173828640580070}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Furnace Auto
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -4952,7 +4952,7 @@ GameObject:
   - component: {fileID: 7731260816557840886}
   - component: {fileID: 7626950274909022863}
   - component: {fileID: 3072753335132845615}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9776,7 +9776,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2987429196175229915}
   - component: {fileID: 7595456509270486446}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: FireLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9869,7 +9869,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5150036472347525209}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Visual
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -9903,7 +9903,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4616847259071803817}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Item Drop Pos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9936,7 +9936,7 @@ GameObject:
   - component: {fileID: 695644707362694269}
   - component: {fileID: 6319768722210631791}
   - component: {fileID: 7957935695400175521}
-  m_Layer: 7
+  m_Layer: 15
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9995,7 +9995,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4226383840825041558}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10085,6 +10085,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Furnace Auto
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 472d5454cb97a464d993f49a0c55085d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 472d5454cb97a464d993f49a0c55085d, type: 3}

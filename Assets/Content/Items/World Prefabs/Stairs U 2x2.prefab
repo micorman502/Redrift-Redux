@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5540971452853962326}
   - component: {fileID: 7695126586221037309}
   - component: {fileID: 5849684339688649667}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Stairs U 2x2
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 2803865459949940255}
   - component: {fileID: 2528303707464115757}
   - component: {fileID: 7137272594163733900}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Stairs
   m_TagString: Item
   m_Icon: {fileID: 0}

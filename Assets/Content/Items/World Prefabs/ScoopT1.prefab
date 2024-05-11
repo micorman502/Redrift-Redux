@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9179853993873407668}
   - component: {fileID: 3128731862984151156}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Scoop Holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66,7 +66,7 @@ GameObject:
   - component: {fileID: 3636008940127113335}
   - component: {fileID: 3581910620580768619}
   - component: {fileID: 931140424391630711}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: ScoopT1
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -282,7 +282,7 @@ GameObject:
   - component: {fileID: 3686503197898998109}
   - component: {fileID: 3726314877382326777}
   - component: {fileID: 3659122321182165123}
-  m_Layer: 7
+  m_Layer: 15
   m_Name: ScoopTrigger
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -417,10 +417,30 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 9703ebcc3df1aaf4bb4ebbec3fad4684, type: 2}
+    - target: {fileID: -3237163181782436621, guid: 6b6c3fde3ece8e94bbf44d395d2ce940,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: -1072954812191987190, guid: 6b6c3fde3ece8e94bbf44d395d2ce940,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6b6c3fde3ece8e94bbf44d395d2ce940,
         type: 3}
       propertyPath: m_Name
       value: Scoop
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6b6c3fde3ece8e94bbf44d395d2ce940,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 9012610906753984641, guid: 6b6c3fde3ece8e94bbf44d395d2ce940,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 9012610906753984641, guid: 6b6c3fde3ece8e94bbf44d395d2ce940,
         type: 3}

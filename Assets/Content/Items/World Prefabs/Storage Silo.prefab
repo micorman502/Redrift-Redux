@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8872968364177261590}
   - component: {fileID: 8554789009456935326}
   - component: {fileID: 483528035993899739}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Item Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -189,7 +189,7 @@ GameObject:
   - component: {fileID: 1083658242607115313}
   - component: {fileID: 937853228140942229}
   - component: {fileID: 1148524014199241469}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Storage Silo
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -349,7 +349,7 @@ GameObject:
   - component: {fileID: 6676882382905338314}
   - component: {fileID: 6328066456071905829}
   - component: {fileID: 1868957122822408407}
-  m_Layer: 7
+  m_Layer: 15
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -408,7 +408,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9055986925202785946}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Drop Pos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -511,6 +511,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: StorageSilo
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: abe8b87b5161229418be92249df485df,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abe8b87b5161229418be92249df485df, type: 3}
