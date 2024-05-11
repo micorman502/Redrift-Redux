@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,9 +12,12 @@ public class BuildingPreviewInspector : Editor
     public override void OnInspectorGUI ()
     {
         BuildingPreview preview = (BuildingPreview)target;
-        if (GUILayout.Button("Create Check Area"))
+        if (GUILayout.Button("Auto Setup"))
         {
-            preview.CreateCheckArea();
+            preview.AutoSetup();
         }
+
+        DrawDefaultInspector();
     }
 }
+#endif

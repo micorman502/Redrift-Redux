@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 243760438889012979}
+  - component: {fileID: 5956478731331238451}
   m_Layer: 0
   m_Name: Furnace Auto_Preview
   m_TagString: Untagged
@@ -29,9 +30,26 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5763786150156971034}
+  - {fileID: 5616284059717355772}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5956478731331238451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245918805485910323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d90a2283b357da4b9cab4bb0aafc894, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkArea: {fileID: 6526875259425279776}
+  meshRenderers:
+  - {fileID: 1204231337823161474}
+  config: {fileID: 11400000, guid: cfbc757b37ffed74d9e92f1c2ae7dca7, type: 2}
 --- !u!1 &1523211889204188212
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,6 +168,51 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &5909636477737161702
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5616284059717355772}
+  - component: {fileID: 6526875259425279776}
+  m_Layer: 0
+  m_Name: Check Area
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5616284059717355772
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5909636477737161702}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.75, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 243760438889012979}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6526875259425279776
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5909636477737161702}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.5, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6632903360493437191
 GameObject:
   m_ObjectHideFlags: 0
@@ -445,6 +508,12 @@ PrefabInstance:
 --- !u!4 &71326254829680621 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 472d5454cb97a464d993f49a0c55085d,
+    type: 3}
+  m_PrefabInstance: {fileID: 538144578863452166}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1204231337823161474 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 472d5454cb97a464d993f49a0c55085d,
     type: 3}
   m_PrefabInstance: {fileID: 538144578863452166}
   m_PrefabAsset: {fileID: 0}

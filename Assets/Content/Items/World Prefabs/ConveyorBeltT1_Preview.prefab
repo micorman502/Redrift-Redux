@@ -452,7 +452,7 @@ Transform:
   - {fileID: 4214944160075716}
   - {fileID: 4407601822755830}
   - {fileID: 4512233908506144}
-  - {fileID: 2458350801256732098}
+  - {fileID: 2565173919748159498}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -468,8 +468,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d90a2283b357da4b9cab4bb0aafc894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkArea: {fileID: 9010100880489611725}
-  meshRenderer: {fileID: 23445725273410642}
+  checkArea: {fileID: 3239189685885139719}
+  meshRenderers:
+  - {fileID: 23445725273410642}
+  - {fileID: 23388584252976976}
+  - {fileID: 23616657021186104}
+  - {fileID: 23713887554339306}
+  - {fileID: 23531601545763832}
+  - {fileID: 23997890211615370}
   config: {fileID: 11400000, guid: cfbc757b37ffed74d9e92f1c2ae7dca7, type: 2}
 --- !u!1 &1661745481245162
 GameObject:
@@ -720,7 +726,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &5841042257364117005
+--- !u!1 &7202340261645988139
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -728,8 +734,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2458350801256732098}
-  - component: {fileID: 9010100880489611725}
+  - component: {fileID: 2565173919748159498}
+  - component: {fileID: 3239189685885139719}
   m_Layer: 0
   m_Name: Check Area
   m_TagString: Untagged
@@ -737,13 +743,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2458350801256732098
+--- !u!4 &2565173919748159498
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5841042257364117005}
+  m_GameObject: {fileID: 7202340261645988139}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -752,15 +758,15 @@ Transform:
   m_Father: {fileID: 4925300224187814}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &9010100880489611725
+--- !u!65 &3239189685885139719
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5841042257364117005}
+  m_GameObject: {fileID: 7202340261645988139}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 0.2, z: 1}

@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+using UnityEditor.SceneManagement;
+#endif
 
 public class BuildingPreview : MonoBehaviour
 {
     public bool Valid { get { return IsValid(); } }
 
     [SerializeField] BoxCollider checkArea;
-    [SerializeField] MeshRenderer meshRenderer;
+    [SerializeField] MeshRenderer[] meshRenderers;
     [SerializeField] BuildingPreviewConfig config;
 
     void Awake ()
@@ -27,15 +31,18 @@ public class BuildingPreview : MonoBehaviour
 
     void UpdateVisuals ()
     {
-        Material usingMaterial = IsValid() ? config.validMaterial : config.invalidMaterial;
-        Material[] rendererMaterials = meshRenderer.materials;
-
-        for (int i = 0; i < rendererMaterials.Length; i++)
+        foreach (MeshRenderer renderer in meshRenderers)
         {
-            rendererMaterials[i] = usingMaterial;
-        }
+            Material usingMaterial = IsValid() ? config.validMaterial : config.invalidMaterial;
+            Material[] rendererMaterials = renderer.materials;
 
-        meshRenderer.materials = rendererMaterials;
+            for (int i = 0; i < rendererMaterials.Length; i++)
+            {
+                rendererMaterials[i] = usingMaterial;
+            }
+
+            renderer.materials = rendererMaterials;
+        }
     }
 
     public bool IsValid ()
@@ -54,11 +61,68 @@ public class BuildingPreview : MonoBehaviour
         return Physics.CheckBox(checkArea.transform.position + checkArea.center, checkArea.size * (extendCheck ? 1.01f : 1f) / 2f, checkArea.transform.rotation, layerMask, triggerInteraction);
     }
 
-    public void CreateCheckArea ()
+#if UNITY_EDITOR
+    public void AutoSetup ()
     {
-        Vector3 size = meshRenderer.bounds.extents;
-        Vector3 center = meshRenderer.bounds.center;
+        GetMeshRenderers();
+        CreateCheckArea();
+
+        EditorUtility.SetDirty(gameObject);
+    }
+
+    void GetMeshRenderers ()
+    {
+        List<MeshRenderer> rawRenderers = new List<MeshRenderer>();
+        GetComponentsInChildren(rawRenderers);
+
+        for (int i = rawRenderers.Count - 1; i >= 0; i--)
+        {
+            if (rawRenderers[i].gameObject.name == "DirectionalArrow" || rawRenderers[i].gameObject.name == "Directional Arrow")
+            {
+                rawRenderers.RemoveAt(i);
+                continue;
+            }
+
+            if (!rawRenderers[i].sharedMaterial.name.Contains("Preview"))
+            {
+                rawRenderers.RemoveAt(i);
+                continue;
+            }
+        }
+
+        meshRenderers = rawRenderers.ToArray();
+    }
+
+    void CreateCheckArea ()
+    {
+        GameObject existingCheckArea = GetComponentInChildren<BoxCollider>()?.gameObject;
+        if (existingCheckArea)
+        {
+            DestroyImmediate(existingCheckArea);
+        }
+
+        Bounds bounds = new Bounds(transform.position, Vector3.zero);
+        foreach (MeshRenderer renderer in meshRenderers)
+        {
+            bounds.Encapsulate(renderer.bounds);
+        }
+
+        Vector3 size = RoundVector3(bounds.size);
+        Vector3 center = RoundVector3(bounds.center);
 
         GameObject newObject = new GameObject();
+        StageUtility.PlaceGameObjectInCurrentStage(newObject);
+
+        newObject.name = "Check Area";
+        newObject.transform.position = center;
+        newObject.AddComponent<BoxCollider>().size = size;
+
+        checkArea = newObject.GetComponent<BoxCollider>();
     }
+
+    Vector3 RoundVector3 (Vector3 input, float roundDecimal = 0.05f)
+    {
+        return new Vector3(Mathf.Round(input.x / roundDecimal) * roundDecimal, Mathf.Round(input.y / roundDecimal) * roundDecimal, Mathf.Round(input.z / roundDecimal) * roundDecimal);
+    }
+#endif
 }
