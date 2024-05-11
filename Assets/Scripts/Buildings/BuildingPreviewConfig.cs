@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuildingPreviewConfig : MonoBehaviour
+[CreateAssetMenu(menuName = "Other/Building Preview Config", order = 2)]
+public class BuildingPreviewConfig : ScriptableObject
 {
     // Start is called before the first frame update
     void Start()

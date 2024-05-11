@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Other/Recipe")]
 public class Recipe : ScriptableObject
 {
     public enum RecipeCategory { All, Construction, Resources, Tools, Automation, Decoration };
