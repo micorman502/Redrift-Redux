@@ -148,10 +148,7 @@ public class PlayerBuilding : MonoBehaviour
         {
             currentBuildingRecipe.Craft(inventory.inventory, false, false);
         }
-        else
-        {
-            inventory.inventory.RemoveItem(new WorldItem(currentBuilding, 1));
-        }
+        inventory.inventory.RemoveItem(new WorldItem(currentBuilding, 1));
     }
 
     public void SetBuildingRotation (int rotationChange)
