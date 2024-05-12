@@ -2165,7 +2165,7 @@ MonoBehaviour:
   m_ChildAlignment: 6
   m_StartCorner: 2
   m_StartAxis: 0
-  m_CellSize: {x: 115.49542, y: 51.97365}
+  m_CellSize: {x: 109.52086, y: 51.97365}
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 1
   m_ConstraintCount: 4
@@ -27711,7 +27711,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 475062785}
   m_HandleRect: {fileID: 475062784}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -34690,7 +34690,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 284.56943, y: 35}
+  m_CellSize: {x: 255.88947, y: 35}
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 1
   m_ConstraintCount: 3
