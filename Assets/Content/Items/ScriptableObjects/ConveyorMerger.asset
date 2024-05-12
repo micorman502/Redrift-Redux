@@ -16,9 +16,9 @@ MonoBehaviour:
   itemDescription: Merges items from 2 inputs to 1 output.
   stackSize: 20
   stackPrefix: x
-  id: 0
+  id: 56
   achievementId: -1
-  icon: {fileID: 21300000, guid: 6d6088174bb906b49ad8428526ee337b, type: 3}
+  icon: {fileID: 21300000, guid: 3d0b3b3931f83c34fbb048ed52bab0ee, type: 3}
   droppedPrefab: {fileID: 276975029315504631, guid: 6f67085bbdce8ac40bfd37a818a1bce5,
     type: 3}
   gridSize: 0.5

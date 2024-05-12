@@ -16,9 +16,9 @@ MonoBehaviour:
   itemDescription: Moves items up, very slow
   stackSize: 20
   stackPrefix: x
-  id: 0
+  id: 57
   achievementId: -1
-  icon: {fileID: 21300000, guid: 120bf54dff785a0429b068b814e9c12a, type: 3}
+  icon: {fileID: 21300000, guid: ad0a1ce98c24ae04d9e765bb1af836ae, type: 3}
   droppedPrefab: {fileID: 1297370092982529254, guid: 506707e8244c4824ab5d0fbe85073ab8,
     type: 3}
   gridSize: 0.5

@@ -16,9 +16,9 @@ MonoBehaviour:
   itemDescription: Splits items from 1 input to 2 outputs.
   stackSize: 20
   stackPrefix: x
-  id: 0
+  id: 55
   achievementId: -1
-  icon: {fileID: 21300000, guid: 874d8401331ede14087e8d8d486ddda6, type: 3}
+  icon: {fileID: 21300000, guid: d1175728413f3864f98d5b32ba814594, type: 3}
   droppedPrefab: {fileID: 7624798493003499748, guid: ae8b0ed131900c048b17d34b34a1cd19,
     type: 3}
   gridSize: 0.5
