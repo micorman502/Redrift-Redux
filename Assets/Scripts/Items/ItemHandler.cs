@@ -51,7 +51,7 @@ public class ItemHandler : MonoBehaviour, IItemSaveable, IItemPickup, IHotText
 
     void IHotText.HideHotText ()
     {
-        HotTextManager.Instance.RemoveHotText(new HotTextInfo("Pickup", KeyCode.E, HotTextInfo.Priority.Pickup, "itemHandler"));
+        HotTextManager.Instance.RemoveHotText("itemHandler");
     }
 
     void IHotText.ShowHotText ()

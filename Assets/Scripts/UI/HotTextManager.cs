@@ -39,10 +39,6 @@ public class HotTextManager : MonoBehaviour
         {
             hotTextListItems[info.id].Setup(info);
         }
-        else
-        {
-            AddHotText(info);
-        }
     }
 
     public void AddHotText (HotTextInfo info)
