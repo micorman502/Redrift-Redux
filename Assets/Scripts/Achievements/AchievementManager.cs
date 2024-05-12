@@ -23,9 +23,6 @@ public class AchievementManager : MonoBehaviour
         }
         Instance = this;
 
-        if (!AchievementDatabase.Instance)
-            return;
-
         int achievementCount = AchievementDatabase.GetAllAchievements().Length;
         hasAchievements = new bool[achievementCount];
         achievementHandlers = new AchievementHandler[achievementCount];

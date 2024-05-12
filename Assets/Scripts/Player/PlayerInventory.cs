@@ -41,7 +41,7 @@ public class PlayerInventory : MonoBehaviour
     bool altUsePressed;
 
 
-    void Start ()
+    void Awake ()
     {
         if (!PersistentData.Instance.loadingFromSave)
         {
@@ -64,15 +64,6 @@ public class PlayerInventory : MonoBehaviour
         {
             DebugItems();
         }
-
-        nullItem.Initialise(gameObject);
-        for (int i = 0; i < heldItems.Length; i++)
-        {
-            heldItems[i].Initialise(gameObject);
-        }
-
-        EquipHeldItem(-1);
-        InventoryUpdate();
     }
 
     void DebugItems ()
@@ -117,6 +108,18 @@ public class PlayerInventory : MonoBehaviour
     {
         SetupNewInventory(amt);
         setup = true;
+    }
+
+    private void Start ()
+    {
+        nullItem.Initialise(gameObject);
+        for (int i = 0; i < heldItems.Length; i++)
+        {
+            heldItems[i].Initialise(gameObject);
+        }
+
+        EquipHeldItem(-1);
+        InventoryUpdate();
     }
 
     void SetupNewInventory (int inventorySize, bool creative = false)
