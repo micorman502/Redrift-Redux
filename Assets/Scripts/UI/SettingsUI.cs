@@ -125,6 +125,8 @@ public class SettingsUI : MonoBehaviour
     public void SetPostProcessing (bool value)
     {
         postProcessingLabel.text = "Post-Processing";
+        postProcessingToggle.SetIsOnWithoutNotify(value);
+
         if (!initialised)
             return;
         CurrentSettings.ModifiableSettingsData.postProcessing = value;
@@ -139,6 +141,8 @@ public class SettingsUI : MonoBehaviour
     {
         fieldOfViewReadout.text = (Mathf.Round(value * 10) / 10).ToString();
         fieldOfViewLabel.text = "Field of View";
+        fieldOfViewSlider.SetValueWithoutNotify(value);
+
         if (!initialised)
             return;
         CurrentSettings.ModifiableSettingsData.fieldOfView = value;
@@ -154,6 +158,8 @@ public class SettingsUI : MonoBehaviour
         value = (Mathf.Round(value * 100) / 100);
         volumeReadout.text = (value * 100).ToString();
         volumeLabel.text = "Volume";
+        volumeSlider.SetValueWithoutNotify(value);
+
         if (!initialised)
             return;
         CurrentSettings.ModifiableSettingsData.volume = value;
@@ -168,6 +174,8 @@ public class SettingsUI : MonoBehaviour
     {
         mouseSensitivityReadout.text = (Mathf.Round(value * 10) / 10).ToString();
         mouseSensitivityLabel.text = "Mouse Sensitivity";
+        mouseSensitivitySlider.SetValueWithoutNotify(value);
+
         if (!initialised)
             return;
         CurrentSettings.ModifiableSettingsData.mouseSensitivity = value;
@@ -181,6 +189,8 @@ public class SettingsUI : MonoBehaviour
     public void SetResolutionIndex (int value)
     {
         resolutionLabel.text = "Resolution";
+        resolutionDropdown.SetValueWithoutNotify(value);
+
         if (!initialised)
             return;
         CurrentSettings.ModifiableSettingsData.resolutionIndex = value;
@@ -194,6 +204,8 @@ public class SettingsUI : MonoBehaviour
     public void SetGraphicsIndex (int value)
     {
         graphicsLabel.text = "Graphics";
+        graphicsDropdown.SetValueWithoutNotify(value);
+
         if (!initialised)
             return;
         CurrentSettings.ModifiableSettingsData.graphicsIndex = value;
@@ -207,6 +219,8 @@ public class SettingsUI : MonoBehaviour
     public void SetFullscreenIndex (int value)
     {
         fullscreenLabel.text = "Fullscreen";
+        fullscreenDropdown.SetValueWithoutNotify(value);
+
         if (!initialised)
             return;
         CurrentSettings.ModifiableSettingsData.fullscreenIndex = value;
@@ -223,6 +237,7 @@ public class SettingsUI : MonoBehaviour
         int roundedValue = Mathf.RoundToInt(value);
         physicsTickrateReadout.text = Mathf.Round(value).ToString();
         physicsTickrateLabel.text = "Tickrate";
+        physicsTickrateSlider.SetValueWithoutNotify(value);
 
         if (value < 40 || value > 120)
             return;
