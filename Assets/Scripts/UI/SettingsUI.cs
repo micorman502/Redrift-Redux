@@ -39,11 +39,13 @@ public class SettingsUI : MonoBehaviour
     void OnEnable ()
     {
         CurrentSettings.OnCurrentSettingsDataUpdate += OnCurrentSettingsDataUpdate;
+        CurrentSettings.OnModifiableSettingsDataUpdate += OnCurrentSettingsDataUpdate;
     }
 
     void OnDisable ()
     {
         CurrentSettings.OnCurrentSettingsDataUpdate -= OnCurrentSettingsDataUpdate;
+        CurrentSettings.OnModifiableSettingsDataUpdate -= OnCurrentSettingsDataUpdate;
     }
 
     void Start ()
@@ -108,6 +110,16 @@ public class SettingsUI : MonoBehaviour
         SetGraphicsIndex(CurrentSettings.ModifiableSettingsData.graphicsIndex);
         SetFullscreenIndex(CurrentSettings.ModifiableSettingsData.fullscreenIndex);
         SetPhysicsTickrate(CurrentSettings.ModifiableSettingsData.physicsTickrate);
+    }
+
+    public void RevertModifiableSettings ()
+    {
+        CurrentSettings.RevertModifiableSettings();
+    }
+
+    public void ResetModifiableSettings ()
+    {
+        CurrentSettings.ResetModifiableSettings();
     }
 
     public void SetPostProcessing (bool value)

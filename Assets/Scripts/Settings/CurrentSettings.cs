@@ -7,6 +7,7 @@ public static class CurrentSettings
 {
     public readonly static string[] fullscreenModes = new string[4] { "Exclusive Full Screen", "Fullscreen Window", "Maximised Window", "Windowed" };
     public static event Action OnCurrentSettingsDataUpdate;
+    public static event Action OnModifiableSettingsDataUpdate;
     public static SettingsData CurrentSettingsData { get; private set; }
     public static SettingsData ModifiableSettingsData;
 
@@ -28,11 +29,6 @@ public static class CurrentSettings
         initialised = true;
     }
 
-    public static void Initialise ()
-    {
-
-    }
-
     public static void ApplySettingsData ()
     {
         if (SettingsData.IdenticalSettings(CurrentSettingsData, ModifiableSettingsData))
@@ -41,6 +37,20 @@ public static class CurrentSettings
         CurrentSettingsData = new SettingsData(ModifiableSettingsData);
 
         OnCurrentSettingsDataUpdate?.Invoke();
+    }
+
+    public static void RevertModifiableSettings ()
+    {
+        ModifiableSettingsData = new SettingsData(CurrentSettingsData);
+
+        OnModifiableSettingsDataUpdate?.Invoke();
+    }
+
+    public static void ResetModifiableSettings ()
+    {
+        ModifiableSettingsData = new SettingsData();
+
+        OnModifiableSettingsDataUpdate?.Invoke();
     }
 
     public static string GetSaveString ()
