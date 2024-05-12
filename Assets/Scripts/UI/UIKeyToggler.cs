@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class UIKeyToggler : MonoBehaviour
 {
+    public bool State { get { return state; } set { SetState(value); } }
     [SerializeField] bool state = true;
     [SerializeField] GameObject target;
     [SerializeField] Canvas canvasTarget;

@@ -22,6 +22,14 @@ public class ConstructionUI : MonoBehaviour, IRecipeUIParent
         InstantiateCategories();
     }
 
+    void Update ()
+    {
+        if (targetToggler.State && (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.Escape)))
+        {
+            OnCloseSelectionMenu(currentTarget);
+        }
+    }
+
     void OnEnable ()
     {
         HeldConstructionTool.OnOpenSelectionMenu += OnOpenSelectionMenu;
@@ -40,8 +48,8 @@ public class ConstructionUI : MonoBehaviour, IRecipeUIParent
     {
         currentTarget = target;
 
-        targetToggler.SetState(true);
-        inventoryKeyToggler.SetState(false);
+        targetToggler.State = true;
+        inventoryKeyToggler.State = false;
 
         RefreshUI();
     }
@@ -51,7 +59,7 @@ public class ConstructionUI : MonoBehaviour, IRecipeUIParent
         if (target != currentTarget)
             return;
 
-        targetToggler.SetState(false);
+        targetToggler.State = false;
 
         currentTarget = null;
     }
