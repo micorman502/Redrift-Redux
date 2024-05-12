@@ -14,8 +14,9 @@ public class Bucket : MonoBehaviour
 
     WorldManager.WorldType worldType;
 
-    float fillTime;
-    float timeToFill = 10f;
+    [SerializeField] float fillMLs;
+    [SerializeField] float capacityMLs = 1000f;
+    float rainFillMLs = 50f;
 
     float nextTimeToWorldCheck;
     float worldCheckInterval = 1f;
@@ -24,88 +25,22 @@ public class Bucket : MonoBehaviour
     {
         if (waterBucket)
         {
-            fillTime = timeToFill;
+            fillMLs = capacityMLs;
         }
+
+        ChangeFill(0);
     }
 
     void Update ()
     {
-        if (worldType == WorldManager.WorldType.Dark)
+        if (worldType == WorldManager.WorldType.Dark || WeatherManager.CurrentIntensity >= 0.45f)
         {
-            fillTime += Time.deltaTime * Mathf.Max(0f, transform.up.y);
-        }
-        if (transform.up.y <= 0.6f)
-        {
-            fillTime += Time.deltaTime + Mathf.Min(0f, (transform.up.y - 0.65f) / 2f);
-        }
-        waterLevel.transform.localPosition = Vector3.Lerp(Vector3.up * -0.49f, Vector3.zero, fillTime / timeToFill);
-        waterLevel.transform.localScale = Vector3.Lerp(Vector3.one * 0.82f, Vector3.one, fillTime / timeToFill);
-        if (fillTime <= 0f)
-        {
-            if (waterBucket)
-            {
-                EmptyWater();
-            }
-            else
-            {
-                fillTime = 0f;
-            }
-        }
-        else if (fillTime >= timeToFill)
-        {
-            if (waterBucket)
-            {
-                fillTime = timeToFill;
-            }
-            else
-            {
-                FillWithWater();
-            }
+            ChangeFill(Time.deltaTime * Mathf.Max(0f, transform.up.y) * rainFillMLs);
         }
 
-        /*
-		if(waterBucket) {
-			if(transform.up.y <= 0.6f) { // If the bucket is tipped
-				fillTime += Time.deltaTime * transform.up.y - 0.2f; // Slowly empty it
-				waterLevel.transform.localPosition = Vector3.Lerp(Vector3.up * -0.49f, Vector3.zero, fillTime / timeToFill);
-				waterLevel.transform.localScale = Vector3.Lerp(Vector3.one * 0.82f, Vector3.one, fillTime / timeToFill);
-				if(fillTime <= 0f) {
-					EmptyWater();
-				}
-			} else if(worldType == WorldManager.WorldType.Dark) {
-				fillTime += Time.deltaTime * Mathf.Max(0.6f, transform.up.y);
-				if(fillTime > timeToFill) {
-					fillTime = timeToFill;
-				}
-			}
-		} else {
-			if(worldType == WorldManager.WorldType.Dark) {
-				fillTime += Time.deltaTime * transform.up.y;
-				waterLevel.transform.localPosition = Vector3.Lerp(Vector3.up * -0.49f, Vector3.zero, fillTime / timeToFill);
-				waterLevel.transform.localScale = Vector3.Lerp(Vector3.one * 0.82f, Vector3.one, fillTime / timeToFill);
-				if(fillTime < 0f) {
-					fillTime = 0f;
-				}
-				if(fillTime >= timeToFill) {
-					FillWithWater();
-				}
-			}
-		}
-		*/
-
-        if (fillTime <= 0f)
+        if (Vector3.Dot(transform.up, Vector3.down) < 0)
         {
-            if (waterLevel.gameObject.activeSelf)
-            {
-                waterLevel.gameObject.SetActive(false);
-            }
-        }
-        else
-        {
-            if (!waterLevel.gameObject.activeSelf)
-            {
-                waterLevel.gameObject.SetActive(true);
-            }
+            Spill();
         }
 
         if (Time.time >= nextTimeToWorldCheck)
@@ -117,7 +52,7 @@ public class Bucket : MonoBehaviour
 
     void CheckWorldType ()
     {
-        if (transform.position.y > -100f)
+        if (transform.position.y > VoidOcean.startThreshold)
         {
             worldType = WorldManager.WorldType.Light;
         }
@@ -127,14 +62,46 @@ public class Bucket : MonoBehaviour
         }
     }
 
-    void EmptyWater ()
+    void ChangeFill (float fillChange)
     {
+        if (waterBucket)
+            return;
+
+        fillMLs += fillChange;
+
+        if (fillMLs < 0)
+        {
+            fillMLs = 0;
+        }
+
+        if (fillMLs >= capacityMLs)
+        {
+            fillMLs = capacityMLs;
+
+            if (!waterBucket)
+            {
+                ReachCap();
+            }
+        }
+
+        waterLevel.transform.localPosition = Vector3.Lerp(Vector3.up * -0.49f, Vector3.zero, fillMLs / capacityMLs);
+        waterLevel.transform.localScale = Vector3.Lerp(Vector3.one * 0.82f, Vector3.one, fillMLs / capacityMLs);
+    }
+
+    void Spill ()
+    {
+        if (!waterBucket)
+            return;
+
         Instantiate(bucketItem.droppedPrefab, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 
-    void FillWithWater ()
+    void ReachCap ()
     {
+        if (waterBucket)
+            return;
+
         Instantiate(waterBucketItem.droppedPrefab, transform.position, transform.rotation);
         Destroy(gameObject);
     }
