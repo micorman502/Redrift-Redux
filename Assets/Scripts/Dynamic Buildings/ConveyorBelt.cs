@@ -19,12 +19,10 @@ public class ConveyorBelt : MonoBehaviour, IItemSaveable, IGetTriggerInfo, IInte
     Animator anim;
 
     public TellParent tellParent;
-    AudioSource audioSource;
 
     void Awake ()
     {
         anim = GetComponent<Animator>();
-        audioSource = GetComponent<AudioSource>();
     }
 
     void Start ()
@@ -97,13 +95,11 @@ public class ConveyorBelt : MonoBehaviour, IItemSaveable, IGetTriggerInfo, IInte
     void UpdateActive ()
     {
         anim?.SetBool("Active", active);
-        audioSource.mute = !active;
     }
 
     void UpdateSpeed ()
     {
         anim?.SetFloat("Speed", Speed);
-        audioSource.pitch = 0.5f + Speed / 8f;
 
         OnSpeedSet?.Invoke(Speed);
     }
