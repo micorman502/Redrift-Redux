@@ -10,7 +10,8 @@ public class HeldGrappleItem : HeldItem
     [SerializeField] Transform grappleRestPoint;
     [SerializeField] GameObject grappleHeadVisual;
     [SerializeField] LineRenderer rope;
-    Vector3 grapplePoint;
+    //Vector3 grapplePoint;
+    Transform currentGrapplePoint;
 
     bool grappled; // true if grapple has reached grapplePoint
     bool grappling; // true if grapple is "travelling" to grapplePoint or is at grapplePoint
@@ -56,7 +57,7 @@ public class HeldGrappleItem : HeldItem
 
         if (grappling)
         {
-            grappleHeadVisual.transform.position = Vector3.Lerp(grappleRestPoint.position, grapplePoint, (Time.time - lastUse) / grappleTime);
+            grappleHeadVisual.transform.position = Vector3.Lerp(grappleRestPoint.position, currentGrapplePoint.position, (Time.time - lastUse) / grappleTime);
         }
 
         rope.SetPosition(0, Vector3.zero);
@@ -90,7 +91,9 @@ public class HeldGrappleItem : HeldItem
         lastUse = Time.time;
 
         grappling = true;
-        SetGrapplePoint(GrappleRaycast().point);
+
+        RaycastHit grappleHit = GrappleRaycast();
+        SetGrapplePos(grappleHit.point, grappleHit.transform);
     }
 
     void ProgressGrapple ()
@@ -100,7 +103,7 @@ public class HeldGrappleItem : HeldItem
 
         if (grappled)
         {
-            playerRigidbody.AddForce((grapplePoint - grappleRestPoint.position) * grappleInfo.pullForce, ForceMode.Acceleration);
+            playerRigidbody.AddForce((currentGrapplePoint.position - grappleRestPoint.position) * grappleInfo.pullForce, ForceMode.Acceleration);
             return;
         }
 
@@ -123,10 +126,23 @@ public class HeldGrappleItem : HeldItem
         grappleHeadVisual.transform.position = grappleRestPoint.position;
     }
 
-    void SetGrapplePoint (Vector3 _grapplePoint)
+    void SetGrapplePos (Vector3 grapplePos, Transform grappleParent = null)
     {
-        grapplePoint = _grapplePoint;
-        grappleTime = Vector3.Distance(grappleRestPoint.position, grapplePoint) / grappleInfo.travelSpeed;
+        if (currentGrapplePoint)
+        {
+            Destroy(currentGrapplePoint.gameObject);
+        }
+
+        currentGrapplePoint = new GameObject().transform;
+
+        if (grappleParent)
+        {
+            currentGrapplePoint.parent = grappleParent;
+        }
+
+        currentGrapplePoint.position = grapplePos;
+
+        grappleTime = Vector3.Distance(grappleRestPoint.position, grapplePos) / grappleInfo.travelSpeed;
     }
 
     bool GrappleChecks ()
@@ -138,10 +154,7 @@ public class HeldGrappleItem : HeldItem
         if (hit.transform == null)
             return false;
 
-        grapplePoint = hit.point;
-
         return true;
-
     }
 
     float CooldownTimeLeft ()
