@@ -12,6 +12,7 @@ public class HeldGrappleItem : HeldItem
     [SerializeField] LineRenderer rope;
     //Vector3 grapplePoint;
     Transform currentGrapplePoint;
+    Quaternion initialHeadRotation;
 
     bool grappled; // true if grapple has reached grapplePoint
     bool grappling; // true if grapple is "travelling" to grapplePoint or is at grapplePoint
@@ -58,10 +59,11 @@ public class HeldGrappleItem : HeldItem
         if (grappling)
         {
             grappleHeadVisual.transform.position = Vector3.Lerp(grappleRestPoint.position, currentGrapplePoint.position, (Time.time - lastUse) / grappleTime);
+            grappleHeadVisual.transform.rotation = initialHeadRotation;
         }
 
         rope.SetPosition(0, Vector3.zero);
-        rope.SetPosition(1, grappleHeadVisual.transform.localPosition);
+        rope.SetPosition(1, grappleHeadVisual.transform.localPosition - rope.transform.localPosition);
     }
 
     public override void SetChildStateFunctions (bool state)
@@ -89,11 +91,11 @@ public class HeldGrappleItem : HeldItem
         grappleSFX?.Play();
 
         lastUse = Time.time;
-
         grappling = true;
 
         RaycastHit grappleHit = GrappleRaycast();
         SetGrapplePos(grappleHit.point, grappleHit.transform);
+        initialHeadRotation = grappleHeadVisual.transform.rotation;
     }
 
     void ProgressGrapple ()
@@ -124,6 +126,7 @@ public class HeldGrappleItem : HeldItem
         grappled = false;
 
         grappleHeadVisual.transform.position = grappleRestPoint.position;
+        grappleHeadVisual.transform.up = -itemGameObject.transform.forward; // Dirty line. Ew ew ew. Not really much i can do while using .blend files, though
     }
 
     void SetGrapplePos (Vector3 grapplePos, Transform grappleParent = null)
