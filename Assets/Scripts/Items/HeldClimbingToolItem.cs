@@ -1,59 +1,75 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HeldClimbingToolItem : HeldItem
 {
     ClimbingToolInfo climbingTool;
-    [SerializeField] Transform rayPos;
-    [SerializeField] Rigidbody rb;
-    Vector3 originalEuler;
-    bool hooked;
+    [SerializeField] Rigidbody playerRb;
+
+    [SerializeField] GameObject leftHook;
+    [SerializeField] Transform leftHookRayPoint;
+    [SerializeField] Transform leftHookRestPoint;
+    bool leftHooked;
+
+    [SerializeField] GameObject rightHook;
+    [SerializeField] Transform rightHookRayPoint;
+    [SerializeField] Transform rightHookRestPoint;
+    bool rightHooked;
 
     // Start is called before the first frame update
     void Start ()
     {
         climbingTool = item as ClimbingToolInfo;
-        originalEuler = itemGameObject.transform.localEulerAngles;
     }
 
     public override void ItemUpdate ()
     {
-        bool facingGround = Physics.SphereCast(rayPos.position, climbingTool.radius, rayPos.transform.forward, out RaycastHit dummy, climbingTool.range, -1, QueryTriggerInteraction.Ignore);
 
-        if (Input.GetMouseButton(0) && facingGround)
-        {
-            hooked = true;
-        }
-        else
-        {
-            hooked = false;
-        }
     }
 
     public override void ItemFixedUpdate ()
     {
-        if (hooked)
-        {
-            rb.velocity = rb.velocity / (1 + climbingTool.drag * Time.fixedDeltaTime);
-            itemGameObject.transform.localEulerAngles = originalEuler + new Vector3(10, 0, 0); //TEMP
-        }
-        else
-        {
-            itemGameObject.transform.localEulerAngles = originalEuler;
-        }
+
+    }
+
+    internal void UnhookLeft ()
+    {
+        if (!leftHooked)
+            return;
+
+        leftHooked = false;
+
+        UpdateHotTexts();
+    }
+
+    internal void UnhookRight ()
+    {
+        if (!rightHooked)
+            return;
+
+        rightHooked = false;
+
+        UpdateHotTexts();
+    }
+
+    void UpdateHotTexts ()
+    {
+        HotTextManager.Instance.UpdateHotText(new HotTextInfo(leftHooked ? "Unhook (L)" : "Hook (L)", KeyCode.Mouse0, HotTextInfo.Priority.UseItem, "climbingToolL"));
+        HotTextManager.Instance.UpdateHotText(new HotTextInfo(rightHooked ? "Unhook (R)" : "Hook (R)", KeyCode.Mouse1, HotTextInfo.Priority.AltUseItem, "climbingToolR"));
     }
 
     public override void SetChildStateFunctions (bool state)
     {
-        hooked = false;
+        UnhookLeft();
+        UnhookRight();
 
         if (state)
         {
-            HotTextManager.Instance.ReplaceHotText(new HotTextInfo("Hook", KeyCode.Mouse0, 0, "climbingTool"));
+            HotTextManager.Instance.ReplaceHotText(new HotTextInfo("Hook (L)", KeyCode.Mouse0, HotTextInfo.Priority.UseItem, "climbingToolL"));
+            HotTextManager.Instance.ReplaceHotText(new HotTextInfo("Hook (R)", KeyCode.Mouse1, HotTextInfo.Priority.AltUseItem, "climbingToolR"));
         }
         else
         {
+            HotTextManager.Instance.RemoveHotText("climbingTool");
             HotTextManager.Instance.RemoveHotText("climbingTool");
         }
     }
