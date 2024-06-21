@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System.Linq;
-using UnityEngine.PostProcessing;
 using EZCameraShake;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+using UnityEngine.PostProcessing;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -27,7 +27,9 @@ public class PlayerMovement : MonoBehaviour
 
     //Movement States
     bool climbing;
-    [SerializeField] bool grounded;
+    bool abseiling;
+
+    bool grounded;
     bool inWater;
     bool flying;
 
@@ -106,7 +108,7 @@ public class PlayerMovement : MonoBehaviour
         rb.useGravity = gravity;
         rb.drag = drag;
 
-        if (!flying && !climbing && !inWater)
+        if (!FullAxisControl())
         {
             moveDir.y = 0;
         }
@@ -137,5 +139,15 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.MovePosition(rb.position + (transform.TransformDirection(moveAmount) * Time.fixedDeltaTime));
         }
+    }
+
+    bool FullAxisControl ()
+    {
+        return flying || climbing || inWater || abseiling;
+    }
+
+    public void SetAbseilingState (bool _abseiling)
+    {
+        abseiling = _abseiling;
     }
 }

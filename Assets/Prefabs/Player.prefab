@@ -19907,7 +19907,6 @@ MonoBehaviour:
   runSpeed: 9
   jumpForce: 6
   smoothTime: 0.05
-  grounded: 0
 --- !u!114 &2606645611693725356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25421,6 +25420,7 @@ MonoBehaviour:
   item: {fileID: 11400000, guid: d6086640ddc35e74c9f635ff45ca48e2, type: 2}
   itemGameObject: {fileID: 2777968143859094481}
   playerRb: {fileID: 54789207129562844}
+  playerMovement: {fileID: 1999169172627678191}
   leftHook: {fileID: 625171680263234360}
   leftHookRayPoint: {fileID: 6762925934543575374}
   leftHookRestPoint: {fileID: 7053217690628345961}
@@ -25602,6 +25602,7 @@ MonoBehaviour:
   item: {fileID: 11400000, guid: 01a3733e20ab96f40b6fbf5a02089e44, type: 2}
   itemGameObject: {fileID: 4925446278647824444}
   playerRb: {fileID: 54789207129562844}
+  playerMovement: {fileID: 1999169172627678191}
   leftHook: {fileID: 1224542849597022686}
   leftHookRayPoint: {fileID: 3804716484839914607}
   leftHookRestPoint: {fileID: 9202606639495084857}

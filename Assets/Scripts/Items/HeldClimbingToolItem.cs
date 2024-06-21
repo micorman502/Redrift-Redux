@@ -4,6 +4,7 @@ public class HeldClimbingToolItem : HeldItem
 {
     ClimbingToolInfo climbingTool;
     [SerializeField] Rigidbody playerRb;
+    [SerializeField] PlayerMovement playerMovement;
 
     [SerializeField] GameObject leftHook;
     [SerializeField] Transform leftHookRayPoint;
@@ -21,6 +22,26 @@ public class HeldClimbingToolItem : HeldItem
         climbingTool = item as ClimbingToolInfo;
     }
 
+    public override void Use ()
+    {
+        HookLeft();
+    }
+
+    public override void StopUse ()
+    {
+        UnhookLeft();
+    }
+
+    public override void AltUse ()
+    {
+        HookRight();
+    }
+
+    public override void StopAltUse ()
+    {
+        UnhookRight();
+    }
+
     public override void ItemUpdate ()
     {
 
@@ -28,7 +49,40 @@ public class HeldClimbingToolItem : HeldItem
 
     public override void ItemFixedUpdate ()
     {
+        if (leftHooked || rightHooked)
+        {
+            playerRb.velocity = Vector3.zero;
+        }
+    }
 
+    internal void HookLeft ()
+    {
+        if (leftHooked)
+            return;
+
+        leftHooked = true;
+
+        HookChecks();
+    }
+
+    internal void HookRight ()
+    {
+        if (rightHooked)
+            return;
+
+        rightHooked = true;
+
+        HookChecks();
+    }
+
+    void HookChecks ()
+    {
+        if (leftHooked || rightHooked)
+        {
+            playerMovement.SetAbseilingState(true);
+        }
+
+        UpdateHotTexts();
     }
 
     internal void UnhookLeft ()
@@ -38,7 +92,7 @@ public class HeldClimbingToolItem : HeldItem
 
         leftHooked = false;
 
-        UpdateHotTexts();
+        UnhookChecks();
     }
 
     internal void UnhookRight ()
@@ -47,6 +101,16 @@ public class HeldClimbingToolItem : HeldItem
             return;
 
         rightHooked = false;
+
+        UnhookChecks();
+    }
+
+    void UnhookChecks ()
+    {
+        if (!leftHooked && !rightHooked)
+        {
+            playerMovement.SetAbseilingState(false);
+        }
 
         UpdateHotTexts();
     }

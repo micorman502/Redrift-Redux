@@ -224,7 +224,7 @@ public class PlayerInventory : MonoBehaviour
         else if (usePressed)
         {
             currentHeldItem?.StopUse();
-            altUsePressed = false;
+            usePressed = false;
         }
         if (Input.GetMouseButtonDown(1))
         {
