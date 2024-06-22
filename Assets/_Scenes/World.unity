@@ -25445,6 +25445,16 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
+    - target: {fileID: 4140932108086083715, guid: 976407ce05dc3cd4c86fe65b37f260a5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140932108086083715, guid: 976407ce05dc3cd4c86fe65b37f260a5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.78
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 95997896839640108, guid: 976407ce05dc3cd4c86fe65b37f260a5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 976407ce05dc3cd4c86fe65b37f260a5, type: 3}
@@ -25474,7 +25484,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   checkRate: 1
   spawnTarget: {fileID: 828969708}
-  bounds: {x: 7, y: 0, z: 7}
+  bounds: {x: 9, y: 0, z: 9}
   triggerInteraction: 1
   spawns:
   - spawnPrefab: {fileID: 1078551866452224, guid: ffaf4c1f892bb4a49b183f3d4721e106,
@@ -25498,6 +25508,32 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 828969700}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &828969709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828969702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 503f1a759e968444b8de08a2a07d8b00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkRate: 3
+  spawnTarget: {fileID: 828969708}
+  bounds: {x: 15, y: 0, z: 15}
+  triggerInteraction: 1
+  spawns:
+  - spawnPrefab: {fileID: 1947450143509860, guid: 78341bb0c31c4f54493eba09b10f7179,
+      type: 3}
+    raycastOffset: {x: 0, y: -1, z: 0}
+    raycastDirection: {x: 0, y: 1, z: 0}
+    boundsMultiplier: {x: 1, y: 1, z: 1}
+    initialSpawnAmountMin: 1
+    initialSpawnAmountMax: 1
+    spawnFrequency: 240
+    nextSpawnTime: 0
 --- !u!114 &828969711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35459,7 +35495,7 @@ MonoBehaviour:
     boundsMultiplier: {x: 1, y: 1, z: 1}
     initialSpawnAmountMin: 1
     initialSpawnAmountMax: 1
-    spawnFrequency: 160
+    spawnFrequency: 240
     nextSpawnTime: 0
 --- !u!1 &1444759418
 GameObject:
