@@ -234,7 +234,7 @@ public class HeldClimbingToolItem : HeldItem
     bool HookRaycast (Transform rayPoint, out RaycastHit hit, bool offsetCast = true)
     {
         Vector3 position = rayPoint.position - (offsetCast ? rayPoint.forward : Vector3.zero);
-        bool raycastSuccess = Physics.Raycast(position, rayPoint.forward, out hit, climbingTool.range, ~LayerMask.GetMask("Player", "Ignore Raycast"), QueryTriggerInteraction.Ignore);
+        bool raycastSuccess = Physics.Raycast(position, rayPoint.forward, out hit, climbingTool.range, ~LayerMask.GetMask("Player", "Ignore Raycast", "Item"), QueryTriggerInteraction.Ignore);
 
         float surfaceDot = Vector3.Dot(Vector3.up, hit.normal);
         bool verticalCheck = surfaceDot > -0.9f && surfaceDot < 0.6f;

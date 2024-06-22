@@ -189,7 +189,7 @@ public class HeldGrappleItem : HeldItem
 
     RaycastHit GrappleRaycast ()
     {
-        Physics.Raycast(grappleRestPoint.position, grappleRestPoint.forward, out RaycastHit hit, grappleInfo.range);
+        Physics.Raycast(grappleRestPoint.position, grappleRestPoint.forward, out RaycastHit hit, grappleInfo.range, ~LayerMask.GetMask("Ignore Raycast", "Item"));
         return hit;
 
     }
