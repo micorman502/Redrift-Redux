@@ -29370,8 +29370,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxStat: 100
   stat: 100
-  statRegen: 25
-  statRegenStart: 3
+  statRegen: 30
+  statRegenStart: 2
   statStartsAtMax: 1
   statScalesWithMaxIncrease: 0
 --- !u!1 &7835677075817791086
