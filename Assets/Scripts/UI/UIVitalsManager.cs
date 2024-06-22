@@ -1,24 +1,31 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
 
 public class UIVitalsManager : MonoBehaviour
 {
     [SerializeField] Image healthRing;
     [SerializeField] Image healthIcon;
+    [SerializeField] Image staminaRing;
+    [SerializeField] Image staminaIcon;
+
     float maxHealth;
     float health;
 
-    private void Awake ()
-    {
-        PlayerVitals.OnHealthChanged += OnHealthChanged;
-        PlayerVitals.OnMaxHealthChanged += OnMaxHealthChanged;
-    }
+    PlayerStamina playerStamina;
 
     private void Start ()
     {
+        playerStamina = Player.GetPlayerObject().GetComponentInChildren<PlayerStamina>();
+
+        PlayerVitals.OnHealthChanged += OnHealthChanged;
+        PlayerVitals.OnMaxHealthChanged += OnMaxHealthChanged;
+
+        playerStamina.OnStatChanged += OnStaminaChanged;
+        playerStamina.OnMaxStatChanged += OnMaxStaminaChanged;
+
         if (PersistentData.Instance.mode == 1)
         {
             SetupCreativeMode();
@@ -27,8 +34,14 @@ public class UIVitalsManager : MonoBehaviour
 
     private void OnDestroy ()
     {
+        if (!playerStamina)
+            return;
+
         PlayerVitals.OnHealthChanged -= OnHealthChanged;
         PlayerVitals.OnMaxHealthChanged -= OnMaxHealthChanged;
+
+        playerStamina.OnStatChanged -= OnStaminaChanged;
+        playerStamina.OnMaxStatChanged -= OnMaxStaminaChanged;
     }
 
     void SetupCreativeMode ()
@@ -36,21 +49,38 @@ public class UIVitalsManager : MonoBehaviour
         healthRing.color = Color.white;
     }
 
-    void OnHealthChanged (float health)
+    void OnHealthChanged (float _health)
     {
-        if (health - this.health < -2.5f)
+        if (_health - health < -2.5f)
         {
             healthIcon.transform.DOPunchScale(-Vector3.one * 0.2f, 0.3f);
             healthIcon.color = Color.black;
             healthIcon.DOColor(Color.white, 0.3f);
         }
-        this.health = health;
-        healthRing.fillAmount = health / maxHealth;
+        health = _health;
+        healthRing.fillAmount = _health / maxHealth;
     }
 
-    void OnMaxHealthChanged (float maxHealth)
+    void OnMaxHealthChanged (float _maxHealth)
     {
-        this.maxHealth = maxHealth;
+        maxHealth = _maxHealth;
         OnHealthChanged(health);
+    }
+
+    void OnStaminaChanged (float _stamina)
+    {
+        if (_stamina - playerStamina.Stat < -2.5f)
+        {
+            staminaIcon.transform.DOPunchScale(-Vector3.one * 0.2f, 0.3f);
+            staminaIcon.color = Color.black;
+            staminaIcon.DOColor(Color.white, 0.3f);
+        }
+
+        staminaRing.fillAmount = _stamina / playerStamina.MaxStat;
+    }
+
+    void OnMaxStaminaChanged (float _maxStamina)
+    {
+        staminaRing.fillAmount = playerStamina.Stat / _maxStamina;
     }
 }

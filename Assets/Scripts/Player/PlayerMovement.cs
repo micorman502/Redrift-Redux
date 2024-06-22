@@ -10,13 +10,15 @@ public class PlayerMovement : MonoBehaviour
 {
     const float baseDrag = 0.5f;
 
-    [HideInInspector] public Rigidbody rb;
+    Rigidbody rb;
+    [SerializeField] PlayerStamina stamina;
     [SerializeField] SphereCollider groundCheckReference;
 
-    public float walkSpeed;
-    public float runSpeed;
-    public float jumpForce;
-    public float smoothTime;
+    [SerializeField] float walkSpeed;
+    [SerializeField] float runSpeed;
+    [SerializeField] float runStaminaUse;
+    [SerializeField] float jumpForce;
+    [SerializeField] float smoothTime;
     float totalSpeedMultiplier = 1f;
 
     float currentMoveSpeed;
@@ -48,10 +50,11 @@ public class PlayerMovement : MonoBehaviour
 
     void Update ()
     {
-
         moveDir = new Vector3(Input.GetAxisRaw("Sideways"), Input.GetAxisRaw("Vertical"), Input.GetAxisRaw("Forward")).normalized;
 
-        currentMoveSpeed = Input.GetButton("Sprint") ? runSpeed : walkSpeed;
+        bool sprintValid = Input.GetButton("Sprint") && stamina.ChangeStat(-runStaminaUse * Time.deltaTime);
+
+        currentMoveSpeed = sprintValid ? runSpeed : walkSpeed;
         currentMoveSpeed *= totalSpeedMultiplier;
 
         if (Input.GetButtonDown("Jump"))
