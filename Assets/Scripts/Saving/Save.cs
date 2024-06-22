@@ -1,7 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 [Serializable]
 public class Save
@@ -9,6 +9,7 @@ public class Save
     public ObjectSaveData playerTransform;
     public float playerHealth;
     public float playerHunger;
+    public float playerStamina;
 
     public List<ObjectSaveData> savedObjects = new List<ObjectSaveData>();
     public List<ItemSaveData> savedObjectsInfo = new List<ItemSaveData>();

@@ -1,11 +1,11 @@
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using UnityEngine;
 using TMPro;
-using Newtonsoft.Json;
+using UnityEngine;
 
 public class SaveManager : MonoBehaviour
 {
@@ -197,6 +197,7 @@ public class SaveManager : MonoBehaviour
                 player.transform.position = save.playerTransform.position;
                 player.transform.rotation = save.playerTransform.rotation;
                 player.SetVitals(save.playerHealth, save.playerHunger);
+                player.GetComponentInChildren<PlayerStamina>().Stat = save.playerStamina;
 
                 if (save.playerDead)
                 {
@@ -289,6 +290,7 @@ public class SaveManager : MonoBehaviour
         save.playerTransform = new ObjectSaveData(player.transform.position, player.transform.rotation, 0);
         player.GetVitals(out float maxHealth, out float health);
         save.playerHealth = health;
+        save.playerStamina = player.GetComponentInChildren<PlayerStamina>().Stat;
 
         save.saveTime = DateTime.Now;
 

@@ -18,7 +18,7 @@ public class PlayerStat : MonoBehaviour
     [SerializeField] bool statScalesWithMaxIncrease;
     protected float lastStatReduction = -1000f;
 
-    void Start ()
+    void Awake ()
     {
         if (statStartsAtMax)
         {
@@ -82,6 +82,8 @@ public class PlayerStat : MonoBehaviour
 
     public virtual bool ChangeStat (float changeAmount, bool changeIfOverflow = false)
     {
+        statStartsAtMax = false;
+
         bool successfulChange = !CheckOverflow(changeAmount);
 
         if (!changeIfOverflow && !successfulChange)
