@@ -24,8 +24,8 @@ MonoBehaviour:
   - accessor: UIHover
     clips:
     - {fileID: 8300000, guid: d2c2abdcaa91dbf4eb9f571e8b83c5dd, type: 3}
-    volume: 1
-    minPitch: 0.25
+    volume: 0.25
+    minPitch: 0.8
     maxPitch: 0.8
     minDistance: 0.9
     maxDistance: 500
@@ -58,6 +58,23 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 722da35efe7f9874b9cc672c8cab39d7, type: 3}
     volume: 1
     minPitch: 0.9
+    maxPitch: 1
+    minDistance: 1
+    maxDistance: 500
+  - accessor: GrappleLaunch
+    clips:
+    - {fileID: 8300000, guid: e6ff64e3f8f00ad4383f7e7abe836439, type: 3}
+    volume: 0.2
+    minPitch: 1
+    maxPitch: 1
+    minDistance: 1
+    maxDistance: 500
+  - accessor: GrappleStop
+    clips:
+    - {fileID: 8300000, guid: 28d5a1c4d323f454599f055e2b131d77, type: 3}
+    - {fileID: 8300000, guid: 048dcde1e4ca64e4eaed4d4cab2ba98e, type: 3}
+    volume: 0.2
+    minPitch: 1
     maxPitch: 1
     minDistance: 1
     maxDistance: 500

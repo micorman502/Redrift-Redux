@@ -21,8 +21,8 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 7fca0651f293ad34290875e62a7c3fc0, type: 3}
   droppedPrefab: {fileID: 1020139488580098639, guid: aa4fa6b56f070b14ba9094edc81af34a,
     type: 3}
-  range: 35
-  travelSpeed: 35
-  pullForce: 2.5
-  staminaUse: 15
+  range: 50
+  travelSpeed: 25
+  pullForce: 1.75
+  staminaUse: 16
   cooldown: 10

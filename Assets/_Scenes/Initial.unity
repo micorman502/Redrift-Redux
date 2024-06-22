@@ -377,6 +377,54 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &632025914
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 632025915}
+  - component: {fileID: 632025916}
+  m_Layer: 0
+  m_Name: Global Audio Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &632025915
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 632025914}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 862312592}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &632025916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 632025914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75b84d8ce1ee5e245b4b6b6f10927b96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dontDestroyOnLoad: 0
+  audioRegister: {fileID: 11400000, guid: f8172979daa2e7448b0bc2ee2e23179a, type: 2}
+  audioObject: {fileID: 4300659146799940607, guid: 999a2e74ed9644e45ac44e3cfcf033ca,
+    type: 3}
 --- !u!1 &862312589
 GameObject:
   m_ObjectHideFlags: 0
@@ -389,7 +437,6 @@ GameObject:
   - component: {fileID: 862312591}
   - component: {fileID: 862312590}
   - component: {fileID: 862312594}
-  - component: {fileID: 862312593}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -434,58 +481,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 353023338}
+  - {fileID: 632025915}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &862312593
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 862312589}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5130538fb7202c84fa6b529bc162736a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sounds:
-  - name: UIClick
-    clip: {fileID: 8300000, guid: ed8310229135e4c45bc28ff5bfec81d7, type: 3}
-    volume: 0.1
-    minPitch: 0.7
-    maxPitch: 0.75
-    source: {fileID: 0}
-  - name: Pickup
-    clip: {fileID: 8300000, guid: 3652bc55bc2bc7c4585eac1d9209ced5, type: 3}
-    volume: 0.9
-    minPitch: 0.9
-    maxPitch: 1
-    source: {fileID: 0}
-  - name: ThunderBig
-    clip: {fileID: 8300000, guid: ee5022e77b3b20d49a807f1ba56ef881, type: 3}
-    volume: 1
-    minPitch: 0.45
-    maxPitch: 0.55
-    source: {fileID: 0}
-  - name: ThunderSmall
-    clip: {fileID: 8300000, guid: 08343eabd4fba154fb9382f3105cc5b2, type: 3}
-    volume: 1
-    minPitch: 0.45
-    maxPitch: 0.55
-    source: {fileID: 0}
-  - name: Build
-    clip: {fileID: 8300000, guid: 722da35efe7f9874b9cc672c8cab39d7, type: 3}
-    volume: 1
-    minPitch: 0.9
-    maxPitch: 1
-    source: {fileID: 0}
-  - name: UIHover
-    clip: {fileID: 8300000, guid: d2c2abdcaa91dbf4eb9f571e8b83c5dd, type: 3}
-    volume: 0.25
-    minPitch: 0.8
-    maxPitch: 0.9
-    source: {fileID: 0}
 --- !u!114 &862312594
 MonoBehaviour:
   m_ObjectHideFlags: 0

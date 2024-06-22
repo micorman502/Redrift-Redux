@@ -197,8 +197,8 @@ public class HeldClimbingToolItem : HeldItem
         }
         else
         {
-            HotTextManager.Instance.RemoveHotText("climbingTool");
-            HotTextManager.Instance.RemoveHotText("climbingTool");
+            HotTextManager.Instance.RemoveHotText("climbingToolL");
+            HotTextManager.Instance.RemoveHotText("climbingToolR");
         }
     }
 

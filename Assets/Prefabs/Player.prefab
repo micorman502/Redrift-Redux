@@ -27259,7 +27259,9 @@ MonoBehaviour:
   itemGameObject: {fileID: 7033661563327120434}
   playerRigidbody: {fileID: 54789207129562844}
   playerStamina: {fileID: 4130160281514754000}
-  grappleSFX: {fileID: 5126254281698274775}
+  grapplePullSFX: {fileID: 5126254281698274775}
+  grappleLaunchSFXName: GrappleLaunch
+  grappleStopSFXName: GrappleStop
   grappleRestPoint: {fileID: 8641437167939319021}
   grappleHeadVisual: {fileID: 8511408189027464667}
   rope: {fileID: 4896285598768070136}
@@ -27274,7 +27276,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 76217fdb5c57a1d4a863b4b5a82afe1b,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: e6ff64e3f8f00ad4383f7e7abe836439, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 9aa96c1dae9dbcd48bc5fbdc4e771580, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -28749,7 +28751,9 @@ MonoBehaviour:
   itemGameObject: {fileID: 197569888502709407}
   playerRigidbody: {fileID: 54789207129562844}
   playerStamina: {fileID: 4130160281514754000}
-  grappleSFX: {fileID: 7622936888848298201}
+  grapplePullSFX: {fileID: 7622936888848298201}
+  grappleLaunchSFXName: GrappleLaunch
+  grappleStopSFXName: GrappleStop
   grappleRestPoint: {fileID: 1235956933345970650}
   grappleHeadVisual: {fileID: 6829455612920697757}
   rope: {fileID: 8449007099984079899}
@@ -28764,7 +28768,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 76217fdb5c57a1d4a863b4b5a82afe1b,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: e6ff64e3f8f00ad4383f7e7abe836439, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 9aa96c1dae9dbcd48bc5fbdc4e771580, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

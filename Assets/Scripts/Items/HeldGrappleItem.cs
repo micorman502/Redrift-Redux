@@ -7,7 +7,9 @@ public class HeldGrappleItem : HeldItem
     [SerializeField] Rigidbody playerRigidbody;
     [SerializeField] PlayerStamina playerStamina;
     GrappleInfo grappleInfo;
-    [SerializeField] AudioSource grappleSFX;
+    [SerializeField] AudioSource grapplePullSFX;
+    [SerializeField] string grappleLaunchSFXName;
+    [SerializeField] string grappleStopSFXName;
     [SerializeField] Transform grappleRestPoint;
     [SerializeField] GameObject grappleHeadVisual;
     [SerializeField] LineRenderer rope;
@@ -91,7 +93,9 @@ public class HeldGrappleItem : HeldItem
         if (!GrappleChecks())
             return;
 
-        grappleSFX?.Play();
+        GlobalAudioPlayer.Instance.PlayClip(grappleLaunchSFXName, transform);
+
+        grapplePullSFX.Play();
 
         lastUse = Time.time;
         grappling = true;
@@ -115,6 +119,10 @@ public class HeldGrappleItem : HeldItem
         if (Time.time > lastUse + grappleTime)
         {
             grappled = true;
+
+            grapplePullSFX.Stop();
+
+            GlobalAudioPlayer.Instance.PlayClip(grappleStopSFXName, transform);
         }
     }
 

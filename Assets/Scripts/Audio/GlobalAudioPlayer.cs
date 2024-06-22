@@ -37,11 +37,6 @@ public class GlobalAudioPlayer : MonoBehaviour
             audioSources[i] = new GlobalAudioPlayerSource();
             AudioSource newSource = Instantiate(audioObject, gameObject.transform).GetComponent<AudioSource>();
             audioSources[i].source = newSource;
-
-            if (dontDestroyOnLoad)
-            {
-                DontDestroyOnLoad(newSource.gameObject);
-            }
         }
     }
 

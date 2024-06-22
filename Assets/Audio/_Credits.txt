@@ -1,7 +1,8 @@
 radio insert: https://freesound.org/people/PanZen/sounds/216766/
 radio static: https://freesound.org/people/flacfile/sounds/596531/
 grapple release: https://freesound.org/people/pengo_au/sounds/90143/
-grapple ratchest: https://freesound.org/people/joedeshon/sounds/78524/
+grapple ratchet: https://freesound.org/people/joedeshon/sounds/78524/
+grapple ratchet stop: https://freesound.org/people/Artninja/sounds/700874/
 
 void bubble: https://freesound.org/people/martats/sounds/127830/
 
