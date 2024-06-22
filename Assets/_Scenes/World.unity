@@ -47885,10 +47885,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragMin: 1
-  damageMin: 2
+  damageMin: 1.5
   yEnd: -200
   dragMax: 10
-  damageMax: 10
+  damageMax: 7.5
   upForce: 20
 --- !u!65 &1895658905
 BoxCollider:
