@@ -4245,11 +4245,11 @@ MonoBehaviour:
   checkRate: 1
   spawnTarget: {fileID: 973447281}
   bounds: {x: 22.5, y: 0, z: 22.5}
-  triggerInteraction: 1
+  triggerInteraction: 2
   spawns:
   - spawnPrefab: {fileID: 1523322516565944, guid: c5b0387d80fa75244b875949079823ed,
       type: 3}
-    raycastOffset: {x: 0, y: 200, z: 0}
+    raycastOffset: {x: 0, y: 50, z: 0}
     raycastDirection: {x: 0, y: -1, z: 0}
     boundsMultiplier: {x: 1, y: 1, z: 1}
     initialSpawnAmountMin: 25
@@ -4258,7 +4258,7 @@ MonoBehaviour:
     nextSpawnTime: 0
   - spawnPrefab: {fileID: 8254937849148306895, guid: 9cc5aaadbf51e934ebd0d27eb4e9d64a,
       type: 3}
-    raycastOffset: {x: 0, y: 200, z: 0}
+    raycastOffset: {x: 0, y: 50, z: 0}
     raycastDirection: {x: 0, y: -1, z: 0}
     boundsMultiplier: {x: 1, y: 1, z: 1}
     initialSpawnAmountMin: 125
@@ -25785,7 +25785,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 20, y: 20, z: 5}
+  m_Size: {x: 22, y: 22, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &902050466
 GameObject:
