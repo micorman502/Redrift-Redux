@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     public float runSpeed;
     public float jumpForce;
     public float smoothTime;
+    float totalSpeedMultiplier = 1f;
 
     float currentMoveSpeed;
     Vector3 moveDir; //raw, base move direction
@@ -51,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
         moveDir = new Vector3(Input.GetAxisRaw("Sideways"), Input.GetAxisRaw("Vertical"), Input.GetAxisRaw("Forward")).normalized;
 
         currentMoveSpeed = Input.GetButton("Sprint") ? runSpeed : walkSpeed;
+        currentMoveSpeed *= totalSpeedMultiplier;
 
         if (Input.GetButtonDown("Jump"))
         {
@@ -91,7 +93,7 @@ public class PlayerMovement : MonoBehaviour
     {
         float drag = baseDrag;
         bool gravity = true;
-        if (climbing)
+        if (climbing || abseiling)
         {
             gravity = false;
         }
@@ -149,5 +151,15 @@ public class PlayerMovement : MonoBehaviour
     public void SetAbseilingState (bool _abseiling)
     {
         abseiling = _abseiling;
+    }
+
+    public void ApplySpeedMult (float speedMult)
+    {
+        totalSpeedMultiplier *= speedMult;
+    }
+
+    public void RemoveSpeedMult (float speedMult)
+    {
+        totalSpeedMultiplier /= speedMult;
     }
 }

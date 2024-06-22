@@ -6,6 +6,6 @@ using UnityEngine;
 public class ClimbingToolInfo : ItemInfo
 {
     public float range;
-    public float radius;
-    public float drag;
+    public float staminaUse;
+    public float speedMult = 0.2f;
 }

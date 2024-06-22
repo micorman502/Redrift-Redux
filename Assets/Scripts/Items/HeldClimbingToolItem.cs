@@ -9,12 +9,16 @@ public class HeldClimbingToolItem : HeldItem
     [SerializeField] GameObject leftHook;
     [SerializeField] Transform leftHookRayPoint;
     [SerializeField] Transform leftHookRestPoint;
+    Transform leftHookFollowPoint;
     bool leftHooked;
 
     [SerializeField] GameObject rightHook;
     [SerializeField] Transform rightHookRayPoint;
     [SerializeField] Transform rightHookRestPoint;
+    Transform rightHookFollowPoint;
     bool rightHooked;
+
+    bool hookFlag;
 
     // Start is called before the first frame update
     void Start ()
@@ -44,45 +48,95 @@ public class HeldClimbingToolItem : HeldItem
 
     public override void ItemUpdate ()
     {
+        if (leftHooked)
+        {
+            leftHook.transform.position = leftHookFollowPoint.transform.position;
+        }
 
+        if (rightHooked)
+        {
+            rightHook.transform.position = rightHookFollowPoint.transform.position;
+        }
     }
 
     public override void ItemFixedUpdate ()
     {
-        if (leftHooked || rightHooked)
+        if (leftHooked)
         {
-            playerRb.velocity = Vector3.zero;
+            HookRangeFunctions(leftHook.transform.position);
+        }
+
+        if (rightHooked)
+        {
+            HookRangeFunctions(rightHook.transform.position);
         }
     }
 
     internal void HookLeft ()
     {
+        if (!HookRaycast(leftHookRayPoint, out RaycastHit hit))
+            return;
+
         if (leftHooked)
             return;
 
         leftHooked = true;
 
-        HookChecks();
+        HookFunctions();
+
+        if (leftHookFollowPoint)
+        {
+            Destroy(leftHookFollowPoint.gameObject);
+        }
+
+        leftHookFollowPoint = new GameObject().transform;
+
+        if (hit.transform)
+        {
+            leftHookFollowPoint.parent = hit.transform;
+        }
+
+        leftHookFollowPoint.position = hit.point + (leftHook.transform.position - leftHookRayPoint.position);
     }
 
     internal void HookRight ()
     {
+        if (!HookRaycast(rightHookRayPoint, out RaycastHit hit))
+            return;
+
         if (rightHooked)
             return;
 
         rightHooked = true;
 
-        HookChecks();
-    }
+        HookFunctions();
 
-    void HookChecks ()
-    {
-        if (leftHooked || rightHooked)
+        if (rightHookFollowPoint)
         {
-            playerMovement.SetAbseilingState(true);
+            Destroy(rightHookFollowPoint.gameObject);
         }
 
+        rightHookFollowPoint = new GameObject().transform;
+
+        if (hit.transform)
+        {
+            rightHookFollowPoint.parent = hit.transform;
+        }
+
+        rightHookFollowPoint.position = hit.point + (rightHook.transform.position - rightHookRayPoint.position);
+    }
+
+    void HookFunctions ()
+    {
         UpdateHotTexts();
+
+        if (hookFlag)
+            return;
+
+        hookFlag = true;
+
+        playerMovement.SetAbseilingState(true);
+        playerMovement.ApplySpeedMult(climbingTool.speedMult);
     }
 
     internal void UnhookLeft ()
@@ -92,7 +146,9 @@ public class HeldClimbingToolItem : HeldItem
 
         leftHooked = false;
 
-        UnhookChecks();
+        UnhookFunctions();
+
+        leftHook.transform.position = leftHookRestPoint.position;
     }
 
     internal void UnhookRight ()
@@ -102,17 +158,22 @@ public class HeldClimbingToolItem : HeldItem
 
         rightHooked = false;
 
-        UnhookChecks();
+        UnhookFunctions();
+
+        rightHook.transform.position = rightHookRestPoint.position;
     }
 
-    void UnhookChecks ()
+    void UnhookFunctions ()
     {
-        if (!leftHooked && !rightHooked)
-        {
-            playerMovement.SetAbseilingState(false);
-        }
-
         UpdateHotTexts();
+
+        if (!hookFlag || leftHooked || rightHooked)
+            return;
+
+        hookFlag = false;
+
+        playerMovement.RemoveSpeedMult(climbingTool.speedMult);
+        playerMovement.SetAbseilingState(false);
     }
 
     void UpdateHotTexts ()
@@ -136,5 +197,29 @@ public class HeldClimbingToolItem : HeldItem
             HotTextManager.Instance.RemoveHotText("climbingTool");
             HotTextManager.Instance.RemoveHotText("climbingTool");
         }
+    }
+
+    bool HookRaycast (Transform rayPoint, out RaycastHit hit, bool offsetCast = true)
+    {
+        Vector3 position = rayPoint.position - (offsetCast ? rayPoint.forward : Vector3.zero);
+        bool raycastSuccess = Physics.Raycast(position, rayPoint.forward, out hit, climbingTool.range, ~LayerMask.GetMask("Player", "Ignore Raycast"), QueryTriggerInteraction.Ignore);
+
+        float surfaceDot = Vector3.Dot(Vector3.up, hit.normal);
+        bool verticalCheck = surfaceDot > -0.8f && surfaceDot < 0.6f;
+
+        return raycastSuccess && verticalCheck;
+    }
+
+    void HookRangeFunctions (Vector3 hookPosition)
+    {
+        Vector3 diff = hookPosition - playerRb.position;
+
+        if (diff.sqrMagnitude < climbingTool.range * climbingTool.range)
+        {
+            playerRb.velocity = Vector3.zero;
+            return;
+        }
+
+        playerRb.AddForce(diff * 200f);
     }
 }
