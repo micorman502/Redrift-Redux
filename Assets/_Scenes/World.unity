@@ -4261,17 +4261,8 @@ MonoBehaviour:
     raycastOffset: {x: 0, y: 50, z: 0}
     raycastDirection: {x: 0, y: -1, z: 0}
     boundsMultiplier: {x: 1, y: 1, z: 1}
-    initialSpawnAmountMin: 45
-    initialSpawnAmountMax: 45
-    spawnFrequency: -1
-    nextSpawnTime: 0
-  - spawnPrefab: {fileID: 5956003125830220405, guid: 27fcb1503bd5ade41beaf908b5be9583,
-      type: 3}
-    raycastOffset: {x: 0, y: 50, z: 0}
-    raycastDirection: {x: 0, y: -1, z: 0}
-    boundsMultiplier: {x: 1, y: 1, z: 1}
-    initialSpawnAmountMin: 45
-    initialSpawnAmountMax: 45
+    initialSpawnAmountMin: 125
+    initialSpawnAmountMax: 175
     spawnFrequency: -1
     nextSpawnTime: 0
 --- !u!1 &546438323
@@ -9991,7 +9982,7 @@ PrefabInstance:
     - target: {fileID: 8108516897537393636, guid: f29e2473e72dd07479ee2261e33638d9,
         type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 8108516897537393636, guid: f29e2473e72dd07479ee2261e33638d9,
         type: 3}
@@ -27676,7 +27667,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4299214147621458, guid: 90c32dea8bf9f7642af314af0cfe6c63, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4299214147621458, guid: 90c32dea8bf9f7642af314af0cfe6c63, type: 3}
       propertyPath: m_LocalPosition.x
@@ -27724,7 +27715,7 @@ PrefabInstance:
     - target: {fileID: 8108516897537393636, guid: f29e2473e72dd07479ee2261e33638d9,
         type: 3}
       propertyPath: m_RootOrder
-      value: 18
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 8108516897537393636, guid: f29e2473e72dd07479ee2261e33638d9,
         type: 3}
@@ -35479,6 +35470,15 @@ MonoBehaviour:
     initialSpawnAmountMax: 1
     spawnFrequency: 240
     nextSpawnTime: 0
+  - spawnPrefab: {fileID: 8254937849148306895, guid: 9cc5aaadbf51e934ebd0d27eb4e9d64a,
+      type: 3}
+    raycastOffset: {x: 0, y: 200, z: 0}
+    raycastDirection: {x: 0, y: -1, z: 0}
+    boundsMultiplier: {x: 1, y: 1, z: 1}
+    initialSpawnAmountMin: 125
+    initialSpawnAmountMax: 175
+    spawnFrequency: -1
+    nextSpawnTime: 0
   - spawnPrefab: {fileID: 2070620076365560296, guid: 7ed85cbeb64fba44791f32165a150379,
       type: 3}
     raycastOffset: {x: 0, y: 200, z: 0}
@@ -35496,24 +35496,6 @@ MonoBehaviour:
     initialSpawnAmountMin: 1
     initialSpawnAmountMax: 1
     spawnFrequency: 240
-    nextSpawnTime: 0
-  - spawnPrefab: {fileID: 8254937849148306895, guid: 9cc5aaadbf51e934ebd0d27eb4e9d64a,
-      type: 3}
-    raycastOffset: {x: 0, y: 200, z: 0}
-    raycastDirection: {x: 0, y: -1, z: 0}
-    boundsMultiplier: {x: 1, y: 1, z: 1}
-    initialSpawnAmountMin: 75
-    initialSpawnAmountMax: 75
-    spawnFrequency: -1
-    nextSpawnTime: 0
-  - spawnPrefab: {fileID: 5956003125830220405, guid: 27fcb1503bd5ade41beaf908b5be9583,
-      type: 3}
-    raycastOffset: {x: 0, y: 200, z: 0}
-    raycastDirection: {x: 0, y: -1, z: 0}
-    boundsMultiplier: {x: 1, y: 1, z: 1}
-    initialSpawnAmountMin: 75
-    initialSpawnAmountMax: 75
-    spawnFrequency: -1
     nextSpawnTime: 0
 --- !u!1 &1444759418
 GameObject:
@@ -45476,7 +45458,7 @@ PrefabInstance:
     - target: {fileID: 8108516897537393636, guid: f29e2473e72dd07479ee2261e33638d9,
         type: 3}
       propertyPath: m_RootOrder
-      value: 19
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 8108516897537393636, guid: f29e2473e72dd07479ee2261e33638d9,
         type: 3}
@@ -46096,7 +46078,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4995519350023358, guid: 6b148acb52b6df547a13c5632a14e47b, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4995519350023358, guid: 6b148acb52b6df547a13c5632a14e47b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -47190,7 +47172,7 @@ PrefabInstance:
     - target: {fileID: 8108516897537393636, guid: f29e2473e72dd07479ee2261e33638d9,
         type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8108516897537393636, guid: f29e2473e72dd07479ee2261e33638d9,
         type: 3}
@@ -50009,7 +49991,7 @@ PrefabInstance:
     - target: {fileID: 8108516897537393636, guid: f29e2473e72dd07479ee2261e33638d9,
         type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 8108516897537393636, guid: f29e2473e72dd07479ee2261e33638d9,
         type: 3}
@@ -50128,7 +50110,7 @@ PrefabInstance:
     - target: {fileID: 1033153380156451056, guid: 9b2dab56ac305a5469164c65e779efdb,
         type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 1033153380156451056, guid: 9b2dab56ac305a5469164c65e779efdb,
         type: 3}
