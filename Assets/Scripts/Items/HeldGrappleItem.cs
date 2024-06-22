@@ -5,6 +5,7 @@ using UnityEngine;
 public class HeldGrappleItem : HeldItem
 {
     [SerializeField] Rigidbody playerRigidbody;
+    [SerializeField] PlayerStamina playerStamina;
     GrappleInfo grappleInfo;
     [SerializeField] AudioSource grappleSFX;
     [SerializeField] Transform grappleRestPoint;
@@ -45,6 +46,8 @@ public class HeldGrappleItem : HeldItem
         base.ItemFixedUpdate();
 
         ProgressGrapple();
+
+        StaminaChecks();
     }
 
     public override void ItemUpdate ()
@@ -158,6 +161,17 @@ public class HeldGrappleItem : HeldItem
             return false;
 
         return true;
+    }
+
+    void StaminaChecks ()
+    {
+        if (!grappled)
+            return;
+
+        if (!playerStamina.ChangeStat(-grappleInfo.staminaUse * Time.fixedDeltaTime))
+        {
+            StopGrapple();
+        }
     }
 
     float CooldownTimeLeft ()

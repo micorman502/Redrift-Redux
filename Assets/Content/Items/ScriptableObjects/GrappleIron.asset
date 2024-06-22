@@ -24,4 +24,5 @@ MonoBehaviour:
   range: 35
   travelSpeed: 35
   pullForce: 2.5
+  staminaUse: 15
   cooldown: 10

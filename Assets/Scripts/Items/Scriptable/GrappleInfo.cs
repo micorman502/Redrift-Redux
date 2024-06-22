@@ -8,6 +8,7 @@ public class GrappleInfo : ItemInfo
     public float range;
     public float travelSpeed;
     public float pullForce;
+    public float staminaUse;
     public float cooldown;
 
     public override string GetDescription ()

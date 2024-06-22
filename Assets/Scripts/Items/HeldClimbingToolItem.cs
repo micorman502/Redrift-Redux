@@ -4,6 +4,7 @@ public class HeldClimbingToolItem : HeldItem
 {
     ClimbingToolInfo climbingTool;
     [SerializeField] Rigidbody playerRb;
+    [SerializeField] PlayerStamina playerStamina;
     [SerializeField] PlayerMovement playerMovement;
 
     [SerializeField] GameObject leftHook;
@@ -70,6 +71,8 @@ public class HeldClimbingToolItem : HeldItem
         {
             HookRangeFunctions(rightHook.transform.position);
         }
+
+        StaminaChecks();
     }
 
     internal void HookLeft ()
@@ -196,6 +199,18 @@ public class HeldClimbingToolItem : HeldItem
         {
             HotTextManager.Instance.RemoveHotText("climbingTool");
             HotTextManager.Instance.RemoveHotText("climbingTool");
+        }
+    }
+
+    void StaminaChecks ()
+    {
+        if (!leftHooked && !rightHooked)
+            return;
+
+        if (!playerStamina.ChangeStat(-climbingTool.staminaUse * Time.fixedDeltaTime))
+        {
+            UnhookLeft();
+            UnhookRight();
         }
     }
 
