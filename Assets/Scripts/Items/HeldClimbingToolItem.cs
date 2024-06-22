@@ -3,6 +3,7 @@ using UnityEngine;
 public class HeldClimbingToolItem : HeldItem
 {
     ClimbingToolInfo climbingTool;
+    [SerializeField] string digSfx;
     [SerializeField] Rigidbody playerRb;
     [SerializeField] PlayerStamina playerStamina;
     [SerializeField] PlayerMovement playerMovement;
@@ -12,12 +13,14 @@ public class HeldClimbingToolItem : HeldItem
     [SerializeField] Transform leftHookRestPoint;
     Transform leftHookFollowPoint;
     bool leftHooked;
+    float lastLeftHook;
 
     [SerializeField] GameObject rightHook;
     [SerializeField] Transform rightHookRayPoint;
     [SerializeField] Transform rightHookRestPoint;
     Transform rightHookFollowPoint;
     bool rightHooked;
+    float lastRightHook;
 
     bool hookFlag;
 
@@ -79,13 +82,20 @@ public class HeldClimbingToolItem : HeldItem
     {
         if (!HookRaycast(leftHookRayPoint, out RaycastHit hit))
             return;
+        if (playerStamina.Stat < 1)
+            return;
+        if (Time.time < lastLeftHook + 0.3f)
+            return;
 
         if (leftHooked)
             return;
 
         leftHooked = true;
+        lastLeftHook = Time.time;
 
         HookFunctions();
+
+        GlobalAudioPlayer.Instance.PlayClip(digSfx, leftHook.transform);
 
         if (leftHookFollowPoint)
         {
@@ -106,13 +116,20 @@ public class HeldClimbingToolItem : HeldItem
     {
         if (!HookRaycast(rightHookRayPoint, out RaycastHit hit))
             return;
+        if (playerStamina.Stat < 1)
+            return;
+        if (Time.time < lastRightHook + 0.3f)
+            return;
 
         if (rightHooked)
             return;
 
         rightHooked = true;
+        lastRightHook = Time.time;
 
         HookFunctions();
+
+        GlobalAudioPlayer.Instance.PlayClip(digSfx, rightHook.transform);
 
         if (rightHookFollowPoint)
         {

@@ -78,3 +78,16 @@ MonoBehaviour:
     maxPitch: 1
     minDistance: 1
     maxDistance: 500
+  - accessor: HookDig
+    clips:
+    - {fileID: 8300000, guid: ccd9bef32d4121c4ebd859eb380b2576, type: 3}
+    - {fileID: 8300000, guid: e5b33896205ef9643a12b3330ce198e6, type: 3}
+    - {fileID: 8300000, guid: 89ccda3629d044747bef9d3445cd0828, type: 3}
+    - {fileID: 8300000, guid: 09efc7fb6da1b104f8779c405578c64c, type: 3}
+    - {fileID: 8300000, guid: 062ff7a4a93ae6b41a08c38250890635, type: 3}
+    - {fileID: 8300000, guid: 478a19456322f9047a6121a942d8d04b, type: 3}
+    volume: 0.2
+    minPitch: 0.95
+    maxPitch: 1
+    minDistance: 1
+    maxDistance: 500
