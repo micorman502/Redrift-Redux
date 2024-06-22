@@ -84,7 +84,7 @@ public class HeldClimbingToolItem : HeldItem
             return;
         if (playerStamina.Stat < 1)
             return;
-        if (Time.time < lastLeftHook + 0.3f)
+        if (Time.time < lastLeftHook + 0.7f)
             return;
 
         if (leftHooked)
@@ -118,7 +118,7 @@ public class HeldClimbingToolItem : HeldItem
             return;
         if (playerStamina.Stat < 1)
             return;
-        if (Time.time < lastRightHook + 0.3f)
+        if (Time.time < lastRightHook + 0.7f)
             return;
 
         if (rightHooked)
@@ -237,7 +237,7 @@ public class HeldClimbingToolItem : HeldItem
         bool raycastSuccess = Physics.Raycast(position, rayPoint.forward, out hit, climbingTool.range, ~LayerMask.GetMask("Player", "Ignore Raycast"), QueryTriggerInteraction.Ignore);
 
         float surfaceDot = Vector3.Dot(Vector3.up, hit.normal);
-        bool verticalCheck = surfaceDot > -0.8f && surfaceDot < 0.6f;
+        bool verticalCheck = surfaceDot > -0.9f && surfaceDot < 0.6f;
 
         return raycastSuccess && verticalCheck;
     }
