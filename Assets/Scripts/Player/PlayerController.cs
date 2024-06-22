@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System.Linq;
-using UnityEngine.PostProcessing;
 using EZCameraShake;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+using UnityEngine.PostProcessing;
 
 public class PlayerController : MonoBehaviour
 {
@@ -31,7 +31,6 @@ public class PlayerController : MonoBehaviour
     float verticalLookRotation;
 
     [HideInInspector] public PlayerInventory inventory;
-    AudioManager audioManager;
     PauseManager pauseManager;
 
     float distanceToTarget; // Accesible from other GameObjects to see if they are in range of interaction and such //bruh
@@ -51,7 +50,6 @@ public class PlayerController : MonoBehaviour
     void Awake ()
     {
         GameObject scriptHolder = GameObject.FindGameObjectWithTag("ScriptHolder");
-        audioManager = scriptHolder.GetComponent<AudioManager>();
         pauseManager = scriptHolder.GetComponent<PauseManager>();
         rb = GetComponent<Rigidbody>();
 

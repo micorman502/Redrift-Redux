@@ -111,7 +111,7 @@ public class PlayerBuilding : MonoBehaviour
 
         Instantiate(currentBuilding.placedObject, preview.transform.position, preview.transform.rotation);
 
-        AudioManager.Instance.Play("Build");
+        GlobalAudioPlayer.Instance.PlayClip("Build");
     }
 
     bool BuildingValid ()

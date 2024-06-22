@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0adc2be5a4e91cf49b7d3619cb3d9e8a, type: 3}
+  m_Name: AudioRegister
+  m_EditorClassIdentifier: 
+  clips:
+  - accessor: UIClick
+    clips:
+    - {fileID: 8300000, guid: ed8310229135e4c45bc28ff5bfec81d7, type: 3}
+    volume: 0.1
+    minPitch: 0.7
+    maxPitch: 0.75
+    minDistance: 1
+    maxDistance: 500
+  - accessor: UIHover
+    clips:
+    - {fileID: 8300000, guid: d2c2abdcaa91dbf4eb9f571e8b83c5dd, type: 3}
+    volume: 1
+    minPitch: 0.25
+    maxPitch: 0.8
+    minDistance: 0.9
+    maxDistance: 500
+  - accessor: Pickup
+    clips:
+    - {fileID: 8300000, guid: 3652bc55bc2bc7c4585eac1d9209ced5, type: 3}
+    volume: 0.9
+    minPitch: 0.9
+    maxPitch: 0.9
+    minDistance: 1
+    maxDistance: 500
+  - accessor: ThunderBig
+    clips:
+    - {fileID: 8300000, guid: ee5022e77b3b20d49a807f1ba56ef881, type: 3}
+    volume: 1
+    minPitch: 0.45
+    maxPitch: 0.55
+    minDistance: 1
+    maxDistance: 500
+  - accessor: ThunderSmall
+    clips:
+    - {fileID: 8300000, guid: 08343eabd4fba154fb9382f3105cc5b2, type: 3}
+    volume: 1
+    minPitch: 0.45
+    maxPitch: 0.55
+    minDistance: 1
+    maxDistance: 500
+  - accessor: Build
+    clips:
+    - {fileID: 8300000, guid: 722da35efe7f9874b9cc672c8cab39d7, type: 3}
+    volume: 1
+    minPitch: 0.9
+    maxPitch: 1
+    minDistance: 1
+    maxDistance: 500

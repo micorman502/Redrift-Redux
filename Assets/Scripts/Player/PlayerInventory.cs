@@ -26,7 +26,6 @@ public class PlayerInventory : MonoBehaviour
     public WorldItem currentSelectedItem;
 
     SaveManager saveManager;
-    AudioManager audioManager;
     [SerializeField] GameObject placementParticleSystem;
 
     int mode;
@@ -55,7 +54,6 @@ public class PlayerInventory : MonoBehaviour
             }
         }
 
-        audioManager = FindObjectOfType<AudioManager>();
         saveManager = FindObjectOfType<SaveManager>();
 
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();

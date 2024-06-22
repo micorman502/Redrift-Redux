@@ -115,7 +115,7 @@ public class PlayerPickup : MonoBehaviour
         {
             if (Time.time > lastPickup + 0.05f)
             {
-                AudioManager.Instance.Play("Pickup");
+                GlobalAudioPlayer.Instance.PlayClip("Pickup");
             }
 
             currentPickupCombo++;

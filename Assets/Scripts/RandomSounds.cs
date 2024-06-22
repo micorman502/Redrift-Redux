@@ -22,7 +22,7 @@ public class RandomSounds : MonoBehaviour
             {
                 if (Random.Range(0f, 1f) < _chance)
                 {
-                    AudioManager.Instance.Play(sounds[i]);
+                    GlobalAudioPlayer.Instance.PlayClip(sounds[i]);
                 }
                 if (playOneOnly)
                 {

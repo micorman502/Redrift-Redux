@@ -18,12 +18,12 @@ public class HoverableUI : MonoBehaviour
 
         if (state)
         {
-            AudioManager.Instance.Play(hoverSfxName);
+            GlobalAudioPlayer.Instance.PlayClip(hoverSfxName);
         }
     }
 
     public void OnClick ()
     {
-        AudioManager.Instance.Play(clickSfxName);
+        GlobalAudioPlayer.Instance.PlayClip(clickSfxName);
     }
 }

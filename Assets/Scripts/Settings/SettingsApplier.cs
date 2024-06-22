@@ -62,7 +62,7 @@ public class SettingsApplier : MonoBehaviour
 
     void UpdateVolume (float value)
     {
-        AudioManager.Instance.UpdateVolume(value);
+        AudioListener.volume = value;
     }
 
     void UpdateMouseSensitivityValue (float value)

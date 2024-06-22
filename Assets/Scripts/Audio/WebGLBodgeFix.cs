@@ -12,7 +12,7 @@ public class WebGLBodgeFix : MonoBehaviour
         if (counter <= 0)
             return;
 
-        AudioManager.Instance.Play(audioClip);
+        GlobalAudioPlayer.Instance.PlayClip(audioClip);
         counter--;
     }
 }
