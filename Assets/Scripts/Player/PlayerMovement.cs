@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     Vector3 moveAmount;
     Vector3 smoothMoveVelocity;
 
-    float flyDoubleTapCooldown;
+    float lastSpacebarPress;
 
     //Movement States
     bool climbing;
@@ -52,39 +52,25 @@ public class PlayerMovement : MonoBehaviour
     {
         moveDir = new Vector3(Input.GetAxisRaw("Sideways"), Input.GetAxisRaw("Vertical"), Input.GetAxisRaw("Forward")).normalized;
 
-        bool sprintValid = Input.GetButton("Sprint") && stamina.ChangeStat(-runStaminaUse * Time.deltaTime);
+        bool sprintValid = Input.GetButton("Sprint") && SprintStaminaCheck();
 
         currentMoveSpeed = sprintValid ? runSpeed : walkSpeed;
         currentMoveSpeed *= totalSpeedMultiplier;
 
         if (Input.GetButtonDown("Jump"))
         {
-            if (PersistentData.Instance.mode == 1)
+            if (PersistentData.Instance.mode == 1 && Time.time < lastSpacebarPress + 0.375f)
             {
-                if (flyDoubleTapCooldown > 0f)
-                {
-                    if (flying)
-                    {
-                        flying = false;
-                    }
-                    else
-                    {
-                        flying = true;
-                    }
-                }
-                else
-                {
-                    flyDoubleTapCooldown = 0.375f;
-                }
+                flying = !flying;
             }
+
             if (grounded && !flying)
             {
                 rb.AddForce(transform.up * jumpForce, ForceMode.VelocityChange);
             }
+
+            lastSpacebarPress = Time.time;
         }
-
-        flyDoubleTapCooldown -= Time.deltaTime;
-
     }
 
     void OnTriggerExit (Collider other)
@@ -164,5 +150,13 @@ public class PlayerMovement : MonoBehaviour
     public void RemoveSpeedMult (float speedMult)
     {
         totalSpeedMultiplier /= speedMult;
+    }
+
+    bool SprintStaminaCheck ()
+    {
+        if (PersistentData.Instance.mode == 1)
+            return true;
+
+        return stamina.ChangeStat(-runStaminaUse * Time.deltaTime);
     }
 }
