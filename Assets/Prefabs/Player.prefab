@@ -221,8 +221,8 @@ ParticleSystem:
         m_RotationOrder: 4
     startColor:
       serializedVersion: 2
-      minMaxState: 0
-      minColor: {r: 1, g: 1, b: 1, a: 1}
+      minMaxState: 2
+      minColor: {r: 0.8301887, g: 0.7553921, b: 0.68529725, a: 0.8156863}
       maxColor: {r: 1, g: 1, b: 1, a: 0.378}
       maxGradient:
         serializedVersion: 2
@@ -669,7 +669,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 100, y: 50, z: 100}
+    m_Scale: {x: 50, y: 25, z: 50}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -867,7 +867,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 500
+      scalar: 100
       minScalar: 10
       maxCurve:
         serializedVersion: 2

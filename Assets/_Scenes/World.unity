@@ -33819,7 +33819,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputField: {fileID: 893797170}
-  outputText: {fileID: 0}
+  outputText: {fileID: 2074669079}
 --- !u!114 &1222375209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33887,7 +33887,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1222375207}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
