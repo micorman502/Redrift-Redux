@@ -26,6 +26,9 @@ public class UIVitalsManager : MonoBehaviour
         playerStamina.OnStatChanged += OnStaminaChanged;
         playerStamina.OnMaxStatChanged += OnMaxStaminaChanged;
 
+        OnStaminaChanged(playerStamina.Stat);
+        OnMaxStaminaChanged(playerStamina.MaxStat);
+
         if (PersistentData.Instance.mode == 1)
         {
             SetupCreativeMode();
