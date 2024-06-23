@@ -138,6 +138,8 @@ public class HeldGrappleItem : HeldItem
 
         grappleHeadVisual.transform.position = grappleRestPoint.position;
         grappleHeadVisual.transform.up = -itemGameObject.transform.forward; // Dirty line. Ew ew ew. Not really much i can do while using .blend files, though
+
+        grapplePullSFX.Stop();
     }
 
     void SetGrapplePos (Vector3 grapplePos, Transform grappleParent = null)
@@ -189,7 +191,7 @@ public class HeldGrappleItem : HeldItem
 
     RaycastHit GrappleRaycast ()
     {
-        Physics.Raycast(grappleRestPoint.position, grappleRestPoint.forward, out RaycastHit hit, grappleInfo.range, ~LayerMask.GetMask("Ignore Raycast", "Item"));
+        Physics.Raycast(grappleRestPoint.position, grappleRestPoint.forward, out RaycastHit hit, grappleInfo.range, ~LayerMask.GetMask("Ignore Raycast", "Item"), QueryTriggerInteraction.Ignore);
         return hit;
 
     }
