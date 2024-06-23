@@ -18,9 +18,6 @@ public class UIVitalsManager : MonoBehaviour
 
     private void Start ()
     {
-        PlayerVitals.OnHealthChanged += OnHealthChanged;
-        PlayerVitals.OnMaxHealthChanged += OnMaxHealthChanged;
-
         playerStamina = Player.GetPlayerObject().GetComponentInChildren<PlayerStamina>();
 
         playerStamina.OnStatChanged += OnStaminaChanged;
@@ -35,11 +32,20 @@ public class UIVitalsManager : MonoBehaviour
         }
     }
 
-    private void OnDestroy ()
+    private void OnEnable ()
+    {
+        PlayerVitals.OnHealthChanged += OnHealthChanged;
+        PlayerVitals.OnMaxHealthChanged += OnMaxHealthChanged;
+    }
+
+    private void OnDisable ()
     {
         PlayerVitals.OnHealthChanged -= OnHealthChanged;
         PlayerVitals.OnMaxHealthChanged -= OnMaxHealthChanged;
+    }
 
+    private void OnDestroy ()
+    {
         if (!playerStamina)
             return;
 
