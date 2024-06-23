@@ -29,6 +29,10 @@ public class ConsoleUI : MonoBehaviour
         {
             ParseGiveCommand(commandStrings, true);
         }
+        if (commandStrings[0] == "spawn")
+        {
+            ParseSpawnCommand(commandStrings);
+        }
 
         if (commandStrings[0] == "help")
         {
@@ -41,13 +45,49 @@ public class ConsoleUI : MonoBehaviour
         outputText.text = "Syntax: [] is a required parameter, <> is an optional parameter.\n";
         outputText.text += "give [name / ID] <amount>: Puts the requested item and amount into your inventory, using the item's internal name.\n";
         outputText.text += "giveEx [itemName / ID] <amount>: Puts the requested item and amount into your inventory, using the item's in-game name.\n";
+        outputText.text += "spawn [name / ID] <position x y z>: Spawns any object from the Object Register, either in front of the player, or at a specified point.\n";
+    }
+
+    void ParseSpawnCommand (string[] commandStrings)
+    {
+        if (commandStrings.Length != 2 && commandStrings.Length != 5)
+        {
+            outputText.text = "Incorrect amount of arguments for spawn command: " + commandStrings.Length;
+            return;
+        }
+
+        GameObject spawningObject = ParseSpawnObject(commandStrings[1]);
+        Vector3 position = Vector3.zero;
+
+        if (commandStrings.Length == 2)
+        {
+            Transform playerTransform = Player.GetPlayerObject().transform;
+
+            if (Physics.Raycast(playerTransform.position, playerTransform.forward, out RaycastHit hit, 5f))
+            {
+                position = hit.point;
+            }
+            else
+            {
+                position = playerTransform.position + playerTransform.forward * 5f;
+            }
+        }
+
+        if (commandStrings.Length == 5)
+        {
+            position = ParseVector3(commandStrings[2], commandStrings[3], commandStrings[4]);
+        }
+
+        Instantiate(spawningObject, position, Quaternion.identity);
+
+        outputText.text = $"Successfully spawned object {spawningObject.name}";
     }
 
     void ParseGiveCommand (string[] commandStrings, bool parseExternalName = false)
     {
         if (commandStrings.Length < 2 || commandStrings.Length > 3)
         {
-            Debug.LogWarning("Incorrect amount of arguments for give command: " + commandStrings.Length);
+            outputText.text = "Incorrect amount of arguments for give command: " + commandStrings.Length;
             return;
         }
 
@@ -59,6 +99,21 @@ public class ConsoleUI : MonoBehaviour
         inventory.AddItem(item, amount);
 
         outputText.text = $"Added {amount} of Item {item.name}";
+    }
+
+    Vector3 ParseVector3 (string x, string y, string z)
+    {
+        return new Vector3(float.Parse(x), float.Parse(y), float.Parse(z));
+    }
+
+    GameObject ParseSpawnObject (string rawSpawnText)
+    {
+        if (int.TryParse(rawSpawnText, out int id))
+        {
+            return ObjectDatabase.GetObject(id);
+        }
+
+        return ObjectDatabase.GetObject(rawSpawnText);
     }
 
     ItemInfo ParseItem (string rawItemText, bool parseExternalName = false)
@@ -73,9 +128,14 @@ public class ConsoleUI : MonoBehaviour
             return ItemDatabase.GetItemByInternalName(rawItemText);
         }
 
-        string itemText = rawItemText.Replace('_', ' ');
+        string itemText = ParseConjoinedString(rawItemText);
 
         return ItemDatabase.GetItemByExternalName(itemText);
+    }
+
+    string ParseConjoinedString (string input)
+    {
+        return input.Replace('_', ' ');
     }
 
 #endif
