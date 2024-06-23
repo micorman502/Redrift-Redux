@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68edbd8dd8609e945b3b7d8376f1b2e6, type: 3}
+  m_Name: Credits
+  m_EditorClassIdentifier: 
+  credits:
+  - creditName: '"Distance"'
+    creditLink: Oakley Blade
+  - creditName: Radio Insert
+    creditLink: https://freesound.org/people/PanZen/sounds/216766/
+  - creditName: Radio Static
+    creditLink: https://freesound.org/people/flacfile/sounds/596531/
+  - creditName: Grapple Launch
+    creditLink: https://freesound.org/people/pengo_au/sounds/90143/
+  - creditName: Grapple Ratchet
+    creditLink: https://freesound.org/people/joedeshon/sounds/78524/
+  - creditName: Grapple Ratchet Stop
+    creditLink: https://freesound.org/people/Artninja/sounds/700874/
+  - creditName: Void Bubble
+    creditLink: https://freesound.org/people/martats/sounds/127830/
+  - creditName: Tree Leaf Rustle
+    creditLink: https://freesound.org/people/j1987/sounds/106130/
+  - creditName: Stone Crumble
+    creditLink: https://freesound.org/people/NeoSpica/sounds/512243/
+  joiner: ' | '
