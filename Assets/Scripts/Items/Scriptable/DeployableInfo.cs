@@ -6,6 +6,9 @@ using UnityEngine;
 public class DeployableInfo : ItemInfo
 {
     public GameObject deployedObject;
-    public Vector3 deployPlacementOffset;
+    public Vector3 basePlacementOffset;
+    public float normalPlacementOffset;
+    public bool placeableGround = true;
     public bool placeableMidAir;
+    public bool placeableWater;
 }
