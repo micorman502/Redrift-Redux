@@ -38,7 +38,12 @@ public class SerpentSegments : MonoBehaviour
         {
             positions[index] = Vector3.Lerp(currentSegmentPos, previousSegmentPos, correctionRate * Time.fixedDeltaTime);
         }
+        if (currentSegmentPos.y > VoidOcean.startThreshold)
+        {
+            positions[index] += Physics.gravity * Time.fixedDeltaTime;
+        }
 
         segments[index].transform.position = positions[index];
+        segments[index].transform.forward = previousSegmentPos - currentSegmentPos;
     }
 }
