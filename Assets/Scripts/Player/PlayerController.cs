@@ -111,7 +111,7 @@ public class PlayerController : MonoBehaviour
             if (!hit.transform)
                 return;
 
-            Interact(hit.transform.gameObject);
+            Interact(hit.collider.gameObject);
             return;
         }
         if (!Input.GetButton("Interact"))
@@ -125,7 +125,7 @@ public class PlayerController : MonoBehaviour
         if (!hit.transform)
             return;
 
-        Interact(hit.transform.gameObject);
+        Interact(hit.collider.gameObject);
     }
 
     void Interact (GameObject interactTarget)

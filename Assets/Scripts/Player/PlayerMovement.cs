@@ -6,7 +6,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.PostProcessing;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IGameplayInputHandler
 {
     const float baseDrag = 0.5f;
 
@@ -46,18 +46,20 @@ public class PlayerMovement : MonoBehaviour
     void Start ()
     {
         LookLocker.MouseLocked = true;
+
+        GameplayInputProvider.Instance.AddOverrideHandler(this, true);
     }
 
-    void Update ()
+    public void TakeMovementInput (Vector3 axes, bool sprint, bool jump)
     {
-        moveDir = new Vector3(Input.GetAxisRaw("Sideways"), Input.GetAxisRaw("Vertical"), Input.GetAxisRaw("Forward")).normalized;
+        moveDir = axes.normalized;
 
-        bool sprintValid = Input.GetButton("Sprint") && SprintStaminaCheck();
+        bool sprintValid = sprint && SprintStaminaCheck();
 
         currentMoveSpeed = sprintValid ? runSpeed : walkSpeed;
         currentMoveSpeed *= totalSpeedMultiplier;
 
-        if (Input.GetButtonDown("Jump"))
+        if (jump)
         {
             if (PersistentData.Instance.mode == 1 && Time.time < lastSpacebarPress + 0.375f)
             {
