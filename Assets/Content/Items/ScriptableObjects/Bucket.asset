@@ -23,5 +23,8 @@ MonoBehaviour:
     type: 3}
   deployedObject: {fileID: 1866602517762588, guid: 8ab3016be8d000144b2d098465c24525,
     type: 3}
-  deployPlacementOffset: {x: 0, y: 0, z: 0}
+  basePlacementOffset: {x: 0, y: 0, z: 0}
+  normalPlacementOffset: 0.5
+  placeableGround: 1
   placeableMidAir: 1
+  placeableWater: 1
