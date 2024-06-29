@@ -409,8 +409,16 @@ MonoBehaviour:
   - prefab: {fileID: 7670924805820201462, guid: 830a6dadf5d72db40a3fc7f0a0d0538f,
       type: 3}
     nameIdentifier: droppedItemVoidSkipper
-    id: 107
+    id: 108
   - prefab: {fileID: 1097824622441538239, guid: 2b828d9876484624f8cc137b5072fbd0,
       type: 3}
     nameIdentifier: worldItemVoidSkipper
-    id: 107
+    id: 109
+  - prefab: {fileID: 8778242256653018640, guid: b22f85c14c5c95344ab350d0ae571643,
+      type: 3}
+    nameIdentifier: droppedItemZincOre
+    id: 109
+  - prefab: {fileID: 3151301594286888142, guid: 5c70fe7c429c16e4383caeacf2387005,
+      type: 3}
+    nameIdentifier: droppedItemZincIngot
+    id: 109

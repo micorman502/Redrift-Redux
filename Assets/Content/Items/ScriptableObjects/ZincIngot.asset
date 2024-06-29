@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfd659c09d6007a4d92c91f3e04b9b81, type: 3}
+  m_Name: ZincIngot
+  m_EditorClassIdentifier: 
+  itemName: Zinc Ingot
+  itemDescription: Ideal for void-protective anodes
+  stackSize: 100
+  stackPrefix: x
+  id: 0
+  achievementId: -1
+  icon: {fileID: 21300000, guid: e067e3e2b9411c14eb3d7166dbc6d834, type: 3}
+  droppedPrefab: {fileID: 3151301594286888142, guid: 5c70fe7c429c16e4383caeacf2387005,
+    type: 3}
