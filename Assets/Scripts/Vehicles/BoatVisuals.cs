@@ -45,6 +45,6 @@ public class BoatVisuals : MonoBehaviour
 
     private void FixedUpdate ()
     {
-        waterWheel.localEulerAngles += new Vector3(gear * Time.fixedDeltaTime * 25f, 0, 0);
+        waterWheel.Rotate(new Vector3(gear * Time.fixedDeltaTime * 25f, 0, 0), Space.Self);
     }
 }
