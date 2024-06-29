@@ -10,8 +10,8 @@ public class BoatVisuals : MonoBehaviour
     [SerializeField] TMP_Text gearText;
     [SerializeField] Transform steeringWheel;
     [SerializeField] Transform waterWheel;
+    [SerializeField] Transform rudder;
 
-    float waterWheelRotation;
     float angle;
     int gear;
 
@@ -34,7 +34,7 @@ public class BoatVisuals : MonoBehaviour
         angle = _angle;
 
         steeringWheel.localEulerAngles = new Vector3(0, 0, -angle * 4f);
-        waterWheel.localEulerAngles = new Vector3(waterWheelRotation, -angle, 0);
+        rudder.localEulerAngles = new Vector3(0, -angle, 0);
     }
 
     void OnGearSwitch (int _gear)
@@ -45,9 +45,6 @@ public class BoatVisuals : MonoBehaviour
 
     private void FixedUpdate ()
     {
-        waterWheelRotation += gear * Time.fixedDeltaTime * 25f;
-        Mathf.Repeat(waterWheelRotation, 360f);
-
-        waterWheel.localEulerAngles = new Vector3(waterWheelRotation, -angle, 0);
+        waterWheel.localEulerAngles += new Vector3(gear * Time.fixedDeltaTime * 25f, 0, 0);
     }
 }
