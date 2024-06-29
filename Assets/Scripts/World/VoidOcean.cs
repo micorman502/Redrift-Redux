@@ -5,11 +5,10 @@ using UnityEngine;
 public class VoidOcean : MonoBehaviour
 {
     public const float startThreshold = -99.85f;
+    [SerializeField] string statusEffectName = "voidSiphon";
     [SerializeField] float dragMin;
-    [SerializeField] float damageMin;
     [SerializeField] float yEnd;
     [SerializeField] float dragMax;
-    [SerializeField] float damageMax;
     [SerializeField] float upForce;
     float dragDiff;
 
@@ -31,18 +30,12 @@ public class VoidOcean : MonoBehaviour
         if (other.gameObject.layer != LayerMask.NameToLayer("Player"))
             return;
 
-        other.gameObject.GetComponent<IDamageable>().RemoveHealth(CalculateDamage(other.transform.position) * Time.fixedDeltaTime);
+        other.gameObject.GetComponentInChildren<IStatusEffects>().ApplyStatusEffect(StatusEffectDatabase.GetStatusEffect(statusEffectName), 2f);
     }
 
     void ApplyUpForce (Rigidbody rigidbody)
     {
         rigidbody.AddForce(Vector3.up * upForce, ForceMode.Acceleration);
-    }
-
-    float CalculateDamage (Vector3 bodyPos)
-    {
-        float distance = Mathf.Abs(bodyPos.y - startThreshold);
-        return Mathf.Lerp(damageMin, damageMax, distance / dragDiff);
     }
 
     float CalculateDrag (Vector3 bodyPos)

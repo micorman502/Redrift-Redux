@@ -28,6 +28,6 @@ public class StatusEffectDamage : StatusEffectBase
 
     protected virtual void Tick (float timeCoeff)
     {
-        playerVitals.RemoveHealth(-timeCoeff * stackSize * statusEffect.effectIntensity);
+        playerVitals.RemoveHealth(timeCoeff * stackSize * statusEffect.effectIntensity);
     }
 }
