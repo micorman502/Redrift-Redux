@@ -7,6 +7,7 @@ public class ResourceSpawner : MonoBehaviour
     [SerializeField] float checkRate;
     int curTick;
     [SerializeField] Transform spawnTarget;
+    [SerializeField] GameObject spawnMaskObject; // If this exists, then any raycast that does not hit this object will be ignored.
     [SerializeField] Vector3 bounds;
     [SerializeField] QueryTriggerInteraction triggerInteraction = QueryTriggerInteraction.Ignore;
     [SerializeField] ResourceSpawn[] spawns;
@@ -85,7 +86,7 @@ public class ResourceSpawner : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(checkPos, checkDir, out hit, 500f, Physics.DefaultRaycastLayers, triggerInteraction))
             {
-                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("World"))
+                if (HitValid(hit))
                 {
                     SpawnResource(spawn.spawnPrefab, hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal));
 
@@ -100,6 +101,16 @@ public class ResourceSpawner : MonoBehaviour
         GameObject obj = Instantiate(resource, position, rotation);
         HiveMind.Instance.AddResource(obj.GetComponent<ResourceHandler>());
         obj.transform.Rotate(Vector3.up * Random.Range(0f, 360f));
+    }
+
+    bool HitValid (RaycastHit hit)
+    {
+        if (hit.collider.gameObject.layer != LayerMask.NameToLayer("World"))
+            return false;
+        if (spawnMaskObject && hit.collider.gameObject != spawnMaskObject)
+            return false;
+
+        return true;
     }
 }
 
