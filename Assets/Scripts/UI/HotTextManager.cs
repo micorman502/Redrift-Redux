@@ -149,7 +149,7 @@ public class HotTextInfo
 {
     public string text;
     public KeyCode key = KeyCode.None;
-    public enum Priority { UseItem, AltUseItem, Build, Rotate, Pickup, Interact, Open };
+    public enum Priority { UseItem, AltUseItem, Build, Rotate, Pickup, Interact, Jump, Open };
     public Priority priority;
     public string id;
     public bool blocked; //If the usual input for this hotkey is "blocked" and will not work (for example, while trying to deploy an autominer mid-air)

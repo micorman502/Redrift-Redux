@@ -5,15 +5,14 @@ using UnityEngine;
 
 public class BoatControls : MonoBehaviour, IInteractable, IHotText, IGameplayInputHandler
 {
-    public event Action<bool> OnIgnition;
     public event Action<int> OnGearSwitch;
     public event Action<float> OnAngleChange;
 
     bool controlsActive;
-    bool ignitionActive;
     [SerializeField] Rigidbody rb;
     [SerializeField] Transform forceApplicationPoint;
     [SerializeField] float baseForce = 100f;
+    [SerializeField] float baseReverseMult = 0.6f;
     [SerializeField] float baseTurnSpeed = 22.5f;
     [SerializeField] int maxForwardGear = 2;
     [SerializeField] int maxReverseGear = 1;
@@ -46,6 +45,8 @@ public class BoatControls : MonoBehaviour, IInteractable, IHotText, IGameplayInp
         controlsActive = true;
 
         GameplayInputProvider.Instance.AddOverrideHandler(this);
+
+        HotTextManager.Instance.AddHotText(new HotTextInfo("Emergency Dismount", KeyCode.Space, HotTextInfo.Priority.Jump, "boatDismount"));
     }
 
     void Deactivate ()
@@ -56,14 +57,13 @@ public class BoatControls : MonoBehaviour, IInteractable, IHotText, IGameplayInp
         controlsActive = false;
 
         GameplayInputProvider.Instance.RemoveOverrideHandler(this);
+
+        HotTextManager.Instance.RemoveHotText("boatDismount");
     }
 
     void FixedUpdate ()
     {
         if (!controlsActive)
-            return;
-
-        if (!ignitionActive)
             return;
 
         ManageMovement();
@@ -90,7 +90,7 @@ public class BoatControls : MonoBehaviour, IInteractable, IHotText, IGameplayInp
 
         if (jump)
         {
-            ToggleIgnition();
+            EmergencyDismount();
         }
 
         SwitchGear(gearInput);
@@ -145,11 +145,9 @@ public class BoatControls : MonoBehaviour, IInteractable, IHotText, IGameplayInp
         OnAngleChange?.Invoke(currentAngle);
     }
 
-    void ToggleIgnition ()
+    void EmergencyDismount ()
     {
-        ignitionActive = !ignitionActive;
-
-        OnIgnition?.Invoke(ignitionActive);
+        Deactivate();
     }
 
     float GetForce (int gear)
@@ -161,7 +159,7 @@ public class BoatControls : MonoBehaviour, IInteractable, IHotText, IGameplayInp
 
         if (gear < 0)
         {
-            return baseForce * gear * 0.5f;
+            return baseForce * gear * baseReverseMult;
         }
 
         return 0f;
@@ -169,12 +167,12 @@ public class BoatControls : MonoBehaviour, IInteractable, IHotText, IGameplayInp
 
     public void ShowHotText ()
     {
-        HotTextManager.Instance.AddHotText(new HotTextInfo(controlsActive ? "Deactivate" : "Activate", KeyCode.F, HotTextInfo.Priority.Interact, "boatControls"));
+        HotTextManager.Instance.AddHotText(new HotTextInfo(controlsActive ? "Dismount" : "Pilot", KeyCode.F, HotTextInfo.Priority.Interact, "boatControls"));
     }
 
     public void UpdateHotText ()
     {
-        HotTextManager.Instance.UpdateHotText(new HotTextInfo(controlsActive ? "Deactivate" : "Activate", KeyCode.F, HotTextInfo.Priority.Interact, "boatControls"));
+        HotTextManager.Instance.UpdateHotText(new HotTextInfo(controlsActive ? "Dismount" : "Pilot", KeyCode.F, HotTextInfo.Priority.Interact, "boatControls"));
     }
 
     public void HideHotText ()
