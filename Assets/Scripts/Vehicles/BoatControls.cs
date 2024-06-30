@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class BoatControls : MonoBehaviour, IInteractable, IHotText, IGameplayInputHandler
 {
+    public event Action<bool> OnToggleActivation;
     public event Action<int> OnGearSwitch;
     public event Action<float> OnAngleChange;
 
@@ -44,6 +45,8 @@ public class BoatControls : MonoBehaviour, IInteractable, IHotText, IGameplayInp
 
         controlsActive = true;
 
+        OnToggleActivation?.Invoke(true);
+
         GameplayInputProvider.Instance.AddOverrideHandler(this);
 
         HotTextManager.Instance.AddHotText(new HotTextInfo("Emergency Dismount", KeyCode.Space, HotTextInfo.Priority.Jump, "boatDismount"));
@@ -55,6 +58,8 @@ public class BoatControls : MonoBehaviour, IInteractable, IHotText, IGameplayInp
             return;
 
         controlsActive = false;
+
+        OnToggleActivation?.Invoke(false);
 
         GameplayInputProvider.Instance.RemoveOverrideHandler(this);
 
@@ -163,6 +168,28 @@ public class BoatControls : MonoBehaviour, IInteractable, IHotText, IGameplayInp
         }
 
         return 0f;
+    }
+
+    public bool Active ()
+    {
+        return controlsActive;
+    }
+
+    public float EngineEffort ()
+    {
+        if (!controlsActive)
+            return 0f;
+
+        if (currentGear < 0)
+        {
+            return (-currentGear / (float)maxReverseGear) * baseReverseMult;
+        }
+        if (currentGear > 0)
+        {
+            return currentGear / (float)maxForwardGear;
+        }
+
+        return 0;
     }
 
     public void ShowHotText ()
