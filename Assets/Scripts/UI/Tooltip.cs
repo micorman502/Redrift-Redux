@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class Tooltip : MonoBehaviour
 {
@@ -29,7 +29,7 @@ public class Tooltip : MonoBehaviour
             return;
         }
 
-        SetTooltip(item.itemName, item.itemDescription);
+        SetTooltip(item.itemName, item.GetDescription());
     }
 
     public void SetTooltip (string tooltipName, string tooltipDesc)

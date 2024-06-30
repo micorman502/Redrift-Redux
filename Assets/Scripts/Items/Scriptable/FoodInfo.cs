@@ -11,6 +11,6 @@ public class FoodInfo : ItemInfo
 
     public override string GetDescription ()
     {
-        return base.GetDescription() + "\n" + instantHealing + " Calories";
+        return base.GetDescription() + "\n" + (instantHealing + healingOverTime) + " Healing";
     }
 }
