@@ -33,6 +33,10 @@ public class ConsoleUI : MonoBehaviour
         {
             ParseSpawnCommand(commandStrings);
         }
+        if (commandStrings[0] == "applyEffect")
+        {
+            ParseStatusEffectCommand(commandStrings);
+        }
 
         if (commandStrings[0] == "help")
         {
@@ -46,6 +50,29 @@ public class ConsoleUI : MonoBehaviour
         outputText.text += "give [name / ID] <amount>: Puts the requested item and amount into your inventory, using the item's internal name.\n";
         outputText.text += "giveEx [itemName / ID] <amount>: Puts the requested item and amount into your inventory, using the item's in-game name.\n";
         outputText.text += "spawn [name / ID] <position x y z>: Spawns any object from the Object Register, either in front of the player, or at a specified point.\n";
+        outputText.text += "applyEffect [name / ID] [duration] <stackSize>: Applies a given status effect to the player.";
+    }
+
+    void ParseStatusEffectCommand (string[] commandStrings)
+    {
+        if (commandStrings.Length != 3 && commandStrings.Length != 4)
+        {
+            outputText.text = "Incorrect amount of arguments for applyEffect command: " + commandStrings.Length;
+            return;
+        }
+
+        StatusEffect effect = ParseStatusEffect(commandStrings[1]);
+        float duration = float.Parse(commandStrings[2]);
+        int stackSize = 1;
+
+        if (commandStrings.Length > 3)
+        {
+            stackSize = int.Parse(commandStrings[3]);
+        }
+
+        Player.GetPlayerObject().GetComponentInChildren<StatusEffectApplier>().ApplyStatusEffect(effect, duration, stackSize);
+
+        outputText.text = $"Successfully applied status effect {effect.accessor}";
     }
 
     void ParseSpawnCommand (string[] commandStrings)
@@ -104,6 +131,16 @@ public class ConsoleUI : MonoBehaviour
     Vector3 ParseVector3 (string x, string y, string z)
     {
         return new Vector3(float.Parse(x), float.Parse(y), float.Parse(z));
+    }
+
+    StatusEffect ParseStatusEffect (string rawStatusEffectText)
+    {
+        if (int.TryParse(rawStatusEffectText, out int id))
+        {
+            return StatusEffectDatabase.GetStatusEffect(id);
+        }
+
+        return StatusEffectDatabase.GetStatusEffect(rawStatusEffectText);
     }
 
     GameObject ParseSpawnObject (string rawSpawnText)
