@@ -425,4 +425,8 @@ MonoBehaviour:
   - prefab: {fileID: 7864931812281840159, guid: b58cf6d147b8bfe40b20d89950b0b8d1,
       type: 3}
     nameIdentifier: resourceZincOre
-    id: 111
+    id: 112
+  - prefab: {fileID: 7681220070399247193, guid: 5e328b1c30eaecb47aee83aefebfd903,
+      type: 3}
+    nameIdentifier: droppedSacrificialAnode
+    id: 112
