@@ -109,7 +109,7 @@ public class PlayerMovement : MonoBehaviour, IGameplayInputHandler
 
     void FixedUpdate ()
     {
-        Collider[] waterCols = Physics.OverlapCapsule(transform.position - Vector3.up * 0.5f, transform.position + Vector3.up * 0.5f, 0.5f, LayerMask.GetMask("Water"));
+        Collider[] waterCols = Physics.OverlapCapsule(transform.position - Vector3.up * 0.4f, transform.position + Vector3.up * 0.4f, 0.5f, LayerMask.GetMask("Water"));
         Collider[] ladderCols = Physics.OverlapCapsule(transform.position - Vector3.up * 0.5f, transform.position + Vector3.up * 0.5f, 0.5f, LayerMask.GetMask("Ladder"));
         Collider[] groundCols = Physics.OverlapSphere(groundCheckReference.transform.position, groundCheckReference.radius, ~LayerMask.GetMask("Ignore Raycast", "Player", "PlayerGroundCheck"), QueryTriggerInteraction.Ignore);
 
