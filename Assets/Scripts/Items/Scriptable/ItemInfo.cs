@@ -6,7 +6,7 @@ using UnityEngine;
 public class ItemInfo : ScriptableObject
 {
     public string itemName;
-    public string itemDescription;
+    [TextArea(2, 5)] public string itemDescription;
     public int stackSize = 100;
     public string stackPrefix = "x";
     public int id;
@@ -14,8 +14,24 @@ public class ItemInfo : ScriptableObject
     public Sprite icon;
     public GameObject droppedPrefab;
 
-    public virtual string GetDescription ()
+    public virtual void CompileDescription ()
     {
-        return itemDescription;
+
+    }
+
+    protected void AssignDescriptionStat (float stat, string statKey)
+    {
+        AssignDescriptionStat(stat.ToString(), statKey);
+    }
+
+    protected void AssignDescriptionStat (int stat, string statKey)
+    {
+        AssignDescriptionStat(stat.ToString(), statKey);
+    }
+
+    protected void AssignDescriptionStat (string stat, string statKey)
+    {
+        statKey = "{" + statKey + "}";
+        itemDescription = itemDescription.Replace(statKey, stat);
     }
 }

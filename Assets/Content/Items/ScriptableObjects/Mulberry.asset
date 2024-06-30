@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mulberry
   m_EditorClassIdentifier: 
   itemName: Mulberry
-  itemDescription: 
+  itemDescription: +{healing} HP
   stackSize: 100
   stackPrefix: x
   id: 50

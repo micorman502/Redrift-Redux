@@ -9,8 +9,9 @@ public class FoodInfo : ItemInfo
     public float instantStamina;
     public float healingOverTime;
 
-    public override string GetDescription ()
+    public override void CompileDescription ()
     {
-        return base.GetDescription() + "\n" + (instantHealing + healingOverTime) + " Healing";
+        AssignDescriptionStat(instantHealing + healingOverTime, "healing");
+        AssignDescriptionStat(instantStamina, "stamina");
     }
 }

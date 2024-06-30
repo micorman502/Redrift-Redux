@@ -29,7 +29,7 @@ public class Tooltip : MonoBehaviour
             return;
         }
 
-        SetTooltip(item.itemName, item.GetDescription());
+        SetTooltip(item.itemName, item.itemDescription);
     }
 
     public void SetTooltip (string tooltipName, string tooltipDesc)

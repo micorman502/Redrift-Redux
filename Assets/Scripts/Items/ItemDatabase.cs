@@ -21,7 +21,7 @@ public class ItemDatabase : MonoBehaviour
 
         Register = register;
 
-        IDItems();
+        CompileItems();
 
         if (itemDebugMode)
         {
@@ -29,11 +29,12 @@ public class ItemDatabase : MonoBehaviour
         }
     }
 
-    static void IDItems ()
+    static void CompileItems ()
     {
         for (int i = 0; i < Register.items.Length; i++)
         {
             Register.items[i].id = i;
+            Register.items[i].CompileDescription();
         }
     }
 

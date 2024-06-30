@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: GrappleCopper
   m_EditorClassIdentifier: 
   itemName: Copper Grapple
-  itemDescription: 
+  itemDescription: '{range}m Range
+
+    {staminaUse} Stamina / Second, {cooldown}s
+    Cooldown'
   stackSize: 1
   stackPrefix: x
   id: 49

@@ -11,8 +11,14 @@ public class GrappleInfo : ItemInfo
     public float staminaUse;
     public float cooldown;
 
-    public override string GetDescription ()
+    public override void CompileDescription ()
     {
-        return base.GetDescription() + range + "m Range, " + cooldown + "s Cooldown";
+        base.CompileDescription();
+
+        AssignDescriptionStat(range, "range");
+        AssignDescriptionStat(travelSpeed, "travelSpeed");
+        AssignDescriptionStat(pullForce, "pullForce");
+        AssignDescriptionStat(staminaUse, "staminaUse");
+        AssignDescriptionStat(cooldown, "cooldown");
     }
 }
