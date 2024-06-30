@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Crate
   m_EditorClassIdentifier: 
   itemName: Crate
+  editableDescription: Contains some random items
   itemDescription: Contains some random items
   stackSize: 10
   stackPrefix: x

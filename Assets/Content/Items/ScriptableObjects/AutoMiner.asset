@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: AutoMiner
   m_EditorClassIdentifier: 
   itemName: Auto Miner
+  editableDescription: Slow, automatic resource gatherer
   itemDescription: Slow, automatic resource gatherer
   stackSize: 5
   stackPrefix: x
@@ -23,4 +24,8 @@ MonoBehaviour:
     type: 3}
   deployedObject: {fileID: 1213660547245230, guid: 58fdb143a57a7cd4d870067f71fcfe3e,
     type: 3}
-  deployPlacementOffset: {x: 0, y: 0, z: 0}
+  basePlacementOffset: {x: 0, y: 0, z: 0}
+  normalPlacementOffset: 0
+  placeableGround: 1
+  placeableMidAir: 0
+  placeableWater: 0

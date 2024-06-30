@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Bucket
   m_EditorClassIdentifier: 
   itemName: Bucket
+  editableDescription: Can be deployed and filled with things
   itemDescription: Can be deployed and filled with things
   stackSize: 20
   stackPrefix: x

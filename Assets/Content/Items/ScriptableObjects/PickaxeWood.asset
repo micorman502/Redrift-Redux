@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: PickaxeWood
   m_EditorClassIdentifier: 
   itemName: Wood Pickaxe
+  editableDescription: Good for mining, but slow
   itemDescription: Good for mining, but slow
   stackSize: 1
   stackPrefix: x

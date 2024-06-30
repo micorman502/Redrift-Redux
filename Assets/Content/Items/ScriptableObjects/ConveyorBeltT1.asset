@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: ConveyorBeltT1
   m_EditorClassIdentifier: 
   itemName: Conveyor Belt T1
+  editableDescription: Moves items around, very slow
   itemDescription: Moves items around, very slow
   stackSize: 20
   stackPrefix: x

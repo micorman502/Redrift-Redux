@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: AutoSorter
   m_EditorClassIdentifier: 
   itemName: Auto Sorter
+  editableDescription: Moves items through by checking what type they are
   itemDescription: Moves items through by checking what type they are
   stackSize: 20
   stackPrefix: x
@@ -22,6 +23,8 @@ MonoBehaviour:
   droppedPrefab: {fileID: 9202971784911267102, guid: 3eb363f9f2281014bba3a049569a9cbd,
     type: 3}
   gridSize: 0.5
+  approximateRadius: 0.25
+  upwardsOffset: {x: 0, y: 0, z: 0}
   possibleRotations:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 90, z: 0}

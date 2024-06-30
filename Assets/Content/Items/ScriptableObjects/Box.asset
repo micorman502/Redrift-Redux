@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Box
   m_EditorClassIdentifier: 
   itemName: Box
+  editableDescription: Ideal building foundation.
   itemDescription: Ideal building foundation.
   stackSize: 20
   stackPrefix: x

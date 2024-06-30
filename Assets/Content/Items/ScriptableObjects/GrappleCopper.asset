@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: GrappleCopper
   m_EditorClassIdentifier: 
   itemName: Copper Grapple
+  editableDescription: '{range}m Range
+
+    {staminaUse} Stamina / Second, {cooldown}s
+    Cooldown'
   itemDescription: '{range}m Range
 
     {staminaUse} Stamina / Second, {cooldown}s

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: ConveyorMerger
   m_EditorClassIdentifier: 
   itemName: Conveyor Merger
+  editableDescription: Merges items from 2 inputs to 1 output.
   itemDescription: Merges items from 2 inputs to 1 output.
   stackSize: 20
   stackPrefix: x

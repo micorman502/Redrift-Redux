@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: ClimbingPickStone
   m_EditorClassIdentifier: 
   itemName: Stone Climbing Pick
+  editableDescription: Great for getting around the underside of an island
   itemDescription: Great for getting around the underside of an island
   stackSize: 1
   stackPrefix: x

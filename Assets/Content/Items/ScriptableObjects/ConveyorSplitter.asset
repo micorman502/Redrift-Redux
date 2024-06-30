@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: ConveyorSplitter
   m_EditorClassIdentifier: 
   itemName: Conveyor Splitter
+  editableDescription: Splits items from 1 input to 2 outputs.
   itemDescription: Splits items from 1 input to 2 outputs.
   stackSize: 20
   stackPrefix: x

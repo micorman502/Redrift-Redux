@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Furnace
   m_EditorClassIdentifier: 
   itemName: Furnace
+  editableDescription: Smelts manually added raw materials. 3 wood per smelt.
   itemDescription: Smelts manually added raw materials. 3 wood per smelt.
   stackSize: 5
   stackPrefix: x

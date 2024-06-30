@@ -11,6 +11,8 @@ public class FoodInfo : ItemInfo
 
     public override void CompileDescription ()
     {
+        base.CompileDescription();
+
         AssignDescriptionStat(instantHealing + healingOverTime, "healing");
         AssignDescriptionStat(instantStamina, "stamina");
     }

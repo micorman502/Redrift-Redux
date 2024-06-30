@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Apple
   m_EditorClassIdentifier: 
   itemName: Apple
+  editableDescription: +{healing} HP
   itemDescription: +{healing} HP
   stackSize: 100
   stackPrefix: x

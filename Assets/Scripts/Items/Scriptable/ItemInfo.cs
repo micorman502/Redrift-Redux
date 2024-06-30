@@ -6,7 +6,8 @@ using UnityEngine;
 public class ItemInfo : ScriptableObject
 {
     public string itemName;
-    [TextArea(2, 5)] public string itemDescription;
+    [TextArea(2, 5)] public string editableDescription;
+    [HideInInspector] public string itemDescription;
     public int stackSize = 100;
     public string stackPrefix = "x";
     public int id;
@@ -16,7 +17,7 @@ public class ItemInfo : ScriptableObject
 
     public virtual void CompileDescription ()
     {
-
+        itemDescription = editableDescription;
     }
 
     protected void AssignDescriptionStat (float stat, string statKey)

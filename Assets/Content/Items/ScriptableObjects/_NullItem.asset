@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: _NullItem
   m_EditorClassIdentifier: 
   itemName: '[null]'
+  editableDescription: This description should not be visible anywhere.
   itemDescription: This description should not be visible anywhere.
   stackSize: 1
   stackPrefix: x

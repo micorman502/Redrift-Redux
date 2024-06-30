@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Ice
   m_EditorClassIdentifier: 
   itemName: Ice
+  editableDescription: Extremely slippery
   itemDescription: Extremely slippery
   stackSize: 20
   stackPrefix: x
@@ -22,6 +23,7 @@ MonoBehaviour:
   droppedPrefab: {fileID: 918782272692802242, guid: 6251f00713884b64ab18faaeab5d938d,
     type: 3}
   gridSize: 0.5
+  approximateRadius: 0.25
   upwardsOffset: {x: 0, y: 0.1, z: 0}
   possibleRotations:
   - {x: 0, y: 0, z: 0}

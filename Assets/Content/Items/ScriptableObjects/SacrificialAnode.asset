@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: SacrificialAnode
   m_EditorClassIdentifier: 
   itemName: Sacrificial Anode
+  editableDescription: Protects structures from void corrosion.
   itemDescription: Protects structures from void corrosion.
   stackSize: 20
   stackPrefix: x

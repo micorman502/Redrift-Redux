@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: ScoopT1
   m_EditorClassIdentifier: 
   itemName: Scoop T1
+  editableDescription: Moves items up, very slow
   itemDescription: Moves items up, very slow
   stackSize: 20
   stackPrefix: x

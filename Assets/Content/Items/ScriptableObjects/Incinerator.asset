@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Incinerator
   m_EditorClassIdentifier: 
   itemName: Incinerator
+  editableDescription: Burns items into nothing
   itemDescription: Burns items into nothing
   stackSize: 5
   stackPrefix: x
@@ -22,6 +23,8 @@ MonoBehaviour:
   droppedPrefab: {fileID: 6968594888250614657, guid: 6187396cbadb2fc46bd0e0100ccae503,
     type: 3}
   gridSize: 0.5
+  approximateRadius: 0.25
+  upwardsOffset: {x: 0, y: 0, z: 0}
   possibleRotations:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 90, z: 0}
