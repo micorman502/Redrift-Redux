@@ -33,6 +33,14 @@ public class VoidOcean : MonoBehaviour
         other.gameObject.GetComponentInChildren<IStatusEffects>().ApplyStatusEffect(StatusEffectDatabase.GetStatusEffect(statusEffectName), 2f);
     }
 
+    private void OnTriggerEnter (Collider other)
+    {
+        if (other.gameObject.layer != LayerMask.NameToLayer("Player"))
+            return;
+
+        other.gameObject.GetComponentInChildren<IStatusEffects>().ApplyStatusEffect(StatusEffectDatabase.GetStatusEffect(statusEffectName), 2f);
+    }
+
     void ApplyUpForce (Rigidbody rigidbody)
     {
         rigidbody.AddForce(Vector3.up * upForce, ForceMode.Acceleration);
