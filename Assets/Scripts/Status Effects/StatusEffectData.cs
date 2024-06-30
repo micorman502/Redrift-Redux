@@ -17,7 +17,8 @@ public class StatusEffect
     public bool buff;
     public bool immutable;
     public bool stackable;
-    public int maxStack;
+    public bool allowDurationStacking;
+    public ushort maxStack;
     public float effectIntensity;
-    public int id;
+    public ushort id;
 }

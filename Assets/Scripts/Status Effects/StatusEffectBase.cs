@@ -7,17 +7,17 @@ public class StatusEffectBase : MonoBehaviour
     protected StatusEffect statusEffect;
     protected float duration; //set -1 or below for infinite duration
     protected GameObject targetObject;
-    protected int stackSize;
+    protected ushort stackSize;
     protected float timeApplied;
     protected bool active;
 
-    public void Initialise (StatusEffect statusEffect, float duration, GameObject targetObject)
+    public void Initialise (StatusEffect statusEffect, float duration, GameObject targetObject, ushort stacks = 1)
     {
         this.statusEffect = statusEffect;
         this.duration = duration;
         this.targetObject = targetObject;
         timeApplied = Time.time;
-        stackSize = 1;
+        stackSize = stacks;
         active = true;
 
         OnInitialise();
@@ -28,17 +28,29 @@ public class StatusEffectBase : MonoBehaviour
 
     }
 
-    public virtual void AddStack ()
+    public void AddStack (int stackIncrement = 1)
     {
-        if (stackSize >= statusEffect.maxStack)
-            return;
-
-        stackSize++;
+        SetStack(stackSize + stackIncrement);
     }
 
-    public virtual void RemoveStack ()
+    public void RemoveStack (int stackDecrement = 1)
     {
-        stackSize--;
+        SetStack(stackSize - stackDecrement);
+    }
+
+    public virtual void SetStack (int stackSize)
+    {
+        SetStack((ushort)stackSize);
+    }
+
+    public virtual void SetStack (ushort stack)
+    {
+        stackSize = stack;
+
+        if (stackSize >= statusEffect.maxStack)
+        {
+            stackSize = statusEffect.maxStack;
+        }
     }
     /// <summary>
     /// Set timeApplied to Time.time, resetting the cooldown before this status effect is destroyed.
@@ -58,9 +70,14 @@ public class StatusEffectBase : MonoBehaviour
         duration = newDuration;
     }
 
-    public float GetDuration ()
+    public float GetMaxDuration ()
     {
         return duration;
+    }
+
+    public float GetCurrentDuration ()
+    {
+        return (timeApplied + duration) - Time.time;
     }
 
     public float GetTimeApplied ()
@@ -68,7 +85,7 @@ public class StatusEffectBase : MonoBehaviour
         return timeApplied;
     }
 
-    public int GetStackSize ()
+    public ushort GetStackSize ()
     {
         return stackSize;
     }
@@ -76,5 +93,18 @@ public class StatusEffectBase : MonoBehaviour
     public virtual void Deactivate ()
     {
         active = false;
+    }
+
+    public void GetSaveData (out uint idAndStack, out float duration)
+    {
+        duration = this.duration;
+
+        idAndStack = SaveManager.UShortsToUInt(statusEffect.id, stackSize);
+    }
+
+    public void InitialiseViaSaveData (uint idAndStack, float duration, GameObject targetObject)
+    {
+        SaveManager.UIntToUshorts(idAndStack, out ushort savedId, out ushort savedStackSize);
+        Initialise(StatusEffectDatabase.GetStatusEffect(savedId), duration, targetObject, savedStackSize);
     }
 }

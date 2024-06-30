@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StatusEffectDamage : StatusEffectTicking
+public class StatusEffectHealing : StatusEffectTicking
 {
     PlayerVitals playerVitals;
 
@@ -13,6 +13,6 @@ public class StatusEffectDamage : StatusEffectTicking
 
     protected override void Tick (float timeCoeff)
     {
-        playerVitals.RemoveHealth(timeCoeff * stackSize * statusEffect.effectIntensity);
+        playerVitals.AddHealth(timeCoeff * stackSize * statusEffect.effectIntensity);
     }
 }

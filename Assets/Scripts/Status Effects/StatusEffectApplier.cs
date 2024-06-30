@@ -27,7 +27,7 @@ public class StatusEffectApplier : MonoBehaviour, IStatusEffects //a note for fu
     {
         for (int i = statusEffects.Count - 1; i >= 0; i--)
         {
-            if (Time.time > statusEffects[i].GetTimeApplied() + statusEffects[i].GetDuration() && statusEffects[i].GetDuration() > -1)
+            if (Time.time > statusEffects[i].GetTimeApplied() + statusEffects[i].GetMaxDuration() && statusEffects[i].GetMaxDuration() > -1)
             {
                 RemoveStatusEffect(statusEffects[i].GetStatusEffect(), true);
             }
@@ -35,7 +35,7 @@ public class StatusEffectApplier : MonoBehaviour, IStatusEffects //a note for fu
     }
 
     #region Apply Status Effects
-    public void ApplyStatusEffect (StatusEffect statusEffect, float duration)
+    public void ApplyStatusEffect (StatusEffect statusEffect, float duration, int stack = 1)
     {
         bool duplicateFound = false;
 
@@ -45,40 +45,44 @@ public class StatusEffectApplier : MonoBehaviour, IStatusEffects //a note for fu
             if (currentStatusEffect.id == statusEffect.id)
             {
                 duplicateFound = true;
-                StackStatusEffect(statusEffects[i], currentStatusEffect, duration);
+                StackStatusEffect(statusEffects[i], currentStatusEffect, duration, stack);
                 break;
             }
         }
 
         if (!duplicateFound)
         {
-            AddStatusEffect(statusEffect, duration);
+            AddStatusEffect(statusEffect, duration, stack);
         }
     }
 
-    void AddStatusEffect (StatusEffect statusEffect, float duration)
+    void AddStatusEffect (StatusEffect statusEffect, float duration, int stack = 1)
     {
         GameObject newStatusEffectObject = Instantiate(statusEffect.statusEffectObject, target.transform);
         StatusEffectBase newStatusEffect = newStatusEffectObject.GetComponent<StatusEffectBase>();
-        newStatusEffect.Initialise(statusEffect, duration, target);
+        newStatusEffect.Initialise(statusEffect, duration, target, (ushort)stack);
         statusEffects.Add(newStatusEffect);
 
         OnStatusEffectAdded?.Invoke(statusEffect, duration);
     }
 
-    void StackStatusEffect (StatusEffectBase statusEffect, StatusEffect data, float duration)
+    void StackStatusEffect (StatusEffectBase statusEffect, StatusEffect data, float duration, int stack = 1)
     {
         if (data.stackable)
         {
-            statusEffect.AddStack();
+            statusEffect.AddStack(stack);
         }
-        else if (statusEffect.GetDuration() < duration)
+        else if (statusEffect.GetStatusEffect().allowDurationStacking)
+        {
+            statusEffect.SetDuration(statusEffect.GetCurrentDuration() + duration);
+        }
+        else if (statusEffect.GetMaxDuration() < duration)
         {
             statusEffect.SetDuration(duration);
         }
         statusEffect.Refresh();
 
-        OnStatusEffectUpdated?.Invoke(data, statusEffect.GetDuration(), statusEffect.GetStackSize());
+        OnStatusEffectUpdated?.Invoke(data, statusEffect.GetMaxDuration(), statusEffect.GetStackSize());
     }
     #endregion
 
@@ -101,7 +105,7 @@ public class StatusEffectApplier : MonoBehaviour, IStatusEffects //a note for fu
                 {
                     statusEffects[i].RemoveStack();
 
-                    OnStatusEffectUpdated?.Invoke(statusEffect, statusEffects[i].GetDuration(), statusEffects[i].GetStackSize());
+                    OnStatusEffectUpdated?.Invoke(statusEffect, statusEffects[i].GetMaxDuration(), statusEffects[i].GetStackSize());
                 }
             }
         }

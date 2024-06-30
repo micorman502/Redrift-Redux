@@ -193,11 +193,18 @@ public class SaveManager : MonoBehaviour
                     inventory.inventory.SetSlot(new WorldItem(item, save.inventoryItems[i].amount), i);
                 }
 
-
                 player.transform.position = save.playerTransform.position;
                 player.transform.rotation = save.playerTransform.rotation;
                 player.SetVitals(save.playerHealth, save.playerHunger);
                 player.GetComponentInChildren<PlayerStamina>().Stat = save.playerStamina;
+
+                StatusEffectApplier seApplier = player.GetComponentInChildren<StatusEffectApplier>();
+
+                for (int i = 0; i < save.SEIdsAndStacks.Count; i++)
+                {
+                    UIntToUshorts(save.SEIdsAndStacks[i], out ushort id, out ushort stack);
+                    seApplier.ApplyStatusEffect(StatusEffectDatabase.GetStatusEffect(id), save.SEDurations[i], stack);
+                }
 
                 if (save.playerDead)
                 {
@@ -292,6 +299,14 @@ public class SaveManager : MonoBehaviour
         save.playerHealth = health;
         save.playerStamina = player.GetComponentInChildren<PlayerStamina>().Stat;
 
+        List<StatusEffectBase> statusEffects = player.GetComponentInChildren<StatusEffectApplier>().statusEffects;
+
+        for (int i = 0; i < statusEffects.Count; i++)
+        {
+            save.SEIdsAndStacks.Add(UShortsToUInt(statusEffects[i].GetStatusEffect().id, statusEffects[i].GetStackSize()));
+            save.SEDurations.Add(statusEffects[i].GetCurrentDuration());
+        }
+
         save.saveTime = DateTime.Now;
 
         save.saveAgeSeconds = saveAgeCounter;
@@ -380,6 +395,21 @@ public class SaveManager : MonoBehaviour
         {
             return Application.persistentDataPath + "/saves/" + saveName + ".save";
         }
+    }
+
+    public static uint UShortsToUInt (ushort one, ushort two)
+    {
+        uint output = one;
+        output = output << 16;
+        output += two;
+
+        return output;
+    }
+
+    public static void UIntToUshorts (uint input, out ushort one, out ushort two)
+    {
+        one = (ushort)(input >> 16);
+        two = (ushort)input;
     }
 }
 

@@ -19,7 +19,7 @@ public class StatusEffectDatabase : MonoBehaviour
 
         statusEffectData = targetStatusEffectData;
 
-        for (int i = 0; i < statusEffectData.statusEffects.Length; i++)
+        for (ushort i = 0; i < statusEffectData.statusEffects.Length; i++)
         {
             statusEffectData.statusEffects[i].id = i;
         }
@@ -27,7 +27,7 @@ public class StatusEffectDatabase : MonoBehaviour
 
     public static StatusEffect GetStatusEffect (string name)
     {
-        for (int i = 0; i < statusEffectData.statusEffects.Length; i++)
+        for (ushort i = 0; i < statusEffectData.statusEffects.Length; i++)
         {
             if (statusEffectData.statusEffects[i].accessor == name)
             {
@@ -46,5 +46,10 @@ public class StatusEffectDatabase : MonoBehaviour
             return new StatusEffect();
         }
         return statusEffectData.statusEffects[id];
+    }
+
+    public static StatusEffect GetStatusEffect (ushort id)
+    {
+        return GetStatusEffect((int)id);
     }
 }

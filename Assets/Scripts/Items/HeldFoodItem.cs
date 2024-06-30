@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class HeldFoodItem : HeldItem
 {
+    const string healingSEName = "foodHeal";
+    const float healingPerSecond = 5f;
     [SerializeField] PlayerInventory inventory;
     [SerializeField] PlayerVitals vitals;
+    [SerializeField] PlayerStamina stamina;
+    [SerializeField] StatusEffectApplier statusEffectApplier;
     FoodInfo food;
 
     private void Awake ()
@@ -31,12 +35,15 @@ public class HeldFoodItem : HeldItem
 
         vitals.GetVitals(out float maxHealth, out float health);
 
-        if (health >= maxHealth)
+        if (health >= maxHealth && stamina.AtMax())
             return;
 
-        if (inventory.inventory.RemoveItem(item) > 0)
-        {
-            vitals.AddHealth(food.calories);
-        }
+        if (inventory.inventory.RemoveItem(item) <= 0)
+            return;
+
+        vitals.AddHealth(food.instantHealing);
+        stamina.Stat += food.instantStamina;
+
+        statusEffectApplier.ApplyStatusEffect(StatusEffectDatabase.GetStatusEffect(healingSEName), food.healingOverTime / healingPerSecond);
     }
 }

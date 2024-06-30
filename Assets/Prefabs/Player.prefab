@@ -25561,6 +25561,8 @@ MonoBehaviour:
   itemGameObject: {fileID: 6671749660753550113}
   inventory: {fileID: 114380057707737522}
   vitals: {fileID: 2606645611693725356}
+  stamina: {fileID: 4130160281514754000}
+  statusEffectApplier: {fileID: 8819177988426280714}
 --- !u!1 &1268462874647331696
 GameObject:
   m_ObjectHideFlags: 0
@@ -25795,6 +25797,8 @@ MonoBehaviour:
   itemGameObject: {fileID: 1001782267939828422}
   inventory: {fileID: 114380057707737522}
   vitals: {fileID: 2606645611693725356}
+  stamina: {fileID: 4130160281514754000}
+  statusEffectApplier: {fileID: 8819177988426280714}
 --- !u!1 &1399425092000491615
 GameObject:
   m_ObjectHideFlags: 0

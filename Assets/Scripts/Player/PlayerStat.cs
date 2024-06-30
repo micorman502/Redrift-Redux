@@ -117,4 +117,14 @@ public class PlayerStat : MonoBehaviour
 
         OnMaxStatChanged?.Invoke(maxStat);
     }
+
+    public bool AtMax ()
+    {
+        return MaxStat == Stat;
+    }
+
+    public bool AtZero ()
+    {
+        return Stat <= 0;
+    }
 }

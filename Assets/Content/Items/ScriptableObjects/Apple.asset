@@ -21,4 +21,6 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: a515e3a33e1c7fc44b017b3e69b2972b, type: 3}
   droppedPrefab: {fileID: 4851200420900205713, guid: f15ef36d3c808be4a97ff5b26bad727a,
     type: 3}
-  calories: 16
+  instantHealing: 0
+  instantStamina: 10
+  healingOverTime: 16

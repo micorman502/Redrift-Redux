@@ -11,6 +11,9 @@ public class Save
     public float playerHunger;
     public float playerStamina;
 
+    public List<uint> SEIdsAndStacks = new List<uint>();
+    public List<float> SEDurations = new List<float>();
+
     public List<ObjectSaveData> savedObjects = new List<ObjectSaveData>();
     public List<ItemSaveData> savedObjectsInfo = new List<ItemSaveData>();
 
