@@ -5,9 +5,12 @@ using UnityEngine;
 
 public class SerpentAI : MonoBehaviour
 {
-    public enum SerpentState { Idle, Breach, Chase, Charge }
+    public enum SerpentState { Patrol, Breach, Chase, Charge }
     [SerializeField] Rigidbody rb;
     [SerializeField] GameObject headObject;
+    [Header("Logic Stats")]
+    [SerializeField] float patrolPointDistance = 40f;
+    [Header("Speed Stats")]
     [SerializeField] float idleSpeed;
     [SerializeField] float breachSpeed;
     [SerializeField] float chaseSpeed;
@@ -22,6 +25,11 @@ public class SerpentAI : MonoBehaviour
         moveTarget = headObject.transform.position + headObject.transform.forward;
     }
 
+    void Update ()
+    {
+        Debug.DrawLine(headObject.transform.position, moveTarget, Color.yellow, Time.deltaTime);
+    }
+
     private void FixedUpdate ()
     {
         ManageState();
@@ -32,7 +40,7 @@ public class SerpentAI : MonoBehaviour
 
     void ManageState ()
     {
-        if (currentState == SerpentState.Idle)
+        if (currentState == SerpentState.Patrol)
         {
             if (Time.time > lastStateSwitch + 20f)
             {
@@ -47,7 +55,7 @@ public class SerpentAI : MonoBehaviour
         {
             if (headObject.transform.position.y > VoidOcean.startThreshold + 0.4f)
             {
-                currentState = SerpentState.Idle;
+                currentState = SerpentState.Patrol;
                 lastStateSwitch = Time.time;
                 moveTarget = headObject.transform.position + Vector3.down * 3f;
                 return;
@@ -57,19 +65,9 @@ public class SerpentAI : MonoBehaviour
 
     void HandleState ()
     {
-        if (currentState == SerpentState.Idle)
+        if (currentState == SerpentState.Patrol)
         {
-            Vector3 moveIncrement = new Vector3(GetPerlin(0.2f, 0.15f), GetPerlin(-0.1f, 0.15f), GetPerlin(0.08f, -0.12f));
-            moveIncrement *= Time.fixedDeltaTime;
-            moveTarget += moveIncrement;
-
-            if (moveTarget.y > VoidOcean.startThreshold - 1f)
-            {
-                moveTarget += new Vector3(0, -1, 0) * Time.fixedDeltaTime;
-            }
-
-            // Correction force
-            moveTarget -= Vector3.ClampMagnitude(headObject.transform.position / 250f, 1) * Time.fixedDeltaTime;
+            PatrolLogic();
         }
         if (currentState == SerpentState.Breach)
         {
@@ -81,17 +79,27 @@ public class SerpentAI : MonoBehaviour
         }
     }
 
+    void PatrolLogic ()
+    {
+        if (Vector3.Distance(transform.position, moveTarget) > 2f)
+            return;
+
+        moveTarget = GetPatrolPosition();
+    }
+
     void HandleMovement ()
     {
         float currentSpeed = GetSpeed();
-        Vector3 moveVector = Vector3.ClampMagnitude(moveTarget - headObject.transform.position, 1);
+        Vector3 moveVector = Vector3.ClampMagnitude(moveTarget - transform.position, 1);
 
         rb.AddForce(moveVector * currentSpeed);
+
+        headObject.transform.LookAt(moveTarget);
     }
 
     float GetSpeed ()
     {
-        if (currentState == SerpentState.Idle)
+        if (currentState == SerpentState.Patrol)
         {
             return idleSpeed;
         }
@@ -110,5 +118,26 @@ public class SerpentAI : MonoBehaviour
     float GetPerlin (float xMult, float yMult)
     {
         return (Mathf.PerlinNoise(Time.time * xMult, Time.time * yMult) * 2) - 1;
+    }
+
+    Vector3 GetPatrolPosition ()
+    {
+        for (int t = 0; t < 10; t++)
+        {
+            Vector3 nextPos = moveTarget + Random.insideUnitSphere * patrolPointDistance;
+            nextPos -= Vector3.ClampMagnitude(transform.position / 40f, 100);
+
+            if (nextPos.y > VoidOcean.startThreshold - 2f)
+            {
+                nextPos.y = VoidOcean.startThreshold - 2f;
+            }
+
+            if (Physics.Linecast(transform.position, nextPos, ~Physics.IgnoreRaycastLayer, QueryTriggerInteraction.Ignore))
+                continue;
+
+            return nextPos;
+        }
+
+        return moveTarget;
     }
 }
