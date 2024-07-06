@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7348114575488647721}
   - component: {fileID: 7212699111847610489}
   - component: {fileID: 7222765662704970699}
-  - component: {fileID: 7294930483177175399}
   - component: {fileID: 7254799926307382101}
   - component: {fileID: 5824757114314133239}
   - component: {fileID: 7142277241384957661}
@@ -33,6 +32,7 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -49,8 +49,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handler: {fileID: 7142277241384957661}
-  tooltip: 
   item: {fileID: 11400000, guid: 4d66aab45fd39aa46bd3f9e06c5e33f7, type: 2}
   saveID: droppedItemFurnace
   dontSave: 0
@@ -105,25 +103,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!95 &7294930483177175399
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7236087398120845593}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: f445ff25429d8114e991ed87d305abb9, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!54 &7254799926307382101
 Rigidbody:
   m_ObjectHideFlags: 0

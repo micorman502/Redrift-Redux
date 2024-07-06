@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4884356975078090}
   - component: {fileID: 114166672158962306}
-  - component: {fileID: 95435628683722432}
   - component: {fileID: 208973992265646454}
   m_Layer: 0
   m_Name: IronOreResource
@@ -57,26 +56,6 @@ MonoBehaviour:
   destroyFX: {fileID: 804671207453080489, guid: ec5ba0a8276b410428000815161d8a30,
     type: 3}
   optionalVisual: {fileID: 0}
---- !u!95 &95435628683722432
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1078551866452224}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 4567bda37433bba489520ffe125b5907, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!208 &208973992265646454
 NavMeshObstacle:
   m_ObjectHideFlags: 0

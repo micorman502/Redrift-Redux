@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8860075800647491245}
   - component: {fileID: 8868809333451527421}
   - component: {fileID: 8876765990081591119}
-  - component: {fileID: 8804603409485161955}
   - component: {fileID: 8908905807080013777}
   - component: {fileID: 5753701489509945971}
   - component: {fileID: 4450324325552892268}
@@ -104,26 +103,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!95 &8804603409485161955
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8892163534873669021}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: f445ff25429d8114e991ed87d305abb9, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!54 &8908905807080013777
 Rigidbody:
   m_ObjectHideFlags: 0

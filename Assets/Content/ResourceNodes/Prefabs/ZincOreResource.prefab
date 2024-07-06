@@ -83,7 +83,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7867040601640518815}
   - component: {fileID: 7834922413273911353}
-  - component: {fileID: 7813901759029183415}
   - component: {fileID: 8054137530994035791}
   m_Layer: 0
   m_Name: ZincOreResource
@@ -130,26 +129,6 @@ MonoBehaviour:
   destroyFX: {fileID: 804671207453080489, guid: ec5ba0a8276b410428000815161d8a30,
     type: 3}
   optionalVisual: {fileID: 0}
---- !u!95 &7813901759029183415
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7864931812281840159}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: deee8774bb3f24e44aa1aa3b27d9d31b, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!208 &8054137530994035791
 NavMeshObstacle:
   m_ObjectHideFlags: 0

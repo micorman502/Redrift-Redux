@@ -72,7 +72,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4955888148002246}
   - component: {fileID: 114641196230700224}
-  - component: {fileID: 95944399804229726}
   - component: {fileID: 208198223858636464}
   m_Layer: 0
   m_Name: Tree
@@ -137,26 +136,6 @@ MonoBehaviour:
   appleSpawnChance: 0.15
   apples: []
   spawnApples: 1
---- !u!95 &95944399804229726
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1523322516565944}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 825ed51f2396b49488628a2f58e077d7, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!208 &208198223858636464
 NavMeshObstacle:
   m_ObjectHideFlags: 0

@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1056030376981624754}
   - component: {fileID: 1100504473223223256}
   - component: {fileID: 1108810232463444054}
-  - component: {fileID: 1036196984681066900}
   - component: {fileID: 1148756312050628778}
   - component: {fileID: 1055790976285801280}
   - component: {fileID: 1142166309940714340}
@@ -34,6 +33,7 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -50,8 +50,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handler: {fileID: 5542212119873756163}
-  tooltip: Copper Ingot
   item: {fileID: 11400000, guid: a7599c2897a389b4fa0a907ae43f3f7d, type: 2}
   saveID: droppedItemCopperIngot
   dontSave: 0
@@ -105,25 +103,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!95 &1036196984681066900
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1096139323235685430}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 4860ab1312f094c429cf8df1249b3feb, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!54 &1148756312050628778
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -152,7 +131,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2e72a90bed473448ac52159a6a83f59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  root: {fileID: 0}
 --- !u!65 &1142166309940714340
 BoxCollider:
   m_ObjectHideFlags: 0

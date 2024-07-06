@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4052099140959204}
   - component: {fileID: 114857794658627394}
-  - component: {fileID: 95627421998644428}
   - component: {fileID: 208636228461228852}
   m_Layer: 0
   m_Name: CopperOreResource
@@ -57,26 +56,6 @@ MonoBehaviour:
   destroyFX: {fileID: 804671207453080489, guid: ec5ba0a8276b410428000815161d8a30,
     type: 3}
   optionalVisual: {fileID: 0}
---- !u!95 &95627421998644428
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1947450143509860}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: deee8774bb3f24e44aa1aa3b27d9d31b, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!208 &208636228461228852
 NavMeshObstacle:
   m_ObjectHideFlags: 0

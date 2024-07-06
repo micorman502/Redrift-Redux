@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2287965623392764594}
   - component: {fileID: 2171302709360148972}
   - component: {fileID: 2163430972451132532}
-  - component: {fileID: 2235601805639533486}
   - component: {fileID: 2203602320184997326}
   - component: {fileID: 2288278683519650372}
   - component: {fileID: 2284986896249017396}
@@ -34,6 +33,7 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -50,8 +50,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handler: {fileID: 7518948747166319538}
-  tooltip: Stone
   item: {fileID: 11400000, guid: 1e10d0584bbe2ee47ba56f3c6f0b6737, type: 2}
   saveID: droppedItemStone
   dontSave: 0
@@ -105,25 +103,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!95 &2235601805639533486
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2184662666090656704}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 064cb87287017f448a7c4e952072442e, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!54 &2203602320184997326
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -152,7 +131,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2e72a90bed473448ac52159a6a83f59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  root: {fileID: 0}
 --- !u!135 &2284986896249017396
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -28,6 +28,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8719612846998300956}
   m_RootOrder: 2
@@ -112,6 +113,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.175, y: 0, z: -0.175}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8719612846998300956}
   m_RootOrder: 1
@@ -196,6 +198,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.175, y: 0, z: -0.175}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8719612846998300956}
   m_RootOrder: 0
@@ -262,7 +265,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8719612846998300956}
   - component: {fileID: 8689748069419285280}
-  - component: {fileID: 8673541315488897018}
   - component: {fileID: 8776565171398551876}
   - component: {fileID: 8688948090892412308}
   - component: {fileID: 8783229271215601112}
@@ -284,6 +286,7 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3006095673089599517}
   - {fileID: 3006095672421806255}
@@ -303,29 +306,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handler: {fileID: 8796936484079479109}
   item: {fileID: 11400000, guid: 966d43846ef5557458a540c24d80b534, type: 2}
   saveID: droppedItemWoodPile
   dontSave: 0
---- !u!95 &8673541315488897018
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8722164161970421496}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: c772a5e545380b749947f8a8946794d4, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!54 &8776565171398551876
 Rigidbody:
   m_ObjectHideFlags: 0
