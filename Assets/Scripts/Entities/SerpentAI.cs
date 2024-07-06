@@ -18,7 +18,6 @@ public class SerpentAI : MonoBehaviour
     float lastStateSwitch;
 
     Vector3 moveTarget;
-    Vector3 breachDirection;
 
     private void Start ()
     {
@@ -42,11 +41,17 @@ public class SerpentAI : MonoBehaviour
     {
         if (currentState == SerpentState.Patrol)
         {
-            if (Time.time > lastStateSwitch + 20f)
+            if (Time.time > lastStateSwitch + 115f)
             {
                 currentState = SerpentState.Breach;
                 lastStateSwitch = Time.time;
-                breachDirection = (Vector3.up + Random.insideUnitSphere * 0.2f).normalized;
+                moveTarget = GetBreachPosition();
+                return;
+            }
+            if (Player.GetPlayerPosition().y <= VoidOcean.startThreshold + 2.5f)
+            {
+                currentState = SerpentState.Chase;
+                lastStateSwitch = Time.time;
                 return;
             }
         }
@@ -71,7 +76,7 @@ public class SerpentAI : MonoBehaviour
         }
         if (currentState == SerpentState.Breach)
         {
-            moveTarget = headObject.transform.position + breachDirection;
+            //moveTarget = headObject.transform.position + breachDirection;
         }
         if (currentState == SerpentState.Chase)
         {
@@ -90,9 +95,9 @@ public class SerpentAI : MonoBehaviour
     void HandleMovement ()
     {
         float currentSpeed = GetSpeed();
-        Vector3 moveVector = Vector3.ClampMagnitude(moveTarget - transform.position, 1);
+        Vector3 moveVector = Vector3.ClampMagnitude(moveTarget - transform.position, 0.4f);
 
-        rb.AddForce(moveVector * currentSpeed);
+        rb.AddForce(moveVector * currentSpeed, ForceMode.Acceleration);
 
         headObject.transform.LookAt(moveTarget);
     }
@@ -132,12 +137,33 @@ public class SerpentAI : MonoBehaviour
                 nextPos.y = VoidOcean.startThreshold - 2f;
             }
 
-            if (Physics.Linecast(transform.position, nextPos, ~Physics.IgnoreRaycastLayer, QueryTriggerInteraction.Ignore))
+            if (!ValidMoveTarget(nextPos))
                 continue;
 
             return nextPos;
         }
 
         return moveTarget;
+    }
+
+    Vector3 GetBreachPosition ()
+    {
+        for (int t = 0; t < 10; t++)
+        {
+            Vector3 nextPos = moveTarget + (Vector3.up + Random.insideUnitSphere * 3f).normalized;
+            nextPos.y = VoidOcean.startThreshold;
+
+            if (!ValidMoveTarget(nextPos))
+                continue;
+
+            return nextPos;
+        }
+
+        return moveTarget;
+    }
+
+    bool ValidMoveTarget (Vector3 moveTarget)
+    {
+        return !Physics.Linecast(transform.position, moveTarget, ~Physics.IgnoreRaycastLayer, QueryTriggerInteraction.Ignore);
     }
 }

@@ -19,4 +19,9 @@ public class Player : MonoBehaviour
     {
         return CurrentInstance.gameObject;
     }
+
+    public static Vector3 GetPlayerPosition ()
+    {
+        return CurrentInstance.gameObject.transform.position;
+    }
 }
