@@ -19,7 +19,7 @@ MonoBehaviour:
     Cooldown'
   itemDescription: '50m Range
 
-    12 Stamina / Second, 10s Cooldown'
+    12 Stamina / Second, 3s Cooldown'
   stackSize: 1
   stackPrefix: x
   id: 48
@@ -30,5 +30,5 @@ MonoBehaviour:
   range: 50
   travelSpeed: 25
   pullForce: 1.75
-  staminaUse: 12
+  staminaUse: 24
   cooldown: 3
