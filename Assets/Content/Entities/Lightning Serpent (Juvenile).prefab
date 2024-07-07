@@ -1415,10 +1415,20 @@ MonoBehaviour:
   headObject: {fileID: 6186289966397671916}
   staminaStat: {fileID: 4892230021680511912}
   patrolPointDistance: 40
+  playerChaseRange: 75
+  closeAttackRange: 7.5
+  closeAttackFreqMin: 12
+  closeAttackFreqMax: 24
+  farAttackFreqMax: 30
+  farAttackFreqMin: 55
+  chargeFX: {fileID: 1524676869120037847, guid: 4d031a051bc965e4aa8cee89de3619a9,
+    type: 3}
+  chargeTime: 3
   idleSpeed: 8
   breachSpeed: 50
   chaseSpeed: 16
   chaseSprintSpeed: 32
+  currentState: 0
 --- !u!54 &1927099850912441796
 Rigidbody:
   m_ObjectHideFlags: 0

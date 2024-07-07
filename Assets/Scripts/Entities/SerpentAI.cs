@@ -5,28 +5,45 @@ using UnityEngine;
 
 public class SerpentAI : MonoBehaviour
 {
-    public enum SerpentState { Patrol, Breach, Chase, Charge }
+    public enum SerpentState { Patrol, Breach, Chase, ChargeClose, ChargeFar }
     [SerializeField] Rigidbody rb;
     [SerializeField] GameObject headObject;
     [SerializeField] Stat staminaStat;
 
     [Header("Logic Stats")]
     [SerializeField] float patrolPointDistance = 40f;
+    [SerializeField] float playerChaseRange = 75f;
+    [SerializeField] float closeAttackRange = 7.5f;
+    [SerializeField] float closeAttackFreqMin = 12f;
+    [SerializeField] float closeAttackFreqMax = 24f;
+    [SerializeField] float farAttackFreqMax = 30f;
+    [SerializeField] float farAttackFreqMin = 55f;
+    [SerializeField] GameObject chargeFX;
+    [SerializeField] float chargeTime;
+
+    float lastCloseAttack = -1000f;
+    float closeAttackCooldown;
+    float lastFarAttack = -1000f;
+    float farAttackCooldown;
 
     [Header("Speed Stats")]
     [SerializeField] float idleSpeed;
     [SerializeField] float breachSpeed;
     [SerializeField] float chaseSpeed;
     [SerializeField] float chaseSprintSpeed;
-    SerpentState currentState;
+    [SerializeField] SerpentState currentState;
     float lastStateSwitch;
 
     Vector3 moveTarget;
+    float sprintThreshold = 0.75f;
     bool sprint;
 
     private void Start ()
     {
         moveTarget = headObject.transform.position + headObject.transform.forward;
+
+        closeAttackCooldown = Random.Range(closeAttackFreqMin, closeAttackFreqMax);
+        farAttackCooldown = Random.Range(farAttackFreqMin, farAttackFreqMax);
     }
 
     void Update ()
@@ -48,18 +65,34 @@ public class SerpentAI : MonoBehaviour
     {
         if (currentState == SerpentState.Patrol)
         {
-            if (Time.time > lastStateSwitch + 115f)
+            if (CooldownOver(lastStateSwitch, 115f))
             {
-                currentState = SerpentState.Breach;
-                lastStateSwitch = Time.time;
+                SwitchState(SerpentState.Breach);
                 moveTarget = GetBreachPosition();
                 return;
             }
-            if (Player.GetPlayerPosition().y <= VoidOcean.startThreshold + 2.5f)
+            if (PlayerWithinRange())
             {
-                currentState = SerpentState.Chase;
-                lastStateSwitch = Time.time;
+                SwitchState(SerpentState.Chase);
                 return;
+            }
+        }
+
+        if (currentState == SerpentState.Chase)
+        {
+            if (!PlayerWithinRange())
+            {
+                SwitchState(SerpentState.Patrol);
+            }
+            if (PlayerWithinRange(closeAttackRange) && CooldownOver(lastStateSwitch, lastCloseAttack, closeAttackCooldown))
+            {
+                SwitchState(SerpentState.ChargeClose);
+                Destroy(Instantiate(chargeFX, headObject.transform), chargeTime);
+            }
+            if (!PlayerWithinRange(closeAttackRange) && CooldownOver(lastStateSwitch, lastFarAttack, farAttackCooldown))
+            {
+                SwitchState(SerpentState.ChargeFar);
+                Destroy(Instantiate(chargeFX, headObject.transform), chargeTime);
             }
         }
 
@@ -67,12 +100,17 @@ public class SerpentAI : MonoBehaviour
         {
             if (headObject.transform.position.y > VoidOcean.startThreshold + 0.4f)
             {
-                currentState = SerpentState.Patrol;
-                lastStateSwitch = Time.time;
+                SwitchState(SerpentState.Patrol);
                 moveTarget = headObject.transform.position + Vector3.down * 3f;
                 return;
             }
         }
+    }
+
+    void SwitchState (SerpentState newState)
+    {
+        currentState = newState;
+        lastStateSwitch = Time.time;
     }
 
     void HandleState ()
@@ -89,6 +127,22 @@ public class SerpentAI : MonoBehaviour
         {
             ChaseLogic();
         }
+        if (currentState == SerpentState.ChargeClose)
+        {
+            ChaseLogic(false);
+
+            if (CooldownOver(lastStateSwitch, chargeTime))
+            {
+                CloseAttack();
+            }
+        }
+        if (currentState == SerpentState.ChargeFar)
+        {
+            if (CooldownOver(lastStateSwitch, chargeTime))
+            {
+                FarAttack();
+            }
+        }
     }
 
     void PatrolLogic ()
@@ -99,14 +153,37 @@ public class SerpentAI : MonoBehaviour
         moveTarget = GetPatrolPosition();
     }
 
-    void ChaseLogic ()
+    void ChaseLogic (bool doSprint = true)
     {
         moveTarget = Player.GetPlayerObject().transform.position;
 
-        if (staminaStat.Percent() >= 0.75f)
+        if (!doSprint)
+            return;
+
+        if (staminaStat.Percent() >= sprintThreshold)
         {
             sprint = true;
         }
+    }
+
+    #endregion
+
+    #region Attacks
+
+    void CloseAttack ()
+    {
+        Debug.Log("Close Attack");
+        closeAttackCooldown = Random.Range(closeAttackFreqMin, closeAttackFreqMax);
+
+        SwitchState(SerpentState.Chase);
+    }
+
+    void FarAttack ()
+    {
+        Debug.Log("Far Attack");
+        farAttackCooldown = Random.Range(farAttackFreqMin, farAttackFreqMax);
+
+        SwitchState(SerpentState.Chase);
     }
 
     #endregion
@@ -132,7 +209,10 @@ public class SerpentAI : MonoBehaviour
         staminaStat.Value -= Time.fixedDeltaTime;
 
         if (staminaStat.AtZero())
+        {
             sprint = false;
+            sprintThreshold = Random.Range(0.75f, 0.95f);
+        }
     }
 
     #endregion
@@ -201,6 +281,32 @@ public class SerpentAI : MonoBehaviour
     bool ValidMoveTarget (Vector3 moveTarget)
     {
         return !Physics.Linecast(transform.position, moveTarget, ~Physics.IgnoreRaycastLayer, QueryTriggerInteraction.Ignore);
+    }
+
+    bool PlayerWithinRange ()
+    {
+        return PlayerWithinRange(playerChaseRange);
+    }
+
+    bool PlayerWithinRange (float range)
+    {
+        if (Player.GetPlayerPosition().y > VoidOcean.startThreshold + 3f)
+            return false;
+
+        if (Vector3.Distance(Player.GetPlayerPosition(), transform.position) > range)
+            return false;
+
+        return true;
+    }
+
+    bool CooldownOver (float lastAction, float actionCooldown)
+    {
+        return Time.time > lastAction + actionCooldown;
+    }
+
+    bool CooldownOver (float lastActionFirst, float lastActionSecond, float actionCooldown)
+    {
+        return CooldownOver(Mathf.Max(lastActionFirst, lastActionSecond), actionCooldown);
     }
 
     #endregion
