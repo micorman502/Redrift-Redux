@@ -42,7 +42,7 @@ public class HeldFoodItem : HeldItem
             return;
 
         vitals.AddHealth(food.instantHealing);
-        stamina.Stat += food.instantStamina;
+        stamina.Value += food.instantStamina;
 
         statusEffectApplier.ApplyStatusEffect(StatusEffectDatabase.GetStatusEffect(healingSEName), food.healingOverTime / healingPerSecond);
     }

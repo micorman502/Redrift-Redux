@@ -196,7 +196,7 @@ public class SaveManager : MonoBehaviour
                 player.transform.position = save.playerTransform.position;
                 player.transform.rotation = save.playerTransform.rotation;
                 player.SetVitals(save.playerHealth, save.playerHunger);
-                player.GetComponentInChildren<PlayerStamina>().Stat = save.playerStamina;
+                player.GetComponentInChildren<PlayerStamina>().Value = save.playerStamina;
 
                 StatusEffectApplier seApplier = player.GetComponentInChildren<StatusEffectApplier>();
 
@@ -297,7 +297,7 @@ public class SaveManager : MonoBehaviour
         save.playerTransform = new ObjectSaveData(player.transform.position, player.transform.rotation, 0);
         player.GetVitals(out float maxHealth, out float health);
         save.playerHealth = health;
-        save.playerStamina = player.GetComponentInChildren<PlayerStamina>().Stat;
+        save.playerStamina = player.GetComponentInChildren<PlayerStamina>().Value;
 
         List<StatusEffectBase> statusEffects = player.GetComponentInChildren<StatusEffectApplier>().statusEffects;
 

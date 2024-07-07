@@ -29479,12 +29479,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7eca7d05c60e0d4fa244aed98c78d68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxStat: 100
-  stat: 100
-  statRegen: 30
-  statRegenStart: 2
-  statStartsAtMax: 1
-  statScalesWithMaxIncrease: 0
+  maxValue: 100
+  value: 100
+  valueRegen: 30
+  valueRegenStart: 2
+  valueStartsAtMax: 1
+  valueScalesWithMaxIncrease: 0
 --- !u!1 &7835677075817791086
 GameObject:
   m_ObjectHideFlags: 0

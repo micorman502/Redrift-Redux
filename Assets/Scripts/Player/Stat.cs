@@ -5,24 +5,24 @@ using UnityEngine;
 
 public class Stat : MonoBehaviour
 {
-    public event Action<float> OnStatChanged;
-    public event Action<float> OnMaxStatChanged;
-    public float Stat { get { return stat; } set { SetStat(value); } }
-    public float MaxStat { get { return maxStat; } set { SetMaxStat(value); } }
+    public event Action<float> OnValueChanged;
+    public event Action<float> OnMaxValueChanged;
+    public float Value { get { return value; } set { SetValue(value); } }
+    public float MaxValue { get { return maxValue; } set { SetMaxValue(value); } }
 
-    [SerializeField] protected float maxStat;
-    [SerializeField] protected float stat;
-    [SerializeField] protected float statRegen;
-    [SerializeField] protected float statRegenStart;
-    [SerializeField] bool statStartsAtMax;
-    [SerializeField] bool statScalesWithMaxIncrease;
-    protected float lastStatReduction = -1000f;
+    [SerializeField] protected float maxValue;
+    [SerializeField] protected float value;
+    [SerializeField] protected float valueRegen;
+    [SerializeField] protected float valueRegenStart;
+    [SerializeField] bool valueStartsAtMax;
+    [SerializeField] bool valueScalesWithMaxIncrease;
+    protected float lastValueReduction = -1000f;
 
     void Awake ()
     {
-        if (statStartsAtMax)
+        if (valueStartsAtMax)
         {
-            stat = maxStat;
+            value = maxValue;
         }
     }
 
@@ -38,15 +38,15 @@ public class Stat : MonoBehaviour
 
     protected virtual void RegenTick ()
     {
-        if (Time.time < lastStatReduction + statRegenStart)
+        if (Time.time < lastValueReduction + valueRegenStart)
             return;
 
-        Stat += statRegen * Time.fixedDeltaTime;
+        Value += valueRegen * Time.fixedDeltaTime;
     }
 
-    public virtual void SetStat (float _stat)
+    public virtual void SetValue (float _stat)
     {
-        if (stat == _stat)
+        if (value == _stat)
             return;
 
         if (_stat < 0)
@@ -54,25 +54,25 @@ public class Stat : MonoBehaviour
             _stat = 0;
         }
 
-        float changeAmount = _stat - stat;
+        float changeAmount = _stat - value;
 
-        stat = Mathf.Clamp(_stat, 0, maxStat);
+        value = Mathf.Clamp(_stat, 0, maxValue);
 
         if (changeAmount < 0)
         {
-            lastStatReduction = Time.time;
+            lastValueReduction = Time.time;
         }
 
-        OnStatChanged?.Invoke(stat);
+        OnValueChanged?.Invoke(value);
     }
 
     public virtual bool CheckOverflow (float changeAmount)
     {
-        if (Stat + changeAmount > maxStat)
+        if (Value + changeAmount > maxValue)
         {
             return true;
         }
-        if (Stat + changeAmount < 0)
+        if (Value + changeAmount < 0)
         {
             return true;
         }
@@ -80,9 +80,9 @@ public class Stat : MonoBehaviour
         return false;
     }
 
-    public virtual bool ChangeStat (float changeAmount, bool changeIfOverflow = false)
+    public virtual bool ChangeValue (float changeAmount, bool changeIfOverflow = false)
     {
-        statStartsAtMax = false;
+        valueStartsAtMax = false;
 
         bool successfulChange = !CheckOverflow(changeAmount);
 
@@ -91,14 +91,14 @@ public class Stat : MonoBehaviour
             return successfulChange;
         }
 
-        Stat += changeAmount;
+        Value += changeAmount;
 
         return successfulChange;
     }
 
-    public virtual void SetMaxStat (float _maxStat)
+    public virtual void SetMaxValue (float _maxStat)
     {
-        if (maxStat == _maxStat)
+        if (maxValue == _maxStat)
             return;
 
         if (_maxStat < 0)
@@ -106,25 +106,25 @@ public class Stat : MonoBehaviour
             _maxStat = 0;
         }
 
-        float changeAmount = _maxStat - maxStat;
+        float changeAmount = _maxStat - maxValue;
 
-        maxStat = _maxStat;
+        maxValue = _maxStat;
 
-        if (statScalesWithMaxIncrease)
+        if (valueScalesWithMaxIncrease)
         {
-            Stat += changeAmount;
+            Value += changeAmount;
         }
 
-        OnMaxStatChanged?.Invoke(maxStat);
+        OnMaxValueChanged?.Invoke(maxValue);
     }
 
     public bool AtMax ()
     {
-        return MaxStat == Stat;
+        return MaxValue == Value;
     }
 
     public bool AtZero ()
     {
-        return Stat <= 0;
+        return Value <= 0;
     }
 }

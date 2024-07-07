@@ -20,11 +20,11 @@ public class UIVitalsManager : MonoBehaviour
     {
         playerStamina = Player.GetPlayerObject().GetComponentInChildren<PlayerStamina>();
 
-        playerStamina.OnStatChanged += OnStaminaChanged;
-        playerStamina.OnMaxStatChanged += OnMaxStaminaChanged;
+        playerStamina.OnValueChanged += OnStaminaChanged;
+        playerStamina.OnMaxValueChanged += OnMaxStaminaChanged;
 
-        OnStaminaChanged(playerStamina.Stat);
-        OnMaxStaminaChanged(playerStamina.MaxStat);
+        OnStaminaChanged(playerStamina.Value);
+        OnMaxStaminaChanged(playerStamina.MaxValue);
 
         if (PersistentData.Instance.mode == 1)
         {
@@ -49,8 +49,8 @@ public class UIVitalsManager : MonoBehaviour
         if (!playerStamina)
             return;
 
-        playerStamina.OnStatChanged -= OnStaminaChanged;
-        playerStamina.OnMaxStatChanged -= OnMaxStaminaChanged;
+        playerStamina.OnValueChanged -= OnStaminaChanged;
+        playerStamina.OnMaxValueChanged -= OnMaxStaminaChanged;
     }
 
     void SetupCreativeMode ()
@@ -78,18 +78,18 @@ public class UIVitalsManager : MonoBehaviour
 
     void OnStaminaChanged (float _stamina)
     {
-        if (_stamina - playerStamina.Stat < -2.5f)
+        if (_stamina - playerStamina.Value < -2.5f)
         {
             staminaIcon.transform.DOPunchScale(-Vector3.one * 0.2f, 0.3f);
             staminaIcon.color = Color.black;
             staminaIcon.DOColor(Color.white, 0.3f);
         }
 
-        staminaRing.fillAmount = _stamina / playerStamina.MaxStat;
+        staminaRing.fillAmount = _stamina / playerStamina.MaxValue;
     }
 
     void OnMaxStaminaChanged (float _maxStamina)
     {
-        staminaRing.fillAmount = playerStamina.Stat / _maxStamina;
+        staminaRing.fillAmount = playerStamina.Value / _maxStamina;
     }
 }

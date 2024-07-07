@@ -9,10 +9,10 @@ public class PlayerStamina : Stat
 
     protected override void RegenTick ()
     {
-        if (Time.time < lastStatReduction + statRegenStart)
+        if (Time.time < lastValueReduction + valueRegenStart)
             return;
 
-        Stat += statRegen * regenCoefficient * Time.fixedDeltaTime;
+        Value += valueRegen * regenCoefficient * Time.fixedDeltaTime;
     }
 
     public void SetRegenCoefficient (float _regenCoefficient)

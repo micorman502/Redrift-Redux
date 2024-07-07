@@ -82,7 +82,7 @@ public class HeldClimbingToolItem : HeldItem
     {
         if (!HookRaycast(leftHookRayPoint, out RaycastHit hit))
             return;
-        if (playerStamina.Stat < 1)
+        if (playerStamina.Value < 1)
             return;
         if (Time.time < lastLeftHook + 0.7f)
             return;
@@ -116,7 +116,7 @@ public class HeldClimbingToolItem : HeldItem
     {
         if (!HookRaycast(rightHookRayPoint, out RaycastHit hit))
             return;
-        if (playerStamina.Stat < 1)
+        if (playerStamina.Value < 1)
             return;
         if (Time.time < lastRightHook + 0.7f)
             return;
@@ -224,7 +224,7 @@ public class HeldClimbingToolItem : HeldItem
         if (!leftHooked && !rightHooked)
             return;
 
-        if (!playerStamina.ChangeStat(-climbingTool.staminaUse * Time.fixedDeltaTime))
+        if (!playerStamina.ChangeValue(-climbingTool.staminaUse * Time.fixedDeltaTime))
         {
             UnhookLeft();
             UnhookRight();

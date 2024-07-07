@@ -159,6 +159,6 @@ public class PlayerMovement : MonoBehaviour, IGameplayInputHandler
         if (PersistentData.Instance.mode == 1)
             return true;
 
-        return stamina.ChangeStat(-runStaminaUse * Time.deltaTime);
+        return stamina.ChangeValue(-runStaminaUse * Time.deltaTime);
     }
 }

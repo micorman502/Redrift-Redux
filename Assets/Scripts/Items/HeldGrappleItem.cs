@@ -178,7 +178,7 @@ public class HeldGrappleItem : HeldItem
         if (!grappled)
             return;
 
-        if (!playerStamina.ChangeStat(-grappleInfo.staminaUse * Time.fixedDeltaTime))
+        if (!playerStamina.ChangeValue(-grappleInfo.staminaUse * Time.fixedDeltaTime))
         {
             StopGrapple();
         }
