@@ -467,7 +467,7 @@ Transform:
   - {fileID: 7639664151508346230}
   - {fileID: 1385176333380155413}
   m_Father: {fileID: 5737347858288214552}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &970896108482139457
 MeshFilter:
@@ -648,7 +648,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5737347858288214552}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1064033987139831689
 MeshFilter:
@@ -745,7 +745,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5737347858288214552}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3487038747011453949
 MeshFilter:
@@ -929,7 +929,7 @@ Transform:
   - {fileID: 9135833209113654537}
   - {fileID: 1926764814722143151}
   m_Father: {fileID: 5737347858288214552}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &464459748212327333
 MeshFilter:
@@ -1028,7 +1028,7 @@ Transform:
   - {fileID: 6859769537422843021}
   - {fileID: 2427383968130646412}
   m_Father: {fileID: 5737347858288214552}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2624799125923667960
 MeshFilter:
@@ -1209,7 +1209,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5737347858288214552}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5072602239945304983
 MeshFilter:
@@ -1389,6 +1389,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 9097762563831173395}
   - {fileID: 3176596194159935401}
   - {fileID: 5036089175972438987}
   - {fileID: 5350247927859458396}
@@ -1412,10 +1413,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 1927099850912441796}
   headObject: {fileID: 6186289966397671916}
+  staminaStat: {fileID: 4892230021680511912}
   patrolPointDistance: 40
   idleSpeed: 8
   breachSpeed: 50
   chaseSpeed: 16
+  chaseSprintSpeed: 32
 --- !u!54 &1927099850912441796
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1468,6 +1471,56 @@ MonoBehaviour:
   - {fileID: 3695565309973622815}
   segmentRadius: 1
   correctionRate: 5
+--- !u!1 &8283693440207801144
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9097762563831173395}
+  - component: {fileID: 4892230021680511912}
+  m_Layer: 0
+  m_Name: STAMINA
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9097762563831173395
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8283693440207801144}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5737347858288214552}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4892230021680511912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8283693440207801144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07868bc7d48a4b846b592e842153b8bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxValue: 5
+  value: 5
+  valueRegen: 0.25
+  valueRegenStart: 3
+  valueStartsAtMax: 1
+  valueScalesWithMaxIncrease: 0
 --- !u!1 &8666591920429502125
 GameObject:
   m_ObjectHideFlags: 0

@@ -127,4 +127,9 @@ public class Stat : MonoBehaviour
     {
         return Value <= 0;
     }
+
+    public float Percent ()
+    {
+        return Value / MaxValue;
+    }
 }

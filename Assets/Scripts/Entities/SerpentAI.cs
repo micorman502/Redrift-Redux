@@ -8,16 +8,21 @@ public class SerpentAI : MonoBehaviour
     public enum SerpentState { Patrol, Breach, Chase, Charge }
     [SerializeField] Rigidbody rb;
     [SerializeField] GameObject headObject;
+    [SerializeField] Stat staminaStat;
+
     [Header("Logic Stats")]
     [SerializeField] float patrolPointDistance = 40f;
+
     [Header("Speed Stats")]
     [SerializeField] float idleSpeed;
     [SerializeField] float breachSpeed;
     [SerializeField] float chaseSpeed;
+    [SerializeField] float chaseSprintSpeed;
     SerpentState currentState;
     float lastStateSwitch;
 
     Vector3 moveTarget;
+    bool sprint;
 
     private void Start ()
     {
@@ -31,13 +36,15 @@ public class SerpentAI : MonoBehaviour
 
     private void FixedUpdate ()
     {
-        ManageState();
+        ManageStates();
         HandleState();
 
         HandleMovement();
     }
 
-    void ManageState ()
+    #region State Logic
+
+    void ManageStates ()
     {
         if (currentState == SerpentState.Patrol)
         {
@@ -80,7 +87,7 @@ public class SerpentAI : MonoBehaviour
         }
         if (currentState == SerpentState.Chase)
         {
-            moveTarget = Player.GetPlayerObject().transform.position;
+            ChaseLogic();
         }
     }
 
@@ -92,6 +99,19 @@ public class SerpentAI : MonoBehaviour
         moveTarget = GetPatrolPosition();
     }
 
+    void ChaseLogic ()
+    {
+        moveTarget = Player.GetPlayerObject().transform.position;
+
+        if (staminaStat.Percent() >= 0.75f)
+        {
+            sprint = true;
+        }
+    }
+
+    #endregion
+
+    #region Movement
     void HandleMovement ()
     {
         float currentSpeed = GetSpeed();
@@ -100,8 +120,24 @@ public class SerpentAI : MonoBehaviour
         rb.AddForce(moveVector * currentSpeed, ForceMode.Acceleration);
 
         headObject.transform.LookAt(moveTarget);
+
+        if (sprint)
+        {
+            SprintTick();
+        }
     }
 
+    void SprintTick ()
+    {
+        staminaStat.Value -= Time.fixedDeltaTime;
+
+        if (staminaStat.AtZero())
+            sprint = false;
+    }
+
+    #endregion
+
+    #region Helpers and Utils
     float GetSpeed ()
     {
         if (currentState == SerpentState.Patrol)
@@ -114,7 +150,7 @@ public class SerpentAI : MonoBehaviour
         }
         if (currentState == SerpentState.Chase)
         {
-            return chaseSpeed;
+            return sprint ? chaseSprintSpeed : chaseSpeed;
         }
 
         return idleSpeed;
@@ -166,4 +202,6 @@ public class SerpentAI : MonoBehaviour
     {
         return !Physics.Linecast(transform.position, moveTarget, ~Physics.IgnoreRaycastLayer, QueryTriggerInteraction.Ignore);
     }
+
+    #endregion
 }
