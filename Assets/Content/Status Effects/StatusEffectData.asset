@@ -25,7 +25,7 @@ MonoBehaviour:
     effectIntensity: 15
     id: 0
   - accessor: foodHeal
-    icon: {fileID: 21300000, guid: 3999034958d54364da380a8839a11050, type: 3}
+    icon: {fileID: 21300000, guid: 74ef721fef79c44489d4e3edb0ab0c01, type: 3}
     statusEffectObject: {fileID: 8068072883217646583, guid: 6aa56d7551ce1254bbac2812b3a502f2,
       type: 3}
     buff: 0
@@ -36,7 +36,7 @@ MonoBehaviour:
     effectIntensity: 5
     id: 1
   - accessor: voidSiphonBlock
-    icon: {fileID: 21300000, guid: 13527793884104b46b7446fd7464c3ed, type: 3}
+    icon: {fileID: 21300000, guid: af873239b4da1054fb71c1e43e0467d2, type: 3}
     statusEffectObject: {fileID: 6006547092983914865, guid: 80e07bc7ef221234cb822c73655caa18,
       type: 3}
     buff: 1
@@ -56,4 +56,4 @@ MonoBehaviour:
     allowDurationStacking: 0
     maxStack: 10
     effectIntensity: 20
-    id: 2
+    id: 3
