@@ -136,4 +136,15 @@ public class StatusEffectApplier : MonoBehaviour, IStatusEffects //a note for fu
         OnStatusEffectRemoved?.Invoke(statusEffect);
     }
     #endregion
+
+    public bool HasStatusEffect (StatusEffect statusEffect)
+    {
+        for (int i = 0; i < statusEffects.Count; i++)
+        {
+            if (statusEffects[i].GetStatusEffect() == statusEffect)
+                return true;
+        }
+
+        return false;
+    }
 }

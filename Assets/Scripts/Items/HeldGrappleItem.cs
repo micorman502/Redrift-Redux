@@ -6,6 +6,7 @@ public class HeldGrappleItem : HeldItem
 {
     [SerializeField] Rigidbody playerRigidbody;
     [SerializeField] PlayerStamina playerStamina;
+    [SerializeField] StatusEffectApplier statusEffectApplier;
     GrappleInfo grappleInfo;
     [SerializeField] AudioSource grapplePullSFX;
     [SerializeField] string grappleLaunchSFXName;
@@ -136,6 +137,8 @@ public class HeldGrappleItem : HeldItem
         grappling = false;
         grappled = false;
 
+        statusEffectApplier.ApplyStatusEffect(StatusEffectDatabase.GetStatusEffect(grappleInfo.cooldownSEName), grappleInfo.cooldown);
+
         grappleHeadVisual.transform.position = grappleRestPoint.position;
         grappleHeadVisual.transform.up = -itemGameObject.transform.forward; // Dirty line. Ew ew ew. Not really much i can do while using .blend files, though
 
@@ -163,7 +166,7 @@ public class HeldGrappleItem : HeldItem
 
     bool GrappleChecks ()
     {
-        if (Time.time < lastUse + grappleInfo.cooldown)
+        if (statusEffectApplier.HasStatusEffect(StatusEffectDatabase.GetStatusEffect(grappleInfo.cooldownSEName)))
             return false;
 
         RaycastHit hit = GrappleRaycast();

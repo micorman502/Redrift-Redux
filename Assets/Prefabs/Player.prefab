@@ -27333,6 +27333,7 @@ MonoBehaviour:
   itemGameObject: {fileID: 7033661563327120434}
   playerRigidbody: {fileID: 54789207129562844}
   playerStamina: {fileID: 4130160281514754000}
+  statusEffectApplier: {fileID: 8819177988426280714}
   grapplePullSFX: {fileID: 5126254281698274775}
   grappleLaunchSFXName: GrappleLaunch
   grappleStopSFXName: GrappleStop
@@ -28874,6 +28875,7 @@ MonoBehaviour:
   itemGameObject: {fileID: 197569888502709407}
   playerRigidbody: {fileID: 54789207129562844}
   playerStamina: {fileID: 4130160281514754000}
+  statusEffectApplier: {fileID: 8819177988426280714}
   grapplePullSFX: {fileID: 7622936888848298201}
   grappleLaunchSFXName: GrappleLaunch
   grappleStopSFXName: GrappleStop

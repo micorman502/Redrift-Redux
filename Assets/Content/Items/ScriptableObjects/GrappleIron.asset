@@ -31,4 +31,5 @@ MonoBehaviour:
   travelSpeed: 25
   pullForce: 1.75
   staminaUse: 24
-  cooldown: 3
+  cooldownSEName: grappleCooldown
+  cooldown: 5
