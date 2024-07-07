@@ -147,7 +147,7 @@ MonoBehaviour:
   explodeFX: {fileID: 6388094149803644011, guid: 498356863cd4b3f4c91ec557f19da230,
     type: 3}
   explodeRadius: 7
-  travelSpeed: 30
+  travelSpeed: 50
   lifetime: 12
   explodeDamage: 20
   explodeIgnition: 10
