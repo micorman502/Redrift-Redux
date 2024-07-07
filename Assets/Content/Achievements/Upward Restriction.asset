@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4fa0630c3662c1948984681468409045, type: 3}
-  m_Name: Break em Down
+  m_Name: Upward Restriction
   m_EditorClassIdentifier: 
-  id: 12
-  achievementID: 12
-  achievementName: ... To Break em' Down
-  achievementDesc: Incinerate an item
-  achievementIcon: {fileID: 21300000, guid: e7e772fdcd608544cae470b5e6ad93af, type: 3}
+  id: 13
+  achievementID: 13
+  achievementName: Upward Restriction
+  achievementDesc: Obtain any climbing or grappling tool
+  achievementIcon: {fileID: 21300000, guid: 7fca0651f293ad34290875e62a7c3fc0, type: 3}

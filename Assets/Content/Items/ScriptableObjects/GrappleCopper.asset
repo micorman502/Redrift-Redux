@@ -17,14 +17,13 @@ MonoBehaviour:
 
     {staminaUse} Stamina / Second, {cooldown}s
     Cooldown'
-  itemDescription: '{range}m Range
+  itemDescription: '65m Range
 
-    {staminaUse} Stamina / Second, {cooldown}s
-    Cooldown'
+    10 Stamina / Second, 7.5s Cooldown'
   stackSize: 1
   stackPrefix: x
   id: 49
-  achievementId: -1
+  achievementId: 13
   icon: {fileID: 21300000, guid: 9f1d0238496ae384b91d477bc644c4b2, type: 3}
   droppedPrefab: {fileID: 472510647620999602, guid: 645f008ee3ceae5478e8de1a0631d15d,
     type: 3}

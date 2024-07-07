@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: ConstructionHammer
   m_EditorClassIdentifier: 
   itemName: Construction Hammer
+  editableDescription: 
   itemDescription: 
   stackSize: 1
   stackPrefix: x
   id: 54
-  achievementId: -1
+  achievementId: 1
   icon: {fileID: 21300000, guid: 4d4291e30b0fa1548bdd4c3367c670b3, type: 3}
   droppedPrefab: {fileID: 8427282034627052911, guid: 631a9db4f336262498766ed95cc07b02,
     type: 3}
