@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   constantScaleChange: {x: 15, y: 15, z: 15}
-  maxScaleThreshold: {x: 6, y: 6, z: 6}
+  maxScaleThreshold: {x: 7, y: 7, z: 7}
 --- !u!1 &6388094149803644011
 GameObject:
   m_ObjectHideFlags: 0
