@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Apple
   m_EditorClassIdentifier: 
   itemName: Apple
-  editableDescription: +{healing} HP
-  itemDescription: +{healing} HP
+  editableDescription: +{healing} HP, +{stamina} Stamina
+  itemDescription: +16 HP
   stackSize: 100
   stackPrefix: x
   id: 0
