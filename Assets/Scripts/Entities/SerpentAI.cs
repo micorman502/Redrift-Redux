@@ -1,7 +1,9 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.ExceptionServices;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class SerpentAI : MonoBehaviour
 {
@@ -12,6 +14,7 @@ public class SerpentAI : MonoBehaviour
 
     [Header("Logic Stats")]
     [SerializeField] float patrolPointDistance = 40f;
+    [SerializeField] float scanPointDistance = 20f;
     [SerializeField] float playerChaseRange = 75f;
     [SerializeField] float closeAttackRange = 7.5f;
     [SerializeField] float closeAttackFreqMin = 12f;
@@ -35,6 +38,8 @@ public class SerpentAI : MonoBehaviour
     [SerializeField] float chaseSprintSpeed;
     [SerializeField] SerpentState currentState;
     float lastStateSwitch;
+    int scanCount;
+    bool movingToScan;
 
     Vector3 moveTarget;
     float sprintThreshold = 0.75f;
@@ -61,6 +66,14 @@ public class SerpentAI : MonoBehaviour
             closeAttackCooldown = 0;
             farAttackCooldown = 0;
         }
+
+        float angle = (scanCount + 1) * 5f;
+
+        Vector3 leftCheck = transform.position + Vector3.SlerpUnclamped(headObject.transform.forward, headObject.transform.right, -angle / 90f) * scanPointDistance;
+        Vector3 rightCheck = transform.position + Vector3.SlerpUnclamped(headObject.transform.forward, headObject.transform.right, angle / 90f) * scanPointDistance;
+
+        Debug.DrawLine(transform.position, leftCheck, Color.red, Time.deltaTime);
+        Debug.DrawLine(transform.position, rightCheck, Color.red, Time.deltaTime);
     }
 
     private void FixedUpdate ()
@@ -86,6 +99,7 @@ public class SerpentAI : MonoBehaviour
             if (PlayerWithinRange())
             {
                 SwitchState(SerpentState.Chase);
+                movingToScan = false;
                 return;
             }
         }
@@ -167,7 +181,28 @@ public class SerpentAI : MonoBehaviour
 
     void ChaseLogic (bool doSprint = true)
     {
-        moveTarget = Player.GetPlayerObject().transform.position;
+        if (movingToScan)
+        {
+            if (Vector3.Distance(transform.position, moveTarget) <= 3f)
+            {
+                scanCount = 0;
+                movingToScan = false;
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        if (ValidMoveTarget(Player.GetPlayerObject().transform.position))
+        {
+            moveTarget = Player.GetPlayerObject().transform.position;
+            scanCount = 0;
+        }
+        else
+        {
+            Scan();
+        }
 
         if (!doSprint)
             return;
@@ -175,6 +210,35 @@ public class SerpentAI : MonoBehaviour
         if (staminaStat.Percent() >= sprintThreshold)
         {
             sprint = true;
+        }
+    }
+
+    void Scan ()
+    {
+        float angle = (scanCount + 1) * 5f;
+
+        scanCount++;
+
+        headObject.transform.LookAt(Player.GetPlayerPosition());
+
+        Vector3 leftCheck = transform.position + Vector3.SlerpUnclamped(headObject.transform.forward, headObject.transform.right, -angle / 90f) * scanPointDistance;
+        Vector3 rightCheck = transform.position + Vector3.SlerpUnclamped(headObject.transform.forward, headObject.transform.right, angle / 90f) * scanPointDistance;
+
+        if (ValidMoveTarget(leftCheck, true))
+        {
+            ValidMoveTarget(rightCheck, true);
+            moveTarget = leftCheck;
+            movingToScan = true;
+            scanCount = 0;
+            return;
+        }
+
+        if (ValidMoveTarget(rightCheck, true))
+        {
+            moveTarget = rightCheck;
+            movingToScan = true;
+            scanCount = 0;
+            return;
         }
     }
 
@@ -252,11 +316,6 @@ public class SerpentAI : MonoBehaviour
         return idleSpeed;
     }
 
-    float GetPerlin (float xMult, float yMult)
-    {
-        return (Mathf.PerlinNoise(Time.time * xMult, Time.time * yMult) * 2) - 1;
-    }
-
     Vector3 GetPatrolPosition ()
     {
         for (int t = 0; t < 10; t++)
@@ -294,9 +353,18 @@ public class SerpentAI : MonoBehaviour
         return moveTarget;
     }
 
-    bool ValidMoveTarget (Vector3 moveTarget)
+    bool ValidMoveTarget (Vector3 moveTarget, bool doDebug = false)
     {
-        return !Physics.Linecast(transform.position, moveTarget, ~Physics.IgnoreRaycastLayer, QueryTriggerInteraction.Ignore);
+        if (doDebug)
+        {
+            Debug.DrawLine(transform.position, moveTarget, Color.green, 2f);
+            if (Physics.Linecast(transform.position, moveTarget, out RaycastHit hit, ~LayerMask.GetMask("Ignore Raycast", "Entity", "Player", "Vehicle"), QueryTriggerInteraction.Ignore))
+            {
+                Debug.Log($"ValidMoveTarget hit object '{hit.transform.gameObject.name}', collider object '{hit.collider.gameObject.name}'");
+            }
+        }
+
+        return !Physics.Linecast(transform.position, moveTarget, ~LayerMask.GetMask("Ignore Raycast", "Entity", "Player", "Vehicle"), QueryTriggerInteraction.Ignore);
     }
 
     bool PlayerWithinRange ()

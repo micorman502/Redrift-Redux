@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6930667829491127405}
   - component: {fileID: 64055388912974841}
   - component: {fileID: 8884969178084858844}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 1926764814722143151}
   - component: {fileID: 2107096321766177145}
   - component: {fileID: 2727716757025326479}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 4084559673579776081}
   - component: {fileID: 1959968707780529163}
   - component: {fileID: 352721008999199758}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Dorsal Fin (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 6029648296849631579}
   - component: {fileID: 2978051831012287835}
   - component: {fileID: 1897221202997130494}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Outer Layer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -361,7 +361,7 @@ GameObject:
   - component: {fileID: 9042806650187074926}
   - component: {fileID: 8088623029313266302}
   - component: {fileID: 4157103565755764303}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Dorsal Fin (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -445,7 +445,7 @@ GameObject:
   - component: {fileID: 970896108482139457}
   - component: {fileID: 1775480920748650634}
   - component: {fileID: 6164484206467939156}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Body (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -543,7 +543,7 @@ GameObject:
   - component: {fileID: 7639664151508346230}
   - component: {fileID: 5452755769401912562}
   - component: {fileID: 4340050176318602496}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Dorsal Fin (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -628,7 +628,7 @@ GameObject:
   - component: {fileID: 1064033987139831689}
   - component: {fileID: 6213731105460979153}
   - component: {fileID: 7605865413373391164}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Tail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -725,7 +725,7 @@ GameObject:
   - component: {fileID: 3487038747011453949}
   - component: {fileID: 3629626481114067766}
   - component: {fileID: 4740667915143537765}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -821,7 +821,7 @@ GameObject:
   - component: {fileID: 9135833209113654537}
   - component: {fileID: 1033045897558688001}
   - component: {fileID: 8766240445613851901}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -905,7 +905,7 @@ GameObject:
   - component: {fileID: 464459748212327333}
   - component: {fileID: 2339426566307482689}
   - component: {fileID: 2343879874409490701}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1006,7 +1006,7 @@ GameObject:
   - component: {fileID: 2624799125923667960}
   - component: {fileID: 5103785053962522400}
   - component: {fileID: 7063157323788362702}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Body (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1104,7 +1104,7 @@ GameObject:
   - component: {fileID: 6859769537422843021}
   - component: {fileID: 4724274531567339540}
   - component: {fileID: 3667313125935750462}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Dorsal Fin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1189,7 +1189,7 @@ GameObject:
   - component: {fileID: 5072602239945304983}
   - component: {fileID: 5166073560623906498}
   - component: {fileID: 2490337138911753595}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Body (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1285,7 +1285,7 @@ GameObject:
   - component: {fileID: 3701725459116831408}
   - component: {fileID: 6350645152820373621}
   - component: {fileID: 5089798661512207036}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1370,7 +1370,7 @@ GameObject:
   - component: {fileID: 1927099850912441796}
   - component: {fileID: 6270029606978236969}
   - component: {fileID: 1765689208493473693}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Lightning Serpent (Juvenile)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1415,6 +1415,7 @@ MonoBehaviour:
   headObject: {fileID: 6186289966397671916}
   staminaStat: {fileID: 4892230021680511912}
   patrolPointDistance: 40
+  scanPointDistance: 20
   playerChaseRange: 75
   closeAttackRange: 7.5
   closeAttackFreqMin: 12
@@ -1496,7 +1497,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9097762563831173395}
   - component: {fileID: 4892230021680511912}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: STAMINA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1548,7 +1549,7 @@ GameObject:
   - component: {fileID: 1238346023839503435}
   - component: {fileID: 1229424249686998707}
   - component: {fileID: 4583969543568693201}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Outer Layer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
