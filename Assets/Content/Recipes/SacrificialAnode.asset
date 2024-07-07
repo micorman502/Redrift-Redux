@@ -23,7 +23,7 @@ MonoBehaviour:
   output:
     item: {fileID: 11400000, guid: 3c9d73d950aa9e345b4552f8c78d5673, type: 2}
     amount: 1
-  categories: 0000000002000000
-  id: 0
+  categories: 02000000
+  id: 42
   achievementId: -1
   hideInCraftingUI: 0
