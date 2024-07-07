@@ -1424,11 +1424,16 @@ MonoBehaviour:
   chargeFX: {fileID: 1524676869120037847, guid: 4d031a051bc965e4aa8cee89de3619a9,
     type: 3}
   chargeTime: 3
+  closeAttackObject: {fileID: 9168611673724171184, guid: 16497e4ff55b09542a6e1813fda6f31d,
+    type: 3}
+  farAttackObject: {fileID: 720916739431443074, guid: ed4a29a88ace9a94aba707849228ce1e,
+    type: 3}
   idleSpeed: 8
   breachSpeed: 50
   chaseSpeed: 16
   chaseSprintSpeed: 32
   currentState: 0
+  cooldownReset: 0
 --- !u!54 &1927099850912441796
 Rigidbody:
   m_ObjectHideFlags: 0

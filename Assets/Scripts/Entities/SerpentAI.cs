@@ -20,6 +20,8 @@ public class SerpentAI : MonoBehaviour
     [SerializeField] float farAttackFreqMin = 55f;
     [SerializeField] GameObject chargeFX;
     [SerializeField] float chargeTime;
+    [SerializeField] GameObject closeAttackObject;
+    [SerializeField] GameObject farAttackObject;
 
     float lastCloseAttack = -1000f;
     float closeAttackCooldown;
@@ -38,6 +40,8 @@ public class SerpentAI : MonoBehaviour
     float sprintThreshold = 0.75f;
     bool sprint;
 
+    [SerializeField] bool cooldownReset;
+
     private void Start ()
     {
         moveTarget = headObject.transform.position + headObject.transform.forward;
@@ -49,6 +53,14 @@ public class SerpentAI : MonoBehaviour
     void Update ()
     {
         Debug.DrawLine(headObject.transform.position, moveTarget, Color.yellow, Time.deltaTime);
+
+        if (cooldownReset)
+        {
+            cooldownReset = false;
+
+            closeAttackCooldown = 0;
+            farAttackCooldown = 0;
+        }
     }
 
     private void FixedUpdate ()
@@ -175,6 +187,8 @@ public class SerpentAI : MonoBehaviour
         Debug.Log("Close Attack");
         closeAttackCooldown = Random.Range(closeAttackFreqMin, closeAttackFreqMax);
 
+        Instantiate(closeAttackObject, transform.position, Quaternion.identity);
+
         SwitchState(SerpentState.Chase);
     }
 
@@ -182,6 +196,8 @@ public class SerpentAI : MonoBehaviour
     {
         Debug.Log("Far Attack");
         farAttackCooldown = Random.Range(farAttackFreqMin, farAttackFreqMax);
+
+        Instantiate(farAttackObject, transform.position + headObject.transform.forward * 3f, headObject.transform.rotation);
 
         SwitchState(SerpentState.Chase);
     }

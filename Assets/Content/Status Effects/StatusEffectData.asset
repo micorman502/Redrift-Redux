@@ -45,4 +45,15 @@ MonoBehaviour:
     allowDurationStacking: 0
     maxStack: 1
     effectIntensity: 1
-    id: 1
+    id: 2
+  - accessor: lightning
+    icon: {fileID: 21300000, guid: 9089ab02ba27f1f428fbb186b5eca49b, type: 3}
+    statusEffectObject: {fileID: 5119012655069636232, guid: 7514bd8037c28db41a7159040958632c,
+      type: 3}
+    buff: 0
+    immutable: 0
+    stackable: 1
+    allowDurationStacking: 0
+    maxStack: 10
+    effectIntensity: 20
+    id: 2
