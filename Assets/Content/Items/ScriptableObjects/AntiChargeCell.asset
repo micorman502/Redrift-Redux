@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4109a768edb0df4cac99ffae3432308, type: 3}
+  m_Name: AntiChargeCell
+  m_EditorClassIdentifier: 
+  itemName: Anti-Charge Cell
+  editableDescription: Use to gain void protection for {duration}s.
+  itemDescription: 
+  stackSize: 20
+  stackPrefix: x
+  id: 0
+  achievementId: -1
+  icon: {fileID: 21300000, guid: af873239b4da1054fb71c1e43e0467d2, type: 3}
+  droppedPrefab: {fileID: 465069033207722923, guid: 1a21700a57950bb4d9b714b4ff1c5e92,
+    type: 3}
+  statusEffect: voidSiphonBlock
+  effectDuration: 70
+  effectStacks: 1

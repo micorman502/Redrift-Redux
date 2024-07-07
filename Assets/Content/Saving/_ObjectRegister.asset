@@ -428,5 +428,8 @@ MonoBehaviour:
     id: 112
   - prefab: {fileID: 7681220070399247193, guid: 5e328b1c30eaecb47aee83aefebfd903,
       type: 3}
-    nameIdentifier: droppedSacrificialAnode
-    id: 112
+    nameIdentifier: droppedItemSacrificialAnode
+    id: 113
+  - prefab: {fileID: 465069033207722923, guid: 1a21700a57950bb4d9b714b4ff1c5e92, type: 3}
+    nameIdentifier: droppedItemAntiChargeCell
+    id: 113
