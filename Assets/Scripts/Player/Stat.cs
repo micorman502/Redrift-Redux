@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStat : MonoBehaviour
+public class Stat : MonoBehaviour
 {
     public event Action<float> OnStatChanged;
     public event Action<float> OnMaxStatChanged;

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStamina : PlayerStat
+public class PlayerStamina : Stat
 {
     protected float regenCoefficient = 1;
 
