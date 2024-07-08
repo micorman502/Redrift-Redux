@@ -92,7 +92,7 @@ public class BoatControls : MonoBehaviour, IInteractable, IHotText, IGameplayInp
             gearInputLastFrame = false;
         }
 
-        if (jump)
+        if (accelerate)
         {
             EmergencyDismount();
         }

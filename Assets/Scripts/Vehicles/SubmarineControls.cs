@@ -5,6 +5,7 @@ using UnityEngine;
 public class SubmarineControls : MonoBehaviour, IInteractable, IGameplayInputHandler, IHotText
 {
     bool controlsActive;
+    [SerializeField] Transform exitPoint;
 
     public void Interact ()
     {
@@ -20,7 +21,18 @@ public class SubmarineControls : MonoBehaviour, IInteractable, IGameplayInputHan
 
     public void TakeMovementInput (Vector3 moveAxes, bool accel, bool jump)
     {
+        if (accel)
+        {
+            Deactivate();
+        }
+    }
 
+    public void FixedUpdate ()
+    {
+        if (!controlsActive)
+            return;
+
+        Player.GetPlayerObject().transform.position = transform.position;
     }
 
     void Activate ()
@@ -32,9 +44,11 @@ public class SubmarineControls : MonoBehaviour, IInteractable, IGameplayInputHan
 
         controlsActive = true;
 
+        Player.GetPlayerObject().GetComponent<Rigidbody>().detectCollisions = false;
+
         GameplayInputProvider.Instance.AddOverrideHandler(this);
 
-        HotTextManager.Instance.AddHotText(new HotTextInfo("Emergency Dismount", KeyCode.Space, HotTextInfo.Priority.Jump, "boatDismount"));
+        HotTextManager.Instance.AddHotText(new HotTextInfo("Dismount", KeyCode.LeftShift, HotTextInfo.Priority.Jump, "boatDismount"));
     }
 
     void Deactivate ()
@@ -43,6 +57,9 @@ public class SubmarineControls : MonoBehaviour, IInteractable, IGameplayInputHan
             return;
 
         controlsActive = false;
+
+        Player.GetPlayerObject().GetComponent<Rigidbody>().detectCollisions = true;
+        Player.GetPlayerObject().transform.position = exitPoint.position;
 
         GameplayInputProvider.Instance.RemoveOverrideHandler(this);
 
