@@ -6,6 +6,11 @@ public class SubmarineControls : MonoBehaviour, IInteractable, IGameplayInputHan
 {
     bool controlsActive;
     [SerializeField] Transform exitPoint;
+    [SerializeField] Rigidbody rb;
+    [SerializeField] float speed;
+
+    Vector3 rawEulers;
+    Vector3 lerpEulers;
 
     public void Interact ()
     {
@@ -25,6 +30,19 @@ public class SubmarineControls : MonoBehaviour, IInteractable, IGameplayInputHan
         {
             Deactivate();
         }
+
+        moveAxes.Normalize();
+
+        moveAxes *= speed;
+
+        rb.AddForce(transform.forward * moveAxes.z, ForceMode.Acceleration);
+
+        rawEulers.y += moveAxes.x;
+        rawEulers.x -= moveAxes.y;
+        rawEulers.x = Mathf.Clamp(rawEulers.x, -90f, 90f);
+
+        lerpEulers = Vector3.Lerp(lerpEulers, rawEulers, 3f * Time.fixedDeltaTime);
+        transform.eulerAngles = lerpEulers;
     }
 
     public void FixedUpdate ()
