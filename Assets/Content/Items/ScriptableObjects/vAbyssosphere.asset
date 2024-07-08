@@ -10,22 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df5f003594efc494da48210ea6bae6eb, type: 3}
-  m_Name: vVoidSkipper
+  m_Name: vAbyssosphere
   m_EditorClassIdentifier: 
-  itemName: Void Skipper
-  editableDescription: Skim the ocean's surface.
+  itemName: Abyssosphere
+  editableDescription: Dive, deeper, away from comfort...
   itemDescription: 
   stackSize: 1
   stackPrefix: x
-  id: 59
+  id: 0
   achievementId: -1
-  icon: {fileID: 21300000, guid: 3168140d6f409d0448447f18568d9482, type: 3}
-  droppedPrefab: {fileID: 7670924805820201462, guid: 830a6dadf5d72db40a3fc7f0a0d0538f,
-    type: 3}
-  deployedObject: {fileID: 1097824622441538239, guid: 2b828d9876484624f8cc137b5072fbd0,
-    type: 3}
-  basePlacementOffset: {x: 0, y: 0, z: 0}
+  icon: {fileID: 21300000, guid: ae869fe6797f4454cbbf417d87ff637c, type: 3}
+  droppedPrefab: {fileID: 0}
+  deployedObject: {fileID: 0}
+  basePlacementOffset: {x: 0, y: 1, z: 0}
   normalPlacementOffset: 0
   placeableGround: 0
-  placeableMidAir: 1
+  placeableMidAir: 0
   placeableWater: 1

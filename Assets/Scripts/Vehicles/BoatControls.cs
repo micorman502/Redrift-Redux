@@ -25,7 +25,6 @@ public class BoatControls : MonoBehaviour, IInteractable, IHotText, IGameplayInp
 
     public void Interact ()
     {
-        Debug.Log("Interact");
         if (controlsActive)
         {
             Deactivate();

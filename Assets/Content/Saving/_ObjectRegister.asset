@@ -432,4 +432,12 @@ MonoBehaviour:
     id: 113
   - prefab: {fileID: 465069033207722923, guid: 1a21700a57950bb4d9b714b4ff1c5e92, type: 3}
     nameIdentifier: droppedItemAntiChargeCell
-    id: 113
+    id: 114
+  - prefab: {fileID: 2076202232729693421, guid: a20a8b172c4473448a8a39a86c00e347,
+      type: 3}
+    nameIdentifier: droppedItemAbyssosphere
+    id: 114
+  - prefab: {fileID: 8059292220398551736, guid: 9eec9264dc969a84badfdeccb6245b95,
+      type: 3}
+    nameIdentifier: worldItemAbyssosphere
+    id: 114
