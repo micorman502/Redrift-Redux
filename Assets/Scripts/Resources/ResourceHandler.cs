@@ -39,7 +39,7 @@ public class ResourceHandler : MonoBehaviour, IItemSaveable, IResource
     {
         if (!dontRegisterToHivemind)
         {
-            HiveMind.Instance.AddResource(this);
+            HiveMind.Instance?.AddResource(this);
         }
         if (health == 0)
         {
