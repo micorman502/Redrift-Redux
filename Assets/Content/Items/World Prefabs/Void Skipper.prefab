@@ -515,6 +515,7 @@ GameObject:
   - component: {fileID: 1151102954431232543}
   - component: {fileID: 4831772553928936958}
   - component: {fileID: 4476007495429929963}
+  - component: {fileID: 2275048877164136659}
   m_Layer: 17
   m_Name: Void Skipper
   m_TagString: Untagged
@@ -630,6 +631,26 @@ MonoBehaviour:
   - {fileID: 3664840322131378255}
   - {fileID: 4284591505249790812}
   - {fileID: 2085036165254990482}
+--- !u!114 &2275048877164136659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1097824622441538239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ac8e20f4665f7e4088be07829a951ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxValue: 200
+  value: 200
+  valueRegen: 2
+  valueRegenStart: 5
+  valueStartsAtMax: 0
+  valueScalesWithMaxIncrease: 1
+  deathBehaviour: 0
+  deathSpawnObject: {fileID: 0}
 --- !u!1 &1199281742234743734
 GameObject:
   m_ObjectHideFlags: 0

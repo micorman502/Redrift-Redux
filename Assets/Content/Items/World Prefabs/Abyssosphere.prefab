@@ -595,6 +595,7 @@ GameObject:
   - component: {fileID: 4753983823500357617}
   - component: {fileID: 7933334033336647492}
   - component: {fileID: 4897435595039318002}
+  - component: {fileID: 6592694841460335658}
   m_Layer: 17
   m_Name: Abyssosphere
   m_TagString: Untagged
@@ -698,6 +699,26 @@ MonoBehaviour:
   rb: {fileID: 8145501395565506592}
   normalDrag: 0.5
   seaDrag: 4
+--- !u!114 &6592694841460335658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8059292220398551736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ac8e20f4665f7e4088be07829a951ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxValue: 200
+  value: 200
+  valueRegen: 2
+  valueRegenStart: 5
+  valueStartsAtMax: 0
+  valueScalesWithMaxIncrease: 1
+  deathBehaviour: 0
+  deathSpawnObject: {fileID: 0}
 --- !u!1 &8154035577943864275
 GameObject:
   m_ObjectHideFlags: 0

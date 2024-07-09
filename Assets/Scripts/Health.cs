@@ -48,7 +48,11 @@ public class Health : Stat, IDamageable, IHealable
             Destroy(gameObject);
         }
 
-        Instantiate(deathSpawnObject, transform.position, transform.rotation);
+        if (deathSpawnObject)
+        {
+            Instantiate(deathSpawnObject, transform.position, transform.rotation);
+        }
+
         OnDeath?.Invoke();
     }
 }
