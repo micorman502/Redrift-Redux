@@ -681,7 +681,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   exitPoint: {fileID: 6502143488563810175}
   rb: {fileID: 8145501395565506592}
-  speed: 3
+  speed: 7
+  verticalAngleLimit: 85
 --- !u!114 &4897435595039318002
 MonoBehaviour:
   m_ObjectHideFlags: 0

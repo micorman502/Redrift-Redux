@@ -1,29 +1,54 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Health : MonoBehaviour
+public class Health : Stat, IDamageable, IHealable
 {
+    public event Action OnDeath;
+    public enum DeathBehaviour { Destroy, Disable, ReviveOnce }
+    [SerializeField] protected DeathBehaviour deathBehaviour;
+    [SerializeField] protected GameObject deathSpawnObject;
 
-    public float maxHealth;
-    [HideInInspector] public float health;
-
-    void Start ()
+    public override void SetValue (float _stat)
     {
-        health = maxHealth;
-    }
+        base.SetValue(_stat);
 
-    public void TakeDamage (float amount)
-    {
-        health -= amount;
-        if (health <= 0f)
+        if (AtZero())
         {
             Die();
         }
     }
 
-    void Die ()
+    public virtual void RemoveHealth (float removeAmt)
     {
-        Destroy(gameObject);
+        Value -= removeAmt;
+    }
+
+    public virtual void AddHealth (float addAmt)
+    {
+        Value += addAmt;
+    }
+
+    protected virtual void Die ()
+    {
+        if (deathBehaviour == DeathBehaviour.ReviveOnce)
+        {
+            Value = MaxValue;
+            deathBehaviour = DeathBehaviour.Destroy;
+            return;
+        }
+
+        if (deathBehaviour == DeathBehaviour.Disable)
+        {
+            gameObject.SetActive(false);
+        }
+        if (deathBehaviour == DeathBehaviour.Destroy)
+        {
+            Destroy(gameObject);
+        }
+
+        Instantiate(deathSpawnObject, transform.position, transform.rotation);
+        OnDeath?.Invoke();
     }
 }
