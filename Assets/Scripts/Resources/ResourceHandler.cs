@@ -1,7 +1,7 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 
 public class ResourceHandler : MonoBehaviour, IItemSaveable, IResource
 {
@@ -137,6 +137,12 @@ public class ResourceHandler : MonoBehaviour, IItemSaveable, IResource
     public WorldItem[] ToolGather (ToolInfo tool)
     {
         return Gather(tool.gatherAmountMult);
+    }
+
+    public string GetSaveID (out bool dontSave)
+    {
+        dontSave = this.dontSave;
+        return saveID;
     }
 
     public virtual void GetData (out ItemSaveData data, out ObjectSaveData objData, out bool _dontSave)

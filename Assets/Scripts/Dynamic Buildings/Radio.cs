@@ -107,6 +107,12 @@ public class Radio : MonoBehaviour, IItemSaveable, IInteractable, IHotText
         }
     }
 
+    public string GetSaveID (out bool dontSave)
+    {
+        dontSave = false;
+        return saveID;
+    }
+
     public void GetData (out ItemSaveData data, out ObjectSaveData objData, out bool dontSave)
     {
         ItemSaveData newData = new ItemSaveData();

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class StorageSilo : MonoBehaviour, IItemPickup, IItemSaveable, IItemInteractable, IGetTriggerInfo, IHotText
 {
@@ -105,6 +105,12 @@ public class StorageSilo : MonoBehaviour, IItemPickup, IItemSaveable, IItemInter
         inventory.RemoveItem(inventory.Slots[0].Item, 1);
 
         UpdateVisuals();
+    }
+
+    public string GetSaveID (out bool dontSave)
+    {
+        dontSave = false;
+        return saveID;
     }
 
     public void GetData (out ItemSaveData data, out ObjectSaveData objData, out bool dontSave)

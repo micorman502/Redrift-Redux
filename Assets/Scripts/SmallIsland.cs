@@ -80,6 +80,12 @@ public class SmallIsland : MonoBehaviour, IItemSaveable
         Destroy(gameObject);
     }
 
+    public string GetSaveID (out bool dontSave)
+    {
+        dontSave = false;
+        return saveID;
+    }
+
     public void GetData (out ItemSaveData data, out ObjectSaveData objData, out bool dontSave)
     {
         ItemSaveData newData = new ItemSaveData();

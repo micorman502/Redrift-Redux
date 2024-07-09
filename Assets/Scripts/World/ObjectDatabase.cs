@@ -1,6 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class ObjectDatabase : MonoBehaviour
 {
@@ -30,7 +35,30 @@ public class ObjectDatabase : MonoBehaviour
         {
             Register.objects[i].id = i;
             idAcessibleObjects.Add(Register.objects[i].nameIdentifier, Register.objects[i]);
+
+            if (!Register.objects[i].prefab)
+                continue;
+
+            GameObject tempObject = Instantiate(Register.objects[i].prefab);
+            tempObject.SetActive(false);
+            IItemSaveable[] saveables = tempObject.GetComponents<IItemSaveable>();
+
+            Destroy(tempObject);
+
+            for (int s = 0; s < saveables.Length; s++)
+            {
+                string saveableName = saveables[s].GetSaveID(out bool dontSave);
+
+                if (dontSave)
+                    continue;
+
+                Register.objects[i].nameIdentifier = saveableName;
+            }
         }
+
+#if UNITY_EDITOR
+        EditorUtility.SetDirty(Register);
+#endif
     }
 
     public static GameObject[] GetAllObjects ()

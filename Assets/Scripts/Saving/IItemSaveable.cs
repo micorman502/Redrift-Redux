@@ -7,6 +7,8 @@ public interface IItemSaveable
     void GetData (out ItemSaveData data, out ObjectSaveData objData, out bool dontSave);
 
     void SetData (ItemSaveData data, ObjectSaveData objData);
+
+    string GetSaveID (out bool dontSave);
     /* GENERIC
     public int saveID;
     	public void GetData (out ItemSaveData data,out ObjectSaveData objData, out bool dontSave)

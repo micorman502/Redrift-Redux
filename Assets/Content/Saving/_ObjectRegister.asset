@@ -230,7 +230,7 @@ MonoBehaviour:
     nameIdentifier: smallIsland
     id: 61
   - prefab: {fileID: 1189018540791600, guid: 985621f1eafaddf43a446b8a3c0b6845, type: 3}
-    nameIdentifier: darkSmallIsland
+    nameIdentifier: 11
     id: 62
   - prefab: {fileID: 8254937849148306895, guid: 9cc5aaadbf51e934ebd0d27eb4e9d64a,
       type: 3}
@@ -357,7 +357,7 @@ MonoBehaviour:
     id: 94
   - prefab: {fileID: 8417306529483710484, guid: a02bfec342b4690488d1535d74d724e6,
       type: 3}
-    nameIdentifier: droppedItemFloorHalf
+    nameIdentifier: droppedFloorHalf
     id: 95
   - prefab: {fileID: 3042881700849456875, guid: 1115b1c409dabb740ae39c81f813e0b3,
       type: 3}
@@ -436,8 +436,8 @@ MonoBehaviour:
   - prefab: {fileID: 2076202232729693421, guid: a20a8b172c4473448a8a39a86c00e347,
       type: 3}
     nameIdentifier: droppedItemAbyssosphere
-    id: 114
+    id: 115
   - prefab: {fileID: 8059292220398551736, guid: 9eec9264dc969a84badfdeccb6245b95,
       type: 3}
     nameIdentifier: worldItemAbyssosphere
-    id: 114
+    id: 116

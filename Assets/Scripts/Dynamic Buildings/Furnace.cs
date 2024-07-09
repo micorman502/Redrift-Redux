@@ -144,6 +144,12 @@ public class Furnace : MonoBehaviour, IItemPickup, IItemSaveable, IItemInteracta
         inventory.inventory.RemoveItem(new WorldItem(item.item, 1));
     }
 
+    public string GetSaveID (out bool dontSave)
+    {
+        dontSave = false;
+        return saveID;
+    }
+
     public void GetData (out ItemSaveData data, out ObjectSaveData objData, out bool dontSave)
     {
         ItemSaveData newData = new ItemSaveData();

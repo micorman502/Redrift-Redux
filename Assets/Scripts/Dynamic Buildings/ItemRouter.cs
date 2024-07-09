@@ -49,6 +49,12 @@ public class ItemRouter : MonoBehaviour, IItemSaveable, IGetTriggerInfo
         }
     }
 
+    public string GetSaveID (out bool dontSave)
+    {
+        dontSave = false;
+        return saveID;
+    }
+
     public virtual void GetData (out ItemSaveData data, out ObjectSaveData objData, out bool _dontSave)
     {
         ItemSaveData newData = new ItemSaveData();

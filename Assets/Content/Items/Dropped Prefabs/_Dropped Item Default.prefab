@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 0}
+  item: {fileID: 11400000, guid: 3557b40aadb03ec4a8a685139d11d1c1, type: 2}
   saveID: droppedItemDefault
   dontSave: 0
 --- !u!33 &1652595617823421505

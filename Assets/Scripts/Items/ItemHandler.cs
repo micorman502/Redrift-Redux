@@ -11,6 +11,12 @@ public class ItemHandler : MonoBehaviour, IItemSaveable, IItemPickup, IHotText
     [SerializeField] bool dontSave;
     protected bool loaded;
 
+    public string GetSaveID (out bool dontSave)
+    {
+        dontSave = this.dontSave;
+        return saveID;
+    }
+
     public virtual void GetData (out ItemSaveData data, out ObjectSaveData objData, out bool _dontSave)
     {
         if (dontSave)
