@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 99f977f9abce157489d907c81ca11ff1, type: 2}
-  saveID: droppedItemConveyorSplitter
+  saveID: dropConveyorSplitter
   dontSave: 0
 --- !u!33 &7612105169193922948
 MeshFilter:

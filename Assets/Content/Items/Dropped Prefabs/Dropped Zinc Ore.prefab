@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 28c7948fd5a6b534bbc8bf8ff165086d, type: 2}
-  saveID: droppedItemZincOre
+  saveID: dropZincOre
   dontSave: 0
 --- !u!33 &8764075672965370598
 MeshFilter:

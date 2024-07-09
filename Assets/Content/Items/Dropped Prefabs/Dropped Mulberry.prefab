@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 7c6fb0a483f68174dbdbc5e677cfe1e7, type: 2}
-  saveID: droppedItemMulberry
+  saveID: dropMulberry
   dontSave: 0
 --- !u!54 &6515900483500295394
 Rigidbody:

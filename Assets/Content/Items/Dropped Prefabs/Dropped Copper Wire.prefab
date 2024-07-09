@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 13919cb26fba1284689672e0315679e4, type: 2}
-  saveID: droppedItemCopperWire
+  saveID: dropCopperWire
   dontSave: 0
 --- !u!33 &1547944832343512729
 MeshFilter:

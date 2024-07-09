@@ -32,6 +32,7 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -48,9 +49,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5061345d984446a05c9ab240db0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handler: {fileID: 502988542488526522}
   item: {fileID: 11400000, guid: eda8cd479833b8649945ad344a643265, type: 2}
-  saveID: droppedItemConveyorBeltT2
+  saveID: dropConveyorBeltT2
   dontSave: 0
 --- !u!33 &2875226038630038280
 MeshFilter:

@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: e16dd43f8e3437e4090deb09fc04a355, type: 2}
-  saveID: droppedItemGrass
+  saveID: dropGrass
   dontSave: 0
 --- !u!33 &3736451694849315943
 MeshFilter:

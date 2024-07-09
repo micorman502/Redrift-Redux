@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: b9c3b7e94c329c242846f7a87399a30a, type: 2}
-  saveID: droppedItemVoidSkipper
+  saveID: dropVoidSkipper
   dontSave: 0
 --- !u!33 &7640218165824880790
 MeshFilter:

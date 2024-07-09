@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 8e2b06360f2cb914093f2e0c86d5ee65, type: 2}
-  saveID: droppedItemBox
+  saveID: dropBox
   dontSave: 0
 --- !u!33 &4123853824158523506
 MeshFilter:

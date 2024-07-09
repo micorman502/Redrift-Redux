@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 12ea19b68e1332040a9efeaf7370d622, type: 2}
-  saveID: droppedItemScoopT1
+  saveID: dropScoopT1
   dontSave: 0
 --- !u!33 &1329186133769180550
 MeshFilter:

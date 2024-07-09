@@ -307,7 +307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 966d43846ef5557458a540c24d80b534, type: 2}
-  saveID: droppedItemWoodPile
+  saveID: dropWoodPile
   dontSave: 0
 --- !u!54 &8776565171398551876
 Rigidbody:

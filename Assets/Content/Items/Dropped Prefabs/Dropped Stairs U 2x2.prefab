@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: be6c602b92b6bf749931e7c7ccab8c9c, type: 2}
-  saveID: droppedItemStairsU2X2
+  saveID: dropStairsU2X2
   dontSave: 0
 --- !u!33 &470568975317056883
 MeshFilter:

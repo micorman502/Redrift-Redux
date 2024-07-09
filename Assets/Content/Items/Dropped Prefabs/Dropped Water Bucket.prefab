@@ -216,7 +216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: f3d9331c6ded1e4488f7bac7e0a8f8c4, type: 2}
-  saveID: droppedItemWaterBucket
+  saveID: dropWaterBucket
   dontSave: 0
 --- !u!54 &8990584460081299035
 Rigidbody:

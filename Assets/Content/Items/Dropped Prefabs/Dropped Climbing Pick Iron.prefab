@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 01a3733e20ab96f40b6fbf5a02089e44, type: 2}
-  saveID: droppedItemClimbingPickIron
+  saveID: dropClimbingPickIron
   dontSave: 0
 --- !u!33 &5544067548244162686
 MeshFilter:

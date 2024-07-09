@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 34c4e7e00e74e0c42b342cf4513c2cb6, type: 2}
-  saveID: droppedItemOpticalSensor
+  saveID: dropOpticalSensor
   dontSave: 0
 --- !u!33 &3388495107182850940
 MeshFilter:

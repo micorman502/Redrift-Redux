@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 3c9d73d950aa9e345b4552f8c78d5673, type: 2}
-  saveID: droppedItemSacrificialAnode
+  saveID: dropSacrificialAnode
   dontSave: 0
 --- !u!54 &7664187355573981461
 Rigidbody:

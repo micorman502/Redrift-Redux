@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: ada74405c0b91a641bed3460f1a00d5e, type: 2}
-  saveID: droppedItemLightningStone
+  saveID: dropLightningStone
   dontSave: 0
   fadeTime: 40
   minScale: {x: 0.1, y: 0.1, z: 0.1}
