@@ -8,6 +8,7 @@ public class SubmarineControls : MonoBehaviour, IInteractable, IGameplayInputHan
     [SerializeField] Transform exitPoint;
     [SerializeField] Rigidbody rb;
     [SerializeField] float speed;
+    [SerializeField] float rotationSpeed;
     [SerializeField] float verticalAngleLimit = 85f;
 
     Vector3 rawEulers;
@@ -34,12 +35,10 @@ public class SubmarineControls : MonoBehaviour, IInteractable, IGameplayInputHan
 
         moveAxes.Normalize();
 
-        moveAxes *= speed;
+        rb.AddForce(transform.forward * moveAxes.z * speed, ForceMode.Acceleration);
 
-        rb.AddForce(transform.forward * moveAxes.z, ForceMode.Acceleration);
-
-        rawEulers.y += moveAxes.x;
-        rawEulers.x -= moveAxes.y;
+        rawEulers.y += moveAxes.x * rotationSpeed * Time.fixedDeltaTime;
+        rawEulers.x -= moveAxes.y * rotationSpeed * Time.fixedDeltaTime;
         rawEulers.x = Mathf.Clamp(rawEulers.x, -verticalAngleLimit, verticalAngleLimit);
 
         lerpEulers = Vector3.Lerp(lerpEulers, rawEulers, 3f * Time.fixedDeltaTime);
