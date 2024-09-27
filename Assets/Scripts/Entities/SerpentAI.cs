@@ -25,6 +25,7 @@ public class SerpentAI : MonoBehaviour
     [SerializeField] float chargeTime;
     [SerializeField] GameObject closeAttackObject;
     [SerializeField] GameObject farAttackObject;
+    [SerializeField] int farAttackCount = 1;
 
     float lastCloseAttack = -1000f;
     float closeAttackCooldown;
@@ -169,6 +170,8 @@ public class SerpentAI : MonoBehaviour
                 FarAttack();
             }
         }
+
+        headObject.transform.LookAt(moveTarget);
     }
 
     void PatrolLogic ()
@@ -261,7 +264,12 @@ public class SerpentAI : MonoBehaviour
         Debug.Log("Far Attack");
         farAttackCooldown = Random.Range(farAttackFreqMin, farAttackFreqMax);
 
-        Instantiate(farAttackObject, transform.position + headObject.transform.forward * 3f, headObject.transform.rotation);
+        Vector3 playerVelocity = Player.GetPlayerObject().GetComponent<Rigidbody>().velocity;
+        for (int i = 0; i < farAttackCount; i++)
+        {
+            GameObject newAttack = Instantiate(farAttackObject, transform.position + headObject.transform.forward * 3f, Quaternion.identity);
+            newAttack.transform.LookAt(player);
+        }
 
         SwitchState(SerpentState.Chase);
     }
@@ -275,8 +283,6 @@ public class SerpentAI : MonoBehaviour
         Vector3 moveVector = Vector3.ClampMagnitude(moveTarget - transform.position, 0.4f);
 
         rb.AddForce(moveVector * currentSpeed, ForceMode.Acceleration);
-
-        headObject.transform.LookAt(moveTarget);
 
         if (sprint)
         {

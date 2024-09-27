@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explodeFX: {fileID: 6388094149803644011, guid: 498356863cd4b3f4c91ec557f19da230,
     type: 3}
-  explodeRadius: 7
+  explodeRadius: 8
   travelSpeed: 0
   lifetime: 0
   explodeDamage: 20
