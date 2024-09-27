@@ -268,7 +268,7 @@ public class SerpentAI : MonoBehaviour
         for (int i = 0; i < farAttackCount; i++)
         {
             GameObject newAttack = Instantiate(farAttackObject, transform.position + headObject.transform.forward * 3f, Quaternion.identity);
-            newAttack.transform.LookAt(player);
+            newAttack.transform.LookAt(Player.GetPlayerPosition() + playerVelocity); // TEMP
         }
 
         SwitchState(SerpentState.Chase);
